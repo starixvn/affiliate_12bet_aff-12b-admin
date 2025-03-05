@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Linq;
     using Constants;
     using CoreService;
     using Criterias;
@@ -8,6 +7,7 @@
     using DTO.UserPanel;
     using MetalModels.UserPanel;
     using Resources;
+    using System.Linq;
     using Utilities;
     using ViewModels.UserPanel;
 

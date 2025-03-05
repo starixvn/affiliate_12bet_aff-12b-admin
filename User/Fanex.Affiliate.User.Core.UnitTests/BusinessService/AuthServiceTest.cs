@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System;
     using Commands;
     using Core.BusinessService;
     using Core.Utilities;
@@ -12,6 +11,7 @@
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
     using Resources;
+    using System;
     using Xunit;
 
     public class AuthServiceTest

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`note - components - Content render correctly 1`] = `""`;
+exports[`note - common - components - Content render correctly 1`] = `""`;
 
-exports[`note - components - Content render correctly with have data 1`] = `
+exports[`note - common - components - Content render correctly with have data 1`] = `
 <div
   className="data-content"
 >
@@ -245,7 +245,7 @@ exports[`note - components - Content render correctly with have data 1`] = `
 </div>
 `;
 
-exports[`note - components - Content render correctly with have data is empty 1`] = `
+exports[`note - common - components - Content render correctly with have data is empty 1`] = `
 <div
   className="data-content"
 >

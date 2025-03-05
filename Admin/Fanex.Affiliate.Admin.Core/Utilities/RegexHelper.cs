@@ -11,5 +11,10 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             return Regex.IsMatch(input, pattern, RegexOptions.None, TimeSpan.FromSeconds(TimeOutSecond));
         }
+
+        public static bool IsMatchIgnoreCase(string input, string pattern)
+        {
+            return Regex.IsMatch(input, pattern, RegexOptions.IgnoreCase, TimeSpan.FromSeconds(TimeOutSecond));
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Link.Controllers
         private readonly IGeneralAffiliateInfoService _generalAffiliateInfoDataAccess;
 
         private const string LinkIsInvalidMessage = "This link does not exists. Please contact administrator!";
-        private const string LinkIsIncorrectMessage = "This link is incorrect. Please contact administrator!";
+        private const string LinkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
 
         #endregion Services
 
@@ -65,17 +65,22 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             try
             {
-                var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
                 var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affId: affId);
 
-                if (affInfo is null || string.IsNullOrEmpty(affInfo.AffCode))
+                if (!string.IsNullOrEmpty(affInfo.AffCode) && !string.IsNullOrEmpty(lang))
                 {
-                    ViewBag.Result = LinkIsInvalidMessage;
+                    var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
+                    var isValidDomain = ValidateTrackingV1MediaLink(affId, affDomain, affInfo.PreferredLanguage);
 
-                    return View("Link");
+                    if (isValidDomain)
+                    {
+                        return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affId);
+                    }
                 }
 
-                return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affId);
+                ViewBag.Result = LinkIsInvalidMessage;
+
+                return View("Link");
             }
             catch (Exception ex)
             {
@@ -90,27 +95,22 @@ namespace Fanex.Affiliate.Link.Controllers
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        public ActionResult Link(string pageCode, string affCode, string lang = null)
+        public ActionResult Link(string pageCode, string affCode, string lang = null, string channel = null)
         {
             try
             {
-                var affDomain = GetFullAffDomain(GetOriginalUrl(), pageCode);
+                var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affCode: affCode);
 
-                if (IsLocal)
+                if (affInfo.AffId == 0 || string.IsNullOrEmpty(lang))
                 {
-                    var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affCode: affCode);
+                    ViewBag.Result = LinkIsInvalidMessage;
 
-                    if (affInfo.AffId == 0)
-                    {
-                        ViewBag.Result = LinkIsInvalidMessage;
-
-                        return View("Link");
-                    }
-
-                    return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId);
+                    return View("Link");
                 }
 
-                return InsertAffiliate(affCode, pageCode, lang, affDomain);
+                var affDomain = GetFullAffDomain(GetOriginalUrl(), pageCode);
+
+                return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId, channel);
             }
             catch (Exception ex)
             {
@@ -120,12 +120,12 @@ namespace Fanex.Affiliate.Link.Controllers
             }
         }
 
-        public ActionResult SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null)
+        public ActionResult SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
         {
-            return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang);
+            return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
         }
 
-        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0)
+        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0, string channel = null)
         {
             if (Request.Url != null)
             {
@@ -144,6 +144,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     AffDomain = affDomain,
                     AffCode = affCode,
                     PageCode = pageCodeOnV2,
+                    ChannelCode = channel,
                     LanguageCode = lang,
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),
@@ -172,7 +173,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
                     if ((isMarketingLandingPage && IsValidAffMarketing(affCode)) || !isMarketingLandingPage)
                     {
-                        var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, affCode);
+                        var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode);
 
                         return Redirect(result);
                     }
@@ -182,6 +183,35 @@ namespace Fanex.Affiliate.Link.Controllers
             }
 
             return View("Link");
+        }
+
+        private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string affLanguage)
+        {
+            var affMediaLink = GetOriginalUrl();
+
+            var checkingCommand = new CheckMarketingLinkCommand
+            {
+                AffId = affId,
+                AffDomain = affDomain,
+                LanguageCode = affLanguage,
+                AffMediaLink = affMediaLink
+            };
+
+            var checkMarketingLinkResult = _trackingSystemService.GetTrackingMarketingLinkInfo(checkingCommand);
+
+            if(checkMarketingLinkResult.IsValidDomain && !checkMarketingLinkResult.IsExistedTracking)
+            {
+                var insertCommand = new ToggleMarketingLinkCommand
+                {
+                    AffId = affId,
+                    LanguageCode = affLanguage,
+                    AffMediaLink = affMediaLink
+                };
+
+                _trackingSystemService.ToggleMarketingLink(insertCommand);
+            }
+
+            return checkMarketingLinkResult.IsValidDomain;
         }
 
         private static void HandleFakeSpecificDomainOnLocal(int affId, TrackingSystemCommand param)
@@ -254,7 +284,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return languageCode;
         }
 
-        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode, string affCode)
+        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode)
         {
             var customLanguageCode = GetSupportedLanguageCodeOnMemberSiteV2(languageCode);
             var redirectPattern = ConfigurationManager.AppSettings[$"Redirect_{pageCode.ToLowerInvariant()}_pattern"];
@@ -262,7 +292,7 @@ namespace Fanex.Affiliate.Link.Controllers
             if (!string.IsNullOrEmpty(redirectPattern))
             {
                 var redirectUri = new Uri(redirectUrl);
-                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode).Replace("#affCode#", affCode);
+                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode).Replace("#queryString#", redirectUri.Query);
                 return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}";
             }
 

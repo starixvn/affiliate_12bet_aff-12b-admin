@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using Fanex.Affiliate.User.Core.Enum;
-using Fanex.Affiliate.User.Core.Extensions;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {

@@ -31,6 +31,14 @@ describe('domain control actions', () => {
     });
 
     it('should create action to fetchData with return correct data', () => {
+        const affSubDomainList = [
+            {
+                columnKey: "test",
+                columnName: "test",
+                checked: true
+            }
+        ];
+
         const expectedResponse = {
             data: [
                 {
@@ -49,13 +57,26 @@ describe('domain control actions', () => {
         ];
 
         const store = mockStore({ todos: [] });
-        return store.dispatch(actions['fetchData']("en-GB")).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB" });
+        return store.dispatch(actions['fetchData']("en-GB", affSubDomainList)).then(() => {
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB", isGetAll: true, subDomainRegex: "test" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
 
     it('should create action to fetchData with return error', () => {
+        const affSubDomainList = [
+            {
+                columnKey: "test",
+                columnName: "test",
+                checked: true
+            },
+            {
+                columnKey: "goto",
+                columnName: "goto",
+                checked: false
+            }
+        ];
+
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
@@ -66,8 +87,8 @@ describe('domain control actions', () => {
         ];
 
         const store = mockStore({ todos: [] });
-        return store.dispatch(actions['fetchData']("en-GB")).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB" });
+        return store.dispatch(actions['fetchData']("en-GB", affSubDomainList)).then(() => {
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB", isGetAll: false, subDomainRegex: "test" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })

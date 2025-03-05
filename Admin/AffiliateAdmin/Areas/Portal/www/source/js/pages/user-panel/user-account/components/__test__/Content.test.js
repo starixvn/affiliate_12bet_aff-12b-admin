@@ -55,6 +55,7 @@ describe('user account - components - Content', () => {
         userAccountInfo,
         moreSiteUrlsList: ["www.sportsbookie.com", "www.gzyyy.com", "www.123.com"],
         getUserAccountInfo: jest.fn(() => userAccountInfo),
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
         getPaymentMethod: jest.fn(() => paymentMethod, () => paymentMethod),
         licenseeName: 'Bwing'
     }
@@ -192,7 +193,7 @@ describe('user account - components - Content', () => {
         await instance.handleSubmit();
 
         expect(instance.setState).toHaveBeenCalledTimes(2);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Gender is empty, Please Check!<br />Email Address is invalid<br />Please select country<br />Website URL 3 is required<br />User Name is required<br />' });
+        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Gender is empty, Please Check!<br />Please select country<br />Website URL 3 is required<br />User Name is required<br />' });
         expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
 
         expect(props.updateUserAccount).not.toHaveBeenCalled();

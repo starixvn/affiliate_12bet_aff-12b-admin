@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Threading.Tasks;
     using Apis;
     using Commands.Account;
     using Core.Constants.Apis;
@@ -14,6 +13,7 @@
     using MetalModels.Email;
     using Moq;
     using Resources;
+    using System.Threading.Tasks;
     using TestHelper;
     using Xunit;
 
@@ -202,7 +202,7 @@
 
             //Assert
             Assert.Equal(affId, result.AffId);
-            Assert.True(result.IsValidAff);
+            Assert.False(result.IsValidAff);
         }
 
         [Fact]

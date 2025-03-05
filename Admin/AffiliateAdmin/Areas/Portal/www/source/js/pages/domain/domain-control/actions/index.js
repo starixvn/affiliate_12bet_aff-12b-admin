@@ -1,62 +1,77 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_SELECTED_MARKET, SET_SELECTED_DOMAIN, SHOULD_RESET_SCROLL_POSITION, SET_GRID_DATA, SET_AFF_DOMAIN_LIST, SET_REDIRECT_DOMAIN } from './types';
+import * as types from './types';
 import { getDomainList } from '../../domain/actions/index';
 
 export { toggleLoader };
 
 export const setSelectedDomain = (data) => {
     return {
-        type: SET_SELECTED_DOMAIN,
+        type: types.SET_SELECTED_DOMAIN,
         data
     }
 }
 
 export const setSelectedMarket = (data) => {
     return {
-        type: SET_SELECTED_MARKET,
+        type: types.SET_SELECTED_MARKET,
         data
     }
 }
 
 export const setShouldResetScrollPosition = (data) => {
     return {
-        type: SHOULD_RESET_SCROLL_POSITION,
+        type: types.SHOULD_RESET_SCROLL_POSITION,
         data
     }
 }
 
 export const setGridData = (data) => {
     return {
-        type: SET_GRID_DATA,
+        type: types.SET_GRID_DATA,
         data
     }
 }
 
 export const setAffDomainList = (data) => {
     return {
-        type: SET_AFF_DOMAIN_LIST,
+        type: types.SET_AFF_DOMAIN_LIST,
         data
     }
 }
 
 export const setRedirectDomainList = (data) => {
     return {
-        type: SET_REDIRECT_DOMAIN,
+        type: types.SET_REDIRECT_DOMAIN,
         data
     }
 }
 
-export const fetchData = (market) => async (dispatch) => {
+export const setAffSubDomainList = (data) => {
+    return {
+        type: types.SET_AFF_SUB_DOMAIN_LIST,
+        data
+    }
+}
+
+export const fetchData = (market, affSubDomainList, shouldUpdateAffSubDomain) => async (dispatch) => {
     dispatch(toggleLoader(true));
+    const selectedAffSubDomains = affSubDomainList.filter(a => a.checked);
+    const isGetAll = selectedAffSubDomains.length == affSubDomainList.length;
+    const subDomainRegex = selectedAffSubDomains.map(s => s.columnName).join('|');
 
     const url = 'Portal/DomainControl/GetDomainControlList';
-    const response = await post(url, { market });
+    const response = await post(url, { market, isGetAll, subDomainRegex  });
 
     const data = response && response.status === 200 ? response.data : [];
 
     dispatch(setGridData(data));
     dispatch(setShouldResetScrollPosition(true));
+
+    if (shouldUpdateAffSubDomain) {
+        await HandleUpdateAffSubDomainControlList(isGetAll, affSubDomainList, dispatch);
+    }
+
     dispatch(toggleLoader(false));
 }
 
@@ -84,4 +99,30 @@ export const deleteDomain = (param) => async () => {
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
+}
+
+const HandleUpdateAffSubDomainControlList = async (isGetAll, affSubDomainList, dispatch) => {
+    const url = 'Portal/DomainControl/GetSubAffDomainControlList';
+    const response = await post(url);
+
+    const data = response && response.status === 200 ? response.data : [];
+    let shouldDispatch = false;
+
+    const subDomainList =  data.map(item => {
+        var subDomain = affSubDomainList.find(a => a.columnKey == item);
+
+        if (!subDomain) {
+            shouldDispatch = true;
+
+            return {
+                columnKey: item,
+                columnName: item,
+                checked: isGetAll
+            }
+        }
+
+        return subDomain;
+    });
+
+    shouldDispatch && dispatch(setAffSubDomainList(subDomainList));
 }

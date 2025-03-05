@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Interface
 {
     using Fanex.Affiliate.Link.Commands;
+    using Fanex.Affiliate.Link.DTOs;
 
     /// <summary>
     /// Tracking system statistics.
@@ -13,5 +14,9 @@
         /// <param name="command">Input command.</param>
         /// <returns>Success or fail.</returns>
         string InsertStatistic(TrackingSystemCommand command);
+
+        bool ToggleMarketingLink(ToggleMarketingLinkCommand command);
+
+        CheckMarketingLinkResult GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command);
     }
 }

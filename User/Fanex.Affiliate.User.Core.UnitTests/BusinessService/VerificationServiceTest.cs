@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System;
-    using System.Security.Cryptography;
     using Commands;
     using Criterias;
     using Data.Repository;
@@ -11,6 +9,8 @@
     using Fanex.Affiliate.User.Core.Utilities;
     using MetalModels;
     using NSubstitute;
+    using System;
+    using System.Security.Cryptography;
     using TestHelper;
     using Xunit;
 

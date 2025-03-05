@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Collections.Generic;
     using CoreService;
     using Criterias;
     using Data.Repository;
     using DTO;
     using DTO.UserPanel;
     using MetalModels.UserPanel;
+    using System.Collections.Generic;
     using Utilities;
 
     public class StatementHistoryService : BaseDynamicService, IStatementHistoryService

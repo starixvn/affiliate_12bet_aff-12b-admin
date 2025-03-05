@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Linq;
-    using System.Threading.Tasks;
     using Constants;
     using CoreService;
     using Criterias;
     using Data.Repository;
     using DTO.UserPanel;
     using Extensions;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Utilities;
 
     public class NewsLetterService : BaseDynamicService, INewsLetterService

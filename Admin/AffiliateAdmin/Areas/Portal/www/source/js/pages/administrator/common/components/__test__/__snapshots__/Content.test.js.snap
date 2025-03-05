@@ -405,6 +405,7 @@ exports[`administrator - common - components - Content  render correctly 1`] = `
   />
   <Connect(EditPolicyForm)
     closePopup={[Function]}
+    groupName=""
     isAccountPolicy={true}
     isShowPopup={false}
     name=""
@@ -615,6 +616,7 @@ exports[`administrator - common - components - Content  render correctly with em
   />
   <Connect(EditPolicyForm)
     closePopup={[Function]}
+    groupName=""
     isAccountPolicy={true}
     isShowPopup={false}
     name=""

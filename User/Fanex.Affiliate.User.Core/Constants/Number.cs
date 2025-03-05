@@ -23,7 +23,7 @@
         public const int Fifty = 50;
 
         public const int OneHundred = 100;
-        
+
         public const int ThreeHundred = 100;
 
         public const int OneThousand = 1000;

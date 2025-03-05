@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using Commands.Marketing;
     using Constants;
     using CoreService;
@@ -17,6 +13,10 @@
     using MetalModels;
     using MetalModels.UserPanel;
     using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
     using Utilities;
     using ViewModels.UserPanel.Marketing;
 
@@ -112,7 +112,7 @@
                         {
                             DomainId = affId + specificDomainList.Count,
                             DomainName = name,
-                            IsSsl = false
+                            IsSsl = !(Array.Exists(SpecificDomain.NotSSLDomains, d => d.MatchWith(name)))
                         });
                     }
 
@@ -315,7 +315,7 @@
 
         private static string NormalizeName(string channelName)
         {
-            return channelName.Replace(" ", string.Empty).ToLowerInvariant();
+            return channelName.ToLowerInvariant();
         }
 
         private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains, bool isMember = false)

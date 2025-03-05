@@ -1,17 +1,17 @@
 ﻿namespace Fanex.Affiliate.User.Core.Infrastructure
 {
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Apis;
     using Constants;
     using CoreService;
     using DTO.Apis;
     using MetalModels.Apis;
     using Refit;
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Utilities;
 
     public class AuthenticatedHttpClientHandler : HttpClientHandler

@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Specialized;
-    using System.Web;
-    using System.Web.Security;
     using Commands;
     using CoreService;
     using Criterias;
@@ -13,6 +9,10 @@
     using DTO.VerificationAccount;
     using MetalModels;
     using Resources;
+    using System;
+    using System.Collections.Specialized;
+    using System.Web;
+    using System.Web.Security;
     using Utilities;
     using ViewModels;
 
@@ -104,8 +104,8 @@
             {
                 var verificationInfo = GetTData<VerificationInfo>(new GetLoginInfoByUserDeviceCriteria
                 {
-                    AffId = user.AffId, 
-                    IpAddress = userParam.LoginIp, 
+                    AffId = user.AffId,
+                    IpAddress = userParam.LoginIp,
                     DeviceInfo = hashedDeviceInfo
                 });
 

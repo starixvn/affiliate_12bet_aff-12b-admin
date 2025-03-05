@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Criterias;
     using Data.Repository;
     using DTO.UserPanel;
@@ -9,6 +7,8 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Utilities;
     using Moq;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using TestHelper;
     using Xunit;
 
@@ -87,7 +87,8 @@
             var content = "test";
             var sessionService = new Mock<ISessionService>();
             sessionService.Setup(s => s.CurrentLanguage).Returns("en-US");
-            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>(), string.Empty)).Returns(new List<NewsLetter> { new NewsLetter { Language = "en-US", FileName = "abc.html" } });
+            _repository.Setup(p => p.Fetch<NewsLetter>(It.IsAny<GetNewsLettersByDateCriteria>(), string.Empty))
+                .Returns(new List<NewsLetter> { new NewsLetter { Language = "en-US", FileName = "abc.html" } });
             var httpClientUtility = new Mock<IHttpClientUtility>();
             httpClientUtility.Setup(h => h.GetContent(It.IsAny<string>(), It.IsAny<string>())).Returns(Task.FromResult(content));
 

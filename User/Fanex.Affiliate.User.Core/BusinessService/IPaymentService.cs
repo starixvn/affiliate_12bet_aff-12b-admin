@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         Task<ResultInfo> CreatePaymentRequestAsync(PaymentCreationParam paymentCreationParam, PaymentEmailParam emailParam);
 
         ResultInfo CancelPaymentRequest(PaymentCancelParam cancelParam, PaymentEmailParam emailParam);
+
+        bool IsInDateRange();
     }
 }

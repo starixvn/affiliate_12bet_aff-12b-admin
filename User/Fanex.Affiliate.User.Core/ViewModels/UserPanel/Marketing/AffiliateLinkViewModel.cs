@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing
 {
-    using System.Collections.Generic;
     using DTO;
+    using System.Collections.Generic;
 
     public class AffiliateLinkViewModel
     {

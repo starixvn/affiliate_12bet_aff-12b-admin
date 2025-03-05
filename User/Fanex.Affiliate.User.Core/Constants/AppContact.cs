@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string FirstAppContactName = "Skype";
 
-        public static readonly IReadOnlyDictionary<string, string>  SecondAppContactList = new Dictionary<string, string>
+        public static readonly IReadOnlyDictionary<string, string> SecondAppContactList = new Dictionary<string, string>
         {
             [SystemLanguage.EnglishLanguageCode] = "Facebook",
             [SystemLanguage.BangladeshLanguageCode] = "WhatsApp",

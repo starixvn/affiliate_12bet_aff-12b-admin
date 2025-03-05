@@ -7,13 +7,10 @@ jest.mock('react-dom', () => ({ render: jest.fn() }))
 describe('report - App', () => {
 
     beforeEach(() => {
-        window.globalVariables = {
-            permissions: [
-                {
-                    FunctionName: "[AffReport]"
-                }
-            ]
-        }
+        window.globalVariables = {};
+        window.initialState = {
+            "[AffReport]":"[Write]"
+        };
     })
 
     it('Should render correctly', () => {

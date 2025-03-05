@@ -124,11 +124,10 @@ export class GridData extends Component {
             for (let index = 0; index < gridData.length; index++) {
                 const item = gridData[index];
 
-                const { TierSettingList, P2pDeductionList, PlatformFeeList, KillRateFeeList, DepositFee, WithdrawalFee, SubAffCommRate, QmTurnover, ...group } = item;
+                const { TierSettingList, PlatformFeeList, KillRateFeeList, DepositFee, WithdrawalFee, SubAffCommRate, QmTurnover, ...group } = item;
                 const tierSettingRowSpan = TierSettingList.length;
                 const platformFeeRowSpan = PlatformFeeList.length;
-                const p2pDeductionRowSpan = P2pDeductionList.length;
-                const rowSpan = tierSettingRowSpan + (platformFeeRowSpan + p2pDeductionRowSpan) * 2;
+                const rowSpan = tierSettingRowSpan + platformFeeRowSpan * 2;
 
                 const depositFee = DepositFee && (DepositFee.IsDeductedPercent ? `${format(DepositFee.DeductedPercentage * 100, 1)}%` : formatDecimal(Number(DepositFee.DeductedAmount)));
                 const withdrawalFee = WithdrawalFee && (WithdrawalFee.IsDeductedPercent ? `${format(WithdrawalFee.DeductedPercentage * 100, 1)}%` : formatDecimal(Number(WithdrawalFee.DeductedAmount)));
@@ -137,63 +136,10 @@ export class GridData extends Component {
 
                 const isTurnover = item.GroupTypeId === groupTypeList.Turnover;
 
-                for (let iP2P = 0; iP2P < P2pDeductionList.length; iP2P++) {
-                    const p2pDeduction = P2pDeductionList[iP2P];
-                    const isFirstItem = iP2P === 0;
-                    const isPrivateGroup = group.GroupId > 1000;
-                    const p2pFixedRate = `${format(p2pDeduction.Commission * 100, 1)}%`;
-                    const royaltyFee = `${format(p2pDeduction.DeductedPercentage * 100, 1)}%`;
-                    const productIds = p2pDeduction.ProductIds;
-
-                    rows.push(
-                        [
-                            <Row key={`row-platform-${index}-${productIds}-1`}>
-                                {isFirstItem && (
-                                    <Fragment>
-                                        <Cell className="text-center" rowSpan={rowSpan}>{group.RowIdx}</Cell>
-                                        <Cell className="text-center" rowSpan={rowSpan} title={isPrivateGroup ? "Private Group" : ""}>
-                                            {isPrivateGroup && (<span className="oi oi-person"></span>)}{htmlDecode(group.GroupName)}
-                                        </Cell>
-                                        <Cell className="text-center" rowSpan={rowSpan}>
-                                            <a href={resolveClientUrl("Portal/Affiliate?groupId=") + group.GroupId} target="_top">{group.NoAffs}</a>
-                                        </Cell>
-                                        <Cell className="text-center" rowSpan={rowSpan}>{htmlDecode(group.Description)}</Cell>
-                                        <Cell className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></Cell>
-                                    </Fragment>
-                                )}
-                                <Cell className="cell-deduction" rowSpan="2">
-                                    <div dangerouslySetInnerHTML={{ __html: `<strong>P2P Group ${iP2P + 1}</strong><br />Royalty Fee ${royaltyFee}` }}></div>
-                                </Cell>
-                                <Cell className="font-weight-bold text-center cell-deduction" colSpan="4">{`Fixed Rate ${p2pFixedRate}`}</Cell>
-                                {isFirstItem && (
-                                    <Fragment>
-                                        <Cell className="text-right" rowSpan={rowSpan} title={depositFee}>{depositFee}</Cell>
-                                        <Cell className="text-right" rowSpan={rowSpan} title={withdrawalFee}>{withdrawalFee}</Cell>
-                                        <Cell className="text-right" rowSpan={rowSpan} title={subAffCommRate}>{subAffCommRate}</Cell>
-                                        <Cell className="text-right" rowSpan={rowSpan} title={qmTurnover}>{qmTurnover}</Cell>
-                                        <Cell className="text-center" rowSpan={rowSpan}>
-                                            <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
-                                                <span className="oi oi-pencil text-secondary"></span>
-                                            </button>
-
-                                            {
-                                                group.NoAffs === 0 && (
-                                                    <button className="btn btn-link" onClick={() => this._handleDeleteCommGroup(item.GroupId, item.GroupName)}>
-                                                        <span className="oi oi-x text-danger"></span>
-                                                    </button>)
-                                            }
-                                        </Cell>
-                                    </Fragment>
-                                )}
-                            </Row>,
-                            <Row key={`row-platform-${index}-${productIds}-2`}>
-                                <Cell className="cell-tier" colSpan="4">{this._convertToProductNameText(productIds)}</Cell>
-                            </Row>,
-                        ]
-                    );
-                }
-
                 for (let iPlatform = 0; iPlatform < PlatformFeeList.length; iPlatform++) {
+                    const isFirstItem = iPlatform === 0;
+                    const isPrivateGroup = group.GroupId > 1000;
+
                     const platformFee = PlatformFeeList[iPlatform]
                     const royalPercent = `${format(platformFee.DeductedPercentage * 100, 1)}%`;
 
@@ -210,6 +156,19 @@ export class GridData extends Component {
 
                     rows.push(
                         <Row key={`row-platform-${index}-${productIds}`}>
+                            {isFirstItem && (
+                                <Fragment>
+                                    <Cell className="text-center" rowSpan={rowSpan}>{group.RowIdx}</Cell>
+                                    <Cell className="text-center" rowSpan={rowSpan} title={isPrivateGroup ? "Private Group" : ""}>
+                                        {isPrivateGroup && (<span className="oi oi-person"></span>)}{htmlDecode(group.GroupName)}
+                                    </Cell>
+                                    <Cell className="text-center" rowSpan={rowSpan}>
+                                        <a href={resolveClientUrl("Portal/Affiliate?groupId=") + group.GroupId} target="_top">{group.NoAffs}</a>
+                                    </Cell>
+                                    <Cell className="text-center" rowSpan={rowSpan}>{htmlDecode(group.Description)}</Cell>
+                                    <Cell className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></Cell>
+                                </Fragment>
+                            )}
                             <Cell className="cell-deduction" rowSpan={2 + tierSettings.length}>
                                 <div dangerouslySetInnerHTML={{
                                     __html: `<strong>Product Group ${iPlatform + 1}</strong><br />Royalty Fee ${royalPercent}${killRateHtml}`
@@ -219,6 +178,26 @@ export class GridData extends Component {
                             <Cell className="font-weight-bold text-center cell-deduction">{isTurnover ? MinNetTurnover : MinNetWin}</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Min Qualified Player</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Rev. Share%</Cell>
+                            {isFirstItem && (
+                                <Fragment>
+                                    <Cell className="text-right" rowSpan={rowSpan} title={depositFee}>{depositFee}</Cell>
+                                    <Cell className="text-right" rowSpan={rowSpan} title={withdrawalFee}>{withdrawalFee}</Cell>
+                                    <Cell className="text-right" rowSpan={rowSpan} title={subAffCommRate}>{subAffCommRate}</Cell>
+                                    <Cell className="text-right" rowSpan={rowSpan} title={qmTurnover}>{qmTurnover}</Cell>
+                                    <Cell className="text-center" rowSpan={rowSpan}>
+                                        <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
+                                            <span className="oi oi-pencil text-secondary"></span>
+                                        </button>
+
+                                        {
+                                            group.NoAffs === 0 && (
+                                                <button className="btn btn-link" onClick={() => this._handleDeleteCommGroup(item.GroupId, item.GroupName)}>
+                                                    <span className="oi oi-x text-danger"></span>
+                                                </button>)
+                                        }
+                                    </Cell>
+                                </Fragment>
+                            )}
                         </Row>
                     );
 

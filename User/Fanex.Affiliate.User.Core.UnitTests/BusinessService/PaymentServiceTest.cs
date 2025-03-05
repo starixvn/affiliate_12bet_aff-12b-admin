@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Commands.Payment;
     using Core.Utilities;
     using Criterias;
@@ -10,11 +8,14 @@
     using DTO.UserPanel;
     using Enum;
     using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Infrastructure;
     using MetalModels.Email;
     using MetalModels.UserPanel;
     using Moq;
     using Newtonsoft.Json;
     using Resources;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using TestHelper;
     using Xunit;
 
@@ -374,13 +375,15 @@
         private static PaymentService CreatePaymentService(
             IDynamicRepository paymentRepository = null,
             IEmailService emailService = null,
-            IAccountService accountService = null)
+            IAccountService accountService = null,
+            IDateTimeProvider dateTimeProvider = null)
         {
             var fakePaymentRepository = paymentRepository ?? Mock.Of<IDynamicRepository>();
             var fakeEmailService = emailService ?? Mock.Of<IEmailService>();
             var fakeAccountService = accountService ?? Mock.Of<IAccountService>();
+            var fakeIDateTimeProvider = dateTimeProvider ?? Mock.Of<IDateTimeProvider>();
 
-            return new PaymentService(fakePaymentRepository, fakeAccountService, fakeEmailService);
+            return new PaymentService(fakePaymentRepository, fakeAccountService, fakeEmailService, fakeIDateTimeProvider);
         }
     }
 }

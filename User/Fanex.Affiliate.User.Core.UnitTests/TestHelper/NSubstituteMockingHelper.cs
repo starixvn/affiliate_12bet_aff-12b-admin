@@ -1,5 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
+    using Enum;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using MetalModels.UserPanel;
+    using NSubstitute;
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
@@ -7,11 +12,6 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using Enum;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using MetalModels.UserPanel;
-    using NSubstitute;
     using ViewModels.UserPanel.Marketing;
 
     public static class NSubstituteMockingHelper

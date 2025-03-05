@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.CoreService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Commands;
     using Criterias;
     using Data.Repository;
     using DTO;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class BaseDynamicService
     {
@@ -66,7 +66,7 @@
 
         public EntityResult<T> FetchEntityResult<T>(CriteriaBase criteria) where T : class
         {
-            var(dataList, totalItem) = _dynamicRepository.FetchMultiple<T, T>(criteria);
+            var (dataList, totalItem) = _dynamicRepository.FetchMultiple<T, T>(criteria);
 
             return new EntityResult<T>
             {

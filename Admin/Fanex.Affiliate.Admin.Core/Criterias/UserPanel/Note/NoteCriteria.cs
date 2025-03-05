@@ -5,7 +5,8 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel.Note
     {
         private readonly string _spPrefix;
 
-        public NoteCriteria(string spPrefix) {
+        public NoteCriteria(string spPrefix)
+        {
             _spPrefix = spPrefix;
         }
 

@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
     using Criterias;
     using Data.Repository;
     using DTO;
@@ -10,6 +9,7 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using MetalModels.UserPanel;
     using Moq;
+    using System.Collections.Generic;
     using Xunit;
 
     public class NewsServiceTest

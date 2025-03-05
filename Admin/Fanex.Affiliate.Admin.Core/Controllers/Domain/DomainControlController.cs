@@ -5,8 +5,10 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -39,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             var model = new DomainControlViewModel
             {
                 SubMenuList = subMenu,
+                AffSubDomainList = _domainControlService.GetSubAffDomainControlList(),
                 MarketList = _languageService.GetLanguageList()
             };
 
@@ -47,9 +50,24 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlList(string market)
+        public ActionResult GetSubAffDomainControlList()
         {
-            return GenerateJsonNetResult(_domainControlService.GetDomainControlList(market));
+            return GenerateJsonNetResult(_domainControlService.GetSubAffDomainControlList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDomainControlList(string market, string subDomainRegex, bool isGetAll = true)
+        {
+            var domainControlList = _domainControlService.GetDomainControlList(market);
+
+            if (isGetAll || string.IsNullOrEmpty(subDomainRegex))
+            {
+                return GenerateJsonNetResult(domainControlList);
+            }
+
+            var regexParten = $"^({subDomainRegex})\\.|^({subDomainRegex})$";
+            return GenerateJsonNetResult(domainControlList.Where(d => RegexHelper.IsMatchIgnoreCase(d.AffDomain, regexParten)));
         }
 
         [HttpPost]

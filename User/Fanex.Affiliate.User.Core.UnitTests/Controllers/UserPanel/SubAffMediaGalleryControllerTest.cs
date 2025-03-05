@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
-    using System.Web.Mvc;
     using Core.Controllers.UserPanel;
+    using System.Web.Mvc;
     using Xunit;
 
     public class SubAffMediaGalleryControllerTest

@@ -1,9 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using Filters;
+    using System.Web.Mvc;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]
@@ -14,7 +14,7 @@
         public AccountOverviewController(
             ISessionService sessionService,
             ISystemService systemsService,
-            IAccountOverviewService accountOverviewService) 
+            IAccountOverviewService accountOverviewService)
             : base(sessionService, systemsService)
         {
             _accountOverviewService = accountOverviewService;

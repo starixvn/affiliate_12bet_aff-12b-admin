@@ -36,6 +36,11 @@ describe('customer member - components - Content', () => {
         }
     ]
 
+    beforeEach(() => {
+        window.globalVariables = {};
+        window.initialState = {};
+    })
+
     it('render correctly', () => {
         const result = shallow(<Content {...defaultProps} />);
 

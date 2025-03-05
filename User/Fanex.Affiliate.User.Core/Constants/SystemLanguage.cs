@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.User.Core.Resources;
+using System.Collections.Generic;
 using System.Threading;
-using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.Constants
 {
@@ -174,7 +174,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             [_Taiwan_LanguageCode] = "skype:live:.cid.304e37e2b32cf7ac?chat",
         };
 
-        private static readonly IList<string> _unsupportedP2pProductLanguages = new List<string> { _Bangladesh_LanguageCode, _India_LanguageCode, _Cambodia_LanguageCode }; 
+        private static readonly IList<string> _unsupportedP2pProductLanguages = new List<string> { _Bangladesh_LanguageCode, _India_LanguageCode, _Cambodia_LanguageCode };
 
         public static IReadOnlyDictionary<string, string> SupportedLanguage => _supportedLanguageForGoogleAnalytics;
 

@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using Core.BusinessService;
     using Core.Controllers;
     using Fanex.Affiliate.User.Core.CoreService;
@@ -10,6 +7,9 @@
     using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using NSubstitute;
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     using TestHelper;
     using Xunit;
 

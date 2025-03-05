@@ -117,7 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     MailOption = param.MailOption,
                     HasWebSite = param.HasWebSite,
                     HasHostAffPersonalInfoPermission = SessionService.HasHostPermission(Function.AffPersonalInfo),
-            };
+                };
                 AssignUserInfoParam(userAccountParam);
 
                 if (param.ContactAppList != null)

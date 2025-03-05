@@ -70,7 +70,14 @@ describe('domain control - components - Content ', () => {
         gridData,
         affDomainList,
         redirectDomainList,
-        marketList
+        marketList,
+        affSubDomainList: [
+            {
+                columnKey: "test",
+                columnName: "test",
+                checked: true
+            }
+        ]
     };
 
     it('render correctly', () => {
@@ -165,7 +172,7 @@ describe('domain control - components - Content ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
         expect(props.deleteDomain).toHaveBeenCalledWith({ DomainId: 2438 });
-        expect(props.fetchData).toHaveBeenCalledWith('');
+        expect(props.fetchData).toHaveBeenCalledWith('', defaultProps.affSubDomainList);
     });
 
     it('_deleteDomain - should call deleteDomain with delete is failed', async () => {

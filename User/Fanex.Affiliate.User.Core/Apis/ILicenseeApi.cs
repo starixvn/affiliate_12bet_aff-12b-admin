@@ -1,8 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Apis
 {
-    using System.Threading.Tasks;
     using Fanex.Affiliate.User.Core.DTO.Apis;
     using Refit;
+    using System.Threading.Tasks;
 
     public interface ILicenseeApi
     {

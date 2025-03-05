@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.EmailHistory
         public EntityResult<EmailHistoryInfo> GetEmailHistoryList(EmailHistoryParam param)
         {
             var criteria = param.MapTo<EmailHistoryParam, EmailHistoryCriteria>();
-            
+
             return FetchEntityResult<EmailHistoryInfo>(criteria);
         }
     }

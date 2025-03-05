@@ -43,9 +43,9 @@ namespace Fanex.Affiliate.User.Core.Extensions
 
         private static string LoadBundleContent(HttpContextBase httpContext, string bundleVirtualPath)
         {
-            var bundleContext = new BundleContext(httpContext, BundleTable.Bundles, bundleVirtualPath) 
+            var bundleContext = new BundleContext(httpContext, BundleTable.Bundles, bundleVirtualPath)
             {
-                    EnableOptimizations = true
+                EnableOptimizations = true
             };
             var bundle = new Bundle(bundleVirtualPath).Include(bundleVirtualPath);
             var bundleResponse = bundle.GenerateBundleResponse(bundleContext);

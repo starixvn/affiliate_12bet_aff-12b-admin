@@ -1,11 +1,11 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Threading.Tasks;
     using DTO;
     using DTO.UserPanel;
     using Fanex.Affiliate.User.Core.DTO.Apis;
     using MetalModels;
     using MetalModels.Email;
+    using System.Threading.Tasks;
 
     public interface IAccountService
     {

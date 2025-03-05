@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
@@ -14,6 +11,9 @@
     using MetalModels;
     using Newtonsoft.Json;
     using Resources;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
 
     [CustomAuthorize]
@@ -26,7 +26,7 @@
 
         public MyAccountController(
             ISessionService sessionService,
-            ISystemService systemsService, 
+            ISystemService systemsService,
             IAccountService accountService) : base(sessionService, systemsService)
         {
             _accountService = accountService;
@@ -100,8 +100,8 @@
 
             var userSession = SessionService.UserSession;
             var userAccount = _accountService.GetAccountInfo(userSession.AffId);
-            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) 
-                ? userAccount.PlayerUsername 
+            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername)
+                ? userAccount.PlayerUsername
                 : Server.HtmlEncode(model.PlayerUsername);
 
             var accountUpdateParam = new UpdateAccountParam

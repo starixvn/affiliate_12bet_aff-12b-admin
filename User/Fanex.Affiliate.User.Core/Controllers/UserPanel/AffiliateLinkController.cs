@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using Filters;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel.Marketing;
 

@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using DTO;
     using DTO.UserPanel;
     using DTO.UserPanel.MediaGallery;
     using Enum;
     using MetalModels;
     using MetalModels.UserPanel;
+    using System.Collections.Generic;
+    using System.Linq;
     using ViewModels.UserPanel.Marketing;
 
     public interface IMarketingService

@@ -304,9 +304,9 @@ exports[`domain control - components - Content  render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="AffDomain"
+            title="Aff Domain"
           >
-            AffDomain
+            Aff Domain
           </t>
           <t
             asc={true}
@@ -468,9 +468,9 @@ exports[`domain control - components - Content  render correctly with gridData i
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="AffDomain"
+            title="Aff Domain"
           >
-            AffDomain
+            Aff Domain
           </t>
           <t
             asc={true}

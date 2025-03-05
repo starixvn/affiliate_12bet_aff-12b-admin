@@ -5,7 +5,7 @@
 
     public abstract class BaseCriteria : CriteriaBase
     {
-        [SpParam(Ignored = true)] 
+        [SpParam(Ignored = true)]
         public bool IsInternal { get; set; }
     }
 }

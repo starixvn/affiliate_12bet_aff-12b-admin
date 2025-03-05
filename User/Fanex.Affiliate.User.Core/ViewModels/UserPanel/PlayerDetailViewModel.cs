@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 {
-    using System.Collections.Generic;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview;
+    using System.Collections.Generic;
 
     public class PlayerDetailViewModel
     {

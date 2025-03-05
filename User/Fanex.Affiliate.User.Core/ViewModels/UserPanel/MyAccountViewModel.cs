@@ -1,8 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 {
+    using Fanex.Affiliate.User.Core.DTO.UserPanel;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Fanex.Affiliate.User.Core.DTO.UserPanel;
 
     public class MyAccountViewModel
     {

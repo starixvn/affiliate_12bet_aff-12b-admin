@@ -146,7 +146,6 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
   >
     <Label
       className="required"
-      for="nodejs"
       sm={3}
       tag="label"
       widths={
@@ -163,6 +162,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       Gender
     </Label>
     <Col
+      className="gender-group"
       sm={9}
       tag="div"
       widths={
@@ -269,13 +269,11 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       }
       xl={10}
     >
-      <Input
-        id="email"
-        name="email"
-        onChange={[Function]}
-        type="text"
-        value="hubert.duong_1@nexcel.vn"
-      />
+      <p
+        className="form-control-plaintext"
+      >
+        hubert.duong_1@nexcel.vn
+      </p>
     </Col>
   </FormGroup>
   <FormGroup
@@ -315,13 +313,11 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       }
       xl={10}
     >
-      <Input
-        id="phone"
-        name="phone"
-        onChange={[Function]}
-        type="text"
-        value="abc"
-      />
+      <p
+        className="form-control-plaintext"
+      >
+        abc
+      </p>
     </Col>
   </FormGroup>
   <FormGroup

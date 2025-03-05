@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using BusinessService;
     using CoreService;
     using Enum;
@@ -10,6 +8,8 @@
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
     using Filters;
     using Resources;
+    using System.Collections.Generic;
+    using System.Linq;
     using Utilities;
 
     [CustomAuthorize]

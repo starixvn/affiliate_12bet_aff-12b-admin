@@ -1,31 +1,38 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Commands.Payment;
     using CoreService;
     using Criterias;
     using Data.Repository;
     using DTO;
     using Enum;
+    using Fanex.Affiliate.User.Core.Infrastructure;
     using MetalModels.Email;
     using MetalModels.UserPanel;
     using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Utilities;
 
     public class PaymentService : BaseDynamicService, IPaymentService
     {
+        private const int BeginDay = 8;
+        private const int EndDay = 15;
+
         private readonly IAccountService _accountService;
         private readonly IEmailService _emailService;
+        private readonly IDateTimeProvider _dateTimeProvider;
 
         public PaymentService(
             IDynamicRepository dynamicRepository,
             IAccountService accountService,
-            IEmailService emailService) : base(dynamicRepository)
+            IEmailService emailService,
+            IDateTimeProvider dateTimeProvider) : base(dynamicRepository)
         {
             _accountService = accountService;
             _emailService = emailService;
+            _dateTimeProvider = dateTimeProvider;
         }
 
         public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)
@@ -44,7 +51,7 @@
         {
             cancelParam.Status = "Cancelled";
 
-            var resultInfo = ExecuteReturnResultInfo(cancelParam.MapTo<PaymentCancelParam,CancelPaymentRequestCommand>());
+            var resultInfo = ExecuteReturnResultInfo(cancelParam.MapTo<PaymentCancelParam, CancelPaymentRequestCommand>());
 
             if (resultInfo.IsOk)
             {
@@ -91,10 +98,22 @@
 
             return resultInfo;
         }
+        public bool IsInDateRange()
+        {
+            var currentDay = _dateTimeProvider.Now.Day;
+            return (currentDay >= BeginDay && currentDay <= EndDay);
+        }
 
         private async Task<ResultInfo> ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
             var resultInfo = new ResultInfo { IsOk = false };
+            if (!IsInDateRange() && !paymentCreationParam.IsLocalTest)
+            {
+                resultInfo.Message = Error.PaymentPayoutTimeInvalid;
+
+                return resultInfo;
+            }
+
             if (!IsValidAmount(paymentCreationParam))
             {
                 resultInfo.Message = Error.PaymentAmountInvalid;

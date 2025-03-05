@@ -14,5 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param);
 
         ResultInfo DeleteDomainControl(DeleteDomainControlParam param);
+
+        IEnumerable<string> GetSubAffDomainControlList();
     }
 }

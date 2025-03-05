@@ -4,9 +4,9 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import ModificationForm from '../../ModificationForm';
-import InsertUpdateForm from '../../../../common/components/InsertUpdateForm';
+import NoteModificationForm from '../../../../common/components/NoteModificationForm';
 
-jest.mock('../../../../common/components/InsertUpdateForm', () => 'mocked-InsertUpdateForm');
+jest.mock('../../../../common/components/NoteModificationForm', () => 'mocked-NoteModificationForm');
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -44,7 +44,7 @@ describe('aff-note - ModificationForm - connect', () => {
         );
 
         const container = wrapper.find(ModificationForm);
-        const insertUpdate = container.find(InsertUpdateForm);
+        const insertUpdate = container.find(NoteModificationForm);
 
         expect(insertUpdate.exists()).toBe(true);
         expect(insertUpdate.props().affId).toBe(1);

@@ -1,11 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Web.Mvc;
     using Constants;
     using DTO.UserPanel;
     using Extensions;
@@ -18,16 +12,23 @@
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Web.Mvc;
     using ViewModels.UserPanel.Marketing;
 
     public class MarketingController : BaseMarketingController
     {
+        private const string CHANNEL_NAME_REGEX = "^[a-zA-Z0-9]+$";
+
         private readonly IQrCodeGeneratorService _qrCodeGeneratorService;
         private readonly IAppSetting _appSetting;
         private readonly IFileSystem _fileSystem;
 
         public MarketingController(
-            ISessionService sessionService, 
+            ISessionService sessionService,
             IAppSetting appSetting,
             ISystemService systemsService,
             IMarketingService marketingService,
@@ -48,7 +49,7 @@
             var newSub = subCategoryList.Select(i => new SelectListItem
             {
                 Value = i.SubCategory,
-                Text = Lang.ResourceManager.GetString(Regex.Replace(i.SubCategory, @"\s+", "")) ?? i.SubCategory
+                Text = Lang.ResourceManager.GetString(RegexHelper.Replace(i.SubCategory, @"\s+", "")) ?? i.SubCategory
             });
 
             return Json(newSub, JsonRequestBehavior.AllowGet);
@@ -137,17 +138,31 @@
         [AjaxOnly]
         public ActionResult AddChannel(string channelName)
         {
-            if (channelName.Length > Number.Twenty)
+            if (!string.IsNullOrEmpty(channelName))
             {
-                return Json(new ResultInfo
+                var channelTrim = channelName.Trim();
+                if (channelTrim.Length > Number.Twenty)
                 {
-                    IsOk = false,
-                    Message = Error.NameToLong20
-                });
-            }
-            var userId = SessionService.UserSession.AffId;
+                    return Json(new ResultInfo
+                    {
+                        IsOk = false,
+                        Message = Error.NameToLong20
+                    });
+                }
 
-            return Json(MarketingService.AddMarketingChannel(userId, channelName));
+                if (RegexHelper.IsMatch(channelTrim, CHANNEL_NAME_REGEX))
+                {
+                    var userId = SessionService.UserSession.AffId;
+
+                    return Json(MarketingService.AddMarketingChannel(userId, channelTrim));
+                }
+            }
+
+            return Json(new ResultInfo
+            {
+                IsOk = false,
+                Message = Error.InvalidChannelName
+            });
         }
 
         [HttpGet]

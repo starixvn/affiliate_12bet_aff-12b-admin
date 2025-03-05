@@ -1212,6 +1212,8 @@ module.exports = closest;
 })(jQuery);
 var MarketingBase = (function ($) {
     isCancelConfirm = false;
+    let regexChannelNamePartten = /^[a-zA-Z0-9]+$/g;
+    let regexChannelName = new RegExp(regexChannelNamePartten);
 
     function getDownloadParam(trigger) {
         return {
@@ -1287,25 +1289,34 @@ var MarketingBase = (function ($) {
                 if ($(this).val() === 'add-new') {
                     let text = prompt(window.dic.enterChannel);
                     if (text) {
-                        let addPromise = MarketingBase.addChannel(text);
-                        addPromise.then(result => {
-                            if (result) {
-                                if (result.IsOk) {
-                                    alert(window.dic.addChannelSuccess)
-                                    $(this).append(new Option(result.Data.ChannelName, result.Data.ChannelCode, false, true));
-                                    $("button.btn-gen").removeAttr("disabled");
+                        let textTrim = text.trim();
+                        if (textTrim.length > 20) {
+                            alert(window.dic.nameToLong20);
+                            return;
+                        }
+
+                        if (regexChannelName.test(textTrim)) {
+                            let addPromise = MarketingBase.addChannel(textTrim);
+                            addPromise.then(result => {
+                                if (result) {
+                                    if (result.IsOk) {
+                                        alert(window.dic.addChannelSuccess)
+                                        $(this).append(new Option(result.Data.ChannelName, result.Data.ChannelCode, false, true));
+                                        $("button.btn-gen").removeAttr("disabled");
+                                    }
+                                    else {
+                                        alert(result.Message);
+                                    }
                                 }
-                                else {
-                                    alert(result.Message);
-                                }
-                            }
-                        })
+                            })
+                        } else {
+                            alert(window.dic.invalidChannelName);
+                        }
                     }
                 }
                 $(this).blur();
             })
         },
-
         addChannel: function (text) {
             Site.showLoader();
             let url = Site.resolveRelativeLangUrl("UserPanel/Marketing/AddChannel");

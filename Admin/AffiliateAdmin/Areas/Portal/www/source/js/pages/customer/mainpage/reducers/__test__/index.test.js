@@ -9,6 +9,7 @@ describe('customer - mainpage reducer', () => {
         },
         affCommonInfo: null,
         baseCurrencyList: null,
+        claimsPrincipal: {},
         clickStatistics: {
             pagingOption: defaultPagingOption,
             param: {},
@@ -54,13 +55,25 @@ describe('customer - mainpage reducer', () => {
             param: null,
         },
         note: {
-            isShowPopup: false,
-            noteInfo: {
-                noteContent: '',
-                noteId: 0,
+            affNote: {
+                isShowPopup: false,
+                affNoteInfo: {
+                    noteContent: '',
+                    noteId: 0,
+                },
+                affNoteList: null,
+                pagingOption: defaultPagingOption,
             },
-            noteList: [],
-            pagingOption: defaultPagingOption,
+            marketingNote: {
+                isShowPopup: false,
+                marketingNoteInfo: {
+                    noteContent: '',
+                    noteId: 0,
+                },
+                marketingNoteList: null,
+                pagingOption: defaultPagingOption,
+            },
+            selectedSubNote: null
         },
         playerDetail: {
             pagingOption: defaultPagingOption,

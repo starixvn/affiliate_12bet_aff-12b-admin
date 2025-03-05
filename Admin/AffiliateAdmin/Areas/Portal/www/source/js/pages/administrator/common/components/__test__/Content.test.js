@@ -311,7 +311,7 @@ describe('administrator - common - components - Content ', () => {
 
         dataRow.find('Button').at(1).simulate('click');
 
-        expect(instance._handleShowPolicyPopup).toHaveBeenCalledWith(862400, 'pgmViet');
+        expect(instance._handleShowPolicyPopup).toHaveBeenCalledWith(862400, 'pgmViet', 'IT');
     });
 
     it('_handleShowDepartmentPopup - should be called when click edit department', () => {

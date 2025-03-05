@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 {
-    using System.Collections.Generic;
     using Core.Constants;
     using Core.Utilities;
     using Criterias;
@@ -9,6 +8,7 @@
     using Fanex.Affiliate.User.Core.BusinessService;
     using MetalModels.UserPanel;
     using Moq;
+    using System.Collections.Generic;
     using Xunit;
 
     public class CommissionReportServiceTest
@@ -24,7 +24,7 @@
         public void GenerateCommissionReportData_WhenRepoReturnDataNotNull_NotThrowException()
         {
             var param = new CommissionReportParam { AffId = 1, BaseCurrency = 20, WinLostDate = DateTimeHelper.Now };
-            _repository.Setup(_ => _.Fetch<AffiliateCommission>(It.IsAny<GetAffiliateCommissionCriteria>(), string.Empty))  
+            _repository.Setup(_ => _.Fetch<AffiliateCommission>(It.IsAny<GetAffiliateCommissionCriteria>(), string.Empty))
                 .Returns(GetAffiliateCommission());
 
             var service = new CommissionReportService(_repository.Object);

@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 var noteInfo = _noteBaseService.GetNoteContentById(affId, noteId);
                 var decodedNoteInfo = noteInfo != null ? new NoteBasicInfo { NoteId = noteInfo.NoteId, NoteContent = Server.HtmlDecode(noteInfo.NoteContent) } : null;
-                
+
                 return GenerateJsonNetResult(decodedNoteInfo);
             }
 

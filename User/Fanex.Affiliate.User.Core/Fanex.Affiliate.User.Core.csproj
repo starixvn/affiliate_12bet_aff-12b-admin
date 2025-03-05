@@ -445,6 +445,7 @@
     <Compile Include="Utilities\MapHelper.cs" />
     <Compile Include="Utilities\IFileSystem.cs" />
     <Compile Include="Utilities\MarketingHelper.cs" />
+    <Compile Include="Utilities\RegexHelper.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\BreadcumViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LanguageLinkViewModel.cs" />

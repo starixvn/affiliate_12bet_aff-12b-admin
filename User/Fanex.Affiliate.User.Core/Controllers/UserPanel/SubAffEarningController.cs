@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using Fanex.Affiliate.User.Core.Filters;
     using MetalModels.UserPanel;
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
     using ViewModels.UserPanel;
 
     [CustomAuthorize]

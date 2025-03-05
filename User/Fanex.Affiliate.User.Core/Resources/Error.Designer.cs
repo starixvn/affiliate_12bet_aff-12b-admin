@@ -169,6 +169,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Channel Name can only contain letters and numbers. No spaces or special characters allowed.
+        /// </summary>
+        public static string InvalidChannelName {
+            get {
+                return ResourceManager.GetString("InvalidChannelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid email..
         /// </summary>
         public static string InvalidEmail {

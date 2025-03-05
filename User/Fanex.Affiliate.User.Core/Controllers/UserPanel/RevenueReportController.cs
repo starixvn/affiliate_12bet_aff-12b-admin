@@ -1,12 +1,11 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System;
-    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels.UserPanel;
+    using System.Web.Mvc;
     using Utilities;
 
     [CustomAuthorize]
@@ -41,8 +40,8 @@
             var viewModel = year >= 2009 && year <= DateTimeHelper.CurrentYear
                 ? _commissionReportService.GenerateCommissionReportData(new CommissionReportParam
                 {
-                    AffId = SessionService.UserSession.AffId, 
-                    WinLostDate = DateTimeHelper.CreateDateTime(year, 1, 1), 
+                    AffId = SessionService.UserSession.AffId,
+                    WinLostDate = DateTimeHelper.CreateDateTime(year, 1, 1),
                     BaseCurrency = currency
                 })
                 : new CommissionReportDataViewModel();

@@ -13,6 +13,13 @@ describe('domain control - components - Filter ', () => {
                 LanguageCode: "vi-VN",
                 DomainName: "VietNamese"
             }
+        ],
+        affSubDomainList: [
+            {
+                columnKey: "test",
+                columnName: "test",
+                checked: true
+            }
         ]
     }
 
@@ -29,7 +36,7 @@ describe('domain control - components - Filter ', () => {
         wrapper.find('Button').simulate('click');
 
         expect(props.setSelectedMarket).toHaveBeenCalledWith('');
-        expect(props.fetchData).toHaveBeenCalledWith('');
+        expect(props.fetchData).toHaveBeenCalledWith('', defaultProps.affSubDomainList);
     });
 
     it('setMarket - should change category when change market select', () => {

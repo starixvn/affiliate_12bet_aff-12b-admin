@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using System.Threading.Tasks;
     using CoreService;
     using Criterias;
     using Data.Repository;
     using DTO.UserPanel;
+    using System.Threading.Tasks;
     using Utilities;
 
     public class OfferService : BaseDynamicService, IOfferService

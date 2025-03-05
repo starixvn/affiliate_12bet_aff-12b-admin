@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
     using BusinessService;
     using Constants;
     using CoreService;
     using Filters;
     using MetalModels.UserPanel;
+    using System;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel.Statistics;
 

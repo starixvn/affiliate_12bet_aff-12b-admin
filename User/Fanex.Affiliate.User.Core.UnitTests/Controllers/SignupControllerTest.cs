@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
@@ -13,6 +8,11 @@ using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             // Assert
             Assert.NotEmpty(result.ViewName);
-            Assert.True(model.IsValidParentCode);
+            Assert.False(model.IsValidParentCode);
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             // Assert
             Assert.NotEmpty(result.ViewName);
-            Assert.True(model.IsValidParentCode);
+            Assert.False(model.IsValidParentCode);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             // Assert
             Assert.NotEmpty(result.ViewName);
-            Assert.False(model.IsValidParentCode);
+            Assert.True(model.IsValidParentCode);
         }
 
         [Fact]
@@ -145,7 +145,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Action
             var actionResult = await controller.Index(new UserSignUpParam
             {
-                Captcha = Constant.Captcha, 
+                Captcha = Constant.Captcha,
                 ContactAppList = contactAppList
             }) as JsonResult;
             var result = actionResult.Data as ResultInfo;

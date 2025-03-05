@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.Criterias
 {
-    using System;
     using Data.Repository;
+    using System;
 
     public class GetUserOverviewDetailListCriteria : CriteriaBase
     {

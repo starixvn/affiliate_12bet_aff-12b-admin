@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
 
             // Action
-            var result = controller.GetDomainControlList(market) as JsonNetResult;
+            var result = controller.GetDomainControlList(market, string.Empty) as JsonNetResult;
             var data = result.Data as List<DomainControlInfo>;
 
             // Assert

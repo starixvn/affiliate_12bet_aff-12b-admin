@@ -54,8 +54,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 contactApp = contactAppList.FirstOrDefault(c => c.Order == PRIORITY_2);
             }
 
-            return string.IsNullOrEmpty(contactApp?.Value) 
-                ? contactAppList.FirstOrDefault(c => c.Order == PRIORITY_3) 
+            return string.IsNullOrEmpty(contactApp?.Value)
+                ? contactAppList.FirstOrDefault(c => c.Order == PRIORITY_3)
                 : contactApp;
         }
 

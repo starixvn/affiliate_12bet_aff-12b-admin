@@ -1,7 +1,7 @@
-﻿using System.Web;
-using Fanex.Affiliate.User.Core.Constants;
+﻿using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using System.Web;
 using static Fanex.Affiliate.User.Core.Constants.SessionKey;
 
 namespace Fanex.Affiliate.User.Core.CoreService
