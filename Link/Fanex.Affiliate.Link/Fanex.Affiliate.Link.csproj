@@ -222,6 +222,7 @@
     <Compile Include="Commands\ToggleMarketingLinkCommand.cs" />
     <Compile Include="Constants\LandingPage.cs" />
     <Compile Include="Constants\Language.cs" />
+    <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\CommGroupByAffCodeCriteria.cs" />
     <Compile Include="Criterias\GeneralAffiliateInfoCriteria.cs" />
     <Compile Include="Constants\HeaderKey.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="DTOs\CheckMarketingLinkResult.cs" />
     <Compile Include="DTOs\CommGroup.cs" />
     <Compile Include="DTOs\AffiliateInfo.cs" />
+    <Compile Include="DTOs\MarketInfo.cs" />
     <Compile Include="Services\Impl\GeneralAffiliateInfoService.cs" />
     <Compile Include="Extensions\HttpRequestExtensions.cs" />
     <Compile Include="Global.asax.cs">

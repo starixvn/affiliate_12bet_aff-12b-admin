@@ -4,12 +4,14 @@ namespace Fanex.Affiliate.Link.Controllers
 {
     using Commands;
     using Fanex.Affiliate.Link.Constants;
+    using Fanex.Affiliate.Link.DTOs;
     using Fanex.Affiliate.Link.Extensions;
     using Helpers;
     using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl;
     using Services.Interface;
     using System;
+    using System.Linq;
     using System.Web.Mvc;
 
     /// <summary>
@@ -70,7 +72,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 if (!string.IsNullOrEmpty(affInfo.AffCode) && !string.IsNullOrEmpty(lang))
                 {
                     var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
-                    var isValidDomain = ValidateTrackingV1MediaLink(affId, affDomain, affInfo.PreferredLanguage);
+                    var isValidDomain = ValidateTrackingV1MediaLink(affId, affDomain, lang);
 
                     if (isValidDomain)
                     {
@@ -185,15 +187,36 @@ namespace Fanex.Affiliate.Link.Controllers
             return View("Link");
         }
 
-        private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string affLanguage)
+        private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string lang)
         {
+            var marketInfo = GetMarketInfo(lang);
+
+            if (marketInfo is null || string.IsNullOrEmpty(marketInfo.MarketId))
+            {
+                return false;
+            }
+
+            var customDomain = affDomain;
             var affMediaLink = GetOriginalUrl();
+
+            if (IsLocal && SpecificDomain.FakeSpecificDomainByAffOnLocal.TryGetValue(affId.ToString(), out string fakeInfo))
+            {
+                var infos = fakeInfo.Split(',');
+                var fakeDomain = infos[0];
+
+                if (affDomain.Contains(fakeDomain))
+                {
+                    var realDomain = infos[1];
+                    customDomain = affDomain.Replace(fakeDomain, realDomain);
+                    affMediaLink = affMediaLink.Replace(fakeDomain, realDomain);
+                }
+            }
 
             var checkingCommand = new CheckMarketingLinkCommand
             {
                 AffId = affId,
-                AffDomain = affDomain,
-                LanguageCode = affLanguage,
+                AffDomain = customDomain,
+                LanguageCode = marketInfo.MarketId,
                 AffMediaLink = affMediaLink
             };
 
@@ -204,7 +227,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 var insertCommand = new ToggleMarketingLinkCommand
                 {
                     AffId = affId,
-                    LanguageCode = affLanguage,
+                    LanguageCode = marketInfo.MarketId,
                     AffMediaLink = affMediaLink
                 };
 
@@ -212,6 +235,13 @@ namespace Fanex.Affiliate.Link.Controllers
             }
 
             return checkMarketingLinkResult.IsValidDomain;
+        }
+
+        private MarketInfo GetMarketInfo(string language)
+        {
+            var markets = _trackingSystemService.GetMarkets();
+
+            return markets.FirstOrDefault(m => IsMatching(m.ShortedCode, language));
         }
 
         private static void HandleFakeSpecificDomainOnLocal(int affId, TrackingSystemCommand param)
