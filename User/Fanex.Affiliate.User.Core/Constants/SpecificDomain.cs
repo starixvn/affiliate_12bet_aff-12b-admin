@@ -78,7 +78,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         private const string AFF16416_ID = "92043504";
 
-        public static readonly string[] NotSSLDomains = { DOMAIN_GO_6789SUTZO_PRO, DOMAIN_GO_APA56_PRO, DOMAIN_GO_12BLINRLINK1_PRO, DOMAIN_GO_12BLINRLINK2_PRO };
+        public static readonly string[] NotSSLDomains = { DOMAIN_GO_6789SUTZO_PRO, DOMAIN_GO_APA56_PRO };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnPro = new Dictionary<string, string>
         {
