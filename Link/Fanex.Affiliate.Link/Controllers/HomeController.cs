@@ -4,14 +4,15 @@ namespace Fanex.Affiliate.Link.Controllers
 {
     using Commands;
     using Fanex.Affiliate.Link.Constants;
-    using Fanex.Affiliate.Link.DTOs;
     using Fanex.Affiliate.Link.Extensions;
+    using Fanex.Logging;
     using Helpers;
     using ONEbook.UM.AspNetMVC.Filters;
     using Services.Impl;
     using Services.Interface;
     using System;
-    using System.Linq;
+    using System.Collections.Specialized;
+    using System.Text;
     using System.Web.Mvc;
 
     /// <summary>
@@ -29,7 +30,7 @@ namespace Fanex.Affiliate.Link.Controllers
         private static readonly bool IsLocal = IsMatching(ConfigurationManager.AppSettings["Environment"].ToString(), LOCAL_ENV);
 
         private readonly ITrackingSystemService _trackingSystemService;
-        private readonly IGeneralAffiliateInfoService _generalAffiliateInfoDataAccess;
+        private readonly IAffInfoService _affInfoService;
 
         private const string LinkIsInvalidMessage = "This link does not exists. Please contact administrator!";
         private const string LinkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
@@ -41,7 +42,7 @@ namespace Fanex.Affiliate.Link.Controllers
         public HomeController()
         {
             _trackingSystemService = new TrackingSystemService();
-            _generalAffiliateInfoDataAccess = new GeneralAffiliateInfoService();
+            _affInfoService = new AffInfoService();
         }
 
         #endregion Constructor
@@ -67,16 +68,17 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             try
             {
-                var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affId: affId);
+                var affInfo = _affInfoService.GetAffInfoByAffId(affId);
 
                 if (!string.IsNullOrEmpty(affInfo.AffCode) && !string.IsNullOrEmpty(lang))
                 {
-                    var affDomain = GetFullAffDomain(GetOriginalUrl(), affId.ToString());
-                    var isValidDomain = ValidateTrackingV1MediaLink(affId, affDomain, lang);
+                    var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
+                    var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, affId.ToString());
+                    var isValidDomain = ValidateTrackingV1MediaLink(affId, affDomain, lang, affMediaLinkWithoutProtocol);
 
                     if (isValidDomain)
                     {
-                        return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affId);
+                        return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, affId);
                     }
                 }
 
@@ -101,7 +103,7 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             try
             {
-                var affInfo = _generalAffiliateInfoDataAccess.GetGeneralAffiliateInfo(affCode: affCode);
+                var affInfo = _affInfoService.GetAffInfoByAffCode(affCode);
 
                 if (affInfo.AffId == 0 || string.IsNullOrEmpty(lang))
                 {
@@ -110,9 +112,10 @@ namespace Fanex.Affiliate.Link.Controllers
                     return View("Link");
                 }
 
-                var affDomain = GetFullAffDomain(GetOriginalUrl(), pageCode);
+                var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
+                var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, pageCode);
 
-                return InsertAffiliate(affCode, pageCode, lang, affDomain, affInfo.AffId, channel);
+                return InsertAffiliate(affCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, affInfo.AffId, channel);
             }
             catch (Exception ex)
             {
@@ -127,7 +130,8 @@ namespace Fanex.Affiliate.Link.Controllers
             return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
         }
 
-        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain, int affId = 0, string channel = null)
+        private ActionResult InsertAffiliate(string affCode, string pageCode, string lang, string affDomain,
+            string affMediaLinkWithoutProtocol, int affId = 0, string channel = null)
         {
             if (Request.Url != null)
             {
@@ -162,15 +166,16 @@ namespace Fanex.Affiliate.Link.Controllers
                                               : Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"],
                     UserAgent = Request.UserAgent,
                     Country = Common.GetCountry(),
-                    AffMediaLink = GetOriginalUrl()
+                    AffMediaLink = affMediaLinkWithoutProtocol
                 };
                 HandleFakeSpecificDomainOnLocal(affId, command);
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(command);
 
+                LogService.Info(GetAllHeader(Request.ServerVariables, command));
+
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
-
                     var isMarketingLandingPage = Array.Exists(MarketingLandingPages, l => IsMatching(l, pageCode));
 
                     if ((isMarketingLandingPage && IsValidAffMarketing(affCode)) || !isMarketingLandingPage)
@@ -187,17 +192,44 @@ namespace Fanex.Affiliate.Link.Controllers
             return View("Link");
         }
 
-        private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string lang)
+        private string GetAllHeader(NameValueCollection headers, TrackingSystemCommand command)
         {
-            var marketInfo = GetMarketInfo(lang);
+            var builder = new StringBuilder().AppendLine($"Link Go Info: {Request.Url}").AppendLine();
+            builder.AppendLine("REQUEST INFO")
+                   .AppendLine("RawUrl: " + Request.RawUrl)
+                   .AppendLine("AffMediaLinkWithoutProtocol: " + command.AffMediaLink)
+                   .AppendLine("RedirectPage: " + command.RedirectPage)
+                   .AppendLine("AffDomain: " + command.AffDomain)
+                   .AppendLine("AffCode: " + command.AffCode)
+                   .AppendLine("PageCode: " + command.PageCode)
+                   .AppendLine("ChannelCode: " + command.ChannelCode)
+                   .AppendLine("LanguageCode: " + command.LanguageCode)
+                   .AppendLine("DeviceType: " + command.DeviceType)
+                   .AppendLine("IP: " + command.IP)
+                   .AppendLine("Browser: " + command.Browser)
+                   .AppendLine("Country: " + command.Country)
+                   .AppendLine("Referrer: " + command.URLReferrer)
+                   .AppendLine("DomainReferrer: " + command.DomainReferrer);
 
-            if (marketInfo is null || string.IsNullOrEmpty(marketInfo.MarketId))
+            foreach (var key in headers.AllKeys)
+            {
+                builder.AppendLine($"{key}: {headers[key]}");
+            }
+
+            return builder.ToString();
+        }
+
+        private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string lang, string affMediaLinkWithoutProtocol)
+        {
+            var marketInfo = _trackingSystemService.GetMarketInfo(lang);
+
+            if (string.IsNullOrEmpty(marketInfo.MarketId))
             {
                 return false;
             }
 
             var customDomain = affDomain;
-            var affMediaLink = GetOriginalUrl();
+            var affMediaLink = affMediaLinkWithoutProtocol;
 
             if (IsLocal && SpecificDomain.FakeSpecificDomainByAffOnLocal.TryGetValue(affId.ToString(), out string fakeInfo))
             {
@@ -208,7 +240,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 {
                     var realDomain = infos[1];
                     customDomain = affDomain.Replace(fakeDomain, realDomain);
-                    affMediaLink = affMediaLink.Replace(fakeDomain, realDomain);
+                    affMediaLink = affMediaLinkWithoutProtocol.Replace(fakeDomain, realDomain);
                 }
             }
 
@@ -228,20 +260,13 @@ namespace Fanex.Affiliate.Link.Controllers
                 {
                     AffId = affId,
                     LanguageCode = marketInfo.MarketId,
-                    AffMediaLink = affMediaLink
-                };
+                    AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
+            };
 
                 _trackingSystemService.ToggleMarketingLink(insertCommand);
             }
 
             return checkMarketingLinkResult.IsValidDomain;
-        }
-
-        private MarketInfo GetMarketInfo(string language)
-        {
-            var markets = _trackingSystemService.GetMarkets();
-
-            return markets.FirstOrDefault(m => IsMatching(m.ShortedCode, language));
         }
 
         private static void HandleFakeSpecificDomainOnLocal(int affId, TrackingSystemCommand param)
@@ -272,37 +297,29 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private bool IsValidAffMarketing(string affCode)
         {
-            var commGroup = _generalAffiliateInfoDataAccess.GetCommGroupByAffCode(affCode);
+            var commGroup = _affInfoService.GetCommGroupByAffCode(affCode);
 
             return Array.Exists(MarketingForCommGroups, c => IsMatching(c, commGroup.GroupName));
         }
 
-        private static string GetFullAffDomain(string url, string endPointOfAffDomain)
+        private static string GetFullAffDomain(string urlWithoutProtocol, string endPointOfAffDomain)
         {
             if (IsRemovePortFromUrl)
             {
-                var uri = new Uri(url);
-                url = url.Replace(":" + uri.Port, string.Empty);
+                var uri = new Uri($"https://{urlWithoutProtocol}");
+                urlWithoutProtocol = urlWithoutProtocol.Replace(":" + uri.Port, string.Empty);
             }
 
-            const string slashString = "://";
-            var pos1 = url.IndexOf(slashString, 0, StringComparison.OrdinalIgnoreCase);
-            var pos2 = url.IndexOf("/" + endPointOfAffDomain, 0, StringComparison.OrdinalIgnoreCase);
+            var pos = urlWithoutProtocol.IndexOf("/" + endPointOfAffDomain, 0, StringComparison.OrdinalIgnoreCase);
 
-            return url.Substring(pos1 + slashString.Length, pos2 - (pos1 + slashString.Length));
+            return urlWithoutProtocol.Substring(0, pos);
         }
 
-        private string GetOriginalUrl()
+        private string GetAffMediaLinkWithoutProtocol()
         {
             var host = Request.Headers["Host"] ?? Request.Url.Host;
-            var scheme = GetOriginalProtocol();
             var path = Request.Url.AbsolutePath;
-            return $"{scheme}://{host}{path}";
-        }
-
-        private static byte GetDeviceType()
-        {
-            return (byte)(Common.IsMobile() ? 1 : 0);
+            return $"{host}{path}";
         }
 
         private static string GetSupportedLanguageCodeOnMemberSiteV2(string languageCode)
@@ -330,13 +347,9 @@ namespace Fanex.Affiliate.Link.Controllers
             return redirectUrl.Replace($"/{languageCode}/", $"/{customLanguageCode}/");
         }
 
-        private string GetOriginalProtocol()
+        private static byte GetDeviceType()
         {
-            var refLink = Request["Referer"];
-            var url = string.IsNullOrWhiteSpace(refLink) ? Request.Url : new Uri(refLink);
-            var protos = Request.ServerVariables["HTTP_X_FORWARDED_PROTO"]?.Split(',');
-            var origProto = protos != null && protos.Length > 0 ? protos[0].Trim() : url.Scheme;
-            return origProto;
+            return (byte)(Common.IsMobile() ? 1 : 0);
         }
 
         private static bool IsMatching(string value, string strToMatch)

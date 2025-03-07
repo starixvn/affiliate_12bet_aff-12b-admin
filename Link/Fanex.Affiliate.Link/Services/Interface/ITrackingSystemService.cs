@@ -21,5 +21,7 @@
         CheckMarketingLinkResult GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command);
 
         IEnumerable<MarketInfo> GetMarkets();
+
+        MarketInfo GetMarketInfo(string lang);
     }
 }

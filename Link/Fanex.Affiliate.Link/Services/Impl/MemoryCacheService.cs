@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Link.Services.Interface;
 using Fanex.Caching;
+using Fanex.Caching.Memory;
 using Newtonsoft.Json;
 using System;
 
@@ -9,24 +10,24 @@ namespace Fanex.Affiliate.Link.Services.Impl
     {
         private const int TIMEOUT = 120; // 2 minutes.
 
-        private readonly ICache _cache;
+        private static readonly ICache MemoryCacheInstance = new MemoryCache(new MemoryCacheOptions());
 
-        public MemoryCacheService(ICache cache)
-        {
-            _cache = cache;
-        }
+        public MemoryCacheService() {}
 
         public T Get<T>(string key)
         {
-            _cache.TryGet<T>(key, out T value);
+            MemoryCacheInstance.TryGet<T>(key, out T value);
 
             return DeepClone(value);
         }
 
         public void Set<T>(string key, T value, int seconds = TIMEOUT)
         {
-            var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(seconds));
-            _cache.Set(key, DeepClone(value), cachePolicy);
+            if (!Equals(value, default(T)))
+            {
+                var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(seconds));
+                MemoryCacheInstance.Set(key, DeepClone(value), cachePolicy);
+            }
         }
 
         private static T DeepClone<T>(T source)
