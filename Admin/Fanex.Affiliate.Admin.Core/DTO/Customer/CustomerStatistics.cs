@@ -35,5 +35,7 @@
         public int NoOfSubAffByMonth { get; set; }
 
         public int NoOfSubAffTotal { get; set; }
+
+        public int QualifiedMembersByMonth { get; set; }
     }
 }

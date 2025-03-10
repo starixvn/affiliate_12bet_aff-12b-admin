@@ -1904,9 +1904,6 @@
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>新註冊 / 存款 會員</value>
   </data>
-  <data name="ActivePlayersAndQualified" xml:space="preserve">
-    <value>活躍的 / 符合資格的玩家</value>
-  </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>已存款會員</value>
   </data>
@@ -2359,9 +2356,6 @@
   </data>
   <data name="CurrencyLabel" xml:space="preserve">
     <value>USD</value>
-  </data>
-  <data name="ActivePlayers" xml:space="preserve">
-    <value>活躍會員人數</value>
   </data>
   <data name="SubAffDownline" xml:space="preserve">
     <value>次級合作夥伴下線</value>

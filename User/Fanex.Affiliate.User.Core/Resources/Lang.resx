@@ -2453,7 +2453,7 @@ CONSISTENT PAYMENT</value>
     <value>"Joining 12BET has been a great decision for me. The affiliate program is easy to join, and the commission payments are always consistent. It's a solid partnership."</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
-    <value>Number of Active Players</value>
+    <value>Active Players</value>
   </data>
   <data name="SubAffDownline" xml:space="preserve">
     <value>Sub-Affiliate Downline</value>
@@ -2643,5 +2643,8 @@ CONSISTENT PAYMENT</value>
   </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>Account balance carried forward from the previous system.</value>
+  </data>
+  <data name="QualifiedActivePlayers" xml:space="preserve">
+    <value>Qualified Active Players</value>
   </data>
 </root>
