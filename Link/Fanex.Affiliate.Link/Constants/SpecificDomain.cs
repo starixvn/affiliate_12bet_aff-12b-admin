@@ -58,7 +58,6 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF16472_ID = "92043560";
         private const string AFF16479_ID = "92043567";
         private const string AFF16478_ID = "92043566";
-        private const string AFF16473_ID = "92043561";
         private const string AFF16475_ID = "92043563";
         private const string AFF16476_ID = "92043564";
         private const string AFF16477_ID = "92043565";
@@ -130,7 +129,6 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF16472_ID] = FakeMapping_Goto_12binlink1_Com,
             [AFF16479_ID] = FakeMapping_Goto_12bvnlink1_Com,
             [AFF16478_ID] = FakeMapping_Goto_12bthlink1_Com,
-            [AFF16473_ID] = FakeMapping_Goto_12bvnlink1_Com,
             [AFF16475_ID] = FakeMapping_Goto_12bmylink1_Com,
             [AFF16476_ID] = FakeMapping_Goto_12binlink1_Com,
             [AFF16477_ID] = FakeMapping_Goto_12bthlink1_Com,
