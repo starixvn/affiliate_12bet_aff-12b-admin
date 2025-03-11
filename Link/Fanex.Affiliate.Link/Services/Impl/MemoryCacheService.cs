@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Link.Services.Impl
 {
     public class MemoryCacheService : IMemoryCacheService
     {
-        private const int TIMEOUT = 120; // 2 minutes.
+        private const int TIMEOUT = 300; // 5 minutes.
 
         private static readonly ICache MemoryCacheInstance = new MemoryCache(new MemoryCacheOptions());
 
