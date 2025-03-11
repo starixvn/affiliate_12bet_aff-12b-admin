@@ -5,7 +5,5 @@
         public int AffId { get; set; }
 
         public string AffCode { get; set; }
-
-        public string PreferredLanguage { get; set; }
     }
 }

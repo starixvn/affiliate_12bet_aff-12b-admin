@@ -1,5 +1,9 @@
 ﻿namespace Fanex.Affiliate.Link.Helpers
 {
+    using Fanex.Affiliate.Link.Constants;
+    using Fanex.Affiliate.Link.DTOs;
+    using Newtonsoft.Json;
+    using SharpRaven.Data;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -99,6 +103,35 @@
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Get original protocol.
+        /// </summary>
+        /// <returns>protocol</returns>
+        public static string GetOriginalProtocol()
+        {
+            var request = HttpContext.Current.Request;
+            var origProto = string.Empty;
+            var cfVisitor = request.ServerVariables[HeaderKey.HTTP_CF_VISITOR];
+
+            if (!string.IsNullOrEmpty(cfVisitor))
+            {
+                var cfVisitorInfo = JsonConvert.DeserializeObject<CfVisitorInfo>(cfVisitor);
+
+                origProto = cfVisitorInfo?.Scheme;
+            }
+
+            if (!string.IsNullOrEmpty(origProto))
+            {
+                return origProto;
+            }
+
+            var refLink = request["Referer"];
+            var url = string.IsNullOrWhiteSpace(refLink) ? request.Url : new Uri(refLink);
+            var protos = request.ServerVariables[HeaderKey.HTTP_X_FORWARDED_PROTO]?.Split(',');
+
+            return protos != null && protos.Length > 0 ? protos[0].Trim() : url.Scheme;
         }
 
         /// <summary>

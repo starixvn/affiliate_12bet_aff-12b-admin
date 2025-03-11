@@ -73,6 +73,9 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string AFF16336_ID = "92043424";
         private const string AFF16337_ID = "92043425";
 
+        private const string AFF16416_ID = "92043504";
+        private const string AFF16450_ID = "92043538";
+
         public static readonly string[] NotSSLDomains = { DOMAIN_GO_6789SUTZO_PRO, DOMAIN_GO_APA56_PRO };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnPro = new Dictionary<string, string>
@@ -119,6 +122,9 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF16338_ID] = "goto.12bsprt1.com",
             [AFF16336_ID] = "goto.12bsprt2.com",
             [AFF16337_ID] = "goto.12bsprt3.com",
+
+            [AFF16416_ID] = "goto.12binrlink1.com",
+            [AFF16450_ID] = "goto.12binrlink2.com",
         };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
@@ -165,6 +171,8 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF16338_ID] = DOMAIN_GO_LOCAL,
             [AFF16336_ID] = DOMAIN_GO_LOCAL,
             [AFF16337_ID] = DOMAIN_GO_LOCAL,
+            [AFF16416_ID] = DOMAIN_GO_LOCAL,
+            [AFF16450_ID] = DOMAIN_GO_LOCAL,
         };
     }
 }

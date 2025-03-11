@@ -16,7 +16,7 @@
     <AssemblyName>Fanex.Affiliate.Link</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <IISExpressSSLPort />
@@ -220,8 +220,10 @@
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
     <Compile Include="Commands\CheckMarketingLinkCommand.cs" />
     <Compile Include="Commands\ToggleMarketingLinkCommand.cs" />
+    <Compile Include="Constants\CacheKey.cs" />
     <Compile Include="Constants\LandingPage.cs" />
     <Compile Include="Constants\Language.cs" />
+    <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\CommGroupByAffCodeCriteria.cs" />
     <Compile Include="Criterias\GeneralAffiliateInfoCriteria.cs" />
     <Compile Include="Constants\HeaderKey.cs" />
@@ -229,10 +231,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Commands\TrackingSystemCommand.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
+    <Compile Include="DTOs\CfVisitorInfo.cs" />
     <Compile Include="DTOs\CheckMarketingLinkResult.cs" />
     <Compile Include="DTOs\CommGroup.cs" />
     <Compile Include="DTOs\AffiliateInfo.cs" />
-    <Compile Include="Services\Impl\GeneralAffiliateInfoService.cs" />
+    <Compile Include="DTOs\MarketInfo.cs" />
+    <Compile Include="Services\Impl\AffInfoService.cs" />
     <Compile Include="Extensions\HttpRequestExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -243,7 +247,7 @@
     <Compile Include="Services\Impl\MemoryCacheService.cs" />
     <Compile Include="Services\Impl\TrackingSystemService.cs" />
     <Compile Include="Services\Impl\UnderMaintenanceService.cs" />
-    <Compile Include="Services\Interface\IGeneralAffiliateInfoService.cs" />
+    <Compile Include="Services\Interface\IAffInfoService.cs" />
     <Compile Include="Services\Interface\IMemoryCacheService.cs" />
     <Compile Include="Services\Interface\ITrackingSystemService.cs" />
     <Compile Include="Services\Interface\IUnderMaintenanceService.cs" />
@@ -312,12 +316,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51957</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:5195/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

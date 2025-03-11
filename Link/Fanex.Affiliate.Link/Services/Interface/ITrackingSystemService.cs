@@ -2,6 +2,7 @@
 {
     using Fanex.Affiliate.Link.Commands;
     using Fanex.Affiliate.Link.DTOs;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Tracking system statistics.
@@ -18,5 +19,9 @@
         bool ToggleMarketingLink(ToggleMarketingLinkCommand command);
 
         CheckMarketingLinkResult GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command);
+
+        IEnumerable<MarketInfo> GetMarkets();
+
+        MarketInfo GetMarketInfo(string lang);
     }
 }
