@@ -229,6 +229,6 @@
     <value>Tên kênh không thể vượt quá 20 ký tự. Vui lòng thử lại</value>
   </data>
   <data name="InvalidChannelName" xml:space="preserve">
-    <value>Tên kênh chỉ có thể chứa chữ cái và số. Không được có khoảng trắng hoặc ký tự đặc biệt.</value>
+    <value>Tên kênh chỉ bao gồm các ký tự Latin và số. Không được có dấu cách hoặc ký tự đặc biệt.</value>
   </data>
 </root>
