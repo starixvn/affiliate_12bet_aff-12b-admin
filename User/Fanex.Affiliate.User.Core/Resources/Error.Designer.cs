@@ -169,7 +169,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Channel Name can only contain letters and numbers. No spaces or special characters allowed.
+        ///   Looks up a localized string similar to Channel Name can only contain ENGLISH letters and numbers. No spaces or special characters allowed. .
         /// </summary>
         public static string InvalidChannelName {
             get {

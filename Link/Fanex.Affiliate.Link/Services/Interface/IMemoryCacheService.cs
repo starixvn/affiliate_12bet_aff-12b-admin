@@ -4,6 +4,6 @@
     {
         T Get<T>(string key);
 
-        void Set<T>(string key, T value, int seconds = 120);
+        void Set<T>(string key, T value, int seconds = 300);
     }
 }

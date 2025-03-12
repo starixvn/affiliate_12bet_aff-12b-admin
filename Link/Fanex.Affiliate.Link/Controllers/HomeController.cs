@@ -340,8 +340,8 @@ namespace Fanex.Affiliate.Link.Controllers
             if (!string.IsNullOrEmpty(redirectPattern))
             {
                 var redirectUri = new Uri(redirectUrl);
-                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode).Replace("#queryString#", redirectUri.Query);
-                return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}";
+                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode);
+                return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}{redirectUri.Query}";
             }
 
             return redirectUrl.Replace($"/{languageCode}/", $"/{customLanguageCode}/");

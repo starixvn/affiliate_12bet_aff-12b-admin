@@ -229,6 +229,6 @@
     <value>Channel Name cannot exceed 20 characters. Please check again</value>
   </data>
   <data name="InvalidChannelName" xml:space="preserve">
-    <value>Channel Name can only contain letters and numbers. No spaces or special characters allowed</value>
+    <value>Channel Name can only contain ENGLISH letters and numbers. No spaces or special characters allowed. </value>
   </data>
 </root>

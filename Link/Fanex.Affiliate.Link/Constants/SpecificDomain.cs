@@ -55,10 +55,29 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF16416_ID = "92043504";
         private const string AFF16450_ID = "92043538";
 
+        private const string AFF16472_ID = "92043560";
+        private const string AFF16479_ID = "92043567";
+        private const string AFF16478_ID = "92043566";
+        private const string AFF16475_ID = "92043563";
+        private const string AFF16476_ID = "92043564";
+        private const string AFF16477_ID = "92043565";
+        private const string AFF16454_ID = "92043542";
+        private const string AFF16455_ID = "92043543";
+        private const string AFF16456_ID = "92043544";
+        private const string AFF16457_ID = "92043545";
+        private const string AFF16480_ID = "92043568";
+        private const string AFF16481_ID = "92043569";
+        private const string AFF16482_ID = "92043570";
+        private const string AFF16483_ID = "92043571";
+
         //Fake Mapping
         private const string FakeMapping_Join_Best5689_Com = "aff-12b.nexdev.net/Go,join.best5689.com";
         private const string FakeMapping_12aff_Best5689_Com = "aff-12b.nexdev.net/Go,12aff.best5689.com";
         private const string FakeMapping_Go_12real_Com = "aff-12b.nexdev.net/Go,go.12real.com";
+        private const string FakeMapping_Goto_12binlink1_Com = "aff-12b.nexdev.net/Go,goto.12binlink1.com";
+        private const string FakeMapping_Goto_12bmylink1_Com = "aff-12b.nexdev.net/Go,goto.12bmylink1.com";
+        private const string FakeMapping_Goto_12bvnlink1_Com = "aff-12b.nexdev.net/Go,goto.12bvnlink1.com";
+        private const string FakeMapping_Goto_12bthlink1_Com = "aff-12b.nexdev.net/Go,goto.12bthlink1.com";
 
         public static readonly IReadOnlyDictionary<string, string> FakeSpecificDomainByAffOnLocal = new Dictionary<string, string>
         {
@@ -106,6 +125,21 @@ namespace Fanex.Affiliate.Link.Constants
 
             [AFF16416_ID] = "aff-12b.nexdev.net/Go,goto.12binrlink1.com",
             [AFF16450_ID] = "aff-12b.nexdev.net/Go,goto.12binrlink2.com",
+
+            [AFF16472_ID] = FakeMapping_Goto_12binlink1_Com,
+            [AFF16479_ID] = FakeMapping_Goto_12bvnlink1_Com,
+            [AFF16478_ID] = FakeMapping_Goto_12bthlink1_Com,
+            [AFF16475_ID] = FakeMapping_Goto_12bmylink1_Com,
+            [AFF16476_ID] = FakeMapping_Goto_12binlink1_Com,
+            [AFF16477_ID] = FakeMapping_Goto_12bthlink1_Com,
+            [AFF16454_ID] = FakeMapping_Goto_12binlink1_Com,
+            [AFF16455_ID] = FakeMapping_Goto_12bthlink1_Com,
+            [AFF16456_ID] = FakeMapping_Goto_12bvnlink1_Com,
+            [AFF16457_ID] = FakeMapping_Goto_12bmylink1_Com,
+            [AFF16480_ID] = FakeMapping_Goto_12bvnlink1_Com,
+            [AFF16481_ID] = FakeMapping_Goto_12bmylink1_Com,
+            [AFF16482_ID] = FakeMapping_Goto_12binlink1_Com,
+            [AFF16483_ID] = FakeMapping_Goto_12bthlink1_Com,
         };
     }
 }
