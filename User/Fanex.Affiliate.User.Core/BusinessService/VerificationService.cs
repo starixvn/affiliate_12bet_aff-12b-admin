@@ -110,7 +110,7 @@
         private void UpdateVerificationInfo(VerificationOtpParam param, bool isValid)
         {
             var verificationParam = CreateVerificationParam(param);
-            var verificationInfo = GetTData<VerificationInfo>(param.MapTo<VerificationOtpParam, GetLoginInfoByUserDeviceCriteria>());
+            var verificationInfo = GetTData<VerificationInfo>(verificationParam.MapTo<AuthResultBaseParam, GetLoginInfoByUserDeviceCriteria>());
 
             if (verificationInfo.FailedLoginCount.HasValue)
             {
