@@ -10,7 +10,7 @@
 
         public int ActivePlayers { get; set; }
 
-        public int QualifiedActivePlayers { get; set; }
+        public int QualifiedMember { get; set; }
 
         public decimal Turnover { get; set; }
 

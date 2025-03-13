@@ -1601,7 +1601,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Belum Menjadi Member Afiliasi?</value>
   </data>
   <data name="SignUpToAffiliateProgram" xml:space="preserve">
-    <value>Daftar Afiliasi dan hasilkan komisi hingga 40%!</value>
+    <value>Daftar Afiliasi dan hasilkan komisi hingga 50%!</value>
   </data>
   <data name="JoinNow" xml:space="preserve">
     <value>DAFTAR SEKARANG!</value>
@@ -1912,9 +1912,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   </data>
   <data name="NewSignupAndDeposited" xml:space="preserve">
     <value>Daftar/Deposit terbaru</value>
-  </data>
-  <data name="ActivePlayersAndQualified" xml:space="preserve">
-    <value>Pemain Aktif/Terkualifikasi</value>
   </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>Member Deposit</value>
@@ -2372,9 +2369,6 @@ PEMBAYARAN KONSISTEN</value>
   <data name="SubCategory" xml:space="preserve">
     <value>Sub Kategori</value>
   </data>
-  <data name="ActivePlayers" xml:space="preserve">
-    <value>Jumlah Pemain Aktif</value>
-  </data>
   <data name="SubAffDownline" xml:space="preserve">
     <value>Downline Sub-Afiliasi</value>
   </data>
@@ -2530,5 +2524,14 @@ PEMBAYARAN KONSISTEN</value>
   </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>Saldo akun dibawa dari sistem sebelumnya.</value>
+  </data>
+  <data name="QualifiedActivePlayers" xml:space="preserve">
+    <value>Pemain Aktif Yang Terkualifikasi</value>
+  </data>
+  <data name="ActivePlayersAndQualified" xml:space="preserve">
+    <value>Pemain Aktif / Terkualifikasi</value>
+  </data>
+  <data name="ActivePlayers" xml:space="preserve">
+    <value>Pemain Aktif</value>
   </data>
 </root>

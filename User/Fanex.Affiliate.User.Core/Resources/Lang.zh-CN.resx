@@ -1596,7 +1596,7 @@
     <value>还不是我们的合作伙伴？</value>
   </data>
   <data name="SignUpToAffiliateProgram" xml:space="preserve">
-    <value>注册合作伙伴计划，赚取每月高达40%的佣金！</value>
+    <value>注册合作伙伴计划，赚取每月高达50%的佣金！</value>
   </data>
   <data name="JoinNow" xml:space="preserve">
     <value>立即加入！</value>
@@ -1914,7 +1914,7 @@
     <value>新注册 / 存款 会员</value>
   </data>
   <data name="ActivePlayersAndQualified" xml:space="preserve">
-    <value>活跃的 / 符合资格的玩家</value>
+    <value>活跃玩家 / 符合资格</value>
   </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>已存款会员</value>
@@ -2394,7 +2394,7 @@
     <value>子类别</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
-    <value>活跃会员人数</value>
+    <value>活跃玩家</value>
   </data>
   <data name="SubAffDownline" xml:space="preserve">
     <value>次级合作伙伴下线</value>
@@ -2551,5 +2551,8 @@
   </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>从旧系统结转的账户余额。</value>
+  </data>
+  <data name="QualifiedActivePlayers" xml:space="preserve">
+    <value>符合资格的活跃玩家</value>
   </data>
 </root>

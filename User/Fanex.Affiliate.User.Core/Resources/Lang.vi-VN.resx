@@ -1604,7 +1604,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Chưa là Hội Viên?</value>
   </data>
   <data name="SignUpToAffiliateProgram" xml:space="preserve">
-    <value>Đăng ký tham gia Đại lý 12BET để nhận thưởng 40% Hoa Hồng Mỗi Tháng!</value>
+    <value>Đăng ký tham gia Đại lý 12BET để nhận thưởng 50% Hoa Hồng Mỗi Tháng!</value>
   </data>
   <data name="JoinNow" xml:space="preserve">
     <value>ĐĂNG KÝ</value>
@@ -1902,7 +1902,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Đăng ký mới / Đã nạp tiền</value>
   </data>
   <data name="ActivePlayersAndQualified" xml:space="preserve">
-    <value>Người chơi hoạt động / Đủ điều kiện</value>
+    <value>Người chơi đang hoạt động / Đủ điều kiện</value>
   </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>Đã nạp tiền</value>
@@ -2343,7 +2343,7 @@ THANH TOÁN ỔN ĐỊNH</value>
     <value>Tham gia 12BET là một quyết định tuyệt vời đối với tôi. Chương trình đại lý dễ tham gia, và các khoản thanh toán hoa hồng luôn ổn định. Đây là một đối tác vững chắc.</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
-    <value>Số lượng người chơi hoạt động</value>
+    <value>Người chơi đang hoạt động</value>
   </data>
   <data name="SubAffiliate" xml:space="preserve">
     <value>Đại Lý Cấp Dưới</value>
@@ -2533,5 +2533,8 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>Số dư trước đó sẽ được chuyển sang trang mới.</value>
+  </data>
+  <data name="QualifiedActivePlayers" xml:space="preserve">
+    <value>Người chơi đang hoạt động đủ điều kiện</value>
   </data>
 </root>

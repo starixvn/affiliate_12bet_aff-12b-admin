@@ -1604,7 +1604,7 @@
     <value>ยังไม่ได้สมัครพันธมิตรหรอคะ?</value>
   </data>
   <data name="SignUpToAffiliateProgram" xml:space="preserve">
-    <value>สมัครเข้าร่วมโปรแกรมพันธมิตร โปรโมทและรับรายได้สูงสุด 40% ทุกเดือน!</value>
+    <value>สมัครเข้าร่วมโปรแกรมพันธมิตร โปรโมทและรับรายได้สูงสุด 50% ทุกเดือน!</value>
   </data>
   <data name="JoinNow" xml:space="preserve">
     <value>สมัครตอนนี้!</value>
@@ -1911,7 +1911,7 @@
     <value>การสมัครใหม่ / ฝาก</value>
   </data>
   <data name="ActivePlayersAndQualified" xml:space="preserve">
-    <value>ผู้เล่นที่ใช้งาน / ที่ผ่านการรับรอง</value>
+    <value>สมาชิกที่มีความเคลื่อนไหว / ผ่านเกณฑ์</value>
   </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>สมาชิกที่ฝากเงิน</value>
@@ -2401,7 +2401,7 @@
     <value>ประเภทย่อย</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
-    <value>จำนวนผู้เล่นที่ใช้งานอยู่</value>
+    <value>สมาชิกที่มีความเคลื่อนไหว </value>
   </data>
   <data name="SubAffDownline" xml:space="preserve">
     <value>ดาวน์ไลน์พันธมิตรย่อย</value>
@@ -2555,5 +2555,8 @@
   </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>ยอดคงเหลือในบัญชีที่ยกยอดจากระบบเดิม</value>
+  </data>
+  <data name="QualifiedActivePlayers" xml:space="preserve">
+    <value>ผู้เล่นที่ผ่านเกณฑ์</value>
   </data>
 </root>

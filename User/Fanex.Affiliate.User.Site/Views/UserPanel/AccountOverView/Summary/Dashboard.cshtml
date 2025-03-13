@@ -17,8 +17,8 @@
         </div>
 
         <div class="info-panel">
-            <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.ActivePlayers (@Lang.MinRequired)</span>
-            <span class="info-panel-content">@($"{Model.ActivePlayers}")</span>
+            <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.ActivePlayersAndQualified</span>
+            <span class="info-panel-content">@($"{Model.ActivePlayers}/{Model.QualifiedMember}")</span>
         </div>
     </div>
     <div class="group group-two">

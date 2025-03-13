@@ -1591,7 +1591,7 @@
     <value>제휴 가입 전이신가요?</value>
   </data>
   <data name="SignUpToAffiliateProgram" xml:space="preserve">
-    <value>제휴 프로그램에 가입하시고 최대 40% 커미션을 받으세요!</value>
+    <value>제휴 프로그램에 가입하시고 최대 50% 커미션을 받으세요!</value>
   </data>
   <data name="JoinNow" xml:space="preserve">
     <value>제휴 가입!</value>
@@ -1901,7 +1901,7 @@
     <value>신규 가입 / 입금</value>
   </data>
   <data name="ActivePlayersAndQualified" xml:space="preserve">
-    <value>활동 플레어어/자격</value>
+    <value>액티브 회원 / 요건 충족</value>
   </data>
   <data name="DepositedMembers" xml:space="preserve">
     <value>입금한 회원</value>
@@ -2336,7 +2336,7 @@
     <value>입금</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
-    <value>활성 플레이어 수</value>
+    <value>액티브 회원</value>
   </data>
   <data name="SubAffDownline" xml:space="preserve">
     <value>하위 제휴사 다운라인</value>
@@ -2517,5 +2517,8 @@
   </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>이전 시스템에서 이월된 계정 잔액.</value>
+  </data>
+  <data name="QualifiedActivePlayers" xml:space="preserve">
+    <value>요건 충족 회원</value>
   </data>
 </root>
