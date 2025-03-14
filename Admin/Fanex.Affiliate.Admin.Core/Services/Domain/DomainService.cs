@@ -1,10 +1,12 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Domain;
-using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using System.Collections.Generic;
-
-namespace Fanex.Affiliate.Admin.Core.Services.Domain
+﻿namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using DTO;
+    using Fanex.Affiliate.Admin.Core.DTO.Domain;
+    using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+    using Utilities.Market;
+
     public class DomainService : IDomainService
     {
         private readonly ICommonDomainService _commonDomainService;
@@ -15,21 +17,40 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             _commonDomainService = commonDomainService;
         }
 
-        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain)
-        {
-            var spKey = isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_LicenseeDomain_Sel";
+        public IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0) 
+            => _commonDomainService.GetMarketListByDomain(affDomainId, redirectDomainId);
 
-            return _commonDomainService.GetDomainList(spKey);
+        public IEnumerable<Market> GetVisibleMarketNotInStatus(byte status)
+            => _commonDomainService.GetVisibleMarketNotInStatus(status);
+
+        private static string GetDomainSpKey(bool isAffDomain) =>
+            isAffDomain ? "Aff_Admin_AffiliateDomain_Sel" : "Aff_Admin_LicenseeDomain_Sel";
+
+        public IEnumerable<DomainInfo> GetDomainList(bool isAffDomain = true)
+        {
+            var marketDics = GetMarketListByDomain()
+                .ToDictionary(m => m.MarketId, m => m.MarketName);
+            var data = _commonDomainService.GetDomainList(GetDomainSpKey(isAffDomain));
+
+            var domains = MarketHelper.HandleDomainInfos(marketDics, data);
+            return domains;
         }
 
-        public ResultInfo InsertDomain(InsertUpdateDomainParam param)
+        public DomainInfo GetDomainById(int domainId, bool isAffDomain = true)
+        {
+            var domain = GetDomainList(isAffDomain).FirstOrDefault(d => d.DomainId == domainId);
+
+            return domain;
+        }
+
+        public ResultInfo InsertDomain(InsertDomainParam param)
         {
             var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Ins" : "Aff_Admin_LicenseeDomain_Ins";
 
             return _commonDomainService.InsertDomain(param, spKey);
         }
 
-        public ResultInfo UpdateDomain(InsertUpdateDomainParam param)
+        public ResultInfo UpdateDomain(UpdateDomainParam param)
         {
             var spKey = param.IsAffDomain ? "Aff_Admin_AffiliateDomain_Upd" : "Aff_Admin_LicenseeDomain_Upd";
 

@@ -7,11 +7,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainService
     {
-        IEnumerable<DomainInfo> GetDomainList(bool isAffDomain);
+        IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0);
 
-        ResultInfo InsertDomain(InsertUpdateDomainParam param);
+        IEnumerable<Market> GetVisibleMarketNotInStatus(byte status);
 
-        ResultInfo UpdateDomain(InsertUpdateDomainParam param);
+        IEnumerable<DomainInfo> GetDomainList(bool isAffDomain = true);
+
+        DomainInfo GetDomainById(int domainId, bool isAffDomain = true);
+
+        ResultInfo InsertDomain(InsertDomainParam param);
+
+        ResultInfo UpdateDomain(UpdateDomainParam param);
 
         ResultInfo DeleteDomain(DeleteDomainParam param);
     }

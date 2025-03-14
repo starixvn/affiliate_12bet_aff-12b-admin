@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -55,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
-        public ActionResult InsertSubAffDomain(InsertUpdateDomainParam param)
+        public ActionResult InsertSubAffDomain(InsertDomainParam param)
         {
             if (ModelState.IsValid)
             {
@@ -71,15 +72,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
-        public ActionResult UpdateSubAffDomain(InsertUpdateDomainParam param)
+        public ActionResult UpdateSubAffDomain(UpdateDomainParam param)
         {
             var isValidDomainId = param.DomainId >= Validation.MinId;
             if (ModelState.IsValid && isValidDomainId)
             {
                 var encodeParam = EncodeParam(param);
-                AssignUserInfoParam(encodeParam);
+                var serializedParent = JsonConvert.SerializeObject(encodeParam);
+                var newParam = JsonConvert.DeserializeObject<UpdateDomainParam>(serializedParent);
+                newParam.DomainId = param.DomainId;
+                AssignUserInfoParam(newParam);
 
-                return GenerateJsonNetResult(_subAffDomainService.UpdateSubAffDomain(encodeParam));
+                return GenerateJsonNetResult(_subAffDomainService.UpdateSubAffDomain(newParam));
             }
 
             return GenerateErrResult(isValidDomainId ? "Please input Sub-Affiliate Domain's name." : "Sub-Affiliate Domain Id is invalid.");
@@ -100,11 +104,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             return GenerateErrResult("Sub-Affiliate Domain Id is incorrect.");
         }
 
-        private InsertUpdateDomainParam EncodeParam(InsertUpdateDomainParam param)
+        private InsertDomainParam EncodeParam(InsertDomainParam param)
         {
-            return new InsertUpdateDomainParam
+            return new InsertDomainParam
             {
-                DomainId = param.DomainId,
                 DomainName = Server.HtmlEncode(param.DomainName),
                 IsSSL = param.IsSSL,
                 IsAffDomain = param.IsAffDomain

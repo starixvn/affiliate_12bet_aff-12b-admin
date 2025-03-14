@@ -7,7 +7,7 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
+import { deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -37,9 +37,9 @@ export class Content extends PureComponent {
         this.setState({ message: `Are you sure you want to delete this ${this.props.isAffDomain ? 'affiliate' : this.props.licenseeName} domain?`, isConfirmPopup: true, selectedDomainId });
     }
 
-    _handleEditDomain = (domainId, domainName, isSSL) => {
+    _handleEditDomain = (domainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.props.setSelectedDomain({ domainId, domainName, isSSL });
+        this.props.setSelectedDomainId(domainId);
     }
 
     _deleteDomain = async (selectedDomainId) => {
@@ -66,10 +66,11 @@ export class Content extends PureComponent {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={60} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={500} title={headerText.Domain}>{headerText.Domain}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.Domain}>{headerText.Domain}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.SSL}>{headerText.SSL}</Cell>
                 <Cell header={true} colWidth={160} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={320} title={headerText.BlockMarket}>{headerText.BlockMarket}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Delete}>{headerText.Delete}</Cell>
             </Row>
@@ -87,7 +88,7 @@ export class Content extends PureComponent {
         }
         else {
             dataRows.push(<Row key="no-info">
-                <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -97,6 +98,7 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
+        const blockMarket = htmlDecode(dataItem.BlockMarketName).split(',').join(', ');
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -107,8 +109,9 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell title={blockMarket}>{blockMarket}</Cell>
                 <Cell className="text-center" title="Edit Domain">
-                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, domainName, dataItem.IsSSL)}>
+                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
@@ -128,7 +131,7 @@ export class Content extends PureComponent {
         return gridData && (
             <div className="data-content">
                 <div className="my-2">
-                    <Button outline type="button" onClick={() => this._handleEditDomain(0, '', false)}>
+                    <Button outline type="button" onClick={() => this._handleEditDomain(0)}>
                         {isAffDomain ? 'Add AffDomain' : ('Add ' + licenseeName + ' Domain')}<span className="oi oi-plus ml-2"></span>
                     </Button>
                 </div>
@@ -160,7 +163,7 @@ function mapStateToProps({ shouldResetScrollPosition, gridData, isAffDomain, lic
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
