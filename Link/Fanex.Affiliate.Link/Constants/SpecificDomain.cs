@@ -24,6 +24,12 @@ namespace Fanex.Affiliate.Link.Constants
         //go.6789sutzo.com
         private const string AFF16326_ID = "92043414";
 
+        //goto.2356all.com
+        private const string AFF16494_ID = "92043582";
+
+        //goto.elv520.com
+        private const string AFF16492_ID = "92043580";
+
         //12aff.best5689.com
         private const string AFF130_ID = "1257975";
         private const string AFF16311_ID = "92043399";
@@ -140,6 +146,10 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF16481_ID] = FakeMapping_Goto_12bmylink1_Com,
             [AFF16482_ID] = FakeMapping_Goto_12binlink1_Com,
             [AFF16483_ID] = FakeMapping_Goto_12bthlink1_Com,
+
+            [AFF16494_ID] = "aff-12b.nexdev.net/Go,goto.2356all.com",
+
+            [AFF16492_ID] = "aff-12b.nexdev.net/Go,goto.elv520.com"
         };
     }
 }
