@@ -14,3 +14,12 @@ export const headerText = {
     Edit: globalResource.Edit,
     Delete: globalResource.Delete
 }
+
+export const defaultState = {
+    isInsert: true,
+    isShowMessage: false,
+    isSuccess: true,
+    message: '',
+    selectedDomain: null,
+    marketListByDomains: null
+}

@@ -1,31 +1,30 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.Utilities;
-using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-
-namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
+﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using Attributes;
+    using Constants;
+    using DTO;
+    using Extensions;
+    using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+    using Fanex.Affiliate.Admin.Core.Services.Domain;
+    using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
+    using Resources;
+    using Services.Common;
+    using Utilities;
+    using Utilities.Market;
+
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
-        private readonly ISystemService _languageService;
 
         public DomainControlController(
             ISessionService sessionService,
-            IDomainControlService domainControlService,
-            ISystemService languageService) : base(sessionService)
+            IDomainControlService domainControlService) : base(sessionService)
         {
             _domainControlService = domainControlService;
-            _languageService = languageService;
         }
 
         public ActionResult Index()
@@ -42,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
             {
                 SubMenuList = subMenu,
                 AffSubDomainList = _domainControlService.GetSubAffDomainControlList(),
-                MarketList = _languageService.GetLanguageList()
+                MarketList = GetVisibleMarkets()
             };
 
             return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);
@@ -59,46 +58,58 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [ValidateAntiForgeryHeader]
         public ActionResult GetDomainControlList(string market, string subDomainRegex, bool isGetAll = true)
         {
-            var domainControlList = _domainControlService.GetDomainControlList(market);
+            var domainControlList = _domainControlService.GetDomainControl(market);
 
             if (isGetAll || string.IsNullOrEmpty(subDomainRegex))
             {
                 return GenerateJsonNetResult(domainControlList);
             }
 
-            var regexParten = $"^({subDomainRegex})\\.|^({subDomainRegex})$";
-            return GenerateJsonNetResult(domainControlList.Where(d => RegexHelper.IsMatchIgnoreCase(d.AffDomain, regexParten)));
+            var regexPattern = $"^({subDomainRegex})\\.|^({subDomainRegex})$";
+            return GenerateJsonNetResult(domainControlList.Where(d => RegexHelper.IsMatchIgnoreCase(d.AffDomain, regexPattern)));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDomainControlById(int domainControlId)
+        {
+            var domainControl = _domainControlService.GetDomainControlById(domainControlId);
+            var isValidMarket = MarketHelper.IsValidMarketIds(domainControl?.MarketId, GetVisibleMarkets());
+
+            return new JsonNetResult
+            {
+                Data = isValidMarket ? domainControl : null
+            };
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
-        public ActionResult InsertDomainControl(InsertUpdateDomainControlParam param)
+        public ActionResult InsertDomainControl(InsertDomainControlParam param)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.MarketId, GetVisibleMarkets()))
             {
                 AssignUserInfoParam(param);
 
                 return GenerateJsonNetResult(_domainControlService.InsertDomainControl(param));
             }
 
-            return GenerateErrResult("Domain's info is invalid!");
+            return GenerateErrResult("The Domain Control's info is invalid!");
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
-        public ActionResult UpdateDomainControl(InsertUpdateDomainControlParam param)
+        public ActionResult UpdateDomainControl(UpdateDomainControlParam param)
         {
-            var isValidDomainId = param.DomainId >= Validation.MinId;
-            if (ModelState.IsValid && isValidDomainId)
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.MarketId, GetVisibleMarkets()))
             {
                 AssignUserInfoParam(param);
 
                 return GenerateJsonNetResult(_domainControlService.UpdateDomainControl(param));
             }
 
-            return GenerateErrResult(isValidDomainId ? "Domain's info is invalid!" : "Domain Id is invalid.");
+            return GenerateErrResult("The Domain Control's info is invalid!");
         }
 
         [HttpPost]
@@ -113,7 +124,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 return GenerateJsonNetResult(_domainControlService.DeleteDomainControl(param));
             }
 
-            return GenerateErrResult("Domain Id is invalid.");
+            return GenerateErrResult("The Domain Control is incorrect!");
+        }
+
+        private IEnumerable<Market> GetVisibleMarkets()
+        {
+            return _domainControlService.GetMarketListByDomain();
         }
     }
 }

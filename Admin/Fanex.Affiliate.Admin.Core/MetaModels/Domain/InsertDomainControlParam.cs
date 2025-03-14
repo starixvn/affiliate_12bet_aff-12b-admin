@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
-    public class InsertUpdateDomainControlParam : UserInfoParam
+    public class InsertDomainControlParam : UserInfoParam
     {
-        public int DomainId { get; set; }
-
         [Required]
         public string MarketId { get; set; }
 

@@ -7,11 +7,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainControlService
     {
-        IEnumerable<DomainControlInfo> GetDomainControlList(string market);
+        IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0);
 
-        ResultInfo InsertDomainControl(InsertUpdateDomainControlParam param);
+        IEnumerable<DomainControlInfo> GetDomainControl(string market, int domainControlId = 0);
 
-        ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param);
+        DomainControlInfo GetDomainControlById(int domainControlId);
+
+        ResultInfo InsertDomainControl(InsertDomainControlParam param);
+
+        ResultInfo UpdateDomainControl(UpdateDomainControlParam param);
 
         ResultInfo DeleteDomainControl(DeleteDomainControlParam param);
 

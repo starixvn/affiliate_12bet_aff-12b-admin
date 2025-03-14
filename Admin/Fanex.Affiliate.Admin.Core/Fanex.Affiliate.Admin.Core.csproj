@@ -504,8 +504,9 @@
     <Compile Include="MetaModels\Customer\TransferLimitSettingParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
-    <Compile Include="MetaModels\Domain\InsertUpdateDomainControlParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\InsertDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\UpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainParam.cs" />
     <Compile Include="MetaModels\EmailHistory\DeleteEmailHistoryParam.cs" />
     <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />

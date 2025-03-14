@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.Domain
     {
         public IEnumerable<SubMenu> SubMenuList { get; set; }
 
-        public IEnumerable<Language> MarketList { get; set; }
+        public IEnumerable<Market> MarketList { get; set; }
 
         public IEnumerable<string> AffSubDomainList { get; set; }
     }
