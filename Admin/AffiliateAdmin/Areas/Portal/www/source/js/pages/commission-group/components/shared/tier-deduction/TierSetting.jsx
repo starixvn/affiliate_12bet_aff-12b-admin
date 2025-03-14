@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Col, FormGroup } from 'reactstrap';
 import { bindActionCreators } from 'redux';
@@ -10,7 +10,15 @@ import { removeTierItem } from '../../../modules/service';
 import { isValidNumber } from '../../../../../modules/utils';
 import { FIRST_ITEM_INDEX, MinNetTurnover, MinNetWin } from '../../../modules/constant';
 
-export class TierSetting extends Component {
+const regExp = {
+    acceptAmountFormat: "^\\-?\\d*$",
+    validAmount: "^\\-?\\d+$"
+}
+
+const regexAcceptAmountFormat = new RegExp(regExp.acceptAmountFormat);
+const regexValidAmount = new RegExp(regExp.validAmount);
+
+export class TierSetting extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -57,7 +65,7 @@ export class TierSetting extends Component {
 
     handleChangeInput = (tierId, tierItemValue) => {
         const { MinAmount, MinQm } = tierItemValue;
-        if ((!MinAmount || isValidNumber(MinAmount)) &&
+        if (regexAcceptAmountFormat.test(MinAmount) &&
             (!MinQm || isValidNumber(MinQm))) {
             const { selectedGroup, groupProductId } = this.props;
 

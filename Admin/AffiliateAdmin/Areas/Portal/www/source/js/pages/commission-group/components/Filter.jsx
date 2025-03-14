@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { getGroupSettingList, setSearchedGroupName, setSearchedGroupType } from '../actions';
 
-export class Filter extends Component {
+export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 

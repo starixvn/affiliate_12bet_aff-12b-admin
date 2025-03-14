@@ -9,7 +9,7 @@ const regexCheckAmount = new RegExp(regExp.checkAmount);
 const regexValidAmount = new RegExp(regExp.validAmount);
 const regexShouldFormatAmount = new RegExp(regExp.shouldFormatAmount);
 
-export default class FeeSettingItem extends React.Component {
+export default class FeeSettingItem extends React.PureComponent {
     constructor(props) {
         super(props);
     }

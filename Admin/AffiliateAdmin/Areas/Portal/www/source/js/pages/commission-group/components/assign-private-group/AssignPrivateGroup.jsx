@@ -14,7 +14,7 @@ import { popupEventNames } from '../../../common/modules/constants/commissionGro
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
 import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
-export class AssignPrivateGroup extends React.Component {
+export class AssignPrivateGroup extends React.PureComponent {
     constructor(props) {
         super(props);
 

@@ -9,7 +9,7 @@ import { htmlDecode } from '../../../../modules/htmlHelper';
 
 const MAX_LENGTH = 100;
 
-export class CommGroupInfo extends React.Component {
+export class CommGroupInfo extends React.PureComponent {
     constructor(props) {
         super(props);
 

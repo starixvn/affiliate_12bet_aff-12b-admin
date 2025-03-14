@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { post } from '../../../../modules/ajaxRequest';
 import { Col, FormGroup, Label, Button, Input, Alert } from 'reactstrap';
 import { messages } from '../../modules/constant';
@@ -6,7 +6,7 @@ import Loader from '../../../../components/Loader';
 import { popupEventNames } from '../../../common/modules/constants/commissionGroup';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
-export default class AssignGroup extends Component {
+export default class AssignGroup extends PureComponent {
     constructor(props) {
         super(props);
 

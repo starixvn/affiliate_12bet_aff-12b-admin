@@ -13,7 +13,7 @@ import { toggleLoader } from '../../../../actions/loaderAction';
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
 import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
-export class AddGroup extends React.Component {
+export class AddGroup extends React.PureComponent {
     constructor(props) {
         super(props);
 

@@ -5,7 +5,7 @@ import { Col, Form, FormGroup, Label } from 'reactstrap';
 import DeductedPercentageForm from '../deduction/DeductedPercentageGroup';
 import { ONLY_ONE_ITEM, GGR, Turnover, commissionValueList, killRateValueList } from '../../../modules/constant';
 
-export default class PlatformFeeItem extends React.Component {
+export default class PlatformFeeItem extends React.PureComponent {
     constructor(props) {
         super(props);
     }

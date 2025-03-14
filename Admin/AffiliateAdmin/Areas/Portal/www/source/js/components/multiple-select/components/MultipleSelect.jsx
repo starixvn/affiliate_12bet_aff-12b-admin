@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import MultipleSelectLabel from './MultipleSelectLabel';
@@ -11,7 +11,7 @@ const STATUS_NAME = "checked";
 
 let id = 1;
 
-export default class MultipleSelect extends Component {
+export default class MultipleSelect extends PureComponent {
     constructor(props) {
         super(props);
         this.id = `multiple-select-${props.id || id++}`;
