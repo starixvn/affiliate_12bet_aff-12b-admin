@@ -63,8 +63,6 @@
                 ["th-TH"] = Convert.ToString(obj[$"{MessagePrefix}th"]),
                 ["vi-VN"] = Convert.ToString(obj[$"{MessagePrefix}vi"]),
                 ["id-ID"] = Convert.ToString(obj[$"{MessagePrefix}id"]),
-                ["km-KH"] = Convert.ToString(obj["Message_Kh"]),
-                ["zh-CN"] = Convert.ToString(obj[$"{MessagePrefix}cn"]),
                 ["hi-IN"] = Convert.ToString(obj[$"{MessagePrefix}hi"])
             };
 

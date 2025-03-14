@@ -10,39 +10,30 @@ export const messageInsertId = 0;
 export const messageCurrentId = -1;
 
 const english = 'Message_en';
-const chineseTraditional = 'Message_ch';
 const chineseSimplified = 'Message_cs';
-const spanish = 'Message_es';
 const thai = 'Message_th';
 const vietNamese = 'Message_vn';
 const indonesian = 'Message_id';
 const korean = 'Message_ko';
-const japanese = 'Message_jp';
 
 export const defaultMessageContentList =
 {
     MessageId: 0,
     [english]: '',
-    [chineseTraditional]: '',
-    [chineseSimplified]: '',
-    [spanish]: '',
-    [thai]: '',
-    [vietNamese]: '',
     [indonesian]: '',
     [korean]: '',
-    [japanese]: ''
+    [thai]: '',
+    [vietNamese]: '',
+    [chineseSimplified]: '',
 };
 
 export const languages = {
     [english]: 'English',
-    [chineseTraditional]: 'Chinese Traditional',
     [chineseSimplified]: 'Chinese Simplified',
-    [spanish]: 'Spanish',
     [thai]: 'Thai',
     [vietNamese]: 'VietNamese',
     [indonesian]: 'Indonesian',
     [korean]: 'Korean',
-    [japanese]: 'Japanese'
 }
 
 export const searchByList = {
