@@ -22,12 +22,16 @@ export class Content extends Component {
         this.modalRef = React.createRef();
     }
 
-    handleAddNewGroup = () => {
+    handleShowAddPopup = (itemId = null) => {
         this.setState({
-            Popup: (<AddGroup onClose={this.handleHide} onSave={this.handleSave} />),
+            Popup: <AddGroup onClose={this.handleHide} onSave={this.handleSave} itemId={itemId} />,
             popupTitle: 'Add a Revenue Group'
         });
-    }
+    };
+
+    handleAddNewGroup = () => this.handleShowAddPopup();
+
+    handleCopyGroup = (itemId) => this.handleShowAddPopup(itemId);
 
     handleEditGroup = (itemId) => {
         this.setState({
@@ -61,7 +65,7 @@ export class Content extends Component {
                     <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
                 </div>
 
-                <GridData onEdit={this.handleEditGroup} />
+                <GridData onEdit={this.handleEditGroup} onCopy={this.handleCopyGroup} />
                 <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
 
                 <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='static' innerRef={this.modalRef}>

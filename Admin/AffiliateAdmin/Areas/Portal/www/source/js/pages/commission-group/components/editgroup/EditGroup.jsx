@@ -86,7 +86,7 @@ export class EditGroup extends React.Component {
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
-                <CommGroupInfo />
+                <CommGroupInfo isAdd={false} />
                 <SubAffCommRateSetting />
                 <QmTurnoverSetting />
                 <DeductionSetting />

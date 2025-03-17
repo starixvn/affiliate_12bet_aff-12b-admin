@@ -185,16 +185,18 @@ export class GridData extends Component {
                                     <Cell className="text-right" rowSpan={rowSpan} title={subAffCommRate}>{subAffCommRate}</Cell>
                                     <Cell className="text-right" rowSpan={rowSpan} title={qmTurnover}>{qmTurnover}</Cell>
                                     <Cell className="text-center" rowSpan={rowSpan}>
-                                        <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
+                                        <button title="Edit" className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
                                             <span className="oi oi-pencil text-secondary"></span>
                                         </button>
-
                                         {
                                             group.NoAffs === 0 && (
-                                                <button className="btn btn-link" onClick={() => this._handleDeleteCommGroup(item.GroupId, item.GroupName)}>
+                                                <button title="Delete" className="btn btn-link" onClick={() => this._handleDeleteCommGroup(item.GroupId, item.GroupName)}>
                                                     <span className="oi oi-x text-danger"></span>
                                                 </button>)
                                         }
+                                        <button title="Copy" className="btn btn-link" onClick={(e) => this.props.onCopy(item.GroupId)}>
+                                            <span className="oi icon-copy text-secondary"></span>
+                                        </button>
                                     </Cell>
                                 </Fragment>
                             )}

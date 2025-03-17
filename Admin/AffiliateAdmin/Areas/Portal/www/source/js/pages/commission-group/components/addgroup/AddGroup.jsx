@@ -1,9 +1,9 @@
-import React from 'react';
+﻿import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
-import { insertCommissionGroup, getGroupSettingList, setSelectedGroup, setSelectedProductIds } from '../../actions';
+import { insertCommissionGroup, getGroupSettingList, setSelectedGroup, setSelectedProductIds, getSelectedCommGroup } from '../../actions';
 import { buildDefaultCommGroup, handleKillRateListData, validate } from '../../modules/service';
 
 import DeductionSetting from '../shared/tier-deduction';
@@ -25,12 +25,16 @@ export class AddGroup extends React.Component {
     }
 
     componentDidMount() {
-        const { deductionList, productList, p2pProductList } = this.props;
-        const commGroup = buildDefaultCommGroup(deductionList, productList, p2pProductList);
+        if (this.props.itemId && this.props.itemId !== 0) {
+            this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
+        } else {
+            const { deductionList, productList, p2pProductList } = this.props;
+            const commGroup = buildDefaultCommGroup(deductionList, productList, p2pProductList);
 
-        const productIds = p2pProductList.map(p => p.ProductId);
-        this.props.setSelectedGroup(commGroup);
-        this.props.setSelectedProductIds(productIds);
+            const productIds = p2pProductList.map(p => p.ProductId);
+            this.props.setSelectedGroup(commGroup);
+            this.props.setSelectedProductIds(productIds);
+        }
     }
 
     componentWillUnmount() {
@@ -89,7 +93,7 @@ export class AddGroup extends React.Component {
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
-                <CommGroupInfo />
+                <CommGroupInfo isAdd={true} />
                 <SubAffCommRateSetting />
                 <QmTurnoverSetting />
                 <DeductionSetting />
@@ -105,7 +109,7 @@ function mapStateToProp({ deductionList, productList, p2pProductList, selectedGr
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertCommissionGroup, getGroupSettingList, setSelectedProductIds, setSelectedGroup, toggleLoader }, dispatch);
+    return bindActionCreators({ insertCommissionGroup, getGroupSettingList, setSelectedProductIds, setSelectedGroup, toggleLoader, getSelectedCommGroup }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(AddGroup);

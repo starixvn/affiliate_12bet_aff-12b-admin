@@ -19,8 +19,8 @@ export class CommGroupInfo extends React.Component {
     }
 
     componentDidMount() {
-        const { GroupId } = this.props.selectedGroup;
-        if (GroupId !== 0) {
+        const isAdd = this.props.isAdd;
+        if (!isAdd) {
             this.setState({
                 isDisableGroupType: true
             })

@@ -1,6 +1,12 @@
 ﻿@import "../components/modal";
 @import "../components/multiple-select";
 
+.icon-copy {
+    background: url('../assets/i_copy.png');
+    width: 16px;
+    height: 16px;
+}
+
 .commission-group {
     .comm-popup-container {
         .deducted-percent-group {

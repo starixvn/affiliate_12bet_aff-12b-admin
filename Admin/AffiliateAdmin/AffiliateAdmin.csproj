@@ -327,6 +327,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\marketing-note\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\claimReducer.js" />
+    <Content Include="Areas\Portal\www\source\style\assets\i_copy.png" />
     <Content Include="favicon.ico" />
     <Content Include="12monitor.aspx" />
     <Content Include="App_Data\SpConfig\SpName.xml">
