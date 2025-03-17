@@ -25,7 +25,6 @@ exports[`left panel - TransferBalanceForPlayerSettingPopup component -  should r
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -353,7 +352,6 @@ exports[`left panel - TransferBalanceForPlayerSettingPopup component -  should r
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

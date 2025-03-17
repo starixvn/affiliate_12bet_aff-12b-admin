@@ -39,9 +39,10 @@ exports[`commission group - EditGroup should render correctly with isSuccess is 
       }
     />
   </Alert>
-  <Connect(CommGroupInfo) />
+  <Connect(CommGroupInfo)
+    isAdd={false}
+  />
   <Connect(SubAffCommRateSetting) />
-  <Connect(P2pDeductionSetting) />
   <Connect(QmTurnoverSetting) />
   <Connect(DeductionSetting) />
   <p
@@ -98,9 +99,10 @@ exports[`commission group - EditGroup should render correctly with isSuccess is 
       }
     />
   </Alert>
-  <Connect(CommGroupInfo) />
+  <Connect(CommGroupInfo)
+    isAdd={false}
+  />
   <Connect(SubAffCommRateSetting) />
-  <Connect(P2pDeductionSetting) />
   <Connect(QmTurnoverSetting) />
   <Connect(DeductionSetting) />
   <p

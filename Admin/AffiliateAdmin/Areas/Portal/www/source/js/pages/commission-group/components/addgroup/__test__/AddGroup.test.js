@@ -11,7 +11,7 @@ describe('commission group - AddGroup', () => {
         GroupId: 0,
         GroupName: "",
         GroupTypeId: 1,
-        SubAffCommRate: 0.1,
+        SubAffCommRate: 0,
         QmTurnover: 100,
         IsActivePlayerSum: true,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
@@ -49,7 +49,7 @@ describe('commission group - AddGroup', () => {
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", IsDeductedPercent: true, DeductedAmount: "" }],
             P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
             TierSettingList: [],
-            KillRateFeeList: [{ DeductedPercentage: 0.05, DeductionId: 16, ProductIds: "", IsDeductedPercent: true, DeductedAmount: "" }],
+            KillRateFeeList: [{ DeductedPercentage: 0.05, DeductionId: 16, ProductIds: "", IsDeductedPercent: true, DeductedAmount: "" }]
         },
         pagingOption: defaultPagingOption,
         searchedGroupName: '',

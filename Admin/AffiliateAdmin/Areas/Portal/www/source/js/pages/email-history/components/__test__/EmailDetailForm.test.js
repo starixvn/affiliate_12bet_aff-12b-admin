@@ -123,7 +123,7 @@ describe('email history - components - EmailDetailForm ', () => {
     
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.deleteEmailHistory).toHaveBeenCalledWith({ EmailIdList: 2205 });
-        expect(wrapper.setState).toHaveBeenCalledTimes(1);
+        expect(wrapper.setState).toHaveBeenCalledTimes(2);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({
             isShowMessage: true,
             isSuccess: false,
@@ -149,7 +149,7 @@ describe('email history - components - EmailDetailForm ', () => {
     
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.deleteEmailHistory).toHaveBeenCalledWith({ EmailIdList: 2205 });
-        expect(wrapper.setState).toHaveBeenCalledTimes(1);
+        expect(wrapper.setState).toHaveBeenCalledTimes(2);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({
             isShowMessage: true,
             isSuccess: true,

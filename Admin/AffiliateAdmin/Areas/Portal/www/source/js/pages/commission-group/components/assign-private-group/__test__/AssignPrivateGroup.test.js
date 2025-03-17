@@ -11,7 +11,7 @@ describe('commission group - assign private group', () => {
         GroupId: 0,
         GroupName: "",
         GroupTypeId: 1,
-        SubAffCommRate: 0.1,
+        SubAffCommRate: 0,
         QmTurnover: 100,
         IsActivePlayerSum: true,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],

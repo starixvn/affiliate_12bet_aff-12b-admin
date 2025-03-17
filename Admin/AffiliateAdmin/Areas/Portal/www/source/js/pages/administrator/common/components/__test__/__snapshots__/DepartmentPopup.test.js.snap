@@ -27,7 +27,6 @@ exports[`administrator - common - components - DepartmentPopup  render correctly
   scrollable={false}
   size="xl"
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -188,7 +187,6 @@ exports[`administrator - common - components - DepartmentPopup  render correctly
   scrollable={false}
   size="xl"
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -304,7 +302,6 @@ exports[`administrator - common - components - DepartmentPopup  render correctly
   scrollable={false}
   size="xl"
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

@@ -75,7 +75,7 @@ describe('commission group - AssignGroup', () => {
         window.setTimeout = jest.fn((fn, time) => fn());
         wrapper.find('Button').simulate('click');
 
-        expect(wrapper.setState).toHaveBeenCalledTimes(1);
+        expect(wrapper.setState).toHaveBeenCalledTimes(2);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({
             isShowMessage: true,
             isSuccess: false,
@@ -97,14 +97,14 @@ describe('commission group - AssignGroup', () => {
 
         await wrapper.find('Button').simulate('click');
 
-        expect(wrapper.setState).toHaveBeenCalledTimes(3);
+        expect(wrapper.setState).toHaveBeenCalledTimes(4);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
         expect(wrapper.setState.mock.calls[1][0]).toEqual({
             isShowMessage: true,
             isSuccess: true,
             message: 'Assign affiliate to Revenue Group successfully'
         });
-        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowLoader: false });
+        expect(wrapper.setState.mock.calls[3][0]).toEqual({ isShowLoader: false });
     });
 
     it('handleSave - should call setState, hideMessage and not call parent.postMessage with IsSuccessful is false', async () => {
@@ -120,10 +120,10 @@ describe('commission group - AssignGroup', () => {
 
         await wrapper.find('Button').simulate('click');
 
-        expect(wrapper.setState).toHaveBeenCalledTimes(3);
+        expect(wrapper.setState).toHaveBeenCalledTimes(4);
         expect(wrapper.setState.mock.calls[0][0]).toEqual({ isShowLoader: true });
         expect(wrapper.setState.mock.calls[1][0]).toEqual({ isShowMessage: true, isSuccess: false, message: "failed!" });
-        expect(wrapper.setState.mock.calls[2][0]).toEqual({ isShowLoader: false });
+        expect(wrapper.setState.mock.calls[3][0]).toEqual({ isShowLoader: false });
     });
 
     it('handleSave - should call setState but not call window.alert with reponse incorrect', async () => {

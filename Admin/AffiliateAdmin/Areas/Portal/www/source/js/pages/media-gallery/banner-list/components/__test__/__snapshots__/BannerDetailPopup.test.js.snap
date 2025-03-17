@@ -27,7 +27,6 @@ exports[`banner list - components - BannerDetailPopup  render correctly 1`] = `
   scrollable={false}
   size="xl"
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

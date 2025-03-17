@@ -54,7 +54,7 @@ describe('commission group - Content', () => {
         instance.handleSave = jest.fn();
 
         const expectedState = {
-            Popup: <AddGroup onClose={instance.handleHide} onSave={instance.handleSave} />,
+            Popup: <AddGroup onClose={instance.handleHide} itemId={null} onSave={instance.handleSave} />,
             popupTitle: "Add a Revenue Group"
         }
         wrapper.find('Button').simulate('click');

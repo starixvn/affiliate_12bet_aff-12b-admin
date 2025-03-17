@@ -26,7 +26,6 @@ exports[`domain control - components - DomainControlPopup  render correctly with
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -349,7 +348,6 @@ exports[`domain control - components - DomainControlPopup  render correctly with
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

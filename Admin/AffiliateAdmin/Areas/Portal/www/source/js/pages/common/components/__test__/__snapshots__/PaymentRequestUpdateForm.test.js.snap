@@ -26,7 +26,6 @@ exports[`common - components - PaymentRequestUpdateForm render correctly 1`] = `
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -705,7 +704,6 @@ exports[`common - components - PaymentRequestUpdateForm render correctly with no
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
