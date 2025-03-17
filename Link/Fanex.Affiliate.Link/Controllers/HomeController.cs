@@ -145,13 +145,14 @@ namespace Fanex.Affiliate.Link.Controllers
                 }
 
                 var pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
+                var languageCodeOnV2 = GetSupportedLanguageCodeOnMemberSiteV2(lang);
                 var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
                     AffCode = affCode,
                     PageCode = pageCodeOnV2,
                     ChannelCode = channel,
-                    LanguageCode = lang,
+                    LanguageCode = languageCodeOnV2,
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),
                     Browser = Request.Browser.Browser,
@@ -331,19 +332,18 @@ namespace Fanex.Affiliate.Link.Controllers
             return languageCode;
         }
 
-        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode)
+        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string lang)
         {
-            var customLanguageCode = GetSupportedLanguageCodeOnMemberSiteV2(languageCode);
             var redirectPattern = ConfigurationManager.AppSettings[$"Redirect_{pageCode.ToLowerInvariant()}_pattern"];
 
             if (!string.IsNullOrEmpty(redirectPattern))
             {
                 var redirectUri = new Uri(redirectUrl);
-                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode);
+                var pathAndQueryString = redirectPattern.Replace("#language#", lang);
                 return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}{redirectUri.Query}";
             }
 
-            return redirectUrl.Replace($"/{languageCode}/", $"/{customLanguageCode}/");
+            return redirectUrl;
         }
 
         private static byte GetDeviceType()

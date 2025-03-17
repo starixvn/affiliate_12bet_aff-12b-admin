@@ -119,10 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 Message_th = Server.HtmlEncode(param.Message_th),
                 Message_vn = Server.HtmlEncode(param.Message_vn),
                 Message_id = Server.HtmlEncode(param.Message_id),
-                Message_hi = Server.HtmlEncode(param.Message_hi),
-                Message_ms = Server.HtmlEncode(param.Message_ms),
-                Message_bn = Server.HtmlEncode(param.Message_bn),
-                Message_kh = Server.HtmlEncode(param.Message_kh),
+                Message_ko = Server.HtmlEncode(param.Message_ko),
             };
         }
     }

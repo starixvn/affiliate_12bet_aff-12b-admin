@@ -192,6 +192,7 @@
     <Setting Key="Aff_Admin_Message_Sel" SpName="Aff_Admin_Message_Sel" DbName=""  >
       <Mapping DataField="Message_Cn" ObjectProperty="Message_cs" />
       <Mapping DataField="Message_Vi" ObjectProperty="Message_vn" />
+      <Mapping DataField="Message_Kr" ObjectProperty="Message_ko" />
       <Mapping DataField="CreatorName" ObjectProperty="Creator" />
       <Mapping DataField="UpdatedName" ObjectProperty="UpdatedBy" />
     </Setting>
