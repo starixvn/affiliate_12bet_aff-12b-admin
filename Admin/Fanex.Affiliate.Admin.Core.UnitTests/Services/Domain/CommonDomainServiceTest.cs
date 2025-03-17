@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 
             // Action
             var service = new CommonDomainService(repository.Object);
-            var result = service.InsertDomain(new InsertUpdateDomainParam(), "Aff_Admin_SubAffiliateDomain_Ins");
+            var result = service.InsertDomain(new InsertDomainParam(), "Aff_Admin_SubAffiliateDomain_Ins");
 
             // Assert
             repository.Verify(d => d.Execute(It.Is<InsertDomainCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
@@ -75,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
 
             // Action
             var service = new CommonDomainService(repository.Object);
-            var result = service.UpdateDomain(new InsertUpdateDomainParam(), "Aff_Admin_SubAffiliateDomain_Upd");
+            var result = service.UpdateDomain(new UpdateDomainParam(), "Aff_Admin_SubAffiliateDomain_Upd");
 
             // Assert
             repository.Verify(d => d.Execute(It.Is<UpdateDomainCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));

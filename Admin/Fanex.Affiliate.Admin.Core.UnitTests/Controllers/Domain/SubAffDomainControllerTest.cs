@@ -54,10 +54,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void InsertSubAffDomain_WhenCallWithValidParam_InsertSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateDomainParam { DomainName = "abc.com" };
-            InsertUpdateDomainParam passedParam = null;
+            var param = new InsertDomainParam { DomainName = "abc.com" };
+            InsertDomainParam passedParam = null;
             var subAffDomainService = new Mock<ISubAffDomainService>();
-            subAffDomainService.Setup(s => s.InsertSubAffDomain(It.IsAny<InsertUpdateDomainParam>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam>(p => passedParam = p);
+            subAffDomainService.Setup(s => s.InsertSubAffDomain(It.IsAny<InsertDomainParam>())).Returns(new ResultInfo()).Callback<InsertDomainParam>(p => passedParam = p);
             var controller = CreateSubAffDomainController(subAffDomainService: subAffDomainService.Object);
 
             // Action
@@ -66,7 +66,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.True(resultInfo.IsSuccessful);
-            Assert.Equal(param.DomainId, passedParam.DomainId);
         }
 
         [Fact]
@@ -77,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             controller.ModelState.AddModelError("Error01", string.Empty);
 
             // Action
-            var result = controller.InsertSubAffDomain(new InsertUpdateDomainParam()) as JsonNetResult;
+            var result = controller.InsertSubAffDomain(new UpdateDomainParam()) as JsonNetResult;
             var resultInfo = result.Data as ResultInfo;
 
             // Assert
@@ -89,10 +88,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateSubAffDomain_WhenCallWithValidParam_UpdateSuccessful()
         {
             // Arrange
-            var param = new InsertUpdateDomainParam { DomainId = 123, DomainName = "abc.com" };
-            InsertUpdateDomainParam passedParam = null;
+            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com" };
+            UpdateDomainParam passedParam = null;
             var subAffDomainService = new Mock<ISubAffDomainService>();
-            subAffDomainService.Setup(s => s.UpdateSubAffDomain(It.IsAny<InsertUpdateDomainParam>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam>(p => passedParam = p);
+            subAffDomainService.Setup(s => s.UpdateSubAffDomain(It.IsAny<UpdateDomainParam>())).Returns(new ResultInfo()).Callback<UpdateDomainParam>(p => passedParam = p);
             var controller = CreateSubAffDomainController(subAffDomainService: subAffDomainService.Object);
 
             // Action
@@ -108,7 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateSubAffDomain_WhenCallWithInvalidDomainId_ReturnError()
         {
             // Arrange
-            var param = new InsertUpdateDomainParam { DomainName = "abc" };
+            var param = new UpdateDomainParam { DomainName = "abc" };
             var controller = CreateSubAffDomainController();
 
             // Action
@@ -124,7 +123,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void UpdateSubAffDomain_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var param = new InsertUpdateDomainParam { DomainId = 123, DomainName = "abc.com" };
+            var param = new UpdateDomainParam { DomainId = 123, DomainName = "abc.com" };
             var controller = CreateSubAffDomainController();
             controller.ModelState.AddModelError("Error01", string.Empty);
 
