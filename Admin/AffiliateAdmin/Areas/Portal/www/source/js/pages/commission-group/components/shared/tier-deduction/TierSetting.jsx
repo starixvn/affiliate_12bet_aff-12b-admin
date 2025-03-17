@@ -8,15 +8,7 @@ import { setSelectedGroup } from '../../../actions';
 import TierSettingItem from './TierSettingItem';
 import { removeTierItem } from '../../../modules/service';
 import { isValidNumber } from '../../../../../modules/utils';
-import { FIRST_ITEM_INDEX, MinNetTurnover, MinNetWin } from '../../../modules/constant';
-
-const regExp = {
-    acceptAmountFormat: "^\\-?\\d*$",
-    validAmount: "^\\-?\\d+$"
-}
-
-const regexAcceptAmountFormat = new RegExp(regExp.acceptAmountFormat);
-const regexValidAmount = new RegExp(regExp.validAmount);
+import { FIRST_ITEM_INDEX, MinNetTurnover, MinNetWin, regexAcceptNegativeAmountFormat, money } from '../../../modules/constant';
 
 export class TierSetting extends PureComponent {
     constructor(props) {
@@ -41,7 +33,7 @@ export class TierSetting extends PureComponent {
         const itemCount = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId).length;
         if (itemCount > 0) {
             const lastItem = tierSettingListByGroupProduct[itemCount - 1];
-            defaultMinAmount = lastItem.MinAmount + 1;
+            defaultMinAmount = (lastItem.MinAmount == money.AllowedMinValue) ? 1 : lastItem.MinAmount + 1;
             defaultCommission = lastItem.Commission + 0.1;
         }
 
@@ -65,7 +57,8 @@ export class TierSetting extends PureComponent {
 
     handleChangeInput = (tierId, tierItemValue) => {
         const { MinAmount, MinQm } = tierItemValue;
-        if (regexAcceptAmountFormat.test(MinAmount) &&
+
+        if (regexAcceptNegativeAmountFormat.test(MinAmount) &&
             (!MinQm || isValidNumber(MinQm))) {
             const { selectedGroup, groupProductId } = this.props;
 
@@ -112,6 +105,7 @@ export class TierSetting extends PureComponent {
                                         return (<TierSettingItem data={item} key={`tier-${i}`}
                                             handleClick={handleClick}
                                             btnText={isFirst ? '+' : '-'}
+                                            isDisabledNegativeInfinity={!isFirst}
                                             onChange={this.handleChangeInput} />);
                                     })
                                 }

@@ -1,11 +1,12 @@
 import { formatDecimal, format } from "../../../modules/numberFormat";
 import { globalResource } from '../../../modules/globalResource';
+import { money } from '../../../modules/constants';
 
-export { globalResource, formatDecimal, format };
+export { globalResource, formatDecimal, format, money };
 
-export const INFINITY_AM = 100000000000;
+export const INFINITY_AM = money.AllowedMaxValue;
 export const INFINITY_QM = 1000000000;
-export const INFINITY_SYMBOL = '∞';
+export const NEGATIVE_INFINITY_SYMBOL = '-∞';
 export const FIRST_ITEM_INDEX = 0;
 export const ONLY_ONE_ITEM = 1;
 export const MAX_KILL_RATE_PERCENT = 5;
@@ -86,8 +87,13 @@ export const deductionNameList = _deductionNameList;
 export const regExp = {
     checkAmount: "^(\\d+\\.?\\d*)?$",
     shouldFormatAmount: "^\\d+$",
-    validAmount: "^\\d+(\\.\\d{1,})?$"
+    validAmount: "^\\d+(\\.\\d{1,})?$",
+    acceptNegativeAmountFormat: "^\\-?\\d*$",
+    validNegativeAmount: "^\\-?\\d+$"
 }
+
+export const regexAcceptNegativeAmountFormat = new RegExp(regExp.acceptNegativeAmountFormat);
+export const regexValidNegativeAmount = new RegExp(regExp.validNegativeAmount);
 
 export const groupTypeList = {
     Winloss: 1,
