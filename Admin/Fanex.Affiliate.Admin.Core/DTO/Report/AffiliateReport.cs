@@ -73,5 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
         public bool IsMultiGroupProduct { get; set; }
 
         public int TotalDeposit { get; set; }
+
+        public string PreferredLanguage { get; set; }
     }
 }

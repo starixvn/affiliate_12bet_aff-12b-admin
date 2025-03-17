@@ -103,6 +103,7 @@ export class GridData extends PureComponent {
         return [
             <tr className="freeze-row freeze-row-h1" key="thead-1">
                 <th className="freeze-column-header" width={110} rowSpan="2" title={firstColName}>{firstColName}</th>
+                {mainHeader[reportKey.PreferredLanguage].isShowable && <th header={true} colWidth={80} rowSpan="2" title={headerText.PreferredLanguage}>{headerText.PreferredLanguage}</th>}
                 {mainHeader[reportKey.PaymentCurrency].isShowable && (<th width={70} rowSpan="2" title={headerText.PaymentCurrency}>{headerText.PaymentCurrency}</th>)}
                 {mainHeader[reportKey.TotalClick].isShowable && (<th width={60} rowSpan="2" title={headerText.TotalClick}>{headerText.TotalClick}</th>)}
                 {mainHeader[reportKey.UniqueClick].isShowable && (<th width={55} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</th>)}
@@ -193,7 +194,7 @@ export class GridData extends PureComponent {
     }
 
     _buildCommonCell(dataItem, productColumnClassName, isTotalRow, isMainView, isBeforeCutOffDate) {
-        const { headerRow } = this.props;
+        const { headerRow, languageList } = this.props;
         const header = AggregateHeaderColumn.convertColsToObject(headerRow.getCols());
 
         const totalClick = format(dataItem.TotalClick);
@@ -225,8 +226,11 @@ export class GridData extends PureComponent {
         const subAffEarning = formatDecimal(dataItem.SubAffEarning);
         const totalEarning = formatDecimal(dataItem.TotalEarning);
         const paymentCurrency = isTotalRow ? '' : dataItem.PaymentCurrency;
+        const language = isMainView ? languageList[dataItem.PreferredLanguage] : "";
+
         return (
             <React.Fragment>
+                {header[reportKey.PreferredLanguage].isShowable && <td title={language}>{language}</td>}
                 {header[reportKey.PaymentCurrency].isShowable && (<td className="text-center" title={paymentCurrency}>{paymentCurrency}</td>)}
                 {header[reportKey.TotalClick].isShowable && (<td className="text-right" title={totalClick}>{totalClick}</td>)}
                 {header[reportKey.UniqueClick].isShowable && (<td className="text-right" title={uniqueClick}>{uniqueClick}</td>)}
@@ -366,8 +370,8 @@ export class GridData extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption, param, currentViewLevel, productList, reportCutOffDate, isCheckedDatePicker }) {
-    return Object.assign({}, { pagingOption, param, currentViewLevel, productList, reportCutOffDate, isCheckedDatePicker });
+function mapStateToProps({ pagingOption, param, currentViewLevel, productList, reportCutOffDate, isCheckedDatePicker, languageList }) {
+    return Object.assign({}, { pagingOption, param, currentViewLevel, productList, reportCutOffDate, isCheckedDatePicker, languageList });
 }
 
 function mapDispatchToProps(dispatch) {
