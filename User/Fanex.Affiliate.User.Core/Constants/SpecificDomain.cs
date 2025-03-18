@@ -88,6 +88,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string AFF16450_ID = "92043538";
 
         private const string AFF16472_ID = "92043560";
+        private const string AFF16473_ID = "92043561";
         private const string AFF16479_ID = "92043567";
         private const string AFF16478_ID = "92043566";
         private const string AFF16475_ID = "92043563";
@@ -136,7 +137,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF7782_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
             [AFF16050_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
 
-            [AFF16342_ID] = $"{DOMAIN_GO_THA88_PRO},{DOMAIN_GO_APA56_PRO}",
+            [AFF16342_ID] = $"{DOMAIN_GO_THA88_PRO},{DOMAIN_GO_APA56_PRO},{DOMAIN_GOTO_12bmylink1_PRO}",
             [AFF16343_ID] = DOMAIN_GO_9012IJK_PRO,
             [AFF16344_ID] = DOMAIN_GO_SBC31_PRO,
 
@@ -153,6 +154,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF16450_ID] = "goto.12binrlink2.com",
 
             [AFF16472_ID] = DOMAIN_GOTO_12binlink1_PRO,
+            [AFF16473_ID] = DOMAIN_GOTO_12bvnlink1_PRO,
             [AFF16479_ID] = DOMAIN_GOTO_12bvnlink1_PRO,
             [AFF16478_ID] = DOMAIN_GOTO_12bthlink1_PRO,
             [AFF16475_ID] = DOMAIN_GOTO_12bmylink1_PRO,
@@ -220,6 +222,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF16450_ID] = DOMAIN_GO_LOCAL,
 
             [AFF16472_ID] = DOMAIN_GO_LOCAL,
+            [AFF16473_ID] = DOMAIN_GO_LOCAL,
             [AFF16479_ID] = DOMAIN_GO_LOCAL,
             [AFF16478_ID] = DOMAIN_GO_LOCAL,
             [AFF16475_ID] = DOMAIN_GO_LOCAL,
