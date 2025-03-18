@@ -46,7 +46,7 @@ exports[`commission group - CommGroupInfo Should render correctly 1`] = `
       }
     >
       <Input
-        disabled={false}
+        disabled={true}
         name="GroupTypeId"
         onChange={[Function]}
         type="select"

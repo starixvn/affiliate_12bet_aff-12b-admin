@@ -32,7 +32,6 @@ exports[`banner list - components - EditBannerForm  render correctly with insert
     role="dialog"
     scrollable={false}
     toggle={[Function]}
-    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -732,7 +731,6 @@ exports[`banner list - components - EditBannerForm  render correctly with not sh
     role="dialog"
     scrollable={false}
     toggle={[Function]}
-    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -1437,7 +1435,6 @@ exports[`banner list - components - EditBannerForm  render correctly with update
     role="dialog"
     scrollable={false}
     toggle={[Function]}
-    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >

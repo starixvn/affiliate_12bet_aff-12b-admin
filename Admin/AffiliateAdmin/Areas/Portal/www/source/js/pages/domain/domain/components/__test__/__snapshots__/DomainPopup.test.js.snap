@@ -26,7 +26,6 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -230,7 +229,6 @@ exports[`domain - components - DomainPopup  render correctly with update 1`] = `
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

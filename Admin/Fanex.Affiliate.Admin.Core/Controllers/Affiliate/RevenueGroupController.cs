@@ -206,22 +206,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private IEnumerable<DeductionSetting> BuildKillRateFeeListByPlatForm(IEnumerable<DeductionSetting> platformFeeList)
         {
-            var deductionSetting = _commGroupCommonService.GetDeductionList().FirstOrDefault(i => i.DeductionId == Deduction.KillRateFeeId);
+            var deductionSetting = _commGroupCommonService.GetDeductionList()
+                .FirstOrDefault(i => i.DeductionId == Deduction.KillRateFeeId);
 
             IEnumerable<DeductionSetting> killRateFeeList = null;
             if (platformFeeList != null && platformFeeList.Any())
             {
-                killRateFeeList = platformFeeList.Select(x => new DeductionSetting
+                killRateFeeList = platformFeeList.Select(d => new DeductionSetting
                 {
                     DeductedPercentage = deductionSetting.DeductedPercentage,
-                    GroupProductId = x.GroupProductId,
-                    ProductIds = string.Empty,
-                    DeductionId = deductionSetting.DeductionId
+                    DeductionId = deductionSetting.DeductionId,
+                    DeductionName = deductionSetting.DeductionName,
+                    GroupId = d.GroupId,
+                    GroupProductId = d.GroupProductId,
+                    IsDeductedPercent = d.IsDeductedPercent,
+                    ProductIds = d.ProductIds
                 });
             }
 
             return killRateFeeList;
-
         }
 
         private static ResultInfo ValidateGroupName(string groupName)

@@ -39,9 +39,10 @@ exports[`commission group - AddGroup should render correctly with isSuccess is f
       }
     />
   </Alert>
-  <Connect(CommGroupInfo) />
+  <Connect(CommGroupInfo)
+    isAdd={true}
+  />
   <Connect(SubAffCommRateSetting) />
-  <Connect(P2pDeductionSetting) />
   <Connect(QmTurnoverSetting) />
   <Connect(DeductionSetting) />
   <p
@@ -98,9 +99,10 @@ exports[`commission group - AddGroup should render correctly with isSuccess is t
       }
     />
   </Alert>
-  <Connect(CommGroupInfo) />
+  <Connect(CommGroupInfo)
+    isAdd={true}
+  />
   <Connect(SubAffCommRateSetting) />
-  <Connect(P2pDeductionSetting) />
   <Connect(QmTurnoverSetting) />
   <Connect(DeductionSetting) />
   <p

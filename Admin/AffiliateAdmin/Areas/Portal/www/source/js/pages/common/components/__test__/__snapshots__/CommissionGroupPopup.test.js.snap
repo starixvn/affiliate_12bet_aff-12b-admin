@@ -35,7 +35,6 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
       }
     }
     toggle={[Function]}
-    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -110,7 +109,6 @@ exports[`common - components - CommissionGroupPopup render correctly with Privat
       }
     }
     toggle={[Function]}
-    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >

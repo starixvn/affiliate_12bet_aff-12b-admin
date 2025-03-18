@@ -26,7 +26,6 @@ exports[`note - common - components - NoteModificationForm  render correctly wit
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -200,7 +199,6 @@ exports[`note - common - components - NoteModificationForm  render correctly wit
   role="dialog"
   scrollable={false}
   toggle={[Function]}
-  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

@@ -92,6 +92,23 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
+        key="Total Qualified Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Qualified Players
+        </td>
+        <td
+          className="text-right"
+        />
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
         key="Total Sub-Affiliates"
       >
         <td
@@ -303,6 +320,23 @@ exports[`customer statistics - components - Content Should render correctly with
         >
           0
         </td>
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Qualified Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Qualified Players
+        </td>
+        <td
+          className="text-right"
+        />
         <td
           className="text-right"
         >
@@ -525,6 +559,23 @@ exports[`customer statistics - components - Content Should render correctly with
         >
           2
         </td>
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
+        key="Total Qualified Players"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          Total Qualified Players
+        </td>
+        <td
+          className="text-right"
+        />
         <td
           className="text-right"
         >
