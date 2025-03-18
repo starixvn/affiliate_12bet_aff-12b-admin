@@ -102,6 +102,11 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string AFF16481_ID = "92043569";
         private const string AFF16482_ID = "92043570";
         private const string AFF16483_ID = "92043571";
+        private const string AFF16496_ID = "92043584";
+
+        private const string AFF16501_ID = "92043589";
+        private const string AFF16502_ID = "92043590";
+        private const string AFF16503_ID = "92043591";
 
         public static readonly string[] NotSSLDomains = { DOMAIN_GO_6789SUTZO_PRO, DOMAIN_GO_APA56_PRO };
 
@@ -171,7 +176,12 @@ namespace Fanex.Affiliate.User.Core.Constants
 
             [AFF16494_ID] = "goto.2356all.com",
 
-            [AFF16492_ID] = "goto.elv520.com"
+            [AFF16492_ID] = "goto.elv520.com",
+
+            [AFF16496_ID] = DOMAIN_GOTO_12bthlink1_PRO,
+            [AFF16501_ID] = DOMAIN_GOTO_12bvnlink1_PRO,
+            [AFF16502_ID] = DOMAIN_GOTO_12bmylink1_PRO,
+            [AFF16503_ID] = DOMAIN_GOTO_12binlink1_PRO
         };
 
         public static readonly IReadOnlyDictionary<string, string> SpecificDomainByAffOnLocal = new Dictionary<string, string>
@@ -239,7 +249,12 @@ namespace Fanex.Affiliate.User.Core.Constants
 
             [AFF16494_ID] = DOMAIN_GO_LOCAL,
 
-            [AFF16492_ID] = DOMAIN_GO_LOCAL
+            [AFF16492_ID] = DOMAIN_GO_LOCAL,
+
+            [AFF16496_ID] = DOMAIN_GO_LOCAL,
+            [AFF16501_ID] = DOMAIN_GO_LOCAL,
+            [AFF16502_ID] = DOMAIN_GO_LOCAL,
+            [AFF16503_ID] = DOMAIN_GO_LOCAL
         };
     }
 }

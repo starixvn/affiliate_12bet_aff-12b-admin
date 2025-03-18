@@ -77,6 +77,12 @@ namespace Fanex.Affiliate.Link.Constants
         private const string AFF16482_ID = "92043570";
         private const string AFF16483_ID = "92043571";
 
+        private const string AFF16496_ID = "92043584";
+
+        private const string AFF16501_ID = "92043589";
+        private const string AFF16502_ID = "92043590";
+        private const string AFF16503_ID = "92043591";
+
         //Fake Mapping
         private const string FakeMapping_Join_Best5689_Com = "aff-12b.nexdev.net/Go,join.best5689.com";
         private const string FakeMapping_12aff_Best5689_Com = "aff-12b.nexdev.net/Go,12aff.best5689.com";
@@ -151,7 +157,12 @@ namespace Fanex.Affiliate.Link.Constants
 
             [AFF16494_ID] = "aff-12b.nexdev.net/Go,goto.2356all.com",
 
-            [AFF16492_ID] = "aff-12b.nexdev.net/Go,goto.elv520.com"
+            [AFF16492_ID] = "aff-12b.nexdev.net/Go,goto.elv520.com",
+            
+            [AFF16496_ID] = FakeMapping_Goto_12bthlink1_Com,
+            [AFF16501_ID] = FakeMapping_Goto_12bvnlink1_Com,
+            [AFF16502_ID] = FakeMapping_Goto_12bmylink1_Com,
+            [AFF16503_ID] = FakeMapping_Goto_12binlink1_Com
         };
     }
 }
