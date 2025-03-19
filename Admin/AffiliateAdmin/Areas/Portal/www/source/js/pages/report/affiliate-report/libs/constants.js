@@ -37,6 +37,7 @@ export const resource = {
 export const reportKey = {
     UserName: 'UserName',
     MonthDateString: 'MonthDateString',
+    PreferredLanguage: 'PreferredLanguage',
     PaymentCurrency: 'PaymentCurrency',
     TotalClick: 'TotalClick',
     UniqueClick: 'UniqueClick',
@@ -74,6 +75,7 @@ export const reportKey = {
 
 export const headerText = {
     [reportKey.UserName]: 'Affiliate',
+    [reportKey.PreferredLanguage]: 'Language',
     [reportKey.MonthDateString]: 'Month',
     [reportKey.PaymentCurrency]: 'Linked Account Currency',
     [reportKey.TotalClick]: 'Total Click',
@@ -112,6 +114,7 @@ export const headerText = {
 
 export const headerConfig = {
     [reportKey.UserName]: { label: headerText[reportKey.UserName], isShowable: (claimPrincipal, isMainView) => isMainView },
+    [reportKey.PreferredLanguage]: { label: headerText[reportKey.PreferredLanguage], isShowable: (claimPrincipal, isMainView) => isMainView },
     [reportKey.MonthDateString]: { label: headerText[reportKey.MonthDateString], isShowable: (claimPrincipal, isMainView) => !isMainView },
     [reportKey.PaymentCurrency]: { label: headerText[reportKey.PaymentCurrency], isShowable: (claimPrincipal, isMainView) => isMainView },
     [reportKey.TotalClick]: { label: headerText[reportKey.TotalClick] },

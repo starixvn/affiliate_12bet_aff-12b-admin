@@ -31,14 +31,14 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
-        const { param, reportTitle, currentViewLevel } = this.props;
+        const { param, reportTitle, currentViewLevel, languageList } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
         const newParam = Object.assign({}, param, { IsExportExcel: true });
         const data = await this.props.fetchData(newParam, isMainView);
         const header = this._buildHeader();
 
         if (data) {
-            const reportExcel = new ReportExcel(data, reportTitle, isMainView, header);
+            const reportExcel = new ReportExcel(data, reportTitle, isMainView, header, languageList);
             reportExcel.export();
         }
         this.props.toggleLoader(false);
@@ -126,8 +126,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, currentViewLevel, param, isCheckedDatePicker }) {
-    return Object.assign({}, { reportTitle, currentViewLevel, param, isCheckedDatePicker });
+function mapStateToProps({ reportTitle, currentViewLevel, param, isCheckedDatePicker, languageList }) {
+    return Object.assign({}, { reportTitle, currentViewLevel, param, isCheckedDatePicker, languageList });
 }
 
 function mapDispatchToProps(dispatch) {
