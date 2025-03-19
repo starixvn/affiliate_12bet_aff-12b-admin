@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Email;
@@ -127,14 +128,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Customer
 
             var result = await ExecuteReturnResultInfoAsync(command);
 
-            if (result.IsSuccessful && string.Equals(param.Status, AffStatus.Disapproved, StringComparison.InvariantCultureIgnoreCase))
+            if (result.IsSuccessful && param.Status.MatchWith(AffStatus.Disapproved))
             {
                 var affInfo = _affiliateService.GetAffiliateBasicInfo(param.AffId);
 
                 SendDisapprovedEmail(emailParam, affInfo);
             }
 
-            if (result.IsSuccessful && string.Equals(param.Status, AffStatus.Approved, StringComparison.InvariantCultureIgnoreCase))
+            if (result.IsSuccessful && (param.Status.MatchWith(AffStatus.Approved) || param.Status.MatchWith(AffStatus.Suspended)))
             {
                 var affInfo = _affiliateService.GetAffiliateBasicInfo(param.AffId);
 

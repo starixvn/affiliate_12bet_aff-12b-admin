@@ -153,11 +153,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
                 if (affInfo != null)
                 {
-                    bool isUpdatedAffInfo = affInfo.FirstName.MatchWith(curInfo.FirstName)
+                    bool isSameAffInfo = affInfo.FirstName.MatchWith(curInfo.FirstName)
                                                   && affInfo.LastName.MatchWith(curInfo.LastName)
                                                   && affInfo.Email.MatchWith(curInfo.Email)
                                                   && affInfo.Phone.MatchWith(curInfo.Phone);
-                    bool isUpdatedSensitiveInfo = isUpdatedAffInfo || !affInfo.PlayerUsername.MatchWith(curInfo.PlayerUsername);
+                    bool isUpdatedSensitiveInfo = !isSameAffInfo || !affInfo.PlayerUsername.MatchWith(curInfo.PlayerUsername);
 
                     if (isUpdatedSensitiveInfo)
                     {

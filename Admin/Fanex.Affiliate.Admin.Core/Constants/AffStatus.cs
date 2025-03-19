@@ -7,5 +7,6 @@
         public const string Pending = "Pending";
         public const string Rejected = "Rejected";
         public const string Processing = "Processing";
+        public const string Suspended = "Suspended";
     }
 }
