@@ -63,9 +63,13 @@ export const messages = {
     requireWithdrawalAmount: 'Withdrawal Fee cannot be empty. Please check!',
     invalidWithdrawalAmount: 'Withdrawal Fee is invalid.',
     requireTier: 'Tier Setting must have at least 1 tier',
+    minNetWinFirstMustLesserThanZero: 'The first Tier of the Min Net Win column must be <= 0', //checked
+    minNetWinMustStartFromOne: 'The next Tier after a negative Tier must start from 1 in the Min Net Win column.',
+    minNetWinMustIncreaseSequentially: 'The values in the Min Net Win column must increase sequentially.', //checked
+    minNetWinGreaterThanNegativeInfinity: 'Min Net Win must be greater than or equal to -100,000,000,000', //checked
+    minNetWinLesserThanInfinity: 'Min Net Win must be lesser than or equal to 100,000,000,000', //checked
     requireInfinity: 'Last Tier Setting must have maximum value=∞',
-    amountConstrain: 'Min Net Win must be lesser than or equal to 1,000,000,000!',
-    qmConstrain: 'Min Qualified Player must be lesser than or equal to 100,000,000,000!',
+    qmConstrain: 'Min Qualified Player must be lesser than or equal to 1,000,000,000',
     requireSelectedProduct: 'At least 1 product must be selected per group',
     confirmChangeGroup: 'Are you sure you want to change the Revenue Group for affiliate: {0}',
     choseAnotherGroup: 'Please choose another group (not old group)!',

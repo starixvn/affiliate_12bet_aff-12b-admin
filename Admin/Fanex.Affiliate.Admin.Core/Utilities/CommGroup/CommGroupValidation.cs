@@ -106,19 +106,76 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
                 return result;
             }
 
-            if (tierSettingList.Any(item => item.MinAmount > Validation.InfinityAmount))
+            if (tierSettingList.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
             {
-                UpdateResult(result, "Min Amount must be lesser than or equal to 100,000,000,000!");
+                UpdateResult(result, "Min QP must be lesser than or equal to 1,000,000,000");
+            }
+
+            if (tierSettingList.Any(item => item.MinAmount < Validation.NegativeInfinityAmount))
+            {
+                UpdateResult(result, "Min Net Win must be greater than or equal to -100,000,000,000");
                 return result;
             }
 
-            if (tierSettingList.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
+            if (tierSettingList.Any(item => item.MinAmount > Validation.InfinityAmount))
             {
-                UpdateResult(result, "Min QP must be lesser than or equal to 1,000,000,000!");
+                UpdateResult(result, "Min Amount must be lesser than or equal to 100,000,000,000");
+                return result;
+            }
+
+            if (tierSettingList.First().MinAmount > 0)
+            {
+                UpdateResult(result, "The first Tier of the Min Net Win column must be <= 0");
+                return result;
+            }
+
+            if (!IsIncreasingMinNetWin(tierSettingList))
+            {
+                UpdateResult(result, "The values in the Min Net Win column must increase sequentially.");
+                return result;
+            }
+
+            if (isMinNetWinNotStartFromOneAfterNegative(tierSettingList))
+            {
+                UpdateResult(result, "The next Tier after a negative Tier must start from 1 in the Min Net Win column.");
+                return result;
             }
 
             return result;
         }
+
+        private static bool IsIncreasingMinNetWin(IEnumerable<TierSettingParam> tierSettingList)
+        {
+            TierSettingParam previous = null;
+
+            foreach (var tierSetting in tierSettingList)
+            {
+                if (previous != null && tierSetting.MinAmount <= previous.MinAmount)
+                {
+                    return false;
+                }
+                previous = tierSetting;
+            }
+
+            return true;
+        }
+
+        private static bool isMinNetWinNotStartFromOneAfterNegative(IEnumerable<TierSettingParam> tierSettingList)
+        {
+            TierSettingParam previous = null;
+
+            foreach (var tierSetting in tierSettingList)
+            {
+                if (previous != null && previous.MinAmount < 0 && tierSetting.MinAmount > 1)
+                {
+                    return true;
+                }
+                previous = tierSetting;
+            }
+
+            return false;
+        }
+
         private ResultInfo ValidateDeductionList(IEnumerable<DeductionSettingParam> deductionList, IEnumerable<string> productIdOfDB, string message)
         {
             var result = new ResultInfo

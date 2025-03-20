@@ -1,4 +1,4 @@
-import { deductionNameList, messages, INFINITY_AM, INFINITY_QM, defaultSubAffCommRate, regExp } from './constant';
+import { deductionNameList, messages, money, INFINITY_QM, defaultSubAffCommRate, regExp } from './constant';
 
 const emptyCommGroup = {
     GroupId: 0,
@@ -200,10 +200,26 @@ export const validateTierSettingList = (tierSettingList) => {
     if (tierSettingList.length === 0) {
         isValid = false;
         messageList.push(messages.requireTier);
-    } else if (tierSettingList.filter(item => item.MinAmount > INFINITY_AM).length > 0) {
-        isValid = false;
-        messageList.push(messages.amountConstrain);
-    } else if (tierSettingList.filter(item => item.MinQm > INFINITY_QM).length > 0) {
+    } else {
+        if (tierSettingList.filter(item => item.MinAmount < money.AllowedMinValue).length > 0) {
+            isValid = false;
+            messageList.push(messages.minNetWinGreaterThanNegativeInfinity);
+        } else if (tierSettingList.filter(item => item.MinAmount > money.AllowedMaxValue).length > 0) {
+            isValid = false;
+            messageList.push(messages.minNetWinLesserThanInfinity);
+        } else if (tierSettingList[0].MinAmount > 0) {
+            isValid = false;
+            messageList.push(messages.minNetWinFirstMustLesserThanZero);
+        } else if (isMinNetWinNotIncreaseSequentially(tierSettingList)) {
+            isValid = false;
+            messageList.push(messages.minNetWinMustIncreaseSequentially);
+        } else if (isMinNetWinNotStartFromOneAfterNegative(tierSettingList)) {
+            isValid = false;
+            messageList.push(messages.minNetWinMustStartFromOne);
+        }
+    }
+
+    if (tierSettingList.filter(item => item.MinQm > INFINITY_QM).length > 0) {
         isValid = false;
         messageList.push(messages.qmConstrain);
     }
@@ -278,4 +294,12 @@ const removeCheckedProductId = (curSelIds, preListIds) => {
         newList.push(list.filter(i => !curSelIds.find(p => p === i)));
     })
     return newList;
+}
+
+const isMinNetWinNotIncreaseSequentially = (tierSettingList) => {
+    return tierSettingList.some((tier, i) => i != 0 && tier.MinAmount <= tierSettingList[i - 1].MinAmount);
+}
+
+const isMinNetWinNotStartFromOneAfterNegative = (tierSettingList) => {
+    return tierSettingList.some((tier, i) => i != 0 && tierSettingList[i - 1].MinAmount < 0 && tier.MinAmount > 1);
 }
