@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTittleVerificationAccount, preferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectVerificationAccount);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectVerificationAccount, true);
             _systemsService.SetCulture(emailParam.CurrentLanguage);
         }
 
