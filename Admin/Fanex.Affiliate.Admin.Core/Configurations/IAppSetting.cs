@@ -71,5 +71,7 @@
         int MemberSiteApiTokenCacheTimeOut { get; }
 
         bool IsUseMemberSiteProxy { get; }
+
+        bool IsMarketingSpecificEmail(string email);
     }
 }
