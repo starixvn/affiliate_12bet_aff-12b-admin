@@ -32,6 +32,12 @@
 
         public void Send(string content, string mailTo, string subject)
         {
+            if (_appSetting.IsMarketingSpecificEmail(mailTo))
+            {
+                LogHelper.WriteInfo($"The Aff Admin doesn't send the mail to {mailTo}: {subject}");
+                return;
+            }
+
             var mailItem = new MailRecord
             {
                 MailTo = mailTo,

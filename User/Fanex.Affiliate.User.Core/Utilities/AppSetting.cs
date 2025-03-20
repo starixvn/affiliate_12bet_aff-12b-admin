@@ -65,6 +65,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
 
+        public bool IsMarketingSpecificEmail(string email) => email.MatchWith(GetValue("MarketingSpecificEmail"));
+
         public string MemberSiteApiUrl => GetValue("MemberSiteApiUrl");
 
         public string AccountSiteApiUrl => GetValue("AccountSiteApiUrl");

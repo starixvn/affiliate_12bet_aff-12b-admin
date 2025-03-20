@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fanex.Affiliate.Admin.Core.Extensions;
+using System;
 using System.Configuration;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
@@ -76,5 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         public int MemberSiteApiTokenCacheTimeOut => Convert.ToInt32(GetValue("MemberSiteApiTokenCacheTimeOut"));
 
         public bool IsUseMemberSiteProxy => Convert.ToBoolean(GetValue("IsUseProxyToGetMemberSiteApi"));
+
+        public bool IsMarketingSpecificEmail(string email) => email.MatchWith(GetValue("MarketingSpecificEmail"));
     }
 }

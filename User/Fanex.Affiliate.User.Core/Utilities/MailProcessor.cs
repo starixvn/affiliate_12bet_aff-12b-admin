@@ -29,11 +29,19 @@
             }
         }
 
-        public void Send(string content, string mailTo, string subject)
+        public void Send(string content, string mailTo, string subject, bool shouldSendMarketingSpecificEmail = false)
         {
+            var isMarketingSpecificEmail = _appSetting.IsMarketingSpecificEmail(mailTo);
+
+            if (isMarketingSpecificEmail && !shouldSendMarketingSpecificEmail)
+            {
+                LogHelper.WriteInfo($"Don't send the mail to {mailTo}: {subject}");
+                return;
+            }
+
             var mailItem = new MailRecord
             {
-                MailTo = mailTo,
+                MailTo = isMarketingSpecificEmail && !_appSetting.IsProduction ? _appSetting.MailCc : mailTo,
                 Subject = subject,
                 Body = content,
                 MailBcc = _appSetting.MailBcc,
