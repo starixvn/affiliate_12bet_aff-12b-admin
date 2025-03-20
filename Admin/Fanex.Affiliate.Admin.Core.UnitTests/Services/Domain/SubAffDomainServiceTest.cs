@@ -34,12 +34,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var spKey = string.Empty;
             var commonService = new Mock<ICommonDomainService> { CallBase = true };
-            commonService.Setup(r => r.InsertDomain(It.IsAny<InsertUpdateDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam, string>((p, s) => spKey = s);
+            commonService.Setup(r => r.InsertDomain(It.IsAny<InsertDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<InsertDomainParam, string>((p, s) => spKey = s);
 
             var service = CreateSubAffDomainService(commonService.Object);
 
             // Action
-            var result = service.InsertSubAffDomain(new InsertUpdateDomainParam());
+            var result = service.InsertSubAffDomain(new InsertDomainParam());
 
             // Assert
             Assert.True(result.IsSuccessful);
@@ -52,12 +52,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var spKey = string.Empty;
             var commonService = new Mock<ICommonDomainService> { CallBase = true };
-            commonService.Setup(r => r.UpdateDomain(It.IsAny<InsertUpdateDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<InsertUpdateDomainParam, string>((p, s) => spKey = s);
+            commonService.Setup(r => r.UpdateDomain(It.IsAny<UpdateDomainParam>(), It.IsAny<string>())).Returns(new ResultInfo()).Callback<UpdateDomainParam, string>((p, s) => spKey = s);
 
             var service = CreateSubAffDomainService(commonService.Object);
 
             // Action
-            var result = service.UpdateSubAffDomain(new InsertUpdateDomainParam());
+            var result = service.UpdateSubAffDomain(new UpdateDomainParam());
 
             // Assert
             Assert.True(result.IsSuccessful);

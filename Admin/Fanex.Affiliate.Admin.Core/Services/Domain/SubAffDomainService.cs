@@ -22,14 +22,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             return _commonDomainService.GetDomainList(SpKey);
         }
 
-        public ResultInfo InsertSubAffDomain(InsertUpdateDomainParam param)
+        public ResultInfo InsertSubAffDomain(InsertDomainParam param)
         {
             const string SpKey = "Aff_Admin_SubAffiliateDomain_Ins";
 
             return _commonDomainService.InsertDomain(param, SpKey);
         }
 
-        public ResultInfo UpdateSubAffDomain(InsertUpdateDomainParam param)
+        public ResultInfo UpdateSubAffDomain(UpdateDomainParam param)
         {
             const string SpKey = "Aff_Admin_SubAffiliateDomain_Upd";
 

@@ -1,13 +1,14 @@
-﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Fanex.Affiliate.Admin.Core.Commands.Domain;
 using Fanex.Affiliate.Admin.Core.Criterias.Domain;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Data.Repository;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
@@ -21,9 +22,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo { CreatedDate = new DateTime(2019, 10, 29) } });
 
+            var commonDomainService = new Mock<ICommonDomainService>();
+            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<Market>());
+
             // Action
-            var service = new DomainControlService(repository.Object);
-            var result = service.GetDomainControlList("en-GB");
+            var service = new DomainControlService(repository.Object, commonDomainService.Object);
+            var result = service.GetDomainControl("en-GB");
             var item = result.FirstOrDefault();
 
             // Assert
@@ -39,9 +44,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() });
 
+            var commonDomainService = new Mock<ICommonDomainService>();
+            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<Market>());
+
             // Action
-            var service = new DomainControlService(repository.Object);
-            var result = service.GetDomainControlList("en-GB");
+            var service = new DomainControlService(repository.Object, commonDomainService.Object);
+            var result = service.GetDomainControl("en-GB");
             var item = result.FirstOrDefault();
 
             // Assert
@@ -56,10 +65,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Execute(It.IsAny<InsertDomainControlCommand>(), It.IsAny<string>()));
+            var commonDomainService = new Mock<ICommonDomainService>();
+            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<Market>());
 
             // Action
-            var service = new DomainControlService(repository.Object);
-            var result = service.InsertDomainControl(new InsertUpdateDomainControlParam());
+            var service = new DomainControlService(repository.Object, commonDomainService.Object);
+            var result = service.InsertDomainControl(new InsertDomainControlParam());
 
             // Assert
             repository.Verify(d => d.Execute(It.Is<InsertDomainControlCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
@@ -72,10 +84,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Execute(It.IsAny<UpdateDomainControlCommand>(), It.IsAny<string>()));
+            var commonDomainService = new Mock<ICommonDomainService>();
+            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<Market>());
 
             // Action
-            var service = new DomainControlService(repository.Object);
-            var result = service.UpdateDomainControl(new InsertUpdateDomainControlParam());
+            var service = new DomainControlService(repository.Object, commonDomainService.Object);
+            var result = service.UpdateDomainControl(new UpdateDomainControlParam());
 
             // Assert
             repository.Verify(d => d.Execute(It.Is<UpdateDomainControlCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
@@ -88,9 +103,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Execute(It.IsAny<DeleteDomainControlCommand>(), It.IsAny<string>()));
+            var commonDomainService = new Mock<ICommonDomainService>();
+            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<Market>());
 
             // Action
-            var service = new DomainControlService(repository.Object);
+            var service = new DomainControlService(repository.Object, commonDomainService.Object);
             var result = service.DeleteDomainControl(new DeleteDomainControlParam());
 
             // Assert

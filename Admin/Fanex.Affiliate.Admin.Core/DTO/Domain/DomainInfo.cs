@@ -12,6 +12,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string Creator { get; set; }
 
+        public string BlockMarket { get; set; }
+
+        public string BlockMarketName { get; set; }
 
         public DateTime? CreateDate { get; set; }
 

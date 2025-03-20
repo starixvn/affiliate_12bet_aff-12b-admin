@@ -4,6 +4,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 {
     public class DomainControlInfo
     {
+        public int DomainControlId { get; set; }
+
         public int DomainId { get; set; }
 
         public int AffDomainId { get; set; }

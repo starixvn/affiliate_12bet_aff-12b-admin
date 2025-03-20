@@ -229,6 +229,7 @@
     <Setting Key="Aff_Admin_SubAffiliateDomain_Ins" SpName="Aff_Admin_SubAffiliateDomain_Ins" DbName="" />
     <Setting Key="Aff_Admin_SubAffiliateDomain_Upd" SpName="Aff_Admin_SubAffiliateDomain_Upd" DbName="" />
     <Setting Key="Aff_Admin_SubAffiliateDomain_Del" SpName="Aff_Admin_SubAffiliateDomain_Del" DbName="" />
+    <Setting Key="Aff_SupportBlockMarket_Sel" SpName="Aff_SupportBlockMarket_Sel" DbName="" />
   </Function>
   <Function Name="Administrator">
     <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="" >

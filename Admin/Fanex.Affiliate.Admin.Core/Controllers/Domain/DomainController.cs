@@ -1,16 +1,20 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-using System.Collections.Generic;
-using System.Web.Mvc;
-
-namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
+﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+    using Attributes;
+    using Constants;
+    using Enum;
+    using Extensions;
+    using Fanex.Affiliate.Admin.Core.DTO;
+    using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+    using Fanex.Affiliate.Admin.Core.Resources;
+    using Fanex.Affiliate.Admin.Core.Services.Domain;
+    using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
+    using Newtonsoft.Json;
+    using Services.Common;
+    using Utilities.Market;
+
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainController : ReadOnlySessionBaseController
     {
@@ -39,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 IsAffDomain = isAffDomain
             };
 
-            return View(model);
+            return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
         }
 
         [HttpPost]
@@ -51,10 +55,30 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
-        public ActionResult InsertDomain(InsertUpdateDomainParam param)
+        public ActionResult GetDomainById(int domainId, bool isAffDomain = true)
         {
-            if (ModelState.IsValid)
+            return new JsonNetResult
+            {
+                Data = _domainService.GetDomainById(domainId, isAffDomain)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetMarketList(int affDomainId = 0, int redirectDomainId = 0)
+        {
+            return new JsonNetResult
+            {
+                Data = _domainService.GetMarketListByDomain(affDomainId, redirectDomainId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
+        public ActionResult InsertDomain(InsertDomainParam param)
+        {
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsing()))
             {
                 var encodeParam = EncodeParam(param);
                 AssignUserInfoParam(encodeParam);
@@ -68,18 +92,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
-        public ActionResult UpdateDomain(InsertUpdateDomainParam param)
+        public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            var isValidDomainId = param.DomainId >= Validation.MinId;
-            if (ModelState.IsValid && isValidDomainId)
+            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsing()))
             {
                 var encodeParam = EncodeParam(param);
-                AssignUserInfoParam(encodeParam);
+                var serializedParent = JsonConvert.SerializeObject(encodeParam);
+                var newParam = JsonConvert.DeserializeObject<UpdateDomainParam>(serializedParent);
+                newParam.DomainId = param.DomainId;
+                AssignUserInfoParam(newParam);
 
-                return GenerateJsonNetResult(_domainService.UpdateDomain(encodeParam));
+                return GenerateJsonNetResult(_domainService.UpdateDomain(newParam));
             }
 
-            return GenerateErrResult(isValidDomainId ? "Please input Domain's name." : "Domain Id is invalid.");
+            return GenerateErrResult("The Domain' info is invalid!");
         }
 
         [HttpPost]
@@ -94,18 +120,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
                 return GenerateJsonNetResult(_domainService.DeleteDomain(param));
             }
 
-            return GenerateErrResult("Domain id is incorrect.");
+            return GenerateErrResult("The Domain is incorrect!");
         }
 
-        private InsertUpdateDomainParam EncodeParam(InsertUpdateDomainParam param)
+        private InsertDomainParam EncodeParam(InsertDomainParam param)
         {
-            return new InsertUpdateDomainParam
+            return new InsertDomainParam
             {
-                DomainId = param.DomainId,
                 DomainName = Server.HtmlEncode(param.DomainName),
+                BlockMarkets = Server.HtmlEncode(param.BlockMarkets),
                 IsSSL = param.IsSSL,
                 IsAffDomain = param.IsAffDomain
             };
+        }
+
+        private IEnumerable<Market> GetVisibleMarketsNotUsing()
+        {
+            return _domainService.GetVisibleMarketNotInStatus((byte)MarketStatus.Using);
         }
     }
 }

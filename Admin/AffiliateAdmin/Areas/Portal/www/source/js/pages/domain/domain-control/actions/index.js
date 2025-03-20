@@ -1,20 +1,20 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import * as types from './types';
-import { getDomainList } from '../../domain/actions/index';
+import { getDomainList, getMarketListByDomain } from '../../domain/actions/index';
 
-export { toggleLoader };
+export { toggleLoader, getMarketListByDomain as getMarketListByDomains };
 
-export const setSelectedDomain = (data) => {
+export const setSelectedDomainId = (data) => {
     return {
-        type: types.SET_SELECTED_DOMAIN,
+        type: types.SET_SELECTED_DOMAIN_ID,
         data
     }
 }
 
-export const setSelectedMarket = (data) => {
+export const setSelectedMarketId = (data) => {
     return {
-        type: types.SET_SELECTED_MARKET,
+        type: types.SET_SELECTED_MARKET_ID,
         data
     }
 }
@@ -42,7 +42,7 @@ export const setAffDomainList = (data) => {
 
 export const setRedirectDomainList = (data) => {
     return {
-        type: types.SET_REDIRECT_DOMAIN,
+        type: types.SET_REDIRECT_DOMAIN_LIST,
         data
     }
 }
@@ -73,6 +73,13 @@ export const fetchData = (market, affSubDomainList, shouldUpdateAffSubDomain) =>
     }
 
     dispatch(toggleLoader(false));
+}
+
+export const getDomainControlById = (domainControlId) => async () => {
+    const url = 'Portal/DomainControl/GetDomainControlById';
+    const response = await post(url, { domainControlId });
+
+    return response && response.status === 200 ? response.data : null;
 }
 
 export const fetchDomain = () => async (dispatch) => {

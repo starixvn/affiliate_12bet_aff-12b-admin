@@ -9,10 +9,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     {
         IEnumerable<DomainInfo> GetDomainList(string spKey);
 
-        ResultInfo InsertDomain(InsertUpdateDomainParam param, string spKey);
+        ResultInfo InsertDomain(InsertDomainParam param, string spKey);
 
-        ResultInfo UpdateDomain(InsertUpdateDomainParam param, string spKey);
+        ResultInfo UpdateDomain(UpdateDomainParam param, string spKey);
 
         ResultInfo DeleteDomain(DeleteDomainParam param, string spKey);
+
+        IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0);
+
+        IEnumerable<Market> GetVisibleMarketNotInStatus(byte status);
     }
 }

@@ -18,14 +18,14 @@ export const gridData = createReducer(null, {
     }
 })
 
-export const selectedMarket = createReducer('', {
-    [types.SET_SELECTED_MARKET](prevState, action) {
+export const selectedMarketId = createReducer('', {
+    [types.SET_SELECTED_MARKET_ID](prevState, action) {
         return action.data;
     }
 })
 
-export const selectedDomain = createReducer(null, {
-    [types.SET_SELECTED_DOMAIN](prevState, action) {
+export const selectedDomainId = createReducer(null, {
+    [types.SET_SELECTED_DOMAIN_ID](prevState, action) {
         return action.data;
     }
 })
@@ -37,7 +37,7 @@ export const affDomainList = createReducer(null, {
 })
 
 export const redirectDomainList = createReducer(null, {
-    [types.SET_REDIRECT_DOMAIN](prevState, action) {
+    [types.SET_REDIRECT_DOMAIN_LIST](prevState, action) {
         return action.data;
     }
 })
@@ -52,8 +52,8 @@ export default combineReducers({
     gridData,
     isShowLoader,
     marketList,
-    selectedMarket,
-    selectedDomain,
+    selectedMarketId,
+    selectedDomainId,
     affDomainList,
     affSubDomainList,
     redirectDomainList,

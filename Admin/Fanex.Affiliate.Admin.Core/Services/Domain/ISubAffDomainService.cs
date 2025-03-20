@@ -9,9 +9,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
     {
         IEnumerable<DomainInfo> GetSubAffDomainList();
 
-        ResultInfo InsertSubAffDomain(InsertUpdateDomainParam param);
+        ResultInfo InsertSubAffDomain(InsertDomainParam param);
 
-        ResultInfo UpdateSubAffDomain(InsertUpdateDomainParam param);
+        ResultInfo UpdateSubAffDomain(UpdateDomainParam param);
 
         ResultInfo DeleteSubAffDomain(DeleteDomainParam param);
     }

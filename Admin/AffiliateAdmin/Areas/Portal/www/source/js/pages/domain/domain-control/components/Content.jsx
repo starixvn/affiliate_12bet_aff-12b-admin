@@ -7,7 +7,7 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomain, setShouldResetScrollPosition } from '../actions';
+import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -40,21 +40,21 @@ export class Content extends PureComponent {
         this.setState({ message: `Are you sure you want to delete this domain setting?`, isConfirmPopup: true, selectedDomainId });
     }
 
-    _handleEditDomain = (domainId, marketId, affDomainId, redirectDomainId, isUsed) => {
+    _handleEditDomain = (domainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.props.setSelectedDomain({ domainId, marketId, affDomainId, redirectDomainId, isUsed });
+        this.props.setSelectedDomainId(domainId);
     }
 
     _deleteDomain = async (selectedDomainId) => {
         this.props.toggleLoader(true);
 
-        const result = await this.props.deleteDomain({ DomainId: selectedDomainId });
+        const result = await this.props.deleteDomain({ DomainControlId: selectedDomainId });
 
         if (result) {
             if (result.IsSuccessful) {
                 this.setState({ message: `The domain control has been removed successfully!`, isConfirmPopup: false });
 
-                this.props.fetchData(this.props.selectedMarket, this.props.affSubDomainList);
+                this.props.fetchData(this.props.selectedMarketId, this.props.affSubDomainList);
             }
             else {
                 this.setState({ message: result.Message, isConfirmPopup: false });
@@ -115,12 +115,12 @@ export class Content extends PureComponent {
                     <input type="checkbox" disabled checked={dataItem.IsUsed} />
                 </Cell>
                 <Cell className="text-center" title="Edit Domain">
-                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId, dataItem.MarketId, dataItem.AffDomainId, dataItem.RedirectDomainId, dataItem.IsUsed)}>
+                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainControlId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
                 <Cell className="text-center" title="Delete Domain">
-                    <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainId)}>
+                    <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainControlId)}>
                         <span className="oi oi-x text-danger"></span>
                     </Button>
                 </Cell>
@@ -129,14 +129,13 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition, selectedMarket, affDomainList, redirectDomainList, marketList } = this.props;
+        const { gridData, shouldResetScrollPosition } = this.props;
         const { message, isConfirmPopup } = this.state;
-        const languageCode = selectedMarket || (marketList[0].LanguageCode || 'en-US');
 
         return gridData && (
             <div className="data-content">
                 <div className="my-2">
-                    <Button outline type="button" onClick={() => this._handleEditDomain(0, languageCode, affDomainList[0] ? affDomainList[0].DomainId : 0, redirectDomainList[0] ? redirectDomainList[0].DomainId : 0, false)}>Add New <span className="oi oi-plus ml-2"></span></Button>
+                    <Button outline type="button" onClick={() => this._handleEditDomain(0)}>Add New <span className="oi oi-plus ml-2"></span></Button>
                 </div>
                 <div className="domain-list-content table-responsive table-striped my-2">
                     <Table
@@ -161,12 +160,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, marketList, affSubDomainList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarket, affDomainList, redirectDomainList, marketList, affSubDomainList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, affSubDomainList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, affSubDomainList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomain, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

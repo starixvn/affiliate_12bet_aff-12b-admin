@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../../components/multiple-select';
 
-import { setSelectedMarket, fetchData, setAffSubDomainList, setShouldResetScrollPosition } from '../actions';
+import { setSelectedMarketId, fetchData, setAffSubDomainList, setShouldResetScrollPosition } from '../actions';
 import { headerText, globalResource } from '../libs/constants';
 
 export const Filter = (props) => {
@@ -12,7 +12,7 @@ export const Filter = (props) => {
     const [market, setMarket] = useState('');
 
     const _handleSearch = () => {
-        props.setSelectedMarket(market);
+        props.setSelectedMarketId(market);
         props.fetchData(market, affSubDomainList);
     }
 
@@ -44,7 +44,7 @@ export const Filter = (props) => {
                         <option key={'market-all'} value={''}>{globalResource.All}</option>
                         {
                             marketList.map(item => {
-                                return (<option key={`market-${item.LanguageCode}`} value={item.LanguageCode}>{item.LanguageName}</option>)
+                                return (<option key={`market-${item.MarketId}`} value={item.MarketId}>{item.MarketName}</option>)
                             })
                         }
                     </Input>
@@ -74,7 +74,7 @@ function mapStateToProps({ marketList, affSubDomainList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMarket, fetchData, setAffSubDomainList, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ setSelectedMarketId, fetchData, setAffSubDomainList, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

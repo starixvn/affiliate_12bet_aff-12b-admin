@@ -1,27 +1,42 @@
-﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Fanex.Affiliate.Admin.Core.Commands.Domain;
 using Fanex.Affiliate.Admin.Core.Criterias.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Data.Repository;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainControlService : BaseDynamicService, IDomainControlService
     {
-        public DomainControlService(
-            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
+        private readonly ICommonDomainService _commonDomainService;
 
-        public IEnumerable<DomainControlInfo> GetDomainControlList(string market)
+        public DomainControlService(
+            IDynamicRepository dynamicRepository,
+            ICommonDomainService commonDomainService) : base(dynamicRepository)
+        {
+            _commonDomainService = commonDomainService;
+        }
+
+        public IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0)
+            => _commonDomainService.GetMarketListByDomain(affDomainId, redirectDomainId);
+
+        public IEnumerable<DomainControlInfo> GetDomainControl(string market, int domainControlId = 0)
         {
             var criteria = new DomainControlCriteria
             {
                 MarketId = market,
+                DomainControlId = domainControlId
             };
 
             return FetchTData<DomainControlInfo>(criteria);
+        }
+
+        public DomainControlInfo GetDomainControlById(int domainControlId)
+        {
+            return GetDomainControl(string.Empty, domainControlId).FirstOrDefault();
         }
 
         public IEnumerable<string> GetSubAffDomainControlList()
@@ -32,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
                 .Where(s => !string.IsNullOrEmpty(s)).Distinct();
         }
 
-        public ResultInfo InsertDomainControl(InsertUpdateDomainControlParam param)
+        public ResultInfo InsertDomainControl(InsertDomainControlParam param)
         {
             var command = new InsertDomainControlCommand();
             AssignBaseDomainControlCommand(command, param);
@@ -40,11 +55,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             return ExecuteReturnResultInfo(command);
         }
 
-        public ResultInfo UpdateDomainControl(InsertUpdateDomainControlParam param)
+        public ResultInfo UpdateDomainControl(UpdateDomainControlParam param)
         {
             var command = new UpdateDomainControlCommand
             {
-                DomainControlId = param.DomainId,
+                DomainControlId = param.DomainControlId,
             };
             AssignBaseDomainControlCommand(command, param);
 
@@ -55,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
             var command = new DeleteDomainControlCommand
             {
-                DomainControlId = param.DomainId,
+                DomainControlId = param.DomainControlId,
                 UserId = param.UserId,
                 Ip = param.Ip,
             };
@@ -63,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             return ExecuteReturnResultInfo(command);
         }
 
-        private static void AssignBaseDomainControlCommand(BaseDomainControlCommand command, InsertUpdateDomainControlParam param)
+        private static void AssignBaseDomainControlCommand(BaseDomainControlCommand command, InsertDomainControlParam param)
         {
             command.AffDomainID = param.AffDomainId;
             command.LicenseeDomainId = param.RedirectDomainId;
