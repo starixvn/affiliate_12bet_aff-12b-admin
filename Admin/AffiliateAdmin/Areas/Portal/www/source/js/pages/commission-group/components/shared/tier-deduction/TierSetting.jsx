@@ -8,32 +8,24 @@ import { setSelectedGroup } from '../../../actions';
 import TierSettingItem from './TierSettingItem';
 import { removeTierItem } from '../../../modules/service';
 import { isValidNumber } from '../../../../../modules/utils';
-import { FIRST_ITEM_INDEX, MinNetTurnover, MinNetWin, regexAcceptNegativeAmountFormat, money } from '../../../modules/constant';
+import { FIRST_ITEM_INDEX, MinNetTurnover, MinNetWin, regexAcceptNegativeAmountFormat, tierSettingDefault } from '../../../modules/constant';
 
 export class TierSetting extends PureComponent {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-        const { selectedGroup, groupProductId } = this.props;
-
-        if (!selectedGroup.TierSettingList.some(t => t.GroupProductId === groupProductId)) {
-            this.handleAdd();
-        }
-    }
-
     handleAdd = () => {
         const { selectedGroup, groupProductId } = this.props;
-        let defaultMinAmount = 0;
-        let defaultMinQm = 5;
-        let defaultCommission = 0;
+        let defaultMinAmount = tierSettingDefault.MinAmount;
+        let defaultCommission = tierSettingDefault.Commission;
 
         const tierSettingListByGroupProduct = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId);
         const itemCount = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId).length;
         if (itemCount > 0) {
             const lastItem = tierSettingListByGroupProduct[itemCount - 1];
-            defaultMinAmount = (lastItem.MinAmount == money.AllowedMinValue) ? 1 : lastItem.MinAmount + 1;
+            const minAmount = Number(lastItem.MinAmount);
+            defaultMinAmount = (minAmount < 1 || Number.isNaN(minAmount)) ? 1 : minAmount + 1;
             defaultCommission = lastItem.Commission + 0.1;
         }
 
@@ -41,7 +33,7 @@ export class TierSetting extends PureComponent {
             TierId: itemCount + 1,
             GroupProductId: this.props.groupProductId,
             MinAmount: defaultMinAmount,
-            MinQm: defaultMinQm,
+            MinQm: tierSettingDefault.MinQm,
             Commission: defaultCommission
         };
 
@@ -58,7 +50,7 @@ export class TierSetting extends PureComponent {
     handleChangeInput = (tierId, tierItemValue) => {
         const { MinAmount, MinQm } = tierItemValue;
 
-        if (regexAcceptNegativeAmountFormat.test(MinAmount) &&
+        if ((!MinAmount || regexAcceptNegativeAmountFormat.test(MinAmount)) &&
             (!MinQm || isValidNumber(MinQm))) {
             const { selectedGroup, groupProductId } = this.props;
 
@@ -105,7 +97,7 @@ export class TierSetting extends PureComponent {
                                         return (<TierSettingItem data={item} key={`tier-${i}`}
                                             handleClick={handleClick}
                                             btnText={isFirst ? '+' : '-'}
-                                            isDisabledNegativeInfinity={!isFirst}
+                                            isShowNegativeInfinity={isFirst}
                                             onChange={this.handleChangeInput} />);
                                     })
                                 }

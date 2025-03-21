@@ -98,53 +98,75 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
         private static ResultInfo ValidateTierSettingList(IEnumerable<TierSettingParam> tierSettingList)
         {
+            var tierSettingListByGroupProduct = tierSettingList.GroupBy(t => t.GroupProductId);
+
+            foreach (var tierSettings in tierSettingListByGroupProduct)
+            {
+                var validateMinAmountResult = ValidateMinAmount(tierSettings);
+
+                if (!validateMinAmountResult.IsSuccessful)
+                {
+                    return validateMinAmountResult;
+                }    
+
+                if (tierSettings.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
+                {
+                    return new ResultInfo
+                    {
+                        Code = ErrCode.GeneralErrorCode,
+                        Message = "Min QP must be lesser than or equal to 1,000,000,000"
+                    };
+                }
+            }
+
+            return new ResultInfo();
+        }
+
+        private static ResultInfo ValidateMinAmount(IEnumerable<TierSettingParam> tierSettings)
+        {
             var result = new ResultInfo();
 
-            if (tierSettingList == null || !tierSettingList.Any())
+            if (tierSettings == null || !tierSettings.Any())
             {
                 UpdateResult(result, "Tier Setting must have at least 1 tier!");
                 return result;
             }
 
-            if (tierSettingList.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
+            var firsMinAmount = tierSettings.First().MinAmount;
+            if (firsMinAmount != 0 && firsMinAmount != Validation.NegativeInfinityAmount)
             {
-                UpdateResult(result, "Min QP must be lesser than or equal to 1,000,000,000");
-            }
-
-            if (tierSettingList.Any(item => item.MinAmount < Validation.NegativeInfinityAmount))
-            {
-                UpdateResult(result, "Min Net Win must be greater than or equal to -100,000,000,000");
+                UpdateResult(result, "The first Tier of the Min Net Win column must be = 0 or -∞");
                 return result;
             }
 
-            if (tierSettingList.Any(item => item.MinAmount > Validation.InfinityAmount))
+            if (IsMinNetWinNotStartFromOneAfterNegative(tierSettings))
             {
-                UpdateResult(result, "Min Amount must be lesser than or equal to 100,000,000,000");
+                UpdateResult(result, "The next Tier after a negative Tier must start from 1 in the Min Net Win column.");
                 return result;
             }
 
-            if (tierSettingList.First().MinAmount > 0)
-            {
-                UpdateResult(result, "The first Tier of the Min Net Win column must be <= 0");
-                return result;
-            }
-
-            if (!IsIncreasingMinNetWin(tierSettingList))
+            if (IsNotIncreasingMinNetWin(tierSettings))
             {
                 UpdateResult(result, "The values in the Min Net Win column must increase sequentially.");
                 return result;
             }
 
-            if (isMinNetWinNotStartFromOneAfterNegative(tierSettingList))
+            if (tierSettings.Any(item => item.MinAmount < Validation.NegativeInfinityAmount))
             {
-                UpdateResult(result, "The next Tier after a negative Tier must start from 1 in the Min Net Win column.");
+                UpdateResult(result, "Min Net Win must be greater than or equal to -100,000,000,000");
+                return result;
+            }
+
+            if (tierSettings.Any(item => item.MinAmount > Validation.InfinityAmount))
+            {
+                UpdateResult(result, "Min Amount must be lesser than or equal to 100,000,000,000");
                 return result;
             }
 
             return result;
         }
 
-        private static bool IsIncreasingMinNetWin(IEnumerable<TierSettingParam> tierSettingList)
+        private static bool IsNotIncreasingMinNetWin(IEnumerable<TierSettingParam> tierSettingList)
         {
             TierSettingParam previous = null;
 
@@ -152,15 +174,15 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
             {
                 if (previous != null && tierSetting.MinAmount <= previous.MinAmount)
                 {
-                    return false;
+                    return true;
                 }
                 previous = tierSetting;
             }
 
-            return true;
+            return false;
         }
 
-        private static bool isMinNetWinNotStartFromOneAfterNegative(IEnumerable<TierSettingParam> tierSettingList)
+        private static bool IsMinNetWinNotStartFromOneAfterNegative(IEnumerable<TierSettingParam> tierSettingList)
         {
             TierSettingParam previous = null;
 
@@ -240,14 +262,16 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
             var groupType = commGroupTypeList.FirstOrDefault(_ => _.GroupTypeId == groupTypeId);
 
-            var result = new ResultInfo();
-
             if (groupType is null)
             {
-                UpdateResult(result, CommGroupErrorMessage.InvalidGroupType);
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = CommGroupErrorMessage.InvalidGroupType
+                };
             }
 
-            return result;
+            return new ResultInfo();
         }
 
         private static void UpdateResult(ResultInfo initialResult, string message)

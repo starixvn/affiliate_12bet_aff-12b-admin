@@ -63,11 +63,11 @@ export const messages = {
     requireWithdrawalAmount: 'Withdrawal Fee cannot be empty. Please check!',
     invalidWithdrawalAmount: 'Withdrawal Fee is invalid.',
     requireTier: 'Tier Setting must have at least 1 tier',
-    minNetWinFirstMustLesserThanZero: 'The first Tier of the Min Net Win column must be <= 0', //checked
+    minNetWinFirstMustBeZero: 'The first Tier of the Min Net Win column must be = 0 or -∞',
     minNetWinMustStartFromOne: 'The next Tier after a negative Tier must start from 1 in the Min Net Win column.',
-    minNetWinMustIncreaseSequentially: 'The values in the Min Net Win column must increase sequentially.', //checked
-    minNetWinGreaterThanNegativeInfinity: 'Min Net Win must be greater than or equal to -100,000,000,000', //checked
-    minNetWinLesserThanInfinity: 'Min Net Win must be lesser than or equal to 100,000,000,000', //checked
+    minNetWinMustIncreaseSequentially: 'The values in the Min Net Win column must increase sequentially.',
+    minNetWinGreaterThanNegativeInfinity: 'Min Net Win must be greater than or equal to -100,000,000,000',
+    minNetWinLesserThanInfinity: 'Min Net Win must be lesser than or equal to 100,000,000,000',
     requireInfinity: 'Last Tier Setting must have maximum value=∞',
     qmConstrain: 'Min Qualified Player must be lesser than or equal to 1,000,000,000',
     requireSelectedProduct: 'At least 1 product must be selected per group',
@@ -102,4 +102,12 @@ export const regexValidNegativeAmount = new RegExp(regExp.validNegativeAmount);
 export const groupTypeList = {
     Winloss: 1,
     Turnover: 2
+}
+
+export const tierSettingDefault = {
+    TierId: 1,
+    GroupProductId: 0,
+    MinAmount: 0,
+    MinQm: 5,
+    Commission: 0,
 }
