@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         private const string DOMAIN_GO_6789SUTZO_PRO = "go.6789sutzo.com";
         private const string DOMAIN_GO_12FIFA18_PRO = "go.12fifa18.com";
 
-        private const string DOMAIN_GO_12AFF_BEST5689_PRO = "12aff.best5689.com";
+        private const string DOMAIN_GO_GOTO_BEST5689_PRO = "goto.best5689.com";
 
         private const string DOMAIN_GO_9012IJK_PRO = "go.9012ijk.com";
         private const string DOMAIN_GO_SBC31_PRO = "go.sbc31.com";
@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         //goto.elv520.com
         private const string AFF16492_ID = "92043580";
 
-        //12aff.best5689.com
+        //goto.best5689.com
         private const string AFF130_ID = "1257975";
         private const string AFF16311_ID = "92043399";
         private const string AFF16314_ID = "92043402";
@@ -122,25 +122,25 @@ namespace Fanex.Affiliate.User.Core.Constants
             [AFF16096_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
             [AFF16097_ID] = DOMAIN_GO_JOIN_BEST5689_PRO,
 
-            [AFF15932_ID] = $"{DOMAIN_GO_5689FUN_PRO},{DOMAIN_GO_12AFF_BEST5689_PRO}",
+            [AFF15932_ID] = $"12aff.best5689.com,{DOMAIN_GO_GOTO_BEST5689_PRO}",
             [AFF16325_ID] = DOMAIN_GO_5689FUN_PRO,
 
             [AFF16326_ID] = DOMAIN_GO_6789SUTZO_PRO,
 
-            //12aff.best5689.com
-            [AFF130_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF16311_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF16314_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF16225_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF14617_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF13902_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF16313_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF15775_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF16214_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF13506_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF13065_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF7782_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
-            [AFF16050_ID] = DOMAIN_GO_12AFF_BEST5689_PRO,
+            //goto.best5689.com
+            [AFF130_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF16311_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF16314_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF16225_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF14617_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF13902_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF16313_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF15775_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF16214_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF13506_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF13065_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF7782_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
+            [AFF16050_ID] = DOMAIN_GO_GOTO_BEST5689_PRO,
 
             [AFF16342_ID] = $"{DOMAIN_GO_THA88_PRO},{DOMAIN_GO_APA56_PRO},{DOMAIN_GOTO_12bmylink1_PRO}",
             [AFF16343_ID] = DOMAIN_GO_9012IJK_PRO,
@@ -201,7 +201,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
             [AFF16326_ID] = DOMAIN_GO_LOCAL,
 
-            //12aff.best5689.com
+            //goto.best5689.com
             [AFF130_ID] = DOMAIN_GO_LOCAL,
             [AFF16311_ID] = DOMAIN_GO_LOCAL,
             [AFF16314_ID] = DOMAIN_GO_LOCAL,
