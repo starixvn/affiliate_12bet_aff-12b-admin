@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.Link.Constants
 
         //Fake Mapping
         private const string FakeMapping_Join_Best5689_Com = "aff-12b.nexdev.net/Go,join.best5689.com";
-        private const string FakeMapping_12aff_Best5689_Com = "aff-12b.nexdev.net/Go,12aff.best5689.com";
+        private const string FakeMapping_Goto_Best5689_Com = "aff-12b.nexdev.net/Go,goto.best5689.com";
         private const string FakeMapping_Go_12real_Com = "aff-12b.nexdev.net/Go,go.12real.com";
         private const string FakeMapping_Goto_12binlink1_Com = "aff-12b.nexdev.net/Go,goto.12binlink1.com";
         private const string FakeMapping_Goto_12bmylink1_Com = "aff-12b.nexdev.net/Go,goto.12bmylink1.com";
@@ -108,20 +108,20 @@ namespace Fanex.Affiliate.Link.Constants
             [AFF16326_ID] = "aff-12b.nexdev.net/Go,go.6789sutzo.com",
 
             //12aff.best5689.com
-            [AFF15932_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF130_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF16311_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF16314_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF16225_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF14617_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF13902_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF16313_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF15775_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF16214_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF13506_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF13065_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF7782_ID] = FakeMapping_12aff_Best5689_Com,
-            [AFF16050_ID] = FakeMapping_12aff_Best5689_Com,
+            [AFF15932_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF130_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF16311_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF16314_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF16225_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF14617_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF13902_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF16313_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF15775_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF16214_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF13506_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF13065_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF7782_ID] = FakeMapping_Goto_Best5689_Com,
+            [AFF16050_ID] = FakeMapping_Goto_Best5689_Com,
 
             [AFF16341_ID] = "aff-12b.nexdev.net/Go,go.12qiuball.com",
 
