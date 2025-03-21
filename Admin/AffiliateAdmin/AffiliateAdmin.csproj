@@ -404,12 +404,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\__test__\redux\AddGroup.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\__test__\redux\AssignPrivateGroup.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\__test__\redux\EditGroup.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\p2p-deduction\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\p2p-deduction\P2pDeductionItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\p2p-deduction\P2pDeductionSetting.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\p2p-deduction\__test__\P2pDeductionItem.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\p2p-deduction\__test__\P2pDeductionSetting.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\p2p-deduction\__test__\redux\P2pDeductionSetting.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\redux\AppContainer.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\__test__\redux\Content.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\InputFile.jsx" />

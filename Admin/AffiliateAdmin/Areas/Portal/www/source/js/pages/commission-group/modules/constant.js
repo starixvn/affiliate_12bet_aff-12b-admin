@@ -80,7 +80,6 @@ export const messages = {
 }
 
 const _deductionNameList = {
-    p2pDeduction: 'P2P Fee',
     platformFee: 'Platform Fee',
     killRate: 'Kill Rate',
     depositFee: 'Deposit Fee',

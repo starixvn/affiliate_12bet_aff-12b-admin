@@ -40,11 +40,10 @@ export class AssignPrivateGroup extends React.PureComponent {
             }
         }
         else {
-            const { deductionList, productList, p2pProductList } = this.props;
-            const productIds = p2pProductList.map(p => p.ProductId);
+            const { deductionList, productList } = this.props;
             this.props.setSelectedProductIds(productIds);
 
-            const commGroup = buildDefaultCommGroup(deductionList, productList, p2pProductList);
+            const commGroup = buildDefaultCommGroup(deductionList, productList);
             commGroup.GroupTypeId = selectedGroupType;
 
             this.props.setSelectedGroup(commGroup);
@@ -110,9 +109,9 @@ export class AssignPrivateGroup extends React.PureComponent {
     }
 
     _validate() {
-        const { TierSettingList, P2pDeductionList, PlatformFeeList, DepositFee, WithdrawalFee } = this.props.selectedGroup;
+        const { TierSettingList, PlatformFeeList, DepositFee, WithdrawalFee } = this.props.selectedGroup;
         const tierSettingValidation = validateTierSettingList(TierSettingList);
-        const selectedProductValidation = validateItemMustHaveAProduct(P2pDeductionList, PlatformFeeList);
+        const selectedProductValidation = validateItemMustHaveAProduct(PlatformFeeList);
         const depositFeeValidation = validateDeductedFees(DepositFee, messages.requireDepositAmount, messages.invalidDepositAmount);
         const withdrawalFeeValidation = validateDeductedFees(WithdrawalFee, messages.requireWithdrawalAmount, messages.invalidWithdrawalAmount);
 
@@ -142,8 +141,8 @@ export class AssignPrivateGroup extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ deductionList, productList, p2pProductList, selectedGroup, selectedGroupType, affInfo }) {
-    return { deductionList, productList, p2pProductList, selectedGroup, selectedGroupType, affInfo };
+function mapStateToProp({ deductionList, productList, selectedGroup, selectedGroupType, affInfo }) {
+    return { deductionList, productList, selectedGroup, selectedGroupType, affInfo };
 }
 
 function mapDispatchToProps(dispatch) {

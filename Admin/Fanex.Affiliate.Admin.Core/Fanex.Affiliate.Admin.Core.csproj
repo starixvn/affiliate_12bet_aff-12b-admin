@@ -437,7 +437,6 @@
     <Compile Include="DTO\CommissionGroup\CommGroupType.cs" />
     <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
     <Compile Include="DTO\CommissionGroup\NormalCommGroup.cs" />
-    <Compile Include="DTO\CommissionGroup\P2pDeductionSetting.cs" />
     <Compile Include="DTO\Currency.cs" />
     <Compile Include="DTO\Customer\TransferLimitSettingInfo.cs" />
     <Compile Include="DTO\Domain\AffSubDomainInfo.cs" />
@@ -499,7 +498,6 @@
     <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\TierDeductionSettingParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\DeductionSettingParam.cs" />
-    <Compile Include="MetaModels\CommissionGroup\P2PDeductionSettingParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\TierSettingParam.cs" />
     <Compile Include="MetaModels\Customer\TransferLimitSettingParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />

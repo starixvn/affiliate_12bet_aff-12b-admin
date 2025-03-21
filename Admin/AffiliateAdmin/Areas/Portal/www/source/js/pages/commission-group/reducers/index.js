@@ -31,8 +31,6 @@ export const selectedGroup = createReducer(null, {
 
 export const productList = createReducer([], {});
 
-export const p2pProductList = createReducer([], {});
-
 export const selectedProductIds = createReducer([], {
     [SET_SELECTED_PRODUCT_IDS](prevState, action) {
         return action.data;
@@ -48,7 +46,6 @@ export default combineReducers({
     gridData,
     pagingOption,
     productList,
-    p2pProductList,
     deductionList,
     selectedGroup,
     selectedProductIds,

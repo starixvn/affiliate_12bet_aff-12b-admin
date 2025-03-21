@@ -75,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         private static void AssignBaseCommissionGroupCommand(BaseCommGroupCommand command, CreateUpdateCommissionGroupParam param)
         {
-            var (tierSettingXml, tierDeductionsXml, p2pDeductionsXml) = GetSettingXmls(param);
+            var (tierSettingXml, tierDeductionsXml) = GetSettingXmls(param);
 
             command.UserId = param.UserId;
             command.GroupName = param.GroupName;
@@ -86,10 +86,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             command.Ip = param.Ip;
             command.TierSettingXml = tierSettingXml;
             command.TierDeductionsXml = tierDeductionsXml;
-            command.P2pDeductionsXml = p2pDeductionsXml;
         }
 
-        private static (string tierSettingXml, string tierDeductionsXml, string p2pDeductionsXml) GetSettingXmls(CreateUpdateCommissionGroupParam param)
+        private static (string tierSettingXml, string tierDeductionsXml) GetSettingXmls(CreateUpdateCommissionGroupParam param)
         {
             var tierSettingXml = BuildTierSettingXml(param.TierSettingList, param.PlatformFeeList);
 
@@ -100,9 +99,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             }
 
             var tierDeductionsXml = BuildTierDeductionSettingXml(tierDeductionSettingList);
-            var p2pDeductionsXml = BuildP2pDeductionSettingXml(param.P2pDeductionList);
 
-            return (tierSettingXml, tierDeductionsXml, p2pDeductionsXml);
+            return (tierSettingXml, tierDeductionsXml);
         }
 
         private static string BuildTierSettingXml(IEnumerable<TierSettingParam> tierSettingParamList, IEnumerable<TierDeductionSettingParam> platformFeeList)
@@ -138,23 +136,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             {
                 var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\"" +
                     $" amount=\"{item.DeductedAmount}\" isdeductedpercent=\"{item.IsDeductedPercent}\" />";
-                result.Append(row);
-            }
-
-            result.Append("</root>");
-
-            return result.ToString();
-        }
-
-        private static string BuildP2pDeductionSettingXml(IEnumerable<P2PDeductionSettingParam> p2pDeductionSettingList)
-        {
-            var result = new StringBuilder();
-            result.Append("<root>");
-
-            foreach (var item in p2pDeductionSettingList)
-            {
-                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\"" +
-                    $" commission=\"{item.Commission}\" />";
                 result.Append(row);
             }
 

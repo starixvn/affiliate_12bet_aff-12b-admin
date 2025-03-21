@@ -26,5 +26,3 @@ export const headerText = {
 }
 
 export const defaultGgrProductReport = { Turnover: 0, Ggr: 0 };
-
-export const NOTE = '<strong class="text-danger">*</strong> Note: The GGR of the P2P Fixed Rate product are actually the Revenue amounts which are used to calculated the Revenue Share for P2P Products.'

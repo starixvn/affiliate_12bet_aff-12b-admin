@@ -193,7 +193,6 @@ export class Filter extends Component {
                         <span className="oi oi-magnifying-glass"></span> Search
                     </Button>
                 </Form>
-                <div dangerouslySetInnerHTML={{ __html: NOTE }}></div>
             </div>
         );
     }

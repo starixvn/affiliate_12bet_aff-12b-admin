@@ -31,18 +31,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
                     NoAffs = 2
                 }
             };
-            var p2pDeductionSettingList = new List<P2pDeductionSetting>
-            {
-                new P2pDeductionSetting
-                {
-                    GroupId = 101,
-                    DeductionId = 1,
-                    DeductionName = "DeductionName",
-                    ProductIds = "1,2,3",
-                    DeductedPercentage = 0.7m,
-                    Commission = 0.1m
-                }
-            };
             var tierDeductionSettingList = new List<DeductionSetting>
             {
                 new DeductionSetting
@@ -82,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
                 }
             };
             var dynamicRepository = new Mock<IDynamicRepository>();
-            dynamicRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.IsAny<GetCommissionGroupCriteria>(), It.IsAny<string>())).Returns((commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList));
+            dynamicRepository.Setup(comm => comm.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting>(It.IsAny<GetCommissionGroupCriteria>(), It.IsAny<string>())).Returns((commGroupList, tierSettingList, tierDeductionSettingList));
             var service = CreateCommissionGroupService(dynamicRepository.Object);
 
             // Action
@@ -90,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
 
             // Assert
             Assert.Single(commissionGroupList);
-            dynamicRepository.Verify(d => d.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(It.Is<GetCommissionGroupCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            dynamicRepository.Verify(d => d.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting>(It.Is<GetCommissionGroupCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
         }
 
         [Fact]

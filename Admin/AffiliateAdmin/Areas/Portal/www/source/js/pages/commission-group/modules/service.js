@@ -14,23 +14,16 @@ const emptyCommGroup = {
     WithdrawalFee: {}
 }
 
-export const buildDefaultCommGroup = (deductionList, productList, p2pProductList) => {
+export const buildDefaultCommGroup = (deductionList, productList) => {
     const deductionSetting = getDeductionSetting(deductionList);
-
-    const p2pProductParam = { p2pProductList, deductionSetting };
-    const p2pDeductionList = buildP2pDeductionList(p2pProductParam);
-
-    const p2pProductIds = p2pProductList.map(i => i.ProductId);
-    const platformFeeProductList = productList.filter(i => !p2pProductIds.includes(i.ProductId));
     const { platformFeeSetting, killRateFeeSetting } = deductionSetting;
-    const platformFeeList = buildProductGroupsDeductionFeeList(platformFeeProductList, platformFeeSetting);
+    const platformFeeList = buildProductGroupsDeductionFeeList(productList, platformFeeSetting);
     const killRateFeeList = buildProductGroupsDeductionFeeList([], killRateFeeSetting);
 
     const depositFee = createDefaultDepositSetting(deductionSetting.depositFeeSetting);
     const withdrawalFee = createDefaultWithdrawalSetting(deductionSetting.withdrawalFeeSetting);
 
     return Object.assign({}, emptyCommGroup, {
-        P2pDeductionList: p2pDeductionList,
         PlatformFeeList: platformFeeList,
         KillRateFeeList: killRateFeeList,
         DepositFee: depositFee,
@@ -40,14 +33,12 @@ export const buildDefaultCommGroup = (deductionList, productList, p2pProductList
 
 export const getDeductionSetting = (deductionList) => {
     const deductionObj = convertDeductionList(deductionList);
-    const p2pDeductionSetting = deductionObj[deductionNameList.p2pDeduction];
     const platformFeeSetting = deductionObj[deductionNameList.platformFee];
     const killRateFeeSetting = deductionObj[deductionNameList.killRate]
     const depositFeeSetting = deductionObj[deductionNameList.depositFee];
     const withdrawalFeeSetting = deductionObj[deductionNameList.withdrawalFee];
 
     return {
-        p2pDeductionSetting,
         platformFeeSetting,
         killRateFeeSetting,
         depositFeeSetting,
@@ -75,18 +66,6 @@ export const createDefaultWithdrawalSetting = (withdrawalFeeSetting) => {
     }
 }
 
-export const buildP2pDeductionList = ({ p2pProductList, deductionSetting }) => {
-    const { p2pDeductionSetting } = deductionSetting;
-
-    const products = convertProductList(p2pProductList);
-    return [{
-        DeductionId: p2pDeductionSetting.DeductionId,
-        ProductIds: products.map(p => p.ProductId).join(','),
-        DeductedPercentage: p2pDeductionSetting.DeductedPercentage,
-        Commission: p2pDeductionSetting.Commission,
-    }];
-}
-
 export const buildProductGroupsDeductionFeeList = (platformFeeProductList, feeSetting) => {
     const products = convertProductList(platformFeeProductList);
     return [{
@@ -97,15 +76,6 @@ export const buildProductGroupsDeductionFeeList = (platformFeeProductList, feeSe
         DeductedAmount: feeSetting.DeductedAmount,
         IsDeductedPercent: feeSetting.IsDeductedPercent
     }];
-}
-
-export const createDefaultP2pDeduction = (p2pProductList, p2pDeductionSetting) => {
-    return {
-        deductionId: p2pDeductionSetting.DeductionId,
-        productList: convertProductList(p2pProductList),
-        deductedPercentage: p2pDeductionSetting.DeductedPercentage,
-        commission: p2pDeductionSetting.Commission
-    };
 }
 
 export const createDefaultProductGroupsDeductionFee = (productList, feeSetting) => {
@@ -143,11 +113,11 @@ export const convertStringToArrayNumber = (stringIds) => {
 }
 
 export const validate = (selectedGroup) => {
-    const { GroupName, TierSettingList, P2pDeductionList, PlatformFeeList, DepositFee, WithdrawalFee } = selectedGroup;
+    const { GroupName, TierSettingList, PlatformFeeList, DepositFee, WithdrawalFee } = selectedGroup;
 
     const groupNameValidation = validateGroupName(GroupName);
     const tierSettingValidation = validateTierSettingList(TierSettingList);
-    const selectedProductValidation = validateItemMustHaveAProduct(P2pDeductionList, PlatformFeeList);
+    const selectedProductValidation = validateItemMustHaveAProduct(PlatformFeeList);
     const depositFeeValidation = validateDeductedFees(DepositFee, messages.requireDepositAmount, messages.invalidDepositAmount);
     const withdrawalFeeValidation = validateDeductedFees(WithdrawalFee, messages.requireWithdrawalAmount, messages.invalidWithdrawalAmount);
 
@@ -235,11 +205,10 @@ export const validateTierSettingList = (tierSettingList) => {
     return { isValid, messageList };
 }
 
-export const validateItemMustHaveAProduct = (p2pDeducctionList, platformFeeList) => {
+export const validateItemMustHaveAProduct = (platformFeeList) => {
     let isValid = true;
 
-    if ((p2pDeducctionList.length > 1 && p2pDeducctionList.filter(item => !item.ProductIds).length > 0)
-        || (platformFeeList.length > 1 && platformFeeList.filter(item => !item.ProductIds).length > 0)) {
+    if (platformFeeList.length > 1 && platformFeeList.filter(item => !item.ProductIds).length > 0) {
         isValid = false;
     }
 
@@ -252,9 +221,9 @@ export const getSelectedProductIds = (deductionList) => {
         .reduce((cul, cur) => [...cul, ...cur], []);
 }
 
-export const updatePlatfromFeeList = (selectedProductIdsOfP2p, platformFeeList, allProductIds) => {
+export const updatePlatfromFeeList = (platformFeeList, allProductIds) => {
     const feeIdListInArrayForm = platformFeeList.map(fee => convertStringToArrayNumber(fee.ProductIds));
-    const newFeeListIds = getPlatformFeeListIds(selectedProductIdsOfP2p, feeIdListInArrayForm, allProductIds);
+    const newFeeListIds = getPlatformFeeListIds(feeIdListInArrayForm, allProductIds);
     const newPlatformFeeList = [];
 
     newFeeListIds.forEach((arrId, index) => {
@@ -282,18 +251,18 @@ export const handleKillRateListData = (platformFeeList, killRateFeeList) => {
     });
 }
 
-const getPlatformFeeListIds = (selectedProductIdsOfP2p, prePlatformFeeIds, allProductIds) => {
+const getPlatformFeeListIds = (prePlatformFeeIds, allProductIds) => {
     const preSelProductIds = prePlatformFeeIds.reduce((acc, cur) => acc.concat(cur), []);
-    const additionIds = getAdditionId(selectedProductIdsOfP2p, preSelProductIds, allProductIds);
-    const platformFeeIdsAfterRemoveProduct = removeCheckedProductId(selectedProductIdsOfP2p, prePlatformFeeIds);
+    const additionIds = getAdditionId(preSelProductIds, allProductIds);
+    const platformFeeIdsAfterRemoveProduct = removeCheckedProductId(prePlatformFeeIds);
     const firstPlatformFeeProductIds = platformFeeIdsAfterRemoveProduct[0];
     additionIds.length && firstPlatformFeeProductIds.push(additionIds);
 
     return [firstPlatformFeeProductIds, ...platformFeeIdsAfterRemoveProduct.slice(1)]
 }
 
-const getAdditionId = (curIds, preSelIds, allProductIds) => {
-    return allProductIds.filter(i => !(curIds.find(c => c === i) || preSelIds.find(t => t === i)));
+const getAdditionId = (preSelIds, allProductIds) => {
+    return allProductIds.filter(i => preSelIds.find(t => t === i));
 }
 
 const removeCheckedProductId = (curSelIds, preListIds) => {

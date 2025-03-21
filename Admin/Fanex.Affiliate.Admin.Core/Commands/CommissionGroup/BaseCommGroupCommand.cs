@@ -20,9 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Commands.CommissionGroup
         [SpParam(SqlParamName = "DeductionList")]
         public string TierDeductionsXml { get; set; }
 
-        [SpParam(SqlParamName = "StraightList")]
-        public string P2pDeductionsXml { get; set; }
-
         [SpParam(SqlParamName = "TierList")]
         public string TierSettingXml { get; set; }
     }

@@ -15,7 +15,6 @@ describe('commission group - assign private group', () => {
         QmTurnover: 100,
         IsActivePlayerSum: true,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
-        P2pDeductionList: [{ DeductedPercentage: 0.02, DeductionId: 15, ProductIds: "2,5", Commission: 0.01 }],
         TierSettingList: [],
         KillRateFeeList: [{ DeductedPercentage: 0.03, DeductionId: 16, ProductIds: "", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
     };
@@ -28,7 +27,6 @@ describe('commission group - assign private group', () => {
         GroupName: "",
         QmTurnover: 100,
         PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
-        P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
         TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 }],
         KillRateFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 16, ProductIds: "" }],
     };
@@ -54,7 +52,6 @@ describe('commission group - assign private group', () => {
             { DeductionId: 10, DeductionName: "Platform Fee", DeductedPercentage: 0.17, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 13, DeductionName: "Deposit Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 14, DeductionName: "Withdrawal Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
-            { DeductionId: 15, DeductionName: "P2P Fee", DeductedPercentage: 0.02, Commission: 0.01 },
             { DeductionId: 16, DeductionName: "Kill Rate", DeductedPercentage: 0.03, IsDeductedPercent: true, DeductedAmount: "" },
         ],
         productList: [
@@ -62,10 +59,6 @@ describe('commission group - assign private group', () => {
             { ProductId: 2, ProductName: "Poker" },
             { ProductId: 3, ProductName: "Playtech Casino" },
             { ProductId: 4, ProductName: "Number Game" },
-            { ProductId: 5, ProductName: "V8 Poker" }
-        ],
-        p2pProductList: [
-            { ProductId: 2, ProductName: "Poker" },
             { ProductId: 5, ProductName: "V8 Poker" }
         ],
         setSelectedGroup: jest.fn(),

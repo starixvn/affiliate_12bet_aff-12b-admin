@@ -90,7 +90,7 @@ export const getSelectedCommGroup = (param) => async (dispatch) => {
     const response = await post(url, param);
     let data = response && response.status === 200 ? response.data : null;
 
-    let selectedProductIds = data ? getSelectedProductIds(data.P2pDeductionList) : [];
+    let selectedProductIds = data ? getSelectedProductIds(data.PlatformFeeList) : [];
 
     dispatch(setSelectedProductIds(selectedProductIds));
     dispatch(setSelectedGroup(data));

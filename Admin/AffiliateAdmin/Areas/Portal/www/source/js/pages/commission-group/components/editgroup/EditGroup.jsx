@@ -97,8 +97,8 @@ export class EditGroup extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ selectedGroup, searchedGroupName, searchedGroupType, pagingOption, p2pProductList }) {
-    return { selectedGroup, searchedGroupName, searchedGroupType, pagingOption, p2pProductList };
+function mapStateToProp({ selectedGroup, searchedGroupName, searchedGroupType, pagingOption }) {
+    return { selectedGroup, searchedGroupName, searchedGroupType, pagingOption };
 }
 
 function mapDispatchToProps(dispatch) {

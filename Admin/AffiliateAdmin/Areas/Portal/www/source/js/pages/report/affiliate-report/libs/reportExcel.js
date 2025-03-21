@@ -142,11 +142,6 @@ const colConfig =
         [TOTAL_SECTION_STYLE]: totalCellStyle.right,
         [COL_WIDTH]: 120
     },
-    [fields.P2pEarning]: {
-        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
-        [COL_WIDTH]: 140
-    },
     [fields.SubAffEarning]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
         [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,

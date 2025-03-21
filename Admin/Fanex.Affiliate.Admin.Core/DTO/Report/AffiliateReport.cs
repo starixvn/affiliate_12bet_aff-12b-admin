@@ -66,9 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public decimal SubAffEarning { get; set; }
 
-        public decimal P2pEarning { get; set; }
-
-        public decimal TotalEarning => Earning + SubAffEarning + P2pEarning;
+        public decimal TotalEarning => Earning + SubAffEarning;
 
         public bool IsMultiGroupProduct { get; set; }
 

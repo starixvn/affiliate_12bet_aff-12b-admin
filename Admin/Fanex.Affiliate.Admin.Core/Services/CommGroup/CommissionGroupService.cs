@@ -29,15 +29,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                 PageSize = param.PageSize,
             };
 
-            var (commGroupList, tierSettingList, tierDeductionSettingList, p2pDeductionSettingList)
-                = DynamicRepository.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting, P2pDeductionSetting>(criteria);
+            var (commGroupList, tierSettingList, tierDeductionSettingList)
+                = DynamicRepository.FetchMultiple<DTO.CommissionGroup.CommGroup, TierSetting, DeductionSetting>(criteria);
 
             param.Nrows = criteria.Nrows;
 
             var result = from c in commGroupList
                          join t in tierSettingList on c.GroupId equals t.GroupId into groupTierSetting
                          join d in tierDeductionSettingList on c.GroupId equals d.GroupId into groupTierDeductionSetting
-                         join p in p2pDeductionSettingList on c.GroupId equals p.GroupId into groupP2pDeductionSetting
                          select new CommissionGroupSetting
                          {
                              RowIdx = c.RowIdx,
@@ -54,7 +53,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                              NoAffs = c.NoAffs,
                              IsActivePlayerSum = c.IsActivePlayerSum,
                              TierSettingList = groupTierSetting,
-                             P2pDeductionList = groupP2pDeductionSetting,
                              PlatformFeeList = groupTierDeductionSetting.Where(p => p.DeductionId == Constants.Deduction.PlatformFeeId),
                              DepositFee = groupTierDeductionSetting.FirstOrDefault(p => p.DeductionId == Constants.Deduction.DepositFeeId),
                              WithdrawalFee = groupTierDeductionSetting.FirstOrDefault(p => p.DeductionId == Constants.Deduction.WithdrawalFeeId),

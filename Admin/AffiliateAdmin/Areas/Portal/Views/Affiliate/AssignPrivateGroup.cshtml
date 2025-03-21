@@ -12,7 +12,6 @@
     <script type="text/javascript">
         window.initialState = {
             productList: @Html.Raw(Json.Encode(Model.ProductList)),
-            p2pProductList: @Html.Raw(Json.Encode(Model.P2pProductList)),
             deductionList: @Html.Raw(Json.Encode(Model.DeductionList)),
             affInfo: @Html.Raw(Json.Encode(Model.AffInfo)),
             defaultCurrency: '@(AppSetting.Instance.DefaultCurrency)',

@@ -133,7 +133,6 @@ export class GridData extends PureComponent {
                 {childHeader[reportKey.CommissionRate].isShowable && (<th width={65} title={headerText.CommissionRate}>{headerText.CommissionRate}</th>)}
                 {childHeader[reportKey.Earning].isShowable && (<th width={75} title={headerText.Earning}>{headerText.Earning}</th>)}
                 {childHeader[reportKey.EarningBy].isShowable && (<th width={75} title={headerText.EarningBy}>{headerText.EarningBy}</th>)}
-                {childHeader[reportKey.P2pEarning].isShowable && (<th width={75} title={headerText.P2pEarning}>{headerText.P2pEarning}</th>)}
                 {childHeader[reportKey.SubAffEarning].isShowable && (<th width={75} title={headerText.SubAffEarning}>{headerText.SubAffEarning}</th>)}
                 {childHeader[reportKey.TotalEarning].isShowable && (<th width={75} title={headerText.TotalEarning}>{headerText.TotalEarning}</th>)}
                 {childHeader[reportKey.AffWithdrawal].isShowable && (<th width={75} title={headerText.AffWithdrawal}>{headerText.AffWithdrawal}</th>)}
@@ -217,7 +216,6 @@ export class GridData extends PureComponent {
         const totalFee = formatDecimal(dataItem.TotalFee);
         const earning = formatDecimal(dataItem.Earning);
         const earningBy = isTotalRow ? 'N/A' : dataItem.EarningBy;
-        const p2pEarning = formatDecimal(dataItem.P2pEarning);
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
@@ -259,7 +257,6 @@ export class GridData extends PureComponent {
                 }
                 {header[reportKey.Earning].isShowable && (<td className="text-right" title={earning}>{earning}</td>)}
                 {header[reportKey.EarningBy].isShowable && (<td className="text-right" title={earningBy}>{earningBy}</td>)}
-                {header[reportKey.P2pEarning].isShowable && (<td className="text-right" title={p2pEarning}>{p2pEarning}</td>)}
                 {header[reportKey.SubAffEarning].isShowable && (<td className="text-right" title={subAffEarning}>{subAffEarning}</td>)}
                 {header[reportKey.TotalEarning].isShowable && (<td className="text-right" title={totalEarning}>{totalEarning}</td>)}
                 {header[reportKey.AffWithdrawal].isShowable && (<td className="text-right" title={affWithdrawal}>{affWithdrawal}</td>)}

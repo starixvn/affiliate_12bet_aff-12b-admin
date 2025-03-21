@@ -109,7 +109,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 viewModel = new AssignPrivateGroupViewModel
                 {
                     ProductList = productList,
-                    P2pProductList = productList.Where(p => p.IsP2P),
                     DeductionList = _commGroupCommonService.GetDeductionList(),
                     AffInfo = affInfo,
                     SelectedGroupType = groupTypeId
@@ -145,7 +144,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     GroupTypeId = commGroup.GroupTypeId,
                     Description = PrivateGroupName,
                     TierSettingList = commGroup.TierSettingList,
-                    P2pDeductionList = commGroup.P2pDeductionList,
                     PlatformFeeList = commGroup.PlatformFeeList,
                     KillRateFeeList = commGroup.KillRateFeeList,
                     DepositFee = commGroup.DepositFee,

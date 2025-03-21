@@ -10,10 +10,6 @@
 
         public const int WithdrawalFeeId = 14;
 
-        public const int P2pDeductionId = 15;
-
         public const int KillRateFeeId = 16;
-
-        public const string P2pDeductionName = "P2P Fee";
     }
 }

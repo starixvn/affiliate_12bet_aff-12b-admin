@@ -157,16 +157,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                         DeductedAmount = ""
                     }
                 },
-                P2pDeductionList = new List<P2PDeductionSettingParam>
-                {
-                    new P2PDeductionSettingParam
-                    {
-                        DeductedPercentage = 0.17m,
-                        DeductionId = 10,
-                        ProductIds = "1,3,4",
-                        Commission = 0.1m
-                    }
-                },
                 TierSettingList = new List<TierSettingParam>
                 {
                     new TierSettingParam

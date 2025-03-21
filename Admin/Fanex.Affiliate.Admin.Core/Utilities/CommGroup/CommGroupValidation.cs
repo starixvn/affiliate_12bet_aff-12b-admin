@@ -69,12 +69,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
             var result = new ResultInfo();
             var productIdOfDB = _systemService.GetProductList().Select(p => p.ProductId.ToString());
 
-            var validateP2pDeductionList = ValidateDeductionList(commGroup.P2pDeductionList, productIdOfDB, CommGroupErrorMessage.InvalidP2pDeduction);
-            if (!validateP2pDeductionList.IsSuccessful)
-            {
-                UpdateResult(result, validateP2pDeductionList.Message);
-            }
-
             var validatePlatformFeeList = ValidateDeductionList(commGroup.PlatformFeeList, productIdOfDB, CommGroupErrorMessage.InvalidPlatformFee);
             if (!validatePlatformFeeList.IsSuccessful)
             {

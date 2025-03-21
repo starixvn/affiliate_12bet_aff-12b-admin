@@ -28,12 +28,11 @@ export class AddGroup extends React.PureComponent {
         if (this.props.itemId && this.props.itemId !== 0) {
             this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
         } else {
-            const { deductionList, productList, p2pProductList } = this.props;
-            const commGroup = buildDefaultCommGroup(deductionList, productList, p2pProductList);
+            const { deductionList, productList } = this.props;
+            const commGroup = buildDefaultCommGroup(deductionList, productList);
 
-            const productIds = p2pProductList.map(p => p.ProductId);
             this.props.setSelectedGroup(commGroup);
-            this.props.setSelectedProductIds(productIds);
+            this.props.setSelectedProductIds(null);
         }
     }
 
@@ -104,8 +103,8 @@ export class AddGroup extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ deductionList, productList, p2pProductList, selectedGroup, searchedGroupName, searchedGroupType, pagingOption }) {
-    return { deductionList, productList, p2pProductList, selectedGroup, searchedGroupName, searchedGroupType, pagingOption };
+function mapStateToProp({ deductionList, productList, selectedGroup, searchedGroupName, searchedGroupType, pagingOption }) {
+    return { deductionList, productList, selectedGroup, searchedGroupName, searchedGroupType, pagingOption };
 }
 
 function mapDispatchToProps(dispatch) {

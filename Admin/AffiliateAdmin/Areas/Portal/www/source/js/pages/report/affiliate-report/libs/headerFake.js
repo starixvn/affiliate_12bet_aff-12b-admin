@@ -18,7 +18,6 @@ const aggregateHeaderChildrenOfAffiliateStatistics = [
     new SingleHeaderColumn(reportKey.CommissionRate, headerText[reportKey.CommissionRate], true),
     new SingleHeaderColumn(reportKey.Earning, headerText[reportKey.Earning], true),
     new SingleHeaderColumn(reportKey.EarningBy, headerText[reportKey.EarningBy], true),
-    new SingleHeaderColumn(reportKey.P2pEarning, headerText[reportKey.P2pEarning], true),
     new SingleHeaderColumn(reportKey.SubAffEarning, headerText[reportKey.SubAffEarning], true),
     new SingleHeaderColumn(reportKey.TotalEarning, headerText[reportKey.TotalEarning], true),
     new SingleHeaderColumn(reportKey.AffWithdrawal, headerText[reportKey.AffWithdrawal], true),

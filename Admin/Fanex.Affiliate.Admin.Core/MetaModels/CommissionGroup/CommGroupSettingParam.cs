@@ -27,9 +27,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
         public IEnumerable<TierSettingParam> TierSettingList { get; set; }
 
         [Required]
-        public IEnumerable<P2PDeductionSettingParam> P2pDeductionList { get; set; }
-
-        [Required]
         public IEnumerable<TierDeductionSettingParam> PlatformFeeList { get; set; }
 
         public IEnumerable<TierDeductionSettingParam> KillRateFeeList { get; set; }
