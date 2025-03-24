@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         //goto.2356all.com
         private const string AFF16494_ID = "92043582";
 
-        //goto.elv520.com
+        //goto.sun838.com
         private const string AFF16492_ID = "92043580";
 
         //goto.best5689.com
@@ -176,7 +176,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
             [AFF16494_ID] = "goto.2356all.com",
 
-            [AFF16492_ID] = "goto.elv520.com",
+            [AFF16492_ID] = "goto.sun838.com",
 
             [AFF16496_ID] = DOMAIN_GOTO_12bthlink1_PRO,
             [AFF16501_ID] = DOMAIN_GOTO_12bvnlink1_PRO,

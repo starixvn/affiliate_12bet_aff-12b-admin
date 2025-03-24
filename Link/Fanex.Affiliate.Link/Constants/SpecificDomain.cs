@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Link.Constants
         //goto.2356all.com
         private const string AFF16494_ID = "92043582";
 
-        //goto.elv520.com
+        //goto.sun838.com
         private const string AFF16492_ID = "92043580";
 
         //12aff.best5689.com
@@ -157,7 +157,7 @@ namespace Fanex.Affiliate.Link.Constants
 
             [AFF16494_ID] = "aff-12b.nexdev.net/Go,goto.2356all.com",
 
-            [AFF16492_ID] = "aff-12b.nexdev.net/Go,goto.elv520.com",
+            [AFF16492_ID] = "aff-12b.nexdev.net/Go,goto.sun838.com",
             
             [AFF16496_ID] = FakeMapping_Goto_12bthlink1_Com,
             [AFF16501_ID] = FakeMapping_Goto_12bvnlink1_Com,
