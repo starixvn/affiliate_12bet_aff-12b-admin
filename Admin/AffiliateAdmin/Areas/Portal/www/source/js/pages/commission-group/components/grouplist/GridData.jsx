@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { resolveClientUrl } from '../../../../modules/utils';
-import { globalResource, format, formatDecimal, MinNetWin, MinNetTurnover } from '../../modules/constant';
+import { globalResource, format, formatDecimal, MinNetWin, money, NEGATIVE_INFINITY_SYMBOL } from '../../modules/constant';
 import { deleteCommGroup, getGroupSettingList } from '../../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
@@ -100,7 +100,7 @@ export class GridData extends Component {
         const rows = [];
 
         for (let tierSetting of tierSettingList) {
-            const minAmount = format(tierSetting.MinAmount);
+            const minAmount = tierSetting.MinAmount == money.AllowedMinValue ? NEGATIVE_INFINITY_SYMBOL : format(tierSetting.MinAmount);
             const minQm = format(tierSetting.MinQm);
 
             rows.push(
@@ -165,7 +165,7 @@ export class GridData extends Component {
                                 }}></div>
                             </Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Tier</Cell>
-                            <Cell className="font-weight-bold text-center cell-deduction">{MinNetTurnover}</Cell>
+                            <Cell className="font-weight-bold text-center cell-deduction">{MinNetWin}</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Min Qualified Player</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Rev. Share%</Cell>
                             {isFirstItem && (

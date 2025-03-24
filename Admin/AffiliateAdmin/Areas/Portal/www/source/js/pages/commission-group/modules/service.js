@@ -162,7 +162,7 @@ export const validateTierSettingList = (tierSettingList) => {
     let isValid = true;
     const messageList = [];
 
-    const tierSettingListByGroupProduct = Object.groupBy(tierSettingList, ({ GroupProductId }) => GroupProductId);
+    const tierSettingListByGroupProduct = handleGroupBy(tierSettingList, "GroupProductId");
 
     Object.values(tierSettingListByGroupProduct).forEach((tierSettings, i) => {
         const groupProductName = `Product Groups ${i + 1}`;
@@ -257,3 +257,10 @@ const isMinNetWinNotIncreaseSequentially = (tierSettingList) => {
 const isMinNetWinNotStartFromOneAfterNegative = (tierSettingList) => {
     return tierSettingList.some((tier, i) => i != 0 && Number(tierSettingList[i - 1].MinAmount) < 0 && Number(tier.MinAmount) > 1);
 }
+
+const handleGroupBy = (items, key) => {
+    return items.reduce(function (result, item) {
+        (result[item[key]] ??= []).push(item);
+        return result;
+    }, {});
+};

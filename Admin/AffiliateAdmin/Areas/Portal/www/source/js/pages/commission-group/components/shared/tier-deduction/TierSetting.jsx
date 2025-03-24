@@ -8,7 +8,7 @@ import { setSelectedGroup } from '../../../actions';
 import TierSettingItem from './TierSettingItem';
 import { removeTierItem } from '../../../modules/service';
 import { isValidNumber } from '../../../../../modules/utils';
-import { FIRST_ITEM_INDEX, MinNetTurnover, MinNetWin, regexAcceptNegativeAmountFormat, tierSettingDefault } from '../../../modules/constant';
+import { FIRST_ITEM_INDEX, MinNetWin, regexAcceptNegativeAmountFormat, tierSettingDefault } from '../../../modules/constant';
 
 export class TierSetting extends PureComponent {
     constructor(props) {
@@ -30,6 +30,7 @@ export class TierSetting extends PureComponent {
         }
 
         const newTierSetting = {
+            GroupId: selectedGroup.GroupId,
             TierId: itemCount + 1,
             GroupProductId: this.props.groupProductId,
             MinAmount: defaultMinAmount,

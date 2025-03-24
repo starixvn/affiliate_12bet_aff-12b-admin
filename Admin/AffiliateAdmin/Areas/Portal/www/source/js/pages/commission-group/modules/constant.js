@@ -46,10 +46,8 @@ export const subAffCommRateValueList = _subAffCommRateValueList;
 export const defaultSubAffCommRate = 0.0;
 
 export const GGR = '| Gross Game Revenue |';
-export const Turnover = '| Turnover |';
 
 export const MinNetWin = 'Min Net Win';
-export const MinNetTurnover = 'Min Net Turnover';
 
 export const messages = {
     requireGroupName: 'Group Name cannot be empty. Please check!',
@@ -95,6 +93,7 @@ export const regexAcceptNegativeAmountFormat = new RegExp(regExp.acceptNegativeA
 export const regexValidNegativeAmount = new RegExp(regExp.validNegativeAmount);
 
 export const tierSettingDefault = {
+    GroupId: 0,
     TierId: 1,
     GroupProductId: 0,
     MinAmount: 0,
