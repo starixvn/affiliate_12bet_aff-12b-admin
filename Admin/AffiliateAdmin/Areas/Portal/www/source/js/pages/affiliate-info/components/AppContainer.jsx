@@ -17,7 +17,7 @@ export class AppContainer extends Component {
     }
 
     render() {
-        const { isShowLoader, showPopupPassword, affId, groupTypeId, commGroup, showPopupCommGroup } = this.props;
+        const { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup } = this.props;
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
@@ -28,7 +28,6 @@ export class AppContainer extends Component {
                     isPrivateGroup={true}
                     affId={affId}
                     affName={commGroup}
-                    groupTypeId={groupTypeId}
                     setShowPopupCommGroup={this.props.setShowPopupCommGroup}
                 />
                 <ChangePasswordForm
@@ -41,8 +40,8 @@ export class AppContainer extends Component {
     }
 }
 
-function mapStateToProps({ isShowLoader, showPopupPassword, affId, groupTypeId, commGroup, showPopupCommGroup }) {
-    return Object.assign({}, { isShowLoader, showPopupPassword, affId, groupTypeId, commGroup, showPopupCommGroup });
+function mapStateToProps({ isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup }) {
+    return Object.assign({}, { isShowLoader, showPopupPassword, affId, commGroup, showPopupCommGroup });
 }
 
 function mapDispatchToProps(dispatch) {

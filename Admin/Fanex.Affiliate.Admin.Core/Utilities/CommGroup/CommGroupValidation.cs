@@ -49,16 +49,14 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
         public ResultInfo ValidateCommGroup(CommGroupSettingParam commGroup)
         {
-            var validateGroupType = ValidateGroupType(commGroup.GroupTypeId);
-
             var result = ValidateAllFees(commGroup);
 
             var validateTierSettingList = ValidateTierSettingList(commGroup.TierSettingList);
 
-            if (!validateGroupType.IsSuccessful || !validateTierSettingList.IsSuccessful)
+            if (!validateTierSettingList.IsSuccessful)
             {
                 result.Code = ErrCode.GeneralErrorCode;
-                result.Message = string.Join(validateGroupType.Message, result.Message, validateTierSettingList.Message);
+                result.Message = string.Join(result.Message, validateTierSettingList.Message);
             }
 
             return result;
@@ -245,24 +243,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
                 {
                     return result;
                 }
-            }
-
-            return new ResultInfo();
-        }
-
-        private ResultInfo ValidateGroupType(int groupTypeId)
-        {
-            var commGroupTypeList = _commGroupCommonService.GetCommGroupTypes();
-
-            var groupType = commGroupTypeList.FirstOrDefault(_ => _.GroupTypeId == groupTypeId);
-
-            if (groupType is null)
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = CommGroupErrorMessage.InvalidGroupType
-                };
             }
 
             return new ResultInfo();

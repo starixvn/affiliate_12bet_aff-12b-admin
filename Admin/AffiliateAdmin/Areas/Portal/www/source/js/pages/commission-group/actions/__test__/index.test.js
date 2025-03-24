@@ -29,7 +29,6 @@ const runTestActionReturnPost = ({ name, url }) => {
 const actionList = [
     { name: 'setGridData', type: types.SET_GRIDDATA, data: 'setGridData' },
     { name: 'setSelectedGroup', type: types.SET_SELECTED_GROUP, data: 'setSelectedGroup' },
-    { name: 'setSelectedProductIds', type: types.SET_SELECTED_PRODUCT_IDS, data: '1,2,3' },
     { name: 'setSearchedGroupName', type: types.SET_SEARCHED_GROUPNAME, data: 'setSearchedGroupName' }
 ];
 

@@ -35,14 +35,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         public void UpdateCommissionGroup_WhenCall_ExcuteSucceed()
         {
             // Arrange
-            var param = CreateValidCreateUpdateCommissionGroupParamHasKillRate();
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateCommGroupCommand>(), It.IsAny<string>()));
 
             var service = CreateCommGroupCommonService(dynamicRepository.Object);
 
             // Action
-            var result = service.UpdateCommissionGroup(param);
+            var result = service.UpdateCommissionGroup(CreateValidCreateUpdateCommissionGroupParam());
 
             // Assert
             dynamicRepository.Verify(d => d.Execute(It.Is<UpdateCommGroupCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
@@ -73,26 +72,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
         }
 
         [Fact]
-        public void GetCommGroupTypes_WhenCall_ReturnCorrectData()
-        {
-            // Arrange
-            var dynamicRepository = new Mock<IDynamicRepository>();
-            var expectedResult = new List<CommGroupType>
-                    {
-                        new CommGroupType()
-                    };
-            dynamicRepository.Setup(comm => comm.Fetch<CommGroupType>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(expectedResult);
-            var service = CreateCommGroupCommonService(dynamicRepository.Object);
-
-            // Action
-            var result = service.GetCommGroupTypes();
-
-            // Assert
-            dynamicRepository.Verify(d => d.Fetch<CommGroupType>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
-            Assert.Single(result);
-        }
-
-        [Fact]
         public void GetNormalCommGroupList_WhenCall_ReturnCorrectData()
         {
             // Arrange
@@ -103,7 +82,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                 {
                     GroupId = 123,
                     GroupName = "New Test",
-                    GroupTypeId = 1
                 }
             };
             var dynamicRepository = new Mock<IDynamicRepository>();
@@ -175,14 +153,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.CommGroup
                     }
                 }
             };
-        }
-
-        private static CreateUpdateCommissionGroupParam CreateValidCreateUpdateCommissionGroupParamHasKillRate()
-        {
-            var param = CreateValidCreateUpdateCommissionGroupParam();
-            param.KillRateFeeList = new List<TierDeductionSettingParam> { new TierDeductionSettingParam() };
-
-            return param;
         }
     }
 }

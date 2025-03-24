@@ -22,11 +22,6 @@ describe('commission group - EditGroup', () => {
             { ProductId: 4, ProductName: "Number Game" },
             { ProductId: 5, ProductName: "V8 Poker" }
         ],
-        commGroupTypes: [
-            { GroupTypeId: "1", GroupTypeName: "Calculate Revenue Share by Winloss" },
-            { GroupTypeId: "2", GroupTypeName: "Calculate Revenue Share by Turnover" }
-        ],
-        setSelectedProductIds: jest.fn(),
         getSelectedCommGroup: jest.fn(),
         onClose: jest.fn(),
         onSave: jest.fn(),

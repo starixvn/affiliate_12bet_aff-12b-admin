@@ -1,46 +1,33 @@
 import { combineReducers } from "redux";
 
-import { SET_GRIDDATA, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME, SET_SEARCHED_GROUP_TYPE, SET_SELECTED_PRODUCT_IDS } from '../actions/types';
+import * as types from '../actions/types';
 import createReducer from '../../../modules/createReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 import { pagingOption } from '../../../reducers/pagingReducer';
 
 export const gridData = createReducer(null, {
-    [SET_GRIDDATA](prevState, action) {
+    [types.SET_GRIDDATA](prevState, action) {
         return action.data;
     }
 })
 
 export const searchedGroupName = createReducer('', {
-    [SET_SEARCHED_GROUPNAME](prevState, action) {
-        return action.data;
-    }
-})
-
-export const searchedGroupType = createReducer(1, {
-    [SET_SEARCHED_GROUP_TYPE](prevState, action) {
+    [types.SET_SEARCHED_GROUPNAME](prevState, action) {
         return action.data;
     }
 })
 
 export const selectedGroup = createReducer(null, {
-    [SET_SELECTED_GROUP](prevState, action) {
+    [types.SET_SELECTED_GROUP](prevState, action) {
         return !action.data ? null : Object.assign({}, prevState, action.data);
     }
 })
 
 export const productList = createReducer([], {});
 
-export const selectedProductIds = createReducer([], {
-    [SET_SELECTED_PRODUCT_IDS](prevState, action) {
-        return action.data;
-    }
-});
 export const deductionList = createReducer([], {});
 
 export const defaultCurrency = createReducer(null, {});
-
-export const commGroupTypes = createReducer([], {});
 
 export default combineReducers({
     gridData,
@@ -48,10 +35,7 @@ export default combineReducers({
     productList,
     deductionList,
     selectedGroup,
-    selectedProductIds,
     searchedGroupName,
-    searchedGroupType,
     isShowLoader,
     defaultCurrency,
-    commGroupTypes
 });

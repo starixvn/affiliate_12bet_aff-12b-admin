@@ -7,8 +7,7 @@ export default class CommissionGroupPopup extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            isUsingPrivateGroup: false,
-            privateGroupTypeId: 1
+            isUsingPrivateGroup: false
         }
     }
 
@@ -31,7 +30,7 @@ export default class CommissionGroupPopup extends PureComponent {
                 this.handleAssignGroupSuccessfully();
             }
         } else if (event.data.eventName === popupEventNames.changeAssignToPrivateGroup) {
-            this.handleChangeAssignToPrivateGroup(event.data.groupTypeId);
+            this.handleChangeAssignToPrivateGroup();
         }
     }
 
@@ -47,10 +46,9 @@ export default class CommissionGroupPopup extends PureComponent {
         this.props.setShowPopupCommGroup(false);
     }
 
-    handleChangeAssignToPrivateGroup = (groupTypeId) => {
+    handleChangeAssignToPrivateGroup = () => {
         this.setState({
-            isUsingPrivateGroup: true,
-            privateGroupTypeId: groupTypeId
+            isUsingPrivateGroup: true
         });
     }
 
@@ -61,21 +59,19 @@ export default class CommissionGroupPopup extends PureComponent {
 
     resetState = () => {
         this.setState({
-            isUsingPrivateGroup: false,
-            privateGroupTypeId: 1
+            isUsingPrivateGroup: false
         });
     }
 
     render() {
-        const { isUsingPrivateGroup, privateGroupTypeId } = this.state;
-        const { showPopupCommGroup, affName, affId, groupTypeId, isPrivateGroup, isNewAffiliate } = this.props;
+        const { isUsingPrivateGroup } = this.state;
+        const { showPopupCommGroup, affName, affId, isPrivateGroup, isNewAffiliate } = this.props;
 
         const isPrivate = isPrivateGroup || isUsingPrivateGroup;
         const assignTitle = isNewAffiliate ? 'Assign Revenue Group For New Affiliate' : `Change Revenue Group For ${affName}`;
         const title = isPrivateGroup ? `Edit the Revenue Group for ${affName}` : assignTitle;
-        const assignPrivateGroupTypeId = isPrivateGroup ? groupTypeId : privateGroupTypeId;
 
-        const url = isPrivate ? resolveClientUrl(`Portal/CommGroupAssignment/AssignPrivateGroup?affId=${affId}&groupTypeId=${assignPrivateGroupTypeId}`) : resolveClientUrl(`Portal/CommGroupAssignment/AssignGroup?affId=${affId}&groupTypeId=${groupTypeId}`);
+        const url = isPrivate ? resolveClientUrl(`Portal/CommGroupAssignment/AssignPrivateGroup?affId=${affId}`) : resolveClientUrl(`Portal/CommGroupAssignment/AssignGroup?affId=${affId}`);
         const size = isPrivate ? 'lg' : '';
         const maxWidth = isPrivate ? '' : 650;
 
@@ -87,10 +83,10 @@ export default class CommissionGroupPopup extends PureComponent {
                     </ModalHeader>
                     <ModalBody>
                         {
-                            isPrivate ? (<div className="modal-body-wrapper embed-responsive embed-responsive-4by3" style={{ height: 635 }}>
+                            isPrivate ? (<div className="modal-body-wrapper embed-responsive embed-responsive-4by3" style={{ height: 575 }}>
                                 <iframe className="embed-responsive-item" src={url}></iframe>
                             </div>) : (
-                                <div className="modal-body-wrapper" style={{ height: 340, padding: 0 }}>
+                                <div className="modal-body-wrapper" style={{ height: 303, padding: 0 }}>
                                     <iframe src={url} width="100%" height="100%" frameBorder="0"></iframe>
                                 </div>
                             )

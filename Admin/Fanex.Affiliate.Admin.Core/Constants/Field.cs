@@ -5,7 +5,6 @@ namespace Fanex.Affiliate.Admin.Core.Constants
     {
         public const string AffId = "AffId";
         public const string GroupId = "GroupId";
-        public const string GroupTypeId = "GroupTypeId";
         public const string GroupName = "GroupName";
         public const string ErrCode = "ErrCode";
         public const string ErrMsg = "ErrMsg";

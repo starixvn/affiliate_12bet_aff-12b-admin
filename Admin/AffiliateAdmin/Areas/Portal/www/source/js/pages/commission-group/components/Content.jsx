@@ -50,8 +50,8 @@ export class Content extends PureComponent {
     }
 
     onPaging = (pageIndex, pageSize) => {
-        const { searchedGroupName, searchedGroupType } = this.props;
-        const param = Object.assign({}, { PageIndex: pageIndex, PageSize: pageSize }, { GroupName: searchedGroupName, GroupTypeId: searchedGroupType });
+        const { searchedGroupName } = this.props;
+        const param = Object.assign({}, { PageIndex: pageIndex, PageSize: pageSize }, { GroupName: searchedGroupName });
         this.props.getGroupSettingList(param);
     }
 
@@ -81,8 +81,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption, searchedGroupName, searchedGroupType, gridData }) {
-    return Object.assign({}, { pagingOption, searchedGroupName, searchedGroupType, gridData });
+function mapStateToProps({ pagingOption, searchedGroupName, gridData }) {
+    return Object.assign({}, { pagingOption, searchedGroupName, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -10,13 +10,11 @@ describe('commission group - assign private group', () => {
         Description: "",
         GroupId: 0,
         GroupName: "",
-        GroupTypeId: 1,
         SubAffCommRate: 0,
         QmTurnover: 100,
         IsActivePlayerSum: true,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
-        TierSettingList: [],
-        KillRateFeeList: [{ DeductedPercentage: 0.03, DeductionId: 16, ProductIds: "", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
+        TierSettingList: []
     };
 
     const selectedGroup = {
@@ -27,16 +25,11 @@ describe('commission group - assign private group', () => {
         GroupName: "",
         QmTurnover: 100,
         PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
-        TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 }],
-        KillRateFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 16, ProductIds: "" }],
+        TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 }]
     };
-
-    const selectedProductIds = [2, 5];
 
     const defaultProps = {
         selectedGroup: { GroupId: 102 },
-        selectedGroupType: 1,
-        GroupTypeId: 0,
         affInfo: {
             AffId: 927841,
             AffType: 4,
@@ -62,8 +55,6 @@ describe('commission group - assign private group', () => {
             { ProductId: 5, ProductName: "V8 Poker" }
         ],
         setSelectedGroup: jest.fn(),
-        selectedProductIds,
-        setSelectedProductIds: jest.fn(),
         getSelectedCommGroup: jest.fn()
     };
 

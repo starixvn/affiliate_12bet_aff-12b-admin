@@ -9,8 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Commands.CommissionGroup
 
         public override bool IsValid() => true;
 
-        public int GroupTypeId { get; set; }
-
         public bool IsPrivate { get; set; }
     }
 }

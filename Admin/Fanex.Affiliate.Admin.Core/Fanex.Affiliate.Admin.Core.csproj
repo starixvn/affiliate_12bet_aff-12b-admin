@@ -297,7 +297,6 @@
     <Compile Include="Constants\Apis\CustomerStatus.cs" />
     <Compile Include="Constants\Apis\PaymentType.cs" />
     <Compile Include="Constants\CalculatedType.cs" />
-    <Compile Include="Constants\GroupType.cs" />
     <Compile Include="Constants\DataTrackerStatus.cs" />
     <Compile Include="Constants\DataTrackerType.cs" />
     <Compile Include="Constants\ErrCode.cs" />
@@ -434,7 +433,6 @@
     <Compile Include="DTO\Api\MemberSiteCustomerInfo.cs" />
     <Compile Include="DTO\Api\PaymentRequestInfo.cs" />
     <Compile Include="DTO\Api\TokenInfo.cs" />
-    <Compile Include="DTO\CommissionGroup\CommGroupType.cs" />
     <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
     <Compile Include="DTO\CommissionGroup\NormalCommGroup.cs" />
     <Compile Include="DTO\Currency.cs" />

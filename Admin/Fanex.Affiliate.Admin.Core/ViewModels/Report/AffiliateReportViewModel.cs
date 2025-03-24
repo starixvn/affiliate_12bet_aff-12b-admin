@@ -15,8 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.Report
 
         public IEnumerable<NormalCommGroup> CommGroupList { get; set; }
 
-        public IEnumerable<CommGroupType> CommGroupTypes { get; set; }
-
         public DateTime ReportCutOffDate { get; set; }
     }
 }

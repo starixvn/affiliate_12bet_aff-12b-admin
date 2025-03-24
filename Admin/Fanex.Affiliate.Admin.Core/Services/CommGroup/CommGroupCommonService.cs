@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
         {
             var commandInsert = new InsertCommGroupCommand
             {
-                GroupTypeId = param.GroupTypeId,
                 IsPrivate = param.IsPrivate
             };
 
@@ -49,22 +48,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
         {
             const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
 
-            return FetchTData<DeductionItem>(SpKey).Where(d => d.DeductionId != Deduction.OperationalFeeId);
-        }
-
-        public IEnumerable<CommGroupType> GetCommGroupTypes()
-        {
-            const string SpKey = "Aff_Admin_CommGroup_GroupTypeSel";
-
-            return FetchTData<CommGroupType>(SpKey);
+            return FetchTData<DeductionItem>(SpKey);
         }
 
         public IEnumerable<NormalCommGroup> GetNormalCommGroupList(GetGroupListParam param)
         {
             var criteria = new GetNormalCommGroupCriteria
             {
-                AffId = param.AffId,
-                GroupTypeId = param.GroupTypeId,
+                AffId = param.AffId
             };
 
             var normalCommGroups = FetchTData<NormalCommGroup>(criteria);
@@ -93,10 +84,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             var tierSettingXml = BuildTierSettingXml(param.TierSettingList, param.PlatformFeeList);
 
             var tierDeductionSettingList = param.PlatformFeeList.Concat(new[] { param.DepositFee, param.WithdrawalFee });
-            if (param.KillRateFeeList != null && param.KillRateFeeList.Any())
-            {
-                tierDeductionSettingList = tierDeductionSettingList.Concat(param.KillRateFeeList);
-            }
 
             var tierDeductionsXml = BuildTierDeductionSettingXml(tierDeductionSettingList);
 

@@ -47,22 +47,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         }
 
         [HttpGet]
-        public ActionResult AssignGroup(int affId, int groupTypeId)
+        public ActionResult AssignGroup(int affId)
         {
             var viewModel = new AssignNormalGroupViewModel();
 
             if (affId >= Validation.MinId)
             {
-                var selectedGroupType = groupTypeId == 0 ? GroupType.CalculateRevenueShareByWinloss : groupTypeId;
                 var param = new GetGroupListParam { AffId = affId };
                 var commGroupList = _commGroupCommonService.GetNormalCommGroupList(param);
-                var commGroupTypeList = _commGroupCommonService.GetCommGroupTypes();
 
                 viewModel = new AssignNormalGroupViewModel
                 {
                     CommGroupList = commGroupList,
-                    CommGroupTypes = commGroupTypeList,
-                    SelectedGroupType = selectedGroupType,
                     SelectedGroup = param.GroupId,
                     AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
                 };
@@ -98,7 +94,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         }
 
         [HttpGet]
-        public ActionResult AssignPrivateGroup(int affId, int groupTypeId)
+        public ActionResult AssignPrivateGroup(int affId)
         {
             var viewModel = new AssignPrivateGroupViewModel();
             if (affId >= Validation.MinId)
@@ -110,8 +106,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                 {
                     ProductList = productList,
                     DeductionList = _commGroupCommonService.GetDeductionList(),
-                    AffInfo = affInfo,
-                    SelectedGroupType = groupTypeId
+                    AffInfo = affInfo
                 };
             }
 
@@ -141,11 +136,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     UserId = SessionService.UserId,
                     GroupId = commGroup.GroupId,
                     GroupName = affInfo.UserName,
-                    GroupTypeId = commGroup.GroupTypeId,
                     Description = PrivateGroupName,
                     TierSettingList = commGroup.TierSettingList,
                     PlatformFeeList = commGroup.PlatformFeeList,
-                    KillRateFeeList = commGroup.KillRateFeeList,
                     DepositFee = commGroup.DepositFee,
                     WithdrawalFee = commGroup.WithdrawalFee,
                     SubAffCommRate = commGroup.SubAffCommRate,

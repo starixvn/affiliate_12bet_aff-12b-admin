@@ -259,11 +259,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 new Product { ProductId = 2 },
                 new Product { ProductId = 3 }
             });
-            commGroupCommonService.Setup(c => c.GetCommGroupTypes()).Returns(new List<CommGroupType>
-            {
-                new CommGroupType {GroupTypeId = 1},
-                new CommGroupType {GroupTypeId = 2}
-            });
 
             return new CommGroupValidation(fakeIauthService, fakeIAffiliateService, systemService.Object, commGroupCommonService.Object);
         }
@@ -271,7 +266,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             return new CommGroupSettingParam
             {
-                GroupTypeId = 1,
                 DepositFee = new TierDeductionSettingParam
                 {
                     DeductedPercentage = 0.02m,

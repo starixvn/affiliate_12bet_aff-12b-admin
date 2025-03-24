@@ -2,7 +2,6 @@ import { deductionNameList, messages, money, INFINITY_QM, defaultSubAffCommRate,
 
 const emptyCommGroup = {
     GroupId: 0,
-    GroupTypeId: 1,
     GroupName: '',
     Description: '',
     QmTurnover: 100,
@@ -16,16 +15,14 @@ const emptyCommGroup = {
 
 export const buildDefaultCommGroup = (deductionList, productList) => {
     const deductionSetting = getDeductionSetting(deductionList);
-    const { platformFeeSetting, killRateFeeSetting } = deductionSetting;
+    const { platformFeeSetting } = deductionSetting;
     const platformFeeList = buildProductGroupsDeductionFeeList(productList, platformFeeSetting);
-    const killRateFeeList = buildProductGroupsDeductionFeeList([], killRateFeeSetting);
 
     const depositFee = createDefaultDepositSetting(deductionSetting.depositFeeSetting);
     const withdrawalFee = createDefaultWithdrawalSetting(deductionSetting.withdrawalFeeSetting);
 
     return Object.assign({}, emptyCommGroup, {
         PlatformFeeList: platformFeeList,
-        KillRateFeeList: killRateFeeList,
         DepositFee: depositFee,
         WithdrawalFee: withdrawalFee
     });
@@ -34,13 +31,11 @@ export const buildDefaultCommGroup = (deductionList, productList) => {
 export const getDeductionSetting = (deductionList) => {
     const deductionObj = convertDeductionList(deductionList);
     const platformFeeSetting = deductionObj[deductionNameList.platformFee];
-    const killRateFeeSetting = deductionObj[deductionNameList.killRate]
     const depositFeeSetting = deductionObj[deductionNameList.depositFee];
     const withdrawalFeeSetting = deductionObj[deductionNameList.withdrawalFee];
 
     return {
         platformFeeSetting,
-        killRateFeeSetting,
         depositFeeSetting,
         withdrawalFeeSetting
     }
@@ -215,12 +210,6 @@ export const validateItemMustHaveAProduct = (platformFeeList) => {
     return { isValid, messageList: isValid ? [] : [messages.requireSelectedProduct] };
 }
 
-export const getSelectedProductIds = (deductionList) => {
-    return deductionList.map(p => p.ProductIds)
-        .map(ids => convertStringToArrayNumber(ids))
-        .reduce((cul, cur) => [...cul, ...cur], []);
-}
-
 export const updatePlatfromFeeList = (platformFeeList, allProductIds) => {
     const feeIdListInArrayForm = platformFeeList.map(fee => convertStringToArrayNumber(fee.ProductIds));
     const newFeeListIds = getPlatformFeeListIds(feeIdListInArrayForm, allProductIds);
@@ -237,18 +226,6 @@ export const updatePlatfromFeeList = (platformFeeList, allProductIds) => {
 
 export const removeTierItem = (tierId, groupProductId, dataList) => {
     return dataList.filter(item => !(item.TierId === tierId && item.GroupProductId === groupProductId));
-}
-
-export const handleKillRateListData = (platformFeeList, killRateFeeList) => {
-    return platformFeeList.map((item, index) => {
-        return {
-            ProductIds: item.ProductIds,
-            DeductedPercentage: killRateFeeList[index].DeductedPercentage,
-            DeductionId: killRateFeeList[index].DeductionId,
-            GroupProductId: item.GroupProductId,
-            IsDeductedPercent: item.IsDeductedPercent
-        }
-    });
 }
 
 const getPlatformFeeListIds = (prePlatformFeeIds, allProductIds) => {

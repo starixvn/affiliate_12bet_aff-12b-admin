@@ -3,7 +3,7 @@ import TierSetting from './TierSetting';
 import MultipleSelect from "../../../../../components/multiple-select";
 import { Col, Form, FormGroup, Label } from 'reactstrap';
 import DeductedPercentageForm from '../deduction/DeductedPercentageGroup';
-import { ONLY_ONE_ITEM, GGR, Turnover, commissionValueList, killRateValueList } from '../../../modules/constant';
+import { ONLY_ONE_ITEM, GGR, commissionValueList } from '../../../modules/constant';
 
 export default class PlatformFeeItem extends React.PureComponent {
     constructor(props) {
@@ -20,9 +20,9 @@ export default class PlatformFeeItem extends React.PureComponent {
     }
 
     render() {
-        const { data, handleClick, isOnlyOnePlatformFeeRow, isFirst, isTurnover, index } = this.props;
+        const { data, handleClick, isOnlyOnePlatformFeeRow, isFirst, index } = this.props;
 
-        const { productList, royaltyFee, killRate, groupProductId } = data;
+        const { productList, royaltyFee, groupProductId } = data;
         const isValid = (isFirst && isOnlyOnePlatformFeeRow) || productList.filter(p => !p.Checked).length < productList.length;
         const isDisableAddButton = isFirst && (productList.length === ONLY_ONE_ITEM);
         const btnText = isFirst ? (<><span>Add Product Group</span><span>+</span></>) : (<><span>Remove Product Group</span><span>-</span></>);
@@ -56,23 +56,12 @@ export default class PlatformFeeItem extends React.PureComponent {
                                 onChange={(e) => this.handleChangeComm(e, 'PlatformFeeList')} />
                         </Form>
                     </Col>
-                    {isTurnover && <Col sm={4} className="pl-0">
-                        <Form inline>
-                            <Label className="font-weight-bold pr-2">Kill Rate:</Label>
-                            <DeductedPercentageForm
-                                value={killRate}
-                                label={Turnover}
-                                valueList={killRateValueList}
-                                onChange={(e) => this.handleChangeComm(e, 'KillRateFeeList')} />
-                        </Form>
-                    </Col>}
                 </FormGroup>
                 <TierSetting
                     groupProductId={groupProductId}
                     handleClick={handleClick}
                     isDisableAddButton={isDisableAddButton}
                     btnText={btnText}
-                    isTurnover={isTurnover}
                 />
             </div>
         )

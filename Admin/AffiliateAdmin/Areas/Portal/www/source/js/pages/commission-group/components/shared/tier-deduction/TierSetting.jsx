@@ -70,7 +70,7 @@ export class TierSetting extends PureComponent {
     }
 
     render() {
-        const { selectedGroup, groupProductId, isDisableAddButton, handleClick, btnText, isTurnover } = this.props;
+        const { selectedGroup, groupProductId, isDisableAddButton, handleClick, btnText } = this.props;
         const tierSettings = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId)
 
         return (
@@ -81,7 +81,7 @@ export class TierSetting extends PureComponent {
                             <thead>
                                 <tr>
                                     <th style={{ width: 40 }}>Tier</th>
-                                    <th>{isTurnover ? MinNetTurnover : MinNetWin}</th>
+                                    <th>{MinNetWin}</th>
                                     <th>Min Qualified Player</th>
                                     <th style={{ width: 85 }}>Rev. Share%</th>
                                     <th style={{ width: 50 }}>Action</th>

@@ -4,14 +4,11 @@ import { shallow } from 'enzyme';
 
 describe('commission group - CommGroupInfo', () => {
     const defaultProps = {
-        commGroupTypes: [{ GroupTypeId: 1, GroupTypeName: 'Winloss' }, { GroupTypeId: 2, GroupTypeName: 'Turnover' }],
-        searchedGroupType: 1,
         selectedGroup: {
             BankingFee: { DeductedPercentage: 0.02, DeductionId: 12, ProductIds: 0 },
             Description: "A B C",
             GroupId: 0,
             GroupName: "ABC",
-            GroupTypeId: 1,
             QmTurnover: 100,
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6" }],
             TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000000, MinQm: 0, MaxAp: 1000000000, Commission: 0 }]

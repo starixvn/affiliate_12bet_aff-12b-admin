@@ -18,7 +18,6 @@
             paymentCurrencyList: @Html.Raw(Json.Encode(Model.PaymentCurrencyList)),
             isProduction: '@(appSetting.Environment)'.toLowerCase() === 'production',
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
-            commGroupTypes: @Html.Raw(Json.Encode(Model.CommGroupTypes))
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report.js")"></script>

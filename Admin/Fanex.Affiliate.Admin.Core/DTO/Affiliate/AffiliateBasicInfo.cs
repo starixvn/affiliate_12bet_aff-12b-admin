@@ -10,8 +10,6 @@
 
         public int GroupId { get; set; }
 
-        public int GroupTypeId { get; set; }
-
         public string AffName { get; set; }
 
         public string UserName => AffName;

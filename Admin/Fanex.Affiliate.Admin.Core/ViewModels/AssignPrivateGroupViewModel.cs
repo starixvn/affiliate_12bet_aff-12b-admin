@@ -12,7 +12,5 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
         public IEnumerable<DeductionItem> DeductionList { get; set; }
 
         public AffiliateBasicInfo AffInfo { get; set; }
-
-        public int SelectedGroupType { get; set; }
     }
 }

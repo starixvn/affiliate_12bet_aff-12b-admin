@@ -10,10 +10,6 @@ describe('commission group - AssignGroup', () => {
                 { Id: "133", Name: "NewGroup" },
                 { Id: "152", Name: "CG22124" }
             ],
-            commGroupTypes: [
-                { GroupTypeId: "1", GroupTypeName: "Calculate Revenue Share by Winloss" },
-                { GroupTypeId: "2", GroupTypeName: "Calculate Revenue Share by Turnover" }
-            ],
             selectedGroup: 102,
             affInfo: {
                 AffId: 927841,
@@ -59,14 +55,13 @@ describe('commission group - AssignGroup', () => {
     });
 
     it('handleSave - should call parent.postMessage when check private group', () => {
-        window.initialState = Object.assign({}, window.initialState, { selectedGroupType: 1 });
         const wrapper = shallow(<AssignGroup />);
         wrapper.setState({ isPrivateGroup: true });
         parent.postMessage = jest.fn();
 
         wrapper.find('Button').simulate('click');
 
-        expect(parent.postMessage).toHaveBeenCalledWith({ "eventName": "changeAssignToPrivateGroup", "groupTypeId": 1 }, "http://localhost");
+        expect(parent.postMessage).toHaveBeenCalledWith({ "eventName": "changeAssignToPrivateGroup" }, "http://localhost");
     });
 
     it('handleSave - should call setState and hideMessage when GroupId same selectedGroup', () => {

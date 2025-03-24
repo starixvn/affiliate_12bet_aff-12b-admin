@@ -10,13 +10,11 @@ describe('commission group - AddGroup', () => {
         Description: "",
         GroupId: 0,
         GroupName: "",
-        GroupTypeId: 1,
         SubAffCommRate: 0,
         QmTurnover: 100,
         IsActivePlayerSum: true,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
-        TierSettingList: [],
-        KillRateFeeList: [{ DeductedPercentage: 0.05, DeductionId: 16, ProductIds: "", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
+        TierSettingList: []
     };
     const defaultProps = {
         deductionList: [
@@ -41,13 +39,11 @@ describe('commission group - AddGroup', () => {
             GroupName: "",
             QmTurnover: 100,
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", IsDeductedPercent: true, DeductedAmount: "" }],
-            TierSettingList: [],
-            KillRateFeeList: [{ DeductedPercentage: 0.05, DeductionId: 16, ProductIds: "", IsDeductedPercent: true, DeductedAmount: "" }]
+            TierSettingList: []
         },
         pagingOption: defaultPagingOption,
         searchedGroupName: '',
-        onClose: jest.fn(), onSave: jest.fn(),
-        setSelectedProductIds: jest.fn()
+        onClose: jest.fn(), onSave: jest.fn()
     };
     it('componentDidMount - should call setSelectedGroup', () => {
         const mockSetSelectedGroup = jest.fn();

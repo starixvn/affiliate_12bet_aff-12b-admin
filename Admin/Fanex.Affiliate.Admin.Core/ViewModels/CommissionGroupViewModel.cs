@@ -11,7 +11,5 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
         public IEnumerable<DeductionItem> DeductionList { get; set; }
 
         public IEnumerable<SubMenu> SubMenuList { get; set; }
-
-        public IEnumerable<CommGroupType> CommGroupTypeList { get; set; }
     }
 }

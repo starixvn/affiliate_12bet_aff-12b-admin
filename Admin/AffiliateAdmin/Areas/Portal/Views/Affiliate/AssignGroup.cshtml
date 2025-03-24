@@ -11,8 +11,6 @@
     <script type="text/javascript">
         window.initialState = {
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
-            commGroupTypes: @Html.Raw(Json.Encode(Model.CommGroupTypes)),
-            selectedGroupType: @Model.SelectedGroupType,
             selectedGroup: @Model.SelectedGroup,
             affInfo: @Html.Raw(Json.Encode(Model.AffInfo))
         }

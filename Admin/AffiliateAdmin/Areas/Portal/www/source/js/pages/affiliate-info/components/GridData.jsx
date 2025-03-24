@@ -6,7 +6,7 @@ import { Button, Table } from 'reactstrap';
 import { Pager } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, resource, regExp, defaultSelectedColumnNumber, globalResource, defaultSortBy, minWidthOfColumns } from '../libs/constants';
-import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setParam, setParentAffName, setGroupTypeId } from '../actions';
+import { setPagingOption, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setParam, setParentAffName } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';
@@ -163,7 +163,7 @@ export class GridData extends Component {
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.IsUsingPrivateCommGroup ? (
             <Button color="link"
-                onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup, dataItem.GroupTypeId)}>
+                onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
                 {commissionGroupName}
             </Button>) : commissionGroupName;
 
@@ -250,11 +250,10 @@ export class GridData extends Component {
         this.props.setAffId(affId);
     }
 
-    handleEditCommGroup = (affId, commGroup, groupTypeId) => {
+    handleEditCommGroup = (affId, commGroup) => {
         this.props.setShowPopupCommGroup(true);
         this.props.setAffId(affId);
         this.props.setCommGroup(commGroup);
-        this.props.setGroupTypeId(groupTypeId);
     }
 
     handlePaging = (index, size) => {
@@ -336,7 +335,7 @@ function mapStateToProps({ pagingOption, languageList, param, columnList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setGroupTypeId, setParam, setParentAffName }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup, setParam, setParentAffName }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

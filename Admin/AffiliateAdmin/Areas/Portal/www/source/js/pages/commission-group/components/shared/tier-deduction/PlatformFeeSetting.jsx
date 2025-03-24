@@ -7,7 +7,7 @@ import { setSelectedGroup } from '../../../actions';
 
 import PlatformFeeItem from "./PlatformFeeItem";
 import { deepClone, updateObjectInArray } from "../../../../../modules/dataHandler";
-import { FIRST_ITEM_INDEX, ONLY_ONE_ITEM, groupTypeList, tierSettingDefault } from '../../../modules/constant';
+import { FIRST_ITEM_INDEX, ONLY_ONE_ITEM, tierSettingDefault } from '../../../modules/constant';
 import { convertProductList, createDefaultProductGroupsDeductionFee, getDeductionSetting } from '../../../modules/service';
 
 export class PlatformFeeSetting extends PureComponent {
@@ -17,10 +17,8 @@ export class PlatformFeeSetting extends PureComponent {
         const { deductionList, productList } = this.props;
         const deductionSetting = getDeductionSetting(deductionList);
         const defaultPlatformSetting = createDefaultProductGroupsDeductionFee(productList, deductionSetting.platformFeeSetting);
-        const defaultKillRateSetting = createDefaultProductGroupsDeductionFee([], deductionSetting.killRateFeeSetting);
 
         this.defaultPlatformItem = this.createDefaultProductGroupsDeductionFeeItem(defaultPlatformSetting);
-        this.defaultKillRateItem = this.createDefaultProductGroupsDeductionFeeItem(defaultKillRateSetting);
     }
 
     createDefaultProductGroupsDeductionFeeItem = (settings) => {
@@ -32,22 +30,20 @@ export class PlatformFeeSetting extends PureComponent {
     }
 
     handleAdd = () => {
-        const { PlatformFeeList, KillRateFeeList, TierSettingList } = this.props.selectedGroup;
+        const { PlatformFeeList, TierSettingList } = this.props.selectedGroup;
         const lastPlatformFee = PlatformFeeList.slice(-1)[0];
         const groupProductId = lastPlatformFee.GroupProductId + 1;
 
         const platformFeeList = [...PlatformFeeList, { ...this.defaultPlatformItem, GroupProductId: groupProductId }];
-        const killRateFeeList = [...KillRateFeeList, { ...this.defaultKillRateItem, GroupProductId: groupProductId }];
         const tierSettingList = [...TierSettingList, { ...tierSettingDefault, GroupProductId: groupProductId }];
 
-        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList, KillRateFeeList: killRateFeeList, TierSettingList: tierSettingList });
+        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList, TierSettingList: tierSettingList });
     }
 
     handleRemove = (index) => {
-        const { PlatformFeeList, KillRateFeeList, TierSettingList } = this.props.selectedGroup;
+        const { PlatformFeeList, TierSettingList } = this.props.selectedGroup;
 
         const platformFeeList = deepClone(PlatformFeeList);
-        const killRateFeeList = deepClone(KillRateFeeList);
         const tierSettingList = deepClone(TierSettingList);
 
         const rootProductIds = platformFeeList[0].ProductIds.split(',').filter(p => !!p);
@@ -62,10 +58,9 @@ export class PlatformFeeSetting extends PureComponent {
         platformFeeList[0].ProductIds = rootProductIds.join(',');
 
         platformFeeList.splice(index, 1);
-        killRateFeeList.splice(index, 1);
 
         const groupIdRemoved = platformFeeRemoved.GroupProductId;
-        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList, KillRateFeeList: killRateFeeList, TierSettingList: tierSettingList.filter(t => t.GroupProductId != groupIdRemoved) });
+        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList, TierSettingList: tierSettingList.filter(t => t.GroupProductId != groupIdRemoved) });
     }
 
     handleSelect = (index, selectedItem) => {
@@ -120,13 +115,12 @@ export class PlatformFeeSetting extends PureComponent {
     }
 
     handleProductGroupsDeductionData(selectProducts) {
-        const { PlatformFeeList, KillRateFeeList } = this.props.selectedGroup;
+        const { PlatformFeeList } = this.props.selectedGroup;
 
         const productGroupsDeductionData = PlatformFeeList.map((platformFee, index) => {
             return {
                 productList: convertProductList(selectProducts, platformFee.ProductIds),
                 royaltyFee: platformFee.DeductedPercentage,
-                killRate: KillRateFeeList[index].DeductedPercentage,
                 groupProductId: platformFee.GroupProductId
             }
         });
@@ -135,15 +129,13 @@ export class PlatformFeeSetting extends PureComponent {
     }
 
     render() {
-        const { productList, selectedGroup, selectedProductIds } = this.props;
+        const { productList, selectedGroup } = this.props;
         const { IsActivePlayerSum } = selectedGroup;
-        const selectProducts = productList.filter(p => !selectedProductIds.find(i => i === p.ProductId));
 
-        const productGroupsDeductionData = this.handleProductGroupsDeductionData(selectProducts);
+        const productGroupsDeductionData = this.handleProductGroupsDeductionData(productList);
 
 
         const isOnlyOnePlatformFeeRow = productGroupsDeductionData.length === ONLY_ONE_ITEM;
-        const isTurnover = selectedGroup.GroupTypeId === groupTypeList.Turnover;
 
         return (
             <div className="platformfee-group">
@@ -170,7 +162,6 @@ export class PlatformFeeSetting extends PureComponent {
                                 onChangeCommission={(value, propName) => this.handleChangeCommission(i, value, propName)}
                                 handleClick={handleClick}
                                 isFirst={isFirst}
-                                isTurnover={isTurnover}
                                 index={i + 1} />
                         )
                     })
@@ -180,8 +171,8 @@ export class PlatformFeeSetting extends PureComponent {
     }
 }
 
-function mapStateToProp({ deductionList, productList, selectedGroup, selectedProductIds }) {
-    return { deductionList, productList, selectedGroup, selectedProductIds };
+function mapStateToProp({ deductionList, productList, selectedGroup }) {
+    return { deductionList, productList, selectedGroup };
 }
 
 function mapDispatchToProps(dispatch) {

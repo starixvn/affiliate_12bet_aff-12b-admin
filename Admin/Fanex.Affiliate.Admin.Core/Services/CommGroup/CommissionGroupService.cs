@@ -24,7 +24,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             {
                 GroupId = param.GroupId,
                 GroupName = param.GroupName,
-                GroupTypeId = param.GroupTypeId,
                 PageIndex = param.PageIndex,
                 PageSize = param.PageSize,
             };
@@ -42,9 +41,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                              RowIdx = c.RowIdx,
                              GroupId = c.GroupId,
                              GroupName = c.GroupName,
-                             GroupTypeId = c.GroupTypeId,
-                             GroupTypeName = c.GroupTypeName,
-                             GroupTypeBy = c.GroupTypeBy,
                              SubAffCommRate = c.SubAffCommRate,
                              QmTurnover = c.QmTurnover,
                              CreatedDate = c.CreatedDate,
@@ -56,7 +52,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
                              PlatformFeeList = groupTierDeductionSetting.Where(p => p.DeductionId == Constants.Deduction.PlatformFeeId),
                              DepositFee = groupTierDeductionSetting.FirstOrDefault(p => p.DeductionId == Constants.Deduction.DepositFeeId),
                              WithdrawalFee = groupTierDeductionSetting.FirstOrDefault(p => p.DeductionId == Constants.Deduction.WithdrawalFeeId),
-                             KillRateFeeList = groupTierDeductionSetting.Where(p => p.DeductionId == Constants.Deduction.KillRateFeeId),
                          };
 
             return result;

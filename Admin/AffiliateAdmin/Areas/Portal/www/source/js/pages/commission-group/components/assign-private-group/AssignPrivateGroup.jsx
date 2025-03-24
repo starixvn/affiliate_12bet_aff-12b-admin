@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
-import { getSelectedCommGroup, setSelectedGroup, setSelectedProductIds } from '../../actions';
-import { buildDefaultCommGroup, validateTierSettingList, validateItemMustHaveAProduct, validateDeductedFees, handleKillRateListData } from '../../modules/service';
-import { groupTypeList, messages } from '../../modules/constant';
+import { getSelectedCommGroup, setSelectedGroup } from '../../actions';
+import { buildDefaultCommGroup, validateTierSettingList, validateItemMustHaveAProduct, validateDeductedFees } from '../../modules/service';
+import { messages } from '../../modules/constant';
 
 import DeductionSetting from '../shared/tier-deduction';
 import Loader from '../../../../components/Loader';
@@ -29,22 +29,15 @@ export class AssignPrivateGroup extends React.PureComponent {
     componentDidMount() {
         this.setState({ isShowLoader: true });
 
-        const { GroupId, IsUsingPrivateCommGroup, GroupTypeId } = this.props.affInfo;
-        const { selectedGroupType, selectedGroup } = this.props;
+        const { GroupId, IsUsingPrivateCommGroup } = this.props.affInfo;
 
         if (IsUsingPrivateCommGroup && !!GroupId) {
             this.props.getSelectedCommGroup({ GroupId });
-
-            if (GroupTypeId === 0) {
-                this.props.setSelectedGroup({ ...selectedGroup, GroupTypeId: selectedGroupType })
-            }
         }
         else {
             const { deductionList, productList } = this.props;
-            this.props.setSelectedProductIds(productIds);
 
             const commGroup = buildDefaultCommGroup(deductionList, productList);
-            commGroup.GroupTypeId = selectedGroupType;
 
             this.props.setSelectedGroup(commGroup);
         }
@@ -72,13 +65,8 @@ export class AssignPrivateGroup extends React.PureComponent {
             const { selectedGroup, affInfo } = this.props;
 
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
-            let killRateFeeList = [];
 
-            if (selectedGroup.GroupTypeId === groupTypeList.Turnover) {
-                killRateFeeList = handleKillRateListData(platformFeeList, selectedGroup.KillRateFeeList);
-            }
-
-            const commGroup = { ...selectedGroup, PlatformFeeList: platformFeeList, KillRateFeeList: killRateFeeList };
+            const commGroup = { ...selectedGroup, PlatformFeeList: platformFeeList };
             const param = { commGroup, affInfo };
 
             const response = await post('Portal/CommGroupAssignment/AssignPrivateGroup', param);
@@ -141,12 +129,12 @@ export class AssignPrivateGroup extends React.PureComponent {
     }
 }
 
-function mapStateToProp({ deductionList, productList, selectedGroup, selectedGroupType, affInfo }) {
-    return { deductionList, productList, selectedGroup, selectedGroupType, affInfo };
+function mapStateToProp({ deductionList, productList, selectedGroup, affInfo }) {
+    return { deductionList, productList, selectedGroup, affInfo };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getSelectedCommGroup, setSelectedGroup, setSelectedProductIds }, dispatch);
+    return bindActionCreators({ getSelectedCommGroup, setSelectedGroup }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(AssignPrivateGroup);

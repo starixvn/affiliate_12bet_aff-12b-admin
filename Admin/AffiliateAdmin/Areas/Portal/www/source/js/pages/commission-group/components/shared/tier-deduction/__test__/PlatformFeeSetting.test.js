@@ -15,8 +15,6 @@ describe('commission group - platform fee setting', () => {
             { GroupProductId: 123, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 },
             { GroupProductId: 234, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 }
         ],
-        KillRateFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.01, DeductionId: 16, ProductIds: "1,3" },
-        { GroupProductId: 234, DeductedPercentage: 0.02, DeductionId: 16, ProductIds: "4" }],
     };
     const defaultProps = {
         selectedGroup: defaultSelectedGroup,
@@ -44,8 +42,7 @@ describe('commission group - platform fee setting', () => {
             { ProductId: 3, ProductName: "Playtech Casino" },
             { ProductId: 4, ProductName: "Number Game" },
             { ProductId: 5, ProductName: "V8 Poker" }
-        ],
-        selectedProductIds: [2, 5]
+        ]
     };
 
     it('handleAdd - should call setSelectedGroup', () => {
@@ -71,7 +68,7 @@ describe('commission group - platform fee setting', () => {
         const wrapper = shallow(<PlatformFeeSetting {...props} />);
         wrapper.instance().handleRemove(1);
 
-        expect(props.setSelectedGroup).toHaveBeenCalledWith({ "KillRateFeeList": [{ "DeductedPercentage": 0.01, "DeductionId": 16, "GroupProductId": 123, "ProductIds": "1,3" }], PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }] });
+        expect(props.setSelectedGroup).toHaveBeenCalledWith({ PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }] });
     })
 
     it('handleSelect - should be called when change product', () => {

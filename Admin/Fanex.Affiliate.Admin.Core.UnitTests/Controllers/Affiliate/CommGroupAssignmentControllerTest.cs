@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var controller = CreateCommGroupAssignmentController();
 
             // Action
-            var viewResult = controller.AssignGroup(0, 0) as ViewResult;
+            var viewResult = controller.AssignGroup(0) as ViewResult;
             var model = viewResult.Model as AssignNormalGroupViewModel;
 
             // Assert
@@ -44,13 +44,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Theory]
-        [InlineData(1271808, 0)]
-        [InlineData(1271808, 1)]
-        public void AssignGroup_WhenCall_ReturnView(int affId, int groupTypeId)
+        [InlineData(1271808)]
+        public void AssignGroup_WhenCall_ReturnView(int affId)
         {
             // Arrange
             GetGroupListParam passedParam = null;
-            var commGroupList = new List<NormalCommGroup> { new NormalCommGroup { GroupId = 123, GroupName = "Test", GroupTypeId = groupTypeId } };
+            var commGroupList = new List<NormalCommGroup> { new NormalCommGroup { GroupId = 123, GroupName = "Test" } };
             var commGroupCommonService = new Mock<ICommGroupCommonService>();
             commGroupCommonService.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(commGroupList).Callback<GetGroupListParam>(p => passedParam = p);
             var affiliateService = new Mock<IAffiliateService>();
@@ -59,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var controller = CreateCommGroupAssignmentController(affiliateService: affiliateService.Object, commGroupCommonService: commGroupCommonService.Object);
 
             // Action
-            var viewResult = controller.AssignGroup(affId, groupTypeId) as ViewResult;
+            var viewResult = controller.AssignGroup(affId) as ViewResult;
             var model = viewResult.Model as AssignNormalGroupViewModel;
 
             // Assert
@@ -181,7 +180,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             var controller = CreateCommGroupAssignmentController();
 
             // Action
-            var viewResult = controller.AssignPrivateGroup(0, 0) as ViewResult;
+            var viewResult = controller.AssignPrivateGroup(0) as ViewResult;
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Affiliate/AssignPrivateGroup.cshtml", viewResult.ViewName);
@@ -191,7 +190,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         public void AssignPrivateGroup_WhenCall_ReturnView()
         {
             // Arrange
-            const int affId = 1271808, groupTypeId = 1;
+            const int affId = 1271808;
             var productList = new List<Product> { new Product { ProductId = 123, ProductName = "Casino" } };
             var deductionList = new List<DeductionItem> { new DeductionItem { DeductionId = 13, DeductionName = "ExchangeGgrShare", DeductedPercentage = 0.05m, IsDeductedPercent = true, DeductedAmount = "" } };
             var systemService = new Mock<ISystemService>();
@@ -206,7 +205,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
                 DeductionList = deductionList
             };
             // Action
-            var viewResult = controller.AssignPrivateGroup(affId, groupTypeId) as ViewResult;
+            var viewResult = controller.AssignPrivateGroup(affId) as ViewResult;
             var model = viewResult.Model as AssignPrivateGroupViewModel;
 
             // Assert

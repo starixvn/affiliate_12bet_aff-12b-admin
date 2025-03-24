@@ -9,7 +9,6 @@ export const INFINITY_QM = 1000000000;
 export const NEGATIVE_INFINITY_SYMBOL = '-∞';
 export const FIRST_ITEM_INDEX = 0;
 export const ONLY_ONE_ITEM = 1;
-export const MAX_KILL_RATE_PERCENT = 5;
 
 function generateCommissionValues(maxValue = 100) {
     let min = 0, max = maxValue;
@@ -25,10 +24,8 @@ function generateCommissionValues(maxValue = 100) {
 }
 
 const _commValueList = generateCommissionValues();
-const _killRateValueList = generateCommissionValues(MAX_KILL_RATE_PERCENT);
 
 export const commissionValueList = _commValueList;
-export const killRateValueList = _killRateValueList;
 
 function generateSubAffCommRateValues() {
     let min = 0.0,
@@ -81,7 +78,6 @@ export const messages = {
 
 const _deductionNameList = {
     platformFee: 'Platform Fee',
-    killRate: 'Kill Rate',
     depositFee: 'Deposit Fee',
     withdrawalFee: 'Withdrawal Fee'
 }
@@ -97,11 +93,6 @@ export const regExp = {
 
 export const regexAcceptNegativeAmountFormat = new RegExp(regExp.acceptNegativeAmountFormat);
 export const regexValidNegativeAmount = new RegExp(regExp.validNegativeAmount);
-
-export const groupTypeList = {
-    Winloss: 1,
-    Turnover: 2
-}
 
 export const tierSettingDefault = {
     TierId: 1,

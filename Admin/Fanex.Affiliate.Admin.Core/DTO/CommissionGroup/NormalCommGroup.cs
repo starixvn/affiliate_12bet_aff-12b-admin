@@ -6,7 +6,5 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         public int GroupId { get; set; }
 
         public string GroupName { get; set; }
-
-        public int GroupTypeId { get; set; }
     }
 }
