@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 
         public string ProductIds { get; set; }
 
-        [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Deducted Percentage is incorrect!")]
+        [Range((double)Validation.Zero, (double)Validation.MaxPercentage, ErrorMessage = "Deducted Percentage is incorrect!")]
         public decimal DeductedPercentage { get; set; }
     }
 }

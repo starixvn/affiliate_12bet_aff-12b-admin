@@ -9,6 +9,7 @@ export const INFINITY_QM = 1000000000;
 export const NEGATIVE_INFINITY_SYMBOL = '-∞';
 export const FIRST_ITEM_INDEX = 0;
 export const ONLY_ONE_ITEM = 1;
+export const MAX_PERCENTAGE = 1;
 
 function generateCommissionValues(maxValue = 100) {
     let min = 0, max = maxValue;

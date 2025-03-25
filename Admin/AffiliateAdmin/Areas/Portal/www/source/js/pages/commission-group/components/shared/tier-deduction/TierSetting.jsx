@@ -8,7 +8,7 @@ import { setSelectedGroup } from '../../../actions';
 import TierSettingItem from './TierSettingItem';
 import { removeTierItem } from '../../../modules/service';
 import { isValidNumber } from '../../../../../modules/utils';
-import { FIRST_ITEM_INDEX, MinNetWin, regexAcceptNegativeAmountFormat, tierSettingDefault } from '../../../modules/constant';
+import { FIRST_ITEM_INDEX, MinNetWin, regexAcceptNegativeAmountFormat, tierSettingDefault, MAX_PERCENTAGE } from '../../../modules/constant';
 
 export class TierSetting extends PureComponent {
     constructor(props) {
@@ -27,8 +27,10 @@ export class TierSetting extends PureComponent {
         if (itemCount > 0) {
             const lastItem = tierSettingListByGroupProduct[itemCount - 1];
             const minAmount = Number(lastItem.MinAmount);
+            const commission = lastItem.Commission + 0.1;
+
             defaultMinAmount = (minAmount < 1 || Number.isNaN(minAmount)) ? 1 : minAmount + 1;
-            defaultCommission = lastItem.Commission + 0.1;
+            defaultCommission = commission <= MAX_PERCENTAGE ? commission : MAX_PERCENTAGE;
             defaultTierId = lastItem.TierId + 1;
         }
 
