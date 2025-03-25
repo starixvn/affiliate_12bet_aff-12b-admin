@@ -98,14 +98,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             foreach (var platformFee in platformFeeList)
             {
                 var tierSettings = tierSettingParamList.Where(t => t.GroupProductId == platformFee.GroupProductId);
+                var tierId = 1;
 
                 foreach (var item in tierSettings)
                 {
                     var productIds = platformFeeList.FirstOrDefault(p => p.GroupProductId == item.GroupProductId)?.ProductIds;
 
-                    var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\"" +
+                    var row = $"<row id=\"{tierId}\" minamount=\"{item.MinAmount}\"" +
                         $" minqm=\"{item.MinQm}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
+                    
                     result.Append(row);
+                    tierId++;
                 }
             }
 

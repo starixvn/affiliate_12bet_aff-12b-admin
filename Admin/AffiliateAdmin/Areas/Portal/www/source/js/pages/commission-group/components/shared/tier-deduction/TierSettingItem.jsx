@@ -55,7 +55,7 @@ export default class TierSettingItem extends React.PureComponent {
     }
 
     render() {
-        const { data, handleClick, btnText, isShowNegativeInfinity } = this.props;
+        const { index, data, handleClick, btnText, isShowNegativeInfinity } = this.props;
         const { TierId, MinAmount, MinQm, Commission } = data;
 
         const isValidAmount = regexValidNegativeAmount.test(MinAmount);
@@ -63,7 +63,7 @@ export default class TierSettingItem extends React.PureComponent {
 
         return (
             <tr>
-                <td className="text-center">{TierId}</td>
+                <td className="text-center">{index}</td>
                 <td>
                     {
                         isShowNegativeInfinity ? (

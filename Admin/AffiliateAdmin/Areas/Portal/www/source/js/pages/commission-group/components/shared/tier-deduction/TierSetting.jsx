@@ -19,19 +19,22 @@ export class TierSetting extends PureComponent {
         const { selectedGroup, groupProductId } = this.props;
         let defaultMinAmount = tierSettingDefault.MinAmount;
         let defaultCommission = tierSettingDefault.Commission;
+        let defaultTierId = 1;
 
         const tierSettingListByGroupProduct = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId);
         const itemCount = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId).length;
+
         if (itemCount > 0) {
             const lastItem = tierSettingListByGroupProduct[itemCount - 1];
             const minAmount = Number(lastItem.MinAmount);
             defaultMinAmount = (minAmount < 1 || Number.isNaN(minAmount)) ? 1 : minAmount + 1;
             defaultCommission = lastItem.Commission + 0.1;
+            defaultTierId = lastItem.TierId + 1;
         }
 
         const newTierSetting = {
             GroupId: selectedGroup.GroupId,
-            TierId: itemCount + 1,
+            TierId: defaultTierId,
             GroupProductId: this.props.groupProductId,
             MinAmount: defaultMinAmount,
             MinQm: tierSettingDefault.MinQm,
@@ -95,7 +98,8 @@ export class TierSetting extends PureComponent {
                                         const isFirst = i === FIRST_ITEM_INDEX;
                                         const handleClick = isFirst ? this.handleAdd : () => this.handleRemove(item.TierId, groupProductId);
 
-                                        return (<TierSettingItem data={item} key={`tier-${i}`}
+                                        return (<TierSettingItem data={item} key={`tier-${item.TierId}`}
+                                            index={i+1}
                                             handleClick={handleClick}
                                             btnText={isFirst ? '+' : '-'}
                                             isShowNegativeInfinity={isFirst}
