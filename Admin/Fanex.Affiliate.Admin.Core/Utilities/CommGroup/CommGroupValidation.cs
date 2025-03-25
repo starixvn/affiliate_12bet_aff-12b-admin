@@ -180,7 +180,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
             foreach (var tierSetting in tierSettingList)
             {
-                if (previous != null && previous.MinAmount < 0 && tierSetting.MinAmount > 1)
+                var minAmount = tierSetting.MinAmount;
+
+                if (previous != null && previous.MinAmount < 0 && (minAmount == 0 || minAmount > 1))
                 {
                     return true;
                 }

@@ -255,7 +255,11 @@ const isMinNetWinNotIncreaseSequentially = (tierSettingList) => {
 }
 
 const isMinNetWinNotStartFromOneAfterNegative = (tierSettingList) => {
-    return tierSettingList.some((tier, i) => i != 0 && Number(tierSettingList[i - 1].MinAmount) < 0 && Number(tier.MinAmount) > 1);
+    return tierSettingList.some((tier, i) => {
+        const minAmount = Number(tier.MinAmount);
+
+        return i != 0 && Number(tierSettingList[i - 1].MinAmount) < 0 && (minAmount == 0 || minAmount > 1);
+    });
 }
 
 const handleGroupBy = (items, key) => {
