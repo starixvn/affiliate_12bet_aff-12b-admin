@@ -299,6 +299,7 @@
     <Compile Include="Constants\AffType.cs" />
     <Compile Include="Constants\Apis\CustomerStatus.cs" />
     <Compile Include="Constants\Apis\PaymentType.cs" />
+    <Compile Include="Constants\CacheKey.cs" />
     <Compile Include="Constants\CalculatedType.cs" />
     <Compile Include="Constants\DataTrackerStatus.cs" />
     <Compile Include="Constants\DataTrackerType.cs" />

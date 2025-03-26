@@ -1,5 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Caching;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 
@@ -7,8 +9,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class CommonMediaGalleryService : BaseDynamicService, ICommonMediaGalleryService
     {
+        private readonly ICacheService _cacheService;
+
         public CommonMediaGalleryService(
-            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
+            IDynamicRepository dynamicRepository,
+            ICacheService cacheService) : base(dynamicRepository)
+        {
+            _cacheService = cacheService;
+        }
 
         public IEnumerable<Category> GetCategoryList(byte typeId, byte userType)
         {
@@ -23,9 +31,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public IEnumerable<MediaGalleryFilterItem> GetCurrencyList()
         {
-            const string SpKey = "Aff_Admin_MediaCurrency_Sel";
+            var mediaCurrencyList = _cacheService.Get<IEnumerable<MediaGalleryFilterItem>>(CacheKey.MediaCurrencyList);
 
-            return FetchTData<MediaGalleryFilterItem>(SpKey);
+            if (mediaCurrencyList == null)
+            {
+                const string SpKey = "Aff_Admin_MediaCurrency_Sel";
+
+                mediaCurrencyList = FetchTData<MediaGalleryFilterItem>(SpKey);
+                _cacheService.Set(CacheKey.MediaCurrencyList, mediaCurrencyList);
+            }
+
+            return mediaCurrencyList;
         }
     }
 }

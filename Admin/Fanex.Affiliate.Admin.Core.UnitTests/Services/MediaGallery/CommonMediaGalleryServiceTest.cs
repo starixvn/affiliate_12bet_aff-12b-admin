@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Caching;
 using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             dynamicRepository.Setup(r => r.Fetch<Category>(It.IsAny<MediaCategoryCriteria>(), It.IsAny<string>())).Returns(new List<Category> { new Category() });
 
             // Action
-            var service = new CommonMediaGalleryService(dynamicRepository.Object);
+            var service = new CommonMediaGalleryService(dynamicRepository.Object, null);
             var result = service.GetCategoryList(1, 1);
 
             // Assert
@@ -33,9 +34,10 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(r => r.Fetch<MediaGalleryFilterItem>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem() });
+            var cacheService = new Mock<ICacheService>();
 
             // Action
-            var service = new CommonMediaGalleryService(dynamicRepository.Object);
+            var service = new CommonMediaGalleryService(dynamicRepository.Object, cacheService.Object);
             var result = service.GetCurrencyList();
 
             // Assert

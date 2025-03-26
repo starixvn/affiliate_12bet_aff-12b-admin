@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Apis;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Api;
 using Fanex.Affiliate.Admin.Core.MetaModels.Api;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -16,8 +17,6 @@ namespace Fanex.Affiliate.Admin.Core.Handlers
 {
     public class AuthenticatedHttpClientHandler : HttpClientHandler
     {
-        private const string CACHE_MEMORY_KEY = "AFF_12B_ADMIN_CACHE_MEMORY_KEY";
-
         private readonly IAppSetting _appSetting;
         private readonly ITokenApi _tokenApi;
         private readonly ICacheService _cacheService;
@@ -42,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Handlers
 
         private async Task SetJwtToken(HttpRequestMessage request)
         {
-            var token = await _cacheService.GetAsync<string>(CACHE_MEMORY_KEY);
+            var token = await _cacheService.GetAsync<string>(CacheKey.TokenExtApi);
 
             if (token == null)
             {
@@ -50,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Handlers
                 token = tokenInfo.AccessToken;
 
                 var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(_appSetting.MemberSiteApiTokenCacheTimeOut));
-                await _cacheService.SetAsync(CACHE_MEMORY_KEY, token, cachePolicy);
+                await _cacheService.SetAsync(CacheKey.TokenExtApi, token, cachePolicy);
             }
 
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);

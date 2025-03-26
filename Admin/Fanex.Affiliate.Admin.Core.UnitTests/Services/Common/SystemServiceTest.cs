@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Caching;
 using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
@@ -115,11 +116,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
             Assert.Equal(Thread.CurrentThread.CurrentCulture, currentCulture);
         }
 
-        private static SystemService CreatedynamicRepository(IDynamicRepository dynamicRepository = null)
+        private static SystemService CreatedynamicRepository(
+            IDynamicRepository dynamicRepository = null,
+            ICacheService cacheService = null)
         {
             var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
+            var fakeICacheService = cacheService ?? Mock.Of<ICacheService>();
 
-            return new SystemService(fakedynamicRepository);
+            return new SystemService(fakedynamicRepository, fakeICacheService);
         }
     }
 }
