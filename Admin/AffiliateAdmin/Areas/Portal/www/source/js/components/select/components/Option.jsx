@@ -17,9 +17,9 @@ const Option = React.forwardRef((props, ref) => {
 
     return (
         <li className="select-item" id={id} onClick={handleChange} ref={ref}>
-            <label className="option-label">
+            <span className="option-label">
                 {itemData.value}
-            </label>
+            </span>
         </li>
     );
 })

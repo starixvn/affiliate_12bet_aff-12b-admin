@@ -25,9 +25,9 @@ const Option = (props) => {
                 onChange={handleChange}
                 disabled={isDisable}
             />
-            <label className="option-label" htmlFor={id}>
+            <span className="option-label" htmlFor={id}>
                 {itemData.value}
-            </label>
+            </span>
         </li>
     );
 }
