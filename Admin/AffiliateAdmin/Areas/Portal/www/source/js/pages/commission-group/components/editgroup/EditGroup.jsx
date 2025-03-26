@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
-import { getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup, setSelectedProductIds } from '../../actions';
+import { getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup } from '../../actions';
 
 import DeductionSetting from '../shared/tier-deduction';
 import CommGroupInfo from '../shared/CommGroupInfo';
-import { groupTypeList, messages } from '../../modules/constant';
-import { handleKillRateListData, validate } from '../../modules/service';
+import { messages } from '../../modules/constant';
+import { validate } from '../../modules/service';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
 import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
-export class EditGroup extends React.Component {
+export class EditGroup extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -30,7 +30,6 @@ export class EditGroup extends React.Component {
 
     componentWillUnmount() {
         this.props.setSelectedGroup(null);
-        this.props.setSelectedProductIds(null);
     }
 
     handleSave = async () => {
@@ -50,21 +49,16 @@ export class EditGroup extends React.Component {
             this.props.toggleLoader(true);
 
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
-            let killRateFeeList = [];
 
-            if (selectedGroup.GroupTypeId === groupTypeList.Turnover) {
-                killRateFeeList = handleKillRateListData(platformFeeList, selectedGroup.KillRateFeeList);
-            }
-
-            const param = { ...selectedGroup, PlatformFeeList: platformFeeList, KillRateFeeList: killRateFeeList };
+            const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
             const response = await this.props.updateCommissionGroup(param);
             if (response && response.status === 200) {
                 const result = response.data;
 
                 if (result.IsSuccessful) {
                     window.setTimeout(this.props.onClose, 3000);
-                    const { pagingOption, searchedGroupName, searchedGroupType } = this.props;
-                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: searchedGroupName, GroupTypeId: searchedGroupType });
+                    const { pagingOption, searchedGroupName } = this.props;
+                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: searchedGroupName });
                     this.props.getGroupSettingList(gettingParam);
                 }
 
@@ -97,12 +91,12 @@ export class EditGroup extends React.Component {
     }
 }
 
-function mapStateToProp({ selectedGroup, searchedGroupName, searchedGroupType, pagingOption, p2pProductList }) {
-    return { selectedGroup, searchedGroupName, searchedGroupType, pagingOption, p2pProductList };
+function mapStateToProp({ selectedGroup, searchedGroupName, pagingOption }) {
+    return { selectedGroup, searchedGroupName, pagingOption };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup, toggleLoader, setSelectedProductIds }, dispatch);
+    return bindActionCreators({ getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(EditGroup);

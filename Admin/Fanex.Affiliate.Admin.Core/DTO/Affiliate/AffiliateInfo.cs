@@ -37,8 +37,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string CommissionGroup => GroupName ?? "N/A";
 
-        public int GroupTypeId { get; set; }
-
         public decimal? BalanceBf { get; set; }
 
         public int? Member { get; set; }

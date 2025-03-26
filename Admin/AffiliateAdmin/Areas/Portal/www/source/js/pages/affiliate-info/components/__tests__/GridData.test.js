@@ -7,7 +7,6 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 describe('affiliate info - GridData ', () => {
     const dataItem = {
         AffId: 927841,
-        GroupTypeId: 1,
         UserName: "12BETAFF001",
         Status: "Approved",
         FirstName: "",
@@ -253,11 +252,10 @@ describe('affiliate info - GridData ', () => {
         const mockSetShowPopupCommGroup = jest.fn();
         const mockSetAffId = jest.fn();
         const mockSetCommGroup = jest.fn();
-        const mockSetGroupTypeId = jest.fn();
 
         const affId = 927841;
         const commGroup = 1;
-        const props = Object.assign({}, defaultProps, { setShowPopupCommGroup: mockSetShowPopupCommGroup, setAffId: mockSetAffId, setCommGroup: mockSetCommGroup, setGroupTypeId: mockSetGroupTypeId });
+        const props = Object.assign({}, defaultProps, { setShowPopupCommGroup: mockSetShowPopupCommGroup, setAffId: mockSetAffId, setCommGroup: mockSetCommGroup });
         const componentInstance = new GridData(props);
 
         componentInstance.handleEditCommGroup(affId, commGroup);

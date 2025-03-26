@@ -8,12 +8,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         [Required]
         public IEnumerable<TierSetting> TierSettingList { get; set; }
 
-        public IEnumerable<DeductionSetting> P2pDeductionList { get; set; }
-
         [Required]
         public IEnumerable<DeductionSetting> PlatformFeeList { get; set; }
-
-        public IEnumerable<DeductionSetting> KillRateFeeList { get; set; }
 
         [Required]
         public DeductionSetting DepositFee { get; set; }

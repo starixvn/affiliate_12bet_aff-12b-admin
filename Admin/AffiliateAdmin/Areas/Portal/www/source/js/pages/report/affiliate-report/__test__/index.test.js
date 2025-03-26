@@ -6,7 +6,6 @@ describe('aff report - App', () => {
 
     it('Should render correctly', () => {
         window.initialState = {
-            commGroupTypes: [{ GroupTypeId: 1, GroupTypeName: 'Winloss', GroupTypeBy: 'Winloss' }, { GroupTypeId: 2, GroupTypeName: 'Turnover', GroupTypeBy: 'Turnover' }],
             languageList: [
                 {
                     LanguageCode: 'en-US',

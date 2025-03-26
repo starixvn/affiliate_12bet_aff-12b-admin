@@ -12,8 +12,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.CommissionGroup
 
         public int AffId { get; set; }
 
-        public int GroupTypeId { get; set; }
-
         public int GroupId { get; set; }
     }
 }

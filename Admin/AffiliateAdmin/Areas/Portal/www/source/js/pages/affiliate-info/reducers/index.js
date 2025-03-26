@@ -53,12 +53,6 @@ export const commGroup = createReducer(0, {
     }
 })
 
-export const groupTypeId = createReducer(0, {
-    [types.SET_GROUP_TYPE_ID](prevState, action) {
-        return action.data;
-    }
-})
-
 export const columnList = createReducer(0, {
     [types.SET_SELECTED_COLUMN](prevState, action) {
         return [...action.data];
@@ -77,7 +71,6 @@ export default combineReducers({
     affId,
     parentAffName,
     commGroup,
-    groupTypeId,
     groupId,
     columnList
 });

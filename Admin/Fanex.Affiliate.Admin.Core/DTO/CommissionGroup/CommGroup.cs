@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
-    public class CommGroup : CommGroupType
+    public class CommGroup
     {
         public int RowIdx { get; set; }
 

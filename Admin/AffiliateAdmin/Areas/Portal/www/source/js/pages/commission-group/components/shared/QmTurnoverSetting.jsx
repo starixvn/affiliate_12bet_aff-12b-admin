@@ -9,7 +9,7 @@ import { format } from '../../../../modules/numberFormat';
 import { isValidNumber } from '../../../../modules/utils';
 import { money } from '../../../../modules/constants';
 
-export class QmTurnoverSetting extends React.Component {
+export class QmTurnoverSetting extends React.PureComponent {
     constructor(props) {
         super(props);
     }

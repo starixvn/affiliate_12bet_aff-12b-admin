@@ -29,7 +29,6 @@ const runTestActionReturnPost = ({ name, url }) => {
 const actionList = [
     { name: 'setGridData', type: types.SET_GRIDDATA, data: 'setGridData' },
     { name: 'setSelectedGroup', type: types.SET_SELECTED_GROUP, data: 'setSelectedGroup' },
-    { name: 'setSelectedProductIds', type: types.SET_SELECTED_PRODUCT_IDS, data: '1,2,3' },
     { name: 'setSearchedGroupName', type: types.SET_SEARCHED_GROUPNAME, data: 'setSearchedGroupName' }
 ];
 
@@ -81,15 +80,6 @@ describe('commission group actions', () => {
                                 DeductionName: "Platform Fee",
                                 GroupId: 133,
                                 ProductIds: "1,3,4,5,6,7,8,13,14,15,16,17,18"
-                            }
-                        ],
-                        P2pDeductionList: [
-                            {
-                                DeductedPercentage: 0.17,
-                                DeductionId: 15,
-                                DeductionName: "P2P Fee",
-                                GroupId: 133,
-                                ProductIds: "2,9,10,11,12"
                             }
                         ],
                         QmTurnover: 100,
@@ -196,7 +186,6 @@ describe('commission group actions', () => {
                 GroupId: 0,
                 GroupName: "",
                 PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
-                P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
                 QmTurnover: 100,
                 TierSettingList: []
             },

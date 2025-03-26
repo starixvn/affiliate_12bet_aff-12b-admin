@@ -8,14 +8,12 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
     {
         public int GroupId { get; set; }
 
-        public int GroupTypeId { get; set; }
-
         public string GroupName { get; set; }
 
-        [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Sub-Affiliate Commission Rate is incorrect!")]
+        [Range((double)Validation.Zero, (double)Validation.MaxPercentage, ErrorMessage = "Sub-Affiliate Commission Rate is incorrect!")]
         public decimal SubAffCommRate { get; set; }
 
-        [Range(Validation.Zero, Money.AllowedMaxValue, ErrorMessage = "QpTurnover not valid!")]
+        [Range((double)Validation.Zero, (double)Money.AllowedMaxValue, ErrorMessage = "QpTurnover not valid!")]
         public decimal QmTurnover { get; set; }
 
         public bool IsActivePlayerSum { get; set; }
@@ -27,12 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
         public IEnumerable<TierSettingParam> TierSettingList { get; set; }
 
         [Required]
-        public IEnumerable<P2PDeductionSettingParam> P2pDeductionList { get; set; }
-
-        [Required]
         public IEnumerable<TierDeductionSettingParam> PlatformFeeList { get; set; }
-
-        public IEnumerable<TierDeductionSettingParam> KillRateFeeList { get; set; }
 
         [Required]
         public TierDeductionSettingParam DepositFee { get; set; }

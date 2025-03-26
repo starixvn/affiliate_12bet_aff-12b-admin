@@ -9,7 +9,5 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
         public IEnumerable<TierSetting> TierSettingList { get; set; }
 
         public IEnumerable<DeductionSetting> TierDeductionSettingList { get; set; }
-
-        public IEnumerable<DeductionSetting> P2pDeductionSettingList { get; set; }
     }
 }

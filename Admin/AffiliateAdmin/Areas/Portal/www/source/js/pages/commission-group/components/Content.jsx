@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,7 +10,7 @@ import AddGroup from './addgroup';
 import EditGroup from './editgroup';
 import { getGroupSettingList } from '../actions';
 
-export class Content extends Component {
+export class Content extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -50,8 +50,8 @@ export class Content extends Component {
     }
 
     onPaging = (pageIndex, pageSize) => {
-        const { searchedGroupName, searchedGroupType } = this.props;
-        const param = Object.assign({}, { PageIndex: pageIndex, PageSize: pageSize }, { GroupName: searchedGroupName, GroupTypeId: searchedGroupType });
+        const { searchedGroupName } = this.props;
+        const param = Object.assign({}, { PageIndex: pageIndex, PageSize: pageSize }, { GroupName: searchedGroupName });
         this.props.getGroupSettingList(param);
     }
 
@@ -81,8 +81,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, searchedGroupName, searchedGroupType, gridData }) {
-    return Object.assign({}, { pagingOption, searchedGroupName, searchedGroupType, gridData });
+function mapStateToProps({ pagingOption, searchedGroupName, gridData }) {
+    return Object.assign({}, { pagingOption, searchedGroupName, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

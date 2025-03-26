@@ -49,16 +49,6 @@ describe('commission group - GridData ', () => {
                 ProductIds: "1,3,4,5,6,7,8,13,14,15,16,17,18"
             }
         ],
-        P2pDeductionList: [
-            {
-                DeductedPercentage: 0.15,
-                DeductionId: 15,
-                DeductionName: "P2P Fee",
-                GroupId: 153,
-                ProductIds: "2,5,9,10,11,12",
-                Commission: 0.1
-            }
-        ],
         RowIdx: 6,
         TierSettingList: [
             tierSettingItem
@@ -70,10 +60,6 @@ describe('commission group - GridData ', () => {
             { ProductId: 2, ProductName: "Poker" },
             { ProductId: 3, ProductName: "Playtech Casino" },
             { ProductId: 4, ProductName: "Number Game" },
-            { ProductId: 5, ProductName: "V8 Poker" }
-        ],
-        p2pProductList: [
-            { ProductId: 2, ProductName: "Poker" },
             { ProductId: 5, ProductName: "V8 Poker" }
         ],
         gridData: [
@@ -241,16 +227,6 @@ describe('commission group - GridData ', () => {
                     ProductIds: "1,3,4,5,6,7,8,13,14,15,16,17,18"
                 }
             ],
-            P2pDeductionList: [
-                {
-                    DeductedPercentage: 0.15,
-                    DeductionId: 15,
-                    DeductionName: "P2P Fee",
-                    GroupId: 153,
-                    ProductIds: "2,5,9,10,11,12",
-                    Commission: 0.1
-                }
-            ],
             RowIdx: 6,
             TierSettingList: [
                 tierSettingItem
@@ -298,16 +274,6 @@ describe('commission group - GridData ', () => {
                     DeductionName: "Platform Fee",
                     GroupId: 153,
                     ProductIds: "1,3,4,5,6,7,8,13,14,15,16,17,18"
-                }
-            ],
-            P2pDeductionList: [
-                {
-                    DeductedPercentage: 0.15,
-                    DeductionId: 15,
-                    DeductionName: "P2P Fee",
-                    GroupId: 153,
-                    ProductIds: "2,5,9,10,11,12",
-                    Commission: 0.1
                 }
             ],
             RowIdx: 6,

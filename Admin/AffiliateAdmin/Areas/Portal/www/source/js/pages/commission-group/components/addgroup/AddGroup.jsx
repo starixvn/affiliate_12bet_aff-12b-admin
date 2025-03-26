@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
-import { insertCommissionGroup, getGroupSettingList, setSelectedGroup, setSelectedProductIds, getSelectedCommGroup } from '../../actions';
-import { buildDefaultCommGroup, handleKillRateListData, validate } from '../../modules/service';
+import { insertCommissionGroup, getGroupSettingList, setSelectedGroup, getSelectedCommGroup } from '../../actions';
+import { buildDefaultCommGroup, validate } from '../../modules/service';
 
 import DeductionSetting from '../shared/tier-deduction';
 import CommGroupInfo from '../shared/CommGroupInfo';
-import { groupTypeList, messages } from '../../modules/constant';
+import { messages } from '../../modules/constant';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import SubAffCommRateSetting from '../shared/sub-aff-comm-rate';
 import QmTurnoverSetting from '../shared/QmTurnoverSetting';
 
-export class AddGroup extends React.Component {
+export class AddGroup extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -28,18 +28,15 @@ export class AddGroup extends React.Component {
         if (this.props.itemId && this.props.itemId !== 0) {
             this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
         } else {
-            const { deductionList, productList, p2pProductList } = this.props;
-            const commGroup = buildDefaultCommGroup(deductionList, productList, p2pProductList);
+            const { deductionList, productList } = this.props;
+            const commGroup = buildDefaultCommGroup(deductionList, productList);
 
-            const productIds = p2pProductList.map(p => p.ProductId);
             this.props.setSelectedGroup(commGroup);
-            this.props.setSelectedProductIds(productIds);
         }
     }
 
     componentWillUnmount() {
         this.props.setSelectedGroup(null);
-        this.props.setSelectedProductIds(null);
     }
 
     handleSave = async () => {
@@ -58,20 +55,15 @@ export class AddGroup extends React.Component {
         else {
             this.props.toggleLoader(true);
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
-            let killRateFeeList = [];
 
-            if (selectedGroup.GroupTypeId === groupTypeList.Turnover) {
-                killRateFeeList = handleKillRateListData(platformFeeList, selectedGroup.KillRateFeeList);
-            }
-
-            const param = { ...selectedGroup, PlatformFeeList: platformFeeList, KillRateFeeList: killRateFeeList };
+            const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
             const response = await this.props.insertCommissionGroup(param);
             if (response && response.status === 200) {
                 const result = response.data;
                 if (result.IsSuccessful) {
                     window.setTimeout(this.props.onClose, 3000);
-                    const { pagingOption, searchedGroupName, searchedGroupType } = this.props;
-                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: searchedGroupName, GroupTypeId: searchedGroupType });
+                    const { pagingOption, searchedGroupName } = this.props;
+                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: searchedGroupName });
                     this.props.getGroupSettingList(gettingParam);
                 }
 
@@ -104,12 +96,12 @@ export class AddGroup extends React.Component {
     }
 }
 
-function mapStateToProp({ deductionList, productList, p2pProductList, selectedGroup, searchedGroupName, searchedGroupType, pagingOption }) {
-    return { deductionList, productList, p2pProductList, selectedGroup, searchedGroupName, searchedGroupType, pagingOption };
+function mapStateToProp({ deductionList, productList, selectedGroup, searchedGroupName, pagingOption }) {
+    return { deductionList, productList, selectedGroup, searchedGroupName, pagingOption };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertCommissionGroup, getGroupSettingList, setSelectedProductIds, setSelectedGroup, toggleLoader, getSelectedCommGroup }, dispatch);
+    return bindActionCreators({ insertCommissionGroup, getGroupSettingList, setSelectedGroup, toggleLoader, getSelectedCommGroup }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(AddGroup);

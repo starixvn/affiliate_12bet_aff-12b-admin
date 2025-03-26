@@ -10,14 +10,11 @@ describe('commission group - AddGroup', () => {
         Description: "",
         GroupId: 0,
         GroupName: "",
-        GroupTypeId: 1,
         SubAffCommRate: 0,
         QmTurnover: 100,
         IsActivePlayerSum: true,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
-        P2pDeductionList: [{ DeductedPercentage: 0.02, DeductionId: 15, ProductIds: "2,5", Commission: 0.01 }],
-        TierSettingList: [],
-        KillRateFeeList: [{ DeductedPercentage: 0.05, DeductionId: 16, ProductIds: "", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
+        TierSettingList: []
     };
     const defaultProps = {
         deductionList: [
@@ -25,7 +22,6 @@ describe('commission group - AddGroup', () => {
             { DeductionId: 11, DeductionName: "Operational Fee", DeductedPercentage: 0.07, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 13, DeductionName: "Deposit Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 14, DeductionName: "Withdrawal Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
-            { DeductionId: 15, DeductionName: "P2P Fee", DeductedPercentage: 0.02, Commission: 0.01 },
             { DeductionId: 16, DeductionName: "Kill Rate", DeductedPercentage: 0.05, IsDeductedPercent: true, DeductedAmount: "" },
         ],
         productList: [
@@ -33,10 +29,6 @@ describe('commission group - AddGroup', () => {
             { ProductId: 2, ProductName: "Poker" },
             { ProductId: 3, ProductName: "Playtech Casino" },
             { ProductId: 4, ProductName: "Number Game" },
-            { ProductId: 5, ProductName: "V8 Poker" }
-        ],
-        p2pProductList: [
-            { ProductId: 2, ProductName: "Poker" },
             { ProductId: 5, ProductName: "V8 Poker" }
         ],
         selectedGroup: {
@@ -47,14 +39,11 @@ describe('commission group - AddGroup', () => {
             GroupName: "",
             QmTurnover: 100,
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", IsDeductedPercent: true, DeductedAmount: "" }],
-            P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
-            TierSettingList: [],
-            KillRateFeeList: [{ DeductedPercentage: 0.05, DeductionId: 16, ProductIds: "", IsDeductedPercent: true, DeductedAmount: "" }]
+            TierSettingList: []
         },
         pagingOption: defaultPagingOption,
         searchedGroupName: '',
-        onClose: jest.fn(), onSave: jest.fn(),
-        setSelectedProductIds: jest.fn()
+        onClose: jest.fn(), onSave: jest.fn()
     };
     it('componentDidMount - should call setSelectedGroup', () => {
         const mockSetSelectedGroup = jest.fn();
@@ -119,7 +108,6 @@ describe('commission group - AddGroup', () => {
             GroupName: "test",
             QmTurnover: 100,
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8", IsDeductedPercent: true, DeductedAmount: "" }],
-            P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
             TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000, MinQm: 0, MaxAp: 1000000000, Commission: 0 }]
         }
         const mockSetSelectedGroup = jest.fn();
@@ -154,7 +142,6 @@ describe('commission group - AddGroup', () => {
             GroupName: "test",
             QmTurnover: 100,
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8", IsDeductedPercent: true, DeductedAmount: "" }],
-            P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
             TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000, MinQm: 0, MaxAp: 1000000000, Commission: 0 }]
         }
         const mockSetSelectedGroup = jest.fn();
@@ -190,7 +177,6 @@ describe('commission group - AddGroup', () => {
             GroupName: "test",
             QmTurnover: 100,
             PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6,8", IsDeductedPercent: true, DeductedAmount: "" }],
-            P2pDeductionList: [{ DeductedPercentage: 0.15, DeductionId: 15, ProductIds: "2,5", Commission: 0.1 }],
             TierSettingList: [{ TierId: 1, MinAmount: 0, MaxAmount: 100000000000, MinQm: 0, MaxAp: 1000000000, Commission: 0 }]
         }
         const mockSetSelectedGroup = jest.fn();

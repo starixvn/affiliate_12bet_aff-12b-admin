@@ -20,13 +20,11 @@ describe('commission group - Filter - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             pagingOption: { PageSize: 1 },
-            commGroupTypes: [],
         };
 
         const state = {
             pagingOption: { PageSize: 1 },
             searchedGroupName: 'abc',
-            commGroupTypes: [],
             anotherProp: "Not included"
         };
 
@@ -41,7 +39,6 @@ describe('commission group - Filter - connect', () => {
         const expectedActionCreator = {
             getGroupSettingList: actions['getGroupSettingList'],
             setSearchedGroupName: actions['setSearchedGroupName'],
-            setSearchedGroupType: actions['setSearchedGroupType']
         }
 
         const dispatch = {};

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Col, FormGroup } from 'reactstrap';
 import { bindActionCreators } from 'redux';
@@ -8,40 +8,38 @@ import { setSelectedGroup } from '../../../actions';
 import TierSettingItem from './TierSettingItem';
 import { removeTierItem } from '../../../modules/service';
 import { isValidNumber } from '../../../../../modules/utils';
-import { FIRST_ITEM_INDEX, MinNetTurnover, MinNetWin } from '../../../modules/constant';
+import { FIRST_ITEM_INDEX, MinNetWin, regexAcceptNegativeAmountFormat, tierSettingDefault, MAX_PERCENTAGE } from '../../../modules/constant';
 
-export class TierSetting extends Component {
+export class TierSetting extends PureComponent {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-        const { selectedGroup, groupProductId } = this.props;
-
-        if (!selectedGroup.TierSettingList.some(t => t.GroupProductId === groupProductId)) {
-            this.handleAdd();
-        }
-    }
-
     handleAdd = () => {
         const { selectedGroup, groupProductId } = this.props;
-        let defaultMinAmount = 0;
-        let defaultMinQm = 5;
-        let defaultCommission = 0;
+        let defaultMinAmount = tierSettingDefault.MinAmount;
+        let defaultCommission = tierSettingDefault.Commission;
+        let defaultTierId = 1;
 
         const tierSettingListByGroupProduct = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId);
         const itemCount = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId).length;
+
         if (itemCount > 0) {
             const lastItem = tierSettingListByGroupProduct[itemCount - 1];
-            defaultMinAmount = lastItem.MinAmount + 1;
-            defaultCommission = lastItem.Commission + 0.1;
+            const minAmount = Number(lastItem.MinAmount);
+            const commission = lastItem.Commission + 0.1;
+
+            defaultMinAmount = (minAmount < 1 || Number.isNaN(minAmount)) ? 1 : minAmount + 1;
+            defaultCommission = commission <= MAX_PERCENTAGE ? commission : MAX_PERCENTAGE;
+            defaultTierId = lastItem.TierId + 1;
         }
 
         const newTierSetting = {
-            TierId: itemCount + 1,
+            GroupId: selectedGroup.GroupId,
+            TierId: defaultTierId,
             GroupProductId: this.props.groupProductId,
             MinAmount: defaultMinAmount,
-            MinQm: defaultMinQm,
+            MinQm: tierSettingDefault.MinQm,
             Commission: defaultCommission
         };
 
@@ -57,7 +55,8 @@ export class TierSetting extends Component {
 
     handleChangeInput = (tierId, tierItemValue) => {
         const { MinAmount, MinQm } = tierItemValue;
-        if ((!MinAmount || isValidNumber(MinAmount)) &&
+
+        if ((!MinAmount || regexAcceptNegativeAmountFormat.test(MinAmount)) &&
             (!MinQm || isValidNumber(MinQm))) {
             const { selectedGroup, groupProductId } = this.props;
 
@@ -77,7 +76,7 @@ export class TierSetting extends Component {
     }
 
     render() {
-        const { selectedGroup, groupProductId, isDisableAddButton, handleClick, btnText, isTurnover } = this.props;
+        const { selectedGroup, groupProductId, isDisableAddButton, handleClick, btnText } = this.props;
         const tierSettings = selectedGroup.TierSettingList.filter(t => t.GroupProductId === groupProductId)
 
         return (
@@ -88,7 +87,7 @@ export class TierSetting extends Component {
                             <thead>
                                 <tr>
                                     <th style={{ width: 40 }}>Tier</th>
-                                    <th>{isTurnover ? MinNetTurnover : MinNetWin}</th>
+                                    <th>{MinNetWin}</th>
                                     <th>Min Qualified Player</th>
                                     <th style={{ width: 85 }}>Rev. Share%</th>
                                     <th style={{ width: 50 }}>Action</th>
@@ -101,9 +100,11 @@ export class TierSetting extends Component {
                                         const isFirst = i === FIRST_ITEM_INDEX;
                                         const handleClick = isFirst ? this.handleAdd : () => this.handleRemove(item.TierId, groupProductId);
 
-                                        return (<TierSettingItem data={item} key={`tier-${i}`}
+                                        return (<TierSettingItem data={item} key={`tier-${item.TierId}`}
+                                            index={i+1}
                                             handleClick={handleClick}
                                             btnText={isFirst ? '+' : '-'}
+                                            isShowNegativeInfinity={isFirst}
                                             onChange={this.handleChangeInput} />);
                                     })
                                 }

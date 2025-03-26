@@ -1,11 +1,32 @@
 import React from 'react';
 
-import { Input } from 'reactstrap';
-import { commissionValueList, format } from '../../../modules/constant';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { commissionValueList, format, money, NEGATIVE_INFINITY_SYMBOL, regexAcceptNegativeAmountFormat, regexValidNegativeAmount } from '../../../modules/constant';
 
-export default class TierSettingItem extends React.Component {
+export default class TierSettingItem extends React.PureComponent {
     constructor(props) {
         super(props);
+    }
+
+    handleChangeAmount = (event) => {
+        const { name, value } = event.target;
+        const amount = value.replace(/,/g, '');
+
+        if (regexAcceptNegativeAmountFormat.test(amount)) {
+            if (regexValidNegativeAmount.test(amount)) {
+                const amountNumber = Number(amount);
+
+                if (amountNumber < money.AllowedMinValue || amountNumber > money.AllowedMaxValue) {
+                    return;
+                }
+            }
+
+            const { data, onChange } = this.props;
+
+            const newItem = { [name]: amount };
+
+            onChange && onChange(data.TierId, newItem);
+        }
     }
 
     handleChange = (event) => {
@@ -20,16 +41,47 @@ export default class TierSettingItem extends React.Component {
         onChange && onChange(data.TierId, newItem);
     }
 
+    handleGetMinAmount = (minAmount, isValidAmount) => {
+        return isValidAmount ? format(Number(minAmount)) : minAmount;
+    }
+
+    handleCheckNegativeInfinitySymbol = (event) => {
+        const isChecked = event.target.checked;
+        const { data, onChange } = this.props;
+
+        const newItem = isChecked ? { MinAmount: money.AllowedMinValue } : { MinAmount: 0 };
+
+        onChange && onChange(data.TierId, newItem);
+    }
+
     render() {
-        const { data, handleClick, btnText } = this.props;
+        const { index, data, handleClick, btnText, isShowNegativeInfinity } = this.props;
         const { TierId, MinAmount, MinQm, Commission } = data;
+
+        const isValidAmount = regexValidNegativeAmount.test(MinAmount);
+        const isNegativeInfinity = MinAmount == money.AllowedMinValue;
 
         return (
             <tr>
-                <td className="text-center">{TierId}</td>
+                <td className="text-center">{index}</td>
                 <td>
-                    <Input type="text" name="MinAmount" id={"MinAmount" + TierId}
-                        value={format(MinAmount)} onChange={this.handleChange} />
+                    {
+                        isShowNegativeInfinity ? (
+                            <Form inline className={isValidAmount ? "group-input-infinity" : "group-input-infinity has-error"}>
+                                <FormGroup check className="mx-sm-1">
+                                    <Label check>
+                                        <Input type="checkbox" checked={isNegativeInfinity}
+                                            onChange={this.handleCheckNegativeInfinitySymbol} />{NEGATIVE_INFINITY_SYMBOL}
+                                    </Label>
+                                </FormGroup>
+                                <Input type="text" name="MinAmount" id={"MinAmount" + TierId}
+                                    disabled="true" value={isNegativeInfinity ? "" : this.handleGetMinAmount(MinAmount, isValidAmount)} onChange={this.handleChangeAmount} />
+                            </Form>
+                        ) : (
+                                <Input className={isValidAmount ? "" : "has-error"} type="text" name="MinAmount" id={"MinAmount" + TierId}
+                                    value={this.handleGetMinAmount(MinAmount, isValidAmount)} onChange={this.handleChangeAmount} />
+                            )
+                    }
                 </td>
                 <td>
                     <Input type="text" name="MinQm" id={"MinQm" + TierId} value={format(MinQm)} onChange={this.handleChange} />

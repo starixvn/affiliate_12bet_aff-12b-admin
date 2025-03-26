@@ -49,16 +49,14 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
         public ResultInfo ValidateCommGroup(CommGroupSettingParam commGroup)
         {
-            var validateGroupType = ValidateGroupType(commGroup.GroupTypeId);
-
             var result = ValidateAllFees(commGroup);
 
             var validateTierSettingList = ValidateTierSettingList(commGroup.TierSettingList);
 
-            if (!validateGroupType.IsSuccessful || !validateTierSettingList.IsSuccessful)
+            if (!validateTierSettingList.IsSuccessful)
             {
                 result.Code = ErrCode.GeneralErrorCode;
-                result.Message = string.Join(validateGroupType.Message, result.Message, validateTierSettingList.Message);
+                result.Message = string.Join(result.Message, validateTierSettingList.Message);
             }
 
             return result;
@@ -68,12 +66,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
         {
             var result = new ResultInfo();
             var productIdOfDB = _systemService.GetProductList().Select(p => p.ProductId.ToString());
-
-            var validateP2pDeductionList = ValidateDeductionList(commGroup.P2pDeductionList, productIdOfDB, CommGroupErrorMessage.InvalidP2pDeduction);
-            if (!validateP2pDeductionList.IsSuccessful)
-            {
-                UpdateResult(result, validateP2pDeductionList.Message);
-            }
 
             var validatePlatformFeeList = ValidateDeductionList(commGroup.PlatformFeeList, productIdOfDB, CommGroupErrorMessage.InvalidPlatformFee);
             if (!validatePlatformFeeList.IsSuccessful)
@@ -98,27 +90,108 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
 
         private static ResultInfo ValidateTierSettingList(IEnumerable<TierSettingParam> tierSettingList)
         {
+            var tierSettingListByGroupProduct = tierSettingList.GroupBy(t => t.GroupProductId);
+
+            foreach (var tierSettings in tierSettingListByGroupProduct)
+            {
+                var validateMinAmountResult = ValidateMinAmount(tierSettings);
+
+                if (!validateMinAmountResult.IsSuccessful)
+                {
+                    return validateMinAmountResult;
+                }    
+
+                if (tierSettings.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
+                {
+                    return new ResultInfo
+                    {
+                        Code = ErrCode.GeneralErrorCode,
+                        Message = "Min QP must be lesser than or equal to 1,000,000,000"
+                    };
+                }
+            }
+
+            return new ResultInfo();
+        }
+
+        private static ResultInfo ValidateMinAmount(IEnumerable<TierSettingParam> tierSettings)
+        {
             var result = new ResultInfo();
 
-            if (tierSettingList == null || !tierSettingList.Any())
+            if (tierSettings == null || !tierSettings.Any())
             {
                 UpdateResult(result, "Tier Setting must have at least 1 tier!");
                 return result;
             }
 
-            if (tierSettingList.Any(item => item.MinAmount > Validation.InfinityAmount))
+            var firsMinAmount = tierSettings.First().MinAmount;
+            if (firsMinAmount != 0 && firsMinAmount != Validation.NegativeInfinityAmount)
             {
-                UpdateResult(result, "Min Amount must be lesser than or equal to 100,000,000,000!");
+                UpdateResult(result, "The first Tier of the Min Net Win column must be = 0 or -∞");
                 return result;
             }
 
-            if (tierSettingList.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
+            if (IsMinNetWinNotStartFromOneAfterNegative(tierSettings))
             {
-                UpdateResult(result, "Min QP must be lesser than or equal to 1,000,000,000!");
+                UpdateResult(result, "The next Tier after a negative Tier must start from 1 in the Min Net Win column.");
+                return result;
+            }
+
+            if (IsNotIncreasingMinNetWin(tierSettings))
+            {
+                UpdateResult(result, "The values in the Min Net Win column must increase sequentially.");
+                return result;
+            }
+
+            if (tierSettings.Any(item => item.MinAmount < Validation.NegativeInfinityAmount))
+            {
+                UpdateResult(result, "Min Net Win must be greater than or equal to -100,000,000,000");
+                return result;
+            }
+
+            if (tierSettings.Any(item => item.MinAmount > Validation.InfinityAmount))
+            {
+                UpdateResult(result, "Min Amount must be lesser than or equal to 100,000,000,000");
+                return result;
             }
 
             return result;
         }
+
+        private static bool IsNotIncreasingMinNetWin(IEnumerable<TierSettingParam> tierSettingList)
+        {
+            TierSettingParam previous = null;
+
+            foreach (var tierSetting in tierSettingList)
+            {
+                if (previous != null && tierSetting.MinAmount <= previous.MinAmount)
+                {
+                    return true;
+                }
+                previous = tierSetting;
+            }
+
+            return false;
+        }
+
+        private static bool IsMinNetWinNotStartFromOneAfterNegative(IEnumerable<TierSettingParam> tierSettingList)
+        {
+            TierSettingParam previous = null;
+
+            foreach (var tierSetting in tierSettingList)
+            {
+                var minAmount = tierSetting.MinAmount;
+
+                if (previous != null && previous.MinAmount < 0 && (minAmount == 0 || minAmount > 1))
+                {
+                    return true;
+                }
+                previous = tierSetting;
+            }
+
+            return false;
+        }
+
         private ResultInfo ValidateDeductionList(IEnumerable<DeductionSettingParam> deductionList, IEnumerable<string> productIdOfDB, string message)
         {
             var result = new ResultInfo
@@ -175,22 +248,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
             }
 
             return new ResultInfo();
-        }
-
-        private ResultInfo ValidateGroupType(int groupTypeId)
-        {
-            var commGroupTypeList = _commGroupCommonService.GetCommGroupTypes();
-
-            var groupType = commGroupTypeList.FirstOrDefault(_ => _.GroupTypeId == groupTypeId);
-
-            var result = new ResultInfo();
-
-            if (groupType is null)
-            {
-                UpdateResult(result, CommGroupErrorMessage.InvalidGroupType);
-            }
-
-            return result;
         }
 
         private static void UpdateResult(ResultInfo initialResult, string message)

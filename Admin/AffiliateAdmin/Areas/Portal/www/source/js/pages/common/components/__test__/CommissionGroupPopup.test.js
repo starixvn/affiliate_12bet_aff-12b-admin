@@ -7,7 +7,6 @@ describe('common - components - CommissionGroupPopup', () => {
         showPopupCommGroup: true,
         affName: '12BETAFF226',
         affId: 1271808,
-        privateGroupTypeId: 1,
         isPrivateGroup: false,
         isNewAffiliate: true
     };
@@ -61,8 +60,7 @@ describe('common - components - CommissionGroupPopup', () => {
 
         instance.handleClosePopupEvent({
             data: {
-                eventName: 'changeAssignToPrivateGroup',
-                groupTypeId: 1
+                eventName: 'changeAssignToPrivateGroup'
             }
         });
 
@@ -108,7 +106,7 @@ describe('common - components - CommissionGroupPopup', () => {
 
         result.instance().handleChangeAssignToPrivateGroup(1);
 
-        expect(result.setState).toHaveBeenCalledWith({ isUsingPrivateGroup: true, privateGroupTypeId: 1 });
+        expect(result.setState).toHaveBeenCalledWith({ isUsingPrivateGroup: true });
     });
 
     it('handleClosePopup - should call setShowPopupCommGroup and window.setTimeout', () => {
@@ -126,6 +124,6 @@ describe('common - components - CommissionGroupPopup', () => {
 
         result.instance().resetState();
 
-        expect(result.setState).toHaveBeenCalledWith({ isUsingPrivateGroup: false, privateGroupTypeId: 1 });
+        expect(result.setState).toHaveBeenCalledWith({ isUsingPrivateGroup: false });
     });
 });

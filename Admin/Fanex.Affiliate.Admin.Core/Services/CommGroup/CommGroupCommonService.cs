@@ -20,7 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
         {
             var commandInsert = new InsertCommGroupCommand
             {
-                GroupTypeId = param.GroupTypeId,
                 IsPrivate = param.IsPrivate
             };
 
@@ -49,22 +48,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
         {
             const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
 
-            return FetchTData<DeductionItem>(SpKey).Where(d => d.DeductionId != Deduction.OperationalFeeId);
-        }
-
-        public IEnumerable<CommGroupType> GetCommGroupTypes()
-        {
-            const string SpKey = "Aff_Admin_CommGroup_GroupTypeSel";
-
-            return FetchTData<CommGroupType>(SpKey);
+            return FetchTData<DeductionItem>(SpKey);
         }
 
         public IEnumerable<NormalCommGroup> GetNormalCommGroupList(GetGroupListParam param)
         {
             var criteria = new GetNormalCommGroupCriteria
             {
-                AffId = param.AffId,
-                GroupTypeId = param.GroupTypeId,
+                AffId = param.AffId
             };
 
             var normalCommGroups = FetchTData<NormalCommGroup>(criteria);
@@ -75,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
         private static void AssignBaseCommissionGroupCommand(BaseCommGroupCommand command, CreateUpdateCommissionGroupParam param)
         {
-            var (tierSettingXml, tierDeductionsXml, p2pDeductionsXml) = GetSettingXmls(param);
+            var (tierSettingXml, tierDeductionsXml) = GetSettingXmls(param);
 
             command.UserId = param.UserId;
             command.GroupName = param.GroupName;
@@ -86,23 +77,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             command.Ip = param.Ip;
             command.TierSettingXml = tierSettingXml;
             command.TierDeductionsXml = tierDeductionsXml;
-            command.P2pDeductionsXml = p2pDeductionsXml;
         }
 
-        private static (string tierSettingXml, string tierDeductionsXml, string p2pDeductionsXml) GetSettingXmls(CreateUpdateCommissionGroupParam param)
+        private static (string tierSettingXml, string tierDeductionsXml) GetSettingXmls(CreateUpdateCommissionGroupParam param)
         {
             var tierSettingXml = BuildTierSettingXml(param.TierSettingList, param.PlatformFeeList);
 
             var tierDeductionSettingList = param.PlatformFeeList.Concat(new[] { param.DepositFee, param.WithdrawalFee });
-            if (param.KillRateFeeList != null && param.KillRateFeeList.Any())
-            {
-                tierDeductionSettingList = tierDeductionSettingList.Concat(param.KillRateFeeList);
-            }
 
             var tierDeductionsXml = BuildTierDeductionSettingXml(tierDeductionSettingList);
-            var p2pDeductionsXml = BuildP2pDeductionSettingXml(param.P2pDeductionList);
 
-            return (tierSettingXml, tierDeductionsXml, p2pDeductionsXml);
+            return (tierSettingXml, tierDeductionsXml);
         }
 
         private static string BuildTierSettingXml(IEnumerable<TierSettingParam> tierSettingParamList, IEnumerable<TierDeductionSettingParam> platformFeeList)
@@ -113,14 +98,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             foreach (var platformFee in platformFeeList)
             {
                 var tierSettings = tierSettingParamList.Where(t => t.GroupProductId == platformFee.GroupProductId);
+                var tierId = 1;
 
                 foreach (var item in tierSettings)
                 {
                     var productIds = platformFeeList.FirstOrDefault(p => p.GroupProductId == item.GroupProductId)?.ProductIds;
 
-                    var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\"" +
+                    var row = $"<row id=\"{tierId}\" minamount=\"{item.MinAmount}\"" +
                         $" minqm=\"{item.MinQm}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
+                    
                     result.Append(row);
+                    tierId++;
                 }
             }
 
@@ -138,23 +126,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
             {
                 var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\"" +
                     $" amount=\"{item.DeductedAmount}\" isdeductedpercent=\"{item.IsDeductedPercent}\" />";
-                result.Append(row);
-            }
-
-            result.Append("</root>");
-
-            return result.ToString();
-        }
-
-        private static string BuildP2pDeductionSettingXml(IEnumerable<P2PDeductionSettingParam> p2pDeductionSettingList)
-        {
-            var result = new StringBuilder();
-            result.Append("<root>");
-
-            foreach (var item in p2pDeductionSettingList)
-            {
-                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\"" +
-                    $" commission=\"{item.Commission}\" />";
                 result.Append(row);
             }
 

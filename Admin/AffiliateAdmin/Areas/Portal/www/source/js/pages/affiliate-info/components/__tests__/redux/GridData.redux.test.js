@@ -51,7 +51,6 @@ describe('affiliate info - GridData - connect', () => {
 			setParam: actions['setParam'],
 			setParentAffName: actions['setParentAffName'],
 			setCommGroup: actions['setCommGroup'],
-			setGroupTypeId: actions['setGroupTypeId']
 		}
 
 		const dispatch = {};

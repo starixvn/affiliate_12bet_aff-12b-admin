@@ -57,10 +57,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new CommissionGroupViewModel
             {
                 ProductList = productList,
-                P2pProductList = productList.Where(p => p.IsP2P),
                 DeductionList = _commGroupCommonService.GetDeductionList(),
-                SubMenuList = subMenu,
-                CommGroupTypeList = _commGroupCommonService.GetCommGroupTypes()
+                SubMenuList = subMenu
             };
 
             return View("~/Areas/Portal/Views/Affiliate/CommissionGroup.cshtml", viewModel);
@@ -96,11 +94,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     commissionGroupInfo.GroupName = Server.HtmlDecode(groupName);
                     commissionGroupInfo.Description = Server.HtmlDecode(description);
 
-                    if (commissionGroupInfo.KillRateFeeList is null || !commissionGroupInfo.KillRateFeeList.Any())
-                    {
-                        commissionGroupInfo.KillRateFeeList = BuildKillRateFeeListByPlatForm(commissionGroupInfo.PlatformFeeList);
-                    }
-
                     return new JsonNetResult
                     {
                         Data = commissionGroupInfo
@@ -131,12 +124,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     UserId = SessionService.UserId,
                     Ip = Request.GetClientIP(),
                     GroupName = Server.HtmlEncode(commGroup.GroupName.Trim()),
-                    GroupTypeId = commGroup.GroupTypeId,
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     TierSettingList = commGroup.TierSettingList,
-                    P2pDeductionList = commGroup.P2pDeductionList,
                     PlatformFeeList = commGroup.PlatformFeeList,
-                    KillRateFeeList = commGroup.KillRateFeeList,
                     DepositFee = commGroup.DepositFee,
                     WithdrawalFee = commGroup.WithdrawalFee,
                     SubAffCommRate = commGroup.SubAffCommRate,
@@ -173,9 +163,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
                     Ip = Request.GetClientIP(),
                     Description = Server.HtmlEncode(commGroup.Description?.Trim()),
                     TierSettingList = commGroup.TierSettingList,
-                    P2pDeductionList = commGroup.P2pDeductionList,
                     PlatformFeeList = commGroup.PlatformFeeList,
-                    KillRateFeeList = commGroup.KillRateFeeList,
                     DepositFee = commGroup.DepositFee,
                     WithdrawalFee = commGroup.WithdrawalFee,
                     SubAffCommRate = commGroup.SubAffCommRate,
@@ -202,29 +190,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             AssignUserInfoParam(param);
 
             return GenerateJsonNetResult(_commissionGroupService.DeleteCommissionGroup(param));
-        }
-
-        private IEnumerable<DeductionSetting> BuildKillRateFeeListByPlatForm(IEnumerable<DeductionSetting> platformFeeList)
-        {
-            var deductionSetting = _commGroupCommonService.GetDeductionList()
-                .FirstOrDefault(i => i.DeductionId == Deduction.KillRateFeeId);
-
-            IEnumerable<DeductionSetting> killRateFeeList = null;
-            if (platformFeeList != null && platformFeeList.Any())
-            {
-                killRateFeeList = platformFeeList.Select(d => new DeductionSetting
-                {
-                    DeductedPercentage = deductionSetting.DeductedPercentage,
-                    DeductionId = deductionSetting.DeductionId,
-                    DeductionName = deductionSetting.DeductionName,
-                    GroupId = d.GroupId,
-                    GroupProductId = d.GroupProductId,
-                    IsDeductedPercent = d.IsDeductedPercent,
-                    ProductIds = d.ProductIds
-                });
-            }
-
-            return killRateFeeList;
         }
 
         private static ResultInfo ValidateGroupName(string groupName)

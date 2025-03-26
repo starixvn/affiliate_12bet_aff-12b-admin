@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { resolveClientUrl } from '../../../../modules/utils';
-import { globalResource, format, formatDecimal, MinNetWin, MinNetTurnover, groupTypeList } from '../../modules/constant';
+import { globalResource, format, formatDecimal, MinNetWin, money, NEGATIVE_INFINITY_SYMBOL } from '../../modules/constant';
 import { deleteCommGroup, getGroupSettingList } from '../../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
@@ -58,8 +58,8 @@ export class GridData extends Component {
             const result = response.data;
 
             if (result.IsSuccessful) {
-                const { pagingOption, searchedGroupName, searchedGroupType } = this.props;
-                const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: searchedGroupName, GroupTypeId: searchedGroupType });
+                const { pagingOption, searchedGroupName } = this.props;
+                const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize, GroupName: searchedGroupName });
                 this.props.getGroupSettingList(gettingParam);
 
                 this.setState({ messageNotification: "Delete Revenue Group Successfully", isConfirmPopup: false, shouldResetScrollPosition: true });
@@ -100,7 +100,7 @@ export class GridData extends Component {
         const rows = [];
 
         for (let tierSetting of tierSettingList) {
-            const minAmount = format(tierSetting.MinAmount);
+            const minAmount = tierSetting.MinAmount == money.AllowedMinValue ? NEGATIVE_INFINITY_SYMBOL : format(tierSetting.MinAmount);
             const minQm = format(tierSetting.MinQm);
 
             rows.push(
@@ -124,7 +124,7 @@ export class GridData extends Component {
             for (let index = 0; index < gridData.length; index++) {
                 const item = gridData[index];
 
-                const { TierSettingList, PlatformFeeList, KillRateFeeList, DepositFee, WithdrawalFee, SubAffCommRate, QmTurnover, ...group } = item;
+                const { TierSettingList, PlatformFeeList, DepositFee, WithdrawalFee, SubAffCommRate, QmTurnover, ...group } = item;
                 const tierSettingRowSpan = TierSettingList.length;
                 const platformFeeRowSpan = PlatformFeeList.length;
                 const rowSpan = tierSettingRowSpan + platformFeeRowSpan * 2;
@@ -134,22 +134,12 @@ export class GridData extends Component {
                 const subAffCommRate = SubAffCommRate && `${format(SubAffCommRate * 100, 1)}%`;
                 const qmTurnover = formatDecimal(Number(QmTurnover));
 
-                const isTurnover = item.GroupTypeId === groupTypeList.Turnover;
-
                 for (let iPlatform = 0; iPlatform < PlatformFeeList.length; iPlatform++) {
                     const isFirstItem = iPlatform === 0;
                     const isPrivateGroup = group.GroupId > 1000;
 
                     const platformFee = PlatformFeeList[iPlatform]
                     const royalPercent = `${format(platformFee.DeductedPercentage * 100, 1)}%`;
-
-                    let killRateHtml = '';
-                    if (isTurnover) {
-                        const killRateFee = KillRateFeeList[iPlatform];
-                        const killRatePercent = `${format(killRateFee.DeductedPercentage * 100, 1)}%`;
-
-                        killRateHtml = `<br /> Kill rate ${killRatePercent}`;
-                    }
 
                     const productIds = platformFee.ProductIds;
                     const tierSettings = TierSettingList.filter(t => t.GroupProductId === platformFee.GroupProductId);
@@ -171,11 +161,11 @@ export class GridData extends Component {
                             )}
                             <Cell className="cell-deduction" rowSpan={2 + tierSettings.length}>
                                 <div dangerouslySetInnerHTML={{
-                                    __html: `<strong>Product Group ${iPlatform + 1}</strong><br />Royalty Fee ${royalPercent}${killRateHtml}`
+                                    __html: `<strong>Product Group ${iPlatform + 1}</strong><br />Royalty Fee ${royalPercent}`
                                 }}></div>
                             </Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Tier</Cell>
-                            <Cell className="font-weight-bold text-center cell-deduction">{isTurnover ? MinNetTurnover : MinNetWin}</Cell>
+                            <Cell className="font-weight-bold text-center cell-deduction">{MinNetWin}</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Min Qualified Player</Cell>
                             <Cell className="font-weight-bold text-center cell-deduction">Rev. Share%</Cell>
                             {isFirstItem && (
@@ -250,8 +240,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ gridData, productList, searchedGroupName, searchedGroupType, pagingOption }) {
-    return Object.assign({}, { gridData, productList, searchedGroupName, searchedGroupType, pagingOption });
+function mapStateToProps({ gridData, productList, searchedGroupName, pagingOption }) {
+    return Object.assign({}, { gridData, productList, searchedGroupName, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {

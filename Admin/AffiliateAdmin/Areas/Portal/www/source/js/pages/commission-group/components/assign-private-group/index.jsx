@@ -8,7 +8,7 @@ import reducer from './reducer';
 
 const store = configureStore(window.initialState, reducer);
 
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
   }

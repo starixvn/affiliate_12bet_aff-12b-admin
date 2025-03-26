@@ -68,82 +68,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         }
 
         [Fact]
-        public void ValidateCommGroup_ValidateP2pDeductionList_WhenCallWithNull_ReturnError()
-        {
-            // Arrange
-            var param = CreateValidCommGroupSettingParam();
-            param.P2pDeductionList = new List<P2PDeductionSettingParam>();
-
-            var helper = CreateCommGroupValidationHelper();
-
-            // Action
-            var result = helper.ValidateCommGroup(param);
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-        }
-
-        [Fact]
-        public void ValidateCommGroup_ValidateP2pDeductionList_WhenCallWithInvalidProductIds_ReturnError()
-        {
-            // Arrange
-            var param = CreateValidCommGroupSettingParam();
-            param.P2pDeductionList = new List<P2PDeductionSettingParam>
-            {
-                new P2PDeductionSettingParam
-                {
-                    DeductedPercentage = 0.17m,
-                    DeductionId = 10,
-                    ProductIds = "1,2,4",
-                    IsDeductedPercent = true,
-                    DeductedAmount = ""
-                }
-            };
-
-            var helper = CreateCommGroupValidationHelper();
-
-            // Action
-            var result = helper.ValidateCommGroup(param);
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-        }
-
-        [Fact]
-        public void ValidateCommGroup_ValidateP2pDeductionList_WhenCallWithEmptyProductIds_ReturnError()
-        {
-            // Arrange
-            var param = CreateValidCommGroupSettingParam();
-            param.P2pDeductionList = new List<P2PDeductionSettingParam>
-            {
-                new P2PDeductionSettingParam
-                {
-                    DeductedPercentage = 0.17m,
-                    DeductionId = 10,
-                    ProductIds = "",
-                    IsDeductedPercent = true,
-                    DeductedAmount = ""
-                },
-                new P2PDeductionSettingParam
-                {
-                    DeductedPercentage = 0.17m,
-                    DeductionId = 10,
-                    ProductIds = "1",
-                    IsDeductedPercent = true,
-                    DeductedAmount = ""
-                }
-            };
-
-            var helper = CreateCommGroupValidationHelper();
-
-            // Action
-            var result = helper.ValidateCommGroup(param);
-
-            // Assert
-            Assert.False(result.IsSuccessful);
-        }
-
-        [Fact]
         public void ValidateCommGroup_ValidatePlatformFeeList_WhenCallWithNull_ReturnError()
         {
             // Arrange
@@ -335,11 +259,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 new Product { ProductId = 2 },
                 new Product { ProductId = 3 }
             });
-            commGroupCommonService.Setup(c => c.GetCommGroupTypes()).Returns(new List<CommGroupType>
-            {
-                new CommGroupType {GroupTypeId = 1},
-                new CommGroupType {GroupTypeId = 2}
-            });
 
             return new CommGroupValidation(fakeIauthService, fakeIAffiliateService, systemService.Object, commGroupCommonService.Object);
         }
@@ -347,7 +266,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             return new CommGroupSettingParam
             {
-                GroupTypeId = 1,
                 DepositFee = new TierDeductionSettingParam
                 {
                     DeductedPercentage = 0.02m,
@@ -363,16 +281,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                     ProductIds = "0",
                     IsDeductedPercent = true,
                     DeductedAmount = ""
-                },
-                P2pDeductionList = new List<P2PDeductionSettingParam>
-                {
-                    new P2PDeductionSettingParam
-                    {
-                        DeductedPercentage = 0.17m,
-                        DeductionId = 10,
-                        ProductIds = "",
-                        Commission = 0.1m
-                    }
                 },
                 PlatformFeeList = new List<TierDeductionSettingParam>
                 {

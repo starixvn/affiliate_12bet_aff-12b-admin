@@ -6,28 +6,24 @@ describe('commission group - Filter', () => {
     const defaultProps = {
         pagingOption: {},
         searchedGroupName: '',
-        commGroupTypes: []
     };
 
     it("should call getGroupSettingList when click button Search", () => {
         const mockGetGroupSettingList = jest.fn();
         const mockSetSearchedGroupName = jest.fn();
-        const mockSetSearchedGroupType = jest.fn();
 
         const expectParam = {
             PageIndex: 1,
             PageSize: 20,
             GroupName: 'abc',
-            GroupTypeId: 1
         }
         const props = Object.assign({}, defaultProps, {
             getGroupSettingList: mockGetGroupSettingList,
             setSearchedGroupName: mockSetSearchedGroupName,
-            setSearchedGroupType: mockSetSearchedGroupType,
             pagingOption: { PageIndex: 1, PageSize: 20 }
         });
         const wrapper = shallow(<Filter {...props} />);
-        wrapper.setState({ groupName: 'abc', groupTypeId: 1 });
+        wrapper.setState({ groupName: 'abc' });
         wrapper.instance().handleSearch = jest.fn();
 
         wrapper.find('Button').simulate('click');

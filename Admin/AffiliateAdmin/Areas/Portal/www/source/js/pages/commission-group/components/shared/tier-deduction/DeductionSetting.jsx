@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,7 +7,7 @@ import { setSelectedGroup } from '../../../actions';
 import PlatformFeeSetting from './PlatformFeeSetting';
 import FeeSettingItem from './FeeSettingItem';
 
-export class DeductionSetting extends Component {
+export class DeductionSetting extends PureComponent {
     constructor(props) {
         super(props);
 

@@ -8,13 +8,13 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
         [Range(Validation.MinId, Validation.MaxId, ErrorMessage = "TierId not exists!")]
         public int TierId { get; set; }
 
-        [Range(0, (double)Validation.InfinityAmount, ErrorMessage = "Min Amount not valid!")]
+        [Range((double)Validation.NegativeInfinityAmount, (double)Validation.InfinityAmount, ErrorMessage = "Min Amount not valid!")]
         public decimal MinAmount { get; set; }
 
         [Range(0, Validation.InfinityQualifiedMember, ErrorMessage = "Min Qualified Player not valid!")]
         public int MinQm { get; set; }
 
-        [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Commission is incorrect!")]
+        [Range((double)Validation.Zero, (double)Validation.MaxPercentage, ErrorMessage = "Commission is incorrect!")]
         public decimal Commission { get; set; }
 
         public long GroupProductId { get; set; }
