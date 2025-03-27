@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, viewLevel, sortDirectionType, defaultBaseCurrency, minMonthDate, resource } from '../libs/constants';
+import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, viewLevel, sortDirectionType, defaultBaseCurrency, minMonthDate, resource, statusFilter, allStatuses } from '../libs/constants';
 import { setReportTitle, setParam, setCurrencyList, setCommGroupList, setProductList, setPaymentCurrencyList, setIsCheckedDatePicker } from '../actions';
 import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate, handleChangeMultipleSelected } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
@@ -45,6 +45,7 @@ export class Filter extends Component {
             isCheckedDatePicker: false,
             fromDate: `${currentMonthString}/01/${currentYear}`,
             toDate: this.nowString,
+            selectedStatus: statusFilter.Approved
         }
 
         this.cachedMainReportParam = null;
@@ -59,7 +60,7 @@ export class Filter extends Component {
             }
 
             if (this._isMainView()) {
-                const { UserName, GroupIds, PreferredLanguage, FromDate, ToDate, SortType, SortDirectionType, ProductIds, CurrencyIds, PaymentCurrencyIds, BaseCurrencyId } = this.cachedMainReportParam;
+                const { UserName, GroupIds, PreferredLanguage, FromDate, ToDate, SortType, SortDirectionType, ProductIds, CurrencyIds, PaymentCurrencyIds, BaseCurrencyId, Statuses } = this.cachedMainReportParam;
                 const from = new Date(FromDate);
                 const to = new Date(ToDate);
 
@@ -78,7 +79,8 @@ export class Filter extends Component {
                     isGetAll: false,
                     isExcludeNegvBBF: false,
                     isExcludeNegvCurrentBBF: false,
-                    isCheckedDatePicker: false
+                    isCheckedDatePicker: false,
+                    selectedStatus: Statuses
                 }, callback);
 
                 this.props.setParam(this.cachedMainReportParam);
@@ -212,7 +214,8 @@ export class Filter extends Component {
             isExcludeNegvCurrentBBF,
             fromDate,
             toDate,
-            isCheckedDatePicker
+            isCheckedDatePicker,
+            selectedStatus
         } = this.state;
         const { pagingOption } = this.props;
 
@@ -237,6 +240,7 @@ export class Filter extends Component {
             IsGetAll: isGetAll,
             IsExcludeNegvBBF: isExcludeNegvBBF,
             IsExcludeNegvCurrentBBF: isExcludeNegvCurrentBBF,
+            Statuses: selectedStatus
         }
 
         if (this._isMainView()) {
@@ -258,7 +262,7 @@ export class Filter extends Component {
 
     _buildMainReportTitle(isCheckedAllProduct) {
         const { productList, languageList, baseCurrencyList, commGroupList, paymentCurrencyList } = this.props;
-        const { selectedLanguage, fromMonth, toMonth, userName, selectedBaseCurrency, fromDate, toDate, isCheckedDatePicker } = this.state;
+        const { selectedLanguage, fromMonth, toMonth, userName, selectedBaseCurrency, fromDate, toDate, isCheckedDatePicker, selectedStatus } = this.state;
 
         const userNameTitle = `${userName && ' - Affiliate contains \'' + userName + '\''}`;
         const language = languageList[selectedLanguage] || 'All languages';
@@ -269,8 +273,9 @@ export class Filter extends Component {
 
         const fromToTitle = isCheckedDatePicker ? `FROM ${fromDate} TO ${toDate}` : `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
         const baseCurrency = baseCurrencyList.filter(x => x.ExchangeId == selectedBaseCurrency).map(b => b.Code).join(',');
+        const status = statusFilter[selectedStatus];
 
-        return `${resource.reportName}${userNameTitle} - Base Currency ${baseCurrency} - ${paymentCurrency} - ${language} - ${productName} - ${commGroup} - ${fromToTitle}`;
+        return `${resource.reportName}${userNameTitle} - Base Currency ${baseCurrency} - ${paymentCurrency} - ${language} - ${productName} - ${commGroup} - ${status} - ${fromToTitle}`;
     }
 
     _buildMonthOnMonthReportTile(isCheckedAllProduct) {
@@ -333,7 +338,8 @@ export class Filter extends Component {
             isExcludeNegvCurrentBBF,
             fromDate,
             toDate,
-            isCheckedDatePicker
+            isCheckedDatePicker,
+            selectedStatus
         } = this.state;
 
         const {
@@ -512,7 +518,20 @@ export class Filter extends Component {
                             </Fragment>
                         )
                     }
-
+                    {
+                        isMainView && (
+                            <FormGroup className="my-sm-1 mr-sm-2">
+                                <Label htmlFor="selectedStatus" className="mr-sm-2">Status</Label>
+                                <Input type="select" name="selectedStatus" value={selectedStatus} onChange={this.handleChange}>
+                                    {Object.entries(statusFilter).map(([key, value]) => (
+                                        <option key={`status-${key === allStatuses ? 'all' : key}`} value={key}>
+                                            {value}
+                                        </option>
+                                    ))}
+                                </Input>
+                            </FormGroup>
+                        )
+                    }
                     {
                         !isMainView && (
                             <FormGroup check>
