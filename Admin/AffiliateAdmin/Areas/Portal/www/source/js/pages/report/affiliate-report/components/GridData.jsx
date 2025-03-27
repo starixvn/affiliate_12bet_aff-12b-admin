@@ -294,7 +294,6 @@ export class GridData extends PureComponent {
 
         const postParam = Object.assign({}, param, {
             UserName: userName,
-            EarningBy: 'all',
             SortType: sortByMonthOnMonthView.Month,
             SortDirectionType: sortDirectionType.descending,
             PageIndex: 1,

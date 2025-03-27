@@ -41,7 +41,6 @@ export class Filter extends Component {
             selectedBaseCurrency: baseCurrencyList.length && baseCurrencyList[0].ExchangeId || defaultBaseCurrency,
             selectedCurrencyList: currencyList.filter(item => item.checked).map(item => item.key).join(',') || '',
             selectedPaymentCurrencyList: paymentCurrencyList.filter(item => item.checked).map(item => item.key).join(',') || '',
-            selectedEarning: 'all',
             isCheckedDatePicker: false,
             fromDate: `${currentMonthString}/01/${currentYear}`,
             toDate: this.nowString,
@@ -94,7 +93,6 @@ export class Filter extends Component {
                 this.setState({
                     userName: param.UserName,
                     sortBy: sortByMonthOnMonthView.Month,
-                    selectedEarning: 'all',
                     isSortAscending: false,
                     isCheckedDatePicker: false
                 }, callback);
@@ -199,7 +197,6 @@ export class Filter extends Component {
         this._updateReportTitle();
         const {
             selectedLanguage,
-            selectedEarning,
             selectedCommGroupList,
             selectedBaseCurrency,
             selectedCurrencyList,
@@ -227,7 +224,6 @@ export class Filter extends Component {
             FromDate: isCheckedDatePicker ? fromDate : `${fromMonth.month}/1/${fromMonth.year}`,
             ToDate: isCheckedDatePicker ? toDate : `${toMonth.month}/1/${toMonth.year}`,
             PreferredLanguage: selectedLanguage,
-            EarningBy: selectedEarning,
             BaseCurrencyId: Number(selectedBaseCurrency),
             GroupIds: isSelectAllCommGroup ? 'all' : selectedCommGroupList,
             CurrencyIds: selectedCurrencyList,
@@ -328,7 +324,6 @@ export class Filter extends Component {
     render() {
         const {
             selectedLanguage,
-            selectedEarning,
             selectedBaseCurrency,
             fromMonth, toMonth,
             sortBy, isSortAscending,
@@ -349,8 +344,7 @@ export class Filter extends Component {
             baseCurrencyList,
             paymentCurrencyList,
             isProduction,
-            commGroupList,
-            earningByList
+            commGroupList
         } = this.props;
 
         const isValidSelectedProduct = !!selectedProductList;
@@ -369,19 +363,6 @@ export class Filter extends Component {
                             onChange={this.handleChange}
                             value={userName} />
                     </FormGroup>
-                    {
-                        !isMainView &&
-                        <FormGroup className="my-sm-1 mr-sm-2">
-                            <Label className="mr-sm-2">Earning By</Label>
-                            <Input type="select" name="selectedEarning" value={selectedEarning} onChange={this.handleChange}>
-                                {
-                                    Object.keys(earningByList).map(type => {
-                                        return (<option key={'earning-by-' + type} value={earningByList[type]}>{type}</option>)
-                                    })
-                                }
-                            </Input>
-                        </FormGroup>
-                    }
                     <FormGroup className="my-sm-1 mr-sm-2">
                         <Label className="mr-sm-2">{globalResource.BaseCurrency}</Label>
                         <Input type="select" name="selectedBaseCurrency" id="BaseCurrency" value={selectedBaseCurrency} onChange={this.handleChange}>
@@ -601,8 +582,7 @@ function mapStateToProps(state) {
         today: state.today,
         currentViewLevel: state.currentViewLevel,
         param: state.param,
-        commGroupList: state.commGroupList,
-        earningByList: state.earningByList
+        commGroupList: state.commGroupList
     });
 }
 
