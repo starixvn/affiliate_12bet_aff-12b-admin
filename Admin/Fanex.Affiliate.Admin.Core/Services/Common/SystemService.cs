@@ -4,6 +4,7 @@ using Fanex.Caching;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
@@ -17,6 +18,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             ICacheService cacheService) : base(dynamicRepository)
         {
             _cacheService = cacheService;
+        }
+
+        public string ConvertSelectedLanguageCodes(string languageCode)
+        {
+            if(string.IsNullOrWhiteSpace(languageCode))
+            {
+                var allLanguages = GetLanguageList();
+
+                return string.Join(",", allLanguages.Select(l => l.LanguageCode));
+            }
+
+            return languageCode;
         }
 
         public IEnumerable<Language> GetLanguageList()

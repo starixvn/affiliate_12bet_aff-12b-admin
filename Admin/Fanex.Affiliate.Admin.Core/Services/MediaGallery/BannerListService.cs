@@ -4,8 +4,10 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
 using Fanex.Data.Repository;
@@ -13,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web;
 
@@ -26,15 +29,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
+        private readonly ISystemService _systemService;
         private readonly IBannerValidationService _bannerValidationService;
         public BannerListService(
             IDynamicRepository dynamicRepository,
             IAppSetting appSetting,
             ISystemFile systemFile,
+            ISystemService systemService,
             IBannerValidationService bannerValidationService) : base(dynamicRepository)
         {
             _appSetting = appSetting;
             _systemFile = systemFile;
+            _systemService = systemService;
             _bannerValidationService = bannerValidationService;
         }
 
@@ -493,15 +499,27 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             command.Ip = param.Ip;
         }
 
-        private static void AssignBaseBannerCriteria(BaseBannerCriteria criteria, BaseBannerParam param)
+        private void AssignBaseBannerCriteria(BaseBannerCriteria criteria, BaseBannerParam param)
         {
             criteria.Category = param.Category;
             criteria.SubCategory = param.SubCategory;
-            criteria.Language = param.Language;
+            criteria.Language = ConvertSelectedLanguageNames(param.Language);
             criteria.Currency = param.Currency;
             criteria.AffType = param.AffType;
             criteria.DeviceType = param.DeviceType;
             criteria.UserType = param.UserType;
+        }
+
+        private string ConvertSelectedLanguageNames(string languageName)
+        {
+            var allLanguages = _systemService.GetLanguageList();
+
+            if (string.IsNullOrEmpty(languageName))
+            {
+                return string.Join(",", allLanguages.Select(l => l.LanguageName));
+            }
+
+            return languageName;
         }
     }
 }

@@ -23,17 +23,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
         private readonly ICommGroupCommonService _commGroupCommonService;
 
-        private readonly ISystemService _languageService;
+        private readonly ISystemService _systemService;
 
         public AffiliateController(
             ISessionService sessionService,
             IAffiliateService affiliateService,
             ICommGroupCommonService commGroupCommonService,
-            ISystemService languageService) : base(sessionService)
+            ISystemService systemService) : base(sessionService)
         {
             _commGroupCommonService = commGroupCommonService;
             _affiliateService = affiliateService;
-            _languageService = languageService;
+            _systemService = systemService;
         }
 
         [HttpGet]
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new AffiliateInfoViewModel
             {
                 CommGroupList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
-                LanguageList = _languageService.GetLanguageList(),
+                LanguageList = _systemService.GetLanguageList(),
                 SelectedGroupId = groupId,
                 Param = param,
                 SubMenuList = subMenu
@@ -67,6 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             if (int.TryParse(param.AffCode, out _) || string.IsNullOrEmpty(param.AffCode))
             {
                 param.UserId = SessionService.UserId;
+                param.Language = _systemService.ConvertSelectedLanguageCodes(param.Language);
                 var model = _affiliateService.GetAffiliateList(param);
 
                 return GenerateJsonNetResult(model);
