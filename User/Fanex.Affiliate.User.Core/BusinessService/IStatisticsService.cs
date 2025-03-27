@@ -14,5 +14,7 @@
         IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam);
 
         IEnumerable<MarketingPageStatistics> GetMarketingPageStatistics(MarketingPageStatisticsParam param);
+
+        string ConvertSelectedLanguageCodes(string languageCode);
     }
 }

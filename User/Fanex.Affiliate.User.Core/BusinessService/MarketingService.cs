@@ -118,6 +118,8 @@
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal = false)
         {
+            param.Language = ConvertSelectedLanguageNames(param.Language);
+
             var criteria = param.MapTo<SizeParam, GetSizeListCriteria>(isInternal);
 
             return FetchTData<SizeType>(criteria);
@@ -170,7 +172,7 @@
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
-
+            bannerParam.Language = ConvertSelectedLanguageNames(bannerParam.Language);
             var bannerList = FetchTDataWithPaging<MarketingItem>(bannerParam.MapTo<MarketingBannerParam, GetBannerListCriteria>(), bannerParam);
             foreach (var banner in bannerList)
             {
@@ -253,6 +255,18 @@
 
         public IEnumerable<IGrouping<string, MarketingChannelLink>> GetUsingMarketingLinks(int userId)
             => FetchTData<MarketingChannelLink>(new GetUsingMarketingLinkCriteria(userId)).GroupBy(c => c.ChannelCode);
+
+        private string ConvertSelectedLanguageNames(string languageCode)
+        {
+            var allLanguages = _systemsService.GetLanguageList();
+
+            if (string.IsNullOrEmpty(languageCode))
+            {
+                return string.Join(",", allLanguages.Select(l => l.EnglishName));
+            }
+
+            return allLanguages.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.EnglishName;
+        }
 
         private Dictionary<string, Language> GetLanguageUsedForGeneration(LinkGeneratingParam linkGeneratedParam)
         {

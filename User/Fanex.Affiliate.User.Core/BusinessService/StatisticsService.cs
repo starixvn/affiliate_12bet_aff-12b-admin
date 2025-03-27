@@ -7,12 +7,30 @@
     using DTO.UserPanel.Statistics;
     using MetalModels.UserPanel;
     using System.Collections.Generic;
+    using System.Linq;
     using Utilities;
 
     public class StatisticsService : BaseDynamicService, IStatisticsService
     {
-        public StatisticsService(IDynamicRepository dynamicRepository) : base(dynamicRepository)
+        private readonly ISystemService _systemService;
+
+        public StatisticsService(
+            IDynamicRepository dynamicRepository,
+            ISystemService systemService) : base(dynamicRepository)
         {
+            _systemService = systemService;
+        }
+
+        public string ConvertSelectedLanguageCodes(string languageCode)
+        {
+            if (string.IsNullOrWhiteSpace(languageCode))
+            {
+                var allLanguages = _systemService.GetLanguageList();
+
+                return string.Join(",", allLanguages.Select(l => l.Code));
+            }
+
+            return languageCode;
         }
 
         public IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam)

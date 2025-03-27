@@ -5,6 +5,7 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Fanex.Affiliate.User.Core.Enum;
+    using Fanex.Affiliate.User.Core.Extensions;
     using Filters;
     using MetalModels.UserPanel;
     using System;
@@ -52,7 +53,7 @@
 
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = MarketingHelper.GetLanguageList(_systemService.GetLanguageList(SessionService.IsInternal), userSession.PreferredLanguage),
+                LanguageList = MarketingHelper.GetLanguageList(_systemService.GetLanguageList(), userSession.PreferredLanguage),
                 MemberSitePageList = _marketingService.GetLandingPageList(SessionService.UserSession.GroupName, isInternal),
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
@@ -70,14 +71,6 @@
             landingPageParam.AffId = SessionService.UserSession.AffId;
             landingPageParam.IsInternal = SessionService.IsInternal;
 
-            var selectedLanguage = landingPageParam.LanguageCode;
-            if (!string.IsNullOrEmpty(selectedLanguage))
-            {
-                landingPageParam.LanguageCode = _systemService.GetLanguageList()
-                    .FirstOrDefault(l => l.Code.Equals(selectedLanguage))?.ShortedCode
-                                                ?? SystemLanguage.ShortedDefaultCode;
-            }
-
             var viewModel = new LandingPageStatisticsViewModel
             {
                 DataList = GetLandingPageStatisticsData(landingPageParam),
@@ -89,6 +82,7 @@
 
         private IEnumerable<LandingPageStatistics> GetLandingPageStatisticsData(LandingPageStatisticsParam landingPageParam)
         {
+            landingPageParam.LanguageCode = ConvertSelectedShortedCodes(landingPageParam.LanguageCode);
             var dataList = _statisticsService.GetLandingPageStatistics(landingPageParam);
 
             foreach (var item in dataList)
@@ -99,6 +93,18 @@
             }
 
             return dataList;
+        }
+
+        private string ConvertSelectedShortedCodes(string languageCode)
+        {
+            var allLanguages = _systemService.GetLanguageList();
+
+            if (string.IsNullOrEmpty(languageCode))
+            {
+                return string.Join(",", allLanguages.Select(l => l.ShortedCode));
+            }
+
+            return allLanguages.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.ShortedCode;
         }
     }
 }
