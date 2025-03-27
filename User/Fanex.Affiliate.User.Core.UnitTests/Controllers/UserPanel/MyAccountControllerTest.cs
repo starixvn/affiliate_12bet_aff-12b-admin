@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             accountService.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
 
             var languageService = new Mock<ISystemService>();
-            languageService.Setup(l => l.GetSupportedLanguages(It.IsAny<bool?>())).Returns(new List<Language> { new Language { Code = "en-US", EnglishName = "English" } });
+            languageService.Setup(l => l.GetSupportedLanguages()).Returns(new List<Language> { new Language { Code = "en-US", EnglishName = "English" } });
             var controller = CreateAccountController(null, accountService.Object, languageService.Object);
 
             // Action

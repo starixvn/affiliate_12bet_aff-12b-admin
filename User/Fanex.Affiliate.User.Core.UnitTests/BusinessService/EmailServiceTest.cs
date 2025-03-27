@@ -194,7 +194,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<VerificationAccountEmailParam>());
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
-            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount);
+            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount, true);
         }
 
         [Fact]
@@ -212,7 +212,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
 
             MailProcessor.Received().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<VerificationAccountEmailParam>());
             MailProcessor.DidNotReceive().BuildTemplateContent(Arg.Compat.Any<string>(), Arg.Compat.Any<string>(), Arg.Compat.Any<EmailTemplateViewModel>());
-            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount);
+            MailProcessor.Received().Send(mainContent, param.MailTo, Lang.SubjectVerificationAccount, true);
         }
 
         private static RecoverPasswordEmailParam CreateRecoverEmailParam()

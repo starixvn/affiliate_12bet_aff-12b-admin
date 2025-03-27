@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             marketingService.Setup(m => m.GetLandingPageList(CommGroup, IsInternal, It.IsAny<AffiliateLinkType>())).Returns(new List<LandingPage>());
             var languageList = CreateFakeLanguageList();
             var languageService = new Mock<ISystemService>();
-            languageService.Setup(m => m.GetLanguageList(IsInternal)).Returns(languageList);
+            languageService.Setup(m => m.GetLanguageList()).Returns(languageList);
 
             var statisticsService = new Mock<IStatisticsService>();
             var landingPageStisticsList = CreateFakeLandingPageStatisticsList();
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             marketingService.Setup(m => m.GetLandingPageList(CommGroup, IsInternal, It.IsAny<AffiliateLinkType>())).Returns(new List<LandingPage>());
             var languageList = CreateFakeLanguageList();
             var languageService = new Mock<ISystemService>();
-            languageService.Setup(m => m.GetLanguageList(IsInternal)).Returns(languageList);
+            languageService.Setup(m => m.GetLanguageList()).Returns(languageList);
 
             var statisticsService = new Mock<IStatisticsService>();
             var landingPageStisticsList = CreateFakeLandingPageStatisticsList();
@@ -83,10 +83,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         }
 
         [Theory]
-        [InlineData(null, null)]
-        [InlineData("", "")]
+        [InlineData(null, "en,vn,en")]
+        [InlineData("", "en,vn,en")]
         [InlineData("en-US", "en")]
-        [InlineData("th-TH", "en")]
+        [InlineData("th-TH", null)]
         public void IndexPost_WhenCall_ReturnViewWithCorrectModelData(string languageCode, string expectedShortedCode)
         {
             // Arrange
@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             statisticsService.Setup(m => m.GetLandingPageStatistics(param)).Returns(landingPageStatisticsList);
 
             var languageService = new Mock<ISystemService>();
-            languageService.Setup(m => m.GetLanguageList(It.IsAny<bool?>())).Returns(Constant.LanguageList);
+            languageService.Setup(m => m.GetLanguageList()).Returns(Constant.LanguageList);
             var controller = CreateController(null, languageService.Object, statisticsService.Object);
 
             // Action
