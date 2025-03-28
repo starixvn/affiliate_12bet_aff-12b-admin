@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Player
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.DisabledFunction, IsHost = true)]
         public ActionResult UpdateMember(UpdateMemberParam param)
         {
             if (ModelState.IsValid)
