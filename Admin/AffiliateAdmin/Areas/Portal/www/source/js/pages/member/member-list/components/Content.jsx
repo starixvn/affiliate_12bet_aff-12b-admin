@@ -33,7 +33,7 @@ export class Content extends PureComponent {
     };
 
     _handleUpdateMember = (selectedMemberId) => {
-        this.props.setSelectedMemberId(selectedMemberId);
+        //this.props.setSelectedMemberId(selectedMemberId);
     }
 
     _renderHeader() {
@@ -100,7 +100,7 @@ export class Content extends PureComponent {
                 </Cell>
                 <Cell className="text-center" title={lastActionDate}>{lastActionDate}</Cell>
                 <Cell className="text-center" title={`Edit ${userName} player`}>
-                    <Button color="link p-0" onClick={() => this._handleUpdateMember(dataItem.MemberId)}>
+                    <Button disabled color="link p-0" onClick={() => this._handleUpdateMember(dataItem.MemberId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
