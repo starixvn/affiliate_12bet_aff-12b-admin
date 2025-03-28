@@ -19,5 +19,7 @@
         public bool IsExcludeNegvCurrentBBF { get; set; }
 
         public bool IsGetMonthly { get; set; }
+
+        public string Statuses { get; set; }
     }
 }

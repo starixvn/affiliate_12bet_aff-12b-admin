@@ -8,7 +8,6 @@ import * as types from '../actions/types';
 import { viewLevel } from '../libs/constants';
 
 const languageList = createReducer({}, {});
-const earningByList = createReducer({}, {});
 const baseCurrencyList = createReducer([], {});
 const isProduction = createReducer(false, {});
 const reportCutOffDate = createReducer('06/01/2023', {});
@@ -72,7 +71,6 @@ export default combineReducers({
     reportCutOffDate,
     productList,
     commGroupList,
-    earningByList,
     pagingOption,
     languageList,
     currencyList,

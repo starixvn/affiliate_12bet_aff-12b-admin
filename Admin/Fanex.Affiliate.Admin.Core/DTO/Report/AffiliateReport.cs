@@ -24,6 +24,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public int Fdm { get; set; }
 
+        public decimal Fdm_Amount { get; set; }
+
         public int ActivePlayer { get; set; }
 
         public int QualifiedMember { get; set; }
@@ -73,5 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
         public int TotalDeposit { get; set; }
 
         public string PreferredLanguage { get; set; }
+
+        public string Status { get; set; }
     }
 }

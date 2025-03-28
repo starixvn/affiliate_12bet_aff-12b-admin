@@ -10,6 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
         EntityResult<AffiliateReport> GetMainReportData(AffiliateReportParam param);
 
         EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportParam param);
+
         DateTime GetReportCutOffDate();
     }
 }

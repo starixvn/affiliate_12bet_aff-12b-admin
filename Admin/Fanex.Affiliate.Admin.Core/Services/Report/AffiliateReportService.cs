@@ -29,6 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
                 IsExcludeNegvBBF = param.IsExcludeNegvBBF,
                 IsExcludeNegvCurrentBBF = param.IsExcludeNegvCurrentBBF,
                 IsGetMonthly = param.IsGetMonthly,
+                Statuses = param.Statuses
             };
             AssignBaseAffiliateReportCriteria(criteria, param);
 

@@ -26,6 +26,11 @@ const colConfig =
         [TOTAL_SECTION_STYLE]: totalCellStyle.default,
         [COL_WIDTH]: 150
     },
+    [fields.Status]: {
+        [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.center,
+        [COL_WIDTH]: 120
+    },
     [fields.PreferredLanguage]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.left,
         [TOTAL_SECTION_STYLE]: totalCellStyle.default,
@@ -54,6 +59,11 @@ const colConfig =
     [fields.Fdm]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.number,
         [TOTAL_SECTION_STYLE]: totalCellStyle.number,
+        [COL_WIDTH]: 120
+    },
+    [fields.Fdm_Amount]: {
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
         [COL_WIDTH]: 120
     },
     [fields.ActivePlayer]: {
@@ -333,6 +343,7 @@ export default class ReportExcel {
         if (totalData) {
             const customTotalData = this.isMainView ? {
                 [fields.UserName]: totalText,
+                [fields.Status]: '',
                 [fields.PaymentCurrency]: '',
                 [fields.CommissionRate]: "N/A"
             } : {

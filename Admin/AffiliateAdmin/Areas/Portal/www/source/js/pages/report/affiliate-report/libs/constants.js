@@ -9,9 +9,11 @@ const sortByCommon = {
 }
 
 export const defaultSortBy = 1;
+
 export const sortByMainView = Object.assign({}, {
     Affiliate: 1
 }, sortByCommon);
+
 export const sortByMonthOnMonthView = Object.assign({}, {
     Month: 1
 }, sortByCommon);
@@ -34,15 +36,25 @@ export const resource = {
     space: ' - '
 }
 
+export const allStatuses = 'Approved, Suspended';
+
+export const statusFilter = {
+    [allStatuses]: 'All Statuses',
+    Approved: 'Approved',
+    Suspended: 'Suspended'
+}
+
 export const reportKey = {
     UserName: 'UserName',
     MonthDateString: 'MonthDateString',
+    Status: 'Status',
     PreferredLanguage: 'PreferredLanguage',
     PaymentCurrency: 'PaymentCurrency',
     TotalClick: 'TotalClick',
     UniqueClick: 'UniqueClick',
     Signup: 'Signup',
     Fdm: 'Fdm',
+    Fdm_Amount: 'Fdm_Amount',
     ActivePlayer: 'ActivePlayer',
     QualifiedMember: 'QualifiedMember',
     NoOfSubAff: 'NoOfSubAff',
@@ -74,6 +86,7 @@ export const reportKey = {
 
 export const headerText = {
     [reportKey.UserName]: 'Affiliate',
+    [reportKey.Status]: 'Status',
     [reportKey.PreferredLanguage]: 'Language',
     [reportKey.MonthDateString]: 'Month',
     [reportKey.PaymentCurrency]: 'Linked Account Currency',
@@ -81,6 +94,7 @@ export const headerText = {
     [reportKey.UniqueClick]: 'Unique Click',
     [reportKey.Signup]: 'Signup',
     [reportKey.Fdm]: 'FDM',
+    [reportKey.Fdm_Amount]: 'FDM Amt',
     [reportKey.ActivePlayer]: 'Active Player',
     [reportKey.QualifiedMember]: 'Qualified Player',
     [reportKey.NoOfSubAff]: 'Sub-Affiliate',
@@ -112,6 +126,7 @@ export const headerText = {
 
 export const headerConfig = {
     [reportKey.UserName]: { label: headerText[reportKey.UserName], isShowable: (claimPrincipal, isMainView) => isMainView },
+    [reportKey.Status]: { label: headerText[reportKey.Status], isShowable: (claimPrincipal, isMainView) => isMainView },
     [reportKey.PreferredLanguage]: { label: headerText[reportKey.PreferredLanguage], isShowable: (claimPrincipal, isMainView) => isMainView },
     [reportKey.MonthDateString]: { label: headerText[reportKey.MonthDateString], isShowable: (claimPrincipal, isMainView) => !isMainView },
     [reportKey.PaymentCurrency]: { label: headerText[reportKey.PaymentCurrency], isShowable: (claimPrincipal, isMainView) => isMainView },
@@ -119,6 +134,7 @@ export const headerConfig = {
     [reportKey.UniqueClick]: { label: headerText[reportKey.UniqueClick] },
     [reportKey.Signup]: { label: headerText[reportKey.Signup] },
     [reportKey.Fdm]: { label: headerText[reportKey.Fdm] },
+    [reportKey.Fdm_Amount]: { label: headerText[reportKey.Fdm_Amount] },
     [reportKey.ActivePlayer]: { label: headerText[reportKey.ActivePlayer] },
     [reportKey.QualifiedMember]: { label: headerText[reportKey.QualifiedMember] },
     [reportKey.NoOfSubAff]: { label: headerText[reportKey.NoOfSubAff] },
