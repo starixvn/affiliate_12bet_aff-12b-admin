@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
                 if (!validateMinAmountResult.IsSuccessful)
                 {
                     return validateMinAmountResult;
-                }    
+                }
 
                 if (tierSettings.Any(item => item.MinQm > Validation.InfinityQualifiedMember))
                 {

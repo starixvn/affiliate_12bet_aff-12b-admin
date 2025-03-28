@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         public string ConvertSelectedLanguageCodes(string languageCode)
         {
-            if(string.IsNullOrWhiteSpace(languageCode))
+            if (string.IsNullOrWhiteSpace(languageCode))
             {
                 var allLanguages = GetLanguageList();
 

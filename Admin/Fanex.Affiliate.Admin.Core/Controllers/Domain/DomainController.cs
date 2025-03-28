@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using Attributes;
     using Constants;
     using Enum;
@@ -13,6 +11,8 @@
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
     using Newtonsoft.Json;
     using Services.Common;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     using Utilities.Market;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]

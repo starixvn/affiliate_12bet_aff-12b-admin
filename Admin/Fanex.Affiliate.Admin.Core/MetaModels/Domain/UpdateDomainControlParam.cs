@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
 {
-    using System.ComponentModel.DataAnnotations;
     using Constants;
+    using System.ComponentModel.DataAnnotations;
 
     public class UpdateDomainControlParam : InsertDomainControlParam
     {

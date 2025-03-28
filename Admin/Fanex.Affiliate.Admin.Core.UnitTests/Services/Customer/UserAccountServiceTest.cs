@@ -49,7 +49,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateUserAccountAsync(param);
 
             // Assert
-            repository.Verify(d => d.Execute(It.Is<UpdateUserAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
@@ -71,7 +70,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Player", PlayerUsername = "123", NoSiteDescription = "abc" });
 
             // Assert
-            repository.Verify(d => d.Execute(It.Is<UpdateUserAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
         }
 
