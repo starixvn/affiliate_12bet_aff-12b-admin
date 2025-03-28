@@ -11,8 +11,8 @@ describe('commission group - TierSetting', () => {
         GroupName: "ABC",
         QmTurnover: 100,
         PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4,5,6", GroupProductId: 123 }],
-        TierSettingList: [{ GroupProductId: 123, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 },
-            { GroupProductId: 123, TierId: 2, MinAmount: 1, MinQm: 5, Commission: 0.1 }]
+        TierSettingList: [{ GroupProductId: 123, GroupId: 0, TierId: 1, MinAmount: 0, MinQm: 5, Commission: 0 },
+            { GroupProductId: 123, GroupId: 0, TierId: 2, MinAmount: 1, MinQm: 5, Commission: 0.1 }]
     }
     const defaultProps = {
         groupProductId: 123,
@@ -22,9 +22,9 @@ describe('commission group - TierSetting', () => {
     it('handleAdd - should call setSelectedGroup when click button Add Tier', () => {
         const expectParam = {
             TierSettingList: [
-                { GroupProductId: 123, Commission: 0, MinAmount: 0, MinQm: 5, TierId: 1 },
-                { GroupProductId: 123, Commission: 0.1, MinAmount: 1, MinQm: 5, TierId: 2 },
-                { GroupProductId: 123, Commission: 0.2, MinAmount: 2, MinQm: 5, TierId: 3 }
+                { GroupProductId: 123, GroupId: 0, Commission: 0, MinAmount: 0, MinQm: 5, TierId: 1 },
+                { GroupProductId: 123, GroupId: 0, Commission: 0.1, MinAmount: 1, MinQm: 5, TierId: 2 },
+                { GroupProductId: 123, GroupId: 0, Commission: 0.2, MinAmount: 2, MinQm: 5, TierId: 3 }
             ]
         };
 
@@ -43,17 +43,17 @@ describe('commission group - TierSetting', () => {
         const wrapper = shallow(<TierSetting {...props} />);
 
         wrapper.instance().handleAdd();
-        expect(props.setSelectedGroup).toHaveBeenCalledWith({ TierSettingList: [{ GroupProductId: 123, Commission: 0, MinAmount: 0, MinQm: 5, TierId: 1 }] });
+        expect(props.setSelectedGroup).toHaveBeenCalledWith({ TierSettingList: [{ GroupProductId: 123, GroupId: 0, Commission: 0, MinAmount: 0, MinQm: 5, TierId: 1 }] });
     });
 
-    //it('handleRemove - Should be called when click remove', () => {
-    //    const wrapper = shallow(<TierSetting {...defaultProps} />);
-    //    wrapper.instance().handleRemove = jest.fn();
+    it('handleRemove - Should be called when click remove', () => {
+        const wrapper = shallow(<TierSetting {...defaultProps} />);
+        wrapper.instance().handleRemove = jest.fn();
 
-    //    wrapper.find(TierSettingItem).at(1).simulate('remove', 2);
+        wrapper.find(TierSettingItem).at(1).simulate('remove', 2);
 
-    //    expect(wrapper.instance().handleRemove).toHaveBeenCalled();
-    //});
+        expect(wrapper.instance().handleRemove).not.toHaveBeenCalled();
+    });
 
     it('handleRemove - Should call setSelectedGroup', () => {
         const mockSetSelectedGroup = jest.fn();
@@ -61,14 +61,14 @@ describe('commission group - TierSetting', () => {
         const wrapper = shallow(<TierSetting {...props} />);
         wrapper.instance().handleRemove(1, 123);
 
-        expect(props.setSelectedGroup).toHaveBeenCalledWith({ TierSettingList: [{ GroupProductId: 123, TierId: 2, Commission: 0.1, MinAmount: 1, MinQm: 5 }] })
+        expect(props.setSelectedGroup).toHaveBeenCalledWith({ TierSettingList: [{ GroupProductId: 123, GroupId: 0, TierId: 2, Commission: 0.1, MinAmount: 1, MinQm: 5 }] })
     });
 
     it('handleChangeInput - Should call setSelectedGroup', () => {
         const expectParam = {
             TierSettingList: [
-                { GroupProductId: 123, Commission: 0, MinAmount: 10, MinQm: 10, TierId: 1 },
-                { GroupProductId: 123, Commission: 0.1, MinAmount: 1, MinQm: 5, TierId: 2 }
+                { GroupProductId: 123, GroupId: 0, Commission: 0, MinAmount: 10, MinQm: 10, TierId: 1 },
+                { GroupProductId: 123, GroupId: 0, Commission: 0.1, MinAmount: 1, MinQm: 5, TierId: 2 }
             ]
         };
         const mockSetSelectedGroup = jest.fn();

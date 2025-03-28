@@ -74,6 +74,7 @@ exports[`commission group - TierSetting Should render correctly 1`] = `
             data={
               Object {
                 "Commission": 0,
+                "GroupId": 0,
                 "GroupProductId": 123,
                 "MinAmount": 0,
                 "MinQm": 5,
@@ -81,7 +82,9 @@ exports[`commission group - TierSetting Should render correctly 1`] = `
               }
             }
             handleClick={[Function]}
-            key="tier-0"
+            index={1}
+            isShowNegativeInfinity={true}
+            key="tier-1"
             onChange={[Function]}
           />
           <TierSettingItem
@@ -89,6 +92,7 @@ exports[`commission group - TierSetting Should render correctly 1`] = `
             data={
               Object {
                 "Commission": 0.1,
+                "GroupId": 0,
                 "GroupProductId": 123,
                 "MinAmount": 1,
                 "MinQm": 5,
@@ -96,7 +100,9 @@ exports[`commission group - TierSetting Should render correctly 1`] = `
               }
             }
             handleClick={[Function]}
-            key="tier-1"
+            index={2}
+            isShowNegativeInfinity={false}
+            key="tier-2"
             onChange={[Function]}
           />
         </tbody>

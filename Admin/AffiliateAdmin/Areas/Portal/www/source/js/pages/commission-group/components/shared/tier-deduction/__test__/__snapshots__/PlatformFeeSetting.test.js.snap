@@ -47,12 +47,16 @@ exports[`commission group - platform fee setting should render correctly 1`] = `
     data={
       Object {
         "groupProductId": 123,
-        "killRate": 0.01,
         "productList": Array [
           Object {
             "Checked": true,
             "ProductId": 1,
             "ProductName": "Sportsbook",
+          },
+          Object {
+            "Checked": false,
+            "ProductId": 2,
+            "ProductName": "Poker",
           },
           Object {
             "Checked": true,
@@ -63,6 +67,11 @@ exports[`commission group - platform fee setting should render correctly 1`] = `
             "Checked": false,
             "ProductId": 4,
             "ProductName": "Number Game",
+          },
+          Object {
+            "Checked": false,
+            "ProductId": 5,
+            "ProductName": "V8 Poker",
           },
         ],
         "royaltyFee": 0.17,
@@ -72,7 +81,6 @@ exports[`commission group - platform fee setting should render correctly 1`] = `
     index={1}
     isFirst={true}
     isOnlyOnePlatformFeeRow={false}
-    isTurnover={false}
     key="platformfee-0"
     onChangeCommission={[Function]}
     onSelectProduct={[Function]}
@@ -81,12 +89,16 @@ exports[`commission group - platform fee setting should render correctly 1`] = `
     data={
       Object {
         "groupProductId": 234,
-        "killRate": 0.02,
         "productList": Array [
           Object {
             "Checked": false,
             "ProductId": 1,
             "ProductName": "Sportsbook",
+          },
+          Object {
+            "Checked": false,
+            "ProductId": 2,
+            "ProductName": "Poker",
           },
           Object {
             "Checked": false,
@@ -98,6 +110,11 @@ exports[`commission group - platform fee setting should render correctly 1`] = `
             "ProductId": 4,
             "ProductName": "Number Game",
           },
+          Object {
+            "Checked": false,
+            "ProductId": 5,
+            "ProductName": "V8 Poker",
+          },
         ],
         "royaltyFee": 0.12,
       }
@@ -106,7 +123,6 @@ exports[`commission group - platform fee setting should render correctly 1`] = `
     index={2}
     isFirst={false}
     isOnlyOnePlatformFeeRow={false}
-    isTurnover={false}
     key="platformfee-1"
     onChangeCommission={[Function]}
     onSelectProduct={[Function]}

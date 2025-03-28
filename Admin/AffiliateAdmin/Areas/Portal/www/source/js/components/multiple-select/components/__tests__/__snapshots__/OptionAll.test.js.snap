@@ -15,12 +15,12 @@ exports[`OptionAll  render - content match with snapshot 1`] = `
       onChange={[Function]}
       type="checkbox"
     />
-    <label
+    <span
       className="option-label"
       htmlFor="optionAll-optionItemAll"
     >
       All
-    </label>
+    </span>
   </li>
 </ul>
 `;

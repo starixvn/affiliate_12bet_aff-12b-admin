@@ -68,7 +68,15 @@ describe('commission group - platform fee setting', () => {
         const wrapper = shallow(<PlatformFeeSetting {...props} />);
         wrapper.instance().handleRemove(1);
 
-        expect(props.setSelectedGroup).toHaveBeenCalledWith({ PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }] });
+        expect(props.setSelectedGroup).toHaveBeenCalledWith({
+            PlatformFeeList: [{ GroupProductId: 123, DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4" }],
+            TierSettingList: [{
+                TierId: 1,
+                GroupProductId: 123,
+                MinAmount: 0,
+                MinQm: 5,
+                Commission: 0,
+            }] });
     })
 
     it('handleSelect - should be called when change product', () => {

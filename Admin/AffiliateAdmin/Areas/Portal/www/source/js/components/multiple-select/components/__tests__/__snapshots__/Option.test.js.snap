@@ -11,11 +11,11 @@ exports[`Option  render - content match with snapshot 1`] = `
     onChange={[Function]}
     type="checkbox"
   />
-  <label
+  <span
     className="option-label"
     htmlFor="itemId"
   >
     value
-  </label>
+  </span>
 </li>
 `;

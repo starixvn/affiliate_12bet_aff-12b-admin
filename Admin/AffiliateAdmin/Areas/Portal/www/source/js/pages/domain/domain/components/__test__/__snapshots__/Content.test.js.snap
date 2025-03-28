@@ -90,6 +90,16 @@ exports[`domain - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="undefined"
+            >
+              undefined
+            </t>
+            <t
+              asc={true}
               className="text-center"
               header={false}
               onClick={[Function]}
@@ -188,6 +198,16 @@ exports[`domain - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
+              header={false}
+              onClick={[Function]}
+              sortable={false}
+              sorting={false}
+              title="undefined"
+            >
+              undefined
+            </t>
+            <t
+              asc={true}
               className="text-center"
               header={false}
               onClick={[Function]}
@@ -244,7 +264,7 @@ exports[`domain - components - Content  render correctly 1`] = `
           </t>
           <t
             asc={true}
-            colWidth={500}
+            colWidth={200}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -285,6 +305,17 @@ exports[`domain - components - Content  render correctly 1`] = `
             title="Created Date"
           >
             Created Date
+          </t>
+          <t
+            asc={true}
+            colWidth={320}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Block Market"
+          >
+            Block Market
           </t>
           <t
             asc={true}
@@ -358,7 +389,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
             <t
               asc={true}
               className="text-center"
-              colSpan="7"
+              colSpan="8"
               header={false}
               onClick={[Function]}
               sortable={false}
@@ -386,7 +417,7 @@ exports[`domain - components - Content  render correctly with gridData is empty 
           </t>
           <t
             asc={true}
-            colWidth={500}
+            colWidth={200}
             header={true}
             onClick={[Function]}
             sortable={false}
@@ -427,6 +458,17 @@ exports[`domain - components - Content  render correctly with gridData is empty 
             title="Created Date"
           >
             Created Date
+          </t>
+          <t
+            asc={true}
+            colWidth={320}
+            header={true}
+            onClick={[Function]}
+            sortable={false}
+            sorting={false}
+            title="Block Market"
+          >
+            Block Market
           </t>
           <t
             asc={true}

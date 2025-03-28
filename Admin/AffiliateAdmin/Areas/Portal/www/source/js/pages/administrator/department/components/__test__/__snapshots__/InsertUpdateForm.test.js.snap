@@ -26,6 +26,7 @@ exports[`department list - components - InsertUpdateForm  render correctly with 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -228,6 +229,7 @@ exports[`department list - components - InsertUpdateForm  render correctly with 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -430,6 +432,7 @@ exports[`department list - components - InsertUpdateForm  render correctly with 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

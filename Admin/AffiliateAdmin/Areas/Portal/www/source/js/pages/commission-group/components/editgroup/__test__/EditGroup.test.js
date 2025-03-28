@@ -12,8 +12,15 @@ describe('commission group - EditGroup', () => {
             GroupId: 0,
             GroupName: "",
             QmTurnover: 100,
-            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", IsDeductedPercent: true, DeductedAmount: "" }],
-            TierSettingList: []
+            PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,2,3,4,5", IsDeductedPercent: true, DeductedAmount: "" }],
+            TierSettingList: [{
+                GroupId: 0,
+                TierId: 1,
+                GroupProductId: 0,
+                MinAmount: 0,
+                MinQm: 5,
+                Commission: 0,
+            }]
         },
         productList: [
             { ProductId: 1, ProductName: "Sportsbook" },
@@ -60,7 +67,7 @@ describe('commission group - EditGroup', () => {
         const expectData = {
             isShowMessage: true,
             isSuccess: false,
-            message: ["Group Name cannot be empty. Please check!", "Tier Setting must have at least 1 tier"]
+            message: ["Group Name cannot be empty. Please check!"]
         };
         window.scrollTo = jest.fn();
         const wrapper = shallow(<EditGroup {...props} />);

@@ -4,7 +4,6 @@ exports[`commission group - AssignGroup Should render correctly 1`] = `
 AssignGroup {
   "context": undefined,
   "handleChangeGroup": [Function],
-  "handleChangeGroupType": [Function],
   "handleCheck": [Function],
   "handleSave": [Function],
   "hideMessage": [Function],
@@ -32,33 +31,12 @@ AssignGroup {
         "Name": "CG22124",
       },
     ],
-    "commGroupListByType": Array [
-      Object {
-        "Id": "133",
-        "Name": "NewGroup",
-      },
-      Object {
-        "Id": "152",
-        "Name": "CG22124",
-      },
-    ],
-    "commGroupTypes": Array [
-      Object {
-        "GroupTypeId": "1",
-        "GroupTypeName": "Calculate Revenue Share by Winloss",
-      },
-      Object {
-        "GroupTypeId": "2",
-        "GroupTypeName": "Calculate Revenue Share by Turnover",
-      },
-    ],
     "isPrivateGroup": false,
     "isShowLoader": false,
     "isShowMessage": false,
     "isSuccess": true,
     "message": "",
     "selectedGroup": 102,
-    "selectedGroupType": undefined,
   },
   "updater": Object {
     "enqueueForceUpdate": [Function],
@@ -136,60 +114,6 @@ exports[`commission group - AssignGroup Should render correctly with isSuccess s
         Revenue Group
       </h6>
     </legend>
-    <FormGroup
-      row={true}
-      tag="div"
-    >
-      <Label
-        className="font-weight-bold"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-        xs="4"
-      >
-        New Revenue Group Type: 
-      </Label>
-      <Col
-        className="select-comm"
-        tag="div"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-        xs="5"
-      >
-        <select
-          className="form-control"
-          name="selectedGroupType"
-          onChange={[Function]}
-        >
-          <option
-            key="comm-group-type-0"
-            value="1"
-          >
-            Calculate Revenue Share by Winloss
-          </option>
-          <option
-            key="comm-group-type-1"
-            value="2"
-          >
-            Calculate Revenue Share by Turnover
-          </option>
-        </select>
-      </Col>
-    </FormGroup>
     <FormGroup
       row={true}
       tag="div"

@@ -6,11 +6,11 @@ describe('affiliate report - Report Excel ', () => {
     const TITLE_ROW_INDEX = 0;
     const HEADER_ROW_INDEX = 1;
 
-    const INDEX_DEPOSIT_COLUMN = 9;
-    const COLSPAN_MEMBER_STATISTICS = 12;
+    const INDEX_DEPOSIT_COLUMN = 10;
+    const COLSPAN_MEMBER_STATISTICS = 13;
     const TOTAL_COLSPAN = 29;
-    const INDEX_COMM_COLUMN = 19;
-    const COLSPAN_AFFILIATE_STATISTICS = 9;
+    const INDEX_COMM_COLUMN = 20;
+    const COLSPAN_AFFILIATE_STATISTICS = 10;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
@@ -40,6 +40,7 @@ describe('affiliate report - Report Excel ', () => {
         TotalFee: 0,
         Turnover: 0,
         UniqueClick: 0,
+        PreferredLanguage: 'en-US',
         UserName: "12BETAFF001",
         Ggr: 0,
         Withdrawal: 0,
@@ -67,6 +68,7 @@ describe('affiliate report - Report Excel ', () => {
         TotalFee: 0,
         Turnover: 0,
         UniqueClick: 1,
+        PreferredLanguage: 'vi-VN',
         UserName: "12BETAFF002",
         Ggr: 0,
         Withdrawal: 0,
@@ -322,6 +324,7 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_getColumnConfigs - return correct', () => {
         const expectResult = [
+            { field: "PreferredLanguage", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" } }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "PaymentCurrency", mainSectionStyle: { alignment: { horizontal: "center", vertical: "center" } }, totalSectionStyle: { alignment: { horizontal: "center", vertical: "center" }, fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "TotalClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "UniqueClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },

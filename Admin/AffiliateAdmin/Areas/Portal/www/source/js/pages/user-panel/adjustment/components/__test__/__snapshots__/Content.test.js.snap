@@ -85,7 +85,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
       </Label>
     </FormGroup>
     <FormGroup
-      className="mb-2 has-error"
+      className="mb-2"
       row={true}
       tag="div"
     >
@@ -120,7 +120,7 @@ exports[`Adjustment - components - Content render correctly with isValidAmount i
         }
       >
         <Input
-          className="text-right h-75"
+          className="text-right h-75 has-error"
           id="amount"
           name="amount"
           onChange={[Function]}

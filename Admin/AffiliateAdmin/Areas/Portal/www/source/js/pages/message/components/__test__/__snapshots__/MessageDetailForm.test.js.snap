@@ -33,6 +33,7 @@ exports[`message - components - MessageDetailForm  render correctly with current
     scrollable={false}
     size="lg"
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -623,6 +624,7 @@ exports[`message - components - MessageDetailForm  render correctly with insert 
     scrollable={false}
     size="lg"
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -1195,6 +1197,7 @@ exports[`message - components - MessageDetailForm  render correctly with not sho
     scrollable={false}
     size="lg"
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -1785,6 +1788,7 @@ exports[`message - components - MessageDetailForm  render correctly with update 
     scrollable={false}
     size="lg"
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -2375,6 +2379,7 @@ exports[`message - components - MessageDetailForm  render correctly with update 
     scrollable={false}
     size="lg"
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >

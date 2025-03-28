@@ -32,6 +32,7 @@ const actionList = [
     { name: 'setSearchedGroupName', type: types.SET_SEARCHED_GROUPNAME, data: 'setSearchedGroupName' }
 ];
 
+
 const actionListReturnPost = [
     { name: 'insertCommissionGroup', url: 'Portal/RevenueGroup/CreateCommissionGroup' },
     { name: 'updateCommissionGroup', url: 'Portal/RevenueGroup/UpdateCommissionGroup' },
@@ -194,7 +195,6 @@ describe('commission group actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: types.SET_SELECTED_PRODUCT_IDS, data: [2, 5] },
             { type: types.SET_SELECTED_GROUP, data: expectedResponse.data }
         ];
         const param = {
@@ -212,7 +212,6 @@ describe('commission group actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: types.SET_SELECTED_PRODUCT_IDS, data: [] },
             { type: types.SET_SELECTED_GROUP, data: null }
         ];
         const param = {

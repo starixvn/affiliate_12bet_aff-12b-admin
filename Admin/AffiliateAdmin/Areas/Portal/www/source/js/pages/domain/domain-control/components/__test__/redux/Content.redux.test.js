@@ -19,17 +19,19 @@ describe('domain control- Content - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            selectedMarket: 'en-GB',
+            selectedMarketId: 'en-US',
             shouldResetScrollPosition: true,
             gridData: [],
             affDomainList: [],
+            affSubDomainList: [],
             redirectDomainList: []
         };
         const state = {
-            selectedMarket: 'en-GB',
+            selectedMarketId: 'en-US',
             shouldResetScrollPosition: true,
             gridData: [],
             affDomainList: [],
+            affSubDomainList: [],
             redirectDomainList: [],
             anotherProp: "Not included"
         };
@@ -47,7 +49,7 @@ describe('domain control- Content - connect', () => {
             fetchData: actions['fetchData'],
             fetchDomain: actions['fetchDomain'],
             toggleLoader: actions['toggleLoader'],
-            setSelectedDomain: actions['setSelectedDomain'],
+            setSelectedDomainId: actions['setSelectedDomainId'],
             setShouldResetScrollPosition: actions['setShouldResetScrollPosition']
         }
 

@@ -27,6 +27,7 @@ const aggregateHeaderChildrenOfAffiliateStatistics = [
 ];
 
 const cols = [
+    new SingleHeaderColumn(reportKey.PreferredLanguage, headerText[reportKey.PreferredLanguage], true),
     new SingleHeaderColumn(reportKey.PaymentCurrency, headerText[reportKey.PaymentCurrency], true),
     new SingleHeaderColumn(reportKey.TotalClick, headerText[reportKey.TotalClick], true),
     new SingleHeaderColumn(reportKey.UniqueClick, headerText[reportKey.UniqueClick], true),

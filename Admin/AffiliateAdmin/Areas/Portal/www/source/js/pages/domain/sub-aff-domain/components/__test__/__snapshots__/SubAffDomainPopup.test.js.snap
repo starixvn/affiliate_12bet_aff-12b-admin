@@ -26,6 +26,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -229,6 +230,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

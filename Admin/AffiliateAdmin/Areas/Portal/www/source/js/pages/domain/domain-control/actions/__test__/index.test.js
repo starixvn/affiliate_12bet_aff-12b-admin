@@ -17,12 +17,13 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setSelectedDomain', type: types.SET_SELECTED_DOMAIN, data: { domainId: 123 } },
+    { name: 'setSelectedDomainId', type: types.SET_SELECTED_DOMAIN_ID, data: 123 },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' },
-    { name: 'setSelectedMarket', type: types.SET_SELECTED_MARKET, data: { marketId: 234 } },
+    { name: 'setSelectedMarketId', type: types.SET_SELECTED_MARKET_ID, data: 'en-US' },
     { name: 'setAffDomainList', type: types.SET_AFF_DOMAIN_LIST, data: [{ domainName: "abc.com" }] },
-    { name: 'setRedirectDomainList', type: types.SET_REDIRECT_DOMAIN, data: [{ domainName: "123.com" }] }
+    { name: 'setAffSubDomainList', type: types.SET_AFF_SUB_DOMAIN_LIST, data: [{ domainName: "abc" }] },
+    { name: 'setRedirectDomainList', type: types.SET_REDIRECT_DOMAIN_LIST, data: [{ domainName: "123.com" }] }
 ];
 
 describe('domain control actions', () => {
@@ -96,7 +97,7 @@ describe('domain control actions', () => {
     it('should create action to fetchDomain with insert successfully', () => {
         const expectedAction = [
             { type: types.SET_AFF_DOMAIN_LIST, data: [] },
-            { type: types.SET_REDIRECT_DOMAIN, data: [] },
+            { type: types.SET_REDIRECT_DOMAIN_LIST, data: [] },
         ];
 
         const store = mockStore({ todos: [] });

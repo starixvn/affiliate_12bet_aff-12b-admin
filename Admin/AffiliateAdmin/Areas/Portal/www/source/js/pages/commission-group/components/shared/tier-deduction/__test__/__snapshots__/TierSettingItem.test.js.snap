@@ -4,11 +4,10 @@ exports[`commission group - TierSettingItem Should render correctly 1`] = `
 <tr>
   <td
     className="text-center"
-  >
-    1
-  </td>
+  />
   <td>
     <Input
+      className=""
       id="MinAmount1"
       name="MinAmount"
       onChange={[Function]}
@@ -6055,11 +6054,10 @@ exports[`commission group - TierSettingItem Should render correctly with MaxAmou
 <tr>
   <td
     className="text-center"
-  >
-    1
-  </td>
+  />
   <td>
     <Input
+      className=""
       id="MinAmount1"
       name="MinAmount"
       onChange={[Function]}
