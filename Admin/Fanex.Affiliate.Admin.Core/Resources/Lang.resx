@@ -287,4 +287,7 @@
   <data name="EmailHistory" xml:space="preserve">
     <value>Email History</value>
   </data>
+  <data name="SpecificDomainControl" xml:space="preserve">
+    <value>Specific Domain Control</value>
+  </data>
 </root>
