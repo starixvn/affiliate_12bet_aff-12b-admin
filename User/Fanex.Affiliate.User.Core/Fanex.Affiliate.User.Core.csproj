@@ -303,6 +303,7 @@
     <Compile Include="Criterias\Currency\GetBaseCurrencyListCriteria.cs" />
     <Compile Include="Criterias\Language\GetLanguageListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetAffDomainListCriteria.cs" />
+    <Compile Include="Criterias\Marketing\GetAffMarketingLinkCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetBannerListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetCategoryListCriteria.cs" />
     <Compile Include="Criterias\Marketing\GetCurrencyListCriteria.cs" />

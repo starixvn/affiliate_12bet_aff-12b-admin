@@ -10,6 +10,7 @@
     using DTO.UserPanel.MediaGallery;
     using Enum;
     using Extensions;
+    using Fanex.Affiliate.User.Core.Criterias.Marketing;
     using MetalModels;
     using MetalModels.UserPanel;
     using Resources;
@@ -38,6 +39,46 @@
             _cacheService = cacheService;
             _appSetting = appSetting;
             _systemsService = systemsService;
+        }
+
+        public void TrackingAffMarketingLink(int affId, IDictionary<string, QrCodeLinkModel> qrCodeLinks, QrCodeParam param)
+        {
+            var affMediaLinks = GetAffMarketingLinks(affId, param.SelectedChannel);
+            var shouldTrackingAffLinks = qrCodeLinks.Values;
+
+            if (affMediaLinks != null)
+            {
+                shouldTrackingAffLinks = new List<QrCodeLinkModel>();
+
+                foreach (var item in qrCodeLinks.Values)
+                {
+                    var affLink = affMediaLinks.FirstOrDefault(l => l.AffMediaLink.Equals(item.Link, StringComparison.OrdinalIgnoreCase));
+
+                    if (affLink is null)
+                    {
+                        item.IsShow = true;
+                        shouldTrackingAffLinks.Add(item);
+                    }
+                    else
+                    {
+                        item.IsShow = affLink.IsShow;
+                    }
+                }
+            }
+
+            foreach (var item in shouldTrackingAffLinks)
+            {
+                var trackingParam = new MarketingLinkParam
+                {
+                    AffId = affId,
+                    AffMediaLink = item.Link,
+                    ChannelCode = param.SelectedChannel,
+                    LanguageCode = param.SelectedLanguage,
+                    IsOn = item.IsShow
+                };
+
+                ToggleMarketingLink(trackingParam);
+            }
         }
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, AffiliateLinkType linkType, bool isInternal = false)
@@ -215,6 +256,9 @@
                 Message = string.IsNullOrWhiteSpace(message) ? result.Message : message
             };
         }
+
+        private IEnumerable<MarketingChannelLink> GetAffMarketingLinks(int userId, string channelCode)
+            => FetchTData<MarketingChannelLink>(new GetAffMarketingLinkCriteria(userId, channelCode));
 
         public IEnumerable<IGrouping<string, MarketingChannelLink>> GetUsingMarketingLinks(int userId)
             => FetchTData<MarketingChannelLink>(new GetUsingMarketingLinkCriteria(userId)).GroupBy(c => c.ChannelCode);
