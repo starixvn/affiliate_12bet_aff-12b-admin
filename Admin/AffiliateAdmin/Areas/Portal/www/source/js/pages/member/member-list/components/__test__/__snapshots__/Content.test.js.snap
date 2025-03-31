@@ -127,6 +127,7 @@ exports[`member list - components - Content  render correctly 1`] = `
             >
               <Button
                 color="link p-0"
+                disabled={true}
                 onClick={[Function]}
                 tag="button"
               >
@@ -250,6 +251,7 @@ exports[`member list - components - Content  render correctly 1`] = `
             >
               <Button
                 color="link p-0"
+                disabled={true}
                 onClick={[Function]}
                 tag="button"
               >
@@ -553,6 +555,7 @@ exports[`member list - components - Content  render correctly with NotificationP
             >
               <Button
                 color="link p-0"
+                disabled={true}
                 onClick={[Function]}
                 tag="button"
               >
@@ -676,6 +679,7 @@ exports[`member list - components - Content  render correctly with NotificationP
             >
               <Button
                 color="link p-0"
+                disabled={true}
                 onClick={[Function]}
                 tag="button"
               >

@@ -33,6 +33,11 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "text": "Affiliate",
           },
           SingleHeaderColumn {
+            "key": "Status",
+            "showable": true,
+            "text": "Status",
+          },
+          SingleHeaderColumn {
             "key": "PreferredLanguage",
             "showable": true,
             "text": "Language",
@@ -66,6 +71,11 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "key": "Fdm",
             "showable": true,
             "text": "FDM",
+          },
+          SingleHeaderColumn {
+            "key": "Fdm_Amount",
+            "showable": true,
+            "text": "FDM Amt",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -243,6 +253,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "text": "Affiliate",
           },
           SingleHeaderColumn {
+            "key": "Status",
+            "showable": true,
+            "text": "Status",
+          },
+          SingleHeaderColumn {
             "key": "PreferredLanguage",
             "showable": true,
             "text": "Language",
@@ -276,6 +291,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "Fdm",
             "showable": true,
             "text": "FDM",
+          },
+          SingleHeaderColumn {
+            "key": "Fdm_Amount",
+            "showable": true,
+            "text": "FDM Amt",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -461,6 +481,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "text": "Affiliate",
           },
           SingleHeaderColumn {
+            "key": "Status",
+            "showable": false,
+            "text": "Status",
+          },
+          SingleHeaderColumn {
             "key": "PreferredLanguage",
             "showable": false,
             "text": "Language",
@@ -494,6 +519,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "Fdm",
             "showable": true,
             "text": "FDM",
+          },
+          SingleHeaderColumn {
+            "key": "Fdm_Amount",
+            "showable": true,
+            "text": "FDM Amt",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",

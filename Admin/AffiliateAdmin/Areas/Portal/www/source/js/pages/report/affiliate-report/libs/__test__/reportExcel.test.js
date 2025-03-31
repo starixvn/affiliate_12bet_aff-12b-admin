@@ -6,11 +6,11 @@ describe('affiliate report - Report Excel ', () => {
     const TITLE_ROW_INDEX = 0;
     const HEADER_ROW_INDEX = 1;
 
-    const INDEX_DEPOSIT_COLUMN = 10;
-    const COLSPAN_MEMBER_STATISTICS = 13;
-    const TOTAL_COLSPAN = 29;
-    const INDEX_COMM_COLUMN = 20;
-    const COLSPAN_AFFILIATE_STATISTICS = 10;
+    const INDEX_DEPOSIT_COLUMN = 12;
+    const COLSPAN_MEMBER_STATISTICS = 15;
+    const TOTAL_COLSPAN = 31;
+    const INDEX_COMM_COLUMN = 22;
+    const COLSPAN_AFFILIATE_STATISTICS = 12;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
@@ -32,6 +32,7 @@ describe('affiliate report - Report Excel ', () => {
         Description: "12BETAFF001",
         Earning: 0,
         Fdm: 0,
+        Fdm_Amount: 0,
         MonthDate: null,
         MonthDateString: "",
         PlatformFee: 0,
@@ -42,6 +43,7 @@ describe('affiliate report - Report Excel ', () => {
         UniqueClick: 0,
         PreferredLanguage: 'en-US',
         UserName: "12BETAFF001",
+        Status: "Aprroved",
         Ggr: 0,
         Withdrawal: 0,
     };
@@ -60,6 +62,7 @@ describe('affiliate report - Report Excel ', () => {
         Description: "",
         Earning: 0,
         Fdm: 0,
+        Fdm_Amount: 0,
         MonthDate: null,
         MonthDateString: "",
         PlatformFee: 0,
@@ -70,6 +73,7 @@ describe('affiliate report - Report Excel ', () => {
         UniqueClick: 1,
         PreferredLanguage: 'vi-VN',
         UserName: "12BETAFF002",
+        Status: "Aprroved",
         Ggr: 0,
         Withdrawal: 0,
     }
@@ -248,7 +252,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
-        const customTotalData = { CommissionRate: "N/A", PaymentCurrency: '', UserName: "Total (all pages)" };
+        const customTotalData = { CommissionRate: "N/A", PaymentCurrency: '', Status: '', UserName: "Total (all pages)" };
         const instance = new ReportExcel(data, title, isMainView, headerFake);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
@@ -304,7 +308,7 @@ describe('affiliate report - Report Excel ', () => {
 
         Excel.getCellType = jest.fn();
 
-        const result = instance._buildDataRow(itemHaveDescription, MAIN_SECTION_STYLE, 2);
+        const result = instance._buildDataRow(itemHaveDescription, MAIN_SECTION_STYLE, 3);
 
         expect(Excel.getCellType).toHaveBeenCalledWith(0);
         expect(result).toEqual({ s: { numFmt: "#,##0" }, t: undefined, v: 0 });
@@ -324,12 +328,14 @@ describe('affiliate report - Report Excel ', () => {
 
     it('_getColumnConfigs - return correct', () => {
         const expectResult = [
+            { field: "Status", mainSectionStyle: { alignment: { horizontal: "center", vertical: "center" } }, totalSectionStyle: { alignment: { horizontal: "center", vertical: "center" }, fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "PreferredLanguage", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" } }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "PaymentCurrency", mainSectionStyle: { alignment: { horizontal: "center", vertical: "center" } }, totalSectionStyle: { alignment: { horizontal: "center", vertical: "center" }, fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "TotalClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "UniqueClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Signup", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Fdm", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
+            { field: "Fdm_Amount", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0.00" }, wpx: 120 },
             { field: "ActivePlayer", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "QualifiedMember", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "NoOfSubAff", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },

@@ -27,12 +27,14 @@ const aggregateHeaderChildrenOfAffiliateStatistics = [
 ];
 
 const cols = [
+    new SingleHeaderColumn(reportKey.Status, headerText[reportKey.Status], true),
     new SingleHeaderColumn(reportKey.PreferredLanguage, headerText[reportKey.PreferredLanguage], true),
     new SingleHeaderColumn(reportKey.PaymentCurrency, headerText[reportKey.PaymentCurrency], true),
     new SingleHeaderColumn(reportKey.TotalClick, headerText[reportKey.TotalClick], true),
     new SingleHeaderColumn(reportKey.UniqueClick, headerText[reportKey.UniqueClick], true),
     new SingleHeaderColumn(reportKey.Signup, headerText[reportKey.Signup], true),
     new SingleHeaderColumn(reportKey.Fdm, headerText[reportKey.Fdm], true),
+    new SingleHeaderColumn(reportKey.Fdm_Amount, headerText[reportKey.Fdm_Amount], true),
     new SingleHeaderColumn(reportKey.ActivePlayer, headerText[reportKey.ActivePlayer], true),
     new SingleHeaderColumn(reportKey.QualifiedMember, headerText[reportKey.QualifiedMember], true),
     new SingleHeaderColumn(reportKey.NoOfSubAff, headerText[reportKey.NoOfSubAff], true),

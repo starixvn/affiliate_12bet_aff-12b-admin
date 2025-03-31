@@ -471,7 +471,7 @@ describe('affiliate report - GridData ', () => {
         componentInstance.handleViewMonthOnMonth(userName);
 
         expect(props.setViewLevel).toHaveBeenCalledWith(2);
-        expect(props.setParam).toHaveBeenCalledWith({ EarningBy: 'all', PageIndex: 1, PageSize: 20, SortDirectionType: 1, SortType: 1, UserName: "handleViewMonthOnMonth" });
+        expect(props.setParam).toHaveBeenCalledWith({ PageIndex: 1, PageSize: 20, SortDirectionType: 1, SortType: 1, UserName: "handleViewMonthOnMonth" });
     });
 
     it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
