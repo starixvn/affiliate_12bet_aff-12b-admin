@@ -1,19 +1,15 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
     using Attributes;
     using Constants;
     using DTO;
-    using Extensions;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
     using Resources;
     using Services.Common;
-    using Utilities;
-    using Utilities.Market;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class SpecificDomainControlController : ReadOnlySessionBaseController
@@ -38,7 +34,12 @@
                 new SubMenu { Name = Lang.SpecificDomainControl, Url = Url.Content("~/Portal/SpecificDomainControl"), IsActive = true }
             };
 
-            return View("~/Areas/Portal/Views/Domain/SpecificDomainControl.cshtml", model: subMenu);
+            var model = new DomainViewModel
+            {
+                SubMenuList = subMenu
+            };
+
+            return View("~/Areas/Portal/Views/Domain/SpecificDomainControl.cshtml", model);
         }
 
         [HttpPost]

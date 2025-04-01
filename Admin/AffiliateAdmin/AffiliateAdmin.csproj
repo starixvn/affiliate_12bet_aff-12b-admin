@@ -281,6 +281,15 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnoverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\QmTurnOverSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\redux\QmTurnOverSetting.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\components\SpecificDomainControlPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\__test__\index.test.js" />
@@ -1417,6 +1426,7 @@
     <Content Include="Areas\Portal\Views\Affiliate\EmailHistory.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\marketing-statistics.scss" />
+    <Content Include="Areas\Portal\Views\Domain\SpecificDomainControl.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

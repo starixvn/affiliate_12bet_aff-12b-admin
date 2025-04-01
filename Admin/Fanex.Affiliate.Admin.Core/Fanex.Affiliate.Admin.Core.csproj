@@ -609,6 +609,7 @@
     <Compile Include="Services\Domain\CommonDomainService.cs" />
     <Compile Include="Services\Domain\ICommonDomainService.cs" />
     <Compile Include="Services\Domain\ISpecificDomainControlService.cs" />
+    <Compile Include="Services\Domain\SpecificDomainControlService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
     <Compile Include="Services\Tracker\IJobTrackerService.cs" />

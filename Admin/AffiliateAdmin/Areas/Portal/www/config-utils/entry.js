@@ -23,6 +23,7 @@ module.exports = {
     [`${jsDist}/pages/change-admin-password`]: clientRoot + "/js/pages/change-admin-password/index.jsx",
     [`${jsDist}/pages/domain/domain`]: clientRoot + "/js/pages/domain/domain/index.jsx",
     [`${jsDist}/pages/domain/domain-control`]: clientRoot + "/js/pages/domain/domain-control/index.jsx",
+    [`${jsDist}/pages/domain/specific-domain-control`]: clientRoot + "/js/pages/domain/specific-domain-control/index.jsx",
     [`${jsDist}/pages/domain/sub-aff-domain`]: clientRoot + "/js/pages/domain/sub-aff-domain/index.jsx",
     [`${jsDist}/pages/administrator/administrator`]: clientRoot + "/js/pages/administrator/administrator/index.jsx",
     [`${jsDist}/pages/administrator/department`]: clientRoot + "/js/pages/administrator/department/index.jsx",
