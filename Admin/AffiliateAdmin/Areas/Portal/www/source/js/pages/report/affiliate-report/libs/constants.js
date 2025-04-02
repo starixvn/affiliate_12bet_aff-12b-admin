@@ -10,9 +10,15 @@ const sortByCommon = {
 
 export const defaultSortBy = 1;
 
-export const sortByMainView = Object.assign({}, {
-    Affiliate: 1
-}, sortByCommon);
+export const sortByMainView = {
+    Affiliate: 1,
+    ...sortByCommon,
+    Signup: 5,
+    FDM: 6,
+    "FDM Amt": 7,
+    "Active players": 8,
+    "Qualified active players": 9
+};
 
 export const sortByMonthOnMonthView = Object.assign({}, {
     Month: 1
