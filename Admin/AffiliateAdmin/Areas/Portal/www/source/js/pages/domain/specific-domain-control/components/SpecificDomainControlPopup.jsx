@@ -4,10 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { insertSpecificDomain, updateSpecificDomain, toggleLoader, fetchData, setSelectedDomainId, getSpecificDomainById } from '../actions/index';
-import { defaultState, headerText } from '../libs/constants';
-
-export const maxAffiliates = 500;
-export const restrictedCharactersPattern = /[^0-9a-zA-Z\n\s,]/;
+import { defaultState, headerText, affsCondition } from '../libs/constants';
 
 export class SpecificDomainControlPopup extends PureComponent {
     constructor(props) {
@@ -65,7 +62,7 @@ export class SpecificDomainControlPopup extends PureComponent {
         event.preventDefault();
         const value = event.target.value;
 
-        if (restrictedCharactersPattern.test(value)) {
+        if (affsCondition.charactersPattern.test(value)) {
             return;
         }
 
@@ -95,13 +92,13 @@ export class SpecificDomainControlPopup extends PureComponent {
             return false;
         }
 
-        if (restrictedCharactersPattern.test(affNames)) {
-            this._handleShowAlert(false, "Affiliate(s) must be letters and digits, separated by [Comma], [Tab] or [Enter]");
+        if (!affsCondition.affsPattern.test(affNames)) {
+            this._handleShowAlert(false, "Affiliate(s) is an invalid format or affiliate!");
             return false;
         }
 
-        if (affNames.split(',').length > maxAffiliates) {
-            this._handleShowAlert(false, 'The function can only create assignment for up to 500 affiliates per request.');
+        if (affNames.split(',').length > affsCondition.maximumNumber) {
+            this._handleShowAlert(false, 'The function can only create assignment for up to 500 affiliates per request!');
             return false
         }
 

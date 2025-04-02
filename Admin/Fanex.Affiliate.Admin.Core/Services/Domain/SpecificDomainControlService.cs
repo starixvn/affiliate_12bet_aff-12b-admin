@@ -5,13 +5,14 @@ using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Data.Repository;
-using System;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class SpecificDomainControlService : BaseDynamicService, ISpecificDomainControlService
     {
+        private readonly int MAXIMUM_AFFILIATES_NUMBER = 500;
+
         public SpecificDomainControlService(
             IDynamicRepository dynamicRepository) : base(dynamicRepository)
         {
@@ -21,59 +22,26 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
             var criteria = param.MapTo<SpecificDomainControlParam, SpecificDomainControlCriteria>();
 
-            //return FetchTData<SpecificDomainControlInfo>(criteria);
-
-            return new List<SpecificDomainControlInfo> {
-                new SpecificDomainControlInfo
-                {
-                    DomainControlId = 1,
-                    AffName = "12BETAFF001",
-                    AffDomain = "goto.12b.com",
-                    AffDomainSSL = true,
-                    RedirectDomain = "www.12b.com",
-                    RedirectDomainSSL = true,
-                    Creator = "AASa",
-                    CreatedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc),
-                    IsUsed = true
-                },
-                new SpecificDomainControlInfo
-                {
-                    DomainControlId = 2,
-                    AffName = "12BETAFF002",
-                    AffDomain = "goto.12b.com",
-                    AffDomainSSL = true,
-                    RedirectDomain = "www.12b.com",
-                    RedirectDomainSSL = true,
-                    Creator = "AASa",
-                    CreatedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc),
-                    IsUsed = true,
-                    Editor = "AACamy",
-                    UpdatedDate = new DateTime(2025, 3, 1, 0, 0, 0, DateTimeKind.Utc),
-                }
-            };
+            return FetchTData<SpecificDomainControlInfo>(criteria);
         }
 
-        public SpecificDomainControlInfo GetSpecificDomainControlById(int domainControlId)
+        public SpecificDomainControlInfo GetSpecificDomainControlById(int id)
         {
-            //var criteria = new SpecificDomainControlCriteria();
-
-            //return GetTData<SpecificDomainControlInfo>(criteria);
-            return new SpecificDomainControlInfo
+            var criteria = new DomainControlCriteria
             {
-                DomainControlId = 1,
-                AffName = "12BETAFF001",
-                AffDomain = "goto.12b.com",
-                AffDomainSSL = true,
-                RedirectDomain = "www.12b.com",
-                RedirectDomainSSL = true,
-                Creator = "AASa",
-                CreatedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc),
-                IsUsed = true
+                DomainControlId = id
             };
+
+            return GetTData<SpecificDomainControlInfo>(criteria);
         }
 
         public ResultInfo InsertSpecificDomainControl(InsertSpecificDomainControlParam param)
         {
+            if (param.AffNames.Split(',').Length > MAXIMUM_AFFILIATES_NUMBER)
+            {
+                return ResultInfo.GenerateErr("The function can only create assignment for up to 500 affiliates per request!");
+            }
+
             var command = new InsertSpecificDomainControlCommand();
             AssignBaseDomainControlCommand(command, param);
 
@@ -105,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         private static void AssignBaseDomainControlCommand(InsertSpecificDomainControlCommand command, InsertSpecificDomainControlParam param)
         {
-            command.AffName = param.AffName;
+            command.AffNames = param.AffNames;
             command.AffDomain = param.AffDomain;
             command.AffDomainSSL = param.AffDomainSSL;
             command.RedirectDomain = param.RedirectDomain;

@@ -26,3 +26,9 @@ export const defaultState = {
     selectedDomain: null,
     affNames: '',
 }
+
+export const affsCondition = {
+    maximumNumber: 500,
+    charactersPattern: /[^0-9a-zA-Z\n\s,]/,
+    affsPattern: /^(12betaff\d{3,7})(,(12betaff\d{3,7}))*$/
+}
