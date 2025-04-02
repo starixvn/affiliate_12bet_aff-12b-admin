@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Criterias.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public class DomainControlService : BaseDynamicService, IDomainControlService
     {
+        private readonly ISystemService _systemService;
         private readonly ICommonDomainService _commonDomainService;
 
         public DomainControlService(
             IDynamicRepository dynamicRepository,
-            ICommonDomainService commonDomainService) : base(dynamicRepository)
+            ICommonDomainService commonDomainService,
+            ISystemService systemService) : base(dynamicRepository)
         {
+            _systemService = systemService;
             _commonDomainService = commonDomainService;
         }
 
@@ -27,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
             var criteria = new DomainControlCriteria
             {
-                MarketId = market,
+                MarketId = _systemService.ConvertSelectedLanguageCodes(market),
                 DomainControlId = domainControlId
             };
 
@@ -41,7 +45,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public IEnumerable<string> GetSubAffDomainControlList()
         {
-            var subDomainInfos = FetchTData<AffSubDomainInfo>(new DomainControlCriteria());
+            var criteria = new DomainControlCriteria
+            {
+                MarketId = _systemService.ConvertSelectedLanguageCodes(string.Empty)
+            };
+
+            var subDomainInfos = FetchTData<AffSubDomainInfo>(criteria);
 
             return subDomainInfos.Select(s => s.AffSubDomain)
                 .Where(s => !string.IsNullOrEmpty(s)).Distinct();

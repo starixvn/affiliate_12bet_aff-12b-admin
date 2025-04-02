@@ -442,6 +442,36 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
           >
             Earning
           </option>
+          <option
+            key="sortBy-Signup"
+            value={5}
+          >
+            Signup
+          </option>
+          <option
+            key="sortBy-FDM"
+            value={6}
+          >
+            FDM
+          </option>
+          <option
+            key="sortBy-FDM Amt"
+            value={7}
+          >
+            FDM Amt
+          </option>
+          <option
+            key="sortBy-Active players"
+            value={8}
+          >
+            Active players
+          </option>
+          <option
+            key="sortBy-Qualified active players"
+            value={9}
+          >
+            Qualified active players
+          </option>
         </Input>
       </FormGroup>
       <FormGroup

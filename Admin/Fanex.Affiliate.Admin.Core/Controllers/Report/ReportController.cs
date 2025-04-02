@@ -63,8 +63,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
         [ValidateAntiForgeryHeader]
         public ActionResult GetDetailData(AffiliateReportParam param)
         {
-            param.PreferredLanguage = _systemService.ConvertSelectedLanguageCodes(param.PreferredLanguage);
-
             return GenerateJsonNetResult(_affiliateReportService.GetDetailReportData(param));
         }
     }
