@@ -9,5 +9,7 @@
         public string AffMediaLink { get; set; }
 
         public string MarketName { get; set; }
+
+        public bool IsShow { get; set; }
     }
 }

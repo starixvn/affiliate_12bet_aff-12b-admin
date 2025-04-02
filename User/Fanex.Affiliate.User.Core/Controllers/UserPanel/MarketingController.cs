@@ -99,16 +99,7 @@
             if (param.SelectedDomainId != null)
             {
                 result = GenerateQrCodeViewModel(param);
-                var usingLinks = MarketingService.GetUsingMarketingLinks(SessionService.UserSession.AffId)
-                    .FirstOrDefault(l => l.Key == param.SelectedChannel);
-
-                if (usingLinks != null)
-                {
-                    foreach (var item in result.Values)
-                    {
-                        item.IsShow = usingLinks.Any(l => l.AffMediaLink.Equals(item.Link, StringComparison.OrdinalIgnoreCase));
-                    }
-                }
+                MarketingService.TrackingAffMarketingLink(SessionService.UserSession.AffId, result, param);
             }
 
             ViewBag.SelectedDomainId = param.SelectedDomainId;

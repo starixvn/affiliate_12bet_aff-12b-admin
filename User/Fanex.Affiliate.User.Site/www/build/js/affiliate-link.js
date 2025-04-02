@@ -1472,7 +1472,7 @@ var AffiliateLink = (function ($) {
 
             $("#btnGenQRCode").click(function () {
                 Site.showLoader();
-                Promise.all([_me.renderLinkChannelStatisticPage(), _me.renderQrCodePage()])
+                Promise.all([_me.renderQrCodePage(), _me.renderLinkChannelStatisticPage()])
                     .then(() => {
                         Site.hideLoader();
                         MarketingBase.registerToggleLinkEvent(_me.renderLinkChannelStatisticPage);
