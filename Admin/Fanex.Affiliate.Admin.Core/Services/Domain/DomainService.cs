@@ -38,9 +38,7 @@
 
         public DomainInfo GetDomainById(int domainId, bool isAffDomain = true)
         {
-            var domain = GetDomainList(isAffDomain).FirstOrDefault(d => d.DomainId == domainId);
-
-            return domain;
+            return _commonDomainService.GetDomainList(GetDomainSpKey(isAffDomain)).FirstOrDefault(d => d.DomainId == domainId);
         }
 
         public ResultInfo InsertDomain(InsertDomainParam param)
