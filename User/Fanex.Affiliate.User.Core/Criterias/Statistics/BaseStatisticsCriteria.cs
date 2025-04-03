@@ -10,6 +10,6 @@
 
         public DateTime ToDate { get; set; }
 
-        public byte DeviceType { get; set; }
+        public short DeviceType { get; set; }
     }
 }

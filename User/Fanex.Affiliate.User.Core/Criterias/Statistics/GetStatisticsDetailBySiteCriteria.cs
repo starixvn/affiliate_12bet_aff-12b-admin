@@ -6,7 +6,7 @@
     {
         private const string SpKey = "Aff_ClickStatisticsDetailBySite";
 
-        public byte DeviceType { get; set; }
+        public short DeviceType { get; set; }
 
         public string Domain { get; set; }
 
