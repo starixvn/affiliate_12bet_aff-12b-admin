@@ -1,7 +1,9 @@
-﻿import { maxWidth, deviceTypes, pcLaptop, minDate } from '../../../../modules/constants';
+﻿import { maxWidth, deviceTypesHasAll as deviceTypes, minDate } from '../../../../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-export { maxWidth, globalResource, deviceTypes, pcLaptop, minDate }
+export { maxWidth, globalResource, deviceTypes, minDate }
+
+export const AllDevices = -1;
 
 export const headerText = {
     SiteUrls: 'Site URLs',

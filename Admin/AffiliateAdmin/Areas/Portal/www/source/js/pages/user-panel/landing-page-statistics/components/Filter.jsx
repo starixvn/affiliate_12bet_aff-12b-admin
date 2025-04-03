@@ -5,7 +5,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { getDateRange } from '../../../../modules/utils';
-import { headerTitle, deviceTypes, globalResource, minDate } from '../modules/constants';
+import { headerTitle, deviceTypes, globalResource, minDate, AllDevices } from '../modules/constants';
 import { setSelectedPage, setParam, setShortCodeLanguageList, getPageList } from '../actions';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
@@ -30,7 +30,7 @@ export class Filter extends React.Component {
             languageCode: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
-            deviceType: 0,
+            deviceType: AllDevices,
             pageList: null
         };
     }

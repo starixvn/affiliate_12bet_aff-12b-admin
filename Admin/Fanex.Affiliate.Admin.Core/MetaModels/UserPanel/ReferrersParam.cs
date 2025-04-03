@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [Range(Validation.MinId, Validation.MaxId)]
         public int AffId { get; set; }
 
-        public byte DeviceType { get; set; }
+        public short DeviceType { get; set; }
 
         [Required]
         public DateTime? FromDate { get; set; }

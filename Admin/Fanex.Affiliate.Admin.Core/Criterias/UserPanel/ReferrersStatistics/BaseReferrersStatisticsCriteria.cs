@@ -11,6 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel.ReferrersStatistics
 
         public DateTime? ToDate { get; set; }
 
-        public byte DeviceType { get; set; }
+        public short DeviceType { get; set; }
     }
 }
