@@ -30,5 +30,5 @@ export const defaultState = {
 export const affsCondition = {
     maximumNumber: 500,
     charactersPattern: /[^0-9a-zA-Z\n\s,]/,
-    affsPattern: /^(12betaff\d{3,7})(,(12betaff\d{3,7}))*$/
+    affsPattern: /^(12betaff\d{3,7})(,(12betaff\d{3,7}))*$/i
 }

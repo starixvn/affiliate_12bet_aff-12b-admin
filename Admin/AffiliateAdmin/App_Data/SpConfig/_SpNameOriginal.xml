@@ -232,6 +232,14 @@
     <Setting Key="Aff_Admin_SubAffiliateDomain_Upd" SpName="Aff_Admin_SubAffiliateDomain_Upd" DbName="" />
     <Setting Key="Aff_Admin_SubAffiliateDomain_Del" SpName="Aff_Admin_SubAffiliateDomain_Del" DbName="" />
     <Setting Key="Aff_SupportBlockMarket_Sel" SpName="Aff_SupportBlockMarket_Sel" DbName="" />
+    <Setting Key="Aff_Admin_SpecificDomainControl_Sel" SpName="Aff_Admin_SpecificDomainControl_Sel" DbName="" >
+      <Mapping DataField="RId" ObjectProperty="DomainControlId" />
+      <Mapping DataField="Username" ObjectProperty="AffUsername" />
+      <Mapping DataField="Status" ObjectProperty="IsUsed" />
+    </Setting>
+    <Setting Key="Aff_Admin_SpecificDomainControl_Ins" SpName="Aff_Admin_SpecificDomainControl_Ins" DbName="" />
+    <Setting Key="Aff_Admin_SpecificDomainControl_Upd" SpName="Aff_Admin_SpecificDomainControl_Upd" DbName="" />
+    <Setting Key="Aff_Admin_SpecificDomainControl_Del" SpName="Aff_Admin_SpecificDomainControl_Del" DbName="" />
   </Function>
   <Function Name="Administrator">
     <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="" >

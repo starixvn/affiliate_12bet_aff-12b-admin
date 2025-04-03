@@ -48,22 +48,35 @@ export class Content extends PureComponent {
     }
 
     _deleteDomain = async (selectedDomainId) => {
-        this.props.toggleLoader(true);
+        try {
+            this.props.toggleLoader(true);
 
-        const result = await this.props.deleteDomain({ DomainControlId: selectedDomainId });
+            const result = await this.props.deleteDomain({ DomainControlId: selectedDomainId });
 
-        if (result) {
+            if (!result) {
+                throw new Error('No response received from delete operation');
+            }
+
+            this.setState({
+                message: result.IsSuccessful 
+                    ? 'The domain control has been removed successfully!'
+                    : result.Message,
+                isConfirmPopup: false
+            });
+
             if (result.IsSuccessful) {
-                this.setState({ message: `The domain control has been removed successfully!`, isConfirmPopup: false });
+                await this.props.fetchData(this.props.param);
+            }
 
-                this.props.fetchData(param);
-            }
-            else {
-                this.setState({ message: result.Message, isConfirmPopup: false });
-            }
+        } catch (error) {
+            this.setState({
+                message: 'An error occurred while deleting the domain',
+                isConfirmPopup: false
+            });
+            console.error('Error deleting domain:', error);
+        } finally {
+            this.props.toggleLoader(false);
         }
-
-        this.props.toggleLoader(false);
     }
 
     _renderHeader() {
@@ -113,7 +126,7 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
+                <Cell className="text-center" title={dataItem.AffUsername}>{dataItem.AffUsername}</Cell>
                 <Cell className="text-center" title={affDomain}>{affDomain}</Cell>
                 <Cell className="text-center" title={redirectDomain}>{redirectDomain}</Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>

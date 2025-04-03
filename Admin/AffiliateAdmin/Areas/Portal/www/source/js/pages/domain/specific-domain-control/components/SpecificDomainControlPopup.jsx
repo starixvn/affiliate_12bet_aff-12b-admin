@@ -92,14 +92,16 @@ export class SpecificDomainControlPopup extends PureComponent {
             return false;
         }
 
-        if (!affsCondition.affsPattern.test(affNames)) {
-            this._handleShowAlert(false, "Affiliate(s) is an invalid format or affiliate!");
+        const affiliates = affNames.split(',');
+        
+        if (affiliates.length > affsCondition.maximumNumber) {
+            this._handleShowAlert(false, 'The function can only create assignment for up to 500 affiliates per request!');
             return false;
         }
 
-        if (affNames.split(',').length > affsCondition.maximumNumber) {
-            this._handleShowAlert(false, 'The function can only create assignment for up to 500 affiliates per request!');
-            return false
+        if (!affsCondition.affsPattern.test(affNames)) {
+            this._handleShowAlert(false, "Affiliate(s) is an invalid format or affiliate!");
+            return false;
         }
 
         return true;
@@ -116,30 +118,57 @@ export class SpecificDomainControlPopup extends PureComponent {
     }
 
     _handleInsertSpecificDomain = async () => {
-        const { selectedDomain, affNames } = this.state;
+        try {
+            const { selectedDomain, affNames } = this.state;
 
-        if (this._validateAffNames(affNames) && this._validateDomains(selectedDomain)) {
-            const result = await this.props.insertDomain({ ...selectedDomain, affName: affNames });
-
-            if (result) {
-                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? "Add Specific Domain Successfully!" : result.Message);
-            } else {
-                this._handleShowAlert(false, "Add Specific Domain is failed!");
+            if (!this._validateAffNames(affNames) || !this._validateDomains(selectedDomain)) {
+                return;
             }
+
+            const result = await this.props.insertDomain({ 
+                ...selectedDomain, 
+                affName: affNames 
+            });
+
+            if (!result) {
+                throw new Error("Failed to add specific domain");
+            }
+
+            const message = result.IsSuccessful 
+                ? "Add Specific Domain Successfully!" 
+                : result.Message;
+
+            this._handleShowAlert(result.IsSuccessful, message);
+
+        } catch (error) {
+            console.error('Error inserting domain:', error);
+            this._handleShowAlert(false, "Add Specific Domain failed!");
         }
     }
 
     _handleUpdateSpecificDomain = async () => {
-        const { selectedDomain } = this.state;
+        try {
+            const { selectedDomain } = this.state;
 
-        if (this._validateDomains(selectedDomain)) {
+            if (!this._validateDomains(selectedDomain)) {
+                return;
+            }
+
             const result = await this.props.updateDomain(selectedDomain);
 
-            if (result) {
-                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? "Update Specific Domain Successfully!" : result.Message);
-            } else {
-                this._handleShowAlert(false, "Update Specific Domain is failed!");
+            if (!result) {
+                throw new Error("Failed to update specific domain");
             }
+
+            const message = result.IsSuccessful
+                ? "Update Specific Domain Successfully!"
+                : result.Message;
+
+            this._handleShowAlert(result.IsSuccessful, message);
+
+        } catch (error) {
+            console.error('Error updating domain:', error);
+            this._handleShowAlert(false, "Update Specific Domain failed!");
         }
     }
 
@@ -174,72 +203,153 @@ export class SpecificDomainControlPopup extends PureComponent {
         const title = isInsert ? "Add New Specific Domain Control" : "Edit Specific Domain Control";
         const buttonLabel = isInsert ? "Add" : "Submit";
 
-        return selectedDomain && (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static' style={{ maxWidth: isInsert ? 550 : 500 }}>
-                <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
+        if (!selectedDomain) {
+            return null;
+        }
+
+        return (
+            <Modal 
+                isOpen={isShowPopup} 
+                toggle={this._handleClosePopup} 
+                backdrop='static' 
+                style={{ maxWidth: isInsert ? 550 : 500 }}
+            >
+                <ModalHeader toggle={this._handleClosePopup}>
+                    <span className="iconpopup"></span>
+                    {title}
+                </ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="domain-form-container">
-                            <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                            <Alert 
+                                color={isSuccess ? 'success' : 'danger'} 
+                                isOpen={isShowMessage}
+                            >
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
                             <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2 align-items-center">
-                                    <Label htmlFor="affNames" className="required" sm={4}>{headerText.Affiliate}</Label>
-                                    {
-                                        isInsert ? (
-                                            <Col sm={8}>
-                                                <Input type="textarea" rows="6" id="affNames" name="affNames" className="input-required"
-                                                    value={affNames} onChange={this._handleChangeAffNames} onBlur={this._handleBlurAffNames} />
-                                                <div><Label>Max 500 affiliates, separated by [Comma], [Tab] or [Enter]</Label></div>
-                                            </Col>
+                                    <Label htmlFor="affNames" className="required" sm={4}>
+                                        {headerText.Affiliate}
+                                    </Label>
+                                    <Col sm={8}>
+                                        {isInsert ? (
+                                            <>
+                                                <Input 
+                                                    type="textarea" 
+                                                    rows="6" 
+                                                    id="affNames" 
+                                                    name="affNames" 
+                                                    className="input-required"
+                                                    value={affNames} 
+                                                    onChange={this._handleChangeAffNames} 
+                                                    onBlur={this._handleBlurAffNames} 
+                                                />
+                                                <div>
+                                                    <Label>Max 500 affiliates, separated by [Comma], [Tab] or [Enter]</Label>
+                                                </div>
+                                            </>
                                         ) : (
-                                                <Col sm={8}>
-                                                    <Input type="text" disabled className="input-required" id="affNames" name="affNames" value={selectedDomain.affName} />
-                                                </Col>
-                                                )
-                                    }
+                                            <Input 
+                                                type="text" 
+                                                disabled 
+                                                className="input-required" 
+                                                id="affNames" 
+                                                name="affNames" 
+                                                value={selectedDomain.affName} 
+                                            />
+                                        )}
+                                    </Col>
                                 </FormGroup>
+
                                 <FormGroup row className="mb-2 align-items-center">
-                                    <Label htmlFor="affDomain" className="required" sm={4}>{headerText.AffDomain}</Label>
+                                    <Label htmlFor="affDomain" className="required" sm={4}>
+                                        {headerText.AffDomain}
+                                    </Label>
                                     <Col sm={6}>
-                                        <Input type="text" className="input-required" id="affDomain" name="affDomain"
-                                            value={selectedDomain.affDomain} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
+                                        <Input 
+                                            type="text" 
+                                            className="input-required" 
+                                            id="affDomain" 
+                                            name="affDomain"
+                                            value={selectedDomain.affDomain} 
+                                            onChange={this._handleChange} 
+                                            onKeyPress={this._handleKeyPress} 
+                                        />
                                     </Col>
                                     <Col sm={2}>
                                         <FormGroup check>
                                             <Label check>
-                                                <Input type="checkbox" checked={selectedDomain.affDomainSSL} name="affDomainSSL"
-                                                    onChange={this._handleChange} /> {headerText.SSL}
+                                                <Input 
+                                                    type="checkbox" 
+                                                    checked={selectedDomain.affDomainSSL} 
+                                                    name="affDomainSSL"
+                                                    onChange={this._handleChange} 
+                                                /> 
+                                                {headerText.SSL}
                                             </Label>
                                         </FormGroup>
                                     </Col>
                                 </FormGroup>
+
                                 <FormGroup row className="mb-2 align-items-center">
-                                    <Label htmlFor="redirectDomain" className="required" sm={4}>{headerText.RedirectDomain}</Label>
+                                    <Label htmlFor="redirectDomain" className="required" sm={4}>
+                                        {headerText.RedirectDomain}
+                                    </Label>
                                     <Col sm={6}>
-                                        <Input type="text" className="input-required" id="redirectDomain" name="redirectDomain"
-                                            value={selectedDomain.redirectDomain} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
+                                        <Input 
+                                            type="text" 
+                                            className="input-required" 
+                                            id="redirectDomain" 
+                                            name="redirectDomain"
+                                            value={selectedDomain.redirectDomain} 
+                                            onChange={this._handleChange} 
+                                            onKeyPress={this._handleKeyPress} 
+                                        />
                                     </Col>
                                     <Col sm={2}>
                                         <FormGroup check>
                                             <Label check>
-                                                <Input type="checkbox" checked={selectedDomain.redirectDomainSSL} name="redirectDomainSSL"
-                                                    onChange={this._handleChange} /> {headerText.SSL}
+                                                <Input 
+                                                    type="checkbox" 
+                                                    checked={selectedDomain.redirectDomainSSL} 
+                                                    name="redirectDomainSSL"
+                                                    onChange={this._handleChange} 
+                                                /> 
+                                                {headerText.SSL}
                                             </Label>
                                         </FormGroup>
                                     </Col>
                                 </FormGroup>
+
                                 <FormGroup row className="mb-2 align-items-center">
                                     <Label sm={4}>{headerText.Status}</Label>
                                     <Col sm={8}>
-                                        <input type="checkbox" name="isUsed" checked={selectedDomain.isUsed} onChange={this._handleChange} />
+                                        <Input 
+                                            type="checkbox" 
+                                            name="isUsed" 
+                                            checked={selectedDomain.isUsed} 
+                                            onChange={this._handleChange} 
+                                        />
                                     </Col>
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
-                            <Button type="button" color="info" onClick={this._handleClosePopup}>Cancel</Button>
+                            <Button 
+                                type="button" 
+                                color="success" 
+                                className="mr-3" 
+                                onClick={this._handleSubmit}
+                            >
+                                {buttonLabel}
+                            </Button>
+                            <Button 
+                                type="button" 
+                                color="info" 
+                                onClick={this._handleClosePopup}
+                            >
+                                Cancel
+                            </Button>
                         </div>
                     </div>
                 </ModalBody>

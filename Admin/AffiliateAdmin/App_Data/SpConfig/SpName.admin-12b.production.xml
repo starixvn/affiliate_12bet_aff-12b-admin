@@ -232,6 +232,14 @@
     <Setting Key="Aff_Admin_SubAffiliateDomain_Upd" SpName="Aff_Admin_SubAffiliateDomain_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_SubAffiliateDomain_Del" SpName="Aff_Admin_SubAffiliateDomain_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_SupportBlockMarket_Sel" SpName="Aff_SupportBlockMarket_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_SpecificDomainControl_Sel" SpName="Aff_Admin_SpecificDomainControl_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="RId" ObjectProperty="DomainControlId" />
+      <Mapping DataField="Username" ObjectProperty="AffUsername" />
+      <Mapping DataField="Status" ObjectProperty="IsUsed" />
+    </Setting>
+    <Setting Key="Aff_Admin_SpecificDomainControl_Ins" SpName="Aff_Admin_SpecificDomainControl_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_SpecificDomainControl_Upd" SpName="Aff_Admin_SpecificDomainControl_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_SpecificDomainControl_Del" SpName="Aff_Admin_SpecificDomainControl_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Administrator">
     <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >

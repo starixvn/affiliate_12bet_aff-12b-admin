@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
     {
         public int DomainControlId { get; set; }
 
-        public string AffName { get; set; }
+        public string AffUsername { get; set; }
 
         public string AffDomain { get; set; }
 

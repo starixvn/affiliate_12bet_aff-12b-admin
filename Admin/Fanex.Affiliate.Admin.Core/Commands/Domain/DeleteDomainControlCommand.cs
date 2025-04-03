@@ -2,7 +2,7 @@
 {
     public class DeleteDomainControlCommand : BaseNonQueryCommand
     {
-        private const string SP_NAME = "Aff_Admin_DomainControl_Del";
+        private const string SP_NAME = "Aff_Admin_SpecificDomainControl_Del";
 
         public override string GetSettingKey() => SP_NAME;
 
