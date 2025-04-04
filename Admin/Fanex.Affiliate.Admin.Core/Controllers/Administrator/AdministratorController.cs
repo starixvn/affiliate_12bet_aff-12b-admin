@@ -1,25 +1,34 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Administrator;
+using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 {
     [FunctionAuthorize(FunctionName = Function.UserControl)]
-    public class AdministratorController : ReadOnlySessionBaseController
+    public class AdministratorController : BaseController
     {
+        private readonly IAuthService _authService;
+        private readonly ISessionService _sessionService;
         private readonly IAdministratorService _administratorService;
 
         public AdministratorController(
             ISessionService sessionService,
-            IAdministratorService administratorService) : base(sessionService)
+            IAdministratorService administratorService,
+            IAuthService authService)
         {
+            _authService = authService;
+            _sessionService = sessionService;
             _administratorService = administratorService;
         }
 
@@ -158,7 +167,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
                 };
                 AssignUserInfoParam(encodeParam);
 
-                return GenerateJsonNetResult(_administratorService.UpdateAccountPolicy(encodeParam));
+                var result = _administratorService.UpdateAccountPolicy(encodeParam);
+
+                if(result.IsSuccessful)
+                {
+                    HandleChangePermissions(encodeParam.UserId);
+                }    
+
+                return GenerateJsonNetResult(result);
             }
 
             return GenerateErrResult("The account policy is invalid.");
@@ -178,6 +194,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
             }
 
             return GenerateModelStateErrResult();
+        }
+
+        private void HandleChangePermissions(int userId)
+        {
+            var permissionList = _authService.GetPermissionList(userId);
+
+            _sessionService.UserPermissionList = permissionList;
+            _sessionService.ClaimIdentities = new List<ClaimsIdentity> { new ClaimsIdentity(_authService.GetClaims(userId, permissionList)) };
+        }
+
+        private void AssignUserInfoParam(UserInfoParam param)
+        {
+            param.UserId = _sessionService.UserId;
+            param.Ip = Request.GetClientIP();
         }
     }
 }

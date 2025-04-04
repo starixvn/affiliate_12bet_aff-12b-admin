@@ -12,6 +12,7 @@
     AffReport: "[AffReport]",
     Domain: "[Domain]",
     MemberEmail: "[MemberEmail]",
+    Player: "[Player]",
     AffPersonalInfo: "[AffPersonalInfo]",
     Note: "[Note]",
     MarketingTeamNote: "[MarketingTeamNote]",

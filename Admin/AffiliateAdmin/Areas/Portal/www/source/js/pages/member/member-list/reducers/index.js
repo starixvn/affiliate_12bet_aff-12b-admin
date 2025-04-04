@@ -7,6 +7,7 @@ import * as types from '../actions/types';
 
 const today = createReducer(null, {})
 const affName = createReducer(null, {})
+const isModifiable = createReducer(false, {})
 
 export const param = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
@@ -45,6 +46,7 @@ export default combineReducers({
     selectedMemberId,
     gridData,
     pagingOption,
+    isModifiable,
     isShowLoader,
     isFromOtherPages,
     shouldResetScrollPosition

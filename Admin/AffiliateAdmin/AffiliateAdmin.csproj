@@ -811,7 +811,6 @@
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Content.jsx" />
-    <Content Include="Areas\Portal\Views\Player\ActiveMember.cshtml" />
     <Content Include="Areas\Portal\Views\Player\_MemberSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\index.jsx" />

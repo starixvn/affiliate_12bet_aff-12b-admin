@@ -7,12 +7,15 @@ import AppContainer from './components/AppContainer';
 import { configureStore } from '../../modules/store';
 import { headerText, defaultColumns } from './libs/constants';
 import { convertListToMutilpleSelected, handleChangeMultipleSelected } from '../../modules/utils';
+import ClaimPrincipal, { claimResource } from '../../modules/claim';
 
 export default class App extends Component {
     constructor(props) {
         super(props);
 
         const { commGroupList, languageList, groupId, param } = window.initialState;
+        const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+        const isShowMemberLink = claimsPrincipal.hasWriteClaim(claimResource.Player);
 
         let newCommGroupList = convertListToMutilpleSelected(commGroupList, 'GroupId', 'GroupName');
 
@@ -34,7 +37,7 @@ export default class App extends Component {
             }
         });
 
-        this.store = configureStore({ languageList: language, commGroupList: newCommGroupList, groupId, param, columnList }, reducer);
+        this.store = configureStore({ languageList: language, commGroupList: newCommGroupList, groupId, param, columnList, isShowMemberLink }, reducer);
 
     }
 

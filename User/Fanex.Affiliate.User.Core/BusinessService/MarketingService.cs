@@ -73,7 +73,7 @@
                     AffId = affId,
                     AffMediaLink = item.Link,
                     ChannelCode = param.SelectedChannel,
-                    LanguageCode = param.SelectedLanguage,
+                    LanguageCode = item.Language.Code,
                     IsOn = item.IsShow
                 };
 

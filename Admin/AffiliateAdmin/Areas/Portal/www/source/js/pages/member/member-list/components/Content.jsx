@@ -1,7 +1,7 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDateTime } from '../../../../modules/utils';
@@ -33,10 +33,11 @@ export class Content extends PureComponent {
     };
 
     _handleUpdateMember = (selectedMemberId) => {
-        //this.props.setSelectedMemberId(selectedMemberId);
+        this.props.setSelectedMemberId(selectedMemberId);
     }
 
     _renderHeader() {
+        const { isModifiable } = this.props;
         return [
             <Row key="theard">
                 <Cell header={true} rowSpan="2" colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
@@ -46,12 +47,12 @@ export class Content extends PureComponent {
                 <Cell header={true} rowSpan="2" colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
                 <Cell header={true} rowSpan="2" colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} rowSpan="2" colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                <Cell header={true} colSpan="3" colWidth={200} title={headerText.Removed}>{headerText.Removed}</Cell>
+                <Cell header={true} colSpan={isModifiable ? "3" : "2"} colWidth={200} title={headerText.Removed}>{headerText.Removed}</Cell>
             </Row>,
             <Row key="sub-theard">
                 <Cell header={true} colWidth={50} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.LastActionDate}>{headerText.LastActionDate}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Edit}</Cell>
+                {isModifiable && <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Edit}</Cell>}
             </Row>
         ];
     }
@@ -60,13 +61,13 @@ export class Content extends PureComponent {
         const dataRows = [];
 
         if (dataList.length) {
-            const { pagingOption } = this.props;
+            const { pagingOption, isModifiable } = this.props;
 
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex, isModifiable));
             }
         }
         else {
@@ -78,7 +79,7 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index) {
+    _buildDataRow(dataItem, index, isModifiable) {
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
@@ -99,11 +100,13 @@ export class Content extends PureComponent {
                     <input className="mt-1" type="checkbox" checked={dataItem.IsRemoved} disabled />
                 </Cell>
                 <Cell className="text-center" title={lastActionDate}>{lastActionDate}</Cell>
-                <Cell className="text-center" title={`Edit ${userName} player`}>
-                    <Button disabled color="link p-0" onClick={() => this._handleUpdateMember(dataItem.MemberId)}>
-                        <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                </Cell>
+                {
+                    isModifiable && <Cell className="text-center" title={`Edit ${userName} player`}>
+                        <Button color="link p-0" onClick={() => this._handleUpdateMember(dataItem.MemberId)}>
+                            <span className="oi oi-pencil text-secondary"></span>
+                        </Button>
+                    </Cell>
+                }
             </Row>
         )
     }
@@ -132,8 +135,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData });
+function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData, isModifiable }) {
+    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable });
 }
 
 function mapDispatchToProps(dispatch) {
