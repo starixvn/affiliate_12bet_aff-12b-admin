@@ -29,6 +29,8 @@ const ReferrerStatistics = React.lazy(() =>
     import( /* webpackChunkName: "referrerStatistics" */ '../../../user-panel/referrers/components/AppContainer'));
 const LandingPageStatistics = React.lazy(() =>
     import( /* webpackChunkName: "landingPageStatistics" */ '../../../user-panel/landing-page-statistics/components/AppContainer'));
+const MarketingStatistics = React.lazy(() =>
+    import( /* webpackChunkName: "marketingStatistics" */ '../../../user-panel/marketing-statistics/components/AppContainer'));
 
 export const userPanelMenuList = [
     { key: menuKey.statementHistory, name: 'Statement History', component: withUserPanel(StatementHistory, menuKey.statementHistory), parent: null },
@@ -43,7 +45,8 @@ export const userPanelMenuList = [
     { key: menuKey.member, name: 'Player', component: withUserPanel(Member, menuKey.member), parent: null, renderClaim: new Claim(claimResource.Player) },
     { key: menuKey.viewLog, name: 'View Log', component: withUserPanel(ViewLog, menuKey.viewLog), parent: null },
     { key: menuKey.clickStatistics, name: 'Click Statistics', component: withUserPanel(ReferrerStatistics, menuKey.clickStatistics), parent: null },
-    { key: menuKey.landingPageStatistics, name: '', component: withUserPanel(LandingPageStatistics, menuKey.landingPageStatistics), parent: menuKey.clickStatistics }
+    { key: menuKey.landingPageStatistics, name: '', component: withUserPanel(LandingPageStatistics, menuKey.landingPageStatistics), parent: menuKey.clickStatistics },
+    { key: menuKey.marketingStatistics, name: '', component: withUserPanel(MarketingStatistics, menuKey.marketingStatistics), parent: menuKey.clickStatistics }
 ]
 
 export const userPanelPendingMenuList = [
