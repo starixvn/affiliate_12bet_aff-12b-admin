@@ -5,6 +5,7 @@ import { Row, Col, Button } from 'reactstrap';
 import ChangePasswordForm from '../../../../common/components/ChangePasswordForm';
 import { resource } from '../../libs/constants';
 import { resolveClientUrl } from '../../../../../modules/utils';
+import { claimResource } from '../../../../../modules/claim';
 
 
 export const ApprovedStatusInfo = (props) => {
@@ -31,17 +32,24 @@ export const ApprovedStatusInfo = (props) => {
                 </Col>
             </Row>
             <Row>
-                <Col sm={6}><a href={resolveClientUrl(`Portal/Player?AffName=${affName}`)} target='_top'>{resource.MemberList}</a></Col>
-                <Col sm={6} className='text-right'><a href={resolveClientUrl(`Portal/Affiliate?ParentAffName=${affName}`)} target='_top'>{resource.SubAffiliateList}</a></Col>
+                {
+                    props.isShowMemberLink ? (
+                        <>
+                            <Col sm={6}><a href={resolveClientUrl(`Portal/Player?AffName=${affName}`)} target='_top'>{resource.MemberList}</a></Col>
+                            <Col sm={6} className='text-right'><a href={resolveClientUrl(`Portal/Affiliate?ParentAffName=${affName}`)} target='_top'>{resource.SubAffiliateList}</a></Col>
+                        </>
+                    ) : <Col><a href={resolveClientUrl(`Portal/Affiliate?ParentAffName=${affName}`)} target='_top'>{resource.SubAffiliateList}</a></Col>
+                }
             </Row>
         </React.Fragment>
     )
 }
 
-function mapStateToProps({ affCommonInfo, leftPanel }) {
+function mapStateToProps({ affCommonInfo, leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
     const { affName } = affCommonInfo;
-    return Object.assign({}, { affiliateInfo, affName });
+    const isShowMemberLink = claimsPrincipal.hasReadClaim(claimResource.Player);
+    return Object.assign({}, { affiliateInfo, affName, isShowMemberLink });
 }
 
 export default connect(mapStateToProps)(React.memo(ApprovedStatusInfo));
