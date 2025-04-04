@@ -16,6 +16,7 @@ const commGroupList = createReducer(null, {
 const languageList = createReducer({}, {});
 
 const groupId = createReducer(0, {});
+const isShowMemberLink = createReducer(false, {});
 
 export const reportTitle = createReducer('', {
     [types.SET_REPORT_TITLE](prevState, action) {
@@ -68,6 +69,7 @@ export default combineReducers({
     isShowLoader,
     showPopupPassword,
     showPopupCommGroup,
+    isShowMemberLink,
     affId,
     parentAffName,
     commGroup,

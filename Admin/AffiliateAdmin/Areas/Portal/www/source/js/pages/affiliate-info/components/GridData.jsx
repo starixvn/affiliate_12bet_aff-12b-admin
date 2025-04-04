@@ -118,13 +118,13 @@ export class GridData extends Component {
         const dataRows = [];
 
         if (dataList.length) {
-            const { pagingOption } = this.props;
+            const { pagingOption, isShowMemberLink } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList));
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList, isShowMemberLink));
             }
         }
         else {
@@ -137,7 +137,7 @@ export class GridData extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, selectedColumnList) {
+    _buildDataRow(dataItem, index, selectedColumnList, isShowMemberLink) {
         const { languageList } = this.props;
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
@@ -153,9 +153,11 @@ export class GridData extends Component {
         const formattedMemberValue = dataItem.Member === null ? resource.NA : format(dataItem.Member);
         const formattedSubAffValue = dataItem.NoOfSubAff === null ? resource.NA : format(dataItem.NoOfSubAff);
         const member = dataItem.Member === null ? resource.NA : (
+            isShowMemberLink ? (
             <a href={resolveClientUrl(`Portal/Player?AffName=${dataItem.UserName}`)} target="_top">
                 {formattedMemberValue}
-            </a>);
+                </a>) : formattedMemberValue
+        );
         const noOfSubAff = dataItem.NoOfSubAff === null ? resource.NA : (
             <Button color="link" className="p-0" onClick={() => this._handleViewSubAff(dataItem.UserName)}>
                 {formattedSubAffValue}
@@ -330,8 +332,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, languageList, param, columnList }) {
-    return Object.assign({}, { pagingOption, languageList, param, columnList });
+function mapStateToProps({ pagingOption, languageList, param, columnList, isShowMemberLink }) {
+    return Object.assign({}, { pagingOption, languageList, param, columnList, isShowMemberLink });
 }
 
 function mapDispatchToProps(dispatch) {
