@@ -145,14 +145,14 @@ namespace Fanex.Affiliate.Link.Controllers
                 }
 
                 var pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
-                var languageCodeOnV2 = GetSupportedLanguageCodeOnMemberSiteV2(lang);
+                var mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
                 var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
                     AffCode = affCode,
                     PageCode = pageCodeOnV2,
                     ChannelCode = channel,
-                    LanguageCode = languageCodeOnV2,
+                    LanguageCode = mappingRemovedLanguage,
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),
                     Browser = Request.Browser.Browser,
@@ -261,7 +261,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     AffId = affId,
                     LanguageCode = marketInfo.MarketId,
                     AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
-                };
+            };
 
                 _trackingSystemService.ToggleMarketingLink(insertCommand);
             }
@@ -332,18 +332,29 @@ namespace Fanex.Affiliate.Link.Controllers
             return languageCode;
         }
 
-        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string lang)
+        private static string GetMappingRemovedLanguageCode(string languageCode)
         {
+            if (Language.RemovedLanguageCodes.TryGetValue(languageCode.ToLowerInvariant(), out string mappingLanguageCode))
+            {
+                return mappingLanguageCode;
+            }
+
+            return languageCode;
+        }
+
+        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode)
+        {
+            var customLanguageCode = GetSupportedLanguageCodeOnMemberSiteV2(languageCode);
             var redirectPattern = ConfigurationManager.AppSettings[$"Redirect_{pageCode.ToLowerInvariant()}_pattern"];
 
             if (!string.IsNullOrEmpty(redirectPattern))
             {
                 var redirectUri = new Uri(redirectUrl);
-                var pathAndQueryString = redirectPattern.Replace("#language#", lang);
+                var pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode);
                 return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}{redirectUri.Query}";
             }
 
-            return redirectUrl;
+            return redirectUrl.Replace($"/{languageCode}/", $"/{customLanguageCode}/");
         }
 
         private static byte GetDeviceType()

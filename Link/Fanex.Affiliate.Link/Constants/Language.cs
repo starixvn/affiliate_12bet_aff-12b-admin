@@ -12,17 +12,21 @@ namespace Fanex.Affiliate.Link.Constants
         {
             ["en"] = ENGLISH_SHORTED_CODE,
             ["eneuro"] = ENGLISH_SHORTED_CODE,
-            ["ch"] = ENGLISH_SHORTED_CODE,
             ["bn"] = BENGALI_SHORTED_CODE,
             ["hien"] = ENGLISH_SHORTED_CODE,
             ["hitg"] = INDIA_SHORTED_CODE,
             ["id"] = "id",
             ["jp"] = ENGLISH_SHORTED_CODE,
-            ["kh"] = ENGLISH_SHORTED_CODE,
             ["ko"] = "ko",
             ["th"] = "th",
             ["vn"] = "vn",
             ["cs"] = "cs"
+        };
+
+        public static readonly IReadOnlyDictionary<string, string> RemovedLanguageCodes = new Dictionary<string, string>
+        {
+            ["ch"] = ENGLISH_SHORTED_CODE,
+            ["kh"] = ENGLISH_SHORTED_CODE,
         };
     }
 }
