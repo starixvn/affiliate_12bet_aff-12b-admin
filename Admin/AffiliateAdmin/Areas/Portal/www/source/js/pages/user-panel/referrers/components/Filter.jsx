@@ -6,7 +6,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { setSelectedSiteUrl, setParam } from '../actions';
 import { getDateRange } from '../../../../modules/utils';
-import { headerText, globalResource, deviceTypes, pcLaptop, minDate } from '../modules/constants';
+import { headerText, globalResource, deviceTypes, AllDevices, minDate } from '../modules/constants';
 
 export class Filter extends PureComponent {
     constructor(props) {
@@ -20,7 +20,7 @@ export class Filter extends PureComponent {
         const firstDayOfCurrentMonth = `${now.getMonth() + 1}/01/${now.getFullYear()}`;
 
         this.state = {
-            deviceType: param.isClickLink ? deviceType : deviceTypes[pcLaptop],
+            deviceType: param.isClickLink ? deviceType : AllDevices,
             fromDate: param.isClickLink ? fromDate : firstDayOfCurrentMonth,
             toDate: param.isClickLink ? toDate : this.nowString
         }

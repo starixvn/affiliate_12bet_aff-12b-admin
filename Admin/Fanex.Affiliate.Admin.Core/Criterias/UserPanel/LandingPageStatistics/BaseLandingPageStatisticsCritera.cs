@@ -15,6 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel.LandingPageStatistics
 
         public string LanguageCode { get; set; }
 
-        public byte DeviceType { get; set; }
+        public short DeviceType { get; set; }
     }
 }

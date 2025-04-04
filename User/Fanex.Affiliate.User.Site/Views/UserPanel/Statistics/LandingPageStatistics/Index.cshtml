@@ -14,7 +14,7 @@
         <div class="form-group">
             <label>@Lang.Device:</label>
             <select id="DeviceType" class="form-control">
-                @foreach (var item in EnumHelper.GetSelectList(typeof(Fanex.Affiliate.User.Core.Enum.DeviceType)))
+                @foreach (var item in EnumHelper.GetSelectList(typeof(Fanex.Affiliate.User.Core.Enum.DeviceTypeHasAll)))
                 {
                     <option value="@item.Value">@Lang.ResourceManager.GetString(item.Text)</option>
                 }

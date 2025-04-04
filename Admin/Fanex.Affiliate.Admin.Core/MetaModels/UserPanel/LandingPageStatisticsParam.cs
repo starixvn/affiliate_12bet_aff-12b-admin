@@ -19,6 +19,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [Required]
         public DateTime? ToDate { get; set; }
 
-        public byte DeviceType { get; set; }
+        public short DeviceType { get; set; }
     }
 }

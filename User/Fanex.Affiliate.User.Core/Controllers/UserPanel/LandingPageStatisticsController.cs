@@ -4,6 +4,7 @@
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
+    using Fanex.Affiliate.User.Core.Enum;
     using Filters;
     using MetalModels.UserPanel;
     using System;
@@ -45,7 +46,8 @@
                 AffId = userSession.AffId,
                 IsInternal = isInternal,
                 FromDate = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1),
-                ToDate = now.DateTime
+                ToDate = now.DateTime,
+                DeviceType = (short)DeviceTypeHasAll.All
             };
 
             var viewModel = new LandingPageStatisticsViewModel
