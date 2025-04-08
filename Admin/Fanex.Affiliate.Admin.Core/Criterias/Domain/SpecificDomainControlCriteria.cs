@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Domain
 
         public override bool IsValid() => true;
 
-        public string AffName { get; set; }
+        public string AffUsername { get; set; }
 
         public string AffDomain { get; set; }
 

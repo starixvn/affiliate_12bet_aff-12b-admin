@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
@@ -27,17 +28,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         public SpecificDomainControlInfo GetSpecificDomainControlById(int id)
         {
-            var criteria = new DomainControlCriteria
-            {
-                DomainControlId = id
-            };
+            var specificDomains = FetchTData<SpecificDomainControlInfo>(new SpecificDomainControlCriteria());
 
-            return GetTData<SpecificDomainControlInfo>(criteria);
+            return specificDomains.FirstOrDefault(s => s.SpecificDomainControlId == id);
         }
 
         public ResultInfo InsertSpecificDomainControl(InsertSpecificDomainControlParam param)
         {
-            if (param.AffNames.Split(',').Length > MAXIMUM_AFFILIATES_NUMBER)
+            if (param.AffUsername.Split(',').Length > MAXIMUM_AFFILIATES_NUMBER)
             {
                 return ResultInfo.GenerateErr("The function can only create assignment for up to 500 affiliates per request!");
             }
@@ -52,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
             var command = new UpdateSpecificDomainControlCommand
             {
-                DomainControlId = param.DomainControlId,
+                SpecificDomainControlId = param.SpecificDomainControlId,
             };
             AssignBaseDomainControlCommand(command, param);
 
@@ -73,12 +71,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         private static void AssignBaseDomainControlCommand(InsertSpecificDomainControlCommand command, InsertSpecificDomainControlParam param)
         {
-            command.AffNames = param.AffNames;
+            command.AffUsername = param.AffUsername;
             command.AffDomain = param.AffDomain;
-            command.AffDomainSSL = param.AffDomainSSL;
+            command.AffDomainIsSSL = param.AffDomainIsSSL;
             command.RedirectDomain = param.RedirectDomain;
-            command.RedirectDomainSSL = param.RedirectDomainSSL;
-            command.IsUsed = param.IsUsed;
+            command.RedirectDomainIsSSL = param.RedirectDomainIsSSL;
+            command.Status = param.Status;
             command.UserId = param.UserId;
             command.Ip = param.Ip;
         }

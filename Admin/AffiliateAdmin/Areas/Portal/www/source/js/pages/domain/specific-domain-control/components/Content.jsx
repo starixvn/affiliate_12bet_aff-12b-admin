@@ -51,7 +51,7 @@ export class Content extends PureComponent {
         try {
             this.props.toggleLoader(true);
 
-            const result = await this.props.deleteDomain({ DomainControlId: selectedDomainId });
+            const result = await this.props.deleteDomain({ SpecificDomainControlId: selectedDomainId });
 
             if (!result) {
                 throw new Error('No response received from delete operation');
@@ -132,17 +132,17 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
                 <Cell className="text-center">
-                    <input type="checkbox" disabled checked={dataItem.IsUsed} />
+                    <input type="checkbox" disabled checked={dataItem.Status} />
                 </Cell>
                 <Cell className="text-center" title={editor}>{editor}</Cell>
                 <Cell className="text-center" title={updatedDate}>{updatedDate}</Cell>
                 <Cell className="text-center" title="Edit Domain">
-                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainControlId)}>
+                    <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.SpecificDomainControlId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
                 <Cell className="text-center" title="Delete Domain">
-                    <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.DomainControlId)}>
+                    <Button color="link p-0" onClick={() => this._handleDeleteDomain(dataItem.SpecificDomainControlId)}>
                         <span className="oi oi-x text-danger"></span>
                     </Button>
                 </Cell>

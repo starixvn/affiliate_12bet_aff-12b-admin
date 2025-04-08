@@ -6,6 +6,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
     public class UpdateSpecificDomainControlParam : InsertSpecificDomainControlParam
     {
         [Range(Validation.MinId, Validation.MaxId)]
-        public int DomainControlId { get; set; }
+        public int SpecificDomainControlId { get; set; }
     }
 }

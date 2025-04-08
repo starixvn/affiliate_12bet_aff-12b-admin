@@ -53,9 +53,9 @@
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetSpecificDomainControlById(int domainControlId)
+        public ActionResult GetSpecificDomainControlById(int specificDomainControlId)
         {
-            var domainControl = _domainControlService.GetSpecificDomainControlById(domainControlId);
+            var domainControl = _domainControlService.GetSpecificDomainControlById(specificDomainControlId);
 
             return GenerateJsonNetResult(domainControl);
         }
@@ -72,7 +72,7 @@
                 return GenerateJsonNetResult(_domainControlService.InsertSpecificDomainControl(param));
             }
 
-            return GenerateErrResult("The Specific Domain Control's info is invalid!");
+            return GenerateModelStateErrResult();
         }
 
         [HttpPost]

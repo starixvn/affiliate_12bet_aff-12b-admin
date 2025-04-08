@@ -6,6 +6,6 @@
 
         public override string GetSettingKey() => SP_NAME;
 
-        public int DomainControlId { get; set; }
+        public int SpecificDomainControlId { get; set; }
     }
 }

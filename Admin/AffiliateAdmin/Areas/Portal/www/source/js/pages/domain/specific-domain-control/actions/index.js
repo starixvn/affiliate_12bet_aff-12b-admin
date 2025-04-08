@@ -45,9 +45,9 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const getSpecificDomainById = (domainControlId) => async () => {
+export const getSpecificDomainById = (specificDomainControlId) => async () => {
     const url = 'Portal/SpecificDomainControl/GetSpecificDomainControlById';
-    const response = await post(url, { domainControlId });
+    const response = await post(url, { specificDomainControlId });
 
     return response && response.status === 200 ? response.data : null;
 }

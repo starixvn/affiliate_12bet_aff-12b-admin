@@ -2,7 +2,7 @@
 {
     public class SpecificDomainControlParam
     {
-        public string AffName { get; set; }
+        public string AffUsername { get; set; }
 
         public string AffDomain { get; set; }
 

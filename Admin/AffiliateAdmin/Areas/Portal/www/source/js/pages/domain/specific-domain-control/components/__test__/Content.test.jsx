@@ -6,24 +6,24 @@ import NotificationPopup from '../../../../common/components/NotificationPopup';
 describe('specific domain control - components - Content ', () => {
     const gridData = [
         {
-            DomainControlId: 1,
+            SpecificDomainControlId: 1,
             AffUsername: 'testuser',
             AffDomain: 'test.com',
             RedirectDomain: 'redirect.com',
             Creator: 'creator',
             CreatedDate: '2024-01-01',
-            IsUsed: true,
+            Status: true,
             Editor: 'editor',
             UpdatedDate: '2024-01-02'
         },
         {
-            DomainControlId: 2,
+            SpecificDomainControlId: 2,
             AffUsername: 'testuser2',
             AffDomain: 'test2.com',
             RedirectDomain: 'redirect2.com',
             Creator: 'creator2',
             CreatedDate: '2024-01-02',
-            IsUsed: false,
+            Status: false,
             Editor: 'editor2',
             UpdatedDate: '2024-01-03'
         }
@@ -145,7 +145,7 @@ describe('specific domain control - components - Content ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainControlId: 1 });
+        expect(props.deleteDomain).toHaveBeenCalledWith({ SpecificDomainControlId: 1 });
         expect(props.fetchData).toHaveBeenCalledWith('test');
     });
 
@@ -163,7 +163,7 @@ describe('specific domain control - components - Content ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainControlId: 1 });
+        expect(props.deleteDomain).toHaveBeenCalledWith({ SpecificDomainControlId: 1 });
         expect(wrapper.setState).toHaveBeenCalledWith({ 
             message: "Delete is failed!", 
             isConfirmPopup: false 
@@ -183,7 +183,7 @@ describe('specific domain control - components - Content ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
         expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ DomainControlId: 1 });
+        expect(props.deleteDomain).toHaveBeenCalledWith({ SpecificDomainControlId: 1 });
         expect(wrapper.setState).toHaveBeenCalledWith({"isConfirmPopup": false, "message": "An error occurred while deleting the domain"});
     });
 }); 

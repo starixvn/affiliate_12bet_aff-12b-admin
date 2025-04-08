@@ -117,7 +117,7 @@ describe('Specific Domain Control Actions', () => {
 
             const result = await getSpecificDomainById('123')();
 
-            expect(post).toHaveBeenCalledWith('Portal/SpecificDomainControl/GetSpecificDomainControlById', { domainControlId: '123' });
+            expect(post).toHaveBeenCalledWith('Portal/SpecificDomainControl/GetSpecificDomainControlById', { specificDomainControlId: '123' });
             expect(result).toEqual(mockResponse.data);
         });
 
@@ -130,7 +130,7 @@ describe('Specific Domain Control Actions', () => {
 
             const result = await getSpecificDomainById('123')();
 
-            expect(post).toHaveBeenCalledWith('Portal/SpecificDomainControl/GetSpecificDomainControlById', { domainControlId: '123' });
+            expect(post).toHaveBeenCalledWith('Portal/SpecificDomainControl/GetSpecificDomainControlById', { specificDomainControlId: '123' });
             expect(result).toBeNull();
         });
 

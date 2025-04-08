@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var param = new InsertSpecificDomainControlParam
             {
-                AffNames = string.Join(",", new string[501]) // Create a string with 501 commas
+                AffUsername = string.Join(",", new string[501]) // Create a string with 501 commas
             };
 
             // Act
@@ -80,12 +80,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var param = new InsertSpecificDomainControlParam
             {
-                AffNames = "aff1,aff2",
+                AffUsername = "aff1,aff2",
                 AffDomain = "test.com",
-                AffDomainSSL = true,
+                AffDomainIsSSL = true,
                 RedirectDomain = "redirect.com",
-                RedirectDomainSSL = true,
-                IsUsed = true,
+                RedirectDomainIsSSL = true,
+                Status = true,
                 UserId = 1,
                 Ip = "127.0.0.1"
             };
@@ -108,13 +108,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var param = new UpdateSpecificDomainControlParam
             {
-                DomainControlId = 1,
-                AffNames = "aff1,aff2",
+                SpecificDomainControlId = 1,
+                AffUsername = "aff1,aff2",
                 AffDomain = "test.com",
-                AffDomainSSL = true,
+                AffDomainIsSSL = true,
                 RedirectDomain = "redirect.com",
-                RedirectDomainSSL = true,
-                IsUsed = true,
+                RedirectDomainIsSSL = true,
+                Status = true,
                 UserId = 1,
                 Ip = "127.0.0.1"
             };

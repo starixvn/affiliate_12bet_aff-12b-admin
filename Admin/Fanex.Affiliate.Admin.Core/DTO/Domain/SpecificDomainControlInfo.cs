@@ -4,19 +4,19 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 {
     public class SpecificDomainControlInfo
     {
-        public int DomainControlId { get; set; }
+        public int SpecificDomainControlId { get; set; }
 
         public string AffUsername { get; set; }
 
         public string AffDomain { get; set; }
 
-        public bool AffDomainSSL { get; set; }
+        public bool AffDomainIsSSL { get; set; }
 
         public string RedirectDomain { get; set; }
 
-        public bool RedirectDomainSSL { get; set; }
+        public bool RedirectDomainIsSSL { get; set; }
 
-        public bool IsUsed { get; set; }
+        public bool Status { get; set; }
 
         public string Creator { get; set; }
 

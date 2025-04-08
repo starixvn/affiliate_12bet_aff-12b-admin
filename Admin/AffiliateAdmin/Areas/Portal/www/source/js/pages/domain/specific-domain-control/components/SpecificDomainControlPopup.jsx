@@ -22,23 +22,23 @@ export class SpecificDomainControlPopup extends PureComponent {
 
     _handleUpdateState = async (selectedDomainId) => {
         if (selectedDomainId === 0) {
-            this.setState({ isInsert: true, selectedDomain: { domainControlId: selectedDomainId, affDomain: '', redirectDomain: '', affDomainSSL: false, redirectDomainSSL: false, isUsed: false } });
+            this.setState({ isInsert: true, selectedDomain: { specificDomainControlId: selectedDomainId, affDomain: '', redirectDomain: '', affDomainIsSSL: false, redirectDomainIsSSL: false, status: false } });
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getSpecificDomainById(selectedDomainId);
 
             if (domain) {
-                const { AffName, AffDomain, RedirectDomain, AffDomainSSL, RedirectDomainSSL, IsUsed } = domain;
+                const { AffUsername, AffDomain, RedirectDomain, AffDomainIsSSL, RedirectDomainIsSSL, Status } = domain;
 
                 this.setState({
                     isInsert: false, selectedDomain: {
-                        domainControlId: selectedDomainId,
-                        affName: AffName,
+                        specificDomainControlId: selectedDomainId,
+                        affUsername: AffUsername,
                         affDomain: AffDomain,
-                        affDomainSSL: AffDomainSSL,
+                        affDomainIsSSL: AffDomainIsSSL,
                         redirectDomain: RedirectDomain,
-                        redirectDomainSSL: RedirectDomainSSL,
-                        isUsed: IsUsed
+                        redirectDomainIsSSL: RedirectDomainIsSSL,
+                        status: Status
                     }
                 });
             } else {
@@ -58,7 +58,7 @@ export class SpecificDomainControlPopup extends PureComponent {
         this.setState({ selectedDomain: newDomain });
     }
 
-    _handleChangeAffNames = (event) => {
+    _handleChangeAffUsernames = (event) => {
         event.preventDefault();
         const value = event.target.value;
 
@@ -66,14 +66,14 @@ export class SpecificDomainControlPopup extends PureComponent {
             return;
         }
 
-        this.setState({ affNames: value });
+        this.setState({ affUsernames: value });
     }
 
-    _handleBlurAffNames = () => {
-        this.setState(({ affNames }) => {
-            const newAffNames = affNames.replace(/\n+|\s+/g, ',').replace(/,+/g, ',').replace(/(^,)|(,$)/g, '');
+    _handleBlurAffUsernames = () => {
+        this.setState(({ affUsernames }) => {
+            const newAffUsernames = affUsernames.replace(/\n+|\s+/g, ',').replace(/,+/g, ',').replace(/(^,)|(,$)/g, '');
 
-            return { affNames: newAffNames };
+            return { affUsernames: newAffUsernames };
         });
     }
 
@@ -86,20 +86,20 @@ export class SpecificDomainControlPopup extends PureComponent {
         return true;
     }
 
-    _validateAffNames = (affNames) => {
-        if (!affNames) {
+    _validateAffUsernames = (affUsernames) => {
+        if (!affUsernames) {
             this._handleShowAlert(false, "Please enter Affiliate(s)!");
             return false;
         }
 
-        const affiliates = affNames.split(',');
+        const affiliates = affUsernames.split(',');
         
         if (affiliates.length > affsCondition.maximumNumber) {
             this._handleShowAlert(false, 'The function can only create assignment for up to 500 affiliates per request!');
             return false;
         }
 
-        if (!affsCondition.affsPattern.test(affNames)) {
+        if (!affsCondition.affsPattern.test(affUsernames)) {
             this._handleShowAlert(false, "Affiliate(s) is an invalid format or affiliate!");
             return false;
         }
@@ -119,15 +119,15 @@ export class SpecificDomainControlPopup extends PureComponent {
 
     _handleInsertSpecificDomain = async () => {
         try {
-            const { selectedDomain, affNames } = this.state;
+            const { selectedDomain, affUsernames } = this.state;
 
-            if (!this._validateAffNames(affNames) || !this._validateDomains(selectedDomain)) {
+            if (!this._validateAffUsernames(affUsernames) || !this._validateDomains(selectedDomain)) {
                 return;
             }
 
-            const result = await this.props.insertDomain({ 
+            const result = await this.props.insertSpecificDomain({
                 ...selectedDomain, 
-                affName: affNames 
+                affUsername: affUsernames 
             });
 
             if (!result) {
@@ -154,7 +154,7 @@ export class SpecificDomainControlPopup extends PureComponent {
                 return;
             }
 
-            const result = await this.props.updateDomain(selectedDomain);
+            const result = await this.props.updateSpecificDomain(selectedDomain);
 
             if (!result) {
                 throw new Error("Failed to update specific domain");
@@ -198,7 +198,7 @@ export class SpecificDomainControlPopup extends PureComponent {
 
     render() {
         const { selectedDomainId } = this.props;
-        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, affNames } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, affUsernames } = this.state;
         const isShowPopup = selectedDomainId !== null;
         const title = isInsert ? "Add New Specific Domain Control" : "Edit Specific Domain Control";
         const buttonLabel = isInsert ? "Add" : "Submit";
@@ -229,7 +229,7 @@ export class SpecificDomainControlPopup extends PureComponent {
                             </Alert>
                             <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2 align-items-center">
-                                    <Label htmlFor="affNames" className="required" sm={4}>
+                                    <Label htmlFor="affUsernames" className="required" sm={4}>
                                         {headerText.Affiliate}
                                     </Label>
                                     <Col sm={8}>
@@ -238,12 +238,12 @@ export class SpecificDomainControlPopup extends PureComponent {
                                                 <Input 
                                                     type="textarea" 
                                                     rows="6" 
-                                                    id="affNames" 
-                                                    name="affNames" 
+                                                    id="affUsernames" 
+                                                    name="affUsernames" 
                                                     className="input-required"
-                                                    value={affNames} 
-                                                    onChange={this._handleChangeAffNames} 
-                                                    onBlur={this._handleBlurAffNames} 
+                                                    value={affUsernames} 
+                                                    onChange={this._handleChangeAffUsernames} 
+                                                    onBlur={this._handleBlurAffUsernames} 
                                                 />
                                                 <div>
                                                     <Label>Max 500 affiliates, separated by [Comma], [Tab] or [Enter]</Label>
@@ -254,9 +254,9 @@ export class SpecificDomainControlPopup extends PureComponent {
                                                 type="text" 
                                                 disabled 
                                                 className="input-required" 
-                                                id="affNames" 
-                                                name="affNames" 
-                                                value={selectedDomain.affName} 
+                                                id="affUsernames" 
+                                                name="affUsernames" 
+                                                value={selectedDomain.affUsername} 
                                             />
                                         )}
                                     </Col>
@@ -282,8 +282,8 @@ export class SpecificDomainControlPopup extends PureComponent {
                                             <Label check>
                                                 <Input 
                                                     type="checkbox" 
-                                                    checked={selectedDomain.affDomainSSL} 
-                                                    name="affDomainSSL"
+                                                    checked={selectedDomain.affDomainIsSSL} 
+                                                    name="affDomainIsSSL"
                                                     onChange={this._handleChange} 
                                                 /> 
                                                 {headerText.SSL}
@@ -312,8 +312,8 @@ export class SpecificDomainControlPopup extends PureComponent {
                                             <Label check>
                                                 <Input 
                                                     type="checkbox" 
-                                                    checked={selectedDomain.redirectDomainSSL} 
-                                                    name="redirectDomainSSL"
+                                                    checked={selectedDomain.redirectDomainIsSSL} 
+                                                    name="redirectDomainIsSSL"
                                                     onChange={this._handleChange} 
                                                 /> 
                                                 {headerText.SSL}
@@ -327,8 +327,8 @@ export class SpecificDomainControlPopup extends PureComponent {
                                     <Col sm={8}>
                                         <Input 
                                             type="checkbox" 
-                                            name="isUsed" 
-                                            checked={selectedDomain.isUsed} 
+                                            name="status"
+                                            checked={selectedDomain.status}
                                             onChange={this._handleChange} 
                                         />
                                     </Col>

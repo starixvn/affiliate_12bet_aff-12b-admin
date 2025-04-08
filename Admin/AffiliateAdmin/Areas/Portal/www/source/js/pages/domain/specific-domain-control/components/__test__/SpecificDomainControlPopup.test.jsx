@@ -29,12 +29,12 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         const wrapper = shallow(<SpecificDomainControlPopup {...props} />);
         wrapper.setState({
             selectedDomain: {
-                domainControlId: 1,
+                specificDomainControlId: 1,
                 affDomain: 'test.com',
                 redirectDomain: 'redirect.com',
-                affDomainSSL: false,
-                redirectDomainSSL: false,
-                isUsed: true
+                affDomainIsSSL: false,
+                redirectDomainIsSSL: false,
+                status: true
             }
         });
         
@@ -57,9 +57,9 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         const wrapper = shallow(<SpecificDomainControlPopup {...defaultProps} />);
         wrapper.setState({ 
             selectedDomain: { 
-                domainControlId: 0,
+                specificDomainControlId: 0,
                 affDomain: '',
-                affDomainSSL: false
+                affDomainIsSSL: false
             } 
         });
 
@@ -74,22 +74,22 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         expect(wrapper.state('selectedDomain').affDomain).toBe('newdomain.com');
 
         // Test checkbox change
-        wrapper.find('Input[name="affDomainSSL"]').simulate('change', { 
+        wrapper.find('Input[name="affDomainIsSSL"]').simulate('change', { 
             target: { 
-                name: 'affDomainSSL', 
+                name: 'affDomainIsSSL', 
                 type: 'checkbox',
                 checked: true 
             } 
         });
 
-        expect(wrapper.state('selectedDomain').affDomainSSL).toBe(true);
+        expect(wrapper.state('selectedDomain').affDomainIsSSL).toBe(true);
     });
 
     it('should handle affiliate names input changes correctly', () => {
         const wrapper = shallow(<SpecificDomainControlPopup {...defaultProps} />);
         wrapper.setState({ 
             isInsert: true,
-            selectedDomain: { domainControlId: 0 },
+            selectedDomain: { specificDomainControlId: 0 },
             affNames: ''
         });
 
@@ -118,7 +118,7 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         const wrapper = shallow(<SpecificDomainControlPopup {...defaultProps} />);
         wrapper.setState({ 
             isInsert: true,
-            selectedDomain: { domainControlId: 0 },
+            selectedDomain: { specificDomainControlId: 0 },
             affNames: 'test1, test2, test3, , test4' 
         });
 
@@ -137,12 +137,12 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         wrapper.setState({
             isInsert: true,
             selectedDomain: {
-                domainControlId: 0,
+                specificDomainControlId: 0,
                 affDomain: 'test.com',
                 redirectDomain: 'redirect.com',
-                affDomainSSL: false,
-                redirectDomainSSL: false,
-                isUsed: false
+                affDomainIsSSL: false,
+                redirectDomainIsSSL: false,
+                status: false
             },
             affNames: '12betaff001,12betaff002'
         });
@@ -151,12 +151,12 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
 
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.insertDomain).toHaveBeenCalledWith({
-            domainControlId: 0,
+            specificDomainControlId: 0,
             affDomain: 'test.com',
             redirectDomain: 'redirect.com',
-            affDomainSSL: false,
-            redirectDomainSSL: false,
-            isUsed: false,
+            affDomainIsSSL: false,
+            redirectDomainIsSSL: false,
+            status: false,
             affName: '12betaff001,12betaff002'
         });
         expect(wrapper.state('isShowMessage')).toBe(true);
@@ -173,12 +173,12 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         wrapper.setState({
             isInsert: false,
             selectedDomain: {
-                domainControlId: 1,
+                specificDomainControlId: 1,
                 affDomain: 'test.com',
                 redirectDomain: 'redirect.com',
-                affDomainSSL: true,
-                redirectDomainSSL: false,
-                isUsed: true
+                affDomainIsSSL: true,
+                redirectDomainIsSSL: false,
+                status: true
             }
         });
 
@@ -186,12 +186,12 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
 
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.updateDomain).toHaveBeenCalledWith({
-            domainControlId: 1,
+            specificDomainControlId: 1,
             affDomain: 'test.com',
             redirectDomain: 'redirect.com',
-            affDomainSSL: true,
-            redirectDomainSSL: false,
-            isUsed: true
+            affDomainIsSSL: true,
+            redirectDomainIsSSL: false,
+            status: true
         });
         expect(wrapper.state('isShowMessage')).toBe(true);
         expect(wrapper.state('isSuccess')).toBe(true);
@@ -202,12 +202,12 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         wrapper.setState({
             isInsert: true,
             selectedDomain: {
-                domainControlId: 0,
+                specificDomainControlId: 0,
                 affDomain: '',
                 redirectDomain: '',
-                affDomainSSL: false,
-                redirectDomainSSL: false,
-                isUsed: false
+                affDomainIsSSL: false,
+                redirectDomainIsSSL: false,
+                status: false
             },
             affNames: 'test1,test2'
         });
@@ -224,12 +224,12 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         wrapper.setState({
             isInsert: true,
             selectedDomain: {
-                domainControlId: 0,
+                specificDomainControlId: 0,
                 affDomain: 'test.com',
                 redirectDomain: 'redirect.com',
-                affDomainSSL: false,
-                redirectDomainSSL: false,
-                isUsed: false
+                affDomainIsSSL: false,
+                redirectDomainIsSSL: false,
+                status: false
             },
             affNames: ''
         });
@@ -246,7 +246,7 @@ describe('specific domain control - components - SpecificDomainControlPopup ', (
         wrapper.setState({
             isShowMessage: true,
             message: 'Test message',
-            selectedDomain: { domainControlId: 1 }
+            selectedDomain: { specificDomainControlId: 1 }
         });
 
         wrapper.instance()._handleClosePopup();
