@@ -221,9 +221,10 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string lang, string affMediaLinkWithoutProtocol)
         {
-            var marketInfo = _trackingSystemService.GetMarketInfo(lang);
+            var mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
+            var mappingMarketInfo = _trackingSystemService.GetMarketInfo(mappingRemovedLanguage);
 
-            if (string.IsNullOrEmpty(marketInfo.MarketId))
+            if (string.IsNullOrEmpty(mappingMarketInfo.MarketId))
             {
                 return false;
             }
@@ -248,7 +249,7 @@ namespace Fanex.Affiliate.Link.Controllers
             {
                 AffId = affId,
                 AffDomain = customDomain,
-                LanguageCode = marketInfo.MarketId,
+                LanguageCode = mappingMarketInfo.MarketId,
                 AffMediaLink = affMediaLink
             };
 
@@ -259,9 +260,9 @@ namespace Fanex.Affiliate.Link.Controllers
                 var insertCommand = new ToggleMarketingLinkCommand
                 {
                     AffId = affId,
-                    LanguageCode = marketInfo.MarketId,
+                    LanguageCode = mappingMarketInfo.MarketId,
                     AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
-            };
+                };
 
                 _trackingSystemService.ToggleMarketingLink(insertCommand);
             }
