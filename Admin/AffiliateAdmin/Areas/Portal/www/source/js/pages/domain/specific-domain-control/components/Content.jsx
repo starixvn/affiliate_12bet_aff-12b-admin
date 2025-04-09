@@ -88,9 +88,9 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={120} title={headerText.RedirectDomain}>{headerText.RedirectDomain}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={25} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Editor}>{headerText.Editor}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.UpdatedDate}>{headerText.UpdatedDate}</Cell>
+                <Cell header={true} colWidth={25} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.Delete}>{headerText.Delete}</Cell>
             </Row>
@@ -120,8 +120,8 @@ export class Content extends PureComponent {
         const redirectDomain = htmlDecode(dataItem.RedirectDomain);
         const creator = htmlDecode(dataItem.Creator);
         const editor = htmlDecode(dataItem.Editor);
-        const createdDate = formatDateTime(dataItem.CreatedDate, "MM/dd/yyyy HH:mm:ss");
-        const updatedDate = formatDateTime(dataItem.UpdatedDate, "MM/dd/yyyy HH:mm:ss");
+        const createdDate = formatDateTime(dataItem.CreatedDate);
+        const updatedDate = formatDateTime(dataItem.UpdatedDate);
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -131,11 +131,11 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={redirectDomain}>{redirectDomain}</Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
+                <Cell className="text-center" title={editor}>{editor}</Cell>
+                <Cell className="text-center" title={updatedDate}>{updatedDate}</Cell>
                 <Cell className="text-center">
                     <input type="checkbox" disabled checked={dataItem.Status} />
                 </Cell>
-                <Cell className="text-center" title={editor}>{editor}</Cell>
-                <Cell className="text-center" title={updatedDate}>{updatedDate}</Cell>
                 <Cell className="text-center" title="Edit Domain">
                     <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.SpecificDomainControlId)}>
                         <span className="oi oi-pencil text-secondary"></span>

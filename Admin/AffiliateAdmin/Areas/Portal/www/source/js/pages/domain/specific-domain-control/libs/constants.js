@@ -12,7 +12,7 @@ export const headerText = {
     CreatedDate: 'Created Date',
     SSL: 'SSL',
     Status: 'Status',
-    Editor: 'Editor',
+    UpdatedBy: 'Updated By',
     UpdatedDate: 'Updated Date',
     Edit: globalResource.Edit,
     Delete: globalResource.Delete
