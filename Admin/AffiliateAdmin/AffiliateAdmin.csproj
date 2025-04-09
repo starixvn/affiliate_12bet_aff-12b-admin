@@ -308,11 +308,15 @@
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\components\__test__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\components\__test__\Filter.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\common\components\NoteContent.jsx" />
