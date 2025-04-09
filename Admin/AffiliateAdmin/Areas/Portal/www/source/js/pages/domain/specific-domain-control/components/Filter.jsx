@@ -7,13 +7,13 @@ import { setParam } from '../actions';
 import { headerText } from '../libs/constants';
 
 export const Filter = (props) => {
-    const [affName, setAffName] = useState('');
+    const [affUsername, setAffUsername] = useState('');
     const [affDomain, setAffDomain] = useState('');
     const [redirectDomain, setRedirectDomain] = useState('');
 
     const _handleSearch = () => {
         const newParam = Object.assign({}, {
-            AffName: affName,
+            AffUsername: affUsername,
             AffDomain: affDomain,
             RedirectDomain: redirectDomain
         });
@@ -33,7 +33,7 @@ export const Filter = (props) => {
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3">
                     <Label className="mr-2">{headerText.Affiliate}</Label>
-                    <Input type="text" name="affName" value={affName} onKeyPress={_handlePressEnter} onChange={(e) => setAffName(e.target.value)} />
+                    <Input type="text" name="affUsername" value={affUsername} onKeyPress={_handlePressEnter} onChange={(e) => setAffUsername(e.target.value)} />
                 </FormGroup>
                 <FormGroup className="mr-sm-3">
                     <Label className="mr-2">{headerText.AffDomain}</Label>

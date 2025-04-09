@@ -39,7 +39,7 @@ export class Content extends PureComponent {
 
     _handleDeleteDomain = (selectedDomainId) => {
         this.props.setShouldResetScrollPosition(false);
-        this.setState({ message: `Are you sure you want to delete this domain setting?`, isConfirmPopup: true, selectedDomainId });
+        this.setState({ message: `Are you sure you want to delete this specific domain setting?`, isConfirmPopup: true, selectedDomainId });
     }
 
     _handleEditDomain = (domainId) => {

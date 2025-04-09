@@ -96,7 +96,7 @@ describe('specific domain control - components - Content ', () => {
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
         expect(wrapper.setState).toHaveBeenCalledWith({ 
-            message: `Are you sure you want to delete this domain setting?`, 
+            message: `Are you sure you want to delete this specific domain setting?`, 
             isConfirmPopup: true, 
             selectedDomainId: 1 
         });
