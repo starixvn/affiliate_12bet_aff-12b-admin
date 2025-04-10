@@ -87,8 +87,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string RedirectToOldVersLink => GetValue("RedirectToOldVersLink");
 
-        public DateTime DomainAvailableFromDate => Convert.ToDateTime(GetValue("DomainAvailableFromDate"));
-
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

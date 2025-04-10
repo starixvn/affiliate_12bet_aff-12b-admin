@@ -146,11 +146,9 @@
                     ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
                     : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
 
-            var domainList = GetAvailableDomainsFromDate(domains, isMember);
-
             if (isMember)
             {
-                foreach (var (domain, index) in domainList.Select((domain, index) => (domain, index)))
+                foreach (var (domain, index) in domains.Select((domain, index) => (domain, index)))
                 {
                     if (domain.DomainId == 0)
                     {
@@ -159,7 +157,7 @@
                 }
             }
 
-            return domainList;
+            return domains;
         }
 
         public IDictionary<string, LanguageLinkViewModel> GenerateLinkList(LinkGeneratingParam linkGeneratedParam)
@@ -353,11 +351,6 @@
         private static string NormalizeName(string channelName)
         {
             return channelName.ToLowerInvariant();
-        }
-
-        private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains, bool isMember = false)
-        {
-            return isMember ? domains.Where(_ => DateTime.Compare(_.CreateDate, _appSetting.DomainAvailableFromDate) >= 0) : domains;
         }
     }
 }
