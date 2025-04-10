@@ -227,12 +227,12 @@ export class SpecificDomainControlPopup extends PureComponent {
                             >
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autoComplete="off">
-                                <FormGroup row className="mb-2 align-items-center">
-                                    <Label htmlFor="affUsernames" className="required" sm={4}>
+                            <Form tag="form" className="mb-4" autoComplete="off">
+                                <FormGroup row className="align-items-center">
+                                    <Label htmlFor="affUsernames" className="required" sm={3}>
                                         {headerText.Affiliate}
                                     </Label>
-                                    <Col sm={8}>
+                                    <Col sm={9}>
                                         {isInsert ? (
                                             <>
                                                 <Input 
@@ -262,11 +262,11 @@ export class SpecificDomainControlPopup extends PureComponent {
                                     </Col>
                                 </FormGroup>
 
-                                <FormGroup row className="mb-2 align-items-center">
-                                    <Label htmlFor="affDomain" className="required" sm={4}>
+                                <FormGroup row className="align-items-center">
+                                    <Label htmlFor="affDomain" className="required" sm={3}>
                                         {headerText.AffDomain}
                                     </Label>
-                                    <Col sm={6}>
+                                    <Col sm={7}>
                                         <Input 
                                             type="text" 
                                             className="input-required" 
@@ -292,11 +292,11 @@ export class SpecificDomainControlPopup extends PureComponent {
                                     </Col>
                                 </FormGroup>
 
-                                <FormGroup row className="mb-2 align-items-center">
-                                    <Label htmlFor="redirectDomain" className="required" sm={4}>
+                                <FormGroup row className="align-items-center">
+                                    <Label htmlFor="redirectDomain" className="required" sm={3}>
                                         {headerText.RedirectDomain}
                                     </Label>
-                                    <Col sm={6}>
+                                    <Col sm={7}>
                                         <Input 
                                             type="text" 
                                             className="input-required" 
@@ -322,9 +322,9 @@ export class SpecificDomainControlPopup extends PureComponent {
                                     </Col>
                                 </FormGroup>
 
-                                <FormGroup row className="mb-2 align-items-center">
-                                    <Label sm={4}>{headerText.Status}</Label>
-                                    <Col sm={8}>
+                                <FormGroup row className="align-items-center">
+                                    <Label sm={3}>{headerText.Status}</Label>
+                                    <Col sm={9}>
                                         <input
                                             type="checkbox" 
                                             name="status"

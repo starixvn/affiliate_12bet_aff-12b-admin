@@ -1,6 +1,4 @@
-﻿using Fanex.Data.Repository;
-
-namespace Fanex.Affiliate.Admin.Core.Criterias.Domain
+﻿namespace Fanex.Affiliate.Admin.Core.Criterias.Domain
 {
     public class SpecificDomainControlCriteria : PagingCriteria
     {

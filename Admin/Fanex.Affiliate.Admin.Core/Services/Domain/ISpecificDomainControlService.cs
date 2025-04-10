@@ -14,6 +14,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 
         ResultInfo UpdateSpecificDomainControl(UpdateSpecificDomainControlParam param);
 
-        ResultInfo DeleteSpecificDomainControl(DeleteDomainControlParam param);
+        ResultInfo DeleteSpecificDomainControl(DeleteSpecificDomainControlParam param);
     }
 }

@@ -2,7 +2,7 @@
 {
     public class InsertDomainControlCommand : BaseDomainControlCommand
     {
-        private const string SP_NAME = "Aff_Admin_SpecificDomainControl_Ins";
+        private const string SP_NAME = "Aff_Admin_DomainControl_Ins";
 
         public override string GetSettingKey() => SP_NAME;
 

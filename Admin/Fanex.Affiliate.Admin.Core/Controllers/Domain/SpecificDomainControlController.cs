@@ -93,7 +93,7 @@
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
-        public ActionResult DeleteSpecificDomainControl(DeleteDomainControlParam param)
+        public ActionResult DeleteSpecificDomainControl(DeleteSpecificDomainControlParam param)
         {
             if (ModelState.IsValid)
             {

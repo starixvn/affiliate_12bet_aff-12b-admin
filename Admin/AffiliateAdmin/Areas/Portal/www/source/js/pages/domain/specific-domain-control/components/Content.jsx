@@ -62,7 +62,7 @@ export class Content extends PureComponent {
         try {
             this.props.toggleLoader(true);
 
-            const result = await this.props.deleteDomain({ SpecificDomainControlId: selectedDomainId });
+            const result = await this.props.deleteSpecificDomain({ SpecificDomainControlId: selectedDomainId });
 
             if (!result) {
                 throw new Error('No response received from delete operation');

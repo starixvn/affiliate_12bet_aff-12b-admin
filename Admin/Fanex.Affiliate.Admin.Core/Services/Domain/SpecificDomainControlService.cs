@@ -57,11 +57,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             return ExecuteReturnResultInfo(command);
         }
 
-        public ResultInfo DeleteSpecificDomainControl(DeleteDomainControlParam param)
+        public ResultInfo DeleteSpecificDomainControl(DeleteSpecificDomainControlParam param)
         {
-            var command = new DeleteDomainControlCommand
+            var command = new DeleteSpecificDomainControlCommand
             {
-                DomainControlId = param.DomainControlId,
+                SpecificDomainControlId = param.SpecificDomainControlId,
                 UserId = param.UserId,
                 Ip = param.Ip,
             };

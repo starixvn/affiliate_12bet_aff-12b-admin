@@ -264,6 +264,7 @@
     <Compile Include="Commands\Domain\BaseDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\DeleteDomainCommand.cs" />
     <Compile Include="Commands\Domain\DeleteDomainControlCommand.cs" />
+    <Compile Include="Commands\Domain\DeleteSpecificDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\InsertDomainCommand.cs" />
     <Compile Include="Commands\Domain\InsertDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\InsertSpecificDomainControlCommand.cs" />
@@ -508,6 +509,7 @@
     <Compile Include="MetaModels\Customer\TransferLimitSettingParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\DeleteSpecificDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\InsertDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\InsertDomainParam.cs" />
     <Compile Include="MetaModels\Domain\InsertSpecificDomainControlParam.cs" />
