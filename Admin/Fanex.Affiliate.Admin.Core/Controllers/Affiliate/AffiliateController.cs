@@ -67,7 +67,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             if (int.TryParse(param.AffCode, out _) || string.IsNullOrEmpty(param.AffCode))
             {
                 param.UserId = SessionService.UserId;
-                param.Language = _systemService.ConvertSelectedLanguageCodes(param.Language);
                 var model = _affiliateService.GetAffiliateList(param);
 
                 return GenerateJsonNetResult(model);

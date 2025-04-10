@@ -262,7 +262,7 @@
 
             if (string.IsNullOrEmpty(languageCode))
             {
-                return string.Join(",", allLanguages.Select(l => l.EnglishName));
+                return languageCode;
             }
 
             return allLanguages.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.EnglishName;

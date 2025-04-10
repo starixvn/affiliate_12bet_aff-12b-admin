@@ -16,7 +16,5 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         IEnumerable<Currency> GetCurrencies();
 
         IEnumerable<Currency> GetPaymentCurrencies();
-
-        string ConvertSelectedLanguageCodes(string languageCode);
     }
 }

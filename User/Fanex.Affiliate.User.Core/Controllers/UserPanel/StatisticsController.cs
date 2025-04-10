@@ -26,7 +26,6 @@
         {
             statisticsDetailParam.AffId = SessionService.UserSession.AffId;
             statisticsDetailParam.IsInternal = SessionService.IsInternal;
-            statisticsDetailParam.LanguageCode = _statisticsService.ConvertSelectedLanguageCodes(statisticsDetailParam.LanguageCode);
 
             var viewModel = new ReferrerStatisticsViewModel
             {

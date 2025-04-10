@@ -57,7 +57,7 @@
                 FromDate = vm.FromDate,
                 ToDate = vm.ToDate,
                 IncludedInActive = vm.IncludeInActiveLink,
-                LanguageCodes = _statisticsService.ConvertSelectedLanguageCodes(vm.Language)
+                LanguageCodes = vm.Language
             };
 
             var model = _statisticsService.GetMarketingPageStatistics(param).GroupBy(s => s.ChannelName);

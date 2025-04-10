@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Criterias.UserPanel.LandingPageStatistics;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
 using Fanex.Data.Repository;
 using Moq;
@@ -45,13 +44,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         }
 
         public LandingPageStatisticsService CreateService(
-            IDynamicRepository dynamicRepository = null,
-            ISystemService systemService = null)
+            IDynamicRepository dynamicRepository = null)
         {
             var mockIDynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
-            var mockISystemService = systemService ?? Mock.Of<ISystemService>();
 
-            return new LandingPageStatisticsService(mockIDynamicRepository, mockISystemService);
+            return new LandingPageStatisticsService(mockIDynamicRepository);
         }
     }
 }

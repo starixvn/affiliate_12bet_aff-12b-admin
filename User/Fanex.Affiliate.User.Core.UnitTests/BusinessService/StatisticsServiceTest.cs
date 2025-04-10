@@ -14,7 +14,6 @@
     public class StatisticsServiceTest
     {
         private readonly IDynamicRepository Repo = Substitute.For<IDynamicRepository>();
-        private readonly ISystemService systemService = Substitute.For<ISystemService>();
 
         [Fact]
         public void GetLandingPageStatistics_WhenCallWithEmptyLanguage_CallStatisticsRepository()
@@ -83,6 +82,6 @@
         }
 
         private StatisticsService CreateService()
-            => new StatisticsService(Repo, systemService);
+            => new StatisticsService(Repo);
     }
 }

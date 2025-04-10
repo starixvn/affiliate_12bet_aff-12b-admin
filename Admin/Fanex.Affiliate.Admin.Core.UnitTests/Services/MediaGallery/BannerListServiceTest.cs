@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -600,16 +599,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             IDynamicRepository dynamicRepository = null,
             IAppSetting appSetting = null,
             ISystemFile systemFile = null,
-            IBannerValidationService bannerValidationService = null,
-            ISystemService systemService = null)
+            IBannerValidationService bannerValidationService = null)
         {
             var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
             var fakeAppSetting = appSetting ?? Mock.Of<IAppSetting>();
             var fakeSystemFile = systemFile ?? Mock.Of<ISystemFile>();
-            var fakeISystemService = systemService ?? Mock.Of<ISystemService>();
             var fakeBannerValidationService = bannerValidationService ?? Mock.Of<IBannerValidationService>();
 
-            return new BannerListService(fakedynamicRepository, fakeAppSetting, fakeSystemFile, fakeISystemService, fakeBannerValidationService);
+            return new BannerListService(fakedynamicRepository, fakeAppSetting, fakeSystemFile, fakeBannerValidationService);
         }
     }
 }

@@ -97,14 +97,14 @@
 
         private string ConvertSelectedShortedCodes(string languageCode)
         {
-            var allLanguages = _systemService.GetLanguageList();
-
             if (string.IsNullOrEmpty(languageCode))
             {
-                return string.Join(",", allLanguages.Select(l => l.ShortedCode));
+                return languageCode;
             }
 
-            return allLanguages.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.ShortedCode;
+            var allLanguages = _systemService.GetLanguageList();
+
+            return allLanguages.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
         }
     }
 }

@@ -20,18 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             _cacheService = cacheService;
         }
 
-        public string ConvertSelectedLanguageCodes(string languageCode)
-        {
-            if (string.IsNullOrWhiteSpace(languageCode))
-            {
-                var allLanguages = GetLanguageList();
-
-                return string.Join(",", allLanguages.Select(l => l.LanguageCode));
-            }
-
-            return languageCode;
-        }
-
         public IEnumerable<Language> GetLanguageList()
         {
             var languageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.LanguageList);

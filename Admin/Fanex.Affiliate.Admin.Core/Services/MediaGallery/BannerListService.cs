@@ -28,18 +28,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
-        private readonly ISystemService _systemService;
         private readonly IBannerValidationService _bannerValidationService;
         public BannerListService(
             IDynamicRepository dynamicRepository,
             IAppSetting appSetting,
             ISystemFile systemFile,
-            ISystemService systemService,
             IBannerValidationService bannerValidationService) : base(dynamicRepository)
         {
             _appSetting = appSetting;
             _systemFile = systemFile;
-            _systemService = systemService;
             _bannerValidationService = bannerValidationService;
         }
 
@@ -498,27 +495,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             command.Ip = param.Ip;
         }
 
-        private void AssignBaseBannerCriteria(BaseBannerCriteria criteria, BaseBannerParam param)
+        private static void AssignBaseBannerCriteria(BaseBannerCriteria criteria, BaseBannerParam param)
         {
             criteria.Category = param.Category;
             criteria.SubCategory = param.SubCategory;
-            criteria.Language = ConvertSelectedLanguageNames(param.Language);
+            criteria.Language = param.Language;
             criteria.Currency = param.Currency;
             criteria.AffType = param.AffType;
             criteria.DeviceType = param.DeviceType;
             criteria.UserType = param.UserType;
-        }
-
-        private string ConvertSelectedLanguageNames(string languageName)
-        {
-            var allLanguages = _systemService.GetLanguageList();
-
-            if (string.IsNullOrEmpty(languageName))
-            {
-                return string.Join(",", allLanguages.Select(l => l.LanguageName));
-            }
-
-            return languageName;
         }
     }
 }
