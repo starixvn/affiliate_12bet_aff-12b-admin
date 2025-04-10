@@ -19,11 +19,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
         }
 
-        public IEnumerable<SpecificDomainControlInfo> GetSpecificDomainControl(SpecificDomainControlParam param)
+        public EntityResult<SpecificDomainControlInfo> GetSpecificDomainControl(SpecificDomainControlParam param)
         {
             var criteria = param.MapTo<SpecificDomainControlParam, SpecificDomainControlCriteria>();
 
-            return FetchTData<SpecificDomainControlInfo>(criteria);
+            return FetchEntityResult<SpecificDomainControlInfo>(criteria);
         }
 
         public SpecificDomainControlInfo GetSpecificDomainControlById(int id)

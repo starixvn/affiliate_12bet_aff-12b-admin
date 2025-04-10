@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.Criterias.Domain
 {
-    public class SpecificDomainControlCriteria : CriteriaBase
+    public class SpecificDomainControlCriteria : PagingCriteria
     {
         const string SP_NAME = "Aff_Admin_SpecificDomainControl_Sel";
 

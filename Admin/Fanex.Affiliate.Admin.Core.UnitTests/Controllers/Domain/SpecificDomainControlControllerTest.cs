@@ -46,7 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var param = new SpecificDomainControlParam();
             var domainControlService = new Mock<ISpecificDomainControlService>();
             domainControlService.Setup(t => t.GetSpecificDomainControl(It.IsAny<SpecificDomainControlParam>()))
-                .Returns(new List<SpecificDomainControlInfo> { new SpecificDomainControlInfo() });
+                .Returns(new EntityResult<SpecificDomainControlInfo> { MainData = new List<SpecificDomainControlInfo> { new SpecificDomainControlInfo() } , TotalItem = 1});
             
             var controller = CreateSpecificDomainControlController(domainControlService: domainControlService.Object);
 

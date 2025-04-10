@@ -8,7 +8,7 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { formatDateTime } from '../../../../modules/utils';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteSpecificDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
+import { deleteSpecificDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition, setParam, setPagingOption } from '../actions';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -27,6 +27,17 @@ export class Content extends PureComponent {
             this.props.fetchData(param);
         }
     }
+
+    _handlePaging = (pageIndex, pageSize) => {
+        const newPaging = {
+            PageIndex: pageIndex,
+            PageSize: pageSize
+        };
+        const newParam = Object.assign({}, this.props.param, newPaging);
+
+        this.props.setPagingOption(newPaging);
+        this.props.setParam(newParam);
+    };
 
     _handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ message: '' });
@@ -151,7 +162,7 @@ export class Content extends PureComponent {
     }
 
     render() {
-        const { gridData, shouldResetScrollPosition } = this.props;
+        const { pagingOption, gridData, shouldResetScrollPosition } = this.props;
         const { message, isConfirmPopup } = this.state;
 
         return gridData && (
@@ -167,6 +178,9 @@ export class Content extends PureComponent {
                         header={this._renderHeader()}
                         body={this._renderDataSection(gridData)}
                         containerPadding={20}
+                        isPaging={true}
+                        pageOption={pagingOption}
+                        onPaging={this._handlePaging}
                         shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
@@ -182,12 +196,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarketId, param }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarketId, param });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarketId, param, pagingOption }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarketId, param, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteSpecificDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteSpecificDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition, setParam, setPagingOption }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

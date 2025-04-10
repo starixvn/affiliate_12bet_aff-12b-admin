@@ -246,7 +246,7 @@ export class SpecificDomainControlPopup extends PureComponent {
                                                     onBlur={this._handleBlurAffUsernames} 
                                                 />
                                                 <div>
-                                                    <Label>Max 500 affiliates, separated by [Comma], [Tab] or [Enter]</Label>
+                                                    <Label>Enter up to 500 affiliates, separated by commas, tabs or new lines.</Label>
                                                 </div>
                                             </>
                                         ) : (
@@ -325,7 +325,7 @@ export class SpecificDomainControlPopup extends PureComponent {
                                 <FormGroup row className="mb-2 align-items-center">
                                     <Label sm={4}>{headerText.Status}</Label>
                                     <Col sm={8}>
-                                        <Input 
+                                        <input
                                             type="checkbox" 
                                             name="status"
                                             checked={selectedDomain.status}

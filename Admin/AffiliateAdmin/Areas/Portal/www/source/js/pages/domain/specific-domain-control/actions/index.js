@@ -1,8 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
+import { setPagingOption } from '../../../../actions/pagingAction';
 import * as types from './types';
 
-export { toggleLoader };
+export { toggleLoader, setPagingOption };
 
 export const setSelectedDomainId = (data) => {
     return {
@@ -38,9 +39,10 @@ export const fetchData = (param) => async (dispatch) => {
     const url = 'Portal/SpecificDomainControl/GetSpecificDomainControlList';
     const response = await post(url, param);
 
-    const data = response && response.status === 200 ? response.data : [];
+    const data = response && response.status === 200 ? response.data : null;
 
-    dispatch(setGridData(data));
+    dispatch(setGridData(data ? data.MainData : []));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
 }

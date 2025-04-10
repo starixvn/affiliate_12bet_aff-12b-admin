@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var result = _service.GetSpecificDomainControl(param);
 
             // Assert
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, result.MainData);
             _dynamicRepositoryMock.Verify(x => x.Fetch<SpecificDomainControlInfo>(It.IsAny<ICriteria>(), It.IsAny<string>()), Times.Once);
         }
 

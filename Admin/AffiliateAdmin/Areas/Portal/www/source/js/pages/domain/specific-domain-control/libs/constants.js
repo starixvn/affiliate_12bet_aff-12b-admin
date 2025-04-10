@@ -24,7 +24,7 @@ export const defaultState = {
     isSuccess: true,
     message: '',
     selectedDomain: null,
-    affNames: '',
+    affUsernames: '',
 }
 
 export const affsCondition = {

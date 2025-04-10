@@ -1,6 +1,7 @@
 ﻿import { combineReducers } from 'redux';
 
 import createReducer from '../../../../modules/createReducer';
+import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
@@ -32,6 +33,7 @@ export default combineReducers({
     gridData,
     isShowLoader,
     param,
+    pagingOption,
     selectedDomainId,
     shouldResetScrollPosition
 });

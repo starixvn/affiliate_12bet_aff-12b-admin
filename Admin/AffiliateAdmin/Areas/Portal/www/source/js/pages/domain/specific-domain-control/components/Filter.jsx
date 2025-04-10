@@ -7,6 +7,8 @@ import { setParam } from '../actions';
 import { headerText } from '../libs/constants';
 
 export const Filter = (props) => {
+    const { pagingOption } = props;
+
     const [affUsername, setAffUsername] = useState('');
     const [affDomain, setAffDomain] = useState('');
     const [redirectDomain, setRedirectDomain] = useState('');
@@ -15,7 +17,9 @@ export const Filter = (props) => {
         const newParam = Object.assign({}, {
             AffUsername: affUsername,
             AffDomain: affDomain,
-            RedirectDomain: redirectDomain
+            RedirectDomain: redirectDomain,
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize,
         });
 
         props.setParam(newParam);
@@ -51,8 +55,8 @@ export const Filter = (props) => {
     )
 }
 
-function mapStateToProps({}) {
-    return {};
+function mapStateToProps({ pagingOption}) {
+    return { pagingOption };
 }
 
 function mapDispatchToProps(dispatch) {
