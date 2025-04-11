@@ -10,7 +10,7 @@
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string BlockMarkets { get; set; }
 
-        public bool IsSSL { get; set; }
+        public bool IsSSL { get; set; } = true;
 
         public bool IsAffDomain { get; set; }
     }

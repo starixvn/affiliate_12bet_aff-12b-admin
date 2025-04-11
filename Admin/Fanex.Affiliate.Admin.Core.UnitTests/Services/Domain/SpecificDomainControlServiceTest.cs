@@ -135,9 +135,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         public void DeleteSpecificDomainControl_WhenCall_ReturnSuccess()
         {
             // Arrange
-            var param = new DeleteDomainControlParam
+            var param = new DeleteSpecificDomainControlParam
             {
-                DomainControlId = 1,
+                SpecificDomainControlId = 1,
                 UserId = 1,
                 Ip = "127.0.0.1"
             };

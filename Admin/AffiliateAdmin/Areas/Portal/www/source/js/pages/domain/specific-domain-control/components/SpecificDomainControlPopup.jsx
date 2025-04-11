@@ -22,7 +22,7 @@ export class SpecificDomainControlPopup extends PureComponent {
 
     _handleUpdateState = async (selectedDomainId) => {
         if (selectedDomainId === 0) {
-            this.setState({ isInsert: true, selectedDomain: { specificDomainControlId: selectedDomainId, affDomain: '', redirectDomain: '', affDomainIsSSL: false, redirectDomainIsSSL: false, status: false } });
+            this.setState({ isInsert: true, selectedDomain: { specificDomainControlId: selectedDomainId, affDomain: '', redirectDomain: '', affDomainIsSSL: true, redirectDomainIsSSL: true, status: true } });
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getSpecificDomainById(selectedDomainId);

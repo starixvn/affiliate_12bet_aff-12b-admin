@@ -15,6 +15,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         [Range(Validation.MinId, Validation.MaxId)]
         public int RedirectDomainId { get; set; }
 
-        public bool IsUsed { get; set; }
+        public bool IsUsed { get; set; } = true;
     }
 }

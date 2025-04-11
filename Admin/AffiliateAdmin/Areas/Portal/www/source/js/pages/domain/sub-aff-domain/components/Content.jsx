@@ -127,7 +127,7 @@ export class Content extends PureComponent {
         return gridData && (
             <div className="data-content">
                 <div className="my-2">
-                    <Button outline type="button" onClick={() => this._handleEditDomain(0, '', false)}>
+                    <Button outline type="button" onClick={() => this._handleEditDomain(0, '', true)}>
                         Add Sub-Affiliate Domain <span className="oi oi-plus ml-2"></span>
                     </Button>
                 </div>

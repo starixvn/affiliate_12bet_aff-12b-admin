@@ -11,13 +11,13 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         [Required]
         public string AffDomain { get; set; }
 
-        public bool AffDomainIsSSL { get; set; }
+        public bool AffDomainIsSSL { get; set; } = true;
 
         [Required]
         public string RedirectDomain { get; set; }
 
-        public bool RedirectDomainIsSSL { get; set; }
+        public bool RedirectDomainIsSSL { get; set; } = true;
 
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
     }
 }

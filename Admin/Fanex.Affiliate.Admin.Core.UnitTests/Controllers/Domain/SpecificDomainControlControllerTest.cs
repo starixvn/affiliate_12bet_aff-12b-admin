@@ -149,9 +149,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void DeleteSpecificDomainControl_WhenCallWithValidParam_DeleteSuccessful()
         {
             // Arrange
-            var param = new DeleteDomainControlParam();
+            var param = new DeleteSpecificDomainControlParam();
             var domainControlService = new Mock<ISpecificDomainControlService>();
-            domainControlService.Setup(t => t.DeleteSpecificDomainControl(It.IsAny<DeleteDomainControlParam>()))
+            domainControlService.Setup(t => t.DeleteSpecificDomainControl(It.IsAny<DeleteSpecificDomainControlParam>()))
                 .Returns(new ResultInfo());
 
             var controller = CreateSpecificDomainControlController(domainControlService: domainControlService.Object);
@@ -168,7 +168,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
         public void DeleteSpecificDomainControl_WhenCallWithInvalidParam_ReturnError()
         {
             // Arrange
-            var param = new DeleteDomainControlParam();
+            var param = new DeleteSpecificDomainControlParam();
             var controller = CreateSpecificDomainControlController();
             controller.ModelState.AddModelError("Error", "Invalid parameter");
 
