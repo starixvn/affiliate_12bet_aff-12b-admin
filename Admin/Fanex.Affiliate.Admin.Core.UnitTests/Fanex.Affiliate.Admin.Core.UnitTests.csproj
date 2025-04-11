@@ -208,6 +208,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Customer\MarketingStatisticsControllerTest.cs" />
+    <Compile Include="Services\Customer\MarketingStatisticsServiceTest.cs" />
     <Compile Include="Services\JobTrackerServiceTest.cs" />
     <Compile Include="Services\Affiliate\AffiliateServiceTest.cs" />
     <Compile Include="Services\Affiliate\AffTypeServiceTest.cs" />

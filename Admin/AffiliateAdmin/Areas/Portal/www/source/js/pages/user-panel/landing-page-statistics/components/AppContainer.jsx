@@ -16,7 +16,8 @@ export class AppContainer extends PureComponent {
 
         this.subMenuList = [
             { isActive: false, handleClick: () => this.props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
-            { isActive: true, handleClick: () => this.props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' }
+            { isActive: true, handleClick: () => this.props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' },
+            { isActive: false, handleClick: () => this.props.setSelectedUserPanel('marketingStatistics'), title: 'Marketing Page' }
         ];
     }
 
