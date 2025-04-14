@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web;
-using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Controllers.Domain;
+﻿using Fanex.Affiliate.Admin.Core.Controllers.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -11,6 +8,9 @@ using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Moq;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain

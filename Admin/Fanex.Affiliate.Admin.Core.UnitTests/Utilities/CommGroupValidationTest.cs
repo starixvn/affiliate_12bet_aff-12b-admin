@@ -1,7 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
@@ -179,7 +178,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
             var result = helper.ValidateCommGroup(param);
 
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.True(result.IsSuccessful);
         }
 
         [Fact]

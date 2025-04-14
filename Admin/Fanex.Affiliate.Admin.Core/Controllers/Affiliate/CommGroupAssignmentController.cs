@@ -10,7 +10,6 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 

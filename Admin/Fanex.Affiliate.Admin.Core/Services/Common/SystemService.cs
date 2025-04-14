@@ -1,49 +1,98 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Caching;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SystemService : BaseDynamicService, ISystemService
     {
+        private readonly ICacheService _cacheService;
+
         public SystemService(
-            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
+            IDynamicRepository dynamicRepository,
+            ICacheService cacheService) : base(dynamicRepository)
+        {
+            _cacheService = cacheService;
+        }
 
         public IEnumerable<Language> GetLanguageList()
         {
-            const string SpKey = "Aff_Market_Sel";
+            var languageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.LanguageList);
 
-            return FetchTData<Language>(SpKey);
+            if (languageList == null)
+            {
+                const string SpKey = "Aff_Market_Sel";
+
+                languageList = FetchTData<Language>(SpKey);
+                _cacheService.Set(CacheKey.LanguageList, languageList);
+            }
+
+            return languageList;
         }
 
         public IEnumerable<Product> GetProductList()
         {
-            const string SpKey = "Aff_ProductList_Sel";
+            var productList = _cacheService.Get<IEnumerable<Product>>(CacheKey.ProductList);
 
-            return FetchTData<Product>(SpKey);
+            if (productList == null)
+            {
+                const string SpKey = "Aff_ProductList_Sel";
+
+                productList = FetchTData<Product>(SpKey);
+                _cacheService.Set(CacheKey.ProductList, productList);
+            }
+
+            return productList;
         }
 
         public IEnumerable<Currency> GetBaseCurrencies()
         {
-            const string SpKey = "Aff_BaseCurrency_Sel";
+            var currencyList = _cacheService.Get<IEnumerable<Currency>>(CacheKey.BaseCurrencyList);
 
-            return FetchTData<Currency>(SpKey);
+            if (currencyList == null)
+            {
+                const string SpKey = "Aff_BaseCurrency_Sel";
+
+                currencyList = FetchTData<Currency>(SpKey);
+                _cacheService.Set(CacheKey.BaseCurrencyList, currencyList);
+            }
+
+            return currencyList;
         }
 
         public IEnumerable<Currency> GetCurrencies()
         {
-            const string SpKey = "Aff_Currency_Sel";
+            var currencyList = _cacheService.Get<IEnumerable<Currency>>(CacheKey.CurrencyList);
 
-            return FetchTData<Currency>(SpKey);
+            if (currencyList == null)
+            {
+                const string SpKey = "Aff_Currency_Sel";
+
+                currencyList = FetchTData<Currency>(SpKey);
+                _cacheService.Set(CacheKey.CurrencyList, currencyList);
+            }
+
+            return currencyList;
         }
 
         public IEnumerable<Currency> GetPaymentCurrencies()
         {
-            const string SpKey = "Aff_PaymentCurrency_Sel";
+            var currencyList = _cacheService.Get<IEnumerable<Currency>>(CacheKey.PaymentCurrencyList);
 
-            return FetchTData<Currency>(SpKey);
+            if (currencyList == null)
+            {
+                const string SpKey = "Aff_PaymentCurrency_Sel";
+
+                currencyList = FetchTData<Currency>(SpKey);
+                _cacheService.Set(CacheKey.PaymentCurrencyList, currencyList);
+            }
+
+            return currencyList;
         }
 
         public void SetCulture(string languageCode)

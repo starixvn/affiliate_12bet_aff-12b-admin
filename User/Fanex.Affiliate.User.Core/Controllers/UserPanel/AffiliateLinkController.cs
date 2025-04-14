@@ -28,7 +28,7 @@
         public ActionResult Index()
         {
             var affId = SessionService.UserSession.AffId;
-            var langs = SystemService.GetLanguageList(SessionService.IsInternal);
+            var langs = SystemService.GetLanguageList();
             var channels = MarketingService.GetChannels(affId);
 
             var refs = new List<RefLinkViewModel>

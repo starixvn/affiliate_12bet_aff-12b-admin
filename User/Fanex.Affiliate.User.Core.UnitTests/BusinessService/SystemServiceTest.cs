@@ -76,7 +76,7 @@
             var service = CreateService();
             CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).Returns(CreateLanguages());
 
-            service.GetLanguageList(false);
+            service.GetLanguageList();
 
             Repository.DidNotReceiveWithAnyArgs().Fetch<Language>(Arg.Any<GetLanguageListCriteria>());
         }
@@ -88,7 +88,7 @@
             Repository.Fetch<LanguageType>(new GetLanguageListCriteria(false)).ReturnsForAnyArgs(new List<LanguageType>());
             var service = CreateService();
 
-            var result = service.GetLanguageList(false);
+            var result = service.GetLanguageList();
 
             Assert.Empty(result);
         }

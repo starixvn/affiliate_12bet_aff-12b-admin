@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         private const int BannerListCategory = 1;
         private const string CasinoCategory = "Casino";
         private const string SportsbookCategory = "Sportsbook";
-        private readonly ISystemService _languageService;
+        private readonly ISystemService _systemService;
         private readonly ICommonMediaGalleryService _commonMediaGalleryService;
         private readonly IBannerListService _bannerListService;
         private readonly IAffTypeService _affTypeService;
@@ -30,13 +30,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         public MediaGalleryController(
             ISessionService sessionService,
-            ISystemService languageService,
+            ISystemService systemService,
             ICommonMediaGalleryService commonMediaGalleryService,
             IBannerListService bannerListService,
             IAffTypeService affTypeService,
             IAppSetting appSetting) : base(sessionService)
         {
-            _languageService = languageService;
+            _systemService = systemService;
             _commonMediaGalleryService = commonMediaGalleryService;
             _bannerListService = bannerListService;
             _affTypeService = affTypeService;
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                                         && !string.IsNullOrEmpty(c.SubCategoryName)),
                 SubCategorySportsbookList = bannerListCategory.Where(c => string.Equals(c.CategoryName, SportsbookCategory, StringComparison.CurrentCultureIgnoreCase)
                                         && !string.IsNullOrEmpty(c.SubCategoryName)),
-                LanguageList = _languageService.GetLanguageList(),
+                LanguageList = _systemService.GetLanguageList(),
                 CurrencyList = _commonMediaGalleryService.GetCurrencyList(),
                 SizeList = _bannerListService.GetSizeList(sizeParam),
                 AffTypeList = _affTypeService.GetAffTypeList(),

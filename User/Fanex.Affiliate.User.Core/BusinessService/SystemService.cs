@@ -50,27 +50,27 @@
             return SystemLanguage.GetCurrentShortedLanguage(favoriteLanguage);
         }
 
-        public IEnumerable<Language> GetSupportedLanguages(bool? isInternal = null)
+        public IEnumerable<Language> GetSupportedLanguages()
         {
-            return GetAllLanguages(isInternal).Where(l => !l.Code.Equals("te-IN"));
+            return GetAllLanguages().Where(l => !l.Code.Equals("te-IN"));
         }
 
-        public IEnumerable<Language> GetLanguageList(bool? isInternal = null)
+        public IEnumerable<Language> GetLanguageList()
         {
             var languageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.LanguageList);
 
             if (languageList == null)
             {
-                languageList = GetAllLanguages(isInternal);
+                languageList = GetAllLanguages();
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
             return languageList;
         }
 
-        private IEnumerable<Language> GetAllLanguages(bool? isInternal = null)
+        private IEnumerable<Language> GetAllLanguages()
         {
-            var isForInternal = isInternal ?? _sessionService.IsInternal;
+            var isForInternal = _sessionService.IsInternal;
             var languages = FetchTData<LanguageType>(new GetLanguageListCriteria(isForInternal));
 
             return languages

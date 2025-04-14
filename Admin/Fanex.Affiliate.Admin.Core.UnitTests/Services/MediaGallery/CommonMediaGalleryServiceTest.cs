@@ -1,7 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias;
+﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Caching;
 using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
@@ -19,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             dynamicRepository.Setup(r => r.Fetch<Category>(It.IsAny<MediaCategoryCriteria>(), It.IsAny<string>())).Returns(new List<Category> { new Category() });
 
             // Action
-            var service = new CommonMediaGalleryService(dynamicRepository.Object);
+            var service = new CommonMediaGalleryService(dynamicRepository.Object, null);
             var result = service.GetCategoryList(1, 1);
 
             // Assert
@@ -33,13 +35,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             // Arrange
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(r => r.Fetch<MediaGalleryFilterItem>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem() });
+            var cacheService = new Mock<ICacheService>();
+            cacheService.Setup(c => c.Get<IEnumerable<MediaGalleryFilterItem>>(CacheKey.MediaCurrencyList)).Returns(null as IEnumerable<MediaGalleryFilterItem>);
 
             // Action
-            var service = new CommonMediaGalleryService(dynamicRepository.Object);
+            var service = new CommonMediaGalleryService(dynamicRepository.Object, cacheService.Object);
             var result = service.GetCurrencyList();
 
             // Assert
             dynamicRepository.Verify(d => d.Fetch<MediaGalleryFilterItem>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetCurrencyList_WhenCall_ReturnCache()
+        {
+            // Arrange
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(r => r.Fetch<MediaGalleryFilterItem>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem() });
+            var cacheService = new Mock<ICacheService>();
+            cacheService.Setup(c => c.Get<IEnumerable<MediaGalleryFilterItem>>(CacheKey.MediaCurrencyList)).Returns(new List<MediaGalleryFilterItem> { new MediaGalleryFilterItem() });
+
+            // Action
+            var service = new CommonMediaGalleryService(dynamicRepository.Object, cacheService.Object);
+            var result = service.GetCurrencyList();
+
+            // Assert
+            dynamicRepository.Verify(d => d.Fetch<MediaGalleryFilterItem>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()), Times.Never);
             Assert.Single(result);
         }
     }

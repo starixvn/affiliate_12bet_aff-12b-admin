@@ -10,9 +10,9 @@
 
         string GetFavoriteLanguage();
 
-        IEnumerable<Language> GetLanguageList(bool? isInternal = null);
+        IEnumerable<Language> GetLanguageList();
 
-        IEnumerable<Language> GetSupportedLanguages(bool? isInternal = null);
+        IEnumerable<Language> GetSupportedLanguages();
 
         bool IsValid(string langCode);
 

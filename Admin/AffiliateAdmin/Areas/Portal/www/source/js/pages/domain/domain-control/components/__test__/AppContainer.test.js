@@ -6,6 +6,7 @@ describe('domain control - components - AppContainer', () => {
     it('render correctly', () => {
         const result = shallow(<AppContainer isShowLoader={true} />);
 
+
         expect(result).toMatchSnapshot();
     });
 });

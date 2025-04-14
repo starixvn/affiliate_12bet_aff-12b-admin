@@ -284,77 +284,77 @@ exports[`players detail - components - Content render correctly 1`] = `
         >
           #
         </t>
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="User Name"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="System Name"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Registration Date"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="FirstDepositDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="FDM Date"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="FirstDepositAmount"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="FDM Amt"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Turnover"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Turnover"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Ggr"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="GGR"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Deposit"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Withdrawal"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Bonus"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Rebate"
           handleClickHeader={[Function]}
           isSortAsc={false}
@@ -426,77 +426,77 @@ exports[`players detail - components - Content render correctly with have data i
         >
           #
         </t>
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="User Name"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="System Name"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Registration Date"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="FirstDepositDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="FDM Date"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="FirstDepositAmount"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="FDM Amt"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Turnover"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Turnover"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Ggr"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="GGR"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Deposit"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Withdrawal"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Bonus"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Rebate"
           handleClickHeader={[Function]}
           isSortAsc={false}
@@ -857,91 +857,91 @@ exports[`players detail - components - Content render correctly with not selecte
         >
           #
         </t>
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Username"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="User Name"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="IbcUsername"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="System Name"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="RegisteredDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Registration Date"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="FirstDepositDate"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="FDM Date"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="FirstDepositAmount"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="FDM Amt"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Turnover"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Turnover"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Ggr"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="GGR"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Deposit"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Deposit"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Withdrawal"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Withdrawal"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Bonus"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Bonus"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="Rebate"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Rebate"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="DepositFee"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
           title="Deposit Fee"
         />
-        <Memo(SortingCell)
+        <UNDEFINED
           columnName="WithdrawalFee"
           handleClickHeader={[Function]}
           isSortAsc={false}

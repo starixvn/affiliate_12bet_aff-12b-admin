@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dynamicRepository.Setup(re => re.Fetch<LandingPageStatistics>(It.IsAny<LandingPageStatisticsCriteria>(), It.IsAny<string>())).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
 
             // Action
-            var service = new LandingPageStatisticsService(dynamicRepository.Object);
+            var service = CreateService(dynamicRepository.Object);
             var result = service.GetLandingPageStatisticsList(new LandingPageStatisticsParam());
 
             // Assert
@@ -35,12 +35,20 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             dynamicRepository.Setup(re => re.Fetch<LandingPageStatistics>(It.IsAny<LandingPageStatisticsDetailCriteria>(), It.IsAny<string>())).Returns(new List<LandingPageStatistics> { new LandingPageStatistics() });
 
             // Action
-            var service = new LandingPageStatisticsService(dynamicRepository.Object);
+            var service = CreateService(dynamicRepository.Object);
             var result = service.GetLandingPageStatisticsDetailList(new LandingPageStatisticsDetailParam());
 
             // Assert
             dynamicRepository.Verify(d => d.Fetch<LandingPageStatistics>(It.Is<LandingPageStatisticsDetailCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.Single(result.MainData);
+        }
+
+        public LandingPageStatisticsService CreateService(
+            IDynamicRepository dynamicRepository = null)
+        {
+            var mockIDynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
+
+            return new LandingPageStatisticsService(mockIDynamicRepository);
         }
     }
 }

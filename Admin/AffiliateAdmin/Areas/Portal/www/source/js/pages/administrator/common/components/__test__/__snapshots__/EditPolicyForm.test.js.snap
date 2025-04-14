@@ -26,6 +26,7 @@ exports[`administrator - common - components - EditPolicyForm  render correctly 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -350,6 +351,7 @@ exports[`administrator - common - components - EditPolicyForm  render correctly 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -674,6 +676,7 @@ exports[`administrator - common - components - EditPolicyForm  render correctly 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -927,6 +930,7 @@ exports[`administrator - common - components - EditPolicyForm  render correctly 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -1102,6 +1106,7 @@ exports[`administrator - common - components - EditPolicyForm  render correctly 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

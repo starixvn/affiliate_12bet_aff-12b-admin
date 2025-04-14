@@ -11,6 +11,11 @@ describe('affiliate report - GridData ', () => {
         { key: 2, name: "Abc", checked: false }
     ]
 
+    const languageList = {
+        'en-US': 'English',
+        'vi-VN': 'Vietnamese'
+    }
+
     const defaultProps = {
         pagingOption: {
             PageIndex: 1,
@@ -21,6 +26,7 @@ describe('affiliate report - GridData ', () => {
         param: {},
         headerRow: headerFake,
         productList,
+        languageList,
         reportCutOffDate: "06/01/2023",
         currentViewLevel: mainView
     };
@@ -231,6 +237,7 @@ describe('affiliate report - GridData ', () => {
                 TotalFee: 0,
                 Turnover: 0,
                 UniqueClick: 0,
+                PreferredLanguage: 'en-US',
                 UserName: "12BETAFF001",
                 Ggr: 0,
                 Withdrawal: 0,
@@ -268,6 +275,7 @@ describe('affiliate report - GridData ', () => {
                 TotalFee: 0,
                 Turnover: 0,
                 UniqueClick: 0,
+                PreferredLanguage: 'en-US',
                 UserName: "12BETAFF001",
                 Ggr: 0,
                 Withdrawal: 0,
@@ -304,6 +312,7 @@ describe('affiliate report - GridData ', () => {
             TotalFee: 0,
             Turnover: 0,
             UniqueClick: 1,
+            PreferredLanguage: 'en-US',
             UserName: "",
             Ggr: 0,
             Withdrawal: 0,
@@ -341,6 +350,7 @@ describe('affiliate report - GridData ', () => {
             TotalFee: 0,
             Turnover: 0,
             UniqueClick: 1,
+            PreferredLanguage: 'en-US',
             UserName: "12BETAFF002",
             Ggr: 0,
             Withdrawal: 0,
@@ -378,6 +388,7 @@ describe('affiliate report - GridData ', () => {
             TotalFee: 0,
             Turnover: 0,
             UniqueClick: 1,
+            PreferredLanguage: 'en-US',
             UserName: "12BETAFF002",
             Ggr: 0,
             Withdrawal: 0,
@@ -439,6 +450,7 @@ describe('affiliate report - GridData ', () => {
             TotalFee: 0,
             Turnover: 0,
             UniqueClick: 1,
+            PreferredLanguage: 'en-US',
             UserName: "12BETAFF002",
             Ggr: 0,
             Withdrawal: 0,
@@ -459,7 +471,7 @@ describe('affiliate report - GridData ', () => {
         componentInstance.handleViewMonthOnMonth(userName);
 
         expect(props.setViewLevel).toHaveBeenCalledWith(2);
-        expect(props.setParam).toHaveBeenCalledWith({ EarningBy: 'all', PageIndex: 1, PageSize: 20, SortDirectionType: 1, SortType: 1, UserName: "handleViewMonthOnMonth" });
+        expect(props.setParam).toHaveBeenCalledWith({ PageIndex: 1, PageSize: 20, SortDirectionType: 1, SortType: 1, UserName: "handleViewMonthOnMonth" });
     });
 
     it('handlePaging - should call setPagingOption and fetchData with correct parameters', () => {
@@ -523,6 +535,7 @@ describe('affiliate report - GridData ', () => {
                 TotalFee: 0,
                 Turnover: 0,
                 UniqueClick: 0,
+                PreferredLanguage: 'en-US',
                 UserName: "12BETAFF001",
                 Ggr: 0,
                 Withdrawal: 0,
@@ -549,6 +562,7 @@ describe('affiliate report - GridData ', () => {
                 TotalFee: 0,
                 Turnover: 0,
                 UniqueClick: 1,
+                PreferredLanguage: 'vi-VN',
                 UserName: "12BETAFF002",
                 Ggr: 0,
                 Withdrawal: 0,

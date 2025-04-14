@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         {
             //Arrange
             marketingService.GetChannels(Arg.Any<int>()).Returns(new Dictionary<string, string> { ["Abc"] = "123" });
-            languageService.GetLanguageList(Arg.Any<bool>()).ReturnsForAnyArgs(Constant.LanguageList);
+            languageService.GetLanguageList().ReturnsForAnyArgs(Constant.LanguageList);
 
             accountService.GetGeneralAffInfo(Arg.Any<int?>(), Arg.Any<string>()).ReturnsForAnyArgs(new GeneralAffInfo { IsMaxSubLevel = isMaxSubLevel });
 

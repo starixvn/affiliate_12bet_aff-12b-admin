@@ -345,7 +345,7 @@ describe('affiliate info - GridData ', () => {
         const buildDataRow = shallow(<div>{wrapper.instance()._buildDataRow(dataItem, index, selectedColumnList)}</div>);
 
         buildDataRow.find('Button').at(0).simulate('click');
-        expect(wrapper.instance().handleEditCommGroup).toHaveBeenCalledWith(927841, '12BETAFF001', 1);
+        expect(wrapper.instance().handleEditCommGroup).toHaveBeenCalledWith(927841, '12BETAFF001');
     });
 
     it("should call handleToggleFavorite when click icon favorite", () => {

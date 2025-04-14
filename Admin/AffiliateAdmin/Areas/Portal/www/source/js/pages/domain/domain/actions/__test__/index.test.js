@@ -17,7 +17,7 @@ const runTestAction = ({ name, type, data }) => {
 }
 
 const actionList = [
-    { name: 'setSelectedDomain', type: types.SET_SELECTED_DOMAIN, data: { domainId: 123 } },
+    { name: 'setSelectedDomainId', type: types.SET_SELECTED_DOMAIN_ID, data: 123 },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' }
 ];

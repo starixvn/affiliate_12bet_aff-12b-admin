@@ -59,13 +59,11 @@
             var languagePropertyMapping = new Dictionary<string, string>
             {
                 ["en-US"] = Convert.ToString(obj[$"{MessagePrefix}en"]),
-                ["bn-BD"] = Convert.ToString(obj["Message_Bn"]),
+                ["ko-KR"] = Convert.ToString(obj[$"{MessagePrefix}kr"]),
                 ["th-TH"] = Convert.ToString(obj[$"{MessagePrefix}th"]),
                 ["vi-VN"] = Convert.ToString(obj[$"{MessagePrefix}vi"]),
                 ["id-ID"] = Convert.ToString(obj[$"{MessagePrefix}id"]),
-                ["km-KH"] = Convert.ToString(obj["Message_Kh"]),
-                ["zh-CN"] = Convert.ToString(obj[$"{MessagePrefix}cn"]),
-                ["hi-IN"] = Convert.ToString(obj[$"{MessagePrefix}hi"])
+                ["zh-CN"] = Convert.ToString(obj[$"{MessagePrefix}cn"])
             };
 
             result.HotNewsList = languagePropertyMapping;

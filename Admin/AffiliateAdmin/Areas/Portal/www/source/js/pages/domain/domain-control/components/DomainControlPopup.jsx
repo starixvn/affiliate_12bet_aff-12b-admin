@@ -56,7 +56,7 @@ export class DomainControlPopup extends PureComponent {
         const value = target.type === 'checkbox' ? target.checked : target.value;
 
         const { selectedDomain } = this.state;
-        debugger
+
         const newDomain = Object.assign({}, selectedDomain, { [target.name]: value });
 
         this.setState({ selectedDomain: newDomain });

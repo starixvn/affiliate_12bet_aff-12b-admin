@@ -76,7 +76,7 @@
                 ["message_th"] = "C",
                 ["message_vi"] = "D",
                 ["message_id"] = "E",
-                ["Message_Kh"] = "F",
+                ["message_kr"] = "F",
                 ["message_cn"] = "G",
                 ["message_hi"] = "H",
                 ["important"] = "true"

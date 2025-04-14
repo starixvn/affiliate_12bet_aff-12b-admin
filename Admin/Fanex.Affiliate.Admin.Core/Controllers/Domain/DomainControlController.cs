@@ -1,8 +1,5 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Attributes;
     using Constants;
     using DTO;
@@ -12,6 +9,9 @@
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
     using Resources;
     using Services.Common;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Utilities;
     using Utilities.Market;
 

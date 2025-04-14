@@ -58,6 +58,7 @@ exports[`commission group - Content should render correctly 1`] = `
     scrollable={false}
     size="lg"
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >

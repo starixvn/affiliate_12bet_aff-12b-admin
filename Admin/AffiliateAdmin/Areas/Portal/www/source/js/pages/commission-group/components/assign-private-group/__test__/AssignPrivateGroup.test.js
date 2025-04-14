@@ -13,8 +13,15 @@ describe('commission group - assign private group', () => {
         SubAffCommRate: 0,
         QmTurnover: 100,
         IsActivePlayerSum: true,
-        PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
-        TierSettingList: []
+        PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,2,3,4,5", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
+        TierSettingList: [{
+            GroupId: 0,
+            TierId: 1,
+            GroupProductId: 0,
+            MinAmount: 0,
+            MinQm: 5,
+            Commission: 0,
+        }]
     };
 
     const selectedGroup = {
@@ -45,7 +52,6 @@ describe('commission group - assign private group', () => {
             { DeductionId: 10, DeductionName: "Platform Fee", DeductedPercentage: 0.17, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 13, DeductionName: "Deposit Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 14, DeductionName: "Withdrawal Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
-            { DeductionId: 16, DeductionName: "Kill Rate", DeductedPercentage: 0.03, IsDeductedPercent: true, DeductedAmount: "" },
         ],
         productList: [
             { ProductId: 1, ProductName: "Sportsbook" },
@@ -203,7 +209,7 @@ describe('commission group - assign private group', () => {
 
         const result = wrapper.instance()._validate();
 
-        expect(result).toEqual({ isValid: false, messageList: ["Min Net Win must be lesser than or equal to 1,000,000,000!"] });
+        expect(result).toEqual({ isValid: false, messageList: ["Product Groups 1 - Min Net Win must be lesser than or equal to 100,000,000,000"] });
     })
     it('_validate - TierSettingList has MinQm > MaxAp', () => {
         const selected_Group = Object.assign({}, selectedGroup, { TierSettingList: [{ TierId: 1, MinAmount: 10, MaxAmount: 100000000000, MinQm: 10000000000, MaxAp: 1000000000, Commission: 0 }] });
@@ -212,7 +218,7 @@ describe('commission group - assign private group', () => {
 
         const result = wrapper.instance()._validate();
 
-        expect(result).toEqual({ isValid: false, messageList: ["Min Qualified Player must be lesser than or equal to 100,000,000,000!"] });
+        expect(result).toEqual({ isValid: false, messageList: ["Product Groups 1 - Min Qualified Player must be lesser than or equal to 1,000,000,000"] });
     })
 
     it('_validate - PlatformFeeList has ProductId is null', () => {

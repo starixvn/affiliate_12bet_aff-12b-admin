@@ -13,8 +13,15 @@ describe('commission group - AddGroup', () => {
         SubAffCommRate: 0,
         QmTurnover: 100,
         IsActivePlayerSum: true,
-        PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,3,4", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
-        TierSettingList: []
+        PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,2,3,4,5", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
+        TierSettingList: [{
+            GroupId: 0,
+            TierId: 1,
+            GroupProductId: 0,
+            MinAmount: 0,
+            MinQm: 5,
+            Commission: 0,
+        }]
     };
     const defaultProps = {
         deductionList: [
@@ -22,7 +29,6 @@ describe('commission group - AddGroup', () => {
             { DeductionId: 11, DeductionName: "Operational Fee", DeductedPercentage: 0.07, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 13, DeductionName: "Deposit Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
             { DeductionId: 14, DeductionName: "Withdrawal Fee", DeductedPercentage: 0.02, IsDeductedPercent: true, DeductedAmount: "" },
-            { DeductionId: 16, DeductionName: "Kill Rate", DeductedPercentage: 0.05, IsDeductedPercent: true, DeductedAmount: "" },
         ],
         productList: [
             { ProductId: 1, ProductName: "Sportsbook" },
@@ -87,7 +93,7 @@ describe('commission group - AddGroup', () => {
         const expectData = {
             isShowMessage: true,
             isSuccess: false,
-            message: ["Group Name cannot be empty. Please check!", "Tier Setting must have at least 1 tier"]
+            message: ["Group Name cannot be empty. Please check!"]
         };
         window.scrollTo = jest.fn();
         const wrapper = shallow(<AddGroup {...props} />);

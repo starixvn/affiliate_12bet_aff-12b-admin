@@ -6,10 +6,10 @@ exports[`Option  render - content match with snapshot 1`] = `
   id="itemId"
   onClick={[Function]}
 >
-  <label
+  <span
     className="option-label"
   >
     value
-  </label>
+  </span>
 </li>
 `;

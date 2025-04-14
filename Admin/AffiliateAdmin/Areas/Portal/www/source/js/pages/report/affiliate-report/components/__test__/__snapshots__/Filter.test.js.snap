@@ -343,6 +343,52 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
       />
     </FormGroup>
     <FormGroup
+      className="my-sm-1 mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        htmlFor="selectedStatus"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Status
+      </Label>
+      <Input
+        name="selectedStatus"
+        onChange={[Function]}
+        type="select"
+        value="Approved"
+      >
+        <option
+          key="status-all"
+          value="Approved, Suspended"
+        >
+          All Statuses
+        </option>
+        <option
+          key="status-Approved"
+          value="Approved"
+        >
+          Approved
+        </option>
+        <option
+          key="status-Suspended"
+          value="Suspended"
+        >
+          Suspended
+        </option>
+      </Input>
+    </FormGroup>
+    <FormGroup
       tag="div"
     >
       <FormGroup
@@ -395,6 +441,36 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
             value={4}
           >
             Earning
+          </option>
+          <option
+            key="sortBy-Signup"
+            value={5}
+          >
+            Signup
+          </option>
+          <option
+            key="sortBy-FDM"
+            value={6}
+          >
+            FDM
+          </option>
+          <option
+            key="sortBy-FDM Amt"
+            value={7}
+          >
+            FDM Amt
+          </option>
+          <option
+            key="sortBy-Active players"
+            value={8}
+          >
+            Active players
+          </option>
+          <option
+            key="sortBy-Qualified active players"
+            value={9}
+          >
+            Qualified active players
           </option>
         </Input>
       </FormGroup>
@@ -534,51 +610,6 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
         type="text"
         value=""
       />
-    </FormGroup>
-    <FormGroup
-      className="my-sm-1 mr-sm-2"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Earning By
-      </Label>
-      <Input
-        name="selectedEarning"
-        onChange={[Function]}
-        type="select"
-        value="all"
-      >
-        <option
-          key="earning-by-All"
-          value="all"
-        >
-          All
-        </option>
-        <option
-          key="earning-by-Winloss"
-          value="Winloss"
-        >
-          Winloss
-        </option>
-        <option
-          key="earning-by-Turnover"
-          value="Turnover"
-        >
-          Turnover
-        </option>
-      </Input>
     </FormGroup>
     <FormGroup
       className="my-sm-1 mr-sm-2"

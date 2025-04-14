@@ -9,22 +9,22 @@ exports[`SelectOptionList  rendered content should match with snapshot 1`] = `
     id="1-optionItem-0"
     onClick={[Function]}
   >
-    <label
+    <span
       className="option-label"
     >
       Value 1
-    </label>
+    </span>
   </li>
   <li
     className="select-item"
     id="1-optionItem-1"
     onClick={[Function]}
   >
-    <label
+    <span
       className="option-label"
     >
       Value 2
-    </label>
+    </span>
   </li>
 </ul>
 `;

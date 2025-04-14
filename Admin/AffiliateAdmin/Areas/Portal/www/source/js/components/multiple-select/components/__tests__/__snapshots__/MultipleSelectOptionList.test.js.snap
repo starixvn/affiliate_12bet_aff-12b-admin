@@ -14,12 +14,12 @@ exports[`MultipleSelectOptionList  rendered content should match with snapshot 1
       onChange={[Function]}
       type="checkbox"
     />
-    <label
+    <span
       className="option-label"
       htmlFor="1-optionItem-0"
     >
       Value 1
-    </label>
+    </span>
   </li>
   <li
     className="multiple-select-item"
@@ -31,12 +31,12 @@ exports[`MultipleSelectOptionList  rendered content should match with snapshot 1
       onChange={[Function]}
       type="checkbox"
     />
-    <label
+    <span
       className="option-label"
       htmlFor="1-optionItem-1"
     >
       Value 2
-    </label>
+    </span>
   </li>
 </ul>
 `;

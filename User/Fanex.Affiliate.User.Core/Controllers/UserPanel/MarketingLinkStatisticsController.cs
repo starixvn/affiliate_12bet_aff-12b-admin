@@ -29,7 +29,7 @@
         {
             var now = DateTimeOffset.Now.ToOffset(new TimeSpan(GMT.PlusEight, 0, 0));
             var startMonth = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1);
-            var languages = SystemService.GetLanguageList(SessionService.IsInternal).Select(l => new SelectListItem
+            var languages = SystemService.GetLanguageList().Select(l => new SelectListItem
             {
                 Text = l.EnglishName,
                 Value = l.Code

@@ -145,13 +145,14 @@ namespace Fanex.Affiliate.Link.Controllers
                 }
 
                 var pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
+                var mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
                 var command = new TrackingSystemCommand
                 {
                     AffDomain = affDomain,
                     AffCode = affCode,
                     PageCode = pageCodeOnV2,
                     ChannelCode = channel,
-                    LanguageCode = lang,
+                    LanguageCode = mappingRemovedLanguage,
                     DeviceType = GetDeviceType(),
                     IP = Request.GetClientIP(),
                     Browser = Request.Browser.Browser,
@@ -194,7 +195,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private void WriteLogInfo(TrackingSystemCommand command)
         {
-            if (!command.RedirectPage.Contains(command.AffCode))
+            if (!command.RedirectPage.Contains(command.AffCode) || command.RedirectPage.Contains("affMediaLinkId=&"))
             {
                 var builder = new StringBuilder().AppendLine($"Link Go Info: {Request.Url}").AppendLine();
                 builder.AppendLine("REQUEST INFO")
@@ -220,9 +221,10 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string lang, string affMediaLinkWithoutProtocol)
         {
-            var marketInfo = _trackingSystemService.GetMarketInfo(lang);
+            var mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
+            var mappingMarketInfo = _trackingSystemService.GetMarketInfo(mappingRemovedLanguage);
 
-            if (string.IsNullOrEmpty(marketInfo.MarketId))
+            if (string.IsNullOrEmpty(mappingMarketInfo.MarketId))
             {
                 return false;
             }
@@ -247,7 +249,7 @@ namespace Fanex.Affiliate.Link.Controllers
             {
                 AffId = affId,
                 AffDomain = customDomain,
-                LanguageCode = marketInfo.MarketId,
+                LanguageCode = mappingMarketInfo.MarketId,
                 AffMediaLink = affMediaLink
             };
 
@@ -258,7 +260,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 var insertCommand = new ToggleMarketingLinkCommand
                 {
                     AffId = affId,
-                    LanguageCode = marketInfo.MarketId,
+                    LanguageCode = mappingMarketInfo.MarketId,
                     AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
                 };
 
@@ -326,6 +328,16 @@ namespace Fanex.Affiliate.Link.Controllers
             if (Language.SupportedLanguageCodeOnV1.TryGetValue(languageCode.ToLowerInvariant(), out string languageCodeOnV2))
             {
                 return languageCodeOnV2;
+            }
+
+            return languageCode;
+        }
+
+        private static string GetMappingRemovedLanguageCode(string languageCode)
+        {
+            if (Language.RemovedLanguageCodes.TryGetValue(languageCode.ToLowerInvariant(), out string mappingLanguageCode))
+            {
+                return mappingLanguageCode;
             }
 
             return languageCode;

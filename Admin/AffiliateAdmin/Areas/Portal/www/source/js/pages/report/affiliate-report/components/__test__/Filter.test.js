@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { shallow } from 'enzyme';
 import { Filter } from '../Filter';
+import { statusFilter } from '../../libs/constants';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
 import MultipleSelect from '../../../../../components/multiple-select';
@@ -65,6 +66,7 @@ describe('affiliate report - Filter ', () => {
         commGroupList,
         baseCurrencyList,
         paymentCurrencyList,
+        selectedStatus: statusFilter.Approved,
         earningByList
     };
 
@@ -120,8 +122,7 @@ describe('affiliate report - Filter ', () => {
             userName: 'Month on Month view',
             sortBy: 1,
             isSortAscending: false,
-            isCheckedDatePicker: false,
-            selectedEarning: 'all'
+            isCheckedDatePicker: false
         };
         const selectedProductList = '1,2';
         const productList = [
@@ -361,7 +362,7 @@ describe('affiliate report - Filter ', () => {
         const param = {
             BaseCurrencyId: 20,
             CurrencyIds: '20',
-            EarningBy: 'all',
+            Statuses: 'Approved',
             UserName: '',
             FromDate: now.getMonth() + '/1/' + now.getFullYear(),
             ToDate: now.getMonth() + '/1/' + now.getFullYear(),
@@ -400,7 +401,7 @@ describe('affiliate report - Filter ', () => {
         const param = {
             BaseCurrencyId: 20,
             CurrencyIds: '20',
-            EarningBy: 'all',
+            Statuses: 'Approved',
             UserName: '',
             FromDate: now.getMonth() + '/1/' + now.getFullYear(),
             ToDate: now.getMonth() + '/1/' + now.getFullYear(),
@@ -443,7 +444,7 @@ describe('affiliate report - Filter ', () => {
         const param = {
             BaseCurrencyId: 20,
             CurrencyIds: '20',
-            EarningBy: 'all',
+            Statuses: 'Approved',
             UserName: '',
             FromDate: now.getMonth() + '/1/' + now.getFullYear(),
             ToDate: now.getMonth() + '/1/' + now.getFullYear(),
@@ -491,7 +492,7 @@ describe('affiliate report - Filter ', () => {
         componentInstance._updateReportTitle();
 
         expect(componentInstance._isMainView).toHaveBeenCalled();
-        expect(props.setReportTitle).toHaveBeenCalledWith('AFFILIATE REPORT - Base Currency VND - All Linked Acc. Currencies - All languages - All Products - All Revenue Group - FROM 11/2018 TO 11/2018');
+        expect(props.setReportTitle).toHaveBeenCalledWith('AFFILIATE REPORT - Base Currency VND - All Linked Acc. Currencies - All languages - All Products - All Revenue Group - Approved - FROM 11/2018 TO 11/2018');
     });
 
     it('_updateReportTitle - return Main Report Title with correct parameter and currentMainView is Month on Month view', () => {
@@ -510,7 +511,7 @@ describe('affiliate report - Filter ', () => {
 
         const result = componentInstance._buildMainReportTitle(isCheckedAllProduct);
 
-        expect(result).toEqual('AFFILIATE REPORT - Base Currency VND - All Linked Acc. Currencies - All languages - All Products - All Revenue Group - FROM ' + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
+        expect(result).toEqual('AFFILIATE REPORT - Base Currency VND - All Linked Acc. Currencies - All languages - All Products - All Revenue Group - Approved - FROM ' + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
     });
 
     it('_buildMainReportTitle - return corrected value with incorrect parameter', () => {
@@ -526,7 +527,7 @@ describe('affiliate report - Filter ', () => {
 
         const result = componentInstance._buildMainReportTitle(!isCheckedAllProduct);
 
-        expect(result).toEqual("AFFILIATE REPORT - Affiliate contains 'Bwing' - Base Currency VND - All Linked Acc. Currencies - All languages - Sportsbook - All Revenue Group - FROM " + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
+        expect(result).toEqual("AFFILIATE REPORT - Affiliate contains 'Bwing' - Base Currency VND - All Linked Acc. Currencies - All languages - Sportsbook - All Revenue Group - Approved - FROM " + now.getMonth() + '/' + now.getFullYear() + ' TO ' + now.getMonth() + '/' + now.getFullYear());
     });
 
     it('_buildMonthOnMonthReportTile - return corrected value with correct parameter', () => {

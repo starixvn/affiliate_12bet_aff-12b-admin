@@ -4,8 +4,6 @@
     {
         public bool IsImportant { get; set; }
 
-        public string MsgBn { get; set; }
-
         public string MsgEn { get; set; }
 
         public string MsgCn { get; set; }
@@ -16,10 +14,6 @@
 
         public string MsgId { get; set; }
 
-        public string MsgKh { get; set; }
-
-        public string MsgHi { get; set; }
-
-        public string MsgMs { get; set; }
+        public string MsgKr { get; set; }
     }
 }

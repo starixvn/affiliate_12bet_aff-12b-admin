@@ -26,6 +26,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -243,6 +244,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -471,6 +473,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

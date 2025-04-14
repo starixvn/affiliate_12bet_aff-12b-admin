@@ -11,10 +11,11 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 const testCaseList = [
     { name: 'shouldResetScrollPosition', value: true, action: { type: types.SHOULD_RESET_SCROLL_POSITION, data: false }, expectedResult: false },
     { name: 'gridData', value: null, action: { type: types.SET_GRID_DATA, data: [{ domainName: 'abc.com' }] }, expectedResult: [{ domainName: 'abc.com' }] },
-    { name: 'selectedMarket', value: null, action: { type: types.SET_SELECTED_MARKET, data: { marketId: 123 } }, expectedResult: { marketId: 123 } },
-    { name: 'selectedDomain', value: true, action: { type: types.SET_SELECTED_DOMAIN, data: { domainId: 123 } }, expectedResult: { domainId: 123 } },
+    { name: 'selectedMarketId', value: null, action: { type: types.SET_SELECTED_MARKET_ID, data: 'en-US' }, expectedResult: 'en-US' },
+    { name: 'selectedDomainId', value: true, action: { type: types.SET_SELECTED_DOMAIN_ID, data: 123 }, expectedResult: 123 },
     { name: 'affDomainList', value: null, action: { type: types.SET_AFF_DOMAIN_LIST, data: [{ domainName: 'abc.com' }] }, expectedResult: [{ domainName: 'abc.com' }] },
-    { name: 'redirectDomainList', value: null, action: { type: types.SET_REDIRECT_DOMAIN, data: [{ domainName: '123.com' }] }, expectedResult: [{ domainName: '123.com' }] }
+    { name: 'affSubDomainList', value: null, action: { type: types.SET_AFF_SUB_DOMAIN_LIST, data: [{ domainName: 'abc' }] }, expectedResult: [{ domainName: 'abc' }] },
+    { name: 'redirectDomainList', value: null, action: { type: types.SET_REDIRECT_DOMAIN_LIST, data: [{ domainName: '123.com' }] }, expectedResult: [{ domainName: '123.com' }] }
 ]
 
 describe('domain control reducers', () => {

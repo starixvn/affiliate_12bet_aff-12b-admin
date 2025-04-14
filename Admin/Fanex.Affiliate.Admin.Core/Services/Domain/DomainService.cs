@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using DTO;
     using Fanex.Affiliate.Admin.Core.DTO.Domain;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
+    using System.Collections.Generic;
+    using System.Linq;
     using Utilities.Market;
 
     public class DomainService : IDomainService
@@ -17,7 +17,7 @@
             _commonDomainService = commonDomainService;
         }
 
-        public IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0) 
+        public IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0)
             => _commonDomainService.GetMarketListByDomain(affDomainId, redirectDomainId);
 
         public IEnumerable<Market> GetVisibleMarketNotInStatus(byte status)

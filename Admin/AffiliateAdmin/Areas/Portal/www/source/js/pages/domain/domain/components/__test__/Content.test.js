@@ -101,7 +101,7 @@ describe('domain - components - Content ', () => {
     });
 
     it('_handleEditDomain - should be called when click edit button', () => {
-        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomain: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomainId: jest.fn() });
 
         const wrapper = shallow(<Content {...props} />);
         const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
@@ -109,18 +109,18 @@ describe('domain - components - Content ', () => {
         dataRow.find('Button').at(0).simulate('click');
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setSelectedDomain).toHaveBeenCalledWith({ domainId: 2438, domainName: 'bet.go.com', isSSL: true });
+        expect(props.setSelectedDomainId).toHaveBeenCalledWith(2438);
     });
 
     it('_handleEditDomain - should be called when click add button', () => {
-        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomain: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn(), setSelectedDomainId: jest.fn() });
 
         const wrapper = shallow(<Content {...props} />);
 
         wrapper.find('Button').at(0).simulate('click');
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setSelectedDomain).toHaveBeenCalledWith({ domainId: 0, domainName: '', isSSL: false });
+        expect(props.setSelectedDomainId).toHaveBeenCalledWith(0);
     });
 
     it('_deleteDomain - should call deleteDomain with delete successfully with aff domain', async () => {

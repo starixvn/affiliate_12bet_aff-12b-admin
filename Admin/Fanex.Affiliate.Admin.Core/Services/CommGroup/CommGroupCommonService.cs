@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Criterias.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
@@ -106,7 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.CommGroup
 
                     var row = $"<row id=\"{tierId}\" minamount=\"{item.MinAmount}\"" +
                         $" minqm=\"{item.MinQm}\" commission=\"{item.Commission}\" productids=\"{productIds}\" />";
-                    
+
                     result.Append(row);
                     tierId++;
                 }

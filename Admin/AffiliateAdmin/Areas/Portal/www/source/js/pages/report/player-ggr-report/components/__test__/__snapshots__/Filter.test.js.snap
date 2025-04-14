@@ -209,12 +209,5 @@ exports[`player ggr report - component - Filter -  should render correctly 1`] =
        Search
     </Button>
   </Form>
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<strong class=\\"text-danger\\">*</strong> Note: The GGR of the P2P Fixed Rate product are actually the Revenue amounts which are used to calculated the Revenue Share for P2P Products.",
-      }
-    }
-  />
 </div>
 `;

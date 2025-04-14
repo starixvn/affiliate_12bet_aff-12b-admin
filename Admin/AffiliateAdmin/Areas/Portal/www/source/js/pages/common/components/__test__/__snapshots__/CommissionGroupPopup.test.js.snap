@@ -35,6 +35,7 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
       }
     }
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -57,7 +58,7 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
         className="modal-body-wrapper"
         style={
           Object {
-            "height": 340,
+            "height": 303,
             "padding": 0,
           }
         }
@@ -65,7 +66,7 @@ exports[`common - components - CommissionGroupPopup render correctly 1`] = `
         <iframe
           frameBorder="0"
           height="100%"
-          src="/Portal/CommGroupAssignment/AssignGroup?affId=1271808&groupTypeId=undefined"
+          src="/Portal/CommGroupAssignment/AssignGroup?affId=1271808"
           width="100%"
         />
       </div>
@@ -109,6 +110,7 @@ exports[`common - components - CommissionGroupPopup render correctly with Privat
       }
     }
     toggle={[Function]}
+    trapFocus={false}
     unmountOnClose={true}
     zIndex={1050}
   >
@@ -131,13 +133,13 @@ exports[`common - components - CommissionGroupPopup render correctly with Privat
         className="modal-body-wrapper embed-responsive embed-responsive-4by3"
         style={
           Object {
-            "height": 635,
+            "height": 575,
           }
         }
       >
         <iframe
           className="embed-responsive-item"
-          src="/Portal/CommGroupAssignment/AssignPrivateGroup?affId=1271808&groupTypeId=undefined"
+          src="/Portal/CommGroupAssignment/AssignPrivateGroup?affId=1271808"
         />
       </div>
     </ModalBody>

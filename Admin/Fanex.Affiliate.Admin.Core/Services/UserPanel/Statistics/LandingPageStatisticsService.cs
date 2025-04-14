@@ -10,7 +10,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics
     public class LandingPageStatisticsService : BaseDynamicService, ILandingPageStatisticsService
     {
         public LandingPageStatisticsService(
-            IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
+            IDynamicRepository dynamicRepository) : base(dynamicRepository)
+        {
+        }
 
         public IEnumerable<LandingPageStatistics> GetLandingPageStatisticsList(LandingPageStatisticsParam param)
         {
@@ -38,14 +40,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics
             };
         }
 
-        private static void AssignCriteria(BaseLandingPageStatisticsCritera critera, LandingPageStatisticsParam param)
+        private static void AssignCriteria(BaseLandingPageStatisticsCritera criteria, LandingPageStatisticsParam param)
         {
-            critera.AffId = param.AffId;
-            critera.FromDate = param.FromDate;
-            critera.ToDate = param.ToDate;
-            critera.SportCode = param.SelectedPage;
-            critera.LanguageCode = param.LanguageCode;
-            critera.DeviceType = param.DeviceType;
+            criteria.AffId = param.AffId;
+            criteria.FromDate = param.FromDate;
+            criteria.ToDate = param.ToDate;
+            criteria.SportCode = param.SelectedPage;
+            criteria.LanguageCode = param.LanguageCode;
+            criteria.DeviceType = param.DeviceType;
         }
     }
 }

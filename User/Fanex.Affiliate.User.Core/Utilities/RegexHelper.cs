@@ -12,6 +12,11 @@ namespace Fanex.Affiliate.User.Core.Utilities
             return Regex.IsMatch(input, pattern, RegexOptions.None, TimeSpan.FromSeconds(TimeOutSecond));
         }
 
+        public static bool IsMatch(string input, string pattern, RegexOptions regexOptions)
+        {
+            return Regex.IsMatch(input, pattern, regexOptions, TimeSpan.FromSeconds(TimeOutSecond));
+        }
+
         public static string Replace(string input, string pattern, string replacement)
         {
             return Regex.Replace(input, pattern, replacement, RegexOptions.None, TimeSpan.FromSeconds(TimeOutSecond));
@@ -20,11 +25,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public static Match Match(string input, string pattern, RegexOptions regexOptions = RegexOptions.None)
         {
             return Regex.Match(input, pattern, regexOptions, TimeSpan.FromSeconds(TimeOutSecond));
-        }
-
-        public static bool IsMatch(string input, string pattern, RegexOptions regexOptions)
-        {
-            return Regex.IsMatch(input, pattern, regexOptions, TimeSpan.FromSeconds(TimeOutSecond));
         }
     }
 }

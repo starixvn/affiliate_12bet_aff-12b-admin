@@ -11,7 +11,8 @@
 
     public class StatisticsService : BaseDynamicService, IStatisticsService
     {
-        public StatisticsService(IDynamicRepository dynamicRepository) : base(dynamicRepository)
+        public StatisticsService(
+            IDynamicRepository dynamicRepository) : base(dynamicRepository)
         {
         }
 

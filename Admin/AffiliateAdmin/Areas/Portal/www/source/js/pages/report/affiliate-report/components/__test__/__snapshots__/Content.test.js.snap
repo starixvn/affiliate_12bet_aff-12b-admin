@@ -33,6 +33,16 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "text": "Affiliate",
           },
           SingleHeaderColumn {
+            "key": "Status",
+            "showable": true,
+            "text": "Status",
+          },
+          SingleHeaderColumn {
+            "key": "PreferredLanguage",
+            "showable": true,
+            "text": "Language",
+          },
+          SingleHeaderColumn {
             "key": "MonthDateString",
             "showable": false,
             "text": "Month",
@@ -61,6 +71,11 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "key": "Fdm",
             "showable": true,
             "text": "FDM",
+          },
+          SingleHeaderColumn {
+            "key": "Fdm_Amount",
+            "showable": true,
+            "text": "FDM Amt",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -156,11 +171,6 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
                 "key": "EarningBy",
                 "showable": false,
                 "text": "Earning By",
-              },
-              SingleHeaderColumn {
-                "key": "P2pEarning",
-                "showable": true,
-                "text": "P2P Earning",
               },
               SingleHeaderColumn {
                 "key": "SubAffEarning",
@@ -243,6 +253,16 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "text": "Affiliate",
           },
           SingleHeaderColumn {
+            "key": "Status",
+            "showable": true,
+            "text": "Status",
+          },
+          SingleHeaderColumn {
+            "key": "PreferredLanguage",
+            "showable": true,
+            "text": "Language",
+          },
+          SingleHeaderColumn {
             "key": "MonthDateString",
             "showable": false,
             "text": "Month",
@@ -271,6 +291,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "Fdm",
             "showable": true,
             "text": "FDM",
+          },
+          SingleHeaderColumn {
+            "key": "Fdm_Amount",
+            "showable": true,
+            "text": "FDM Amt",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -366,11 +391,6 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
                 "key": "EarningBy",
                 "showable": false,
                 "text": "Earning By",
-              },
-              SingleHeaderColumn {
-                "key": "P2pEarning",
-                "showable": true,
-                "text": "P2P Earning",
               },
               SingleHeaderColumn {
                 "key": "SubAffEarning",
@@ -461,6 +481,16 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "text": "Affiliate",
           },
           SingleHeaderColumn {
+            "key": "Status",
+            "showable": false,
+            "text": "Status",
+          },
+          SingleHeaderColumn {
+            "key": "PreferredLanguage",
+            "showable": false,
+            "text": "Language",
+          },
+          SingleHeaderColumn {
             "key": "MonthDateString",
             "showable": true,
             "text": "Month",
@@ -489,6 +519,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "Fdm",
             "showable": true,
             "text": "FDM",
+          },
+          SingleHeaderColumn {
+            "key": "Fdm_Amount",
+            "showable": true,
+            "text": "FDM Amt",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -584,11 +619,6 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
                 "key": "EarningBy",
                 "showable": true,
                 "text": "Earning By",
-              },
-              SingleHeaderColumn {
-                "key": "P2pEarning",
-                "showable": true,
-                "text": "P2P Earning",
               },
               SingleHeaderColumn {
                 "key": "SubAffEarning",

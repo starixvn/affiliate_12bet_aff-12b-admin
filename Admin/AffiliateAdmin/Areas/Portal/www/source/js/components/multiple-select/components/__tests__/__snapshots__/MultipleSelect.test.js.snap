@@ -53,12 +53,12 @@ exports[`MultipleSelect  render showOptionList = false - render component with "
           onChange={[Function]}
           type="checkbox"
         />
-        <label
+        <span
           className="option-label"
           htmlFor="multiple-select-15-optionItemAll"
         >
           All
-        </label>
+        </span>
       </li>
     </ul>
     <ul
@@ -75,12 +75,12 @@ exports[`MultipleSelect  render showOptionList = false - render component with "
           onChange={[Function]}
           type="checkbox"
         />
-        <label
+        <span
           className="option-label"
           htmlFor="multiple-select-15-optionItem-0"
         >
           Sportsbook
-        </label>
+        </span>
       </li>
     </ul>
   </div>
@@ -140,12 +140,12 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
           onChange={[Function]}
           type="checkbox"
         />
-        <label
+        <span
           className="option-label"
           htmlFor="multiple-select-16-optionItemAll"
         >
           All
-        </label>
+        </span>
       </li>
     </ul>
     <ul
@@ -162,12 +162,12 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
           onChange={[Function]}
           type="checkbox"
         />
-        <label
+        <span
           className="option-label"
           htmlFor="multiple-select-16-optionItem-0"
         >
           Value SB
-        </label>
+        </span>
       </li>
       <li
         className="multiple-select-item"
@@ -180,12 +180,12 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
           onChange={[Function]}
           type="checkbox"
         />
-        <label
+        <span
           className="option-label"
           htmlFor="multiple-select-16-optionItem-1"
         >
           Value BA
-        </label>
+        </span>
       </li>
       <li
         className="multiple-select-item"
@@ -198,12 +198,12 @@ exports[`MultipleSelect  render showOptionList = true - render component with "d
           onChange={[Function]}
           type="checkbox"
         />
-        <label
+        <span
           className="option-label"
           htmlFor="multiple-select-16-optionItem-2"
         >
           Value RC
-        </label>
+        </span>
       </li>
     </ul>
   </div>

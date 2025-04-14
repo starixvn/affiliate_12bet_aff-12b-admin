@@ -14,32 +14,6 @@ exports[`commission group - Filter should render correctly 1`] = `
     tag="div"
   >
     <FormGroup
-      className="mr-sm-3"
-      tag="div"
-    >
-      <Label
-        className="mr-sm-2"
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        Group Type
-      </Label>
-      <Input
-        name="groupTypeId"
-        onChange={[Function]}
-        type="select"
-        value={1}
-      />
-    </FormGroup>
-    <FormGroup
       className="mb-2 mr-sm-2 mb-sm-0"
       tag="div"
     >
