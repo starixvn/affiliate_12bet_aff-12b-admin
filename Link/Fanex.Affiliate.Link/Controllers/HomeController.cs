@@ -195,7 +195,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private void WriteLogInfo(TrackingSystemCommand command)
         {
-            if (!command.RedirectPage.Contains(command.AffCode))
+            if (!command.RedirectPage.Contains(command.AffCode) || command.RedirectPage.Contains("affMediaLinkId=&"))
             {
                 var builder = new StringBuilder().AppendLine($"Link Go Info: {Request.Url}").AppendLine();
                 builder.AppendLine("REQUEST INFO")
