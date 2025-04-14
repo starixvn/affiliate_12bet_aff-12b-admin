@@ -264,10 +264,13 @@
     <Compile Include="Commands\Domain\BaseDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\DeleteDomainCommand.cs" />
     <Compile Include="Commands\Domain\DeleteDomainControlCommand.cs" />
+    <Compile Include="Commands\Domain\DeleteSpecificDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\InsertDomainCommand.cs" />
     <Compile Include="Commands\Domain\InsertDomainControlCommand.cs" />
+    <Compile Include="Commands\Domain\InsertSpecificDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\UpdateDomainCommand.cs" />
     <Compile Include="Commands\Domain\UpdateDomainControlCommand.cs" />
+    <Compile Include="Commands\Domain\UpdateSpecificDomainControlCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseBannerCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseLandingPageCommand.cs" />
     <Compile Include="Commands\MediaGallery\DeleteBannerCommand.cs" />
@@ -320,6 +323,7 @@
     <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\Domain\SpecificDomainControlController.cs" />
     <Compile Include="Controllers\ReadOnlySessionBaseController.cs" />
     <Compile Include="Controllers\Affiliate\RevenueGroupController.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentController.cs" />
@@ -374,6 +378,7 @@
     <Compile Include="Criterias\Customer\CustomerStatisticsCriteria.cs" />
     <Compile Include="Criterias\Customer\TransferLimitCriteria.cs" />
     <Compile Include="Criterias\Domain\DomainControlCriteria.cs" />
+    <Compile Include="Criterias\Domain\SpecificDomainControlCriteria.cs" />
     <Compile Include="Criterias\EmailHistory\EmailHistoryCriteria.cs" />
     <Compile Include="Criterias\EmailHistory\EmailHistoryDetailCriteria.cs" />
     <Compile Include="Criterias\Home\UserOnlineCriteria.cs" />
@@ -442,6 +447,7 @@
     <Compile Include="DTO\Domain\AffSubDomainInfo.cs" />
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
+    <Compile Include="DTO\Domain\SpecificDomainControlInfo.cs" />
     <Compile Include="DTO\Market.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryDetailInfo.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryInfo.cs" />
@@ -503,10 +509,14 @@
     <Compile Include="MetaModels\Customer\TransferLimitSettingParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\DeleteDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\DeleteSpecificDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\InsertDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\InsertDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\InsertSpecificDomainControlParam.cs" />
+    <Compile Include="MetaModels\Domain\SpecificDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainControlParam.cs" />
     <Compile Include="MetaModels\Domain\UpdateDomainParam.cs" />
+    <Compile Include="MetaModels\Domain\UpdateSpecificDomainControlParam.cs" />
     <Compile Include="MetaModels\EmailHistory\DeleteEmailHistoryParam.cs" />
     <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
@@ -600,6 +610,8 @@
     <Compile Include="Configurations\IoCConfig.cs" />
     <Compile Include="Services\Domain\CommonDomainService.cs" />
     <Compile Include="Services\Domain\ICommonDomainService.cs" />
+    <Compile Include="Services\Domain\ISpecificDomainControlService.cs" />
+    <Compile Include="Services\Domain\SpecificDomainControlService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
     <Compile Include="Services\Tracker\IJobTrackerService.cs" />

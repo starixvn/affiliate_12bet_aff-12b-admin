@@ -132,41 +132,32 @@
 
             if (domainList == null)
             {
-                var domains = isMember
-                    ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
-                    : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
-
-                domainList = GetAvailableDomainsFromDate(domains, isMember);
-
-                var specificDomains = _appSetting.IsDev || _appSetting.IsLocal
-                    ? SpecificDomain.SpecificDomainByAffOnLocal
-                    : SpecificDomain.SpecificDomainByAffOnPro;
-
-                if (isMember && specificDomains.TryGetValue(affId.ToString(), out var domainNames))
-                {
-                    var names = domainNames.Split(',');
-                    var specificDomainList = new List<Domain>();
-
-                    foreach (var name in names)
-                    {
-                        specificDomainList.Add(new Domain
-                        {
-                            DomainId = affId + specificDomainList.Count,
-                            DomainName = name,
-                            IsSsl = !(Array.Exists(SpecificDomain.NotSSLDomains, d => d.MatchWith(name)))
-                        });
-                    }
-
-                    specificDomainList.AddRange(domainList.Where(d => !Array.Exists(names, n => n.MatchWith(d.DomainName))));
-                    _cacheService.Set(cacheKey, specificDomainList, Number.Ten);
-
-                    return specificDomainList;
-                }
+                domainList = HandleGetAvailableDomains(affId, isMember, isInternal);
 
                 _cacheService.Set(cacheKey, domainList, Number.Ten);
             }
 
             return domainList ?? new List<Domain>();
+        }
+
+        private IEnumerable<Domain> HandleGetAvailableDomains(int affId, bool isMember, bool isInternal = false)
+        {
+            var domains = isMember
+                    ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
+                    : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
+
+            if (isMember)
+            {
+                foreach (var (domain, index) in domains.Select((domain, index) => (domain, index)))
+                {
+                    if (domain.DomainId == 0)
+                    {
+                        domain.DomainId = affId + index;
+                    }
+                }
+            }
+
+            return domains;
         }
 
         public IDictionary<string, LanguageLinkViewModel> GenerateLinkList(LinkGeneratingParam linkGeneratedParam)
@@ -360,11 +351,6 @@
         private static string NormalizeName(string channelName)
         {
             return channelName.ToLowerInvariant();
-        }
-
-        private IEnumerable<Domain> GetAvailableDomainsFromDate(IEnumerable<Domain> domains, bool isMember = false)
-        {
-            return isMember ? domains.Where(_ => DateTime.Compare(_.CreateDate, _appSetting.DomainAvailableFromDate) >= 0) : domains;
         }
     }
 }

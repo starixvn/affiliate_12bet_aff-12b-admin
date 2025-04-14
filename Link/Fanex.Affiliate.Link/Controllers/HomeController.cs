@@ -172,10 +172,10 @@ namespace Fanex.Affiliate.Link.Controllers
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(command);
 
-                LogService.Info(GetAllHeader(Request.ServerVariables, command));
-
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
+                    WriteLogInfo(command);
+
                     var isMarketingLandingPage = Array.Exists(MarketingLandingPages, l => IsMatching(l, pageCode));
 
                     if ((isMarketingLandingPage && IsValidAffMarketing(affCode)) || !isMarketingLandingPage)
@@ -192,31 +192,30 @@ namespace Fanex.Affiliate.Link.Controllers
             return View("Link");
         }
 
-        private string GetAllHeader(NameValueCollection headers, TrackingSystemCommand command)
+        private void WriteLogInfo(TrackingSystemCommand command)
         {
-            var builder = new StringBuilder().AppendLine($"Link Go Info: {Request.Url}").AppendLine();
-            builder.AppendLine("REQUEST INFO")
-                   .AppendLine("RawUrl: " + Request.RawUrl)
-                   .AppendLine("AffMediaLinkWithoutProtocol: " + command.AffMediaLink)
-                   .AppendLine("RedirectPage: " + command.RedirectPage)
-                   .AppendLine("AffDomain: " + command.AffDomain)
-                   .AppendLine("AffCode: " + command.AffCode)
-                   .AppendLine("PageCode: " + command.PageCode)
-                   .AppendLine("ChannelCode: " + command.ChannelCode)
-                   .AppendLine("LanguageCode: " + command.LanguageCode)
-                   .AppendLine("DeviceType: " + command.DeviceType)
-                   .AppendLine("IP: " + command.IP)
-                   .AppendLine("Browser: " + command.Browser)
-                   .AppendLine("Country: " + command.Country)
-                   .AppendLine("Referrer: " + command.URLReferrer)
-                   .AppendLine("DomainReferrer: " + command.DomainReferrer);
-
-            foreach (var key in headers.AllKeys)
+            if (!command.RedirectPage.Contains(command.AffCode))
             {
-                builder.AppendLine($"{key}: {headers[key]}");
-            }
+                var builder = new StringBuilder().AppendLine($"Link Go Info: {Request.Url}").AppendLine();
+                builder.AppendLine("REQUEST INFO")
+                       .AppendLine("RawUrl: " + Request.RawUrl)
+                       .AppendLine("AffMediaLinkWithoutProtocol: " + command.AffMediaLink)
+                       .AppendLine("RedirectPage: " + command.RedirectPage)
+                       .AppendLine("AffDomain: " + command.AffDomain)
+                       .AppendLine("AffCode: " + command.AffCode)
+                       .AppendLine("PageCode: " + command.PageCode)
+                       .AppendLine("ChannelCode: " + command.ChannelCode)
+                       .AppendLine("LanguageCode: " + command.LanguageCode)
+                       .AppendLine("DeviceType: " + command.DeviceType)
+                       .AppendLine("IP: " + command.IP)
+                       .AppendLine("Browser: " + command.Browser)
+                       .AppendLine("Country: " + command.Country)
+                       .AppendLine("Referrer: " + command.URLReferrer)
+                       .AppendLine("DomainReferrer: " + command.DomainReferrer);
 
-            return builder.ToString();
+
+                LogService.Info(builder.ToString());
+            } 
         }
 
         private bool ValidateTrackingV1MediaLink(int affId, string affDomain, string lang, string affMediaLinkWithoutProtocol)
@@ -261,7 +260,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     AffId = affId,
                     LanguageCode = marketInfo.MarketId,
                     AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
-            };
+                };
 
                 _trackingSystemService.ToggleMarketingLink(insertCommand);
             }

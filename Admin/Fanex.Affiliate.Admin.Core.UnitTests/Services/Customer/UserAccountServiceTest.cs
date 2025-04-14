@@ -165,7 +165,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
             var fakeAppSetting = appSeting ?? Mock.Of<IAppSetting>();
             var fakeLicenseeService = licenseeService ?? Mock.Of<ILicenseeService>();
 
-            return new UserAccountService(fakerepository, fakeLicenseeService, fakeAppSetting);
+            return new UserAccountService(fakerepository, fakeLicenseeService, fakeAppSetting, null);
         }
 
         private static UserAccountParam GetUserAccountParam()

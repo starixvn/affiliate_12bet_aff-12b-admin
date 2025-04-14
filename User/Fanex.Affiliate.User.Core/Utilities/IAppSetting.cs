@@ -84,7 +84,5 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string SubAffTextLinkTemplate { get; }
 
         string RedirectToOldVersLink { get; }
-
-        DateTime DomainAvailableFromDate { get; }
     }
 }

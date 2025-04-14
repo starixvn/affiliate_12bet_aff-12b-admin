@@ -492,6 +492,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specific Domain Control.
+        /// </summary>
+        public static string SpecificDomainControl {
+            get {
+                return ResourceManager.GetString("SpecificDomainControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sub-Affiliate Domain.
         /// </summary>
         public static string SubAffiliateDomain {
