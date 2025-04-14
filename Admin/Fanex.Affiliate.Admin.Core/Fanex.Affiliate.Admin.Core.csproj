@@ -323,6 +323,7 @@
     <Compile Include="Controllers\Administrator\DepartmentController.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
+    <Compile Include="Controllers\Affiliate\MarketingAccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Domain\MemberDomainController.cs" />
@@ -751,6 +752,7 @@
     <Compile Include="Utilities\SystemFile.cs" />
     <Compile Include="Utilities\TargetCountryHelper.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Affiliate\MarketingAccountViewModel.cs" />
     <Compile Include="ViewModels\Report\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
@@ -796,6 +798,7 @@
     <EmbeddedResource Include="Resources\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

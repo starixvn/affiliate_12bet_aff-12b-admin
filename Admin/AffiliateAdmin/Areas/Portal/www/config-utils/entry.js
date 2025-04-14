@@ -11,6 +11,7 @@ module.exports = {
     [`${jsDist}/pages/commission/assign-private-group`]: clientRoot + "/js/pages/commission-group/components/assign-private-group/index.jsx",
     [`${jsDist}/pages/report`]: clientRoot + "/js/pages/report/index.jsx",
     [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
+    [`${jsDist}/pages/affiliate/marketing-account`]: clientRoot + "/js/pages/marketing-account/index.jsx",
     [`${jsDist}/pages/affiliate/email-history`]: clientRoot + "/js/pages/email-history/index.jsx",
     [`${jsDist}/pages/payment/payment-request`]: clientRoot + "/js/pages/payment-request/index.jsx",
     [`${jsDist}/pages/customer/customer`]: clientRoot + "/js/pages/customer/index.jsx",
@@ -51,4 +52,5 @@ module.exports = {
     [`${styleDist}/pages/administrator/department`]: clientRoot + "/style/pages/administrator/department.scss",
     [`${styleDist}/home`]: clientRoot + "/style/pages/home.scss",
     [`${styleDist}/12bet`]: clientRoot + "/style/themes/12bet.scss",
+    [`${styleDist}/pages/marketing-account`]: clientRoot + "/style/pages/marketing-account/index.scss",
 };

@@ -107,7 +107,7 @@ export class WebSite extends PureComponent {
                         <FormGroup check>
                             <Label check>
                                 <Input type="radio" checked={hasWebSite} onChange={() => this.handleChangeHasWebSite(true)} />I have my own website
-                        </Label>
+                            </Label>
                         </FormGroup>
                         <FormGroup row className="pt-1">
                             <Label htmlFor="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
@@ -124,7 +124,7 @@ export class WebSite extends PureComponent {
                         <FormGroup check>
                             <Label check>
                                 <Input type="radio" checked={!hasWebSite} onChange={() => this.handleChangeHasWebSite(false)} />I don't have a website
-                        </Label>
+                            </Label>
                         </FormGroup>
                         <FormGroup row className="pt-1">
                             <Label htmlFor="noSiteDescription" sm={3} xl={2} className="required">{`Please describe how you would like to promote ${this.props.licenseeName} if you don't have the URL`}</Label>

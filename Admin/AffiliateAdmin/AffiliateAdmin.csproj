@@ -322,9 +322,26 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\AddAffMktAccountPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\Additional.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\EmailFormat.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\GeneralInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\Payment.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\Personal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\WebSite.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\libs\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\menus.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerConfigs.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\index.js" />
@@ -1422,6 +1439,8 @@
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\marketing-statistics.scss" />
     <Content Include="Areas\Portal\Views\Domain\SpecificDomainControl.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\common\block-target-country-form-group.scss" />
+    <Content Include="Areas\Portal\Views\Affiliate\MarketingAccount.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\marketing-account\index.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -1449,6 +1468,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\pages\marketing-account\__test__\" />
     <Folder Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\__test__\__snapshots__\" />
     <Folder Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\__test__\" />
   </ItemGroup>
