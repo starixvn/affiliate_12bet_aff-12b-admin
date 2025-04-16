@@ -5,6 +5,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 {
     public class AffiliateReportParam
     {
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string UserName { get; set; }
 
         public DateTime FromDate { get; set; }
