@@ -14,7 +14,11 @@
 
         public decimal DepositByMonth { get; set; }
 
+        public decimal TotalFDMAmountByMonth { get; set; }
+
         public decimal DepositTotal { get; set; }
+
+        public decimal TotalFDMAmount { get; set; }
 
         public decimal TurnoverByMonth { get; set; }
 

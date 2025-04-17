@@ -11,7 +11,6 @@ namespace Fanex.Affiliate.Link.Controllers
     using Services.Impl;
     using Services.Interface;
     using System;
-    using System.Collections.Specialized;
     using System.Text;
     using System.Web.Mvc;
 
@@ -193,14 +192,14 @@ namespace Fanex.Affiliate.Link.Controllers
             return View("Link");
         }
 
-        private void WriteLogInfo(TrackingSystemCommand command)
+        private static void WriteLogInfo(TrackingSystemCommand command)
         {
-            if (!command.RedirectPage.Contains(command.AffCode) || command.RedirectPage.Contains("affMediaLinkId=&"))
+            if (!command.RedirectPage.Contains(command.AffCode)
+                || command.RedirectPage.Contains("affMediaLinkId=&")
+                || string.IsNullOrEmpty(command.ChannelCode))
             {
-                var builder = new StringBuilder().AppendLine($"Link Go Info: {Request.Url}").AppendLine();
+                var builder = new StringBuilder().AppendLine($"Link Go Info: http://{command.AffMediaLink}").AppendLine();
                 builder.AppendLine("REQUEST INFO")
-                       .AppendLine("RawUrl: " + Request.RawUrl)
-                       .AppendLine("AffMediaLinkWithoutProtocol: " + command.AffMediaLink)
                        .AppendLine("RedirectPage: " + command.RedirectPage)
                        .AppendLine("AffDomain: " + command.AffDomain)
                        .AppendLine("AffCode: " + command.AffCode)
