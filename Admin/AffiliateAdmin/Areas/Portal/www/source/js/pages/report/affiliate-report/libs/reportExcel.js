@@ -41,6 +41,11 @@ const colConfig =
         [TOTAL_SECTION_STYLE]: totalCellStyle.center,
         [COL_WIDTH]: 120
     },
+    [fields.CommGroupName]: {
+        [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.default,
+        [COL_WIDTH]: 150
+    },
     [fields.TotalClick]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.number,
         [TOTAL_SECTION_STYLE]: totalCellStyle.number,
@@ -341,17 +346,21 @@ export default class ReportExcel {
     _createTotalRow() {
         const totalData = this.data.Total;
         if (totalData) {
+            const commonTotalData = {
+                [fields.CommGroupName]: '',
+                [fields.CommissionRate]: "N/A"
+            };
+
             const customTotalData = this.isMainView ? {
                 [fields.UserName]: totalText,
                 [fields.Status]: '',
-                [fields.PaymentCurrency]: '',
-                [fields.CommissionRate]: "N/A"
+                [fields.PaymentCurrency]: ''
             } : {
                 [fields.MonthDateString]: totalText,
-                [fields.CommissionRate]: "N/A",
                 [fields.EarningBy]: 'N/A'
-            }
-            const total = Object.assign({}, totalData, customTotalData);
+            };
+
+            const total = { ...totalData, ...customTotalData, ...commonTotalData };
 
             for (let j = 0; j < this.totalColumn; j++) {
                 const address = Excel.getCellAddress({
