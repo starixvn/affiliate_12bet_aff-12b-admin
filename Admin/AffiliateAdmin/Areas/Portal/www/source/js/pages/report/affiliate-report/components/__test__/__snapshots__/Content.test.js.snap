@@ -53,6 +53,11 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "text": "Linked Account Currency",
           },
           SingleHeaderColumn {
+            "key": "CommGroupName",
+            "showable": true,
+            "text": "Revenue Group",
+          },
+          SingleHeaderColumn {
             "key": "TotalClick",
             "showable": true,
             "text": "Total Click",
@@ -271,6 +276,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "PaymentCurrency",
             "showable": true,
             "text": "Linked Account Currency",
+          },
+          SingleHeaderColumn {
+            "key": "CommGroupName",
+            "showable": true,
+            "text": "Revenue Group",
           },
           SingleHeaderColumn {
             "key": "TotalClick",
@@ -501,6 +511,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "text": "Linked Account Currency",
           },
           SingleHeaderColumn {
+            "key": "CommGroupName",
+            "showable": true,
+            "text": "Revenue Group",
+          },
+          SingleHeaderColumn {
             "key": "TotalClick",
             "showable": true,
             "text": "Total Click",
@@ -637,7 +652,7 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
               },
               SingleHeaderColumn {
                 "key": "AffAdjustment",
-                "showable": false,
+                "showable": true,
                 "text": "Adjustment",
               },
               SingleHeaderColumn {
