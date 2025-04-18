@@ -14,6 +14,7 @@ describe('left panel - ApprovedStatusInfo - connect', () => {
             leftPanel: {
                 affiliateInfo: {}
             },
+            claimsPrincipal: { hasReadClaim: jest.fn(() => true) },
             affCommonInfo: { affName: '12BETAFF226' }
         };
         store = mockStore(initialState);

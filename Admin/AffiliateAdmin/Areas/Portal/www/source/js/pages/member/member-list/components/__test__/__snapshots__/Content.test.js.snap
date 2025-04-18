@@ -116,26 +116,6 @@ exports[`member list - components - Content  render correctly 1`] = `
             >
               
             </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit 12BET$wjpwjp player"
-            >
-              <Button
-                color="link p-0"
-                disabled={true}
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-pencil text-secondary"
-                />
-              </Button>
-            </t>
           </t>,
           <t>
             <t
@@ -240,26 +220,6 @@ exports[`member list - components - Content  render correctly 1`] = `
             >
               
             </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit 12BET$jingguoan player"
-            >
-              <Button
-                color="link p-0"
-                disabled={true}
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-pencil text-secondary"
-                />
-              </Button>
-            </t>
           </t>,
         ]
       }
@@ -354,7 +314,7 @@ exports[`member list - components - Content  render correctly 1`] = `
             </t>
             <t
               asc={true}
-              colSpan="3"
+              colSpan="2"
               colWidth={200}
               header={true}
               onClick={[Function]}
@@ -387,17 +347,6 @@ exports[`member list - components - Content  render correctly 1`] = `
               title="Last Action Date"
             >
               Last Action Date
-            </t>
-            <t
-              asc={true}
-              colWidth={50}
-              header={true}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit"
-            >
-              Edit
             </t>
           </t>,
         ]
@@ -544,26 +493,6 @@ exports[`member list - components - Content  render correctly with NotificationP
             >
               
             </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit 12BET$wjpwjp player"
-            >
-              <Button
-                color="link p-0"
-                disabled={true}
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-pencil text-secondary"
-                />
-              </Button>
-            </t>
           </t>,
           <t>
             <t
@@ -668,26 +597,6 @@ exports[`member list - components - Content  render correctly with NotificationP
             >
               
             </t>
-            <t
-              asc={true}
-              className="text-center"
-              header={false}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit 12BET$jingguoan player"
-            >
-              <Button
-                color="link p-0"
-                disabled={true}
-                onClick={[Function]}
-                tag="button"
-              >
-                <span
-                  className="oi oi-pencil text-secondary"
-                />
-              </Button>
-            </t>
           </t>,
         ]
       }
@@ -782,7 +691,7 @@ exports[`member list - components - Content  render correctly with NotificationP
             </t>
             <t
               asc={true}
-              colSpan="3"
+              colSpan="2"
               colWidth={200}
               header={true}
               onClick={[Function]}
@@ -815,17 +724,6 @@ exports[`member list - components - Content  render correctly with NotificationP
               title="Last Action Date"
             >
               Last Action Date
-            </t>
-            <t
-              asc={true}
-              colWidth={50}
-              header={true}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit"
-            >
-              Edit
             </t>
           </t>,
         ]
@@ -975,7 +873,7 @@ exports[`member list - components - Content  render correctly with gridData is e
             </t>
             <t
               asc={true}
-              colSpan="3"
+              colSpan="2"
               colWidth={200}
               header={true}
               onClick={[Function]}
@@ -1008,17 +906,6 @@ exports[`member list - components - Content  render correctly with gridData is e
               title="Last Action Date"
             >
               Last Action Date
-            </t>
-            <t
-              asc={true}
-              colWidth={50}
-              header={true}
-              onClick={[Function]}
-              sortable={false}
-              sorting={false}
-              title="Edit"
-            >
-              Edit
             </t>
           </t>,
         ]

@@ -9,7 +9,7 @@ describe('referrers - components - Filter', () => {
     });
     const today = '07/12/2019';
     const param = {
-        deviceType: 0,
+        deviceType: -1,
         fromDate: "10/1/2018",
         isClickLink: false,
         toDate: "10/31/2018"
@@ -36,7 +36,7 @@ describe('referrers - components - Filter', () => {
 
         instance.componentDidMount();
 
-        expect(instance.handleSearch).toHaveBeenCalledWith({ deviceType: 0, fromDate: "10/1/2018", toDate: "10/31/2018" });
+        expect(instance.handleSearch).toHaveBeenCalledWith({ deviceType: -1, fromDate: "10/1/2018", toDate: "10/31/2018" });
     });
 
     it('componentDidUpdate - should call setState and setSelectedSiteUrl', () => {
@@ -47,7 +47,7 @@ describe('referrers - components - Filter', () => {
 
         instance.componentDidUpdate({ param: {} });
 
-        expect(instance.setState).toHaveBeenCalledWith({ deviceType: 0, fromDate: "10/1/2018", toDate: "10/31/2018" });
+        expect(instance.setState).toHaveBeenCalledWith({ deviceType: -1, fromDate: "10/1/2018", toDate: "10/31/2018" });
         expect(props.setSelectedSiteUrl).toHaveBeenCalledWith(null);
     });
 
@@ -61,7 +61,7 @@ describe('referrers - components - Filter', () => {
 
         instance.componentDidUpdate({ param: {} });
 
-        expect(instance.setState).toHaveBeenCalledWith({ deviceType: 0, fromDate: "10/1/2018", toDate: "10/31/2018" });
+        expect(instance.setState).toHaveBeenCalledWith({ deviceType: -1, fromDate: "10/1/2018", toDate: "10/31/2018" });
         expect(props.setSelectedSiteUrl).toHaveBeenCalledWith(null);
     });
 
@@ -118,7 +118,7 @@ describe('referrers - components - Filter', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ deviceType: 0, fromDate: "7/01/2019", toDate: "7/12/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ deviceType: -1, fromDate: "7/01/2019", toDate: "7/12/2019" });
         expect(props.setSelectedSiteUrl).toHaveBeenCalledWith(null);
     });
 });

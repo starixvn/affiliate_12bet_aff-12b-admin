@@ -105,7 +105,7 @@ describe('sub-affiliate domain - components - Content ', () => {
         wrapper.find('Button').at(0).simulate('click');
 
         expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setSelectedSubAffDomain).toHaveBeenCalledWith({ domainId: 0, domainName: '', isSSL: false });
+        expect(props.setSelectedSubAffDomain).toHaveBeenCalledWith({ domainId: 0, domainName: '', isSSL: true });
     });
 
     it('_deleteSubAffDomain - should call deleteSubAffDomain with delete successfully', async () => {

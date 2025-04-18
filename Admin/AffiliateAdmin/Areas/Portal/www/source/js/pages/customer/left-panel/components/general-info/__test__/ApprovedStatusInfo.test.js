@@ -27,6 +27,7 @@ describe('left panel - components - general-info - ApprovedStatusInfo', () => {
     };
     const props = {
         affiliateInfo,
+        claimsPrincipal: { hasReadClaim: jest.fn(() => true)},
         affName: '12BETAFF226'
     }
 

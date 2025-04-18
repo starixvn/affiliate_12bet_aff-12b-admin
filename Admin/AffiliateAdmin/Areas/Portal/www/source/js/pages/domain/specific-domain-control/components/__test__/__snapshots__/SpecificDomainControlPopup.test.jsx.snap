@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`specific domain control - components - SpecificDomainControlPopup  render correctly 1`] = `""`;
+exports[`SpecificDomainControlPopup Component Rendering should render correctly in initial state 1`] = `""`;

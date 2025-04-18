@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
+exports[`DomainPopup Component Rendering should not render popup when selectedDomainId is null 1`] = `""`;
+
+exports[`DomainPopup Component Rendering should render correctly for insert mode 1`] = `
 <Modal
   autoFocus={true}
   backdrop="static"
@@ -176,7 +178,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
               }
             >
               <input
-                checked={false}
+                checked={true}
                 id="isSSL"
                 name="isSSL"
                 onChange={[Function]}
@@ -208,9 +210,7 @@ exports[`domain - components - DomainPopup  render correctly with insert 1`] = `
 </Modal>
 `;
 
-exports[`domain - components - DomainPopup  render correctly with not show popup 1`] = `""`;
-
-exports[`domain - components - DomainPopup  render correctly with update 1`] = `
+exports[`DomainPopup Component Rendering should render correctly for update mode 1`] = `
 <Modal
   autoFocus={true}
   backdrop="static"

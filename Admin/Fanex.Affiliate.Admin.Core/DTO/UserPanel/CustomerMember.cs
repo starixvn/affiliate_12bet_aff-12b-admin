@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         [PermissionCheck(Function.MemberEmail)]
         public string Email { get; set; }
 
-        public string CurrencyName { get; set; }
+        public string Currency { get; set; }
 
         public DateTime? RegisteredDate { get; set; }
 

@@ -141,7 +141,6 @@ export class SpecificDomainControlPopup extends PureComponent {
             this._handleShowAlert(result.IsSuccessful, message);
 
         } catch (error) {
-            console.error('Error inserting domain:', error);
             this._handleShowAlert(false, "Add Specific Domain failed!");
         }
     }
@@ -167,7 +166,6 @@ export class SpecificDomainControlPopup extends PureComponent {
             this._handleShowAlert(result.IsSuccessful, message);
 
         } catch (error) {
-            console.error('Error updating domain:', error);
             this._handleShowAlert(false, "Update Specific Domain failed!");
         }
     }

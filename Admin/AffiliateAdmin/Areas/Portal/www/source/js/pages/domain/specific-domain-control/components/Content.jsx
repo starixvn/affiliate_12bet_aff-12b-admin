@@ -84,7 +84,6 @@ export class Content extends PureComponent {
                 message: 'An error occurred while deleting the domain',
                 isConfirmPopup: false
             });
-            console.error('Error deleting domain:', error);
         } finally {
             this.props.toggleLoader(false);
         }

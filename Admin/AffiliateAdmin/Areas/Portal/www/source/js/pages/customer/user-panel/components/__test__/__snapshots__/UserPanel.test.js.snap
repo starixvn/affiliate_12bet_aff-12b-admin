@@ -138,6 +138,10 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
           "key": "member",
           "name": "Player",
           "parent": null,
+          "renderClaim": Claim {
+            "type": "[Player]",
+            "value": undefined,
+          },
         },
         Object {
           "component": Object {
@@ -172,6 +176,18 @@ exports[`customer - user-panel - components - UserPanel Should render correctly 
             "type": [Function],
           },
           "key": "landingPageStatistics",
+          "name": "",
+          "parent": "clickStatistics",
+        },
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(UserPanelItem)",
+            "type": [Function],
+          },
+          "key": "marketingStatistics",
           "name": "",
           "parent": "clickStatistics",
         },

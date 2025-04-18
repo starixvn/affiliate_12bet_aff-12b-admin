@@ -170,7 +170,7 @@ describe('landing page statistics - components - Filter', () => {
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setParam).toHaveBeenCalledWith({ affId: 1271808, deviceType: 0, fromDate: "7/01/2019", languageCode: "", selectedPage: "", toDate: "7/12/2019" });
+        expect(props.setParam).toHaveBeenCalledWith({ affId: 1271808, deviceType: -1, fromDate: "7/01/2019", languageCode: "", selectedPage: "", toDate: "7/12/2019" });
         expect(props.setSelectedPage).toHaveBeenCalledWith(null);
     });
 });

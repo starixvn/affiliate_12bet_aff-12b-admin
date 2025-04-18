@@ -2,9 +2,11 @@ import React from 'react';
 import { Content } from '../Content';
 import { shallow } from 'enzyme';
 import NotificationPopup from '../../../../common/components/NotificationPopup';
+import { Table } from '@9softstudio/react-fixed-table-header';
+import { Button } from 'reactstrap';
 
-describe('specific domain control - components - Content ', () => {
-    const gridData = [
+describe('Content Component', () => {
+    const mockGridData = [
         {
             SpecificDomainControlId: 1,
             AffUsername: 'testuser',
@@ -31,159 +33,186 @@ describe('specific domain control - components - Content ', () => {
 
     const defaultProps = {
         shouldResetScrollPosition: true,
-        gridData,
+        gridData: mockGridData,
         param: 'test',
+        pagingOption: { PageIndex: 1, PageSize: 10 },
         fetchData: jest.fn(),
-        deleteDomain: jest.fn(),
+        deleteSpecificDomain: jest.fn(),
         toggleLoader: jest.fn(),
         setSelectedDomainId: jest.fn(),
-        setShouldResetScrollPosition: jest.fn()
+        setShouldResetScrollPosition: jest.fn(),
+        setParam: jest.fn(),
+        setPagingOption: jest.fn()
     };
 
-    it('render correctly', () => {
-        const result = shallow(<Content {...defaultProps} />);
-        result.setState({ message: 'has NotificationPopup' });
-
-        expect(result).toMatchSnapshot();
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    it('render correctly with gridData is null', () => {
-        const props = Object.assign({}, defaultProps, { gridData: null });
-        const result = shallow(<Content {...props} />);
+    describe('Rendering', () => {
+        it('should render correctly with grid data', () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            wrapper.setState({ message: 'has NotificationPopup' });
+            expect(wrapper).toMatchSnapshot();
+        });
 
-        expect(result).toMatchSnapshot();
-    });
+        it('should render correctly with null grid data', () => {
+            const props = { ...defaultProps, gridData: null };
+            const wrapper = shallow(<Content {...props} />);
+            expect(wrapper).toMatchSnapshot();
+        });
 
-    it('render correctly with gridData is empty', () => {
-        const props = Object.assign({}, defaultProps, { gridData: [] });
-        const result = shallow(<Content {...props} />);
+        it('should render correctly with empty grid data', () => {
+            const props = { ...defaultProps, gridData: [] };
+            const wrapper = shallow(<Content {...props} />);
+            expect(wrapper).toMatchSnapshot();
+        });
 
-        expect(result).toMatchSnapshot();
-    });
-
-    it('_handleCloseNotificationPopup - should be called when close NotificationPopup', () => {
-        const result = shallow(<Content {...defaultProps} />);
-        result.setState({ message: 'has NotificationPopup' });
-        result.setState = jest.fn();
-
-        result.find(NotificationPopup).props().onClose(false);
-
-        expect(result.setState).toHaveBeenCalledWith({ message: '' });
-    });
-
-    it('_handleCloseNotificationPopup - should call setState and _deleteDomain', () => {
-        const result = shallow(<Content {...defaultProps} />);
-        result.setState({ selectedDomainId: 123 });
-
-        const instance = result.instance();
-        result.setState = jest.fn();
-        instance._deleteDomain = jest.fn();
-
-        instance._handleCloseNotificationPopup(true);
-
-        expect(result.setState).toHaveBeenCalledWith({ message: '' });
-        expect(instance._deleteDomain).toHaveBeenCalledWith(123);
-    });
-
-    it('_handleDeleteDomain - should be called when click delete button', () => {
-        const props = Object.assign({}, defaultProps, { setShouldResetScrollPosition: jest.fn() });
-
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
-        const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
-
-        dataRow.find('Button').at(1).simulate('click');
-
-        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(wrapper.setState).toHaveBeenCalledWith({ 
-            message: `Are you sure you want to delete this specific domain setting?`, 
-            isConfirmPopup: true, 
-            selectedDomainId: 1 
+        it('should render table with correct props', () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            const table = wrapper.find(Table);
+            
+            expect(table.exists()).toBe(true);
+            expect(table.prop('minWidth')).toBe(1000);
+            expect(table.prop('autoWidth')).toBe(true);
+            expect(table.prop('bodyHeight')).toBe(300);
+            expect(table.prop('isPaging')).toBe(true);
+            expect(table.prop('shouldResetScrollPosition')).toBe(true);
         });
     });
 
-    it('_handleEditDomain - should be called when click edit button', () => {
-        const props = Object.assign({}, defaultProps, { 
-            setShouldResetScrollPosition: jest.fn(), 
-            setSelectedDomainId: jest.fn() 
+    describe('Event Handlers', () => {
+        it('should handle add new domain button click', () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            const addButton = wrapper.find(Button).first();
+            
+            addButton.simulate('click');
+            
+            expect(defaultProps.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
+            expect(defaultProps.setSelectedDomainId).toHaveBeenCalledWith(0);
         });
 
-        const wrapper = shallow(<Content {...props} />);
-        const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
-
-        dataRow.find('Button').at(0).simulate('click');
-
-        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setSelectedDomainId).toHaveBeenCalledWith(1);
-    });
-
-    it('_handleEditDomain - should be called when click add button', () => {
-        const props = Object.assign({}, defaultProps, { 
-            setShouldResetScrollPosition: jest.fn(), 
-            setSelectedDomainId: jest.fn() 
+        it('should handle edit domain button click', () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(mockGridData)}</div>);
+            const editButton = dataRow.find(Button).first();
+            
+            editButton.simulate('click');
+            
+            expect(defaultProps.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
+            expect(defaultProps.setSelectedDomainId).toHaveBeenCalledWith(1);
         });
 
-        const wrapper = shallow(<Content {...props} />);
-
-        wrapper.find('Button').at(0).simulate('click');
-
-        expect(props.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
-        expect(props.setSelectedDomainId).toHaveBeenCalledWith(0);
-    });
-
-    it('_deleteDomain - should call deleteDomain with delete successfully', async () => {
-        const expectedResult = { IsSuccessful: true, Message: "" };
-        const props = Object.assign({}, defaultProps, { 
-            toggleLoader: jest.fn(), 
-            fetchData: jest.fn(), 
-            deleteDomain: jest.fn(() => expectedResult) 
+        it('should handle delete domain button click', () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            wrapper.setState = jest.fn();
+            const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(mockGridData)}</div>);
+            const deleteButton = dataRow.find(Button).at(1);
+            
+            deleteButton.simulate('click');
+            
+            expect(defaultProps.setShouldResetScrollPosition).toHaveBeenCalledWith(false);
+            expect(wrapper.setState).toHaveBeenCalledWith({
+                message: 'Are you sure you want to delete this specific domain setting?',
+                isConfirmPopup: true,
+                selectedDomainId: 1
+            });
         });
-        const wrapper = shallow(<Content {...props} />);
 
-        await wrapper.instance()._deleteDomain(1);
-
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ SpecificDomainControlId: 1 });
-        expect(props.fetchData).toHaveBeenCalledWith('test');
-    });
-
-    it('_deleteDomain - should call deleteDomain with delete is failed', async () => {
-        const expectedResult = { IsSuccessful: false, Message: "Delete is failed!" };
-        const props = Object.assign({}, defaultProps, { 
-            toggleLoader: jest.fn(), 
-            deleteDomain: jest.fn(() => expectedResult) 
+        it('should handle notification popup close without confirmation', () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            wrapper.setState({ message: 'test message' });
+            wrapper.setState = jest.fn();
+            
+            wrapper.find(NotificationPopup).props().onClose(false);
+            
+            expect(wrapper.setState).toHaveBeenCalledWith({ message: '' });
         });
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
 
-        await wrapper.instance()._deleteDomain(1);
-
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ SpecificDomainControlId: 1 });
-        expect(wrapper.setState).toHaveBeenCalledWith({ 
-            message: "Delete is failed!", 
-            isConfirmPopup: false 
+        it('should handle notification popup close with confirmation', async () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            wrapper.setState({ selectedDomainId: 1 });
+            wrapper.setState = jest.fn();
+            const instance = wrapper.instance();
+            instance._deleteDomain = jest.fn();
+            
+            instance._handleCloseNotificationPopup(true);
+            
+            expect(wrapper.setState).toHaveBeenCalledWith({ message: '' });
+            expect(instance._deleteDomain).toHaveBeenCalledWith(1);
         });
     });
 
-    it('_deleteDomain - should call deleteDomain with error', async () => {
-        const props = Object.assign({}, defaultProps, { 
-            toggleLoader: jest.fn(), 
-            deleteDomain: jest.fn() 
+    describe('Domain Deletion', () => {
+        it('should handle successful domain deletion', async () => {
+            const mockResult = { IsSuccessful: true, Message: '' };
+            const props = {
+                ...defaultProps,
+                deleteSpecificDomain: jest.fn().mockResolvedValue(mockResult)
+            };
+            const wrapper = shallow(<Content {...props} />);
+            
+            await wrapper.instance()._deleteDomain(1);
+            
+            expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+            expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
+            expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
+            expect(props.deleteSpecificDomain).toHaveBeenCalledWith({ SpecificDomainControlId: 1 });
+            expect(props.fetchData).toHaveBeenCalledWith('test');
         });
-        const wrapper = shallow(<Content {...props} />);
-        wrapper.setState = jest.fn();
 
-        await wrapper.instance()._deleteDomain(1);
+        it('should handle failed domain deletion', async () => {
+            const mockResult = { IsSuccessful: false, Message: 'Delete failed' };
+            const props = {
+                ...defaultProps,
+                deleteSpecificDomain: jest.fn().mockResolvedValue(mockResult)
+            };
+            const wrapper = shallow(<Content {...props} />);
+            wrapper.setState = jest.fn();
+            
+            await wrapper.instance()._deleteDomain(1);
+            
+            expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+            expect(wrapper.setState).toHaveBeenCalledWith({
+                message: 'Delete failed',
+                isConfirmPopup: false
+            });
+        });
 
-        expect(props.toggleLoader).toHaveBeenCalledTimes(2);
-        expect(props.toggleLoader.mock.calls[0][0]).toBe(true);
-        expect(props.toggleLoader.mock.calls[1][0]).toBe(false);
-        expect(props.deleteDomain).toHaveBeenCalledWith({ SpecificDomainControlId: 1 });
-        expect(wrapper.setState).toHaveBeenCalledWith({"isConfirmPopup": false, "message": "An error occurred while deleting the domain"});
+        it('should handle domain deletion error', async () => {
+            const props = {
+                ...defaultProps,
+                deleteSpecificDomain: jest.fn().mockRejectedValue(new Error('API Error'))
+            };
+            const wrapper = shallow(<Content {...props} />);
+            wrapper.setState = jest.fn();
+            
+            await wrapper.instance()._deleteDomain(1);
+            
+            expect(props.toggleLoader).toHaveBeenCalledTimes(2);
+            expect(wrapper.setState).toHaveBeenCalledWith({
+                message: 'An error occurred while deleting the domain',
+                isConfirmPopup: false
+            });
+        });
+    });
+
+    describe('Paging', () => {
+        it('should handle paging changes', () => {
+            const wrapper = shallow(<Content {...defaultProps} />);
+            const table = wrapper.find(Table);
+            
+            table.prop('onPaging')(2, 20);
+            
+            expect(defaultProps.setPagingOption).toHaveBeenCalledWith({
+                PageIndex: 2,
+                PageSize: 20
+            });
+            expect(defaultProps.setParam).toHaveBeenCalledWith({
+                ...defaultProps.param,
+                PageIndex: 2,
+                PageSize: 20
+            });
+        });
     });
 }); 
