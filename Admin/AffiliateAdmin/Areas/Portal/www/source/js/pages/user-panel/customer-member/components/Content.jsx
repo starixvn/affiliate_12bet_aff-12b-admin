@@ -93,7 +93,7 @@ export class Content extends PureComponent {
                 <Cell title={firstName}>{firstName}</Cell>
                 <Cell title={lastName}>{lastName}</Cell>
                 {this.canViewMemberEmail && (<Cell title={email}>{email}</Cell>)}
-                <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
+                <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
         )

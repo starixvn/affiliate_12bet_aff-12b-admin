@@ -17,7 +17,7 @@ describe('customer member - components - Content', () => {
 
     const data = [
         {
-            CurrencyName: "TB",
+            Currency: "TB",
             Email: "",
             FirstName: "",
             LastName: "",
@@ -26,7 +26,7 @@ describe('customer member - components - Content', () => {
             UserName: "12BET$thongchart14"
         },
         {
-            CurrencyName: "RMB",
+            Currency: "RMB",
             Email: "",
             FirstName: "firstname_1271808",
             LastName: "lastname_1271808",

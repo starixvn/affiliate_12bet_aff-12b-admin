@@ -24,7 +24,7 @@ describe('customer member actions', () => {
             data: {
                 MainData: [
                     {
-                        CurrencyName: "GBP",
+                        Currency: "GBP",
                         Email: "",
                         FirstName: "firstname_1271808",
                         LastName: "lastname_1271808",
@@ -33,7 +33,7 @@ describe('customer member actions', () => {
                         UserName: "joeplumber"
                     },
                     {
-                        CurrencyName: "US$",
+                        Currency: "US$",
                         Email: "",
                         FirstName: "",
                         LastName: "",
