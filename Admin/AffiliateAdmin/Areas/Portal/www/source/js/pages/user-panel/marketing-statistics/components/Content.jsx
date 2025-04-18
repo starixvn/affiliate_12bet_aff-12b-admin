@@ -10,6 +10,7 @@ import { format } from '../../../../modules/numberFormat';
 export const Content = (props) => {
     const [gridData, setGridData] = useState(null);
     const [expandedChannels, setExpandedChannels] = useState({});
+    const [shouldResetScrollPosition, setShouldResetScrollPosition] = useState(true);
 
     useEffect(() => {
         _fetchData(props.param);
@@ -19,8 +20,11 @@ export const Content = (props) => {
         if (!param) return;
 
         props.toggleLoaderUserPanel(true);
+
         const data = await props.fetchData(param);
+
         setExpandedChannels({});
+        setShouldResetScrollPosition(true);
         setGridData(data);
         props.toggleLoaderUserPanel(false);
     }
@@ -30,6 +34,7 @@ export const Content = (props) => {
             ...prev,
             [channelName]: !prev[channelName]
         }));
+        setShouldResetScrollPosition(false);
     };
 
     const _calculateChannelTotal = (channelGroup) => {
@@ -125,6 +130,7 @@ export const Content = (props) => {
                     header={_renderHeader()}
                     body={_renderDataSection()}
                     containerPadding={10}
+                    shouldResetScrollPosition={shouldResetScrollPosition}
                 />
             </div>
         </div>

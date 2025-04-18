@@ -106,6 +106,7 @@ export class GridData extends PureComponent {
                 {mainHeader[reportKey.Status].isShowable && (<th width={80} rowSpan="2" title={headerText.Status}>{headerText.Status}</th>)}
                 {mainHeader[reportKey.PreferredLanguage].isShowable && <th header={true} colWidth={80} rowSpan="2" title={headerText.PreferredLanguage}>{headerText.PreferredLanguage}</th>}
                 {mainHeader[reportKey.PaymentCurrency].isShowable && (<th width={70} rowSpan="2" title={headerText.PaymentCurrency}>{headerText.PaymentCurrency}</th>)}
+                {mainHeader[reportKey.CommGroupName].isShowable && (<th width={100} rowSpan="2" title={headerText.CommGroupName}>{headerText.CommGroupName}</th>)}
                 {mainHeader[reportKey.TotalClick].isShowable && (<th width={60} rowSpan="2" title={headerText.TotalClick}>{headerText.TotalClick}</th>)}
                 {mainHeader[reportKey.UniqueClick].isShowable && (<th width={55} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</th>)}
                 {mainHeader[reportKey.Signup].isShowable && (<th width={55} rowSpan="2" title={headerText.Signup}>{headerText.Signup}</th>)}
@@ -227,14 +228,16 @@ export class GridData extends PureComponent {
         const subAffEarning = formatDecimal(dataItem.SubAffEarning);
         const totalEarning = formatDecimal(dataItem.TotalEarning);
         const paymentCurrency = isTotalRow ? '' : dataItem.PaymentCurrency;
-        const language = isMainView ? languageList[dataItem.PreferredLanguage] : "";
+        const language = isTotalRow || !isMainView ? '' : languageList[dataItem.PreferredLanguage];
         const status = isTotalRow ? '' : dataItem.Status;
+        const commGroupName = isTotalRow ? '' : dataItem.CommGroupName;
 
         return (
             <React.Fragment>
                 {header[reportKey.Status].isShowable && <td className="text-center" title={status}>{status}</td>}
                 {header[reportKey.PreferredLanguage].isShowable && <td title={language}>{language}</td>}
                 {header[reportKey.PaymentCurrency].isShowable && (<td className="text-center" title={paymentCurrency}>{paymentCurrency}</td>)}
+                {header[reportKey.CommGroupName].isShowable && (<td title={commGroupName}>{commGroupName}</td>)}
                 {header[reportKey.TotalClick].isShowable && (<td className="text-right" title={totalClick}>{totalClick}</td>)}
                 {header[reportKey.UniqueClick].isShowable && (<td className="text-right" title={uniqueClick}>{uniqueClick}</td>)}
                 {header[reportKey.Signup].isShowable && (<td className="text-right" title={signup}>{signup}</td>)}
@@ -343,7 +346,7 @@ export class GridData extends PureComponent {
     render() {
         const { gridData, total } = this.state;
         const maxHeight = getMaxHeight();
-        const style = this._isMainView() && !this.props.isCheckedDatePicker ? { minWidth: '2500px' } : {};
+        const style = !this.props.isCheckedDatePicker ? { minWidth: '2500px' } : {};
 
         return gridData && (
             <Fragment>

@@ -216,6 +216,7 @@ describe('affiliate report - GridData ', () => {
     it('_renderDataSection - should render correctly', () => {
         const dataList = [
             {
+                CommGroupName: 'CommGroupName',
                 ActivePlayer: 0,
                 QualifiedMember: 0,
                 AffAdjustment: 0,
@@ -254,6 +255,7 @@ describe('affiliate report - GridData ', () => {
     it('_renderDataSection - should render correctly with ProductIds equal allProduct', () => {
         const dataList = [
             {
+                CommGroupName: 'CommGroupName',
                 ActivePlayer: 0,
                 QualifiedMember: 0,
                 AffAdjustment: 0,
@@ -291,6 +293,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildDataRow - should render correctly is Main view', () => {
         const dataItem = {
+            CommGroupName: 'CommGroupName',
             ActivePlayer: 0,
             QualifiedMember: 0,
             AffAdjustment: 0,
@@ -329,6 +332,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildDataRow - should render correctly is Month on Month view', () => {
         const dataItem = {
+            CommGroupName: 'CommGroupName',
             ActivePlayer: 0,
             QualifiedMember: 0,
             AffAdjustment: 0,
@@ -367,6 +371,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildDataRow - should call handleViewMonthOnMonth when click button view', () => {
         const dataItem = {
+            CommGroupName: 'CommGroupName',
             ActivePlayer: 0,
             QualifiedMember: 0,
             AffAdjustment: 0,
@@ -429,6 +434,7 @@ describe('affiliate report - GridData ', () => {
 
     it('_buildCommonCell - should return correctly with correct paramaters', () => {
         const dataItem = {
+            CommGroupName: 'CommGroupName',
             ActivePlayer: 0,
             QualifiedMember: 0,
             AffAdjustment: 0,
@@ -514,6 +520,7 @@ describe('affiliate report - GridData ', () => {
         const total = 2;
         const dataList = [
             {
+                CommGroupName: 'CommGroupName',
                 ActivePlayer: 0,
                 QualifiedMember: 0,
                 AffAdjustment: 0,
@@ -541,6 +548,7 @@ describe('affiliate report - GridData ', () => {
                 Withdrawal: 0,
             },
             {
+                CommGroupName: 'CommGroupName',
                 ActivePlayer: 0,
                 QualifiedMember: 0,
                 AffAdjustment: 0,

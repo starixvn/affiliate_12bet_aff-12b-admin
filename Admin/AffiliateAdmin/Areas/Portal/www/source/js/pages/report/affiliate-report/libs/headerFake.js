@@ -30,6 +30,7 @@ const cols = [
     new SingleHeaderColumn(reportKey.Status, headerText[reportKey.Status], true),
     new SingleHeaderColumn(reportKey.PreferredLanguage, headerText[reportKey.PreferredLanguage], true),
     new SingleHeaderColumn(reportKey.PaymentCurrency, headerText[reportKey.PaymentCurrency], true),
+    new SingleHeaderColumn(reportKey.CommGroupName, headerText[reportKey.CommGroupName], true),
     new SingleHeaderColumn(reportKey.TotalClick, headerText[reportKey.TotalClick], true),
     new SingleHeaderColumn(reportKey.UniqueClick, headerText[reportKey.UniqueClick], true),
     new SingleHeaderColumn(reportKey.Signup, headerText[reportKey.Signup], true),

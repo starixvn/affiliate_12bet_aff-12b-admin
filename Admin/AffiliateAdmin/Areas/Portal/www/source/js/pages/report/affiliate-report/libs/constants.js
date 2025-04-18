@@ -56,6 +56,7 @@ export const reportKey = {
     Status: 'Status',
     PreferredLanguage: 'PreferredLanguage',
     PaymentCurrency: 'PaymentCurrency',
+    CommGroupName: 'CommGroupName',
     TotalClick: 'TotalClick',
     UniqueClick: 'UniqueClick',
     Signup: 'Signup',
@@ -96,6 +97,7 @@ export const headerText = {
     [reportKey.PreferredLanguage]: 'Language',
     [reportKey.MonthDateString]: 'Month',
     [reportKey.PaymentCurrency]: 'Linked Account Currency',
+    [reportKey.CommGroupName]: 'Revenue Group',
     [reportKey.TotalClick]: 'Total Click',
     [reportKey.UniqueClick]: 'Unique Click',
     [reportKey.Signup]: 'Signup',
@@ -136,6 +138,7 @@ export const headerConfig = {
     [reportKey.PreferredLanguage]: { label: headerText[reportKey.PreferredLanguage], isShowable: (claimPrincipal, isMainView) => isMainView },
     [reportKey.MonthDateString]: { label: headerText[reportKey.MonthDateString], isShowable: (claimPrincipal, isMainView) => !isMainView },
     [reportKey.PaymentCurrency]: { label: headerText[reportKey.PaymentCurrency], isShowable: (claimPrincipal, isMainView) => isMainView },
+    [reportKey.CommGroupName]: { label: headerText[reportKey.CommGroupName] },
     [reportKey.TotalClick]: { label: headerText[reportKey.TotalClick] },
     [reportKey.UniqueClick]: { label: headerText[reportKey.UniqueClick] },
     [reportKey.Signup]: { label: headerText[reportKey.Signup] },
@@ -169,7 +172,7 @@ export const headerConfig = {
             [reportKey.SubAffEarning]: { label: headerText[reportKey.SubAffEarning], isShowable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
             [reportKey.TotalEarning]: { label: headerText[reportKey.TotalEarning], isShowable: (claimPrincipal, isMainView, isCheckedDatePicker) => !isCheckedDatePicker },
             [reportKey.AffWithdrawal]: { label: headerText[reportKey.AffWithdrawal] },
-            [reportKey.AffAdjustment]: { label: headerText[reportKey.AffAdjustment], isShowable: (claimPrincipal, isMainView) => isMainView },
+            [reportKey.AffAdjustment]: { label: headerText[reportKey.AffAdjustment] },
             [reportKey.BalanceBf]: { label: headerText[reportKey.BalanceBf] },
             [reportKey.CurrentBBF]: { label: headerText[reportKey.CurrentBBF], isShowable: (claimPrincipal, isMainView) => isMainView }
         }

@@ -12,6 +12,11 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
     className="text-center"
   />
   <td
+    title="CommGroupName"
+  >
+    CommGroupName
+  </td>
+  <td
     className="text-right"
     title="1"
   >
@@ -181,6 +186,9 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
     />
     <td
       className="text-center"
+      title=""
+    />
+    <td
       title=""
     />
     <td
@@ -360,6 +368,9 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
       title=""
     />
     <td
+      title=""
+    />
+    <td
       className="text-right"
       title="1"
     >
@@ -533,6 +544,9 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
     />
     <td
       className="text-center"
+      title=""
+    />
+    <td
       title=""
     />
     <td
@@ -712,6 +726,9 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
       title=""
     />
     <td
+      title=""
+    />
+    <td
       className="text-right"
       title="0"
     >
@@ -880,7 +897,7 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
       responsiveTag="div"
       style={
         Object {
-          "minWidth": "2225px",
+          "minWidth": "2500px",
         }
       }
       tag="table"
@@ -919,6 +936,13 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             width={70}
           >
             Linked Account Currency
+          </th>
+          <th
+            rowSpan="2"
+            title="Revenue Group"
+            width={100}
+          >
+            Revenue Group
           </th>
           <th
             rowSpan="2"
@@ -1153,6 +1177,11 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             className="text-center"
           />
           <td
+            title="CommGroupName"
+          >
+            CommGroupName
+          </td>
+          <td
             className="text-right"
             title="0"
           >
@@ -1345,6 +1374,11 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             className="text-center"
           />
           <td
+            title="CommGroupName"
+          >
+            CommGroupName
+          </td>
+          <td
             className="text-right"
             title="1"
           >
@@ -1531,6 +1565,7 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           <td
             className="text-center"
           />
+          <td />
           <td
             className="text-right"
             title=""
@@ -1711,6 +1746,13 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       width={70}
     >
       Linked Account Currency
+    </th>
+    <th
+      rowSpan="2"
+      title="Revenue Group"
+      width={100}
+    >
+      Revenue Group
     </th>
     <th
       rowSpan="2"
@@ -1963,6 +2005,13 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
     </th>
     <th
       rowSpan="2"
+      title="Revenue Group"
+      width={100}
+    >
+      Revenue Group
+    </th>
+    <th
+      rowSpan="2"
       title="Total Click"
       width={60}
     >
@@ -2175,7 +2224,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
       responsiveTag="div"
       style={
         Object {
-          "minWidth": "2225px",
+          "minWidth": "2500px",
         }
       }
       tag="table"
@@ -2214,6 +2263,13 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
             width={70}
           >
             Linked Account Currency
+          </th>
+          <th
+            rowSpan="2"
+            title="Revenue Group"
+            width={100}
+          >
+            Revenue Group
           </th>
           <th
             rowSpan="2"
@@ -2432,7 +2488,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
         >
           <td
             className="text-center"
-            colSpan={33}
+            colSpan={34}
           >
             There is no information available
           </td>

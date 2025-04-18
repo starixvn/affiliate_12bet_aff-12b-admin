@@ -6,11 +6,11 @@ describe('affiliate report - Report Excel ', () => {
     const TITLE_ROW_INDEX = 0;
     const HEADER_ROW_INDEX = 1;
 
-    const INDEX_DEPOSIT_COLUMN = 12;
-    const COLSPAN_MEMBER_STATISTICS = 15;
-    const TOTAL_COLSPAN = 31;
-    const INDEX_COMM_COLUMN = 22;
-    const COLSPAN_AFFILIATE_STATISTICS = 12;
+    const INDEX_DEPOSIT_COLUMN = 13;
+    const COLSPAN_MEMBER_STATISTICS = 16;
+    const TOTAL_COLSPAN = 32;
+    const INDEX_COMM_COLUMN = 23;
+    const COLSPAN_AFFILIATE_STATISTICS = 13;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
@@ -48,6 +48,7 @@ describe('affiliate report - Report Excel ', () => {
         Withdrawal: 0,
     };
     const itemHaveNotDescription = {
+        CommGroupName: 'CommGroupName',
         ActivePlayer: 0,
         QualifiedMember: 0,
         AffAdjustment: 0,
@@ -252,7 +253,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Main view', () => {
-        const customTotalData = { CommissionRate: "N/A", PaymentCurrency: '', Status: '', UserName: "Total (all pages)" };
+        const customTotalData = { CommGroupName: '', CommissionRate: "N/A", PaymentCurrency: '', Status: '', UserName: "Total (all pages)" };
         const instance = new ReportExcel(data, title, isMainView, headerFake);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
@@ -278,7 +279,7 @@ describe('affiliate report - Report Excel ', () => {
     });
 
     it('_createTotalRow - should call _buildDataRow, Excel.getCellAddress with Month on Month view', () => {
-        const customTotalData = { CommissionRate: "N/A", EarningBy: "N/A", MonthDateString: "Total (all pages)" };
+        const customTotalData = { CommGroupName: '', CommissionRate: "N/A", EarningBy: "N/A", MonthDateString: "Total (all pages)" };
         const instance = new ReportExcel(data, title, !isMainView, headerFake);
         instance._buildDataRow = jest.fn();
         Excel.getCellAddress = jest.fn();
@@ -308,7 +309,7 @@ describe('affiliate report - Report Excel ', () => {
 
         Excel.getCellType = jest.fn();
 
-        const result = instance._buildDataRow(itemHaveDescription, MAIN_SECTION_STYLE, 3);
+        const result = instance._buildDataRow(itemHaveDescription, MAIN_SECTION_STYLE, 4);
 
         expect(Excel.getCellType).toHaveBeenCalledWith(0);
         expect(result).toEqual({ s: { numFmt: "#,##0" }, t: undefined, v: 0 });
@@ -331,6 +332,7 @@ describe('affiliate report - Report Excel ', () => {
             { field: "Status", mainSectionStyle: { alignment: { horizontal: "center", vertical: "center" } }, totalSectionStyle: { alignment: { horizontal: "center", vertical: "center" }, fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "PreferredLanguage", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" } }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
             { field: "PaymentCurrency", mainSectionStyle: { alignment: { horizontal: "center", vertical: "center" } }, totalSectionStyle: { alignment: { horizontal: "center", vertical: "center" }, fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 120 },
+            { field: "CommGroupName", mainSectionStyle: { alignment: { horizontal: "left", vertical: "center" } }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true } }, wpx: 150 },
             { field: "TotalClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "UniqueClick", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Signup", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },

@@ -77,5 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
         public string PreferredLanguage { get; set; }
 
         public string Status { get; set; }
+
+        public string CommGroupName { get; set; }
     }
 }
