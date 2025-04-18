@@ -251,8 +251,14 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
         name="deviceType"
         onChange={[Function]}
         type="select"
-        value={0}
+        value={-1}
       >
+        <option
+          key="deviceType--1"
+          value={-1}
+        >
+          All
+        </option>
         <option
           key="deviceType-0"
           value={0}

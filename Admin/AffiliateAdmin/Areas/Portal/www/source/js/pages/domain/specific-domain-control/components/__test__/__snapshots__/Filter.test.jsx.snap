@@ -28,7 +28,7 @@ exports[`specific domain control - components - Filter  render correctly 1`] = `
         Affiliate
       </Label>
       <Input
-        name="affName"
+        name="affUsername"
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"

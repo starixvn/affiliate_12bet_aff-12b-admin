@@ -6,17 +6,13 @@ import {
     setShouldResetScrollPosition,
     setGridData,
     fetchData,
+    setPagingOption,
     getSpecificDomainById,
     insertSpecificDomain,
     updateSpecificDomain,
     deleteSpecificDomain
 } from '../index';
-import {
-    SET_GRID_DATA,
-    SET_PARAM,
-    SET_SELECTED_SPECIFIC_DOMAIN_ID,
-    SHOULD_RESET_SCROLL_POSITION
-} from '../types';
+import * as types from '../types';
 
 jest.mock('../../../../../modules/ajaxRequest', () => ({
     post: jest.fn()
@@ -31,7 +27,7 @@ describe('Specific Domain Control Actions', () => {
         it('should create an action to set selected domain ID', () => {
             const data = '123';
             const expectedAction = {
-                type: SET_SELECTED_SPECIFIC_DOMAIN_ID,
+                type: types.SET_SELECTED_SPECIFIC_DOMAIN_ID,
                 data
             };
             expect(setSelectedDomainId(data)).toEqual(expectedAction);
@@ -40,7 +36,7 @@ describe('Specific Domain Control Actions', () => {
         it('should create an action to set param', () => {
             const data = { page: 1 };
             const expectedAction = {
-                type: SET_PARAM,
+                type: types.SET_PARAM,
                 data
             };
             expect(setParam(data)).toEqual(expectedAction);
@@ -49,7 +45,7 @@ describe('Specific Domain Control Actions', () => {
         it('should create an action to set should reset scroll position', () => {
             const data = true;
             const expectedAction = {
-                type: SHOULD_RESET_SCROLL_POSITION,
+                type: types.SHOULD_RESET_SCROLL_POSITION,
                 data
             };
             expect(setShouldResetScrollPosition(data)).toEqual(expectedAction);
@@ -58,7 +54,7 @@ describe('Specific Domain Control Actions', () => {
         it('should create an action to set grid data', () => {
             const data = [{ id: 1 }];
             const expectedAction = {
-                type: SET_GRID_DATA,
+                type: types.SET_GRID_DATA,
                 data
             };
             expect(setGridData(data)).toEqual(expectedAction);
@@ -73,18 +69,18 @@ describe('Specific Domain Control Actions', () => {
         it('should fetch data successfully', async () => {
             const mockResponse = {
                 status: 200,
-                data: [{ id: 1 }]
+                data: { MainData: [], TotalItem: 0 }
             };
             post.mockResolvedValueOnce(mockResponse);
 
             const dispatch = jest.fn();
-            const param = { page: 1 };
+            const param = { page: 1, PageIndex: 1, PageSize: 20 };
 
             await fetchData(param)(dispatch);
 
             expect(dispatch).toHaveBeenCalledWith(toggleLoader(true));
             expect(post).toHaveBeenCalledWith('Portal/SpecificDomainControl/GetSpecificDomainControlList', param);
-            expect(dispatch).toHaveBeenCalledWith(setGridData(mockResponse.data));
+            expect(dispatch).toHaveBeenCalledWith(setPagingOption({ TotalItem: 0, PageIndex: 1, PageSize: 20 }));
             expect(dispatch).toHaveBeenCalledWith(setShouldResetScrollPosition(true));
             expect(dispatch).toHaveBeenCalledWith(toggleLoader(false));
         });

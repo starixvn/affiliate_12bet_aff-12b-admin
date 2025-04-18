@@ -93,12 +93,7 @@ exports[`affiliate info - GridData  _buildDataRow - should render correctly with
       className="text-right"
       title="6"
     >
-      <a
-        href="/Portal/Player?AffName=12BETAFF001"
-        target="_top"
-      >
-        6
-      </a>
+      6
     </td>
     <td
       className="text-center"
@@ -432,12 +427,7 @@ exports[`affiliate info - GridData  should render correctly 1`] = `
             className="text-right"
             title="6"
           >
-            <a
-              href="/Portal/Player?AffName=12BETAFF001"
-              target="_top"
-            >
-              6
-            </a>
+            6
           </td>
           <td
             className="text-center"
@@ -544,12 +534,7 @@ exports[`affiliate info - GridData  should render correctly 1`] = `
             className="text-right"
             title="6"
           >
-            <a
-              href="/Portal/Player?AffName=12BETAFF001"
-              target="_top"
-            >
-              6
-            </a>
+            6
           </td>
           <td
             className="text-center"
@@ -689,12 +674,7 @@ exports[`affiliate info - GridData  should render correctly with _renderDataSect
       className="text-right"
       title="6"
     >
-      <a
-        href="/Portal/Player?AffName=12BETAFF001"
-        target="_top"
-      >
-        6
-      </a>
+      6
     </td>
     <td
       className="text-center"
@@ -807,12 +787,7 @@ exports[`affiliate info - GridData  should render correctly with _renderDataSect
       className="text-right"
       title="6"
     >
-      <a
-        href="/Portal/Player?AffName=12BETAFF001"
-        target="_top"
-      >
-        6
-      </a>
+      6
     </td>
     <td
       className="text-center"

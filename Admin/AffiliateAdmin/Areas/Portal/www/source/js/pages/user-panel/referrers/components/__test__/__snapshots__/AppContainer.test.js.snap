@@ -15,6 +15,11 @@ exports[`referrers - components - AppContainer render correctly 1`] = `
           "isActive": false,
           "title": "Landing Pages",
         },
+        Object {
+          "handleClick": [Function],
+          "isActive": false,
+          "title": "Marketing Page",
+        },
       ]
     }
   />

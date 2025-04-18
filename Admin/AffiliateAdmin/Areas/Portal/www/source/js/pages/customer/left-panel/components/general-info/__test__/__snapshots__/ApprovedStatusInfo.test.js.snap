@@ -72,28 +72,6 @@ exports[`left panel - components - general-info - ApprovedStatusInfo render corr
     }
   >
     <Col
-      sm={6}
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-    >
-      <a
-        href="/Portal/Player?AffName=12BETAFF226"
-        target="_top"
-      >
-        Player List
-      </a>
-    </Col>
-    <Col
-      className="text-right"
-      sm={6}
       tag="div"
       widths={
         Array [

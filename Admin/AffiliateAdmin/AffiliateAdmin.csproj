@@ -295,6 +295,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\actions\types.js" />

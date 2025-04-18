@@ -1,8 +1,9 @@
 import * as types from '../../actions/types';
+import { defaultPagingOption } from '../../../../../modules/constants';
 import reducers, { 
     shouldResetScrollPosition, 
     gridData, 
-    param, 
+    param,
     selectedDomainId 
 } from '../index';
 
@@ -108,6 +109,7 @@ describe('specific domain control - reducers', () => {
                 shouldResetScrollPosition: true,
                 gridData: null,
                 param: null,
+                pagingOption: defaultPagingOption,
                 selectedDomainId: null,
                 isShowLoader: false
             });
@@ -147,6 +149,7 @@ describe('specific domain control - reducers', () => {
                 shouldResetScrollPosition: false,
                 gridData: [{ id: 1 }],
                 param: { key: 'value' },
+                pagingOption: defaultPagingOption,
                 selectedDomainId: 123,
                 isShowLoader: false
             });

@@ -50,6 +50,11 @@ describe('customer - mainpage reducer', () => {
             isShowLoader: false,
             isValidUserName: true,
         },
+        marketingStatistics: {
+            languageCodeList: {},
+            pagingOption: defaultPagingOption,
+            param: null,
+        },
         member: {
             pagingOption: defaultPagingOption,
             param: null,
@@ -103,6 +108,7 @@ describe('customer - mainpage reducer', () => {
             showIdList: {},
         },
     }
+
     it(`should handle rootReducer reducer`, () => {
         const expectResult = Object.assign({}, expectedResult, { isShowLoaderUserPanel: true, })
         const state = { today: '6/27/2019' };
