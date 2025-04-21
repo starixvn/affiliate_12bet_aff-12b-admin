@@ -6,6 +6,7 @@
     TotalQualified: 'Total Qualified Players',
     TotalSubAff: "Total Sub-Affiliates",
     TotalDeposits: "Total Deposits/FDM's Deposit",
+    TotalFDMTotalDeposit: "FDM's Total Deposit",
     Turnover: "Turnover",
     Ggr: "GGR",
     TrackingRatePC: "Tracking Rate for PC/Laptop (Unique/Total)",

@@ -112,6 +112,7 @@ export class GridData extends PureComponent {
                 {mainHeader[reportKey.Signup].isShowable && (<th width={55} rowSpan="2" title={headerText.Signup}>{headerText.Signup}</th>)}
                 {mainHeader[reportKey.Fdm].isShowable && (<th width={55} rowSpan="2" title={headerText.Fdm}>{headerText.Fdm}</th>)}
                 {mainHeader[reportKey.Fdm_Amount].isShowable && (<th width={65} rowSpan="2" title={headerText.Fdm_Amount}>{headerText.Fdm_Amount}</th>)}
+                {mainHeader[reportKey.FDMTotalDeposit].isShowable && (<th width={65} rowSpan="2" title={headerText.FDMTotalDeposit}>{headerText.FDMTotalDeposit}</th>)}
                 {mainHeader[reportKey.ActivePlayer].isShowable && (<th width={55} rowSpan="2" title={headerText.ActivePlayer}>{headerText.ActivePlayer}</th>)}
                 {mainHeader[reportKey.QualifiedMember].isShowable && (<th width={55} rowSpan="2" title={headerText.QualifiedMember}>{headerText.QualifiedMember}</th>)}
                 {mainHeader[reportKey.NoOfSubAff].isShowable && (<th width={65} rowSpan="2" title={headerText.NoOfSubAff}>{headerText.NoOfSubAff}</th>)}
@@ -204,6 +205,7 @@ export class GridData extends PureComponent {
         const signup = format(dataItem.Signup);
         const fdm = format(dataItem.Fdm);
         const fdmAmt = formatDecimal(dataItem.Fdm_Amount);
+        const fdmTotalDeposit = formatDecimal(dataItem.FDMTotalDeposit);
         const activeMember = format(dataItem.ActivePlayer);
         const qualifiedMember = format(dataItem.QualifiedMember);
         const noOfSubAff = format(dataItem.NoOfSubAff);
@@ -243,6 +245,7 @@ export class GridData extends PureComponent {
                 {header[reportKey.Signup].isShowable && (<td className="text-right" title={signup}>{signup}</td>)}
                 {header[reportKey.Fdm].isShowable && (<td className="text-right" title={fdm}>{fdm}</td>)}
                 {header[reportKey.Fdm_Amount].isShowable && (<td className="text-right" title={fdmAmt}>{fdmAmt}</td>)}
+                {header[reportKey.FDMTotalDeposit].isShowable && (<td className="text-right" title={fdmTotalDeposit}>{fdmTotalDeposit}</td>)}
                 {header[reportKey.ActivePlayer].isShowable && (<td className="text-right" title={activeMember}>{activeMember}</td>)}
                 {header[reportKey.QualifiedMember].isShowable && (<td className="text-right" title={qualifiedMember}>{qualifiedMember}</td>)}
                 {header[reportKey.NoOfSubAff].isShowable && (<td className="text-right" title={noOfSubAff}>{noOfSubAff}</td>)}
