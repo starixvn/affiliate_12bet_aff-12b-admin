@@ -47,6 +47,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         public int AffType { get; set; }
 
         public string PreferredLanguage { get; set; }
+        
+        [CensoredPermissionCheck(Function.AffTargetCountry)]
+        public string TargetCountryName { get; set; }
 
         [CensoredPermissionCheck(Function.AffPersonalInfo)]
         public string Phone { get; set; }

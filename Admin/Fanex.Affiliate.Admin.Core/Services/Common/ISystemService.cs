@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
@@ -16,5 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         IEnumerable<Currency> GetCurrencies();
 
         IEnumerable<Currency> GetPaymentCurrencies();
+
+        IEnumerable<TargetCountry> GetTargetCountries();
     }
 }

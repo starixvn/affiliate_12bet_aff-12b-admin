@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using System.Collections.Generic;
 
@@ -10,6 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
         public IEnumerable<NormalCommGroup> CommGroupList { get; set; }
 
         public IEnumerable<Language> LanguageList { get; set; }
+
+        public IEnumerable<TargetCountry> TargetCountryList { get; set; }
 
         public int SelectedGroupId { get; set; }
 

@@ -45,6 +45,7 @@ export const resource = {
     Disabled: 'Disabled',
     Unlimited: 'Unlimited',
     TransferBalanceForPlayer: 'Transfer Balance For Player',
+    TargetCountry: 'Target Country',
 }
 
 export const messages = {

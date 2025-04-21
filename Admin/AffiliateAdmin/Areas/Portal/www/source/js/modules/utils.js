@@ -110,6 +110,20 @@ export const isValidNumber = (inputValue) => {
     return regex.test(inputValue);
 }
 
+export const convertArrayToObjectProps = (array, key, value) => {
+    if (!Array.isArray(array) || !array.length) {
+        return {};
+    }
+
+    return array.reduce((result, item) => {
+        if (item && typeof item === 'object' && key in item && value in item) {
+            const keyValue = item[key];
+            result[keyValue] = item[value];
+        }
+        return result;
+    }, {});
+}
+
 export const convertListToMutilpleSelected = (initialList, key, name, checked = true) => {
     return initialList ? initialList.map(item => {
         return {

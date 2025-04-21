@@ -16,6 +16,8 @@
 
         public const string PaymentCurrencyList = "Aff.12B.Admin.PaymentCurrencyList";
 
+        public const string TargetCountryList = "Aff.12B.Admin.TargetCountryList";
+
         public const string TokenExtApi = "Aff.12B.Admin.TokenExtApi";
     }
 }

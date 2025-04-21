@@ -10,9 +10,10 @@ import ContactApp from './general-info/ContactApp';
 import ApprovedStatusInfo from './general-info/ApprovedStatusInfo';
 import { setAffName } from '../actions';
 import { getAffiliateInfo } from '../../mainpage/actions/loadingDataAction';
+import { claimResource } from '../../../../modules/claim';
 
 export const GeneralInfo = (props) => {
-    const { affiliateInfo } = props;
+    const { affiliateInfo, claimsPrincipal } = props;
     const status = affiliateInfo.Status.toLowerCase();
     const isApproved = status === statusForSuspend.Approved || status === statusForSuspend.Suspended;
     const siteUrl = htmlDecode(affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl);
@@ -67,6 +68,14 @@ export const GeneralInfo = (props) => {
                 <Col sm={5}>{resource.ApprovedBy}</Col>
                 <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.ApprovedBy) || 'N/A'}</Col>
             </Row>
+            {
+                claimsPrincipal.hasReadClaim(claimResource.AffTargetCountry) && (
+                    <Row>
+                        <Col sm={5}>{resource.TargetCountry}</Col>
+                        <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.TargetCountryName)}</Col>
+                    </Row>
+                )
+            }
             <Row>
                 <Col sm={5}>{resource.Language}</Col>
                 <Col sm={7} className='text-right text-primary'><Language /></Col>
@@ -98,9 +107,9 @@ export const GeneralInfo = (props) => {
     )
 }
 
-function mapStateToProps({ leftPanel }) {
+function mapStateToProps({ leftPanel, claimsPrincipal }) {
     const { affiliateInfo } = leftPanel;
-    return Object.assign({}, { affiliateInfo });
+    return Object.assign({}, { affiliateInfo, claimsPrincipal });
 }
 
 function mapDispatchToProps(dispatch) {

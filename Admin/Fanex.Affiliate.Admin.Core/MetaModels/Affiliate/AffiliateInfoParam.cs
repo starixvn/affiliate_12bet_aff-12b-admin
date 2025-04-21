@@ -11,6 +11,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string GroupIds { get; set; }
 
+        public string TargetCountryCode { get; set; }
+
         public string Language { get; set; }
 
         public string Status { get; set; }
