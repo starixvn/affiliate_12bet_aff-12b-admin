@@ -22,5 +22,3 @@ export default class App extends React.PureComponent {
         );
     }
 }
-
-ReactDOM.render(<App />, document.getElementById("root"));

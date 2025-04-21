@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var param = new InsertUpdateLandingPageParam { PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
             var landingPageService = new Mock<ILandingPageService>();
-            landingPageService.Setup(s => s.InsertLandingPage(It.IsAny<InsertUpdateLandingPageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
+            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), true)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
             // Action
@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var param = new InsertUpdateLandingPageParam { PageId = 123, PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
             var landingPageService = new Mock<ILandingPageService>();
-            landingPageService.Setup(s => s.UpdateLandingPage(It.IsAny<InsertUpdateLandingPageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
+            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), false)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
             // Action
@@ -177,13 +177,14 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private LandingPageListController CreateLandingPageListController(
         ISessionService sessionService = null,
-        ILandingPageService landingPageService = null
+        ILandingPageService landingPageService = null,
+        ISystemService systemService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLandingPageService = landingPageService ?? Mock.Of<ILandingPageService>();
-
-            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService);
+            var fakeSystemService = systemService ?? Mock.Of<ISystemService>();
+            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeSystemService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

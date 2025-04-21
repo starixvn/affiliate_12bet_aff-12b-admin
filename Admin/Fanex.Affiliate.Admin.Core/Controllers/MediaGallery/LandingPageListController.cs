@@ -1,11 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
-using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
@@ -14,22 +12,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     public class LandingPageListController : ReadOnlySessionBaseController
     {
         private readonly ILandingPageService _landingPageService;
+        private readonly ISystemService _systemService;
 
-        public LandingPageListController(ISessionService sessionService, ILandingPageService landingPageService) : base(sessionService)
+        public LandingPageListController(
+            ISessionService sessionService,
+            ILandingPageService landingPageService,
+            ISystemService systemService) : base(sessionService)
         {
             _landingPageService = landingPageService;
+            _systemService = systemService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery") },
-                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList"), IsActive = true }
-            };
-
-            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml", subMenu);
+            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
         }
 
         [HttpPost]
@@ -48,18 +45,24 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        public ActionResult GetTargetCountryList()
+        {
+            return GenerateJsonNetResult(_systemService.GetTargetCountries());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetTargetCountryListByLandingPage(int pageId)
+        {
+            return GenerateJsonNetResult(_landingPageService.GetExcludedTargetCountryList(pageId));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult InsertLandingPage(InsertUpdateLandingPageParam param)
         {
-            if (ModelState.IsValid)
-            {
-                var encodeParam = EncodeParam(param);
-                AssignUserInfoParam(encodeParam);
-
-                return GenerateJsonNetResult(_landingPageService.InsertLandingPage(encodeParam));
-            }
-
-            return GenerateModelStateErrResult();
+            return HandleSaveLandingPage(param, true);
         }
 
         [HttpPost]
@@ -67,15 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
-            if (ModelState.IsValid)
-            {
-                var encodeParam = EncodeParam(param);
-                AssignUserInfoParam(encodeParam);
-
-                return GenerateJsonNetResult(_landingPageService.UpdateLandingPage(encodeParam));
-            }
-
-            return GenerateModelStateErrResult();
+            return HandleSaveLandingPage(param);
         }
 
         [HttpPost]
@@ -93,11 +88,30 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             return GenerateModelStateErrResult();
         }
 
+        private ActionResult HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false)
+        {
+            if (!TargetCountryHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, _systemService.GetTargetCountries()))
+            {
+                return GenerateErrResult("The target country's info is invalid!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var encodeParam = EncodeParam(param);
+                AssignUserInfoParam(encodeParam);
+
+                return GenerateJsonNetResult(_landingPageService.HandleSaveLandingPage(encodeParam, isInsert));
+            }
+
+            return GenerateModelStateErrResult();
+        }
+
         private InsertUpdateLandingPageParam EncodeParam(InsertUpdateLandingPageParam param)
         {
             return new InsertUpdateLandingPageParam
             {
                 PageId = param.PageId,
+                ExcludedTargetCountries = Server.HtmlEncode(param.ExcludedTargetCountries),
                 PageName = Server.HtmlEncode(param.PageName),
                 PageCode = Server.HtmlEncode(param.PageCode)
             };

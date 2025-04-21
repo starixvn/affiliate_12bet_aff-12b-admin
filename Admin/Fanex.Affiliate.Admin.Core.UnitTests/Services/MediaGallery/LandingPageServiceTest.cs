@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
-            var result = service.InsertLandingPage(param);
+            var result = service.HandleSaveLandingPage(param, true);
 
             // Assert
             dynamicRepository.Verify(d => d.Execute(It.Is<InsertLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService();
 
             // Action
-            var result = service.InsertLandingPage(param);
+            var result = service.HandleSaveLandingPage(param, true);
 
             // Assert
             Assert.False(result.IsSuccessful);
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService(dynamicRepository.Object);
 
             // Action
-            var result = service.UpdateLandingPage(param);
+            var result = service.HandleSaveLandingPage(param);
 
             // Assert
             dynamicRepository.Verify(d => d.Execute(It.Is<UpdateLandingPageCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             var service = CreateLandingPageService();
 
             // Action
-            var result = service.UpdateLandingPage(param);
+            var result = service.HandleSaveLandingPage(param);
 
             // Assert
             Assert.False(result.IsSuccessful);

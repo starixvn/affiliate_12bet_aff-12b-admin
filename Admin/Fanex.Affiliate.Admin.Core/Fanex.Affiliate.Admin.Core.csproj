@@ -391,6 +391,7 @@
     <Compile Include="Criterias\MediaGallery\BannerCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BannerDetailCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BaseBannerCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\ExcludedTargetCountryCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\LandingPageCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\MediaCategoryCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\MediaSizeCriteria.cs" />
@@ -745,6 +746,7 @@
     <Compile Include="Utilities\RegexHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="Utilities\SystemFile.cs" />
+    <Compile Include="Utilities\TargetCountryHelper.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\Report\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />

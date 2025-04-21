@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Auth;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Moq;
@@ -250,7 +249,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
             var fakeIauthService = authService ?? Mock.Of<IAuthService>();
             var fakeIAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
             var systemService = new Mock<ISystemService>();
-            var commGroupCommonService = new Mock<ICommGroupCommonService>();
 
             systemService.Setup(p => p.GetProductList()).Returns(new List<Product>
             {
@@ -259,7 +257,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 new Product { ProductId = 3 }
             });
 
-            return new CommGroupValidation(fakeIauthService, fakeIAffiliateService, systemService.Object, commGroupCommonService.Object);
+            return new CommGroupValidation(fakeIauthService, fakeIAffiliateService, systemService.Object);
         }
         private static CommGroupSettingParam CreateValidCommGroupSettingParam()
         {

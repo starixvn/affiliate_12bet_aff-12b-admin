@@ -45,12 +45,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         public ActionResult Index(BannerParamFromHome param)
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.BannerList, Url = Url.Content("~/Portal/MediaGallery"), IsActive = true },
-                new SubMenu { Name = Lang.LandingPageList, Url = Url.Content("~/Portal/LandingPageList") }
-            };
-
             var sizeParam = new SizeParam
             {
                 UserType = param.UserType
@@ -70,7 +64,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 SizeList = _bannerListService.GetSizeList(sizeParam),
                 AffTypeList = _affTypeService.GetAffTypeList(),
                 BannerRootUrl = _appSetting.BannerRootUrl,
-                SubMenuList = subMenu,
                 Param = param
             };
 

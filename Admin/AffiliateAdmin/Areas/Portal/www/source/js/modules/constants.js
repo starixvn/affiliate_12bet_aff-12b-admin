@@ -46,3 +46,9 @@ export const deviceTypesHasAll = {
     [pcLaptop]: 0,
     [mobile]: 1
 }
+
+export const targetCountryStatus = {
+    Normal: 0,
+    Blocked: 1,
+    Excluded: 1
+}

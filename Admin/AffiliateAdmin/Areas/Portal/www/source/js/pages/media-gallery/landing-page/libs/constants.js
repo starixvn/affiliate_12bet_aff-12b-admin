@@ -4,13 +4,15 @@ export { globalResource };
 
 export const headerText = {
     Index: '#',
+    ExcludeTargetCountry: 'Exclude Target Country',
     LandingPageName: 'Landing Page Name (Shown in dropdown)',
     LandingPageCode: 'Landing Page Code (Contained in links)'
 }
 
 export const defaultState = {
-    pageName: '',
-    pageCode: '',
+    isExcludedAllTargetCountries: false,
+    selectedLandingPage: { pageName: '', pageCode: '', excludedTargetCountries: '' },
+    targetCountryList: null,
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,

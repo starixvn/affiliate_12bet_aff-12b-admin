@@ -4,7 +4,6 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services.Auth;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using System;
 using System.Collections.Generic;
@@ -19,18 +18,15 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.CommGroup
         private readonly IAuthService _authService;
         private readonly IAffiliateService _affiliateService;
         private readonly ISystemService _systemService;
-        private readonly ICommGroupCommonService _commGroupCommonService;
 
         public CommGroupValidation(
             IAuthService authService,
             IAffiliateService affiliateService,
-            ISystemService systemService,
-            ICommGroupCommonService commGroupCommonService)
+            ISystemService systemService)
         {
             _authService = authService;
             _affiliateService = affiliateService;
             _systemService = systemService;
-            _commGroupCommonService = commGroupCommonService;
         }
 
         public bool HasPermissionAssignOnAff(int userId, int affId)
