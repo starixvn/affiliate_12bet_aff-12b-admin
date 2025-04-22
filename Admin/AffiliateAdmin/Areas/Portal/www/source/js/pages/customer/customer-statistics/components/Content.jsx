@@ -84,7 +84,7 @@ export class Content extends PureComponent {
         const TotalFDMAmountByMonth = formatDecimalWithCurrencySymbol(data.TotalFDMAmountByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
         const TotalFDMAmount = formatDecimalWithCurrencySymbol(data.TotalFDMAmount);
-        const TotalFDMTotalDepositByMonth = formatDecimalWithCurrencySymbol(data.TotalFDMTotalDepositByMonth);
+        const TotalFDMTotalDepositByMonth = formatDecimalWithCurrencySymbol(data.FDM_TotalDepositByMonth);
         const TurnoverByMonth = formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
         const TurnoverTotal = formatDecimalWithCurrencySymbol(data.TurnoverTotal);
         const GgrByMonth = formatDecimalWithCurrencySymbol(data.GgrByMonth);

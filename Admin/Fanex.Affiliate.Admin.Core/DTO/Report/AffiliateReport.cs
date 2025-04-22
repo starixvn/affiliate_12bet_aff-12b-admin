@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public decimal Fdm_Amount { get; set; }
 
-        public decimal FDMTotalDeposit { get; set; }
+        public decimal FDM_TotalDeposit { get; set; }
 
         public int ActivePlayer { get; set; }
 

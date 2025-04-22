@@ -71,6 +71,11 @@ const colConfig =
         [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
         [COL_WIDTH]: 120
     },
+    [fields.FDM_TotalDeposit]: {
+        [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+        [TOTAL_SECTION_STYLE]: totalCellStyle.decimal,
+        [COL_WIDTH]: 120
+    },
     [fields.ActivePlayer]: {
         [MAIN_SECTION_STYLE]: bodyCellStyle.number,
         [TOTAL_SECTION_STYLE]: totalCellStyle.number,

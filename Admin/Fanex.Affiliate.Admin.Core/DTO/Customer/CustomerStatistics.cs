@@ -20,7 +20,7 @@
 
         public decimal TotalFDMAmount { get; set; }
 
-        public decimal TotalFDMTotalDepositByMonth { get; set; }
+        public decimal FDM_TotalDepositByMonth { get; set; }
 
         public decimal TurnoverByMonth { get; set; }
 
