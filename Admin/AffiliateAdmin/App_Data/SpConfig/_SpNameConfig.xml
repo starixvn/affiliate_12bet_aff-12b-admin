@@ -18,5 +18,8 @@
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateControl_Ins" Suffix="_xtest"></item>
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateControl_Upd" Suffix="_xtest"></item>
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateControl_Del" Suffix="_xtest"></item>
+  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LandingPage_Ins" Suffix="_xtest"></item>
+  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LandingPage_Sel" Suffix="_xtest"></item>
+  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LandingPage_Upd" Suffix="_xtest"></item>
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_LandingPage_ExcludedTargetCountry_Sel" Suffix="_xtest"></item>
 </Root>

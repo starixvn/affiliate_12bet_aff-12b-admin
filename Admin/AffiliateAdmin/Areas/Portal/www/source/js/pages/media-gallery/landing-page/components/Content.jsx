@@ -34,9 +34,11 @@ export const Content = (props) => {
         const dataRows = [];
 
         if (dataList.length) {
+            const { targetCountryList } = props;
+
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(_buildDataRow(dataItem, i + 1));
+                dataRows.push(_buildDataRow(dataItem, i + 1, targetCountryList));
             }
         }
         else {
@@ -48,10 +50,10 @@ export const Content = (props) => {
         return dataRows;
     }
 
-    function _buildDataRow(dataItem, index) {
+    function _buildDataRow(dataItem, index, targetCountryList) {
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
-        const excludedTargetCountries = htmlDecode(dataItem.ExcludedTargetCountries).split(',').join(', ');
+        const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').map(t => targetCountryList[t]).join(', ');
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -62,7 +64,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
-                <Cell className="text-left" title={excludedTargetCountries}>{excludedTargetCountries}</Cell>
+                <Cell className="text-left" title={blockTargetCountry}>{blockTargetCountry}</Cell>
                 <Cell className="text-center" title="Edit Landing Page">
                     <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>
                         <span className="oi oi-pencil text-secondary"></span>
@@ -89,8 +91,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData });
+function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData, targetCountryList }) {
+    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData, targetCountryList });
 }
 
 function mapDispatchToProps(dispatch) {

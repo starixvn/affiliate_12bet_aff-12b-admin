@@ -6,7 +6,6 @@
     using Extensions;
     using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-    using Fanex.Affiliate.Admin.Core.Resources;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
     using Newtonsoft.Json;
@@ -27,21 +26,11 @@
             _domainService = domainService;
         }
 
-        public ActionResult Index(bool isAffDomain = true)
+        public virtual ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true"), IsActive = isAffDomain },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false"), IsActive = !isAffDomain },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") },
-                new SubMenu { Name = Lang.SubAffiliateDomain, Url = Url.Content("~/Portal/SubAffDomain") },
-                new SubMenu { Name = Lang.SpecificDomainControl, Url = Url.Content("~/Portal/SpecificDomainControl") }
-            };
-
             var model = new DomainViewModel
             {
-                SubMenuList = subMenu,
-                IsAffDomain = isAffDomain
+                IsAffDomain = true
             };
 
             return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);

@@ -83,6 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             command.PageCode = param.PageCode;
             command.PageName = param.PageName;
+            command.BlockTargetCountry = param.BlockTargetCountry;
             command.UserId = param.UserId;
             command.Ip = param.Ip;
         }

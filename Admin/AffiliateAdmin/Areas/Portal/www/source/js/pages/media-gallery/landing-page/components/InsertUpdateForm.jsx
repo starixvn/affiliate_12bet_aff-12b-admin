@@ -1,13 +1,13 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ExcludedTargetCountryFormGroup from '../../../common/components/ExcludedTargetCountryFormGroup';
+import BlockedTargetCountryFormGroup from '../../../common/components/BlockedTargetCountryFormGroup';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback } from 'reactstrap';
 import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryList, getTargetCountryListByLandingPage } from '../actions/index';
 import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
-import { getExcludedTargetCountryList, checkExcludedAllTargetCountries } from '../../../common/modules/utils/targetcountry';
+import { getBlockedTargetCountryList, checkBlockedAllTargetCountries } from '../../../common/modules/utils/targetcountry';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class InsertUpdateForm extends PureComponent {
@@ -40,7 +40,7 @@ export class InsertUpdateForm extends PureComponent {
         if (pageId === 0) {
             const visibleTargetCountryList = await this.props.getTargetCountryList();
 
-            this.setState({ isInsert: true, selectedLandingPage: { pageName: '', pageCode: '', excludedTargetCountries: '' }, targetCountryList: visibleTargetCountryList });
+            this.setState({ isInsert: true, selectedLandingPage: { pageName: '', pageCode: '', blockTargetCountry: '' }, targetCountryList: visibleTargetCountryList });
         } else {
             const landingPage = await this.props.getLandingPageDetail(pageId);
 
@@ -51,12 +51,12 @@ export class InsertUpdateForm extends PureComponent {
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
                 if (targetCountryList && targetCountryList.length) {
-                    const excludedTargetCountryList = getExcludedTargetCountryList(targetCountryList);
-                    const isExcludedAllTargetCountries = checkExcludedAllTargetCountries(targetCountryList, excludedTargetCountryList);
+                    const blockedTargetCountryList = getBlockedTargetCountryList(targetCountryList);
+                    const isBlockedAllTargetCountries = checkBlockedAllTargetCountries(targetCountryList, blockedTargetCountryList);
 
-                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, excludedTargetCountries: excludedTargetCountryList.join(',') }, targetCountryList, isExcludedAllTargetCountries });
+                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: blockedTargetCountryList.join(',') }, targetCountryList, isBlockedAllTargetCountries });
                 } else {
-                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, excludedTargetCountries: '' } });
+                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: '' } });
                 }
             }
         }
@@ -73,11 +73,11 @@ export class InsertUpdateForm extends PureComponent {
         this.setState({ selectedLandingPage: newPage });
     }
 
-    handleChangeTargetCountry = (isExcludedAllTargetCountries, excludedTargetCountries, newTargetCountryList) => {
+    handleChangeTargetCountry = (isBlockedAllTargetCountries, blockTargetCountry, newTargetCountryList) => {
         const { selectedLandingPage } = this.state;
-        const newPage = Object.assign({}, selectedLandingPage, { excludedTargetCountries });
+        const newPage = Object.assign({}, selectedLandingPage, { blockTargetCountry });
 
-        this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList, isExcludedAllTargetCountries });
+        this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList, isBlockedAllTargetCountries });
     }
 
     _validatePageCode() {
@@ -168,7 +168,7 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isExcludedAllTargetCountries } = this.state;
+        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isBlockedAllTargetCountries } = this.state;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
         const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
@@ -203,10 +203,10 @@ export class InsertUpdateForm extends PureComponent {
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
-                                <ExcludedTargetCountryFormGroup
+                                <BlockedTargetCountryFormGroup
                                     sm={4}
                                     targetCountryList={targetCountryList}
-                                    isExcludedAllTargetCountries={isExcludedAllTargetCountries}
+                                    isBlockedAllTargetCountries={isBlockedAllTargetCountries}
                                     changeTargetCountry={this.handleChangeTargetCountry}
                                 />
                             </Form>

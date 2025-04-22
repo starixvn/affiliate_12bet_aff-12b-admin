@@ -16,6 +16,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
         public string PageCode { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string ExcludedTargetCountries { get; set; }
+        public string BlockTargetCountry { get; set; }
     }
 }

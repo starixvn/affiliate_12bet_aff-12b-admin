@@ -8,6 +8,6 @@
 
         public string PageCode { get; set; }
 
-        public string ExcludedTargetCountries { get; set; }
+        public string BlockTargetCountry { get; set; }
     }
 }

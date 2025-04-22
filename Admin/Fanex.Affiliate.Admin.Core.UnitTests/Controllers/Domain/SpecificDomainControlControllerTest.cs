@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Controllers.Domain;
@@ -35,8 +34,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Domain/SpecificDomainControl.cshtml", viewName);
-            Assert.NotNull(model.SubMenuList);
-            Assert.Equal(5, model.SubMenuList.Count());
         }
 
         [Fact]

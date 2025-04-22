@@ -278,8 +278,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnoverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\QmTurnOverSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\redux\QmTurnOverSetting.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\common\components\ExcludedTargetCountryFormGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\BlockedTargetCountryFormGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\utils\targetCountry.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\menus.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\__test__\index.test.js" />
@@ -852,7 +855,6 @@
     <Content Include="Areas\Portal\Views\ChangeAdminPassword\Index.cshtml" />
     <Content Include="Areas\Portal\Views\AccessDenied\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Domain\DomainControl.cshtml" />
-    <Content Include="Areas\Portal\Views\Domain\_DomainSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\index.jsx" />
@@ -1312,8 +1314,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\under-maintenance.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\change-admin-password.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\alert.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\administrator\administrator.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
@@ -1420,7 +1421,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\marketing-statistics.scss" />
     <Content Include="Areas\Portal\Views\Domain\SpecificDomainControl.cshtml" />
-    <Content Include="Areas\Portal\www\source\style\pages\common\excluded-target-country-form-group.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\common\blocked-target-country-form-group.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

@@ -1,9 +1,9 @@
 ﻿import { targetCountryStatus } from '../../../../modules/constants';
 
-export const getExcludedTargetCountryList = (targetCountryList) => {
-    return targetCountryList.filter(m => m.Status === targetCountryStatus.Excluded).map(m => m.TargetCountryCode);
+export const getBlockedTargetCountryList = (targetCountryList) => {
+    return targetCountryList.filter(m => m.Status === targetCountryStatus.Blocked).map(m => m.TargetCountryCode);
 }
 
-export const checkExcludedAllTargetCountries = (targetCountryList, excludedTargetCountryList) => {
-    return excludedTargetCountryList.length !== 0 && excludedTargetCountryList.length === targetCountryList.length;
+export const checkBlockedAllTargetCountries = (targetCountryList, blockedTargetCountryList) => {
+    return blockedTargetCountryList.length !== 0 && blockedTargetCountryList.length === targetCountryList.length;
 }

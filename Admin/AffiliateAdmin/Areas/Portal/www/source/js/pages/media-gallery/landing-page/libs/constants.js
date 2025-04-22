@@ -10,8 +10,8 @@ export const headerText = {
 }
 
 export const defaultState = {
-    isExcludedAllTargetCountries: false,
-    selectedLandingPage: { pageName: '', pageCode: '', excludedTargetCountries: '' },
+    isBlockedAllTargetCountries: false,
+    selectedLandingPage: { pageName: '', pageCode: '', blockTargetCountry: '' },
     targetCountryList: null,
     isClickedSubmit: false,
     isInsert: true,

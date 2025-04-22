@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
+            return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml", model: _systemService.GetTargetCountries());
         }
 
         [HttpPost]
@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 
         private ActionResult HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false)
         {
-            if (!TargetCountryHelper.IsValidTargetCountryCodes(param.ExcludedTargetCountries, _systemService.GetTargetCountries()))
+            if (!TargetCountryHelper.IsValidTargetCountryCodes(param.BlockTargetCountry, _systemService.GetTargetCountries()))
             {
                 return GenerateErrResult("The target country's info is invalid!");
             }
@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
             return new InsertUpdateLandingPageParam
             {
                 PageId = param.PageId,
-                ExcludedTargetCountries = Server.HtmlEncode(param.ExcludedTargetCountries),
+                BlockTargetCountry = Server.HtmlEncode(param.BlockTargetCountry),
                 PageName = Server.HtmlEncode(param.PageName),
                 PageCode = Server.HtmlEncode(param.PageCode)
             };

@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             controller.Url = urlHelperMock.Object;
 
             // Action
-            var viewResult = controller.Index(true) as ViewResult;
+            var viewResult = controller.Index() as ViewResult;
             var viewName = viewResult.ViewName;
             var model = viewResult.Model as DomainViewModel;
 
