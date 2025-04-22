@@ -104,7 +104,7 @@ export const headerText = {
     [reportKey.Signup]: 'Signup',
     [reportKey.Fdm]: 'FDM',
     [reportKey.Fdm_Amount]: 'FDM Amt',
-    [reportKey.FDM_TotalDeposit]: 'FDM\'s Total Deposit',
+    [reportKey.FDM_TotalDeposit]: "FDM's Total Deposit",
     [reportKey.ActivePlayer]: 'Active Player',
     [reportKey.QualifiedMember]: 'Qualified Player',
     [reportKey.NoOfSubAff]: 'Sub-Affiliate',
