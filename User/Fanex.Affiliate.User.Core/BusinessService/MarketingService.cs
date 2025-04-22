@@ -264,19 +264,20 @@
 
         private string ConvertSelectedLanguageNames(string targetCountryCode, string languageCode)
         {
+            var languageList = _systemsService.GetLanguageByTargetCountry(targetCountryCode);
             if (string.IsNullOrEmpty(languageCode))
             {
-                return languageCode;
+                var allLanguageName = languageList.Select(l => l.EnglishName).ToList();
+                return string.Join(",", allLanguageName);
             }
 
-            var languageList = _systemsService.GetLanguageList(targetCountryCode);
             return languageList.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.EnglishName;
         }
 
         private Dictionary<string, Language> GetLanguageUsedForGeneration(LinkGeneratingParam linkGeneratedParam)
         {
             var result = new Dictionary<string, Language>();
-            var languageList = _systemsService.GetLanguageList(linkGeneratedParam.SelectedTargetCountry);
+            var languageList = _systemsService.GetLanguageByTargetCountry(linkGeneratedParam.SelectedTargetCountry);
 
             if (string.IsNullOrEmpty(linkGeneratedParam.SelectedLanguage))
             {

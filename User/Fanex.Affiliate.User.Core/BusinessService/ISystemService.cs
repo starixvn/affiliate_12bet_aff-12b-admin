@@ -11,9 +11,11 @@
 
         string GetFavoriteLanguage();
 
-        IEnumerable<Language> GetLanguageList(string targetCountryCode = "");
+        IEnumerable<Language> GetLanguageList();
 
-        IEnumerable<Language> GetSupportedLanguages(string targetCountryCode = "");
+        IEnumerable<Language> GetSupportedLanguages();
+
+        IEnumerable<Language> GetLanguageByTargetCountry(string targetCountry = "");
 
         IEnumerable<TargetCountry> GetSystemTargetCountries();
 

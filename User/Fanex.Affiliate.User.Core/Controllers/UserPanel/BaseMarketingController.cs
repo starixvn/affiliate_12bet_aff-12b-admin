@@ -87,7 +87,7 @@
 
             var targetLanguages = isChangeAffTypeLink
                 ? Enumerable.Empty<Language>()
-                : SystemService.GetSupportedLanguages(targetCountryCode);
+                : SystemService.GetLanguageByTargetCountry(targetCountryCode);
 
             var languageCode = GetTargetLanguageCode(isChangeAffTypeLink, currentLang, targetLanguages);
 
@@ -100,7 +100,7 @@
                 Language = languageCode
             });
             var categoryList = GetCategoryList(isChangeAffTypeLink, isMediaGallery, targetIdOrType, isInternal);
-            var sizeList = GetSizeList(isMediaGallery, userSession, isInternal);
+            var sizeList = GetSizeList(targetCountryCode, isMediaGallery, userSession, isInternal);
             var domains = GetDomainListByTargetCountry(targetCountryCode, targetIdOrType);
             var selectedDomain = domains.FirstOrDefault();
 
@@ -138,7 +138,7 @@
                 });
         }
 
-        private IEnumerable<SelectListItem> GetSizeList(bool isMediaGallery, UserSession userSession, bool isInternal)
+        private IEnumerable<SelectListItem> GetSizeList(string targetCountryCode, bool isMediaGallery, UserSession userSession, bool isInternal)
         {
             if (!isMediaGallery)
             {
@@ -147,6 +147,7 @@
 
             return MarketingService.GetSizeList(new SizeParam
                 {
+                    TargetCountryCode = targetCountryCode,
                     AffType = userSession.AffType, 
                     Language = userSession.PreferredLanguage
                 }, isInternal)

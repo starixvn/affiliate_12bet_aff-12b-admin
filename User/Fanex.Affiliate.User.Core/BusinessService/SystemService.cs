@@ -1,19 +1,18 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using Constants;
-    using CoreService;
-    using Criterias;
-    using Data.Repository;
-    using DTO;
-    using DTO.UserPanel;
-    using DTO.UserPanel.MediaGallery;
-    using Extensions;
-    using DTO.Systems;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
     using System.Web;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.Systems;
+    using DTO.UserPanel;
+    using Extensions;
 
     public class SystemService : BaseDynamicService, ISystemService
     {
@@ -51,22 +50,27 @@
             return SystemLanguage.GetCurrentShortedLanguage(favoriteLanguage);
         }
 
-        public IEnumerable<Language> GetSupportedLanguages(string targetCountryCode = "")
+        public IEnumerable<Language> GetSupportedLanguages()
         {
-            return GetAllLanguages(targetCountryCode).Where(l => !l.Code.Equals("te-IN"));
+            return GetAllLanguages().Where(l => !l.Code.Equals("te-IN"));
         }
 
-        public IEnumerable<Language> GetLanguageList(string targetCountryCode = "")
+        public IEnumerable<Language> GetLanguageList()
         {
             var languageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.LanguageList);
 
             if (languageList == null)
             {
-                languageList = GetAllLanguages(targetCountryCode);
+                languageList = GetAllLanguages();
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
             return languageList;
+        }
+
+        public IEnumerable<Language> GetLanguageByTargetCountry(string targetCountry = "")
+        {
+            return GetAllLanguages(targetCountry);
         }
 
         private IEnumerable<Language> GetAllLanguages(string targetCountry = "")
