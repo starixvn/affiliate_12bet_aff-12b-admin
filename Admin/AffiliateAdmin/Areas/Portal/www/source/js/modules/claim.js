@@ -21,7 +21,6 @@
     EditAffDetails: "[EditAffiliateDetails]",
     TransferPlayerSetting: "[HideTransferPlayerSetting]", //Hide Transfer Player
     TransferPlayerReport: "[HideTransferPlayerReport]", //Hide Transfer Player
-    AffTargetCountry: "[AffTargetCountry]"
 }
 
 export const claimTypes = {

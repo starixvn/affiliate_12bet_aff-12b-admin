@@ -4,7 +4,7 @@ import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
-const marketList = createReducer(null, {})
+const targetCountryList = createReducer(null, {})
 
 export const shouldResetScrollPosition = createReducer(true, {
     [types.SHOULD_RESET_SCROLL_POSITION](prevState, action) {
@@ -18,8 +18,8 @@ export const gridData = createReducer(null, {
     }
 })
 
-export const selectedMarketId = createReducer('', {
-    [types.SET_SELECTED_MARKET_ID](prevState, action) {
+export const selectedTargetCountry = createReducer('', {
+    [types.SET_SELECTED_TARGET_COUNTRY](prevState, action) {
         return action.data;
     }
 })
@@ -51,8 +51,8 @@ export const affSubDomainList = createReducer(null, {
 export default combineReducers({
     gridData,
     isShowLoader,
-    marketList,
-    selectedMarketId,
+    targetCountryList,
+    selectedTargetCountry,
     selectedDomainId,
     affDomainList,
     affSubDomainList,

@@ -44,8 +44,6 @@
 
         public const string AffPersonalInfo = "[AffPersonalInfo]";
 
-        public const string AffTargetCountry = "[AffTargetCountry]";
-
         public const string DisabledFunction = "[AffDisabledFunction]";
     }
 }

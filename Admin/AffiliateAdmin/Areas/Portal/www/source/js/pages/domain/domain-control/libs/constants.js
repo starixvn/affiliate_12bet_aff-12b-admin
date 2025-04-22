@@ -4,7 +4,7 @@ export { globalResource };
 
 export const headerText = {
     Index: '#',
-    Market: 'Market',
+    TargetCountry: 'Target Country',
     AffDomain: 'Aff Domain',
     AffSubDomain: 'Aff Sub-domain',
     RedirectDomain: 'Redirect Domain',
@@ -21,5 +21,5 @@ export const defaultState = {
     isSuccess: true,
     message: '',
     selectedDomain: null,
-    marketListByDomains: null
+    targetCountryListByDomains: null
 }

@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.Criterias.MediaGallery
 {
-    public class ExcludedTargetCountryCriteria : CriteriaBase
+    public class GetBlockTargetCountriesByLandingPageCriteria : CriteriaBase
     {
         const string SP_NAME = "Aff_LandingPage_ExcludedTargetCountry_Sel";
 

@@ -24,7 +24,7 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
-                <Cell header={true} colWidth={350} title={headerText.ExcludeTargetCountry}>{headerText.ExcludeTargetCountry}</Cell>
+                <Cell header={true} colWidth={350} title={headerText.BlockTargetCountry}>{headerText.BlockTargetCountry}</Cell>
                 <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
@@ -34,11 +34,9 @@ export const Content = (props) => {
         const dataRows = [];
 
         if (dataList.length) {
-            const { targetCountryList } = props;
-
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(_buildDataRow(dataItem, i + 1, targetCountryList));
+                dataRows.push(_buildDataRow(dataItem, i + 1));
             }
         }
         else {
@@ -50,10 +48,10 @@ export const Content = (props) => {
         return dataRows;
     }
 
-    function _buildDataRow(dataItem, index, targetCountryList) {
+    function _buildDataRow(dataItem, index) {
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
-        const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').map(t => targetCountryList[t]).join(', ');
+        const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -91,8 +89,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData, targetCountryList }) {
-    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData, targetCountryList });
+function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

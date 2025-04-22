@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { formatDateTime } from '../../../../modules/utils';
 import { headerText, globalResource } from '../libs/constants';
 import { deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
 
@@ -70,7 +71,7 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={60} title={headerText.SSL}>{headerText.SSL}</Cell>
                 <Cell header={true} colWidth={160} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={320} title={headerText.BlockMarket}>{headerText.BlockMarket}</Cell>
+                <Cell header={true} colWidth={320} title={headerText.BlockTargetCountry}>{headerText.BlockTargetCountry}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Delete}>{headerText.Delete}</Cell>
             </Row>
@@ -98,7 +99,8 @@ export class Content extends PureComponent {
     _buildDataRow(dataItem, index) {
         const domainName = htmlDecode(dataItem.DomainName);
         const creator = htmlDecode(dataItem.Creator);
-        const blockMarket = htmlDecode(dataItem.BlockMarketName).split(',').join(', ');
+        const createdDate = formatDateTime(dataItem.CreateDate);
+        const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -108,8 +110,8 @@ export class Content extends PureComponent {
                     <input type="checkbox" disabled checked={dataItem.IsSSL} />
                 </Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
-                <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
-                <Cell title={blockMarket}>{blockMarket}</Cell>
+                <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
+                <Cell title={blockTargetCountry}>{blockTargetCountry}</Cell>
                 <Cell className="text-center" title="Edit Domain">
                     <Button color="link p-0" onClick={() => this._handleEditDomain(dataItem.DomainId)}>
                         <span className="oi oi-pencil text-secondary"></span>

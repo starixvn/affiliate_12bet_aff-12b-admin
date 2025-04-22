@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
 using Fanex.Affiliate.Admin.Core.Criterias.Domain;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -23,8 +22,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo { CreatedDate = new DateTime(2019, 10, 29) } });
 
             var commonDomainService = new Mock<ICommonDomainService>();
-            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(new List<Market>());
+            commonDomainService.Setup(c => c.GetTargetCountryListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<TargetCountryByDomain>());
 
             // Action
             var service = new DomainControlService(repository.Object, commonDomainService.Object);
@@ -45,8 +44,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             repository.Setup(r => r.Fetch<DomainControlInfo>(It.IsAny<DomainControlCriteria>(), It.IsAny<string>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() });
 
             var commonDomainService = new Mock<ICommonDomainService>();
-            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(new List<Market>());
+            commonDomainService.Setup(c => c.GetTargetCountryListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<TargetCountryByDomain>());
 
             // Action
             var service = new DomainControlService(repository.Object, commonDomainService.Object);
@@ -66,8 +65,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Execute(It.IsAny<InsertDomainControlCommand>(), It.IsAny<string>()));
             var commonDomainService = new Mock<ICommonDomainService>();
-            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(new List<Market>());
+            commonDomainService.Setup(c => c.GetTargetCountryListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<TargetCountryByDomain>());
 
             // Action
             var service = new DomainControlService(repository.Object, commonDomainService.Object);
@@ -85,8 +84,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Execute(It.IsAny<UpdateDomainControlCommand>(), It.IsAny<string>()));
             var commonDomainService = new Mock<ICommonDomainService>();
-            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(new List<Market>());
+            commonDomainService.Setup(c => c.GetTargetCountryListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<TargetCountryByDomain>());
 
             // Action
             var service = new DomainControlService(repository.Object, commonDomainService.Object);
@@ -104,8 +103,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             var repository = new Mock<IDynamicRepository>();
             repository.Setup(r => r.Execute(It.IsAny<DeleteDomainControlCommand>(), It.IsAny<string>()));
             var commonDomainService = new Mock<ICommonDomainService>();
-            commonDomainService.Setup(c => c.GetMarketListByDomain(It.IsAny<int>(), It.IsAny<int>()))
-                .Returns(new List<Market>());
+            commonDomainService.Setup(c => c.GetTargetCountryListByDomain(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(new List<TargetCountryByDomain>());
 
             // Action
             var service = new DomainControlService(repository.Object, commonDomainService.Object);

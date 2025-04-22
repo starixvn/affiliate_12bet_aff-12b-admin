@@ -20,7 +20,7 @@ const actionList = [
     { name: 'setSelectedDomainId', type: types.SET_SELECTED_DOMAIN_ID, data: 123 },
     { name: 'setShouldResetScrollPosition', type: types.SHOULD_RESET_SCROLL_POSITION, data: false },
     { name: 'setGridData', type: types.SET_GRID_DATA, data: 'setGridData' },
-    { name: 'setSelectedMarketId', type: types.SET_SELECTED_MARKET_ID, data: 'en-US' },
+    { name: 'setSelectedTargetCountry', type: types.SET_SELECTED_TARGET_COUNTRY, data: 'BN' },
     { name: 'setAffDomainList', type: types.SET_AFF_DOMAIN_LIST, data: [{ domainName: "abc.com" }] },
     { name: 'setAffSubDomainList', type: types.SET_AFF_SUB_DOMAIN_LIST, data: [{ domainName: "abc" }] },
     { name: 'setRedirectDomainList', type: types.SET_REDIRECT_DOMAIN_LIST, data: [{ domainName: "123.com" }] }

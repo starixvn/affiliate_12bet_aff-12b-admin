@@ -4,8 +4,6 @@ import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
-export const targetCountryList = createReducer(null, {});
-
 export const selectedLandingPageId = createReducer(null, {
     [types.SET_SELECTED_LANDING_PAGE_ID](prevState, action) {
         return action.data;
@@ -33,7 +31,6 @@ export const gridData = createReducer(null, {
 export default combineReducers({
     gridData,
     isShowLoader,
-    targetCountryList,
     checkedLandingPages,
     selectedLandingPageId,
     shouldResetScrollPosition

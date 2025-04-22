@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -9,13 +8,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
     {
         public MemberDomainController(
             ISessionService sessionService,
-            IDomainService domainService) : base(sessionService, domainService)
+            IDomainService domainService,
+            ISystemService systemService) : base(sessionService, domainService, systemService)
         {
         }
 
         public override ActionResult Index()
         {
-            return View("~/Areas/Portal/Views/Domain/Index.cshtml", model: new DomainViewModel());
+            return RedirectToCommonIndex(false);
         }
     }
 }

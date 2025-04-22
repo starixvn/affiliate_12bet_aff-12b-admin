@@ -4,16 +4,16 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../../components/multiple-select';
 
-import { setSelectedMarketId, fetchData, setAffSubDomainList, setShouldResetScrollPosition } from '../actions';
+import { setSelectedTargetCountry, fetchData, setAffSubDomainList, setShouldResetScrollPosition } from '../actions';
 import { headerText, globalResource } from '../libs/constants';
 
 export const Filter = (props) => {
-    const { marketList, affSubDomainList } = props;
-    const [market, setMarket] = useState('');
+    const { targetCountryList, affSubDomainList } = props;
+    const [targetCountry, setTargetCountry] = useState('');
 
     const _handleSearch = () => {
-        props.setSelectedMarketId(market);
-        props.fetchData(market, affSubDomainList);
+        props.setSelectedTargetCountry(targetCountry);
+        props.fetchData(targetCountry, affSubDomainList);
     }
 
     const handleChangeSubDomain = (item, selectedSubDomains) => {
@@ -35,16 +35,16 @@ export const Filter = (props) => {
         props.setAffSubDomainList(newSubDomainList);
     }
 
-    return marketList && (
+    return targetCountryList && (
         <div className="filter-container my-2">
             <Form inline tag="div">
                 <FormGroup className="mr-sm-2">
-                    <Label className="mr-sm-2">{headerText.Market}</Label>
-                    <Input type="select" name="market" value={market} onChange={(e) => setMarket(e.target.value)}>
-                        <option key={'market-all'} value={''}>{globalResource.All}</option>
+                    <Label className="mr-sm-2">{headerText.TargetCountry}</Label>
+                    <Input type="select" name="targetCountry" value={targetCountry} onChange={(e) => setTargetCountry(e.target.value)}>
+                        <option key={'targetCountry-all'} value={''}>{globalResource.All}</option>
                         {
-                            marketList.map(item => {
-                                return (<option key={`market-${item.MarketId}`} value={item.MarketId}>{item.MarketName}</option>)
+                            targetCountryList.map(item => {
+                                return (<option key={`targetCountry-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
                             })
                         }
                     </Input>
@@ -69,12 +69,12 @@ export const Filter = (props) => {
     )
 }
 
-function mapStateToProps({ marketList, affSubDomainList }) {
-    return Object.assign({}, { marketList, affSubDomainList });
+function mapStateToProps({ targetCountryList, affSubDomainList }) {
+    return Object.assign({}, { targetCountryList, affSubDomainList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMarketId, fetchData, setAffSubDomainList, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ setSelectedTargetCountry, fetchData, setAffSubDomainList, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

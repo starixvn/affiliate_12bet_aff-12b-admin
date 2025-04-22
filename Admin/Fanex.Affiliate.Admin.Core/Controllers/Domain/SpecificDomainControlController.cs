@@ -49,7 +49,7 @@
         {
             if (ModelState.IsValid)
             {
-                AssignUserInfoParam(param);
+                HandleEncodeParam(param);
 
                 return GenerateJsonNetResult(_domainControlService.InsertSpecificDomainControl(param));
             }
@@ -64,7 +64,7 @@
         {
             if (ModelState.IsValid)
             {
-                AssignUserInfoParam(param);
+                HandleEncodeParam(param);
 
                 return GenerateJsonNetResult(_domainControlService.UpdateSpecificDomainControl(param));
             }
@@ -85,6 +85,14 @@
             }
 
             return GenerateErrResult("The Specific Domain Control is incorrect!");
+        }
+
+        private void HandleEncodeParam(InsertSpecificDomainControlParam param)
+        {
+            param.AffUsername = Server.HtmlEncode(param.AffUsername);
+            param.AffDomain = Server.HtmlEncode(param.AffDomain);
+            param.RedirectDomain = Server.HtmlEncode(param.RedirectDomain);
+            AssignUserInfoParam(param);
         }
     }
 }

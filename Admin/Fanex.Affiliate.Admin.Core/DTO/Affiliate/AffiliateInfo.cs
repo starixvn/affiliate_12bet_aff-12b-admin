@@ -24,7 +24,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string LastName { get; set; }
 
-        [PermissionCheck(Function.AffTargetCountry)]
         public string TargetCountryCode { get; set; }
 
         public string Language { get; set; }

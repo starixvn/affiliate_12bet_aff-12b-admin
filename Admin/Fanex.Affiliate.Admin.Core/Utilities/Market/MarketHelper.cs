@@ -20,15 +20,15 @@
             return selectedMarketIds.TrueForAll(m => visibleMarkets.Any(v => v.MarketId.Equals(m, StringComparison.OrdinalIgnoreCase)));
         }
 
-        public static IEnumerable<DomainInfo> HandleDomainInfos(IDictionary<string, string> marketDics, IEnumerable<DomainInfo> domains)
-        {
-            foreach (var domain in domains)
-            {
-                domain.BlockMarketName = GetBlockMarketName(marketDics, domain.BlockMarket);
-            }
+        //public static IEnumerable<DomainInfo> HandleDomainInfos(IDictionary<string, string> marketDics, IEnumerable<DomainInfo> domains)
+        //{
+        //    foreach (var domain in domains)
+        //    {
+        //        domain.BlockMarketName = GetBlockMarketName(marketDics, domain.BlockMarket);
+        //    }
 
-            return domains;
-        }
+        //    return domains;
+        //}
 
         public static string GetBlockMarketName(IDictionary<string, string> marketDics, string blockMarket)
         {

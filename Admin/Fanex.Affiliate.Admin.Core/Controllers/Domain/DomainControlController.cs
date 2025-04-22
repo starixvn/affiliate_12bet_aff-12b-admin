@@ -2,8 +2,8 @@
 {
     using Attributes;
     using Constants;
-    using DTO;
     using Extensions;
+    using Fanex.Affiliate.Admin.Core.DTO.Common;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
@@ -12,7 +12,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using Utilities;
-    using Utilities.Market;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainControlController : ReadOnlySessionBaseController
@@ -31,7 +30,7 @@
             var model = new DomainControlViewModel
             {
                 AffSubDomainList = _domainControlService.GetSubAffDomainControlList(),
-                MarketList = GetVisibleMarkets()
+                TargetCountryList = GetVisibleTargetCountries()
             };
 
             return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);
@@ -46,9 +45,9 @@
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetDomainControlList(string market, string subDomainRegex, bool isGetAll = true)
+        public ActionResult GetDomainControlList(string targetCountryCode, string subDomainRegex, bool isGetAll = true)
         {
-            var domainControlList = _domainControlService.GetDomainControl(market);
+            var domainControlList = _domainControlService.GetDomainControl(targetCountryCode);
 
             if (isGetAll || string.IsNullOrEmpty(subDomainRegex))
             {
@@ -64,7 +63,7 @@
         public ActionResult GetDomainControlById(int domainControlId)
         {
             var domainControl = _domainControlService.GetDomainControlById(domainControlId);
-            var isValidMarket = MarketHelper.IsValidMarketIds(domainControl?.MarketId, GetVisibleMarkets());
+            var isValidMarket = TargetCountryHelper.IsValidTargetCountryCodes(domainControl?.TargetCountryCode, GetVisibleTargetCountries());
 
             return new JsonNetResult
             {
@@ -77,7 +76,7 @@
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
         public ActionResult InsertDomainControl(InsertDomainControlParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.MarketId, GetVisibleMarkets()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountries()))
             {
                 AssignUserInfoParam(param);
 
@@ -92,7 +91,7 @@
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
         public ActionResult UpdateDomainControl(UpdateDomainControlParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.MarketId, GetVisibleMarkets()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryCodes(param.TargetCountryCode, GetVisibleTargetCountries()))
             {
                 AssignUserInfoParam(param);
 
@@ -117,9 +116,9 @@
             return GenerateErrResult("The Domain Control is incorrect!");
         }
 
-        private IEnumerable<Market> GetVisibleMarkets()
+        private IEnumerable<TargetCountry> GetVisibleTargetCountries()
         {
-            return _domainControlService.GetMarketListByDomain();
+            return _domainControlService.GetTargetCountryListByDomain();
         }
     }
 }

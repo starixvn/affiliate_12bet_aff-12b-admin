@@ -1,9 +1,8 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Enum
 {
-    public enum MarketStatus
+    public enum TargetCountryStatus
     {
         Normal,
-        Blocked,
-        Using
+        Blocked
     }
 }

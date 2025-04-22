@@ -388,11 +388,11 @@
     <Compile Include="Criterias\AffPagingCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorDetailCriteria.cs" />
-    <Compile Include="Criterias\Market\GetMarketListByDomainCriteria.cs" />
+    <Compile Include="Criterias\Domain\GetTargetCountryListByDomainCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BannerCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BannerDetailCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BaseBannerCriteria.cs" />
-    <Compile Include="Criterias\MediaGallery\ExcludedTargetCountryCriteria.cs" />
+    <Compile Include="Criterias\MediaGallery\GetBlockTargetCountriesByLandingPageCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\LandingPageCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\MediaCategoryCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\MediaSizeCriteria.cs" />
@@ -453,6 +453,7 @@
     <Compile Include="DTO\Domain\DomainControlInfo.cs" />
     <Compile Include="DTO\Domain\DomainInfo.cs" />
     <Compile Include="DTO\Domain\SpecificDomainControlInfo.cs" />
+    <Compile Include="DTO\Domain\TargetCountryByDomain.cs" />
     <Compile Include="DTO\Market.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryDetailInfo.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryInfo.cs" />
@@ -487,7 +488,7 @@
     <Compile Include="DTO\UserPanel\Statistics\MarketingStatistics.cs" />
     <Compile Include="DTO\UserPanel\SubAffiliate.cs" />
     <Compile Include="DTO\UserPanel\TrackingInfo.cs" />
-    <Compile Include="Enum\MarketStatus.cs" />
+    <Compile Include="Enum\TargetCountryStatus.cs" />
     <Compile Include="Exceptions\LicenseePaymentException.cs" />
     <Compile Include="Extensions\AutoMapperExtension.cs" />
     <Compile Include="Extensions\ClaimPrincipalExtension.cs" />

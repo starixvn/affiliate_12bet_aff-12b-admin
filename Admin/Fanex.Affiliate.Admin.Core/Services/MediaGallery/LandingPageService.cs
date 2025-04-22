@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public IEnumerable<TargetCountry> GetExcludedTargetCountryList(int pageId)
         {
-            return FetchTData<TargetCountry>(new ExcludedTargetCountryCriteria { PageId = pageId });
+            return FetchTData<TargetCountry>(new GetBlockTargetCountriesByLandingPageCriteria { PageId = pageId });
         }
 
         public ResultInfo DeleteLandingPage(DeleteLandingPageParam param)

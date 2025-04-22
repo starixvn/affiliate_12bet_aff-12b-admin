@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             return currencyList;
         }
 
-        public IEnumerable<TargetCountry> GetTargetCountries()
+        public IEnumerable<TargetCountry> GetTargetCountryList()
         {   
             var targetCountries = _cacheService.Get<IEnumerable<TargetCountry>>(CacheKey.TargetCountryList);
 

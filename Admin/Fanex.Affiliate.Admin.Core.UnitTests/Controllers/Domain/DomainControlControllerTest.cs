@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Domain/DomainControl.cshtml", viewName);
-            Assert.Empty(model.MarketList);
+            Assert.Empty(model.TargetCountryList);
         }
 
         [Fact]

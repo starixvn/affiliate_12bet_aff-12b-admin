@@ -64,13 +64,6 @@ export const getLandingPageDetail = (selectedLandingPageId) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const getTargetCountryList = () => async () => {
-    const url = 'Portal/LandingPageList/GetTargetCountryList';
-    const response = await post(url);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
 export const getTargetCountryListByLandingPage = (param) => async () => {
     const url = 'Portal/LandingPageList/GetTargetCountryListByLandingPage';
     const response = await post(url, param);

@@ -1,9 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import * as types from './types';
-import { getDomainList, getMarketListByDomain } from '../../domain/actions/index';
+import { getDomainList, getTargetCountryListByDomain } from '../../domain/actions/index';
 
-export { toggleLoader, getMarketListByDomain as getMarketListByDomains };
+export { toggleLoader, getTargetCountryListByDomain as getTargetCountryListByDomains };
 
 export const setSelectedDomainId = (data) => {
     return {
@@ -12,9 +12,9 @@ export const setSelectedDomainId = (data) => {
     }
 }
 
-export const setSelectedMarketId = (data) => {
+export const setSelectedTargetCountry = (data) => {
     return {
-        type: types.SET_SELECTED_MARKET_ID,
+        type: types.SET_SELECTED_TARGET_COUNTRY,
         data
     }
 }
@@ -54,14 +54,14 @@ export const setAffSubDomainList = (data) => {
     }
 }
 
-export const fetchData = (market, affSubDomainList, shouldUpdateAffSubDomain) => async (dispatch) => {
+export const fetchData = (targetCountryCode, affSubDomainList, shouldUpdateAffSubDomain) => async (dispatch) => {
     dispatch(toggleLoader(true));
     const selectedAffSubDomains = affSubDomainList.filter(a => a.checked);
     const isGetAll = selectedAffSubDomains.length == affSubDomainList.length;
     const subDomainRegex = selectedAffSubDomains.map(s => s.columnName).join('|');
 
     const url = 'Portal/DomainControl/GetDomainControlList';
-    const response = await post(url, { market, isGetAll, subDomainRegex  });
+    const response = await post(url, { targetCountryCode, isGetAll, subDomainRegex  });
 
     const data = response && response.status === 200 ? response.data : [];
 

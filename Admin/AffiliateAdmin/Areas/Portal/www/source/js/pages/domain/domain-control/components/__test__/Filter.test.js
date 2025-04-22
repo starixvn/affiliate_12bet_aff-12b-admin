@@ -30,12 +30,12 @@ describe('domain control - components - Filter ', () => {
     });
 
     it('_handleSearch - should be called when click Search Button', () => {
-        const props = Object.assign({}, defaultProps, { setSelectedMarketId: jest.fn(), fetchData: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setSelectedTargetCountry: jest.fn(), fetchData: jest.fn() });
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setSelectedMarketId).toHaveBeenCalledWith('');
+        expect(props.setSelectedTargetCountry).toHaveBeenCalledWith('');
         expect(props.fetchData).toHaveBeenCalledWith('', defaultProps.affSubDomainList);
     });
 

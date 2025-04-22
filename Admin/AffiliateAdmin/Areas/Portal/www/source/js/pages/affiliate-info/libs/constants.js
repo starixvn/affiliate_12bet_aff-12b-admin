@@ -1,5 +1,4 @@
-﻿import { Claim, claimResource } from '../../../modules/claim';
-import { globalResource } from '../../../modules/globalResource';
+﻿import { globalResource } from '../../../modules/globalResource';
 
 export { globalResource };
 
@@ -34,7 +33,7 @@ export const headerText = {
     Status: { label: 'Status' },
     FirstName: { label: 'First Name' },
     LastName: { label: 'Last Name' },
-    TargetCountryCode: { label: 'Target Country', renderClaim: new Claim(claimResource.AffTargetCountry) },
+    TargetCountryCode: { label: 'Target Country' },
     Language: { label: 'Language' },
     Phone: { label: 'Mobile Phone' },
     Email: { label: 'Email' },

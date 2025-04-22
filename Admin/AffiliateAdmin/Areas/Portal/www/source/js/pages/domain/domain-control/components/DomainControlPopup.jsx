@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainControlById, getMarketListByDomains } from '../actions/index';
+import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainControlById, getTargetCountryListByDomains } from '../actions/index';
 import Select from '../../../../components/select';
 import { defaultState } from '../libs/constants';
 
@@ -29,21 +29,21 @@ export class DomainControlPopup extends PureComponent {
                 const affDomainId = affDomainList[0].DomainId;
                 const redirectDomainId = redirectDomainList[0].DomainId;
 
-                const marketListByDomains = await this.props.getMarketListByDomains({ affDomainId, redirectDomainId });
-                const marketId = marketListByDomains ? marketListByDomains[0].MarketId : "";
+                const targetCountryListByDomains = await this.props.getTargetCountryListByDomains({ affDomainId, redirectDomainId });
+                const targetCountryCode = targetCountryListByDomains ? targetCountryListByDomains[0].TargetCountryCode : "";
 
-                this.setState({ isInsert: true, selectedDomain: { domainControlId: selectedDomainId, affDomainId, redirectDomainId, marketId, isUsed: true }, marketListByDomains });
+                this.setState({ isInsert: true, selectedDomain: { domainControlId: selectedDomainId, affDomainId, redirectDomainId, targetCountryCode, isUsed: true }, targetCountryListByDomains });
             }
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getDomainControlById(selectedDomainId);
 
             if (domain) {
-                const { AffDomainId, RedirectDomainId, MarketId, IsUsed } = domain;
+                const { AffDomainId, RedirectDomainId, TargetCountryCode, IsUsed } = domain;
                 const domainIds = { affDomainId: AffDomainId, redirectDomainId: RedirectDomainId };
-                const marketListByDomains = await this.props.getMarketListByDomains(domainIds);
+                const targetCountryListByDomains = await this.props.getTargetCountryListByDomains(domainIds);
 
-                this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, marketId: MarketId, isUsed: IsUsed }, marketListByDomains });
+                this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, targetCountryCode: TargetCountryCode, isUsed: IsUsed }, targetCountryListByDomains });
             } else {
                 this.props.setSelectedDomainId(null);
             }
@@ -78,10 +78,10 @@ export class DomainControlPopup extends PureComponent {
 
         const { affDomainId, redirectDomainId } = newDomain;
 
-        const marketListByDomains = await this.props.getMarketListByDomains({ affDomainId, redirectDomainId });
-        const selectedMarketIdByDomains = marketListByDomains ? marketListByDomains[0].MarketId : "";
+        const targetCountryListByDomains = await this.props.getTargetCountryListByDomains({ affDomainId, redirectDomainId });
+        const selectedTargetCountryByDomains = targetCountryListByDomains ? targetCountryListByDomains[0].TargetCountryCode : "";
 
-        this.setState({ selectedDomain: { ...newDomain, marketId: selectedMarketIdByDomains }, marketListByDomains });
+        this.setState({ selectedDomain: { ...newDomain, targetCountryCode: selectedTargetCountryByDomains }, targetCountryListByDomains });
         this.props.toggleLoader(false);
     }
 
@@ -116,7 +116,7 @@ export class DomainControlPopup extends PureComponent {
         });
 
         if (isSuccess) {
-            this.props.fetchData(this.props.selectedMarketId, this.props.affSubDomainList, true);
+            this.props.fetchData(this.props.selectedTargetCountry, this.props.affSubDomainList, true);
             this._handleClosePopup();
         }
     }
@@ -128,9 +128,9 @@ export class DomainControlPopup extends PureComponent {
 
     render() {
         const { selectedDomainId, affDomainList, redirectDomainList } = this.props;
-        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, marketListByDomains } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, targetCountryListByDomains } = this.state;
         const isShowPopup = selectedDomainId !== null;
-        const isDisabled = marketListByDomains == null;
+        const isDisabled = targetCountryListByDomains == null;
         const title = isInsert ? "Add New Domain Control" : "Edit Domain Control";
         const buttonLabel = isInsert ? "Add" : "Submit";
 
@@ -145,18 +145,18 @@ export class DomainControlPopup extends PureComponent {
                             </Alert>
                             <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label htmlFor="marketId" sm={4}>Market</Label>
+                                    <Label htmlFor="targetCountryCode" sm={4}>Target Country</Label>
                                     <Col sm={8}>
                                         {
                                             isDisabled ? (
-                                                <Input type="select" name="marketId" disabled="true" title="All markets are blocked for these domains!" className="mt-1" value="">
-                                                    <option key="market-none" value="">Please select!</option>
+                                                <Input type="select" name="targetCountryCode" disabled="true" title="All target countries are blocked for these domains!" className="mt-1" value="">
+                                                    <option key="targetCountryCode-none" value="">Please select!</option>
                                                 </Input>
                                             ) : (
-                                                <Input type="select" name="marketId" className="mt-1" value={selectedDomain.marketId} onChange={this._handleChange}>
+                                                    <Input type="select" name="targetCountryCode" className="mt-1" value={selectedDomain.TargetCountryCode} onChange={this._handleChange}>
                                                     {
-                                                        marketListByDomains.map(item => {
-                                                            return (<option key={`market-${item.MarketId}`} value={item.MarketId}>{item.MarketName}</option>)
+                                                        targetCountryListByDomains.map(item => {
+                                                            return (<option key={`targetCountryCode-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
                                                         })
                                                     }
                                                 </Input>
@@ -208,12 +208,12 @@ export class DomainControlPopup extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedDomainId, selectedMarketId, marketList, affDomainList, redirectDomainList, affSubDomainList }) {
-    return Object.assign({}, { selectedDomainId, selectedMarketId, marketList, affDomainList, redirectDomainList, affSubDomainList });
+function mapStateToProps({ selectedDomainId, selectedTargetCountry, targetCountryList, affDomainList, redirectDomainList, affSubDomainList }) {
+    return Object.assign({}, { selectedDomainId, selectedTargetCountry, targetCountryList, affDomainList, redirectDomainList, affSubDomainList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainControlById, getMarketListByDomains }, dispatch);
+    return bindActionCreators({ insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainControlById, getTargetCountryListByDomains }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DomainControlPopup);

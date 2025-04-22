@@ -278,7 +278,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnoverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\QmTurnOverSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\redux\QmTurnOverSetting.redux.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\common\components\BlockedTargetCountryFormGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\BlockTargetCountryFormGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\utils\targetCountry.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\libs\constants.js" />
@@ -1421,7 +1421,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\marketing-statistics.scss" />
     <Content Include="Areas\Portal\Views\Domain\SpecificDomainControl.cshtml" />
-    <Content Include="Areas\Portal\www\source\style\pages\common\blocked-target-country-form-group.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\common\block-target-country-form-group.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Domain
 
         public override bool IsValid() => true;
 
-        public string MarketId { get; set; }
+        public string TargetCountryCode { get; set; }
 
         public int DomainControlId { get; set; }
     }

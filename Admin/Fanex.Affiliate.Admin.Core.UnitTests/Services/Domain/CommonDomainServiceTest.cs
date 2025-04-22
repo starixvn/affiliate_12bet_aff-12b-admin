@@ -29,7 +29,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Assert
             repository.Verify(d => d.Fetch<DomainInfo>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
-            Assert.Equal("09/10/2020", item.CreatedDateText);
         }
 
         [Fact]
@@ -47,7 +46,6 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Assert
             repository.Verify(d => d.Fetch<DomainInfo>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.Single(result);
-            Assert.Null(item.CreatedDateText);
         }
 
         [Fact]

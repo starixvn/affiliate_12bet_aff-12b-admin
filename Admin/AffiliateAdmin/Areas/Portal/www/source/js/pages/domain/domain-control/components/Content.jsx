@@ -54,7 +54,7 @@ export class Content extends PureComponent {
             if (result.IsSuccessful) {
                 this.setState({ message: `The domain control has been removed successfully!`, isConfirmPopup: false });
 
-                this.props.fetchData(this.props.selectedMarketId, this.props.affSubDomainList);
+                this.props.fetchData(this.props.selectedTargetCountry, this.props.affSubDomainList);
             }
             else {
                 this.setState({ message: result.Message, isConfirmPopup: false });
@@ -68,7 +68,7 @@ export class Content extends PureComponent {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Market}>{headerText.Market}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.AffDomain}>{headerText.AffDomain}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.RedirectDomain}>{headerText.RedirectDomain}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Creator}>{headerText.Creator}</Cell>
@@ -106,7 +106,7 @@ export class Content extends PureComponent {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={dataItem.Market}>{dataItem.Market}</Cell>
+                <Cell className="text-center" title={dataItem.TargetCountryName}>{dataItem.TargetCountryName}</Cell>
                 <Cell className="text-center" title={affDomain}>{affDomain}</Cell>
                 <Cell className="text-center" title={redirectDomain}>{redirectDomain}</Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
@@ -160,8 +160,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, affSubDomainList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarketId, affDomainList, redirectDomainList, affSubDomainList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList });
 }
 
 function mapDispatchToProps(dispatch) {

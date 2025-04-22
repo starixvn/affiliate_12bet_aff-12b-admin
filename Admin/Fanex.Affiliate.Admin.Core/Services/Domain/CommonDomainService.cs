@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
-using Fanex.Affiliate.Admin.Core.Criterias.Market;
+using Fanex.Affiliate.Admin.Core.Criterias.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Data.Repository;
@@ -49,25 +50,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             return ExecuteReturnResultInfo(command);
         }
 
-        public IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0)
+        public IEnumerable<TargetCountryByDomain> GetTargetCountryListByDomain(int affDomainId = 0, int redirectDomainId = 0)
         {
-            var criteria = new GetMarketListByDomainCriteria
+            var criteria = new GetTargetCountryListByDomainCriteria
             {
                 AffDomainId = affDomainId,
                 RedirectDomainId = redirectDomainId
             };
 
-            return FetchTData<Market>(criteria);
-        }
-
-        public IEnumerable<Market> GetVisibleMarketNotInStatus(byte status)
-        {
-            return GetMarketListByDomain()?.Where(m => m.Status != status);
+            return FetchTData<TargetCountryByDomain>(criteria);
         }
 
         private static void AssignDomainCommand(InsertDomainCommand command, InsertDomainParam param)
         {
-            command.BlockMarkets = param.BlockMarkets;
+            command.BlockTargetCountry = param.BlockTargetCountry;
             command.DomainName = param.DomainName;
             command.IsSSL = param.IsSSL;
             command.UserId = param.UserId;

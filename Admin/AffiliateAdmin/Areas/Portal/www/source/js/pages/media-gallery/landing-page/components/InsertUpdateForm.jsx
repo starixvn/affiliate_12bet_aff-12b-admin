@@ -1,13 +1,13 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import BlockedTargetCountryFormGroup from '../../../common/components/BlockedTargetCountryFormGroup';
+import BlockTargetCountryFormGroup from '../../../common/components/BlockTargetCountryFormGroup';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback } from 'reactstrap';
-import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryList, getTargetCountryListByLandingPage } from '../actions/index';
+import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryListByLandingPage } from '../actions/index';
 import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
-import { getBlockedTargetCountryList, checkBlockedAllTargetCountries } from '../../../common/modules/utils/targetcountry';
+import { getBlockTargetCountryList, checkBlockAllTargetCountries } from '../../../common/modules/utils/targetcountry';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export class InsertUpdateForm extends PureComponent {
@@ -38,7 +38,7 @@ export class InsertUpdateForm extends PureComponent {
         this.props.toggleLoader(true);
 
         if (pageId === 0) {
-            const visibleTargetCountryList = await this.props.getTargetCountryList();
+            const visibleTargetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
             this.setState({ isInsert: true, selectedLandingPage: { pageName: '', pageCode: '', blockTargetCountry: '' }, targetCountryList: visibleTargetCountryList });
         } else {
@@ -51,10 +51,10 @@ export class InsertUpdateForm extends PureComponent {
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
                 if (targetCountryList && targetCountryList.length) {
-                    const blockedTargetCountryList = getBlockedTargetCountryList(targetCountryList);
-                    const isBlockedAllTargetCountries = checkBlockedAllTargetCountries(targetCountryList, blockedTargetCountryList);
+                    const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
+                    const isBlockAllTargetCountries = checkBlockAllTargetCountries(targetCountryList, blockTargetCountryList);
 
-                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: blockedTargetCountryList.join(',') }, targetCountryList, isBlockedAllTargetCountries });
+                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: blockTargetCountryList.join(',') }, targetCountryList, isBlockAllTargetCountries });
                 } else {
                     this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: '' } });
                 }
@@ -73,11 +73,11 @@ export class InsertUpdateForm extends PureComponent {
         this.setState({ selectedLandingPage: newPage });
     }
 
-    handleChangeTargetCountry = (isBlockedAllTargetCountries, blockTargetCountry, newTargetCountryList) => {
+    handleChangeTargetCountry = (isBlockAllTargetCountries, blockTargetCountry, newTargetCountryList) => {
         const { selectedLandingPage } = this.state;
         const newPage = Object.assign({}, selectedLandingPage, { blockTargetCountry });
 
-        this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList, isBlockedAllTargetCountries });
+        this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList, isBlockAllTargetCountries });
     }
 
     _validatePageCode() {
@@ -168,7 +168,7 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isBlockedAllTargetCountries } = this.state;
+        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isBlockAllTargetCountries } = this.state;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
         const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
@@ -203,10 +203,10 @@ export class InsertUpdateForm extends PureComponent {
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
-                                <BlockedTargetCountryFormGroup
+                                <BlockTargetCountryFormGroup
                                     sm={4}
                                     targetCountryList={targetCountryList}
-                                    isBlockedAllTargetCountries={isBlockedAllTargetCountries}
+                                    isBlockAllTargetCountries={isBlockAllTargetCountries}
                                     changeTargetCountry={this.handleChangeTargetCountry}
                                 />
                             </Form>
@@ -226,7 +226,7 @@ function mapStateToProps({ selectedLandingPageId }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryList, getTargetCountryListByLandingPage }, dispatch);
+    return bindActionCreators({ setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryListByLandingPage }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InsertUpdateForm);

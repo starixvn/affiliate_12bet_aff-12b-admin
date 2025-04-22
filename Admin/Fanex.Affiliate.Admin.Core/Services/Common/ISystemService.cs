@@ -18,6 +18,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         IEnumerable<Currency> GetPaymentCurrencies();
 
-        IEnumerable<TargetCountry> GetTargetCountries();
+        IEnumerable<TargetCountry> GetTargetCountryList();
     }
 }

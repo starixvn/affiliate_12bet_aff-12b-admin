@@ -6,7 +6,7 @@
 
         public int LicenseeDomainId { get; set; }
 
-        public string MarketId { get; set; }
+        public string TargetCountryCode { get; set; }
 
         public bool Status { get; set; }
     }
