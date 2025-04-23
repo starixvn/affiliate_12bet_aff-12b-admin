@@ -144,7 +144,7 @@ export class DomainControlPopup extends PureComponent {
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
                             <Form tag="form" className="mb-5" autoComplete="off">
-                                <FormGroup row className="mb-2">
+                                <FormGroup row className="align-items-center mb-2">
                                     <Label htmlFor="targetCountryCode" sm={4}>Target Country</Label>
                                     <Col sm={8}>
                                         {
@@ -164,7 +164,7 @@ export class DomainControlPopup extends PureComponent {
                                         }
                                     </Col>
                                 </FormGroup>
-                                <FormGroup row className="mb-2">
+                                <FormGroup row className="align-items-center mb-2">
                                     <Label htmlFor="affDomainId" sm={4}>Aff Domain</Label>
                                     <Col sm={8}>
                                         <Select
@@ -177,7 +177,7 @@ export class DomainControlPopup extends PureComponent {
                                             onChange={this._handleChangeAffDomain} />
                                     </Col>
                                 </FormGroup>
-                                <FormGroup row className="mb-2">
+                                <FormGroup row className="align-items-center mb-2">
                                     <Label htmlFor="redirectDomainId" sm={4}>Redirect Domain</Label>
                                     <Col sm={8}>
                                         <Select
@@ -190,7 +190,7 @@ export class DomainControlPopup extends PureComponent {
                                             onChange={this._handleChangeRedirectDomain} />
                                     </Col>
                                 </FormGroup>
-                                <FormGroup row className="mb-2">
+                                <FormGroup row className="align-items-center mb-2">
                                     <Label sm={4}>Status</Label>
                                     <Col sm={8}>
                                         <input type="checkbox" name="isUsed" checked={selectedDomain.isUsed} onChange={this._handleChange} />

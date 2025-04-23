@@ -2,11 +2,13 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BlockTargetCountryFormGroup from '../../../common/components/BlockTargetCountryFormGroup';
+import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getTargetCountryListByDomain } from '../actions/index';
 import { defaultState } from '../libs/constants';
 import { getBlockTargetCountryList, checkBlockAllTargetCountries } from '../../../common/modules/utils/targetcountry';
+import { targetCountryStatus } from '../../../../modules/constants';
 
 export class DomainPopup extends PureComponent {
     constructor(props) {
@@ -33,7 +35,7 @@ export class DomainPopup extends PureComponent {
 
             if (domain) {
                 const { DomainName, IsSSL } = domain;
-                var domainIdParam = isAffDomain ? "affDomainId" : "redirectDomainId";
+                const domainIdParam = isAffDomain ? "affDomainId" : "redirectDomainId";
                 const targetCountryList = await this.props.getTargetCountryListByDomain({ [domainIdParam]: selectedDomainId });
                 if (targetCountryList && targetCountryList.length) {
                     const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
@@ -65,30 +67,81 @@ export class DomainPopup extends PureComponent {
         this.setState({ selectedDomain: newDomain, targetCountryList: newTargetCountryList, isBlockAllTargetCountries });
     }
 
-    _handleSubmit = async () => {
-        this.props.toggleLoader(true);
+    _handleCloseNotificationPopup = (confirmResult) => {
+        this.setState({ messageConfirm: '' });
 
-        const { isAffDomain } = this.props;
         const { selectedDomain } = this.state;
+        if (confirmResult && selectedDomain.domainName) {
+            this._submitData(selectedDomain);
+        }
+    }
 
-        if (selectedDomain.domainName) {
-            const { isInsert } = this.state;
-            const domainInfo = Object.assign({}, selectedDomain, { isAffDomain })
-            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
+    _handleSubmit = async () => {
+        const { selectedDomain, isInsert, targetCountryList } = this.state;
 
-            const result = isInsert ? await this.props.insertDomain(domainInfo) : await this.props.updateDomain(domainInfo);
+        console.log(targetCountryList);
 
-            if (result) {
-                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
-            } else {
-                this._handleShowAlert(false, isInsert ? "Add Domain is failed!" : "Update Domain is failed!");
-            }
-
-        } else {
-            this._handleShowAlert(false, "Please input domain name!")
+        if (!selectedDomain.domainName) {
+            this._handleShowAlert(false, "Please input domain name!");
+            return;
         }
 
-        this.props.toggleLoader(false);
+        if (isInsert) {
+            this._submitData(selectedDomain);
+            return;
+        }
+
+        const blockedControlDomains = targetCountryList.filter(targetCountry => 
+            targetCountry.IsUsedDomainControl && 
+            targetCountry.Status === targetCountryStatus.Blocked
+        );
+        
+        if (!blockedControlDomains.length) {
+            this._submitData(selectedDomain);
+            return;
+        }
+
+        const blockedMarkets = blockedControlDomains
+            .map(targetCountry => targetCountry.TargetCountryName)
+            .join(', ');
+
+        const message = `<strong class="text-danger">${selectedDomain.domainName}</strong> is currently active in the <strong>Domain Control</strong> function with the following target countries: <span class="text-danger">${blockedMarkets}</span>. These target countries will be set to inactive but will not be reactivated. Are you sure you want to proceed with blocking the domain?`;
+        
+        this.setState({ messageConfirm: message });
+    }
+
+    _submitData = async (selectedDomain) => {
+        try {
+            this.props.toggleLoader(true);
+
+            const { isAffDomain } = this.props;
+            const { isInsert } = this.state;
+            
+            const domainInfo = {
+                ...selectedDomain,
+                isAffDomain
+            };
+
+            const result = isInsert 
+                ? await this.props.insertDomain(domainInfo) 
+                : await this.props.updateDomain(domainInfo);
+
+            const successMessage = isInsert ? "Add Successfully!" : "Update Successfully!";
+            const errorMessage = isInsert ? "Add Domain failed!" : "Update Domain failed!";
+
+            if (result) {
+                this._handleShowAlert(
+                    result.IsSuccessful, 
+                    result.IsSuccessful ? successMessage : result.Message
+                );
+            } else {
+                this._handleShowAlert(false, errorMessage);
+            }
+        } catch (error) {
+            this._handleShowAlert(false, 'An unexpected error occurred');
+        } finally {
+            this.props.toggleLoader(false);
+        }
     }
 
     _handleKeyPress = (event) => {
@@ -123,47 +176,56 @@ export class DomainPopup extends PureComponent {
     }
 
     render() {
-        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, targetCountryList, isBlockAllTargetCountries } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, messageConfirm, selectedDomain, targetCountryList, isBlockAllTargetCountries } = this.state;
         const isShowPopup = selectedDomain !== null;
         const title = isInsert ? "Add Domain" : "Edit Domain";
         const buttonLabel = isInsert ? "Add" : "Submit";
 
         return selectedDomain && (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 700 }}>
-                <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
-                <ModalBody>
-                    <div className="modal-body-wrapper">
-                        <div className="domain-form-container">
-                            <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
-                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                            </Alert>
-                            <Form tag="form" className="mb-3" autoComplete="off">
-                                <FormGroup row className="mb-2">
-                                    <Label for="domainName" sm={3} className="required">Domain</Label>
-                                    <Col sm={9}>
-                                        <Input type="text" className="input-required mt-2" name="domainName"
-                                            value={selectedDomain.domainName} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label for="isSSL" sm={3}>SSL</Label>
-                                    <Col sm={9}>
-                                        <input type="checkbox" name="isSSL" id="isSSL" checked={selectedDomain.isSSL} onChange={this._handleChange} />
-                                    </Col>
-                                </FormGroup>
-                                <BlockTargetCountryFormGroup
-                                    targetCountryList={targetCountryList}
-                                    isBlockAllTargetCountries={isBlockAllTargetCountries}
-                                    changeTargetCountry={this.handleChangeTargetCountry}
+            <>
+                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 700 }}>
+                    <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
+                    <ModalBody>
+                        <div className="modal-body-wrapper">
+                            <div className="domain-form-container">
+                                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                                </Alert>
+                                <Form tag="form" className="mb-3" autoComplete="off">
+                                    <FormGroup row className="align-items-center mb-2">
+                                        <Label for="domainName" sm={3} className="required">Domain</Label>
+                                        <Col sm={9}>
+                                            <Input type="text" className="input-required mt-2" name="domainName"
+                                                value={selectedDomain.domainName} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row className="align-items-center mb-2">
+                                        <Label for="isSSL" sm={3}>SSL</Label>
+                                        <Col sm={9}>
+                                            <input type="checkbox" name="isSSL" id="isSSL" checked={selectedDomain.isSSL} onChange={this._handleChange} />
+                                        </Col>
+                                    </FormGroup>
+                                    <BlockTargetCountryFormGroup
+                                        targetCountryList={targetCountryList}
+                                        isBlockAllTargetCountries={isBlockAllTargetCountries}
+                                        changeTargetCountry={this.handleChangeTargetCountry}
                                     />
-                            </Form>
+                                </Form>
 
-                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
-                            <Button type="button" color="info" onClick={this._handleClosePopup}>Cancel</Button>
+                                <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
+                                <Button type="button" color="info" onClick={this._handleClosePopup}>Cancel</Button>
+                            </div>
                         </div>
-                    </div>
-                </ModalBody>
-            </Modal>
+                    </ModalBody>
+                </Modal>
+                {
+                    !!messageConfirm && <NotificationPopup
+                        message={messageConfirm}
+                        isConfirmPopup={true}
+                        onClose={this._handleCloseNotificationPopup}
+                    />
+                }
+            </>
         );
     }
 }

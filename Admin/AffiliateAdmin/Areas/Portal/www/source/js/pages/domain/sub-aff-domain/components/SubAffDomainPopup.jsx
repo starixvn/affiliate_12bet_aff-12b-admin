@@ -105,14 +105,14 @@ export class SubAffDomainPopup extends PureComponent {
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
                             <Form tag="form" className="mb-5" autoComplete="off">
-                                <FormGroup row className="mb-2">
+                                <FormGroup row className="align-items-center mb-2">
                                     <Label htmlFor="domainName" sm={4} className="required">Domain</Label>
                                     <Col sm={8}>
                                         <Input type="text" className="input-required mt-2" name="domainName"
                                             value={selectedSubAffDomain.domainName} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
                                     </Col>
                                 </FormGroup>
-                                <FormGroup row className="mb-2">
+                                <FormGroup row className="align-items-center mb-2">
                                     <Label sm={4}>SSL</Label>
                                     <Col sm={8}>
                                         <input type="checkbox" className="mt-2" name="isSSL" checked={selectedSubAffDomain.isSSL} onChange={this._handleChange} />
