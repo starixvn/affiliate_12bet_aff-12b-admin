@@ -92,7 +92,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
           tag="form"
         >
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >
@@ -137,7 +137,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
             </Col>
           </FormGroup>
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >
@@ -296,7 +296,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
           tag="form"
         >
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >
@@ -341,7 +341,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
             </Col>
           </FormGroup>
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >

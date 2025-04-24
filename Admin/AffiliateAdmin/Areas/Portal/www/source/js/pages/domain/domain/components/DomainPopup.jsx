@@ -79,8 +79,6 @@ export class DomainPopup extends PureComponent {
     _handleSubmit = async () => {
         const { selectedDomain, isInsert, targetCountryList } = this.state;
 
-        console.log(targetCountryList);
-
         if (!selectedDomain.domainName) {
             this._handleShowAlert(false, "Please input domain name!");
             return;
@@ -205,11 +203,13 @@ export class DomainPopup extends PureComponent {
                                             <input type="checkbox" name="isSSL" id="isSSL" checked={selectedDomain.isSSL} onChange={this._handleChange} />
                                         </Col>
                                     </FormGroup>
-                                    <BlockTargetCountryFormGroup
-                                        targetCountryList={targetCountryList}
-                                        isBlockAllTargetCountries={isBlockAllTargetCountries}
-                                        changeTargetCountry={this.handleChangeTargetCountry}
-                                    />
+                                    {
+                                        targetCountryList && <BlockTargetCountryFormGroup
+                                            targetCountryList={targetCountryList}
+                                            isBlockAllTargetCountries={isBlockAllTargetCountries}
+                                            changeTargetCountry={this.handleChangeTargetCountry}
+                                            />
+                                    }
                                 </Form>
 
                                 <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>

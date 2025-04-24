@@ -43,6 +43,11 @@ exports[`common - components - NotificationPopup Confirm Popup - render correctl
        says
     </h5>
     <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": undefined,
+        }
+      }
       style={
         Object {
           "whiteSpace": "pre-line",
@@ -130,6 +135,11 @@ exports[`common - components - NotificationPopup Notification Popup - render cor
        says
     </h5>
     <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": undefined,
+        }
+      }
       style={
         Object {
           "whiteSpace": "pre-line",

@@ -42,7 +42,7 @@ describe('domain - DomainPopup - connect', () => {
             updateDomain: actions['updateDomain'],
             toggleLoader: actions['toggleLoader'],
             getDomainById: actions['getDomainById'],
-            getMarketListByDomain: actions['getMarketListByDomain'],
+            getTargetCountryListByDomain: actions['getTargetCountryListByDomain'],
             setSelectedDomainId: actions['setSelectedDomainId']
         }
 

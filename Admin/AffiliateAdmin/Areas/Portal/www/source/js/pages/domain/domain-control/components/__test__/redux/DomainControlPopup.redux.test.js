@@ -20,17 +20,17 @@ describe('domain control - DomainControlPopup - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             selectedDomainId: 123,
-            selectedMarketId: 'en-GB',
+            selectedTargetCountry: 'MY',
             affSubDomainList: [],
-            marketList: [],
+            targetCountryList: [],
             affDomainList: [],
             redirectDomainList: []
         };
         const state = {
             selectedDomainId: 123,
-            selectedMarketId: 'en-GB',
+            selectedTargetCountry: 'MY',
             affSubDomainList: [],
-            marketList: [],
+            targetCountryList: [],
             affDomainList: [],
             redirectDomainList: [],
             anotherProp: "Not included"
@@ -50,7 +50,7 @@ describe('domain control - DomainControlPopup - connect', () => {
             updateDomain: actions['updateDomain'],
             toggleLoader: actions['toggleLoader'],
             getDomainControlById: actions['getDomainControlById'],
-            getMarketListByDomains: actions['getMarketListByDomains'],
+            getTargetCountryListByDomains: actions['getTargetCountryListByDomains'],
             setSelectedDomainId: actions['setSelectedDomainId']
         }
 

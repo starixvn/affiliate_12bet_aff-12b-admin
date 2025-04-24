@@ -3,570 +3,471 @@
 exports[`DomainPopup Component Rendering should not render popup when selectedDomainId is null 1`] = `""`;
 
 exports[`DomainPopup Component Rendering should render correctly for insert mode 1`] = `
-<Modal
-  autoFocus={true}
-  backdrop="static"
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
+<Fragment>
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
     }
-  }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={true}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
+    centered={false}
+    container="body"
+    fade={true}
+    isOpen={true}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
     }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  style={
-    Object {
-      "maxWidth": 700,
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    style={
+      Object {
+        "maxWidth": 700,
+      }
     }
-  }
-  toggle={[Function]}
-  trapFocus={false}
-  unmountOnClose={true}
-  zIndex={1050}
->
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
     toggle={[Function]}
-    wrapTag="div"
+    trapFocus={false}
+    unmountOnClose={true}
+    zIndex={1050}
   >
-    <span
-      className="iconpopup"
-    />
-    Add Domain
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <div
-      className="modal-body-wrapper"
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Add Domain
+    </ModalHeader>
+    <ModalBody
+      tag="div"
     >
       <div
-        className="domain-form-container"
+        className="modal-body-wrapper"
       >
-        <Alert
-          closeAriaLabel="Close"
-          color="success"
-          fade={true}
-          isOpen={false}
-          tag="div"
-          transition={
-            Object {
-              "appear": true,
-              "baseClass": "fade",
-              "baseClassActive": "show",
-              "enter": true,
-              "exit": true,
-              "in": true,
-              "mountOnEnter": false,
-              "onEnter": [Function],
-              "onEntered": [Function],
-              "onEntering": [Function],
-              "onExit": [Function],
-              "onExited": [Function],
-              "onExiting": [Function],
-              "tag": "div",
-              "timeout": 150,
-              "unmountOnExit": true,
-            }
-          }
+        <div
+          className="domain-form-container"
         >
-          <div
-            dangerouslySetInnerHTML={
+          <Alert
+            closeAriaLabel="Close"
+            color="success"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
               Object {
-                "__html": "",
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
               }
             }
-          />
-        </Alert>
-        <Form
-          autoComplete="off"
-          className="mb-3"
-          tag="form"
-        >
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
           >
-            <Label
-              className="required"
-              for="domainName"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
               }
-            >
-              Domain
-            </Label>
-            <Col
-              sm={9}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                className="input-required mt-2"
-                name="domainName"
-                onChange={[Function]}
-                onKeyPress={[Function]}
-                type="text"
-                value=""
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
+            />
+          </Alert>
+          <Form
+            autoComplete="off"
+            className="mb-3"
+            tag="form"
           >
-            <Label
-              for="isSSL"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              SSL
-            </Label>
-            <Col
-              sm={9}
+            <FormGroup
+              className="align-items-center mb-2"
+              row={true}
               tag="div"
-              widths={
+            >
+              <Label
+                className="required"
+                for="domainName"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                Domain
+              </Label>
+              <Col
+                sm={9}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="domainName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value=""
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="align-items-center mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                for="isSSL"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                SSL
+              </Label>
+              <Col
+                sm={9}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <input
+                  checked={true}
+                  id="isSSL"
+                  name="isSSL"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </Col>
+            </FormGroup>
+            <BlockTargetCountryFormGroup
+              changeTargetCountry={[Function]}
+              isBlockAllTargetCountries={false}
+              lblText="Block Target Country"
+              sm={3}
+              targetCountryList={
                 Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
+                  Object {
+                    "Status": 0,
+                    "TargetCountryCode": "en-US",
+                    "TargetCountryName": "English",
+                  },
+                  Object {
+                    "Status": 1,
+                    "TargetCountryCode": "th-TH",
+                    "TargetCountryName": "Thailand",
+                  },
+                  Object {
+                    "Status": 2,
+                    "TargetCountryCode": "zh-CN",
+                    "TargetCountryName": "Chinese",
+                  },
                 ]
               }
-            >
-              <input
-                checked={true}
-                id="isSSL"
-                name="isSSL"
-                onChange={[Function]}
-                type="checkbox"
-              />
-            </Col>
-          </FormGroup>
-        </Form>
-        <Button
-          className="mr-3"
-          color="success"
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Add
-        </Button>
-        <Button
-          color="info"
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Cancel
-        </Button>
+            />
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Add
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
-    </div>
-  </ModalBody>
-</Modal>
+    </ModalBody>
+  </Modal>
+</Fragment>
 `;
 
 exports[`DomainPopup Component Rendering should render correctly for update mode 1`] = `
-<Modal
-  autoFocus={true}
-  backdrop="static"
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
+<Fragment>
+  <Modal
+    autoFocus={true}
+    backdrop="static"
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
     }
-  }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={true}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
+    centered={false}
+    container="body"
+    fade={true}
+    isOpen={true}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
     }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  style={
-    Object {
-      "maxWidth": 700,
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    style={
+      Object {
+        "maxWidth": 700,
+      }
     }
-  }
-  toggle={[Function]}
-  trapFocus={false}
-  unmountOnClose={true}
-  zIndex={1050}
->
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
     toggle={[Function]}
-    wrapTag="div"
+    trapFocus={false}
+    unmountOnClose={true}
+    zIndex={1050}
   >
-    <span
-      className="iconpopup"
-    />
-    Add Domain
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <div
-      className="modal-body-wrapper"
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      <span
+        className="iconpopup"
+      />
+      Add Domain
+    </ModalHeader>
+    <ModalBody
+      tag="div"
     >
       <div
-        className="domain-form-container"
+        className="modal-body-wrapper"
       >
-        <Alert
-          closeAriaLabel="Close"
-          color="danger"
-          fade={true}
-          isOpen={false}
-          tag="div"
-          transition={
-            Object {
-              "appear": true,
-              "baseClass": "fade",
-              "baseClassActive": "show",
-              "enter": true,
-              "exit": true,
-              "in": true,
-              "mountOnEnter": false,
-              "onEnter": [Function],
-              "onEntered": [Function],
-              "onEntering": [Function],
-              "onExit": [Function],
-              "onExited": [Function],
-              "onExiting": [Function],
-              "tag": "div",
-              "timeout": 150,
-              "unmountOnExit": true,
-            }
-          }
+        <div
+          className="domain-form-container"
         >
-          <div
-            dangerouslySetInnerHTML={
+          <Alert
+            closeAriaLabel="Close"
+            color="danger"
+            fade={true}
+            isOpen={false}
+            tag="div"
+            transition={
               Object {
-                "__html": "",
+                "appear": true,
+                "baseClass": "fade",
+                "baseClassActive": "show",
+                "enter": true,
+                "exit": true,
+                "in": true,
+                "mountOnEnter": false,
+                "onEnter": [Function],
+                "onEntered": [Function],
+                "onEntering": [Function],
+                "onExit": [Function],
+                "onExited": [Function],
+                "onExiting": [Function],
+                "tag": "div",
+                "timeout": 150,
+                "unmountOnExit": true,
               }
             }
-          />
-        </Alert>
-        <Form
-          autoComplete="off"
-          className="mb-3"
-          tag="form"
-        >
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
           >
-            <Label
-              className="required"
-              for="domainName"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
               }
-            >
-              Domain
-            </Label>
-            <Col
-              sm={9}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <Input
-                className="input-required mt-2"
-                name="domainName"
-                onChange={[Function]}
-                onKeyPress={[Function]}
-                type="text"
-                value="abc.com"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
+            />
+          </Alert>
+          <Form
+            autoComplete="off"
+            className="mb-3"
+            tag="form"
           >
-            <Label
-              for="isSSL"
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              SSL
-            </Label>
-            <Col
-              sm={9}
+            <FormGroup
+              className="align-items-center mb-2"
+              row={true}
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
-              <input
-                checked={true}
-                id="isSSL"
-                name="isSSL"
-                onChange={[Function]}
-                type="checkbox"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup
-            className="mb-2"
-            row={true}
-            tag="div"
-          >
-            <Label
-              sm={3}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              Block Market
-            </Label>
-            <Col
-              sm={9}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <div
-                className="block-market"
+              <Label
+                className="required"
+                for="domainName"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
-                <div
-                  className="block-market-item"
-                  key="en-US"
-                >
-                  <input
-                    checked={false}
-                    className="mr-2"
-                    disabled={true}
-                    id="en-US"
-                    onChange={[Function]}
-                    title="This Affiliate domain has been used for this market!"
-                    type="checkbox"
-                  />
-                  <Label
-                    for="en-US"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    English
-                  </Label>
-                </div>
-                <div
-                  className="block-market-item"
-                  key="th-TH"
-                >
-                  <input
-                    checked={true}
-                    className="mr-2"
-                    disabled={false}
-                    id="th-TH"
-                    onChange={[Function]}
-                    title={false}
-                    type="checkbox"
-                  />
-                  <Label
-                    for="th-TH"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    Thailand
-                  </Label>
-                </div>
-                <div
-                  className="block-market-item"
-                  key="zh-CN"
-                >
-                  <input
-                    checked={false}
-                    className="mr-2"
-                    disabled={false}
-                    id="zh-CN"
-                    onChange={[Function]}
-                    title={false}
-                    type="checkbox"
-                  />
-                  <Label
-                    for="zh-CN"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    Chinese
-                  </Label>
-                </div>
-                <div
-                  className="block-market-item block-market-All"
-                >
-                  <input
-                    checked={false}
-                    className="mr-2"
-                    disabled={false}
-                    id="All-Markets"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                  <Label
-                    for="All-Markets"
-                    tag="label"
-                    widths={
-                      Array [
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                      ]
-                    }
-                  >
-                    All
-                  </Label>
-                </div>
-              </div>
-            </Col>
-          </FormGroup>
-        </Form>
-        <Button
-          className="mr-3"
-          color="success"
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Add
-        </Button>
-        <Button
-          color="info"
-          onClick={[Function]}
-          tag="button"
-          type="button"
-        >
-          Cancel
-        </Button>
+                Domain
+              </Label>
+              <Col
+                sm={9}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Input
+                  className="input-required mt-2"
+                  name="domainName"
+                  onChange={[Function]}
+                  onKeyPress={[Function]}
+                  type="text"
+                  value="abc.com"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              className="align-items-center mb-2"
+              row={true}
+              tag="div"
+            >
+              <Label
+                for="isSSL"
+                sm={3}
+                tag="label"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                SSL
+              </Label>
+              <Col
+                sm={9}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <input
+                  checked={true}
+                  id="isSSL"
+                  name="isSSL"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+              </Col>
+            </FormGroup>
+            <BlockTargetCountryFormGroup
+              changeTargetCountry={[Function]}
+              isBlockAllTargetCountries={false}
+              lblText="Block Target Country"
+              sm={3}
+              targetCountryList={
+                Array [
+                  Object {
+                    "Status": 0,
+                    "TargetCountryCode": "en-US",
+                    "TargetCountryName": "English",
+                  },
+                  Object {
+                    "Status": 1,
+                    "TargetCountryCode": "th-TH",
+                    "TargetCountryName": "Thailand",
+                  },
+                  Object {
+                    "Status": 2,
+                    "TargetCountryCode": "zh-CN",
+                    "TargetCountryName": "Chinese",
+                  },
+                ]
+              }
+            />
+          </Form>
+          <Button
+            className="mr-3"
+            color="success"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Add
+          </Button>
+          <Button
+            color="info"
+            onClick={[Function]}
+            tag="button"
+            type="button"
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
-    </div>
-  </ModalBody>
-</Modal>
+    </ModalBody>
+  </Modal>
+</Fragment>
 `;

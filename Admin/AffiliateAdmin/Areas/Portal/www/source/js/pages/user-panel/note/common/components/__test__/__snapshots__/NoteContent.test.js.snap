@@ -173,7 +173,10 @@ exports[`note - common - components - Content render correctly with have data 1`
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="#"
+          >
+            #
+          </t>
           <t
             asc={true}
             colWidth={580}
@@ -301,7 +304,10 @@ exports[`note - common - components - Content render correctly with have data is
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="#"
+          >
+            #
+          </t>
           <t
             asc={true}
             colWidth={580}

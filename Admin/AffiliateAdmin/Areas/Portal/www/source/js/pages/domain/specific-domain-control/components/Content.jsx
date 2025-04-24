@@ -195,8 +195,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedMarketId, param, pagingOption }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedMarketId, param, pagingOption });
+function mapStateToProps({ shouldResetScrollPosition, gridData, param, pagingOption }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, param, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {

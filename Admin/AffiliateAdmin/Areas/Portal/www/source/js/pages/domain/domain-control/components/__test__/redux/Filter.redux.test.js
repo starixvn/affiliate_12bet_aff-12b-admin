@@ -20,10 +20,10 @@ describe('domain control - Filter - connect', () => {
 
     it('props should be mapped correctly', () => {
         const expectedResult = {
-            marketList: []
+            targetCountryList: []
         };
         const state = {
-            marketList: [],
+            targetCountryList: [],
             anotherProp: "Not included"
         };
 
