@@ -68,7 +68,7 @@
                             <td class="text-center">@item.TransDate.ToString("MM/dd/yyyy")</td>
                             <td class="text-right">@item.Amount.ToStringMoneyWithSymbol()</td>
                             <td class="text-center">@ConvertPaymentMethod(paymentMethod)</td>
-                            <td class="text-center">@item.CompletedDate.ToString("MM/dd/yyyy")</td>
+                            <td class="text-center">@(item.CompletedDate?.ToString("MM/dd/yyyy") ?? string.Empty)</td>
                             <td class="text-center text-bold">@ConvertStatus(item.Status)</td>
                             <td>@Html.Raw(item.AffDesc)</td>
                         </tr>

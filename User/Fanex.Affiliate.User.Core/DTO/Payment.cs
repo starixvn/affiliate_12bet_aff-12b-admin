@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.DTO
 
         public DateTime TransDate { get; set; }
 
-        public DateTime CompletedDate { get; set; }
+        public DateTime? CompletedDate { get; set; }
 
         public string Status { get; set; }
 
