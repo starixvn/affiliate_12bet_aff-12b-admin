@@ -2225,9 +2225,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="BecomeA12BetAff" xml:space="preserve">
     <value>Trở Thành Đại Lý 12Bet</value>
   </data>
-  <data name="Skype" xml:space="preserve">
-    <value>Tài khoản Skype</value>
-  </data>
   <data name="Telegram" xml:space="preserve">
     <value>Tài khoản Telegram</value>
   </data>

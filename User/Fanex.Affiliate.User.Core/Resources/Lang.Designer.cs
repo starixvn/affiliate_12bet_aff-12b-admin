@@ -5805,15 +5805,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skype.
-        /// </summary>
-        public static string Skype {
-            get {
-                return ResourceManager.GetString("Skype", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Slot.
         /// </summary>
         public static string Slot {

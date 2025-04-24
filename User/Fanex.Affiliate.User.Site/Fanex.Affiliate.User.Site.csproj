@@ -461,6 +461,7 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.vi-VN.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.zh-CN.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.zh-TW.jpg" />
+    <Content Include="www\build\styles\Images\contact-manager\en-IN.jpg" />
     <Content Include="www\build\styles\Images\home\5-stars.svg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\home\top-banner\item\desktop.en-US.jpg" />

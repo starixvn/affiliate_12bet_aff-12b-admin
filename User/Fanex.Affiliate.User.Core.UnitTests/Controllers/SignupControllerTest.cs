@@ -287,8 +287,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             {
                 new ContactApp
                 {
-                    Name = "Skype",
-                    Value = "skyper",
+                    Name = "Line",
+                    Value = "line",
                     Order = 0
                 },
                 new ContactApp
