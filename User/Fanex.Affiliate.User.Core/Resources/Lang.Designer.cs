@@ -2546,6 +2546,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FDM Amt.
+        /// </summary>
+        public static string FdmAmt {
+            get {
+                return ResourceManager.GetString("FdmAmt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FDM Date.
         /// </summary>
         public static string FdmDate {
@@ -5769,7 +5778,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign up to affiliate program and earn up to 40% monthly commission!.
+        ///   Looks up a localized string similar to Sign up to affiliate program and earn up to 50% monthly commission!.
         /// </summary>
         public static string SignUpToAffiliateProgram {
             get {

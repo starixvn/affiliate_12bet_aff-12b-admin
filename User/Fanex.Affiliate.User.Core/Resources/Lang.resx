@@ -2647,4 +2647,7 @@ CONSISTENT PAYMENT</value>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>Qualified Active Players</value>
   </data>
+  <data name="FdmAmt" xml:space="preserve">
+    <value>FDM Amt</value>
+  </data>
 </root>
