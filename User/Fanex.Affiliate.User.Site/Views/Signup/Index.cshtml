@@ -9,8 +9,9 @@
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var systemsService = DependencyResolver.Current.GetService<ISystemService>();
     var currentLanguage = sessionService.CurrentLanguage;
+    var firstAppContactName = AppContact.FirsAppContactList[currentLanguage];
+    var hasSecondContactApp = AppContact.SecondAppContactList.ContainsKey(currentLanguage);
     var hasThirdContactApp = AppContact.ThirdAppContactList.ContainsKey(currentLanguage);
-    var secondAppName = AppContact.SecondAppContactList[currentLanguage];
     var languageList = systemsService.GetSupportedLanguages().Where(l => !l.Code.Equals("km-KH"));
 }
 
@@ -93,7 +94,7 @@
                                     </div>
                                 </div>
 
-                                @if (!hasThirdContactApp)
+                                @if (!hasSecondContactApp)
                                 {
                                     <div class="form-group form-columns form-columns-2">
                                         <div class="items validate-group">
@@ -101,33 +102,51 @@
                                             @Html.TextBoxFor(p => p.Phone, new { @class = "form-input", @autocomplete = "off" })
                                             @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "validate-input hide" })
                                         </div>
-                                        @RazorHelper.RenderAppContactSignUp(AppContact.FirstAppContactName, 1, "ContactAppList[1].Value")
+                                        @RazorHelper.RenderRequiredAppContactSignUp(firstAppContactName, currentLanguage, 1)
                                     </div>
                                     <div class="form-group form-columns form-columns-2">
-                                        @RazorHelper.RenderAppContactSignUp(secondAppName, 2, "ContactAppList[0].Value")
                                         @RazorHelper.RenderGenderSignUp()
                                     </div>
                                 }
                                 else
                                 {
-                                    var thirdAppName = AppContact.ThirdAppContactList[currentLanguage];
-                                    <div class="form-group form-columns form-columns-2">
-                                        <div class="items validate-group">
-                                            <label for="Phone" class="custom-label">@Lang.ContactNumber <span class="red-warn">*</span></label>
-                                            @Html.TextBoxFor(p => p.Phone, new { @class = "form-input", @autocomplete = "off" })
-                                            @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "validate-input hide" })
-                                        </div>
-                                        @RazorHelper.RenderAppContactSignUp(AppContact.FirstAppContactName, 1, "ContactAppList[1].Value,ContactAppList[2].Value")
-                                    </div>
-                                    <div class="form-group form-columns form-columns-2">
-                                        @RazorHelper.RenderAppContactSignUp(secondAppName, 2, "ContactAppList[0].Value,ContactAppList[2].Value")
-                                        @RazorHelper.RenderAppContactSignUp(thirdAppName, 3, "ContactAppList[0].Value,ContactAppList[1].Value")
-                                    </div>
-                                    <div class="form-group form-columns form-columns-2">
-                                        @RazorHelper.RenderGenderSignUp()
-                                    </div>
-                                }
+                                    var secondAppContactName = AppContact.SecondAppContactList[currentLanguage];
 
+                                    if (!hasThirdContactApp)
+                                    {
+                                        <div class="form-group form-columns form-columns-2">
+                                            <div class="items validate-group">
+                                                <label for="Phone" class="custom-label">@Lang.ContactNumber <span class="red-warn">*</span></label>
+                                                @Html.TextBoxFor(p => p.Phone, new { @class = "form-input", @autocomplete = "off" })
+                                                @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "validate-input hide" })
+                                            </div>
+                                            @RazorHelper.RenderRequiredAppContactSignUp(firstAppContactName, currentLanguage, 1)
+                                        </div>
+                                        <div class="form-group form-columns form-columns-2">
+                                            @RazorHelper.RenderAppContactSignUp(secondAppContactName, currentLanguage, 2)
+                                            @RazorHelper.RenderGenderSignUp()
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        var thirdAppContactName = AppContact.ThirdAppContactList[currentLanguage];
+                                        <div class="form-group form-columns form-columns-2">
+                                            <div class="items validate-group">
+                                                <label for="Phone" class="custom-label">@Lang.ContactNumber <span class="red-warn">*</span></label>
+                                                @Html.TextBoxFor(p => p.Phone, new { @class = "form-input", @autocomplete = "off" })
+                                                @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "validate-input hide" })
+                                            </div>
+                                            @RazorHelper.RenderRequiredAppContactSignUp(firstAppContactName, currentLanguage, 1)
+                                        </div>
+                                        <div class="form-group form-columns form-columns-2">
+                                            @RazorHelper.RenderAppContactSignUp(secondAppContactName, currentLanguage, 2)
+                                            @RazorHelper.RenderAppContactSignUp(thirdAppContactName, currentLanguage, 3)
+                                        </div>
+                                        <div class="form-group form-columns form-columns-2">
+                                            @RazorHelper.RenderGenderSignUp()
+                                        </div>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>

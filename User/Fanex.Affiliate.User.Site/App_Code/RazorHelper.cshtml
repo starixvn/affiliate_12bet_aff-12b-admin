@@ -154,10 +154,10 @@
 
 @helper RenderAppContact(string language)
 {
-    var firstAppName = Fanex.Affiliate.User.Core.Constants.AppContact.FirstAppContactName;
+    var firsAppContactList = Fanex.Affiliate.User.Core.Constants.AppContact.FirsAppContactList;
     var secondAppContactList = Fanex.Affiliate.User.Core.Constants.AppContact.SecondAppContactList;
     var thirdAppContactList = Fanex.Affiliate.User.Core.Constants.AppContact.ThirdAppContactList;
-
+    var firstAppName = firsAppContactList[language];
     var hasTwoContactApp = secondAppContactList.ContainsKey(language);
     var hasThirdContactApp = thirdAppContactList.ContainsKey(language);
 
@@ -243,15 +243,41 @@
     </div>
 }
 
-@helper RenderAppContactSignUp(string name, int order, string dependentProp)
+@helper RenderRequiredAppContactSignUp(string name, string language = "", int order = 1, string dependentProp = "")
 {
     var index = order - 1;
+    var nameTraslation = Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(name) ?? name;
+    var placeHolder = Fanex.Affiliate.User.Core.Constants.AppContact.GetPlaceHolderByAppAndLanguage(name, language);
+    var regex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(name, language);
 
     <div class="items validate-group">
-        <label for="ContactAppList[@index].Value" class="custom-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(name) ?? name)</label>
-        <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
-               data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentProp"
-               data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
+        <label for="ContactAppList[@index].Value" class="custom-label">@(nameTraslation) <span class="red-warn">*</span></label>
+        <input type="text" placeholder="@placeHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
+               data-val="true"
+               data-val-regex="@(nameTraslation) is incorrect format"
+               data-val-regex-pattern="@regex"
+               data-val-required="@(nameTraslation) is required" />
+        <span class="field-validation-error validate-input hide"
+              data-valmsg-for="ContactAppList[@index].Value" data-valmsg-replace="true"></span>
+
+        <input type="hidden" name="ContactAppList[@index].Name" value="@name" />
+        <input type="hidden" name="ContactAppList[@index].Order" value="@order" />
+    </div>
+}
+
+@helper RenderAppContactSignUp(string name, string language = "", int order = 1)
+{
+    var index = order - 1;
+    var nameTraslation = Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(name) ?? name;
+    var placeHolder = Fanex.Affiliate.User.Core.Constants.AppContact.GetPlaceHolderByAppAndLanguage(name, language);
+    var regex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(name, language);
+
+    <div class="items validate-group">
+        <label for="ContactAppList[@index].Value" class="custom-label">@(nameTraslation)</label>
+        <input type="text" placeholder="@placeHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
+               data-val="true"
+               data-val-regex="@(nameTraslation) is incorrect format"
+               data-val-regex-pattern="@regex" />
         <span class="field-validation-error validate-input hide"
               data-valmsg-for="ContactAppList[@index].Value" data-valmsg-replace="true"></span>
 
