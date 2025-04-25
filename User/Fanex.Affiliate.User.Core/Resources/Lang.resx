@@ -2641,12 +2641,21 @@ CONSISTENT PAYMENT</value>
     <value>Qualified Active Players</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
-    <value>Subscribe to Our {0} Channel&lt;br/&gt;
+    <value>Subscribe to Our {0}&lt;br/&gt;
 For the Latest Updated and Promotions</value>
   </data>
   <data name="ForInquiries" xml:space="preserve">
-    <value>For inquiries you may directly contact our Telegram {0}
+    <value>For inquiries you may directly contact our Telegram {0}&lt;br /&gt;
 You can also email us to {1} or simply fill the form below.</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>Telegram Channel</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> is invalid</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> is required</value>
   </data>
   <data name="FdmAmt" xml:space="preserve">
     <value>FDM Amt</value>

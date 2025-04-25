@@ -2717,7 +2717,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For inquiries you may directly contact our Telegram {0}
+        ///   Looks up a localized string similar to For inquiries you may directly contact our Telegram {0}&lt;br /&gt;
         ///You can also email us to {1} or simply fill the form below..
         /// </summary>
         public static string ForInquiries {
@@ -3186,11 +3186,29 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  is invalid.
+        /// </summary>
+        public static string IsInvalid {
+            get {
+                return ResourceManager.GetString("IsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Israel .
         /// </summary>
         public static string Israel {
             get {
                 return ResourceManager.GetString("Israel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  is required.
+        /// </summary>
+        public static string IsRequired {
+            get {
+                return ResourceManager.GetString("IsRequired", resourceCulture);
             }
         }
         
@@ -6103,7 +6121,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subscribe to Our {0} Channel&lt;br/&gt;
+        ///   Looks up a localized string similar to Subscribe to Our {0}&lt;br/&gt;
         ///For the Latest Updated and Promotions.
         /// </summary>
         public static string SubscribeToOur {
@@ -6370,6 +6388,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Telegram {
             get {
                 return ResourceManager.GetString("Telegram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telegram Channel.
+        /// </summary>
+        public static string TelegramChannel {
+            get {
+                return ResourceManager.GetString("TelegramChannel", resourceCulture);
             }
         }
         

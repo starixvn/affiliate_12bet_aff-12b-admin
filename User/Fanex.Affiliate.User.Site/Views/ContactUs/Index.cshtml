@@ -50,7 +50,7 @@
                     @Lang.SupportDay
                 </p>
                 <p class="time">@Html.Raw(Lang.SupportTime)</p>
-                <p class="subscribe">@Html.Raw(string.Format(Lang.SubscribeToOur, "<a href=\"https://web.telegram.org/a/#8015762148\">Telegram</a>"))</p>
+                <p class="subscribe">@Html.Raw(string.Format(Lang.SubscribeToOur, $"<a href=\"https://t.me/+Kn-mz3K9PtI0ZDVl\">{Lang.TelegramChannel}</a>"))</p>
             </div>
         </div>
     </div>
@@ -201,7 +201,7 @@
     <div class="block block-contact-form">
         <div class="page-container">
             <h2 class="contact-title">
-                @Html.Raw(string.Format(Lang.ForInquiries, "<a href=\"https://web.telegram.org/a/#8015762148\">@Affiliate12BET</a><br />", "<a href=\"mailto:" + mailContact + "\">" + mailContact + "</a>"))
+                @Html.Raw(string.Format(Lang.ForInquiries, "<a href=\"https://web.telegram.org/a/#8015762148\">@Affiliate12BET</a>", "<a href=\"mailto:" + mailContact + "\">" + mailContact + "</a>"))
             </h2>
             <div class="alert alert-success" role="alert" id="messageSuccess" style="display: none;">
                 @Html.Raw(Lang.MessageSentReview.Replace("{br}", "<br>"))

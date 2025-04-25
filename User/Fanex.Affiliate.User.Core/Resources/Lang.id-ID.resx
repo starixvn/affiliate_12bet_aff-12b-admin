@@ -2529,7 +2529,20 @@ PEMBAYARAN KONSISTEN</value>
     <value>Pemain Aktif</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
-    <value>Berlangganan Saluran {0} Kami&lt;br /&gt;
-Untuk Update dan Promosi Terbaru</value>
+    <value>Berlangganan {0}&lt;br /&gt;
+Kami untuk Update dan Promosi Terbaru</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>Saluran Telegram</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>Untuk pertanyaan, Anda dapat langsung menghubungi Telegram kami di {0}&lt;br /&gt;
+Anda juga bisa mengirim email ke {1} atau cukup isi formulir di bawah ini.</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> tidak valid</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> wajib diisi</value>
   </data>
 </root>

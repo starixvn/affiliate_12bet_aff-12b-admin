@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 return new ResultInfo 
                 { 
                     IsOk = false, 
-                    Message = $"{firstItem.Name} is required" 
+                    Message = $"{firstItem.Name}{Lang.IsRequired}" 
                 };
             }
 
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 return new ResultInfo 
                 { 
                     IsOk = false, 
-                    Message = $"{contactApp.Name} is invalid" 
+                    Message = $"{contactApp.Name}{Lang.IsInvalid}" 
                 };
             }
 

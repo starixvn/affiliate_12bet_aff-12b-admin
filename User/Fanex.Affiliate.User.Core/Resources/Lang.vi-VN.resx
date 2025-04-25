@@ -2532,7 +2532,20 @@ THANH TOÁN ỔN ĐỊNH</value>
     <value>Người chơi đang hoạt động đủ điều kiện</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
-    <value>Hãy theo dõi kênh {0} của chúng tôi&lt;br /&gt;
+    <value>Hãy theo dõi {0} của chúng tôi để nhận các cập nhật và khuyến mãi mới nhất.
 Để nhận các cập nhật và khuyến mãi mới nhất.</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>kênh Telegram</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>Để được hỗ trợ, bạn có thể liên hệ trực tiếp với chúng tôi qua Telegram: {0}&lt;br /&gt;
+Bạn cũng có thể gửi email đến: {1} hoặc điền vào biểu mẫu bên dưới.</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> không hợp lệ</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> là bắt buộc</value>
   </data>
 </root>

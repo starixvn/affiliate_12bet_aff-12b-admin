@@ -2554,7 +2554,20 @@
     <value>ผู้เล่นที่ผ่านเกณฑ์</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
-    <value>สมัครสมาชิกช่องทาง {0}ของเรา&lt;br /&gt;
+    <value>สมัครสมาชิก{0} ของเราเพื่อรับการอัปเดตและโปรโมชั่นล่าสุด
 เพื่อรับการอัปเดตและโปรโมชั่นล่าสุด</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>ช่องทาง Telegram</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>หากมีข้อสงสัย คุณสามารถติดต่อ{0} ทาง Telegram ของเราได้โดยตรง&lt;br /&gt;
+คุณยังสามารถส่งอีเมล {1} หรือเพียงแค่กรอกแบบฟอร์มด้านล่าง</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> ไม่ถูกต้อง</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> จําเป็น</value>
   </data>
 </root>

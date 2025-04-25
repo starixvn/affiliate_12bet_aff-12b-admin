@@ -168,8 +168,8 @@
         <label for="ContactAppList[0].Value" class="col-sm-3 custom-label">@(firstAppNameTraslation) <span class="red-warn">*</span></label>
         <input type="text" placeholder="@firstAppPlaceHolder" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-input" value=""
                data-val="true"
-               data-val-required="@(firstAppNameTraslation) is required"
-               data-val-regex="@(firstAppNameTraslation) is invalid"
+               data-val-required="@(firstAppNameTraslation)@Fanex.Affiliate.User.Core.Resources.Lang.IsRequired"
+               data-val-regex="@(firstAppNameTraslation)@Fanex.Affiliate.User.Core.Resources.Lang.IsInvalid"
                data-val-regex-pattern="@firstAppRegex" />
         <div class="col-sm-offset-3 col-sm-9">
             <span class="field-validation-error validate-input hide"
@@ -190,7 +190,7 @@
             <label for="ContactAppList[1].Value" class="col-sm-3 custom-label">@(secondAppNameTraslation)</label>
             <input type="text" placeholder="@secondAppPlaceHolder" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-input" value=""
                 data-val="true"
-                data-val-regex="@(secondAppNameTraslation) is invalid"
+                data-val-regex="@(secondAppNameTraslation)@Fanex.Affiliate.User.Core.Resources.Lang.IsInvalid"
                 data-val-regex-pattern="@secondAppRegex" />
 
             <div class="col-sm-offset-3 col-sm-9">
@@ -211,7 +211,7 @@
                 <label for="ContactAppList[2].Value" class="col-sm-3 custom-label">@(thirdAppNameTraslation)</label>
                 <input type="text" placeholder="@thirdAppPlaceHolder" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-input" value=""
                     data-val="true"
-                    data-val-regex="@(thirdAppNameTraslation) is invalid"
+                    data-val-regex="@(thirdAppNameTraslation)@Fanex.Affiliate.User.Core.Resources.Lang.IsInvalid"
                     data-val-regex-pattern="@thirdAppRegex" />
 
                 <div class="col-sm-offset-3 col-sm-9">
@@ -255,8 +255,8 @@
         <label for="ContactAppList[@index].Value" class="custom-label">@(nameTraslation) <span class="red-warn">*</span></label>
         <input type="text" placeholder="@placeHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
                data-val="true"
-               data-val-required="@(nameTraslation) is required"
-               data-val-regex="@(nameTraslation) is invalid"
+               data-val-required="@(nameTraslation)@Fanex.Affiliate.User.Core.Resources.Lang.IsRequired"
+               data-val-regex="@(nameTraslation)@Fanex.Affiliate.User.Core.Resources.Lang.IsInvalid"
                data-val-regex-pattern="@regex"
                />
         <span class="field-validation-error validate-input hide"
@@ -278,7 +278,7 @@
         <label for="ContactAppList[@index].Value" class="custom-label">@(nameTraslation)</label>
         <input type="text" placeholder="@placeHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
                data-val="true"
-               data-val-regex="@(nameTraslation) is invalid"
+               data-val-regex="@(nameTraslation)@Fanex.Affiliate.User.Core.Resources.Lang.IsInvalid"
                data-val-regex-pattern="@regex" />
         <span class="field-validation-error validate-input hide"
               data-valmsg-for="ContactAppList[@index].Value" data-valmsg-replace="true"></span>
