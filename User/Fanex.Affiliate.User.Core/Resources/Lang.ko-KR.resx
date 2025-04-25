@@ -1470,9 +1470,6 @@
   <data name="IndianSupport" xml:space="preserve">
     <value>인도 서포트</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>기타 문의사항이 있으시면 {0} 로  보내주시거나 아래의 양식을 작성하신 후 제출을 클릭해주세요.</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>보안문자</value>
   </data>

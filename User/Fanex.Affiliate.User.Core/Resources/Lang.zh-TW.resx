@@ -1441,9 +1441,6 @@
   <data name="IndianSupport" xml:space="preserve">
     <value>印度客服</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>如有任何意見或問題，歡迎發郵件至{0}, 或填寫以下的表格。</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>驗證碼</value>
   </data>

@@ -1444,9 +1444,6 @@
   <data name="IndianSupport" xml:space="preserve">
     <value>ทีมงานภาษาอินเดีย</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>กรุณาส่งข้อแนะนำหรือคำถามมาได้ที่ {0}, หรือกรอกแบบฟอร์มตามด้านล่างแล้วส่งให้เราได้เช่นกันค่ะ</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>หมายเลขตรวจสอบ</value>
   </data>
@@ -2555,5 +2552,9 @@
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>ผู้เล่นที่ผ่านเกณฑ์</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>สมัครสมาชิกช่องทาง {0}ของเรา&lt;br /&gt;
+เพื่อรับการอัปเดตและโปรโมชั่นล่าสุด</value>
   </data>
 </root>

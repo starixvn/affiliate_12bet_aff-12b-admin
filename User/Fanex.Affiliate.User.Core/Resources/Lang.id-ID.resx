@@ -1444,9 +1444,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="IndianSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa India</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Silakan kirimkan komentar atau pertanyaan Anda ke alamat email {0}, atau dengan mengisi form di bawah ini.</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Kode Validasi</value>
   </data>
@@ -2530,5 +2527,9 @@ PEMBAYARAN KONSISTEN</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
     <value>Pemain Aktif</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>Berlangganan Saluran {0} Kami&lt;br /&gt;
+Untuk Update dan Promosi Terbaru</value>
   </data>
 </root>

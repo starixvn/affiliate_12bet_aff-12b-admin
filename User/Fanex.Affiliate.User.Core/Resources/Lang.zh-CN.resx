@@ -1436,9 +1436,6 @@
   <data name="IndianSupport" xml:space="preserve">
     <value>印度客服</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>如有任何意见或问题，欢迎电邮至{0}, 或填写以下的表单。</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>验证码</value>
   </data>
@@ -2551,5 +2548,9 @@
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>符合资格的活跃玩家</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>订阅我们的 {0} 频道，&lt;br /&gt;
+掌握12BET合作成功的最新动态与优惠活动。</value>
   </data>
 </root>

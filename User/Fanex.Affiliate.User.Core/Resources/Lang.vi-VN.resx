@@ -1444,9 +1444,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="IndianSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Ấn Độ</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Vui lòng gửi bất kỳ ý kiến hoặc câu hỏi nào đến {0}, hoặc sử dụng biểu mẫu dưới đây.</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Mã Xác Thực</value>
   </data>
@@ -2533,5 +2530,9 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>Người chơi đang hoạt động đủ điều kiện</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>Hãy theo dõi kênh {0} của chúng tôi&lt;br /&gt;
+Để nhận các cập nhật và khuyến mãi mới nhất.</value>
   </data>
 </root>
