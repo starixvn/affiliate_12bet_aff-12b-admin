@@ -145,26 +145,6 @@ export class DomainControlPopup extends PureComponent {
                             </Alert>
                             <Form tag="form" className="mb-5" autoComplete="off">
                                 <FormGroup row className="align-items-center mb-2">
-                                    <Label htmlFor="targetCountryCode" sm={4}>Target Country</Label>
-                                    <Col sm={8}>
-                                        {
-                                            isDisabled ? (
-                                                <Input type="select" name="targetCountryCode" disabled="true" title="All target countries are blocked for these domains!" className="mt-1" value="">
-                                                    <option key="targetCountryCode-none" value="">Please select!</option>
-                                                </Input>
-                                            ) : (
-                                                    <Input type="select" name="targetCountryCode" className="mt-1" value={selectedDomain.TargetCountryCode} onChange={this._handleChange}>
-                                                    {
-                                                        targetCountryListByDomains.map(item => {
-                                                            return (<option key={`targetCountryCode-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
-                                                        })
-                                                    }
-                                                </Input>
-                                            )
-                                        }
-                                    </Col>
-                                </FormGroup>
-                                <FormGroup row className="align-items-center mb-2">
                                     <Label htmlFor="affDomainId" sm={4}>Aff Domain</Label>
                                     <Col sm={8}>
                                         <Select
@@ -188,6 +168,26 @@ export class DomainControlPopup extends PureComponent {
                                             hasInputOption={true}
                                             selectedKey={selectedDomain.redirectDomainId}
                                             onChange={this._handleChangeRedirectDomain} />
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Label htmlFor="targetCountryCode" sm={4}>Target Country</Label>
+                                    <Col sm={8}>
+                                        {
+                                            isDisabled ? (
+                                                <Input type="select" name="targetCountryCode" disabled="true" title="All target countries are blocked for these domains!" className="mt-1" value="">
+                                                    <option key="targetCountryCode-none" value="">Please select!</option>
+                                                </Input>
+                                            ) : (
+                                                <Input type="select" name="targetCountryCode" className="mt-1" value={selectedDomain.targetCountryCode} onChange={this._handleChange}>
+                                                    {
+                                                        targetCountryListByDomains.map(item => {
+                                                            return (<option key={`targetCountryCode-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
+                                                        })
+                                                    }
+                                                </Input>
+                                            )
+                                        }
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="align-items-center mb-2">
