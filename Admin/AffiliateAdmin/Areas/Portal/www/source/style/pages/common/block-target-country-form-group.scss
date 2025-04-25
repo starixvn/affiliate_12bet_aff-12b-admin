@@ -3,7 +3,10 @@
     flex-wrap: wrap;
 
     &-item {
-        min-width: 152px;
+        min-width: 100px;
+        .country-item {
+            margin-bottom: 0;
+        }
     }
 
     input[type=checkbox] {

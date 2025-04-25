@@ -176,7 +176,7 @@ export class InsertUpdateForm extends PureComponent {
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
 
         return (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 810 }}>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 550 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
@@ -184,10 +184,10 @@ export class InsertUpdateForm extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-3" autoComplete="off">
+                            <Form tag="form" className="mb-2" autoComplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for="pageName" sm={4} className="required pr-0">{headerText.LandingPageName}</Label>
-                                    <Col sm={5}>
+                                    <Label for="pageName" sm={6} className="required pr-0">{headerText.LandingPageName}</Label>
+                                    <Col sm={6}>
                                         <Input type="text" name="pageName" className="input-required mt-2" value={selectedLandingPage.pageName} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageNameValidation.isValid} />
                                         {pageNameValidation.message &&
@@ -195,8 +195,8 @@ export class InsertUpdateForm extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label for="pageCode" sm={4} className="required">{headerText.LandingPageCode}</Label>
-                                    <Col sm={5}>
+                                    <Label for="pageCode" sm={6} className="required">{headerText.LandingPageCode}</Label>
+                                    <Col sm={6}>
                                         <Input type="text" name="pageCode" className="input-required mt-2" value={selectedLandingPage.pageCode} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageCodeValidation.isValid} />
                                         {pageCodeValidation.message &&

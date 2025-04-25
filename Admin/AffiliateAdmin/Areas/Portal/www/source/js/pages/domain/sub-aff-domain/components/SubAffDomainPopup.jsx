@@ -96,7 +96,7 @@ export class SubAffDomainPopup extends PureComponent {
         const buttonLabel = isInsert ? "Add" : "Submit";
 
         return selectedSubAffDomain && (
-            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
+            <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static' style={{ maxWidth: 400 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
@@ -104,17 +104,17 @@ export class SubAffDomainPopup extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autoComplete="off">
+                            <Form tag="form" className="mb-4" autoComplete="off">
                                 <FormGroup row className="align-items-center mb-2">
-                                    <Label htmlFor="domainName" sm={4} className="required">Domain</Label>
-                                    <Col sm={8}>
+                                    <Label htmlFor="domainName" sm={3} className="required">Domain</Label>
+                                    <Col sm={9}>
                                         <Input type="text" className="input-required mt-2" name="domainName"
                                             value={selectedSubAffDomain.domainName} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="align-items-center mb-2">
-                                    <Label sm={4}>SSL</Label>
-                                    <Col sm={8}>
+                                    <Label sm={3}>SSL</Label>
+                                    <Col sm={9}>
                                         <input type="checkbox" className="mt-2" name="isSSL" checked={selectedSubAffDomain.isSSL} onChange={this._handleChange} />
                                     </Col>
                                 </FormGroup>

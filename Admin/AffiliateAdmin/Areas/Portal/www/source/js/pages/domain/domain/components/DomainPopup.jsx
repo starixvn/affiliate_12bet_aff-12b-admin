@@ -181,7 +181,7 @@ export class DomainPopup extends PureComponent {
 
         return selectedDomain && (
             <>
-                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 700 }}>
+                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 500 }}>
                     <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">
@@ -189,22 +189,23 @@ export class DomainPopup extends PureComponent {
                                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 </Alert>
-                                <Form tag="form" className="mb-3" autoComplete="off">
+                                <Form tag="form" className="mb-2" autoComplete="off">
                                     <FormGroup row className="align-items-center mb-2">
-                                        <Label for="domainName" sm={3} className="required">Domain</Label>
-                                        <Col sm={9}>
+                                        <Label for="domainName" sm={4} className="required">Domain</Label>
+                                        <Col sm={8}>
                                             <Input type="text" className="input-required mt-2" name="domainName"
                                                 value={selectedDomain.domainName} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row className="align-items-center mb-2">
-                                        <Label for="isSSL" sm={3}>SSL</Label>
-                                        <Col sm={9}>
+                                        <Label for="isSSL" sm={4}>SSL</Label>
+                                        <Col sm={8}>
                                             <input type="checkbox" name="isSSL" id="isSSL" checked={selectedDomain.isSSL} onChange={this._handleChange} />
                                         </Col>
                                     </FormGroup>
                                     {
                                         targetCountryList && <BlockTargetCountryFormGroup
+                                            sm={4}
                                             targetCountryList={targetCountryList}
                                             isBlockAllTargetCountries={isBlockAllTargetCountries}
                                             changeTargetCountry={this.handleChangeTargetCountry}

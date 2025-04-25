@@ -143,7 +143,7 @@ export class DomainControlPopup extends PureComponent {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-5" autoComplete="off">
+                            <Form tag="form" className="mb-4" autoComplete="off">
                                 <FormGroup row className="align-items-center mb-2">
                                     <Label htmlFor="affDomainId" sm={4}>Aff Domain</Label>
                                     <Col sm={8}>

@@ -60,7 +60,7 @@ export default class BlockTargetCountryFormGroup extends PureComponent {
                                 return (
                                     <div key={item.TargetCountryCode} className="block-target-country-item">
                                         <input type="checkbox" className="mr-2" id={item.TargetCountryCode} checked={item.Status === targetCountryStatus.Blocked} onChange={(e) => this._handleChangeTargetCountry(e, item.TargetCountryCode)} />
-                                        <Label for={item.TargetCountryCode}>{item.TargetCountryName}</Label>
+                                        <Label className="country-item" for={item.TargetCountryCode}>{item.TargetCountryName}</Label>
                                     </div>
                                 )
                             })
