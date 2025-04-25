@@ -36,6 +36,7 @@ Affiliate/Report.csv
 /AffiliateAdmin/Banner
 *StyleCop.Cache
 .vs/
+.vscode/
 /Fanex.Affiliate.User.Site/Properties/PublishProfiles/
 node_modules
 CoverageReport/
