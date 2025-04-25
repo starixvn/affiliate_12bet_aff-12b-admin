@@ -6,6 +6,7 @@
     using DTO;
     using DTO.UserPanel;
     using Extensions;
+    using Fanex.Affiliate.User.Core.DTO.Auth;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
     using Filters;
     using MetalModels;
@@ -93,18 +94,36 @@
                 return Json(new ResultInfo { IsOk = false, Message = Lang.ErrAuthorized });
             }
 
-            if (!IsValidAppContactList(model.ContactAppList))
+            if (!ModelState.IsValid)
             {
-                return Json(new ResultInfo { IsOk = false, Message = Error.RequireIMAccount });
+                return Json(new ResultInfo { IsOk = false, Message = Error.General });
+            }
+
+            var contactAppValidation = AppContactHelper.ValidateAppContactList(model.ContactAppList, SessionService.CurrentLanguage);
+            if (!contactAppValidation.IsOk)
+            {
+                return Json(contactAppValidation);
             }
 
             var userSession = SessionService.UserSession;
             var userAccount = _accountService.GetAccountInfo(userSession.AffId);
-            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername)
-                ? userAccount.PlayerUsername
-                : Server.HtmlEncode(model.PlayerUsername);
+            
+            var accountUpdateParam = CreateAccountUpdateParam(model, userSession, userAccount);
+            var updatingResult = _accountService.UpdateAccountInformation(accountUpdateParam);
+            
+            if (updatingResult.IsOk)
+            {
+                UpdateUserSession(userSession, accountUpdateParam);
+            }
 
-            var accountUpdateParam = new UpdateAccountParam
+            return Json(updatingResult);
+        }
+
+        private UpdateAccountParam CreateAccountUpdateParam(AccountInformation model, UserSession userSession, AccountInformation userAccount)
+        {
+            model.PlayerUsername = GetPlayerUsername(userAccount, model.PlayerUsername);
+
+            return new UpdateAccountParam
             {
                 AffId = userSession.AffId,
                 Phone = Server.HtmlEncode(model.Phone),
@@ -114,26 +133,36 @@
                 Ip = Request.GetClientIP(),
                 Language = SessionService.CurrentLanguage,
                 DefaultBaseCurrency = model.DefaultBaseCurrency,
-                ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
+                ContactApps = SerializeContactApps(model.ContactAppList)
+            };
+        }
+
+        private string GetPlayerUsername(AccountInformation userAccount, string modelPlayerUsername)
+        {
+            return !string.IsNullOrEmpty(userAccount?.PlayerUsername)
+                ? userAccount.PlayerUsername
+                : Server.HtmlEncode(modelPlayerUsername);
+        }
+
+        private string SerializeContactApps(IEnumerable<ContactApp> contactAppList)
+        {
+            return JsonConvert.SerializeObject(contactAppList.Select(p => {
+                var appContactName = Server.HtmlEncode(p.Name);
+
+                if(appContactName.MatchWith("Skype"))
                 {
-                    Name = Server.HtmlEncode(p.Name),
+                    appContactName = "Teams";
+                }    
+
+                return new ContactApp
+                {
+                    Name = appContactName,
                     Value = Server.HtmlEncode(p.Value),
                     Order = p.Order
-                })),
-            };
-
-            var updatingResult = _accountService.UpdateAccountInformation(accountUpdateParam);
-            if (updatingResult.IsOk)
-            {
-                userSession.BaseCurrency = accountUpdateParam.DefaultBaseCurrency;
-            }
-
-            return Json(updatingResult);
+                };
+            }));
         }
 
-        private static bool IsValidAppContactList(IEnumerable<ContactApp> contactAppList)
-        {
-            return contactAppList != null && !contactAppList.All(c => string.IsNullOrEmpty(c.Value));
-        }
+        private static void UpdateUserSession(UserSession userSession, UpdateAccountParam accountUpdateParam) => userSession.BaseCurrency = accountUpdateParam.DefaultBaseCurrency;
     }
 }

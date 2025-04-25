@@ -10,7 +10,6 @@
     using Newtonsoft.Json;
     using Resources;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -82,68 +81,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(UserSignUpParam param)
         {
-            var result = new ResultInfo { IsOk = false };
-            if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.GetClientIP()))
-            {
-                result.Message = Lang.ValidationCode;
-            }
-            else if (!IsValidAppContactList(param.ContactAppList))
-            {
-                result.Message = Error.RequireIMAccount;
-            }
-            else if (ModelState.IsValid)
-            {
-                var signUpParam = new UserSignUpParam
-                {
-                    FirstName = Server.HtmlEncode(param.FirstName),
-                    LastName = Server.HtmlEncode(param.LastName),
-                    Email = Server.HtmlEncode(param.Email),
-                    Phone = Server.HtmlEncode(param.Phone),
-                    Address = Server.HtmlEncode(param.Address),
-                    City = Server.HtmlEncode(param.City),
-                    Postal = Server.HtmlEncode(param.Postal),
-                    Country = Server.HtmlEncode(param.Country),
-                    SiteUrl = Server.HtmlEncode(param.SiteUrl),
-                    MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
-                    NoSiteDesc = Server.HtmlEncode(param.NoSiteDesc),
-                    PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage),
-                    QuestionId = param.QuestionId,
-                    Answer = Server.HtmlEncode(param.Answer),
-                    Player_UserName = Server.HtmlEncode(param.Player_UserName),
-                    ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
-                    {
-                        Name = Server.HtmlEncode(p.Name),
-                        Value = Server.HtmlEncode(p.Value),
-                        Order = p.Order
-                    })),
-                    Gender = param.Gender,
-                    State = Server.HtmlEncode(param.State),
-                    Language = SessionService.CurrentLanguage,
-                    AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
-                    Ip = Request.GetClientIP(),
-                    IsLocal = _appSetting.IsLocal,
-                };
-
-                var contactApp = EmailHelper.GetContactAppInfo(param.ContactAppList);
-                var emailParam = new EmailSignUpParam
-                {
-                    MailContact = _appSetting.MailContact,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
-                    MailTo = _appSetting.MailContact,
-                    IMName = contactApp.Name,
-                    IMValue = contactApp.Value,
-                    UserNumberContact = param.Phone,
-                    CurrentLanguage = SessionService.CurrentLanguage
-                };
-
-                result = await _accountService.CreateAffiliateAsync(signUpParam, emailParam);
-            }
-            else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
-                result.Message = string.Join("<br>", errors);
-            }
-
+            var result = await ValidateAndProcessSignup(param);
             return Json(result);
         }
 
@@ -156,11 +94,6 @@
             return PartialView("~/Views/Signup/_SecurityQuestion.cshtml", model);
         }
 
-        private static bool IsValidAppContactList(IEnumerable<ContactApp> contactAppList)
-        {
-            return contactAppList != null && !contactAppList.All(c => string.IsNullOrEmpty(c.Value));
-        }
-
         private void SetCookie(string parentAffCode)
         {
             var cookie = new HttpCookie(ParentCodeCookieName)
@@ -171,6 +104,97 @@
             };
 
             HttpContext.Response.Cookies.Add(cookie);
+        }
+
+        private async Task<ResultInfo> ValidateAndProcessSignup(UserSignUpParam param)
+        {
+            if (!IsValidCaptcha(param.Captcha))
+            {
+                return new ResultInfo { IsOk = false, Message = Lang.ValidationCode };
+            }
+
+            var contactAppValidation = AppContactHelper.ValidateAppContactList(param.ContactAppList, SessionService.CurrentLanguage);
+            if (!contactAppValidation.IsOk)
+            {
+                return contactAppValidation;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return GetModelStateErrors();
+            }
+
+            var signUpParam = CreateSignUpParam(param);
+            var emailParam = CreateEmailParam(param);
+
+            return await _accountService.CreateAffiliateAsync(signUpParam, emailParam);
+        }
+
+        private bool IsValidCaptcha(string captcha)
+        {
+            return _captchaService.IsValid(captcha, SessionService.SignUpCaptchaCode, Request.GetClientIP());
+        }
+
+        private ResultInfo GetModelStateErrors()
+        {
+            var errors = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage);
+
+            return new ResultInfo
+            {
+                IsOk = false,
+                Message = string.Join("<br>", errors)
+            };
+        }
+
+        private UserSignUpParam CreateSignUpParam(UserSignUpParam param)
+        {
+            return new UserSignUpParam
+            {
+                FirstName = Server.HtmlEncode(param.FirstName),
+                LastName = Server.HtmlEncode(param.LastName),
+                Email = Server.HtmlEncode(param.Email),
+                Phone = Server.HtmlEncode(param.Phone),
+                Address = Server.HtmlEncode(param.Address),
+                City = Server.HtmlEncode(param.City),
+                Postal = Server.HtmlEncode(param.Postal),
+                Country = Server.HtmlEncode(param.Country),
+                SiteUrl = Server.HtmlEncode(param.SiteUrl),
+                MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
+                NoSiteDesc = Server.HtmlEncode(param.NoSiteDesc),
+                PreferredLanguage = Server.HtmlEncode(param.PreferredLanguage),
+                QuestionId = param.QuestionId,
+                Answer = Server.HtmlEncode(param.Answer),
+                Player_UserName = Server.HtmlEncode(param.Player_UserName),
+                ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
+                {
+                    Name = Server.HtmlEncode(p.Name),
+                    Value = Server.HtmlEncode(p.Value),
+                    Order = p.Order
+                })),
+                Gender = param.Gender,
+                State = Server.HtmlEncode(param.State),
+                Language = SessionService.CurrentLanguage,
+                AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
+                Ip = Request.GetClientIP(),
+                IsLocal = _appSetting.IsLocal,
+            };
+        }
+
+        private EmailSignUpParam CreateEmailParam(UserSignUpParam param)
+        {
+            var contactApp = EmailHelper.GetContactAppInfo(param.ContactAppList);
+            return new EmailSignUpParam
+            {
+                MailContact = _appSetting.MailContact,
+                RootDomain = SiteDomainHelper.GetRootUrl(this, _appSetting),
+                MailTo = _appSetting.MailContact,
+                IMName = contactApp.Name,
+                IMValue = contactApp.Value,
+                UserNumberContact = param.Phone,
+                CurrentLanguage = SessionService.CurrentLanguage
+            };
         }
     }
 }

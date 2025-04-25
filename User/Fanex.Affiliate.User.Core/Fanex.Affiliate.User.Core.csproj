@@ -439,6 +439,7 @@
     <Compile Include="MetalModels\UserPanel\QrCodeParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffComParam.cs" />
     <Compile Include="MetalModels\UserPanel\SubAffDetailParam.cs" />
+    <Compile Include="Utilities\AppContactHelper.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
     <Compile Include="Utilities\DbSettingHelper.cs" />
     <Compile Include="Utilities\CurrencyHelper.cs" />

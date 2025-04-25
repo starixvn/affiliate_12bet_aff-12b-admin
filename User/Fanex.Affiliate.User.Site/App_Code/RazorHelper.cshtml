@@ -158,26 +158,19 @@
     var secondAppContactList = Fanex.Affiliate.User.Core.Constants.AppContact.SecondAppContactList;
     var thirdAppContactList = Fanex.Affiliate.User.Core.Constants.AppContact.ThirdAppContactList;
     var firstAppName = firsAppContactList[language];
+    var firstAppNameTraslation = Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(firstAppName) ?? firstAppName;
+    var firstAppPlaceHolder = Fanex.Affiliate.User.Core.Constants.AppContact.GetPlaceHolderByAppAndLanguage(firstAppName, language);
+    var firstAppRegex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(firstAppName, language);
     var hasTwoContactApp = secondAppContactList.ContainsKey(language);
     var hasThirdContactApp = thirdAppContactList.ContainsKey(language);
 
     <div class="form-group validate-group">
-        <label for="ContactAppList[0].Value" class="col-sm-3 control-label @(hasTwoContactApp ? string.Empty : "require")">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(firstAppName) ?? firstAppName)</label>
-        @if (hasTwoContactApp)
-        {
-            <div class="col-sm-4">
-                <input type="text" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-control" value=""
-                       data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[1].Value@(hasThirdContactApp ? ",ContactAppList[2].Value" : "" )"
-                       data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
-            </div>
-        }
-        else
-        {
-            <div class="col-sm-4">
-                <input type="text" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-control" value=""
-                       data-val="true" data-val-required="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
-            </div>
-        }
+        <label for="ContactAppList[0].Value" class="col-sm-3 custom-label">@(firstAppNameTraslation) <span class="red-warn">*</span></label>
+        <input type="text" placeholder="@firstAppPlaceHolder" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-input" value=""
+               data-val="true"
+               data-val-required="@(firstAppNameTraslation) is required"
+               data-val-regex="@(firstAppNameTraslation) is invalid"
+               data-val-regex-pattern="@firstAppRegex" />
         <div class="col-sm-offset-3 col-sm-9">
             <span class="field-validation-error validate-input hide"
                   data-valmsg-for="ContactAppList[0].Value" data-valmsg-replace="true"></span>
@@ -189,13 +182,17 @@
     if (hasTwoContactApp)
     {
         var secondAppName = secondAppContactList[language];
+        var secondAppNameTraslation = Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(secondAppName) ?? secondAppName;
+        var secondAppPlaceHolder = Fanex.Affiliate.User.Core.Constants.AppContact.GetPlaceHolderByAppAndLanguage(secondAppName, language);
+        var secondAppRegex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(secondAppName, language);
+
         <div class="form-group validate-group">
-            <label for="ContactAppList[1].Value" class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(secondAppName) ?? secondAppName)</label>
-            <div class="col-sm-4">
-                <input type="text" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-control" value=""
-                       data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value@(hasThirdContactApp ? ",ContactAppList[2].Value" : "" )"
-                       data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
-            </div>
+            <label for="ContactAppList[1].Value" class="col-sm-3 custom-label">@(secondAppNameTraslation)</label>
+            <input type="text" placeholder="@secondAppPlaceHolder" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-input" value=""
+                data-val="true"
+                data-val-regex="@(secondAppNameTraslation) is invalid"
+                data-val-regex-pattern="@secondAppRegex" />
+
             <div class="col-sm-offset-3 col-sm-9">
                 <span class="field-validation-error validate-input hide"
                       data-valmsg-for="ContactAppList[1].Value" data-valmsg-replace="true"></span>
@@ -206,13 +203,17 @@
         if (hasThirdContactApp)
         {
             var thirdAppName = thirdAppContactList[language];
+            var thirdAppNameTraslation = Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(thirdAppName) ?? thirdAppName;
+            var thirdAppPlaceHolder = Fanex.Affiliate.User.Core.Constants.AppContact.GetPlaceHolderByAppAndLanguage(thirdAppName, language);
+            var thirdAppRegex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(thirdAppName, language);
+
             <div class="form-group validate-group">
-                <label for="ContactAppList[2].Value" class="col-sm-3 control-label">@(Fanex.Affiliate.User.Core.Resources.Lang.ResourceManager.GetString(thirdAppName) ?? thirdAppName)</label>
-                <div class="col-sm-4">
-                    <input type="text" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-control" value=""
-                           data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value,ContactAppList[1].Value"
-                           data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
-                </div>
+                <label for="ContactAppList[2].Value" class="col-sm-3 custom-label">@(thirdAppNameTraslation)</label>
+                <input type="text" placeholder="@thirdAppPlaceHolder" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-input" value=""
+                    data-val="true"
+                    data-val-regex="@(thirdAppNameTraslation) is invalid"
+                    data-val-regex-pattern="@thirdAppRegex" />
+
                 <div class="col-sm-offset-3 col-sm-9">
                     <span class="field-validation-error validate-input hide"
                           data-valmsg-for="ContactAppList[2].Value" data-valmsg-replace="true"></span>
@@ -254,9 +255,10 @@
         <label for="ContactAppList[@index].Value" class="custom-label">@(nameTraslation) <span class="red-warn">*</span></label>
         <input type="text" placeholder="@placeHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
                data-val="true"
-               data-val-regex="@(nameTraslation) is incorrect format"
+               data-val-required="@(nameTraslation) is required"
+               data-val-regex="@(nameTraslation) is invalid"
                data-val-regex-pattern="@regex"
-               data-val-required="@(nameTraslation) is required" />
+               />
         <span class="field-validation-error validate-input hide"
               data-valmsg-for="ContactAppList[@index].Value" data-valmsg-replace="true"></span>
 
@@ -276,7 +278,7 @@
         <label for="ContactAppList[@index].Value" class="custom-label">@(nameTraslation)</label>
         <input type="text" placeholder="@placeHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-input" value=""
                data-val="true"
-               data-val-regex="@(nameTraslation) is incorrect format"
+               data-val-regex="@(nameTraslation) is invalid"
                data-val-regex-pattern="@regex" />
         <span class="field-validation-error validate-input hide"
               data-valmsg-for="ContactAppList[@index].Value" data-valmsg-replace="true"></span>
