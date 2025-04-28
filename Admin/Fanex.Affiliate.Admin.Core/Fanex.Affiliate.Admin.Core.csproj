@@ -651,9 +651,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.zh-CN.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Lang.zh-TW.Designer.cs">
-      <DependentUpon>Lang.zh-TW.resx</DependentUpon>
-    </Compile>
     <Compile Include="Services\Administrator\AdministratorService.cs" />
     <Compile Include="Services\Administrator\DepartmentService.cs" />
     <Compile Include="Services\Administrator\IAdministratorService.cs" />
@@ -792,7 +789,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\.sonarlint\12betaffadmin\CSharp\SonarLint.xml">
