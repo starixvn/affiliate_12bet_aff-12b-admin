@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 return new ResultInfo 
                 { 
                     IsOk = false, 
-                    Message = $"{firstItem.Name}{Lang.IsRequired}" 
+                    Message = $"{firstItem.Name}{Error.IsRequired}" 
                 };
             }
 
@@ -53,6 +53,15 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         private static ResultInfo ValidateContactValue(ContactApp contactApp, string currentLanguage)
         {
+            if (contactApp.Value.Length > 50)
+            {
+                return new ResultInfo
+                {
+                    IsOk = false,
+                    Message = $"{contactApp.Name}{Error.InvalidLength}"
+                };
+            }
+
             if ((contactApp.Name == AppContact.Telegram || 
                  contactApp.Name == AppContact.Line || 
                  contactApp.Name == AppContact.WhatsApp) &&
@@ -61,7 +70,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 return new ResultInfo 
                 { 
                     IsOk = false, 
-                    Message = $"{contactApp.Name}{Lang.IsInvalid}" 
+                    Message = $"{contactApp.Name}{Error.IsInvalid}" 
                 };
             }
 

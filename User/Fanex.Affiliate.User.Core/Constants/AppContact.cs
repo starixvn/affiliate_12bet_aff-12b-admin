@@ -46,17 +46,17 @@ namespace Fanex.Affiliate.User.Core.Constants
         {
             [Telegram] = new Dictionary<string, string>
             {
-                [Default] = "^@\\d{9,15}$"
+                [Default] = "^@.+$"
             },
             ["Line"] = new Dictionary<string, string>
             {
-                [Default] = "^@\\d{9,15}$"
+                [Default] = "^@.+$"
             },
             [WhatsApp] = new Dictionary<string, string>
             {
-                [SystemLanguage.BangladeshLanguageCode] = "^\\+880\\d{6,12}$",
-                [SystemLanguage.IndiaLanguageCode] = "^\\+91\\d{7,13}$",
-                [SystemLanguage.IndonesiaLanguageCode] = "^\\+62\\d{7,13}$",
+                [SystemLanguage.BangladeshLanguageCode] = "^\\+880\\d{6,}$",
+                [SystemLanguage.IndiaLanguageCode] = "^\\+91\\d{7,}$",
+                [SystemLanguage.IndonesiaLanguageCode] = "^\\+62\\d{7,}$",
                 [Default] = DefaultRegexValue
             }
         };

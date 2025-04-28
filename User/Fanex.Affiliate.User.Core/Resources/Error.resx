@@ -231,4 +231,13 @@
   <data name="InvalidChannelName" xml:space="preserve">
     <value>Channel Name can only contain ENGLISH letters and numbers. No spaces or special characters allowed. </value>
   </data>
+  <data name="InvalidLength" xml:space="preserve">
+    <value> no more than 50 characters.</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> is required</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> is invalid</value>
+  </data>
 </root>

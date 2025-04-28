@@ -231,4 +231,13 @@
   <data name="InvalidChannelName" xml:space="preserve">
     <value>Tên kênh chỉ bao gồm các ký tự Latin và số. Không được có dấu cách hoặc ký tự đặc biệt.</value>
   </data>
+  <data name="InvalidLength" xml:space="preserve">
+    <value> không quá 50 ký tự.</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> là bắt buộc</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> không hợp lệ</value>
+  </data>
 </root>

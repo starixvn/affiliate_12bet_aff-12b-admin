@@ -3186,29 +3186,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  is invalid.
-        /// </summary>
-        public static string IsInvalid {
-            get {
-                return ResourceManager.GetString("IsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Israel .
         /// </summary>
         public static string Israel {
             get {
                 return ResourceManager.GetString("Israel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  is required.
-        /// </summary>
-        public static string IsRequired {
-            get {
-                return ResourceManager.GetString("IsRequired", resourceCulture);
             }
         }
         

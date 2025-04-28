@@ -2560,10 +2560,4 @@
     <value>如有任何疑问，可通过 Telegram 联系我们：{0}。&lt;br /&gt;
 亦可发送邮件至：{1}，或直接填写下方表单联系。</value>
   </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value> 无效</value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value> 为必填</value>
-  </data>
 </root>

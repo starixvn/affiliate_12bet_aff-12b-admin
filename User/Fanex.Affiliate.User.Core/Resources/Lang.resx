@@ -2651,12 +2651,6 @@ You can also email us to {1} or simply fill the form below.</value>
   <data name="TelegramChannel" xml:space="preserve">
     <value>Telegram Channel</value>
   </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value> is invalid</value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value> is required</value>
-  </data>
   <data name="FdmAmt" xml:space="preserve">
     <value>FDM Amt</value>
   </data>

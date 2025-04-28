@@ -2542,10 +2542,4 @@ THANH TOÁN ỔN ĐỊNH</value>
     <value>Để được hỗ trợ, bạn có thể liên hệ trực tiếp với chúng tôi qua Telegram: {0}&lt;br /&gt;
 Bạn cũng có thể gửi email đến: {1} hoặc điền vào biểu mẫu bên dưới.</value>
   </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value> không hợp lệ</value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value> là bắt buộc</value>
-  </data>
 </root>

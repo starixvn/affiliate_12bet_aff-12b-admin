@@ -2539,10 +2539,4 @@ Kami untuk Update dan Promosi Terbaru</value>
     <value>Untuk pertanyaan, Anda dapat langsung menghubungi Telegram kami di {0}&lt;br /&gt;
 Anda juga bisa mengirim email ke {1} atau cukup isi formulir di bawah ini.</value>
   </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value> tidak valid</value>
-  </data>
-  <data name="IsRequired" xml:space="preserve">
-    <value> wajib diisi</value>
-  </data>
 </root>

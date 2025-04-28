@@ -231,4 +231,13 @@
   <data name="InvalidChannelName" xml:space="preserve">
     <value>ชื่อช่องสามารถมีได้เฉพาะตัวอักษรและตัวเลขภาษาอังกฤษเท่านั้น ไม่อนุญาตให้มีช่องว่างหรืออักขระพิเศษ</value>
   </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> จําเป็น</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> ไม่ถูกต้อง</value>
+  </data>
+  <data name="InvalidLength" xml:space="preserve">
+    <value> ไม่เกิน 50 ตัวอักษร</value>
+  </data>
 </root>
