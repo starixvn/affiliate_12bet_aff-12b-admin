@@ -3,6 +3,14 @@
   .account-information .form-group .form-control {
     margin-bottom: 10px; }
 
+.account-information .has-error .validate-input {
+  margin-bottom: 10px;
+  color: #a94442;
+  display: block; }
+  @media (max-width: 500px) {
+    .account-information .has-error .validate-input {
+      margin-bottom: 0; } }
+
 #websiteInfo .btn-submit {
   font-size: 10px;
   height: 20px;

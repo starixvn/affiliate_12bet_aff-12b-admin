@@ -3,12 +3,15 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class AppContactHelper
     {
+        private const int MaxLengthInputString = 50;
+
         public static ResultInfo ValidateAppContactList(IEnumerable<ContactApp> contactAppList, string currentLanguage)
         {
             if (contactAppList == null || !contactAppList.Any())
@@ -26,7 +29,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 return new ResultInfo 
                 { 
                     IsOk = false, 
-                    Message = $"{firstItem.Name}{Error.IsRequired}" 
+                    Message = GetMessage(firstItem.Name, Error.IsRequired)
                 };
             }
 
@@ -53,28 +56,35 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         private static ResultInfo ValidateContactValue(ContactApp contactApp, string currentLanguage)
         {
-            if (contactApp.Value.Length > 50)
+            if (contactApp.Value.Length > MaxLengthInputString)
             {
                 return new ResultInfo
                 {
                     IsOk = false,
-                    Message = $"{contactApp.Name}{Error.InvalidLength}"
+                    Message = GetMessage(contactApp.Name, Error.InvalidLength)
                 };
             }
 
             if ((contactApp.Name == AppContact.Telegram || 
                  contactApp.Name == AppContact.Line || 
                  contactApp.Name == AppContact.WhatsApp) &&
-                !Regex.IsMatch(contactApp.Value, AppContact.GetRegexByAppAndLanguage(contactApp.Name, currentLanguage)))
+                !RegexHelper.IsMatch(contactApp.Value, AppContact.GetRegexByAppAndLanguage(contactApp.Name, currentLanguage)))
             {
                 return new ResultInfo 
                 { 
                     IsOk = false, 
-                    Message = $"{contactApp.Name}{Error.IsInvalid}" 
+                    Message = GetMessage(contactApp.Name, Error.IsInvalid)
                 };
             }
 
             return new ResultInfo { IsOk = true };
+        }
+
+        private static string GetMessage(string appName, string suffixMsg)
+        {
+            var name = appName.MatchWith("Skype") ? "Teams" : appName;
+
+            return $"{name}{suffixMsg}";
         }
     }
 } 

@@ -23,18 +23,18 @@ namespace Fanex.Affiliate.Admin.Core.Constants
             [WhatsApp] = "+XXXXXXXXXX",
         };
 
-        public static string GetRegexByApp(string contactAppName, string language)
+        public static string GetRegexByApp(string contactAppName)
         {
-            if (string.IsNullOrEmpty(contactAppName) || string.IsNullOrEmpty(language))
+            if (string.IsNullOrEmpty(contactAppName))
             {
                 return DefaultRegexValue;
             }
             return GetValueDicByAppName(RegexValidations, contactAppName);
         }
 
-        public static string GetPlaceHolderByApp(string contactAppName, string language)
+        public static string GetPlaceHolderByApp(string contactAppName)
         {
-            if (string.IsNullOrEmpty(contactAppName) || string.IsNullOrEmpty(language))
+            if (string.IsNullOrEmpty(contactAppName))
             {
                 return string.Empty;
             }

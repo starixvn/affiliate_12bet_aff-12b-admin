@@ -146,21 +146,12 @@
 
         private string SerializeContactApps(IEnumerable<ContactApp> contactAppList)
         {
-            return JsonConvert.SerializeObject(contactAppList.Select(p => {
-                var appContactName = Server.HtmlEncode(p.Name);
-
-                if(appContactName.MatchWith("Skype"))
+            return JsonConvert.SerializeObject(contactAppList.Select(p =>  new ContactApp
                 {
-                    appContactName = "Teams";
-                }    
-
-                return new ContactApp
-                {
-                    Name = appContactName,
+                    Name = p.Name,
                     Value = Server.HtmlEncode(p.Value),
                     Order = p.Order
-                };
-            }));
+                }));
         }
 
         private static void UpdateUserSession(UserSession userSession, UpdateAccountParam accountUpdateParam) => userSession.BaseCurrency = accountUpdateParam.DefaultBaseCurrency;

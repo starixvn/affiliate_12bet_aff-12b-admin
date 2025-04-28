@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                 return ResultInfo.GenerateErr($"{firstItem.Name} is required");
             }
 
-            var firstItemValidation = ValidateContactValue(firstItem, currentLanguage);
+            var firstItemValidation = ValidateContactValue(firstItem);
             if (!firstItemValidation.IsSuccessful)
             {
                 return firstItemValidation;
@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             {
                 if (!string.IsNullOrEmpty(contactApp.Value))
                 {
-                    var validationResult = ValidateContactValue(contactApp, currentLanguage);
+                    var validationResult = ValidateContactValue(contactApp);
                     if (!validationResult.IsSuccessful)
                     {
                         return validationResult;
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             return ResultInfo.Success;
         }
 
-        private static ResultInfo ValidateContactValue(ContactApp contactApp, string currentLanguage)
+        private static ResultInfo ValidateContactValue(ContactApp contactApp)
         {
             if (contactApp.Value.Length > MaxLengthInputString)
             {
@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             if ((contactApp.Name == AppContact.Telegram ||
                  contactApp.Name == AppContact.Line ||
                  contactApp.Name == AppContact.WhatsApp) &&
-                !RegexHelper.IsMatch(contactApp.Value, AppContact.GetRegexByAppAndLanguage(contactApp.Name, currentLanguage)))
+                !RegexHelper.IsMatch(contactApp.Value, AppContact.GetRegexByApp(contactApp.Name)))
             {
                 return ResultInfo.GenerateErr($"{contactApp.Name} is invalid");
             }

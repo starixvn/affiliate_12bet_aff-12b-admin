@@ -10,7 +10,8 @@ namespace Fanex.Affiliate.User.Core.Constants
         public const string Facebook = "Facebook";
         public const string QQ = "QQ";
         private const string Default = "Default";
-        private const string DefaultRegexValue = "^.*$";
+        private const string DefaultRegexAllApps = "^.*$";
+        private const string DefaultRegexWhatsApp = "^\\+(880|91|62)\\d{6,}$";
 
         public static readonly IReadOnlyDictionary<string, string> FirsAppContactList = new Dictionary<string, string>
         {
@@ -57,7 +58,7 @@ namespace Fanex.Affiliate.User.Core.Constants
                 [SystemLanguage.BangladeshLanguageCode] = "^\\+880\\d{6,}$",
                 [SystemLanguage.IndiaLanguageCode] = "^\\+91\\d{7,}$",
                 [SystemLanguage.IndonesiaLanguageCode] = "^\\+62\\d{7,}$",
-                [Default] = DefaultRegexValue
+                [Default] = DefaultRegexWhatsApp
             }
         };
 
@@ -80,18 +81,18 @@ namespace Fanex.Affiliate.User.Core.Constants
             }
         };
 
-        public static string GetRegexByAppAndLanguage(string contactAppName, string language)
+        public static string GetRegexByAppAndLanguage(string contactAppName, string language = "")
         {
-            if (string.IsNullOrEmpty(contactAppName) || string.IsNullOrEmpty(language))
+            if (string.IsNullOrEmpty(contactAppName))
             {
-                return DefaultRegexValue;
+                return DefaultRegexAllApps;
             }
-            return GetValueDicByAppAndLanguage(RegexValidations, contactAppName, language);
+            return GetValueDicByAppAndLanguage(RegexValidations, contactAppName, language, DefaultRegexAllApps);
         }
 
-        public static string GetPlaceHolderByAppAndLanguage(string contactAppName, string language)
+        public static string GetPlaceHolderByAppAndLanguage(string contactAppName, string language = "")
         {
-            if (string.IsNullOrEmpty(contactAppName) || string.IsNullOrEmpty(language))
+            if (string.IsNullOrEmpty(contactAppName))
             {
                 return string.Empty;
             }
