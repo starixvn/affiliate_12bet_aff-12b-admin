@@ -18,8 +18,10 @@ export const defaultState = {
     isShowMessage: false,
     isSuccess: true,
     message: '',
+    isConfirmPopup: true,
     messageConfirm: '',
     isBlockAllTargetCountries: false,
     selectedDomain: null,
-    targetCountryListByDomain: null
+    targetCountryList: null,
+    initialTargetCountryList: null,
 }

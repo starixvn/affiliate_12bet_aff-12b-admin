@@ -9,6 +9,7 @@ import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainI
 import { defaultState } from '../libs/constants';
 import { getBlockTargetCountryList, checkBlockAllTargetCountries } from '../../../common/modules/utils/targetcountry';
 import { targetCountryStatus } from '../../../../modules/constants';
+import { deepClone } from '../../../../modules/dataHandler';
 
 export class DomainPopup extends PureComponent {
     constructor(props) {
@@ -41,7 +42,7 @@ export class DomainPopup extends PureComponent {
                     const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
                     const isBlockAllTargetCountries = checkBlockAllTargetCountries(targetCountryList, blockTargetCountryList);
 
-                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountry: blockTargetCountryList.join(','), isSSL: IsSSL }, targetCountryList, isBlockAllTargetCountries });
+                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountry: blockTargetCountryList.join(','), isSSL: IsSSL }, targetCountryList, isBlockAllTargetCountries, initialTargetCountryList: deepClone(targetCountryList) });
                 } else {
                     this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountry: '', isSSL: IsSSL } });
                 }
@@ -70,42 +71,61 @@ export class DomainPopup extends PureComponent {
     _handleCloseNotificationPopup = (confirmResult) => {
         this.setState({ messageConfirm: '' });
 
-        const { selectedDomain } = this.state;
-        if (confirmResult && selectedDomain.domainName) {
+        const { selectedDomain, isConfirmPopup } = this.state;
+        if ((confirmResult || !isConfirmPopup) && selectedDomain.domainName) {
             this._submitData(selectedDomain);
         }
     }
 
     _handleSubmit = async () => {
-        const { selectedDomain, isInsert, targetCountryList } = this.state;
+        const { selectedDomain, isInsert, targetCountryList, initialTargetCountryList } = this.state;
 
         if (!selectedDomain.domainName) {
             this._handleShowAlert(false, "Please input domain name!");
             return;
         }
 
-        if (isInsert) {
+        const initialUsedCountryOnControlDomains = initialTargetCountryList.filter(targetCountry =>
+            targetCountry.IsUsedDomainControl
+        ).map(t => t.TargetCountryCode).join(",");
+
+        if (isInsert || !initialUsedCountryOnControlDomains) {
             this._submitData(selectedDomain);
             return;
         }
+
+        const initialBlockedControlDomains = initialTargetCountryList.filter(targetCountry =>
+            targetCountry.IsUsedDomainControl &&
+            targetCountry.Status === targetCountryStatus.Blocked
+        ).map(t => t.TargetCountryCode).join(",");
 
         const blockedControlDomains = targetCountryList.filter(targetCountry => 
             targetCountry.IsUsedDomainControl && 
-            targetCountry.Status === targetCountryStatus.Blocked
+            targetCountry.Status === targetCountryStatus.Blocked &&
+            !initialBlockedControlDomains.includes(targetCountry.TargetCountryCode)
         );
-        
-        if (!blockedControlDomains.length) {
-            this._submitData(selectedDomain);
+
+        if (!!blockedControlDomains.length) {
+            const message = `The mapping domain control will be disabled if you block this target country. Are you sure you want to proceed with this?`;
+
+            this.setState({ messageConfirm: message, isConfirmPopup: true });
             return;
         }
 
-        const blockedMarkets = blockedControlDomains
-            .map(targetCountry => targetCountry.TargetCountryName)
-            .join(', ');
+        const unblockedControlDomains = targetCountryList.filter(targetCountry =>
+            targetCountry.IsUsedDomainControl &&
+            targetCountry.Status === targetCountryStatus.Normal &&
+            initialBlockedControlDomains.includes(targetCountry.TargetCountryCode)
+        );
 
-        const message = `<strong class="text-danger">${selectedDomain.domainName}</strong> is currently active in the <strong>Domain Control</strong> function with the following target countries: <span class="text-danger">${blockedMarkets}</span>. These target countries will be set to inactive but will not be reactivated. Are you sure you want to proceed with blocking the domain?`;
-        
-        this.setState({ messageConfirm: message });
+        if (!!unblockedControlDomains.length) {
+            const message = `Please check the mapping domain control for this domain after you unblock the target country!`;
+
+            this.setState({ messageConfirm: message, isConfirmPopup: false });
+            return;
+        }
+
+        this._submitData(selectedDomain);
     }
 
     _submitData = async (selectedDomain) => {
@@ -174,7 +194,7 @@ export class DomainPopup extends PureComponent {
     }
 
     render() {
-        const { isInsert, isSuccess, isShowMessage, message, messageConfirm, selectedDomain, targetCountryList, isBlockAllTargetCountries } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, isConfirmPopup, messageConfirm, selectedDomain, targetCountryList, isBlockAllTargetCountries } = this.state;
         const isShowPopup = selectedDomain !== null;
         const title = isInsert ? "Add Domain" : "Edit Domain";
         const buttonLabel = isInsert ? "Add" : "Submit";
@@ -222,7 +242,7 @@ export class DomainPopup extends PureComponent {
                 {
                     !!messageConfirm && <NotificationPopup
                         message={messageConfirm}
-                        isConfirmPopup={true}
+                        isConfirmPopup={isConfirmPopup}
                         onClose={this._handleCloseNotificationPopup}
                     />
                 }
