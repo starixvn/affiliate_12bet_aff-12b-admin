@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.Constants
                 [SystemLanguage.BangladeshLanguageCode] = "+880XXXXXXXXXX",
                 [SystemLanguage.IndiaLanguageCode] = "+91XXXXXXXXXX", 
                 [SystemLanguage.IndonesiaLanguageCode] = "+62XXXXXXXXX",
-                [Default] = string.Empty
+                [Default] = "+XXXXXXXXXX"
             }
         };
 
@@ -86,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             {
                 return DefaultRegexValue;
             }
-            return GetValueDicByAppAndLanguage(RegexValidations, contactAppName, language, DefaultRegexValue);
+            return GetValueDicByAppAndLanguage(RegexValidations, contactAppName, language);
         }
 
         public static string GetPlaceHolderByAppAndLanguage(string contactAppName, string language)

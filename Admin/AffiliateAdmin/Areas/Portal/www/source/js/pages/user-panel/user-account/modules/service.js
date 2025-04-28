@@ -5,7 +5,7 @@ export const renderInputForm = (name, label, inputValue, isStatic, isRequired, c
     return (
         <FormGroup row key={name}>
             <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
-            <Col sm={9} xl={10}>
+            <Col sm={9} xl={10} className="input-item">
                 {
                     isStatic ? (<p className="form-control-plaintext">{inputValue}</p>) :
                         (<Input type="text" id={name} name={name} value={inputValue || ''} onChange={changeHandler} />)

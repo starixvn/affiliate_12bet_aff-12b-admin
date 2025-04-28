@@ -299,6 +299,7 @@
     <Compile Include="Constants\AffType.cs" />
     <Compile Include="Constants\Apis\CustomerStatus.cs" />
     <Compile Include="Constants\Apis\PaymentType.cs" />
+    <Compile Include="Constants\AppContact.cs" />
     <Compile Include="Constants\CacheKey.cs" />
     <Compile Include="Constants\CalculatedType.cs" />
     <Compile Include="Constants\DataTrackerStatus.cs" />
@@ -729,6 +730,7 @@
     <Compile Include="Services\UserPanel\Statistics\TrackingStatisticsService.cs" />
     <Compile Include="Services\UserPanel\UserAccountService.cs" />
     <Compile Include="Services\UserPanel\ViewLogService.cs" />
+    <Compile Include="Utilities\AppContactHelper.cs" />
     <Compile Include="Utilities\CommGroup\CommGroupValidation.cs" />
     <Compile Include="Utilities\CommGroup\ICommGroupValidation.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />

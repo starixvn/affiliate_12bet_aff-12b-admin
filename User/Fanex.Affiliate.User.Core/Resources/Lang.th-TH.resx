@@ -2554,8 +2554,7 @@
     <value>ผู้เล่นที่ผ่านเกณฑ์</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
-    <value>สมัครสมาชิก{0} ของเราเพื่อรับการอัปเดตและโปรโมชั่นล่าสุด
-เพื่อรับการอัปเดตและโปรโมชั่นล่าสุด</value>
+    <value>สมัครสมาชิก{0} ของเราเพื่อรับการอัปเดตและโปรโมชั่นล่าสุด</value>
   </data>
   <data name="TelegramChannel" xml:space="preserve">
     <value>ช่องทาง Telegram</value>

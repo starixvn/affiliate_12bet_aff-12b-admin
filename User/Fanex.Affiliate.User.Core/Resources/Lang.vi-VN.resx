@@ -2532,8 +2532,7 @@ THANH TOÁN ỔN ĐỊNH</value>
     <value>Người chơi đang hoạt động đủ điều kiện</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
-    <value>Hãy theo dõi {0} của chúng tôi để nhận các cập nhật và khuyến mãi mới nhất.
-Để nhận các cập nhật và khuyến mãi mới nhất.</value>
+    <value>Hãy theo dõi {0} của chúng tôi để nhận các cập nhật và khuyến mãi mới nhất.</value>
   </data>
   <data name="TelegramChannel" xml:space="preserve">
     <value>kênh Telegram</value>

@@ -73,9 +73,11 @@ export class Personal extends PureComponent {
                 {renderInputForm('email', 'Email Address', userAccountInfo.Email, isOnlyView, true, this.handleChange)}
                 {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, isOnlyView, true, this.handleChange)}
                 {
-                    this.arrayContactApps && this.arrayContactApps.map(contactApp => {
+                    this.arrayContactApps && this.arrayContactApps.map((contactApp, index )=> {
+                        const appNameDisplay = contactApp.Name == "Skype" ? "Teams" : contactApp.Name;
+
                         return (
-                            renderInputForm(contactApp.Name, contactApp.Name, contactApp.Value, false, false, this.handleChangeContactApps)
+                            renderInputForm(contactApp.Name, appNameDisplay, contactApp.Value, false, index == 0, this.handleChangeContactApps)
                         )
                     })
                 }

@@ -38,7 +38,7 @@ export class Payment extends PureComponent {
         return (
             <FormGroup row>
                 <Label for={name} sm={3} xl={2} className={isRequired ? "required" : ""}>{label}</Label>
-                <Col sm={5} xl={6}>
+                <Col sm={5} xl={6} className="input-item">
                     <Input type="text" id={name} name={name} value={inputValue} onChange={changeHandler} />
                 </Col>
             </FormGroup>
@@ -65,14 +65,14 @@ export class Payment extends PureComponent {
             <Form tag="div">
                 <FormGroup row>
                     <Label htmlFor="preferredPayment" sm={3} xl={2}>Preferred Payment Method</Label>
-                    <Col sm={5} xl={6}>
+                    <Col sm={5} xl={6} className="input-item">
                         <Input type="select" id="preferredPayment" name="preferredPayment" onChange={this.handleChangePaymentMethod} value={userAccountInfo.PreferredPayment}>
                             {paymentMethodList && paymentMethodList.map(item => {
                                 return (<option key={item.Key} value={item.Key}>{item.Value}</option>)
                             })}
                         </Input>
                     </Col>
-                    <p>{minimumPaymentText + " " + formatDecimal(minimumPayment)}</p>
+                    <span className="input-item">{minimumPaymentText + " " + formatDecimal(minimumPayment)}</span>
                 </FormGroup>
                 {renderFormByMethod[userAccountInfo.PreferredPayment]}
                 {/* <p className="text-danger offset-sm-3 offset-xl-2 pl-1">{`You can request for a withdrawal through Moneybookers, Wire Transfer or directly into your ${licenseeName}.com player account.`}</p> */}

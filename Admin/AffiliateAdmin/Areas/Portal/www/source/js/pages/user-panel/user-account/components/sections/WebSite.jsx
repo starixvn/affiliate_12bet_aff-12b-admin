@@ -83,10 +83,10 @@ export class WebSite extends PureComponent {
                         return (
                             <FormGroup row key={`siteUrl${index} ${123}`}>
                                 <Label for={`${index}`} sm={3} xl={2} className="required">Website URL {index + 2}</Label>
-                                <Col sm={5} xl={6}>
+                                <Col sm={5} xl={6} className="input-item">
                                     <input className="form-control" disabled={!hasWebSite} name={index} value={value} onChange={this.handleChangeMoreUrl} ref={this.moreSiteUrlsRefs[index]} />
                                 </Col>
-                                <Button outline color="danger" disabled={!hasWebSite} className="mb-2" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
+                                <Button outline color="danger" disabled={!hasWebSite} className="my-1" onClick={() => this.handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
                         )
                     })
@@ -111,10 +111,10 @@ export class WebSite extends PureComponent {
                         </FormGroup>
                         <FormGroup row className="pt-1">
                             <Label htmlFor="siteUrl" sm={3} xl={2} className="required">Website URL</Label>
-                            <Col sm={5} xl={6}>
+                            <Col sm={5} xl={6} className="input-item">
                                 <Input type="text" name="siteUrl" disabled={!hasWebSite} value={userAccountInfo.SiteUrl} onChange={this.handleChange} />
                             </Col>
-                            <Button outline color="secondary" disabled={!hasWebSite} className="mb-2" onClick={this.handleAddUrl}>Add Url</Button>
+                            <Button outline color="secondary" disabled={!hasWebSite} className="my-1" onClick={this.handleAddUrl}>Add Url</Button>
                         </FormGroup>
                         {
                             this._renderMoreSiteUrl(moreSiteUrlsList, hasWebSite)
