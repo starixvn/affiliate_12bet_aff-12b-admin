@@ -9,13 +9,14 @@
         RegisteredDate: 2,
         Deposit: 3,
         Withdrawal: 4,
-        Turnover: 5,
-        GGR: 6,
-        Bonus: 7,
-        Rebate: 8,
-        DepositFee: 9,
-        WithdrawalFee: 10,
-        FdmDate: 11,
+        FdmAmt: 5,
+        Turnover: 6,
+        GGR: 7,
+        Bonus: 8,
+        Rebate: 9,
+        DepositFee: 10,
+        WithdrawalFee: 11,
+        FdmDate: 12,
     };
 
     function initPager() {

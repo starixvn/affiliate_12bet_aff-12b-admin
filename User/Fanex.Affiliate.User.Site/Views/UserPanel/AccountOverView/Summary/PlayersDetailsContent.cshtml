@@ -20,6 +20,7 @@
                 <td class="text-center break-all">@item.Username</td>
                 <td class="text-center">@(item.RegisteredDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? string.Empty)</td>
                 <td class="text-center">@(item.FirstDepositDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? string.Empty)</td>
+                <td class="text-center">@item.FirstDepositAmount.FormatDecimal()</td>
                 <td class="text-center">@item.Turnover.FormatDecimal()</td>
                 <td class="text-center">@item.GGR.FormatDecimal()</td>
                 <td class="text-center">@item.Deposit.FormatDecimal()</td>
@@ -43,7 +44,7 @@
     else
     {
         <tr>
-            <td class="text-center" colspan=@(10 + columnDepositFee + columnWithdrawalFee)>@Lang.NoInfo</td>
+            <td class="text-center" colspan=@(11 + columnDepositFee + columnWithdrawalFee)>@Lang.NoInfo</td>
         </tr>
     }
 }
