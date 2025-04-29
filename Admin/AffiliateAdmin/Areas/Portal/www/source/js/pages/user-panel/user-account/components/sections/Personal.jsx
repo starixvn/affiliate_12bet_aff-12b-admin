@@ -6,6 +6,7 @@ import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { renderInputForm, capitalizeFirstChar } from '../../modules/service';
 import { setUserAccountInfo } from '../../actions';
 import { updateObjectInArray } from '../../../../../modules/dataHandler';
+import { getPlaceHolderByApp } from '../../modules/utils';
 
 export class Personal extends PureComponent {
     constructor(props) {
@@ -73,11 +74,12 @@ export class Personal extends PureComponent {
                 {renderInputForm('email', 'Email Address', userAccountInfo.Email, isOnlyView, true, this.handleChange)}
                 {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, isOnlyView, true, this.handleChange)}
                 {
-                    this.arrayContactApps && this.arrayContactApps.map((contactApp, index )=> {
+                    this.arrayContactApps && this.arrayContactApps.map((contactApp, index) => {
                         const appNameDisplay = contactApp.Name == "Skype" ? "Teams" : contactApp.Name;
+                        const placeholder = getPlaceHolderByApp(contactApp.Name);
 
                         return (
-                            renderInputForm(contactApp.Name, appNameDisplay, contactApp.Value, false, index == 0, this.handleChangeContactApps)
+                            renderInputForm(contactApp.Name, appNameDisplay, contactApp.Value, false, index == 0, this.handleChangeContactApps, placeholder)
                         )
                     })
                 }

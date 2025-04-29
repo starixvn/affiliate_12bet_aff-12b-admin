@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -89,6 +90,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             if (ModelState.IsValid)
             {
+                var validateAppContacts = AppContactHelper.ValidateAppContactList(param.ContactAppList);
+                if (!validateAppContacts.IsSuccessful)
+                {
+                    return GenerateJsonNetResult(validateAppContacts);
+                }
+
                 var userAccountParam = new UserAccountParam
                 {
                     AffId = param.AffId,

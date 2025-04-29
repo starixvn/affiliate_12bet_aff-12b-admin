@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         {
             [Telegram] = "^@.+$",
             ["Line"] = "^@.+$",
-            [WhatsApp] = "^\\+(880|91|62)\\d{6,}$",
+            [WhatsApp] = "^\\+\\d{10,}$",
         };
 
         private static readonly IReadOnlyDictionary<string, string> PlaceHolders = new Dictionary<string, string>

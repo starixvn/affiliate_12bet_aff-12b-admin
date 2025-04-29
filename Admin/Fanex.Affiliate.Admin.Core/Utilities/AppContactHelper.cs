@@ -1,12 +1,9 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using System;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
 {
@@ -14,17 +11,17 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
     {
         private const int MaxLengthInputString = 50;
 
-        public static ResultInfo ValidateAppContactList(IEnumerable<ContactApp> contactAppList, string currentLanguage)
+        public static ResultInfo ValidateAppContactList(IEnumerable<ContactApp> contactAppList)
         {
             if (contactAppList == null || !contactAppList.Any())
             {
-                return ResultInfo.GenerateErr($"At least one IM account is required");
+                return ResultInfo.GenerateErr("At least one IM account is required");
             }
 
             var firstItem = contactAppList.First();
             if (string.IsNullOrEmpty(firstItem.Value))
             {
-                return ResultInfo.GenerateErr($"{firstItem.Name} is required");
+                return ResultInfo.GenerateErr(GetMessage(firstItem.Name, "is required"));
             }
 
             var firstItemValidation = ValidateContactValue(firstItem);
@@ -52,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             if (contactApp.Value.Length > MaxLengthInputString)
             {
-                return ResultInfo.GenerateErr($"{contactApp.Name} no more than 50 characters");
+                return ResultInfo.GenerateErr(GetMessage(contactApp.Name, "no more than 50 characters"));
             }
 
             if ((contactApp.Name == AppContact.Telegram ||
@@ -60,10 +57,17 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                  contactApp.Name == AppContact.WhatsApp) &&
                 !RegexHelper.IsMatch(contactApp.Value, AppContact.GetRegexByApp(contactApp.Name)))
             {
-                return ResultInfo.GenerateErr($"{contactApp.Name} is invalid");
+                return ResultInfo.GenerateErr(GetMessage(contactApp.Name, "is invalid"));
             }
 
             return ResultInfo.Success;
+        }
+
+        private static string GetMessage(string appName, string suffixMsg)
+        {
+            var name = appName.MatchWith("Skype") ? "Teams" : appName;
+
+            return $"{name} {suffixMsg}";
         }
     }
 }

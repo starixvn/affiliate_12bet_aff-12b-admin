@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         public const string QQ = "QQ";
         private const string Default = "Default";
         private const string DefaultRegexAllApps = "^.*$";
-        private const string DefaultRegexWhatsApp = "^\\+(880|91|62)\\d{6,}$";
+        private const string DefaultRegexWhatsApp = "^\\+\\d{10,}$";
 
         public static readonly IReadOnlyDictionary<string, string> FirsAppContactList = new Dictionary<string, string>
         {
@@ -55,9 +55,9 @@ namespace Fanex.Affiliate.User.Core.Constants
             },
             [WhatsApp] = new Dictionary<string, string>
             {
-                [SystemLanguage.BangladeshLanguageCode] = "^\\+880\\d{6,}$",
-                [SystemLanguage.IndiaLanguageCode] = "^\\+91\\d{7,}$",
-                [SystemLanguage.IndonesiaLanguageCode] = "^\\+62\\d{7,}$",
+                [SystemLanguage.BangladeshLanguageCode] = "^\\+880\\d{7,}$",
+                [SystemLanguage.IndiaLanguageCode] = "^\\+91\\d{8,}$",
+                [SystemLanguage.IndonesiaLanguageCode] = "^\\+62\\d{8,}$",
                 [Default] = DefaultRegexWhatsApp
             }
         };

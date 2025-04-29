@@ -8,6 +8,7 @@
     moneybookersMethod,
     wireMethod
 } from './constants'
+import { getRegexByApp } from './utils'
 
 const getMessage = (fieldName, value) => {
     return value === '' ? messageList[fieldName] + "<br />" : '';
@@ -64,6 +65,9 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeN
     message = isValidEmail ? message : message + messageList.Email + "<br />";
     message += getMessage('Country', country);
 
+    const resultValidateContactApps = validateAppContactList(userAccountInfo.ContactAppList);
+    message += resultValidateContactApps.isValid ? '' : resultValidateContactApps.message + '<br />';
+
     message += newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
 
     let isValid = isValidGender && isValidEmail && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' &&
@@ -75,6 +79,75 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeN
 
     return {
         message: message + resultValidateMoreSiteUrls.message + resultValidatePaymentMethod.message,
-        isValid: isValid && resultValidateMoreSiteUrls.isValid && resultValidatePaymentMethod.isValid
+        isValid: isValid && resultValidateMoreSiteUrls.isValid && resultValidatePaymentMethod.isValid && resultValidateContactApps.isValid
+    };
+}
+
+const getAppMessage = (appName, suffixMsg) => {
+    const name = appName == "Skype" ? "Teams" : appName;
+
+    return `${name} ${suffixMsg}`;
+}
+
+const validateContactValue = (contactApp) => {
+    const MAX_LENGTH = 50;
+    let message = '';
+    let isValid = true;
+
+    if (contactApp.Value.length > MAX_LENGTH) {
+        message = getAppMessage(contactApp.Name, "no more than 50 characters<br />");
+        isValid = false;
+    }
+
+    if ((contactApp.Name === 'Telegram' || 
+         contactApp.Name === 'Line' || 
+         contactApp.Name === 'WhatsApp') && 
+        !new RegExp(getRegexByApp(contactApp.Name)).test(contactApp.Value)) {
+        message = getAppMessage(contactApp.Name, "is invalid<br />");
+        isValid = false;
+    }
+
+    return {
+        message,
+        isValid
+    };
+}
+
+export const validateAppContactList = (contactAppList) => {
+    let message = '';
+    let isValid = true;
+
+    if (!contactAppList || contactAppList.length === 0) {
+        message = 'At least one IM account is required<br />';
+        isValid = false;
+    }
+
+    const firstItem = contactAppList[0];
+    if (!firstItem.Value) {
+        message = getAppMessage(firstItem.Name, "is required<br />");
+        isValid = false;
+    }
+
+    const firstItemValidation = validateContactValue(firstItem);
+    if (!firstItemValidation.isValid) {
+        message += firstItemValidation.message;
+        isValid = false;
+    }
+
+    // Validate remaining contacts
+    for (let i = 1; i < contactAppList.length; i++) {
+        const contactApp = contactAppList[i];
+        if (contactApp.Value) {
+            const validationResult = validateContactValue(contactApp);
+            if (!validationResult.isValid) {
+                message += validationResult.message;
+                isValid = false;
+            }
+        }
+    }
+
+    return {
+        message,
+        isValid
     };
 }
