@@ -24,7 +24,7 @@
 
         IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
 
-        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink);
+        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink, string language = "");
 
         ResultInfo<MarketingChannel> AddMarketingChannel(int userId, string channelName);
 

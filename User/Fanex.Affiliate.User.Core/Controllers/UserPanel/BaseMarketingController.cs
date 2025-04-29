@@ -3,6 +3,7 @@
     using BusinessService;
     using CoreService;
     using Enum;
+    using Fanex.Affiliate.User.Core.DTO.Auth;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
     using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
     using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
@@ -83,9 +84,10 @@
 
         protected RefLinkViewModel GetAffLinkTypeViewModel()
         {
-            var affId = SessionService.UserSession.AffId;
+            var userSession = SessionService.UserSession;
+            var affId = userSession.AffId;
             var domains = MarketingService.GetAvailableDomainList(affId, AffiliateLinkType.AffiliateLink, SessionService.IsInternal);
-            var pages = MarketingService.GetLandingPageList(SessionService.UserSession.GroupName, SessionService.IsInternal);
+            var pages = MarketingService.GetLandingPageList(userSession.GroupName, SessionService.IsInternal, language: userSession.PreferredLanguage);
 
             return new RefLinkViewModel
             {
@@ -98,9 +100,10 @@
 
         protected RefLinkViewModel GetSubAffLinkTypeViewModel()
         {
-            var affId = SessionService.UserSession.AffId;
+            var userSession = SessionService.UserSession;
+            var affId = userSession.AffId;
             var domains = MarketingService.GetAvailableDomainList(affId, AffiliateLinkType.SubAffiliateLink, SessionService.IsInternal);
-            var pages = MarketingService.GetLandingPageList(SessionService.UserSession.GroupName, SessionService.IsInternal, AffiliateLinkType.SubAffiliateLink);
+            var pages = MarketingService.GetLandingPageList(userSession.GroupName, SessionService.IsInternal, AffiliateLinkType.SubAffiliateLink, userSession.PreferredLanguage);
 
             return new RefLinkViewModel
             {

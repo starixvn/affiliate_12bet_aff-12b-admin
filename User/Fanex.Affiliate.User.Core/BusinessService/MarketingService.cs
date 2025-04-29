@@ -197,13 +197,13 @@
             return bannerList;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink)
+        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink, string language = "")
         {
             var isTargetToMember = linkType == AffiliateLinkType.AffiliateLink;
             var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(isInternal));
 
             return isTargetToMember
-                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName)
+                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName, language)
                 : GetSubAffLandingPages();
         }
 

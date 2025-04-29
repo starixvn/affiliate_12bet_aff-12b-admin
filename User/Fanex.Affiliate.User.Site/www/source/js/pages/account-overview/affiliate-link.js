@@ -30,7 +30,11 @@
 
                 $("#Page").empty().append(pages);
                 $("#Domain").empty().append(domains);
-            })
+            });
+
+            $("#Language").on("change", function () {
+                MarketingBase.getLinkTo();
+            });
 
             $("#btnGenQRCode").click(function () {
                 Site.showLoader();
