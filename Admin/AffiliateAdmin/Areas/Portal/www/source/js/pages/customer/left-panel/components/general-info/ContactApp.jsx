@@ -11,9 +11,11 @@ export const ContactApp = (props) => {
         <React.Fragment>
             {
                 contactAppList.map(contactApp => {
+                    const appName = contactApp.Name == "Skype" ? "Teams" : contactApp.Name;
+
                     return (
-                        <Row key={`contactApp-${contactApp.Name}`}>
-                            <Col sm={5}>{contactApp.Name}</Col>
+                        <Row key={`contactApp-${appName}`}>
+                            <Col sm={5}>{appName}</Col>
                             <Col sm={7} className='text-right'>{contactApp.Value}</Col>
                         </Row>
                     )
