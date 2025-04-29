@@ -1470,9 +1470,6 @@
   <data name="IndianSupport" xml:space="preserve">
     <value>인도 서포트</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>기타 문의사항이 있으시면 {0} 로  보내주시거나 아래의 양식을 작성하신 후 제출을 클릭해주세요.</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>보안문자</value>
   </data>
@@ -2209,9 +2206,6 @@
   <data name="BecomeA12BetAff" xml:space="preserve">
     <value>12Bet 제휴사가 되어보세요</value>
   </data>
-  <data name="Skype" xml:space="preserve">
-    <value>Skype</value>
-  </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
@@ -2520,5 +2514,15 @@
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>요건 충족 회원</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>최신 업데이트 및 프로모션을 받으시려면 {0}을 구독해 주세요.</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>텔레그램 채널</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>문의사항이 있으시면 텔레그램 {0} 으로 직접 연락주시거나,&lt;br /&gt;
+{1} 으로 이메일을 보내주시거나 아래 양식을 작성해 주세요.</value>
   </data>
 </root>

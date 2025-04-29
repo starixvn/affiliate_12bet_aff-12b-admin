@@ -1444,9 +1444,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="IndianSupport" xml:space="preserve">
     <value>Hỗ trợ tiếng Ấn Độ</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Vui lòng gửi bất kỳ ý kiến hoặc câu hỏi nào đến {0}, hoặc sử dụng biểu mẫu dưới đây.</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Mã Xác Thực</value>
   </data>
@@ -2225,9 +2222,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="BecomeA12BetAff" xml:space="preserve">
     <value>Trở Thành Đại Lý 12Bet</value>
   </data>
-  <data name="Skype" xml:space="preserve">
-    <value>Tài khoản Skype</value>
-  </data>
   <data name="Telegram" xml:space="preserve">
     <value>Tài khoản Telegram</value>
   </data>
@@ -2536,5 +2530,15 @@ THANH TOÁN ỔN ĐỊNH</value>
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>Người chơi đang hoạt động đủ điều kiện</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>Hãy theo dõi {0} của chúng tôi để nhận các cập nhật và khuyến mãi mới nhất.</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>kênh Telegram</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>Để được hỗ trợ, bạn có thể liên hệ trực tiếp với chúng tôi qua Telegram: {0}&lt;br /&gt;
+Bạn cũng có thể gửi email đến: {1} hoặc điền vào biểu mẫu bên dưới.</value>
   </data>
 </root>

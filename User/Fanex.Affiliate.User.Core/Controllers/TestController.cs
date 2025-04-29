@@ -24,7 +24,7 @@
             new ContactApp
             {
                 Order = 1,
-                Name = "Skype",
+                Name = "Line",
                 Value = "abc123"
             },
             new ContactApp

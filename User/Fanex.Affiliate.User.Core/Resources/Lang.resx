@@ -1641,10 +1641,6 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Indian Support</value>
     <comment>87923</comment>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Please direct any comments or questions to {0}, or using the form below.</value>
-    <comment>87923</comment>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Validation Code</value>
     <comment>87923</comment>
@@ -2296,9 +2292,6 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="OurProducts" xml:space="preserve">
     <value>OUR PRODUCTS</value>
   </data>
-  <data name="Skype" xml:space="preserve">
-    <value>Skype</value>
-  </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
@@ -2646,6 +2639,17 @@ CONSISTENT PAYMENT</value>
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>Qualified Active Players</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>Subscribe to Our {0}&lt;br/&gt;
+For the Latest Updated and Promotions</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>For inquiries you may directly contact our Telegram {0}&lt;br /&gt;
+You can also email us to {1} or simply fill the form below.</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>Telegram Channel</value>
   </data>
   <data name="FdmAmt" xml:space="preserve">
     <value>FDM Amt</value>

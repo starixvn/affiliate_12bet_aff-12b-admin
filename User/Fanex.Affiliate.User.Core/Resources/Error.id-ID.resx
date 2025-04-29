@@ -231,4 +231,13 @@
   <data name="InvalidChannelName" xml:space="preserve">
     <value>Nama saluran hanya boleh berisi huruf dan angka. Tidak diperbolehkan menggunakan spasi atau karakter khusus.</value>
   </data>
+  <data name="InvalidLength" xml:space="preserve">
+    <value> tidak lebih dari 50 karakter.</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value> wajib diisi</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value> tidak valid</value>
+  </data>
 </root>

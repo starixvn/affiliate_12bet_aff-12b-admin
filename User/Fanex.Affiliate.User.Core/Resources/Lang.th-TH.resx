@@ -1444,9 +1444,6 @@
   <data name="IndianSupport" xml:space="preserve">
     <value>ทีมงานภาษาอินเดีย</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>กรุณาส่งข้อแนะนำหรือคำถามมาได้ที่ {0}, หรือกรอกแบบฟอร์มตามด้านล่างแล้วส่งให้เราได้เช่นกันค่ะ</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>หมายเลขตรวจสอบ</value>
   </data>
@@ -2210,9 +2207,6 @@
   <data name="NetProfit" xml:space="preserve">
     <value>กำไรสุทธิ</value>
   </data>
-  <data name="Skype" xml:space="preserve">
-    <value>Skype</value>
-  </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
@@ -2558,5 +2552,15 @@
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
     <value>ผู้เล่นที่ผ่านเกณฑ์</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>สมัครสมาชิก{0} ของเราเพื่อรับการอัปเดตและโปรโมชั่นล่าสุด</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>ช่องทาง Telegram</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>หากมีข้อสงสัย คุณสามารถติดต่อ{0} ทาง Telegram ของเราได้โดยตรง&lt;br /&gt;
+คุณยังสามารถส่งอีเมล {1} หรือเพียงแค่กรอกแบบฟอร์มด้านล่าง</value>
   </data>
 </root>

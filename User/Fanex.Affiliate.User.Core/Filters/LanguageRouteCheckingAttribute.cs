@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.Filters
                 var favoriteShortedLanguage = systemService.GetFavoriteShortedLanguage();
 
                 var queryString = filterContext.HttpContext.Request?.QueryString.ToString();
-                var path = $"~/{favoriteShortedLanguage}/{filterContext.RouteData.Values["controller"]}";
+                var path = $"~/{favoriteShortedLanguage}/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}";
 
                 if (!string.IsNullOrWhiteSpace(queryString))
                 {

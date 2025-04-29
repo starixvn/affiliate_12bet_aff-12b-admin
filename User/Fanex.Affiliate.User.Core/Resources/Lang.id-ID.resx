@@ -1444,9 +1444,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="IndianSupport" xml:space="preserve">
     <value>Bantuan Dalam Bahasa India</value>
   </data>
-  <data name="PleaseDirectAnyComment" xml:space="preserve">
-    <value>Silakan kirimkan komentar atau pertanyaan Anda ke alamat email {0}, atau dengan mengisi form di bawah ini.</value>
-  </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Kode Validasi</value>
   </data>
@@ -2177,9 +2174,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="OurProducts" xml:space="preserve">
     <value>PRODUK KAMI</value>
   </data>
-  <data name="Skype" xml:space="preserve">
-    <value>Skype</value>
-  </data>
   <data name="Telegram" xml:space="preserve">
     <value>Telegram</value>
   </data>
@@ -2533,5 +2527,16 @@ PEMBAYARAN KONSISTEN</value>
   </data>
   <data name="ActivePlayers" xml:space="preserve">
     <value>Pemain Aktif</value>
+  </data>
+  <data name="SubscribeToOur" xml:space="preserve">
+    <value>Berlangganan {0}&lt;br /&gt;
+Kami untuk Update dan Promosi Terbaru</value>
+  </data>
+  <data name="TelegramChannel" xml:space="preserve">
+    <value>Saluran Telegram</value>
+  </data>
+  <data name="ForInquiries" xml:space="preserve">
+    <value>Untuk pertanyaan, Anda dapat langsung menghubungi Telegram kami di {0}&lt;br /&gt;
+Anda juga bisa mengirim email ke {1} atau cukup isi formulir di bawah ini.</value>
   </data>
 </root>

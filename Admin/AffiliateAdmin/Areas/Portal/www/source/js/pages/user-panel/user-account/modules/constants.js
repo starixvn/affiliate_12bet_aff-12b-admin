@@ -4,6 +4,26 @@ export { userPanelMenuKey }
 
 export const regexEmail = '^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$';
 
+export const contactAppTypes = {
+    Telegram: 'Telegram',
+    WhatsApp: 'WhatsApp',
+    Line: 'Line',
+    Skype: 'Skype',
+    Teams: 'Teams'
+};
+
+export const contactAppRegex = {
+    [contactAppTypes.Telegram]: '^@.+$',
+    [contactAppTypes.Line]: '^@.+$',
+    [contactAppTypes.WhatsApp]: '^\\+\\d{10,}$'
+};
+
+export const contactAppPlaceholders = {
+    [contactAppTypes.Telegram]: '@XXXXXXXXXX',
+    [contactAppTypes.Line]: '@XXXXXXXXXX',
+    [contactAppTypes.WhatsApp]: '+XXXXXXXXXX'
+};
+
 export const messageList = {
     FirstName: 'First Name is required',
     LastName: 'Last Name is required',

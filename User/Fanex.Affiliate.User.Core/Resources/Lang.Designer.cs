@@ -2717,6 +2717,16 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For inquiries you may directly contact our Telegram {0}&lt;br /&gt;
+        ///You can also email us to {1} or simply fill the form below..
+        /// </summary>
+        public static string ForInquiries {
+            get {
+                return ResourceManager.GetString("ForInquiries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to France.
         /// </summary>
         public static string France {
@@ -4792,15 +4802,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please direct any comments or questions to {0}, or using the form below..
-        /// </summary>
-        public static string PleaseDirectAnyComment {
-            get {
-                return ResourceManager.GetString("PleaseDirectAnyComment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please leave your feedback below:.
         /// </summary>
         public static string PleaseLeaveYourFeedback {
@@ -5805,15 +5806,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skype.
-        /// </summary>
-        public static string Skype {
-            get {
-                return ResourceManager.GetString("Skype", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Slot.
         /// </summary>
         public static string Slot {
@@ -6111,6 +6103,16 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subscribe to Our {0}&lt;br/&gt;
+        ///For the Latest Updated and Promotions.
+        /// </summary>
+        public static string SubscribeToOur {
+            get {
+                return ResourceManager.GetString("SubscribeToOur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudan .
         /// </summary>
         public static string Sudan {
@@ -6368,6 +6370,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Telegram {
             get {
                 return ResourceManager.GetString("Telegram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telegram Channel.
+        /// </summary>
+        public static string TelegramChannel {
+            get {
+                return ResourceManager.GetString("TelegramChannel", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Filters;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
@@ -14,15 +15,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult Error()
         {
-            return View();
+            return View("~/Views/Notify/Error.cshtml");
         }
 
         [HttpGet]
+        [LanguageRouteChecking]
         public ActionResult PageNotFound()
         {
-            return View();
+            return View("~/Views/Notify/PageNotFound.cshtml");
         }
 
         public ActionResult CodeExpired()

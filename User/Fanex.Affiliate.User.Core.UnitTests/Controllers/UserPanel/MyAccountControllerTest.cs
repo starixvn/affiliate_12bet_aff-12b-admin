@@ -236,8 +236,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             return new List<ContactApp> {
                     new ContactApp
                     {
-                        Name = "Skype",
-                        Value = "skyper",
+                        Name = "Line",
+                        Value = "Liner",
                         Order = 0
                     },
                     new ContactApp

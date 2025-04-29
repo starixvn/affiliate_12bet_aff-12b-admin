@@ -125,30 +125,42 @@
 
                     foreach (var item in Model.AccountInformation.ContactAppList)
                     {
-                        var dependentField = $"ContactAppList[{(index == 0 ? 1 : 0)}].Value";
+                        var firstApp = index == 0;
+                        var appContactName = item.Name.MatchWith("Skype") ? "Teams" : item.Name;
+                        var appPlaceHolder = Fanex.Affiliate.User.Core.Constants.AppContact.GetPlaceHolderByAppAndLanguage(item.Name);
+                        var appRegex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(item.Name);
+
                         <div class="form-group validate-group">
-                            <label class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@item.Name</label>
-                            @if (contactAppCount == 2)
+                            @if (firstApp)
                             {
+                                <label for="ContactAppList[@index].Value" class="col-sm-3 control-label require">@appContactName</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-control"
+                                    <input type="text" placeholder="@appPlaceHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-control"
                                            value="@Html.Raw(item.Value)"
-                                           data-val="true" data-val-requiredifnullorempty-dependentprop="@dependentField"
-                                           data-val-requiredifnullorempty="@Error.RequireIMAccount" />
+                                           data-val="true"
+                                           data-val-required="@(appContactName)@Fanex.Affiliate.User.Core.Resources.Error.IsRequired"
+                                           data-val-length="@(appContactName)@Fanex.Affiliate.User.Core.Resources.Error.InvalidLength"
+                                           data-val-length-max="50"
+                                           data-val-regex="@(appContactName)@Fanex.Affiliate.User.Core.Resources.Error.IsInvalid"
+                                           data-val-regex-pattern="@appRegex" />
                                 </div>
                             }
                             else
                             {
+                                <label for="ContactAppList[@index].Value" class="col-sm-3 control-label">@appContactName</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-control"
+                                    <input type="text" placeholder="@appPlaceHolder" name="ContactAppList[@index].Value" id="ContactAppList[@index].Value" class="form-control"
                                            value="@Html.Raw(item.Value)"
                                            data-val="true"
-                                           data-val-required="@Error.RequireIMAccount" />
+                                           data-val-length="@(appContactName)@Fanex.Affiliate.User.Core.Resources.Error.InvalidLength"
+                                           data-val-length-max="50"
+                                           data-val-regex="@(appContactName)@Fanex.Affiliate.User.Core.Resources.Error.IsInvalid"
+                                           data-val-regex-pattern="@appRegex" />
                                 </div>
                             }
                             <div class="col-sm-offset-3 col-sm-9">
                                 <span class="field-validation-error validate-input hide"
-                                      data-valmsg-for="@(contactAppCount == 2 ? dependentField : $"ContactAppList[{index}].Value")"
+                                      data-valmsg-for="ContactAppList[@index].Value"
                                       data-valmsg-replace="true"></span>
                             </div>
                             <input type="hidden" name="ContactAppList[@index].Name" value="@item.Name" />

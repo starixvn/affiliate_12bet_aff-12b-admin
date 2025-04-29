@@ -159,21 +159,6 @@ namespace Fanex.Affiliate.User.Core.Constants
             },
         };
 
-        private static readonly IReadOnlyDictionary<string, string> _supportedAffManagerContactInfos = new Dictionary<string, string>
-        {
-            [_English_LanguageCode] = "skype:live:.cid.304e37e2b32cf7ac?chat",
-            [_Bangladesh_LanguageCode] = "https://api.whatsapp.com/send?phone=639454311641",
-            [_India_LanguageCode] = "https://api.whatsapp.com/send?phone=639664523148",
-            [_Indonesia_LanguageCode] = "https://api.whatsapp.com/send?phone=639276842457",
-            [_Japan_LanguageCode] = "https://join.skype.com/invite/px76INQ6RfJ6",
-            [_Cambodia_LanguageCode] = "https://t.me/aff12kh",
-            [_Korea_LanguageCode] = "https://t.me/aff12kor",
-            [_Thailand_LanguageCode] = "https://line.me/R/ti/p/@124asbwp?oat_content=url",
-            [_VietNam_LanguageCode] = "https://t.me/affvn12b",
-            [_Chinese_LanguageCode] = "https://t.me/aff12bzhifeiji",
-            [_Taiwan_LanguageCode] = "skype:live:.cid.304e37e2b32cf7ac?chat",
-        };
-
         private static readonly IList<string> _unsupportedP2pProductLanguages = new List<string> { _Bangladesh_LanguageCode, _India_LanguageCode, _Cambodia_LanguageCode };
 
         public static IReadOnlyDictionary<string, string> SupportedLanguage => _supportedLanguageForGoogleAnalytics;
@@ -250,11 +235,6 @@ namespace Fanex.Affiliate.User.Core.Constants
         public static bool ShouldUsingLogoOriginal(string currentLanguage)
         {
             return currentLanguage.Equals(EnglishLanguageCode) || currentLanguage.Equals(ChineseLanguageCode) || currentLanguage.Equals(TaiwanLanguageCode);
-        }
-
-        public static string GetAffManagerContactInfo(string currentLanguage)
-        {
-            return _supportedAffManagerContactInfos.ContainsKey(currentLanguage) ? _supportedAffManagerContactInfos[currentLanguage] : _supportedAffManagerContactInfos[EnglishLanguageCode];
         }
 
         public static string GetLanguageText(string value)

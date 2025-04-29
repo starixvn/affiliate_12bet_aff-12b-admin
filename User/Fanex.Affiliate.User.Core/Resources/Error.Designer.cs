@@ -205,6 +205,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  no more than 50 characters..
+        /// </summary>
+        public static string InvalidLength {
+            get {
+                return ResourceManager.GetString("InvalidLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  is invalid.
+        /// </summary>
+        public static string IsInvalid {
+            get {
+                return ResourceManager.GetString("IsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  is required.
+        /// </summary>
+        public static string IsRequired {
+            get {
+                return ResourceManager.GetString("IsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name no more than 50 characters..
         /// </summary>
         public static string LastNameMaxLength {

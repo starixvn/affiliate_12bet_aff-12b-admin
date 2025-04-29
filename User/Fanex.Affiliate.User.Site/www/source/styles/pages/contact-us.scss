@@ -27,6 +27,7 @@
 
         @include Mobile {
             margin-top: 16px;
+            font-size: 16px;
         }
 
         .days {
@@ -34,21 +35,18 @@
             font-weight: 700;
             line-height: normal;
             text-transform: uppercase;
-
-            @include Mobile {
-                font-size: 16px
-            }
         }
 
         .time {
             font-size: 16px;
-            font-weight: 600;
             line-height: normal;
             text-transform: uppercase;
+        }
 
-            @include Mobile {
-                font-size: 16px
-            }
+        .subscribe {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: normal;
         }
     }
 }

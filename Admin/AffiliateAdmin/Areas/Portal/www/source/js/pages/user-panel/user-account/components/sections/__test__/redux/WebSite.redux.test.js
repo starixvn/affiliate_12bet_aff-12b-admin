@@ -20,12 +20,12 @@ describe('user account - WebSite - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             userAccountInfo: { affId: 1271808 },
-            moreSiteUrlsList: { skype: 'abc' }
+            moreSiteUrlsList: { line: 'abc' }
         };
         const state = {
             edit: {
                 userAccountInfo: { affId: 1271808 },
-                moreSiteUrlsList: { skype: 'abc' }
+                moreSiteUrlsList: { line: 'abc' }
             },
             anotherProp: "Not included"
         };
