@@ -7,7 +7,9 @@ export const regexEmail = '^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-z
 export const contactAppTypes = {
     Telegram: 'Telegram',
     WhatsApp: 'WhatsApp',
-    Line: 'Line'
+    Line: 'Line',
+    Skype: 'Skype',
+    Teams: 'Teams'
 };
 
 export const contactAppRegex = {

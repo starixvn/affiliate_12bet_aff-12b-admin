@@ -6,7 +6,8 @@
     requiredBankTranferList,
     playerMethod,
     moneybookersMethod,
-    wireMethod
+    wireMethod,
+    contactAppTypes
 } from './constants'
 import { getRegexByApp } from './utils'
 
@@ -66,7 +67,7 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeN
     message += getMessage('Country', country);
 
     const resultValidateContactApps = validateAppContactList(userAccountInfo.ContactAppList);
-    message += resultValidateContactApps.isValid ? '' : resultValidateContactApps.message + '<br />';
+    message += resultValidateContactApps.isValid ? '' : resultValidateContactApps.message;
 
     message += newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
 
@@ -84,7 +85,7 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeN
 }
 
 const getAppMessage = (appName, suffixMsg) => {
-    const name = appName == "Skype" ? "Teams" : appName;
+    const name = appName == contactAppTypes.Skype ? contactAppTypes.Teams : appName;
 
     return `${name} ${suffixMsg}`;
 }
@@ -99,9 +100,9 @@ const validateContactValue = (contactApp) => {
         isValid = false;
     }
 
-    if ((contactApp.Name === 'Telegram' || 
-         contactApp.Name === 'Line' || 
-         contactApp.Name === 'WhatsApp') && 
+    if ((contactApp.Name === contactAppTypes.Telegram || 
+         contactApp.Name === contactAppTypes.Line || 
+         contactApp.Name === contactAppTypes.WhatsApp) && 
         !new RegExp(getRegexByApp(contactApp.Name)).test(contactApp.Value)) {
         message = getAppMessage(contactApp.Name, "is invalid<br />");
         isValid = false;
@@ -126,12 +127,12 @@ export const validateAppContactList = (contactAppList) => {
     if (!firstItem.Value) {
         message = getAppMessage(firstItem.Name, "is required<br />");
         isValid = false;
-    }
-
-    const firstItemValidation = validateContactValue(firstItem);
-    if (!firstItemValidation.isValid) {
-        message += firstItemValidation.message;
-        isValid = false;
+    } else {
+        const firstItemValidation = validateContactValue(firstItem);
+        if (!firstItemValidation.isValid) {
+            message += firstItemValidation.message;
+            isValid = false;
+        }
     }
 
     // Validate remaining contacts
