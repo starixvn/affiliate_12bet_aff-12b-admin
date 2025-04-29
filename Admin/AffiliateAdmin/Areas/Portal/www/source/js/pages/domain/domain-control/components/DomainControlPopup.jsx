@@ -42,13 +42,22 @@ export class DomainControlPopup extends PureComponent {
                 const { AffDomainId, RedirectDomainId, TargetCountryCode, IsUsed } = domain;
                 const domainIds = { affDomainId: AffDomainId, redirectDomainId: RedirectDomainId };
                 const targetCountryListByDomains = await this.props.getTargetCountryListByDomains(domainIds);
+                const targetCountryCode = this._handleGetAvailableCountryCode(TargetCountryCode, targetCountryListByDomains);
 
-                this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, targetCountryCode: TargetCountryCode, isUsed: IsUsed }, targetCountryListByDomains });
+                this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, targetCountryCode, isUsed: IsUsed }, targetCountryListByDomains });
             } else {
                 this.props.setSelectedDomainId(null);
             }
             this.props.toggleLoader(false);
         }
+    }
+
+    _handleGetAvailableCountryCode = (targetCountryCode, targetCountryList) => {
+        if (targetCountryList && targetCountryList.length && !targetCountryList.some(t => t.TargetCountryCode == targetCountryCode)) {
+            return targetCountryList[0].TargetCountryCode;
+        }
+
+        return targetCountryCode;
     }
 
     _handleChange = (event) => {
