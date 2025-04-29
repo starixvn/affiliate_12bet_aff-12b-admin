@@ -1429,6 +1429,31 @@ var MarketingBase = (function ($) {
             })
         },
 
+        getLinkTo: function () {
+            let param = {
+                linkType: $("#AffLinkType").val(),
+                language: $("#Language").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetLinkTo"),
+                success: function (response) {
+                    var html = Site.buildOptionList(response, "PageCode", "PageName", false);
+                    $("#Page").html(html);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
         initialize: function () {
             this.resiterQrcodeEvent();
         },
@@ -1512,6 +1537,7 @@ var MediaGallery = (function ($) {
 
             $("#Language").on("change", function () {
                 _me.getSize();
+                MarketingBase.getLinkTo();
             });
 
             $("#Currency").on("change", function () {
@@ -1562,7 +1588,7 @@ var MediaGallery = (function ($) {
                 data: param,
                 url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetSubCategory"),
                 success: function (response) {
-                    var html = _me.buildOptionList(response, "Value", "Text", true);
+                    var html = Site.buildOptionList(response, "Value", "Text", true);
                     $("#SubCategory").html(html);
                 },
                 beforeSend: function () {
@@ -1592,7 +1618,7 @@ var MediaGallery = (function ($) {
                 data: param,
                 url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetSize"),
                 success: function (response) {
-                    var html = _me.buildOptionList(response, "Size", "Size", true);
+                    var html = Site.buildOptionList(response, "Size", "Size", true);
                     $("#Size").html(html);
                 },
                 beforeSend: function () {
@@ -1602,18 +1628,6 @@ var MediaGallery = (function ($) {
                     Site.hideLoader();
                 }
             });
-        },
-
-        buildOptionList: function (dataList, value, text, hasAllOption) {
-            var optionList = dataList.map(function (item) {
-                return "<option value='" + item[value] + "'>" + item[text] + "</option>"
-            });
-
-            if (hasAllOption) {
-                optionList.unshift(optionAll);
-            }
-
-            return optionList.join("");
         },
 
         getSearchParam: function () {

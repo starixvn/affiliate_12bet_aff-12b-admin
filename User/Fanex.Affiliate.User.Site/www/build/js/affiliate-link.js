@@ -1429,6 +1429,31 @@ var MarketingBase = (function ($) {
             })
         },
 
+        getLinkTo: function () {
+            let param = {
+                linkType: $("#AffLinkType").val(),
+                language: $("#Language").val()
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetLinkTo"),
+                success: function (response) {
+                    var html = Site.buildOptionList(response, "PageCode", "PageName", false);
+                    $("#Page").html(html);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
         initialize: function () {
             this.resiterQrcodeEvent();
         },
@@ -1468,7 +1493,11 @@ var AffiliateLink = (function ($) {
 
                 $("#Page").empty().append(pages);
                 $("#Domain").empty().append(domains);
-            })
+            });
+
+            $("#Language").on("change", function () {
+                MarketingBase.getLinkTo();
+            });
 
             $("#btnGenQRCode").click(function () {
                 Site.showLoader();

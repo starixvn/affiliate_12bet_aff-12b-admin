@@ -54,7 +54,7 @@
             var viewModel = new LandingPageStatisticsViewModel
             {
                 LanguageList = MarketingHelper.GetLanguageList(_systemService.GetLanguageList(), userSession.PreferredLanguage),
-                MemberSitePageList = _marketingService.GetLandingPageList(SessionService.UserSession.GroupName, isInternal),
+                MemberSitePageList = _marketingService.GetLandingPageList(SessionService.UserSession.GroupName, isInternal, language: SystemLanguage.IndiaLanguageCode),
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
                 DataList = GetLandingPageStatisticsData(landingPageParam),
