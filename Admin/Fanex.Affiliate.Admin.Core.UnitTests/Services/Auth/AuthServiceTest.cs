@@ -1,5 +1,8 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Auth;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias.Administrator;
 using Fanex.Affiliate.Admin.Core.Criterias.Auth;
+using Fanex.Affiliate.Admin.Core.DTO.Administrator;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Login;
@@ -7,6 +10,8 @@ using Fanex.Affiliate.Admin.Core.Services.Auth;
 using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
@@ -106,6 +111,95 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Auth
             // Assert
             dynamicRepository.Verify(d => d.Execute(It.Is<CheckUserPermissionCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && !c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void GetClaims_WhenCallWithValidData_ReturnCorrectClaims()
+        {
+            // Arrange
+            var userId = 123;
+            var permissions = new List<UserPermission>
+            {
+                new UserPermission { FunctionName = "Function1", IsHost = true },
+                new UserPermission { FunctionName = "Function2", IsHost = false }
+            };
+
+            var adminInfo = new AdministratorInfo
+            {
+                UserId = userId,
+                UserName = "TestUser",
+                GroupId = 1
+            };
+
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(re => re.Get<AdministratorInfo>(It.IsAny<AdministratorDetailCriteria>(), It.IsAny<string>()))
+                .Returns(adminInfo);
+
+            // Action
+            var service = new AuthService(dynamicRepository.Object);
+            var claims = service.GetClaims(userId, permissions).ToList();
+
+            // Assert
+            Assert.Equal(5, claims.Count); // 3 base claims + 2 permission claims
+            Assert.Contains(claims, c => c.Type == ClaimTypes.NameIdentifier && c.Value == userId.ToString());
+            Assert.Contains(claims, c => c.Type == ClaimTypes.GivenName && c.Value == "TestUser");
+            Assert.Contains(claims, c => c.Type == ClaimTypes.Role && c.Value == "1");
+            Assert.Contains(claims, c => c.Type == "Function1" && c.Value == Function.WritePermission);
+            Assert.Contains(claims, c => c.Type == "Function2" && c.Value == string.Empty);
+        }
+
+        [Fact]
+        public void GetClaims_WhenCallWithNullPermissions_ReturnOnlyBaseClaims()
+        {
+            // Arrange
+            var userId = 123;
+            var adminInfo = new AdministratorInfo
+            {
+                UserId = userId,
+                UserName = "TestUser",
+                GroupId = 1
+            };
+
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(re => re.Get<AdministratorInfo>(It.IsAny<AdministratorDetailCriteria>(), It.IsAny<string>()))
+                .Returns(adminInfo);
+
+            // Action
+            var service = new AuthService(dynamicRepository.Object);
+            var claims = service.GetClaims(userId, null).ToList();
+
+            // Assert
+            Assert.Equal(3, claims.Count); // Only base claims
+            Assert.Contains(claims, c => c.Type == ClaimTypes.NameIdentifier && c.Value == userId.ToString());
+            Assert.Contains(claims, c => c.Type == ClaimTypes.GivenName && c.Value == "TestUser");
+            Assert.Contains(claims, c => c.Type == ClaimTypes.Role && c.Value == "1");
+        }
+
+        [Fact]
+        public void GetClaims_WhenCallWithEmptyPermissions_ReturnOnlyBaseClaims()
+        {
+            // Arrange
+            var userId = 123;
+            var adminInfo = new AdministratorInfo
+            {
+                UserId = userId,
+                UserName = "TestUser",
+                GroupId = 1
+            };
+
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(re => re.Get<AdministratorInfo>(It.IsAny<AdministratorDetailCriteria>(), It.IsAny<string>()))
+                .Returns(adminInfo);
+
+            // Action
+            var service = new AuthService(dynamicRepository.Object);
+            var claims = service.GetClaims(userId, new List<UserPermission>()).ToList();
+
+            // Assert
+            Assert.Equal(3, claims.Count); // Only base claims
+            Assert.Contains(claims, c => c.Type == ClaimTypes.NameIdentifier && c.Value == userId.ToString());
+            Assert.Contains(claims, c => c.Type == ClaimTypes.GivenName && c.Value == "TestUser");
+            Assert.Contains(claims, c => c.Type == ClaimTypes.Role && c.Value == "1");
         }
     }
 }

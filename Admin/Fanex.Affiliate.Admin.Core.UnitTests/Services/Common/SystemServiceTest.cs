@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Caching;
 using Fanex.Data.Repository;
@@ -201,6 +202,44 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Common
 
             // Assert
             dynamicRepository.Verify(d => d.Fetch<Product>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()), Times.Never);
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetTargetCountryList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var cacheService = new Mock<ICacheService>();
+            cacheService.Setup(c => c.Get<IEnumerable<TargetCountry>>(CacheKey.TargetCountryList)).Returns(null as IEnumerable<TargetCountry>);
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<TargetCountry>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<TargetCountry> { new TargetCountry() });
+
+            var service = CreatedynamicRepository(dynamicRepository.Object, cacheService.Object);
+
+            // Action
+            var result = service.GetTargetCountryList();
+
+            // Assert
+            dynamicRepository.Verify(d => d.Fetch<TargetCountry>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetTargetCountryList_WhenCall_ReturnCache()
+        {
+            // Arrange
+            var dynamicRepository = new Mock<IDynamicRepository>();
+            dynamicRepository.Setup(l => l.Fetch<TargetCountry>(It.IsAny<BaseCriteria>(), It.IsAny<string>())).Returns(new List<TargetCountry> { new TargetCountry() });
+            var cacheService = new Mock<ICacheService>();
+            cacheService.Setup(c => c.Get<IEnumerable<TargetCountry>>(CacheKey.TargetCountryList)).Returns(new List<TargetCountry> { new TargetCountry() });
+
+            var service = CreatedynamicRepository(dynamicRepository.Object, cacheService.Object);
+
+            // Action
+            var result = service.GetTargetCountryList();
+
+            // Assert
+            dynamicRepository.Verify(d => d.Fetch<TargetCountry>(It.Is<BaseCriteria>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()), Times.Never);
             Assert.Single(result);
         }
 

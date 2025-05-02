@@ -11,6 +11,7 @@ using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Xunit;
@@ -428,6 +429,70 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 
             // Assert
             Assert.True(resultInfo.IsSuccessful);
+        }
+
+        [Fact]
+        public void GetCommissionGroupList_WhenCallWithValidParam_ReturnCorrectData()
+        {
+            // Arrange
+            var param = new GetCommissionGroupParam { Nrows = 10 };
+            var expectedList = new List<CommissionGroupSetting> { new CommissionGroupSetting() };
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(expectedList);
+            var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);
+
+            // Action
+            var result = controller.GetCommissionGroupList(param) as JsonNetResult;
+            var viewModel = result.Data as GetCommissionGroupViewModel;
+
+            // Assert
+            Assert.NotNull(viewModel);
+            Assert.Single(viewModel.CommissionSettingList);
+            Assert.Equal(param.Nrows, viewModel.TotalRows);
+        }
+
+        [Fact]
+        public void GetCommissionGroupList_WhenCallWithEmptyList_ReturnEmptyViewModel()
+        {
+            // Arrange
+            var param = new GetCommissionGroupParam { Nrows = 10 };
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(new List<CommissionGroupSetting>());
+            var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);
+
+            // Action
+            var result = controller.GetCommissionGroupList(param) as JsonNetResult;
+            var viewModel = result.Data as GetCommissionGroupViewModel;
+
+            // Assert
+            Assert.NotNull(viewModel);
+            Assert.Empty(viewModel.CommissionSettingList);
+            Assert.Equal(param.Nrows, viewModel.TotalRows);
+        }
+
+        [Fact]
+        public void GetCommissionGroupList_WhenCallWithMultipleItems_ReturnCorrectCount()
+        {
+            // Arrange
+            var param = new GetCommissionGroupParam { Nrows = 10 };
+            var expectedList = new List<CommissionGroupSetting>
+            {
+                new CommissionGroupSetting { GroupId = 1 },
+                new CommissionGroupSetting { GroupId = 2 },
+                new CommissionGroupSetting { GroupId = 3 }
+            };
+            var commissionGroupService = new Mock<ICommissionGroupService>();
+            commissionGroupService.Setup(c => c.GetCommissionGroupList(param)).Returns(expectedList);
+            var controller = CreateCommissionGroupController(commissionGroupService: commissionGroupService.Object);
+
+            // Action
+            var result = controller.GetCommissionGroupList(param) as JsonNetResult;
+            var viewModel = result.Data as GetCommissionGroupViewModel;
+
+            // Assert
+            Assert.NotNull(viewModel);
+            Assert.Equal(3, viewModel.CommissionSettingList.Count());
+            Assert.Equal(param.Nrows, viewModel.TotalRows);
         }
 
         private static RevenueGroupController CreateCommissionGroupController(

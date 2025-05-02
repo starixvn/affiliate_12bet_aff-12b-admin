@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
 using Fanex.Affiliate.Admin.Core.Criterias;
+using Fanex.Affiliate.Admin.Core.Criterias.Domain;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
@@ -94,6 +95,98 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Assert
             repository.Verify(d => d.Execute(It.Is<DeleteDomainCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()));
             Assert.True(result.IsSuccessful);
+        }
+
+        [Fact]
+        public void GetTargetCountryListByDomain_WhenCallWithValidParams_ReturnCorrectData()
+        {
+            // Arrange
+            var affDomainId = 123;
+            var redirectDomainId = 456;
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Fetch<TargetCountryByDomain>(It.IsAny<GetTargetCountryListByDomainCriteria>(), It.IsAny<string>()))
+                .Returns(new List<TargetCountryByDomain> { new TargetCountryByDomain() });
+
+            // Action
+            var service = new CommonDomainService(repository.Object);
+            var result = service.GetTargetCountryListByDomain(affDomainId, redirectDomainId);
+
+            // Assert
+            repository.Verify(d => d.Fetch<TargetCountryByDomain>(
+                It.Is<GetTargetCountryListByDomainCriteria>(c =>
+                    c.AffDomainId == affDomainId &&
+                    c.RedirectDomainId == redirectDomainId &&
+                    c.IsValid()),
+                It.IsAny<string>()));
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetTargetCountryListByDomain_WhenCallWithDefaultParams_ReturnCorrectData()
+        {
+            // Arrange
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Fetch<TargetCountryByDomain>(It.IsAny<GetTargetCountryListByDomainCriteria>(), It.IsAny<string>()))
+                .Returns(new List<TargetCountryByDomain> { new TargetCountryByDomain() });
+
+            // Action
+            var service = new CommonDomainService(repository.Object);
+            var result = service.GetTargetCountryListByDomain();
+
+            // Assert
+            repository.Verify(d => d.Fetch<TargetCountryByDomain>(
+                It.Is<GetTargetCountryListByDomainCriteria>(c =>
+                    c.AffDomainId == 0 &&
+                    c.RedirectDomainId == 0 &&
+                    c.IsValid()),
+                It.IsAny<string>()));
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetTargetCountryListByDomain_WhenCallWithOnlyAffDomainId_ReturnCorrectData()
+        {
+            // Arrange
+            var affDomainId = 123;
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Fetch<TargetCountryByDomain>(It.IsAny<GetTargetCountryListByDomainCriteria>(), It.IsAny<string>()))
+                .Returns(new List<TargetCountryByDomain> { new TargetCountryByDomain() });
+
+            // Action
+            var service = new CommonDomainService(repository.Object);
+            var result = service.GetTargetCountryListByDomain(affDomainId);
+
+            // Assert
+            repository.Verify(d => d.Fetch<TargetCountryByDomain>(
+                It.Is<GetTargetCountryListByDomainCriteria>(c =>
+                    c.AffDomainId == affDomainId &&
+                    c.RedirectDomainId == 0 &&
+                    c.IsValid()),
+                It.IsAny<string>()));
+            Assert.Single(result);
+        }
+
+        [Fact]
+        public void GetTargetCountryListByDomain_WhenCallWithOnlyRedirectDomainId_ReturnCorrectData()
+        {
+            // Arrange
+            var redirectDomainId = 456;
+            var repository = new Mock<IDynamicRepository>();
+            repository.Setup(r => r.Fetch<TargetCountryByDomain>(It.IsAny<GetTargetCountryListByDomainCriteria>(), It.IsAny<string>()))
+                .Returns(new List<TargetCountryByDomain> { new TargetCountryByDomain() });
+
+            // Action
+            var service = new CommonDomainService(repository.Object);
+            var result = service.GetTargetCountryListByDomain(redirectDomainId: redirectDomainId);
+
+            // Assert
+            repository.Verify(d => d.Fetch<TargetCountryByDomain>(
+                It.Is<GetTargetCountryListByDomainCriteria>(c =>
+                    c.AffDomainId == 0 &&
+                    c.RedirectDomainId == redirectDomainId &&
+                    c.IsValid()),
+                It.IsAny<string>()));
+            Assert.Single(result);
         }
     }
 }

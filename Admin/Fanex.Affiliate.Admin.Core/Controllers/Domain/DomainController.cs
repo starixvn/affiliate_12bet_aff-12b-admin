@@ -79,7 +79,7 @@
                 return GenerateJsonNetResult(_domainService.InsertDomain(param));
             }
 
-            return GenerateErrResult("Please input Domain's name.");
+            return GenerateErrResult("The Domain' info is invalid!");
         }
 
         [HttpPost]

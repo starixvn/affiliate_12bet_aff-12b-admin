@@ -154,6 +154,111 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             Assert.Equal("Aff_Admin_LicenseeDomain_Del", spKey);
         }
 
+        [Fact]
+        public void GetTargetCountryListByDomain_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var affDomainId = 123;
+            var redirectDomainId = 456;
+            var expectedCountries = new List<TargetCountryByDomain> { new TargetCountryByDomain() };
+
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.GetTargetCountryListByDomain(affDomainId, redirectDomainId))
+                .Returns(expectedCountries);
+
+            var service = CreateDomainService(commonService.Object);
+
+            // Action
+            var result = service.GetTargetCountryListByDomain(affDomainId, redirectDomainId);
+
+            // Assert
+            commonService.Verify(c => c.GetTargetCountryListByDomain(affDomainId, redirectDomainId));
+            Assert.Single(result);
+            Assert.Equal(expectedCountries, result);
+        }
+
+        [Fact]
+        public void GetTargetCountryListByDomain_WhenCallWithDefaultParams_ReturnCorrectData()
+        {
+            // Arrange
+            var expectedCountries = new List<TargetCountryByDomain> { new TargetCountryByDomain() };
+
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.GetTargetCountryListByDomain(0, 0))
+                .Returns(expectedCountries);
+
+            var service = CreateDomainService(commonService.Object);
+
+            // Action
+            var result = service.GetTargetCountryListByDomain();
+
+            // Assert
+            commonService.Verify(c => c.GetTargetCountryListByDomain(0, 0));
+            Assert.Single(result);
+            Assert.Equal(expectedCountries, result);
+        }
+
+        [Fact]
+        public void GetDomainById_WhenCallWithValidId_ReturnCorrectData()
+        {
+            // Arrange
+            var domainId = 123;
+            var expectedDomain = new DomainInfo { DomainId = domainId };
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.GetDomainList(It.IsAny<string>()))
+                .Returns(new List<DomainInfo> { expectedDomain });
+
+            var service = CreateDomainService(commonService.Object);
+
+            // Action
+            var result = service.GetDomainById(domainId);
+
+            // Assert
+            commonService.Verify(c => c.GetDomainList("Aff_Admin_AffiliateDomain_Sel"));
+            Assert.NotNull(result);
+            Assert.Equal(domainId, result.DomainId);
+        }
+
+        [Fact]
+        public void GetDomainById_WhenCallWithInvalidId_ReturnNull()
+        {
+            // Arrange
+            var domainId = 999;
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.GetDomainList(It.IsAny<string>()))
+                .Returns(new List<DomainInfo>());
+
+            var service = CreateDomainService(commonService.Object);
+
+            // Action
+            var result = service.GetDomainById(domainId);
+
+            // Assert
+            commonService.Verify(c => c.GetDomainList("Aff_Admin_AffiliateDomain_Sel"));
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void GetDomainById_WhenCallWithLicenseeDomain_ReturnCorrectData()
+        {
+            // Arrange
+            var domainId = 123;
+            var expectedDomain = new DomainInfo { DomainId = domainId };
+            var commonService = new Mock<ICommonDomainService> { CallBase = true };
+            commonService.Setup(r => r.GetDomainList(It.IsAny<string>()))
+                .Returns(new List<DomainInfo> { expectedDomain });
+
+            var service = CreateDomainService(commonService.Object);
+
+            // Action
+            var result = service.GetDomainById(domainId, false);
+
+            // Assert
+            commonService.Verify(c => c.GetDomainList("Aff_Admin_LicenseeDomain_Sel"));
+            Assert.NotNull(result);
+            Assert.Equal(domainId, result.DomainId);
+        }
+
         private static DomainService CreateDomainService(ICommonDomainService domaincommonService = null)
         {
             var fakeDomaincommonService = domaincommonService ?? Mock.Of<ICommonDomainService>();
