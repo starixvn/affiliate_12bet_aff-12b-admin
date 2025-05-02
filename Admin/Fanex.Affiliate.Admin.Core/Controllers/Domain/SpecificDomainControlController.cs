@@ -1,11 +1,11 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
-    using System.Web.Mvc;
     using Attributes;
     using Constants;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
     using Services.Common;
+    using System.Web.Mvc;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class SpecificDomainControlController : ReadOnlySessionBaseController

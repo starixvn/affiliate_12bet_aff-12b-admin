@@ -5,7 +5,6 @@ using Fanex.Affiliate.Admin.Core.DTO.Administrator;
 using Fanex.Affiliate.Admin.Core.MetaModels.Administrator;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Administrator

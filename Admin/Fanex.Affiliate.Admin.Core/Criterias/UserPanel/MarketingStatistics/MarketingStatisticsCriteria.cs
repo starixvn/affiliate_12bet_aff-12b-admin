@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel.MarketingStatistics
 {
-    using System;
     using Data.Repository;
+    using System;
 
     public class MarketingStatisticsCriteria : CriteriaBase
     {

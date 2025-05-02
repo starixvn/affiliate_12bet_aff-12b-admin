@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using Core.Extensions;
     using DTO.UserPanel.Statistics;
     using Fanex.Affiliate.Admin.Core.Controllers.UserPanel;
@@ -9,6 +7,8 @@
     using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
     using MetaModels.UserPanel;
     using Moq;
+    using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     public class MarketingStatisticsControllerTest

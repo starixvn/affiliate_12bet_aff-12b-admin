@@ -56,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
 
             //Action
             var service = CreateThirdPartyLicenseeService();
-            await service.SendAffiliateInfo(new AffiliateBasicInfo { PlayerCustId = 123 });
+            await service.SendAffiliateInfo(new AffiliateBasicInfo { PlayerCustId = 123, AffCode = "123456" });
 
             //Assert
             _jobTrackerService.Received().UpdateDataTracker(Arg.Compat.Any<UpdateJobTrackerCommand>());
@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
 
             //Action
             var service = CreateThirdPartyLicenseeService();
-            await service.SendAffiliateInfo(new AffiliateBasicInfo { PlayerCustId = 123 });
+            await service.SendAffiliateInfo(new AffiliateBasicInfo { PlayerCustId = 123, AffCode = "123456" });
 
             //Assert
             _jobTrackerService.DidNotReceive().UpdateDataTracker(Arg.Compat.Any<UpdateJobTrackerCommand>());
@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.ThirdPartyLisencee
 
             //Action
             var service = CreateThirdPartyLicenseeService();
-            await service.SendAffiliateInfo(new AffiliateBasicInfo { PlayerCustId = 123 });
+            await service.SendAffiliateInfo(new AffiliateBasicInfo { PlayerCustId = 123, AffCode = "123456" });
 
             //Assert
             _jobTrackerService.Received().UpdateDataTracker(Arg.Compat.Any<UpdateJobTrackerCommand>());

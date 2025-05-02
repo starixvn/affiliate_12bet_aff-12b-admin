@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics

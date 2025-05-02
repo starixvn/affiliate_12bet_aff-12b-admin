@@ -1,12 +1,10 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     using DTO;
-    using Fanex.Affiliate.Admin.Core.DTO.Common;
     using Fanex.Affiliate.Admin.Core.DTO.Domain;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
     using System.Collections.Generic;
     using System.Linq;
-    using Utilities.Market;
 
     public class DomainService : IDomainService
     {

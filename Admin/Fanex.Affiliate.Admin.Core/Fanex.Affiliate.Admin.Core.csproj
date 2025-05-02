@@ -742,7 +742,6 @@
     <Compile Include="Utilities\ISystemFile.cs" />
     <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
-    <Compile Include="Utilities\Market\MarketHelper.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
     <Compile Include="Utilities\RegexHelper.cs" />

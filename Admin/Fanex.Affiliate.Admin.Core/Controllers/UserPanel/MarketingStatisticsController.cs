@@ -1,13 +1,13 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    using System.Linq;
-    using System.Web.Mvc;
     using Attributes;
     using Constants;
     using Extensions;
     using MetaModels.UserPanel;
     using Services.Common;
     using Services.UserPanel.Statistics;
+    using System.Linq;
+    using System.Web.Mvc;
 
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class MarketingStatisticsController : ReadOnlySessionBaseController
@@ -27,7 +27,7 @@
         {
             if (ModelState.IsValid)
             {
-                return GenerateJsonNetResult(_marketingStatisticsService.GetMarketingStatistics(param).GroupBy(s=>s.ChannelName));
+                return GenerateJsonNetResult(_marketingStatisticsService.GetMarketingStatistics(param).GroupBy(s => s.ChannelName));
             }
 
             return new JsonNetResult();

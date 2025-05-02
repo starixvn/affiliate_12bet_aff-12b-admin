@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var param = new InsertUpdateLandingPageParam { PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
             var landingPageService = new Mock<ILandingPageService>();
-            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), true)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
+            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), true)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam, bool>((p, i) => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
             // Action
@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var param = new InsertUpdateLandingPageParam { PageId = 123, PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
             var landingPageService = new Mock<ILandingPageService>();
-            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), false)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
+            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), false)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam, bool>((p, i) => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
             // Action

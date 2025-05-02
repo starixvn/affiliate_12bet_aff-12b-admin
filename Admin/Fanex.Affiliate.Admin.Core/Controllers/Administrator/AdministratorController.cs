@@ -169,10 +169,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Administrator
 
                 var result = _administratorService.UpdateAccountPolicy(encodeParam);
 
-                if(result.IsSuccessful)
+                if (result.IsSuccessful)
                 {
                     HandleChangePermissions(encodeParam.UserId);
-                }    
+                }
 
                 return GenerateJsonNetResult(result);
             }

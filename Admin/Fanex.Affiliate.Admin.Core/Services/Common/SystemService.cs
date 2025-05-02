@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         }
 
         public IEnumerable<TargetCountry> GetTargetCountryList()
-        {   
+        {
             var targetCountries = _cacheService.Get<IEnumerable<TargetCountry>>(CacheKey.TargetCountryList);
 
             if (targetCountries == null)

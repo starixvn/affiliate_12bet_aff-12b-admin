@@ -7,7 +7,6 @@
     using Fanex.Affiliate.Admin.Core.Services.Domain;
     using Fanex.Affiliate.Admin.Core.Utilities;
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-    using Newtonsoft.Json;
     using Services.Common;
     using System.Web.Mvc;
 

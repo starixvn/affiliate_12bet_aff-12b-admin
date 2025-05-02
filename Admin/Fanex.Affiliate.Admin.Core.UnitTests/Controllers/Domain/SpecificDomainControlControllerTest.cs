@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Web;
-using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Controllers.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
@@ -10,6 +7,9 @@ using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Moq;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Mvc;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
@@ -43,8 +43,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var param = new SpecificDomainControlParam();
             var domainControlService = new Mock<ISpecificDomainControlService>();
             domainControlService.Setup(t => t.GetSpecificDomainControl(It.IsAny<SpecificDomainControlParam>()))
-                .Returns(new EntityResult<SpecificDomainControlInfo> { MainData = new List<SpecificDomainControlInfo> { new SpecificDomainControlInfo() } , TotalItem = 1});
-            
+                .Returns(new EntityResult<SpecificDomainControlInfo> { MainData = new List<SpecificDomainControlInfo> { new SpecificDomainControlInfo() }, TotalItem = 1 });
+
             var controller = CreateSpecificDomainControlController(domainControlService: domainControlService.Object);
 
             // Action
@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var domainControlService = new Mock<ISpecificDomainControlService>();
             domainControlService.Setup(t => t.GetSpecificDomainControlById(It.IsAny<int>()))
                 .Returns(new SpecificDomainControlInfo());
-            
+
             var controller = CreateSpecificDomainControlController(domainControlService: domainControlService.Object);
 
             // Action
@@ -116,7 +116,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             var domainControlService = new Mock<ISpecificDomainControlService>();
             domainControlService.Setup(t => t.UpdateSpecificDomainControl(It.IsAny<UpdateSpecificDomainControlParam>()))
                 .Returns(new ResultInfo());
-            
+
             var controller = CreateSpecificDomainControlController(domainControlService: domainControlService.Object);
 
             // Action
@@ -197,4 +197,4 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             return controller;
         }
     }
-} 
+}
