@@ -27,7 +27,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   scrollable={false}
   style={
     Object {
-      "maxWidth": 810,
+      "maxWidth": 550,
     }
   }
   toggle={[Function]}
@@ -93,7 +93,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-3"
+          className="mb-2"
           tag="form"
         >
           <FormGroup
@@ -104,7 +104,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             <Label
               className="required pr-0"
               for="pageName"
-              sm={4}
+              sm={6}
               tag="label"
               widths={
                 Array [
@@ -119,7 +119,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               Landing Page Name (Shown in dropdown)
             </Label>
             <Col
-              sm={5}
+              sm={6}
               tag="div"
               widths={
                 Array [
@@ -161,7 +161,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             <Label
               className="required"
               for="pageCode"
-              sm={4}
+              sm={6}
               tag="label"
               widths={
                 Array [
@@ -176,7 +176,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               Landing Page Code (Contained in links)
             </Label>
             <Col
-              sm={5}
+              sm={6}
               tag="div"
               widths={
                 Array [
@@ -210,13 +210,6 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               </FormFeedback>
             </Col>
           </FormGroup>
-          <BlockTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isBlockAllTargetCountries={false}
-            lblText="Block Target Country"
-            sm={4}
-            targetCountryList={null}
-          />
         </Form>
         <Button
           className="mr-3"
@@ -269,7 +262,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   scrollable={false}
   style={
     Object {
-      "maxWidth": 810,
+      "maxWidth": 550,
     }
   }
   toggle={[Function]}
@@ -335,7 +328,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-3"
+          className="mb-2"
           tag="form"
         >
           <FormGroup
@@ -346,7 +339,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             <Label
               className="required pr-0"
               for="pageName"
-              sm={4}
+              sm={6}
               tag="label"
               widths={
                 Array [
@@ -361,7 +354,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               Landing Page Name (Shown in dropdown)
             </Label>
             <Col
-              sm={5}
+              sm={6}
               tag="div"
               widths={
                 Array [
@@ -403,7 +396,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             <Label
               className="required"
               for="pageCode"
-              sm={4}
+              sm={6}
               tag="label"
               widths={
                 Array [
@@ -418,7 +411,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               Landing Page Code (Contained in links)
             </Label>
             <Col
-              sm={5}
+              sm={6}
               tag="div"
               widths={
                 Array [
@@ -452,13 +445,6 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               </FormFeedback>
             </Col>
           </FormGroup>
-          <BlockTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isBlockAllTargetCountries={false}
-            lblText="Block Target Country"
-            sm={4}
-            targetCountryList={null}
-          />
         </Form>
         <Button
           className="mr-3"
@@ -511,7 +497,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
   scrollable={false}
   style={
     Object {
-      "maxWidth": 810,
+      "maxWidth": 550,
     }
   }
   toggle={[Function]}
@@ -577,7 +563,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-3"
+          className="mb-2"
           tag="form"
         >
           <FormGroup
@@ -588,7 +574,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             <Label
               className="required pr-0"
               for="pageName"
-              sm={4}
+              sm={6}
               tag="label"
               widths={
                 Array [
@@ -603,7 +589,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               Landing Page Name (Shown in dropdown)
             </Label>
             <Col
-              sm={5}
+              sm={6}
               tag="div"
               widths={
                 Array [
@@ -645,7 +631,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
             <Label
               className="required"
               for="pageCode"
-              sm={4}
+              sm={6}
               tag="label"
               widths={
                 Array [
@@ -660,7 +646,7 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               Landing Page Code (Contained in links)
             </Label>
             <Col
-              sm={5}
+              sm={6}
               tag="div"
               widths={
                 Array [
@@ -694,13 +680,6 @@ exports[`landing page list - components - InsertUpdateForm  render correctly wit
               </FormFeedback>
             </Col>
           </FormGroup>
-          <BlockTargetCountryFormGroup
-            changeTargetCountry={[Function]}
-            isBlockAllTargetCountries={false}
-            lblText="Block Target Country"
-            sm={4}
-            targetCountryList={null}
-          />
         </Form>
         <Button
           className="mr-3"

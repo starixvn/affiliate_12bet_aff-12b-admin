@@ -55,6 +55,43 @@ exports[`affiliate info - Filter  should render correctly 1`] = `
       tag="div"
     >
       <Input
+        id="targetCountry"
+        name="selectedTargetCountry"
+        onChange={[Function]}
+        type="select"
+        value=""
+      >
+        <option
+          key="target-country-all"
+          value=""
+        >
+          All Target Countries
+        </option>
+        <option
+          key="country-MY"
+          value="MY"
+        >
+          Malaysia
+        </option>
+        <option
+          key="country-TH"
+          value="TH"
+        >
+          Thailand
+        </option>
+        <option
+          key="country-CN"
+          value="CN"
+        >
+          China
+        </option>
+      </Input>
+    </FormGroup>
+    <FormGroup
+      className="my-2 mr-sm-2"
+      tag="div"
+    >
+      <Input
         id="language"
         name="selectedLanguage"
         onChange={[Function]}

@@ -30,7 +30,7 @@ exports[`DomainPopup Component Rendering should render correctly for insert mode
     scrollable={false}
     style={
       Object {
-        "maxWidth": 700,
+        "maxWidth": 500,
       }
     }
     toggle={[Function]}
@@ -96,7 +96,7 @@ exports[`DomainPopup Component Rendering should render correctly for insert mode
           </Alert>
           <Form
             autoComplete="off"
-            className="mb-3"
+            className="mb-2"
             tag="form"
           >
             <FormGroup
@@ -107,7 +107,7 @@ exports[`DomainPopup Component Rendering should render correctly for insert mode
               <Label
                 className="required"
                 for="domainName"
-                sm={3}
+                sm={4}
                 tag="label"
                 widths={
                   Array [
@@ -122,7 +122,7 @@ exports[`DomainPopup Component Rendering should render correctly for insert mode
                 Domain
               </Label>
               <Col
-                sm={9}
+                sm={8}
                 tag="div"
                 widths={
                   Array [
@@ -151,7 +151,7 @@ exports[`DomainPopup Component Rendering should render correctly for insert mode
             >
               <Label
                 for="isSSL"
-                sm={3}
+                sm={4}
                 tag="label"
                 widths={
                   Array [
@@ -166,7 +166,7 @@ exports[`DomainPopup Component Rendering should render correctly for insert mode
                 SSL
               </Label>
               <Col
-                sm={9}
+                sm={8}
                 tag="div"
                 widths={
                   Array [
@@ -191,7 +191,7 @@ exports[`DomainPopup Component Rendering should render correctly for insert mode
               changeTargetCountry={[Function]}
               isBlockAllTargetCountries={false}
               lblText="Block Target Country"
-              sm={3}
+              sm={4}
               targetCountryList={
                 Array [
                   Object {
@@ -265,7 +265,7 @@ exports[`DomainPopup Component Rendering should render correctly for update mode
     scrollable={false}
     style={
       Object {
-        "maxWidth": 700,
+        "maxWidth": 500,
       }
     }
     toggle={[Function]}
@@ -331,7 +331,7 @@ exports[`DomainPopup Component Rendering should render correctly for update mode
           </Alert>
           <Form
             autoComplete="off"
-            className="mb-3"
+            className="mb-2"
             tag="form"
           >
             <FormGroup
@@ -342,7 +342,7 @@ exports[`DomainPopup Component Rendering should render correctly for update mode
               <Label
                 className="required"
                 for="domainName"
-                sm={3}
+                sm={4}
                 tag="label"
                 widths={
                   Array [
@@ -357,7 +357,7 @@ exports[`DomainPopup Component Rendering should render correctly for update mode
                 Domain
               </Label>
               <Col
-                sm={9}
+                sm={8}
                 tag="div"
                 widths={
                   Array [
@@ -386,7 +386,7 @@ exports[`DomainPopup Component Rendering should render correctly for update mode
             >
               <Label
                 for="isSSL"
-                sm={3}
+                sm={4}
                 tag="label"
                 widths={
                   Array [
@@ -401,7 +401,7 @@ exports[`DomainPopup Component Rendering should render correctly for update mode
                 SSL
               </Label>
               <Col
-                sm={9}
+                sm={8}
                 tag="div"
                 widths={
                   Array [
@@ -426,7 +426,7 @@ exports[`DomainPopup Component Rendering should render correctly for update mode
               changeTargetCountry={[Function]}
               isBlockAllTargetCountries={false}
               lblText="Block Target Country"
-              sm={3}
+              sm={4}
               targetCountryList={
                 Array [
                   Object {

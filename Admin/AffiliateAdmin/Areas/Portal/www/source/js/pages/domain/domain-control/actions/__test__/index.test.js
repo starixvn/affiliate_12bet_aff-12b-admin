@@ -59,7 +59,7 @@ describe('domain control actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']("en-GB", affSubDomainList)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB", isGetAll: true, subDomainRegex: "test" });
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { targetCountryCode: "en-GB", isGetAll: true, subDomainRegex: "test" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -89,7 +89,7 @@ describe('domain control actions', () => {
 
         const store = mockStore({ todos: [] });
         return store.dispatch(actions['fetchData']("en-GB", affSubDomainList)).then(() => {
-            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { market: "en-GB", isGetAll: false, subDomainRegex: "test" });
+            expect(ajaxRequest.post).toHaveBeenCalledWith('Portal/DomainControl/GetDomainControlList', { targetCountryCode: "en-GB", isGetAll: false, subDomainRegex: "test" });
             expect(store.getActions()).toEqual(expectedAction)
         })
     })
@@ -111,7 +111,7 @@ describe('domain control actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
             DomainId: 0,
-            Market: "en-GB",
+            targetCountryCode: "en-GB",
             AffDomainId: 12,
             RedirectDomain: 24,
             Status: true
@@ -128,7 +128,7 @@ describe('domain control actions', () => {
         ajaxRequest.post = jest.fn();
         const param = {
             DomainId: 0,
-            Market: "en-GB",
+            targetCountryCode: "en-GB",
             AffDomainId: 12,
             RedirectDomain: 0,
             Status: true
@@ -145,7 +145,7 @@ describe('domain control actions', () => {
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
         const param = {
             DomainId: 123,
-            Market: "en-GB",
+            targetCountryCode: "en-GB",
             AffDomainId: 12,
             RedirectDomain: 24,
             Status: true
@@ -162,7 +162,7 @@ describe('domain control actions', () => {
         ajaxRequest.post = jest.fn();
         const param = {
             DomainId: 0,
-            Market: "en-GB",
+            targetCountryCode: "en-GB",
             AffDomainId: 0,
             RedirectDomain: 24,
             Status: true

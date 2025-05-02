@@ -37,6 +37,7 @@ describe('landing page list - InsertUpdateForm - connect', () => {
         const expectedActionCreator = {
             setSelectedLandingPageId: actions['setSelectedLandingPageId'],
             fetchData: actions['fetchData'],
+            getTargetCountryListByLandingPage: actions['getTargetCountryListByLandingPage'],
             getLandingPageDetail: actions['getLandingPageDetail'],
             insertLandingPage: actions['insertLandingPage'],
             updateLandingPage: actions['updateLandingPage'],

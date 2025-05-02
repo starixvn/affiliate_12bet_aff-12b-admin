@@ -203,12 +203,14 @@ export class InsertUpdateForm extends PureComponent {
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
-                                <BlockTargetCountryFormGroup
-                                    sm={4}
-                                    targetCountryList={targetCountryList}
-                                    isBlockAllTargetCountries={isBlockAllTargetCountries}
-                                    changeTargetCountry={this.handleChangeTargetCountry}
-                                />
+                                {
+                                    targetCountryList && <BlockTargetCountryFormGroup
+                                        sm={4}
+                                        targetCountryList={targetCountryList}
+                                        isBlockAllTargetCountries={isBlockAllTargetCountries}
+                                        changeTargetCountry={this.handleChangeTargetCountry}
+                                    />
+                                }
                             </Form>
 
                             <Button type="button" color="success" className="mr-3" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)} >Submit</Button>

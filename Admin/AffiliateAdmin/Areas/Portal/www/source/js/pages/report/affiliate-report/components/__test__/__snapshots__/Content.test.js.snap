@@ -83,6 +83,11 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
             "text": "FDM Amt",
           },
           SingleHeaderColumn {
+            "key": "FDM_TotalDeposit",
+            "showable": true,
+            "text": "FDM's Total Deposit",
+          },
+          SingleHeaderColumn {
             "key": "ActivePlayer",
             "showable": true,
             "text": "Active Player",
@@ -306,6 +311,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "Fdm_Amount",
             "showable": true,
             "text": "FDM Amt",
+          },
+          SingleHeaderColumn {
+            "key": "FDM_TotalDeposit",
+            "showable": true,
+            "text": "FDM's Total Deposit",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -539,6 +549,11 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
             "key": "Fdm_Amount",
             "showable": true,
             "text": "FDM Amt",
+          },
+          SingleHeaderColumn {
+            "key": "FDM_TotalDeposit",
+            "showable": true,
+            "text": "FDM's Total Deposit",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",

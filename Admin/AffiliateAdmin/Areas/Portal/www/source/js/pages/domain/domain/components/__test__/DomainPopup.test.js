@@ -36,6 +36,8 @@ describe('DomainPopup Component', () => {
         }
     ];
 
+    const initialTargetCountryList = targetCountryList;
+
     const defaultProps = {
         selectedDomainId: 123,
         isAffDomain: true,
@@ -56,7 +58,7 @@ describe('DomainPopup Component', () => {
         it('should render correctly for insert mode', () => {
             const props = { ...defaultProps, selectedDomainId: 0 };
             const wrapper = shallow(<DomainPopup {...props} />);
-            wrapper.setState({ selectedDomain: emptyDomain, targetCountryList });
+            wrapper.setState({ selectedDomain: emptyDomain, targetCountryList, initialTargetCountryList });
             expect(wrapper).toMatchSnapshot();
         });
 
@@ -65,7 +67,8 @@ describe('DomainPopup Component', () => {
             wrapper.setState({ 
                 isSuccess: false, 
                 selectedDomain, 
-                targetCountryList
+                targetCountryList,
+                initialTargetCountryList
             });
             expect(wrapper).toMatchSnapshot();
         });
@@ -137,18 +140,8 @@ describe('DomainPopup Component', () => {
                 expect(instance.setState).toHaveBeenCalledWith({
                     isBlockAllTargetCountries: false,
                     isInsert: false,
-                    targetCountryList: [
-                        {
-                            TargetCountryCode: 'en-US',
-                            TargetCountryName: 'English',
-                            Status: 0
-                        },
-                        {
-                            TargetCountryCode: 'th-TH',
-                            TargetCountryName: 'Thailand',
-                            Status: 2
-                        }
-                    ],
+                    targetCountryList: targetCountryListByDomain,
+                    initialTargetCountryList: targetCountryListByDomain,
                     selectedDomain: {
                         blockTargetCountry: '',
                         domainId: 123,
@@ -318,6 +311,7 @@ describe('DomainPopup Component', () => {
             const instance = wrapper.instance();
             instance.setState({ 
                 selectedDomain,
+                initialTargetCountryList,
                 isInsert: true
             });
             instance._handleShowAlert = jest.fn();
@@ -343,6 +337,7 @@ describe('DomainPopup Component', () => {
             wrapper.setState({ 
                 isInsert: false,
                 selectedDomain,
+                initialTargetCountryList,
                 targetCountryList
             });
             const instance = wrapper.instance();
@@ -369,6 +364,7 @@ describe('DomainPopup Component', () => {
             const instance = wrapper.instance();
             instance.setState({ 
                 selectedDomain,
+                initialTargetCountryList,
                 isInsert: true
             });
             instance._handleShowAlert = jest.fn();

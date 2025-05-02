@@ -28,6 +28,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       Address
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -74,6 +75,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       City
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -120,6 +122,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       State
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -166,6 +169,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       Postcode/Zip
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -1289,6 +1293,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       Security Question
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -1333,6 +1338,7 @@ exports[`user account - components - sections - Additional render correctly 1`] 
       Answer
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={

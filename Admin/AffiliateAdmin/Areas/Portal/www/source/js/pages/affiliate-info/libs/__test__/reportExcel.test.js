@@ -6,16 +6,10 @@ describe('affiliate info - Report Excel ', () => {
     const HEADER_ROW_INDEX = 1;
     const TOTAL_COLUMNS = 18;
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
-    const targetCountryList = [
-        {
-            TargetCountryCode: "MY",
-            TargetCountryName: "Malaysia"
-            },
-        {
-            TargetCountryCode: "VN",
-            TargetCountryName: "VietNam"
-            }
-    ]
+    const targetCountryList = {
+        MY: 'Malaysia',
+        CN: 'China'
+    }
     const selectedColumnList = {
         Index: true,
         Status: true,
@@ -43,6 +37,7 @@ describe('affiliate info - Report Excel ', () => {
         FirstName: "",
         LastName: "媒体册 获取以更新吧！",
         Language: "EN",
+        TargetCountryCode: 'MY',
         Email: "walter.tran1@starixsoft.com",
         RegistrationDate: "\/Date(1211413740000)\/",
         ApprovalDate: "\/Date(1211413800000)\/",
@@ -64,6 +59,7 @@ describe('affiliate info - Report Excel ', () => {
         FirstName: "",
         LastName: "媒体册 获取以更新吧！",
         Language: "hi-VN",
+        TargetCountryCode: 'MY',
         Email: "walter.tran1@starixsoft.com",
         RegistrationDate: "\/Date(1211413740000)\/",
         ApprovalDate: "\/Date(1211413800000)\/",
