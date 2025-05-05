@@ -13,6 +13,9 @@
     channels.AddRange(Model.Channels.Select(c => new SelectListItem { Value = c.Key, Text = c.Value }));
 
     var disabled = channels.Count > 1 ? "" : "disabled";
+
+    var hasAnyDomain = availableDomains.Any();
+    var hasAnyMemberSitePage = landingPages.Any();
 }
 
 @Html.InlineStyles("~/www/build/styles/css/marketing.min.css")
@@ -34,9 +37,9 @@
 
                         </div>
                         <div class="column-form">
-                            @RazorHelper.RenderDropdownForMarketing("Domain", Lang.AvailableDomains, availableDomains, false)
+                            @RazorHelper.RenderDropdownForMarketingHasNoInfo("Domain", Lang.AvailableDomains, availableDomains, hasAnyDomain)
 
-                            @RazorHelper.RenderDropdownForMarketing("Page", Lang.LinkTo, landingPages, false)
+                            @RazorHelper.RenderDropdownForMarketingHasNoInfo("Page", Lang.LinkTo, landingPages, hasAnyMemberSitePage)
 
                             @RazorHelper.RenderDropdownForMarketing("Channel", Lang.Channel, channels, false)
                             <div class="form-group flex-sm-boostrap flex-center form-group-button">

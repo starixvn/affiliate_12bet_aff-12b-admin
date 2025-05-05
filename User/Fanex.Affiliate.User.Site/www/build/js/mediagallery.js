@@ -1579,6 +1579,13 @@ var MarketingBase = (function ($) {
         },
 
         updateSizeDropdown: function (sizeList) {
+            if (sizeList && !sizeList.length) {
+                $('#btnMarketingSubmit').prop('disabled', true);
+                $('#Size').html(NO_INFO_OPTION);
+
+                return;
+            }
+
             const html = Site.buildOptionList(sizeList, 'Value', 'Text', true);
             const previousSelectedSize = $('#Size').val();
 

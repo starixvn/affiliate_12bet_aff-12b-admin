@@ -31,7 +31,7 @@
     if (dataList != null)
     {
         <div class="form-group flex-sm-boostrap flex-center @(isVisible ? string.Empty : "hide")">
-            <label class="control-label">@label</label>
+            <label class="control-label" for="@id">@label</label>
             <div class="control-input">
                 <select class="form-control" id="@id">
                     @if (hasAllOption)
@@ -49,13 +49,13 @@
     }
 }
 
-@helper RenderDropdownForMarketingHasNoInfo(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAnyDomain = false)
+@helper RenderDropdownForMarketingHasNoInfo(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAnyData = false)
 {
     <div class="form-group flex-sm-boostrap flex-center">
-        <label class="col-sm-3 col-lg-2 control-label" for="@id">@label</label>
-        <div class="col-sm-4 col-md-5 col-lg-3">
+        <label class="control-label" for="@id">@label</label>
+        <div class="control-input">
             <select class="form-control" id="@id">
-                @if (hasAnyDomain)
+                @if (hasAnyData)
                 {
                     foreach (var item in dataList)
                     {
