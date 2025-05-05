@@ -28,6 +28,7 @@
             _me.initEvent();
             initPager();
             _me.togglePager();
+            MarketingBase.initEvent();
             MarketingBase.initChannelSelectEvent();
         },
 

@@ -7,7 +7,6 @@
     using Constants;
     using CoreService;
     using DTO;
-    using DTO.Auth;
     using DTO.Systems;
     using Enum;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
@@ -71,12 +70,8 @@
         }
 
         private CommonSearchFormViewModel BuildCommonData(
-            string targetCountryCode,
-            AffiliateLinkType targetIdOrType,
-            bool isChangeAffTypeLink,
-            bool isMediaGallery,
-            bool isDefaultLoading = false,
-            string currentLang = null)
+            MarketingFilterParam param,
+            bool isDefaultLoading = false)
         {
             var userSession = SessionService.UserSession;
             var isInternal = SessionService.IsInternal;
@@ -85,28 +80,34 @@
                 ? SystemService.GetSystemTargetCountries()
                 : Enumerable.Empty<TargetCountry>();
 
-            var targetLanguages = isChangeAffTypeLink
-                ? Enumerable.Empty<Language>()
-                : SystemService.GetLanguageByTargetCountry(targetCountryCode);
+            if (string.IsNullOrEmpty(param.TargetCountryCode))
+            {
+                param.TargetCountryCode = targetCountries.First()?.TargetCountryCode;
+            }
 
-            var languageCode = GetTargetLanguageCode(isChangeAffTypeLink, currentLang, targetLanguages);
+            var targetLanguages = param.IsChangeAffTypeLink
+                ? Enumerable.Empty<Language>()
+                : SystemService.GetLanguageByTargetCountry(param.TargetCountryCode);
+
+            var languageCode = GetTargetLanguageCode(param.IsChangeAffTypeLink, param.Language, targetLanguages);
+            param.Language = languageCode;
 
             var pages = MarketingService.GetLandingPageList(new LandingPageParam
             {
                 CommGroupName = userSession.GroupName,
                 IsInternal = isInternal,
-                LinkType = targetIdOrType,
-                TargetCountryCode = targetCountryCode,
-                Language = languageCode
+                LinkType = param.TargetId,
+                TargetCountryCode = param.TargetCountryCode,
+                Language = param.Language
             });
-            var categoryList = GetCategoryList(isChangeAffTypeLink, isMediaGallery, targetIdOrType, isInternal);
-            var sizeList = GetSizeList(targetCountryCode, isMediaGallery, userSession, isInternal);
-            var domains = GetDomainListByTargetCountry(targetCountryCode, targetIdOrType);
+            var categoryList = GetCategoryList(param.IsChangeAffTypeLink, param.IsMediaGallery, param.TargetId, isInternal);
+            var sizeList = GetSizeList(param, isInternal);
+            var domains = GetDomainListByTargetCountry(param.TargetCountryCode, param.TargetId);
             var selectedDomain = domains.FirstOrDefault();
 
             return new CommonSearchFormViewModel
             {
-                TargetCountries = SystemHelper.GetTargetCountryList(targetCountries, targetCountryCode),
+                TargetCountries = SystemHelper.GetTargetCountryList(targetCountries, param.TargetCountryCode),
                 Languages = SystemHelper.GetTargetLanguageList(targetLanguages, languageCode),
                 Domains = SystemHelper.GetDomainList(domains, selectedDomain?.DomainId),
                 SitePages = SystemHelper.GetPageList(pages),
@@ -138,26 +139,20 @@
                 });
         }
 
-        private IEnumerable<SelectListItem> GetSizeList(string targetCountryCode, bool isMediaGallery, UserSession userSession, bool isInternal)
+        private IEnumerable<SelectListItem> GetSizeList(MarketingFilterParam param, bool isInternal)
         {
-            if (!isMediaGallery)
+            if (!param.IsMediaGallery)
             {
                 return Enumerable.Empty<SelectListItem>();
             }
 
-            return MarketingService.GetSizeList(new SizeParam
-                {
-                    TargetCountryCode = targetCountryCode,
-                    AffType = userSession.AffType, 
-                    Language = userSession.PreferredLanguage
-                }, isInternal)
+            return MarketingService.GetSizeList(param, isInternal)
                 .Select(i => new SelectListItem { Value = i.Size, Text = i.Size });
         }
 
-
         protected CommonSearchFormViewModel GetLinkFormViewModel(
-            string targetCountryCode, 
-            bool isMediaGallery = false, 
+            string targetCountryCode,
+            bool isMediaGallery = false,
             AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink)
         {
             var linkTypes = new List<SelectListItem>
@@ -169,7 +164,14 @@
                 }
             };
 
-            var commonData = BuildCommonData(targetCountryCode, linkType, false, isMediaGallery, true);
+            var param = new MarketingFilterParam
+            {
+                TargetCountryCode = targetCountryCode,
+                TargetId = linkType,
+                IsMediaGallery = isMediaGallery
+            };
+
+            var commonData = BuildCommonData(param, true);
 
             return new CommonSearchFormViewModel
             {
@@ -183,9 +185,9 @@
             };
         }
 
-        protected ChangedFilterFormViewModel GetChangedFilter(SizeParam param, bool isChangeAffTypeLink, bool isMediaGallery)
+        protected ChangedFilterFormViewModel GetChangedFilter(MarketingFilterParam param)
         {
-            var commonData = BuildCommonData(param.TargetCountryCode, param.TargetId, isChangeAffTypeLink, isMediaGallery, currentLang: param.Language);
+            var commonData = BuildCommonData(param);
 
             return new ChangedFilterFormViewModel
             {

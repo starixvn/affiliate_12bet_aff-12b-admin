@@ -82,22 +82,13 @@
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, AffiliateLinkType linkType, bool isInternal = false)
         {
-            var cacheKey = isMediaPage ? CacheKey.BannerCategoryList : CacheKey.TextCategoryList;
-            cacheKey = $"{cacheKey}-{linkType}";
-
-            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(cacheKey);
-            if (categoryList == null)
+            var mediaType = isMediaPage ? AffiliateLink : MediaGallery;
+            var param = new MediaCategoryParam
             {
-                var mediaType = isMediaPage ? AffiliateLink : MediaGallery;
-                var param = new MediaCategoryParam
-                {
-                    TargetId = (int)linkType,
-                    TypeId = mediaType
-                };
-                categoryList = FetchTData<CategoryType>(new GetCategoryListCriteria(param.TypeId, param.TargetId, isInternal));
-
-                _cacheService.Set(cacheKey, categoryList);
-            }
+                TargetId = (int)linkType,
+                TypeId = mediaType
+            };
+            var categoryList = FetchTData<CategoryType>(new GetCategoryListCriteria(param.TypeId, param.TargetId, isInternal));
 
             return categoryList ?? new List<CategoryType>();
         }
@@ -127,15 +118,8 @@
         public IEnumerable<Domain> GetAvailableDomainList(AvailableDomainParam param)
         {
             var isMember = param.LinkType == AffiliateLinkType.AffiliateLink;
-            var cacheKey = isMember ? CacheKey.DomainList : CacheKey.SubDomainList;
 
-            var domainList = _cacheService.Get<IEnumerable<Domain>>(cacheKey);
-
-            if (domainList == null)
-            {
-                domainList = FetchAvailableDomains(param, isMember);
-                _cacheService.Set(cacheKey, domainList, Number.Ten);
-            }
+            var domainList = FetchAvailableDomains(param, isMember);
 
             return domainList ?? Enumerable.Empty<Domain>();
         }
@@ -178,7 +162,7 @@
         {
             const int LengthOfSplittingSize = 2;
             bannerParam.Language = ConvertSelectedLanguageNames(bannerParam.SelectedTargetCountry, bannerParam.Language);
-           
+
             var bannerList = FetchTDataWithPaging<MarketingItem>(bannerParam.MapTo<MarketingBannerParam, GetBannerListCriteria>(), bannerParam);
             foreach (var banner in bannerList)
             {

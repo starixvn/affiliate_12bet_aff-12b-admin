@@ -437,6 +437,9 @@ span.toggle-handle {
   display: flex;
   flex-direction: column;
 }
+.qr-action .flex.space-between {
+  margin-bottom: 10px;
+}
 .qr-action .qr-btn-group {
   flex-grow: 1;
 }

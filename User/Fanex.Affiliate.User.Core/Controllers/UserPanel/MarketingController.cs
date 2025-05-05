@@ -101,6 +101,7 @@
                 MarketingService.TrackingAffMarketingLink(SessionService.UserSession.AffId, result, param);
             }
 
+            ViewBag.SelectedTargetCountry = param.SelectedTargetCountry;
             ViewBag.SelectedDomainId = param.SelectedDomainId;
             ViewBag.SelectedPage = param.SelectedPage;
             ViewBag.SelectedLinkType = param.SelectedLinkType;
@@ -209,9 +210,9 @@
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult GetChangedFilters(SizeParam param, bool isChangeAffTypeLink, bool isMediaGallery)
+        public ActionResult GetChangedFilters(MarketingFilterParam param)
         {
-            var changedForm = GetChangedFilter(param, isChangeAffTypeLink, isMediaGallery);
+            var changedForm = GetChangedFilter(param);
 
             return Json( new
             {

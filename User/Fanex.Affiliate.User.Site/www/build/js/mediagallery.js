@@ -1223,7 +1223,8 @@ var MarketingBase = (function ($) {
             selectedDomainId: $(trigger).data("selected-domain-id"),
             selectedPage: $(trigger).data("selected-page"),
             selectedChannel: $(trigger).data("selected-channel"),
-            selectedLinkType: $(trigger).data("selected-link-type")
+            selectedLinkType: $(trigger).data("selected-link-type"),
+            selectedTargetCountry: $(trigger).data("selected-target-country")
         };
     }
 
@@ -1246,17 +1247,14 @@ var MarketingBase = (function ($) {
     }
 
     var _me = {
-        initialize: function () {
-            this.resiterQrcodeEvent();
-            this.initEvent();
-        },
 
         initEvent: function () {
-            $("#TargetCountry").change(function () {
+            $("#TargetCountry").off("change").change(function () {
                 $("#btnMarketingSubmit").prop("disabled", false);
                 _me.handleChangeFilter();
             });
-            $("#AffLinkType").change(function () {
+
+            $("#AffLinkType").off("change").change(function () {
                 $("#btnMarketingSubmit").prop("disabled", false);
                 _me.handleChangeFilter(true);
             });
@@ -1499,7 +1497,7 @@ var MarketingBase = (function ($) {
 
                         $('#Domain').html(NO_INFO_OPTION);
                         isMediaGallery && $('#Size').html(NO_INFO_OPTION);
-                        $("#MemberSitePage").html(NO_INFO_OPTION);
+                        $("#Page").html(NO_INFO_OPTION);
                         !isChangeAffTypeLink && $('#Language').html(NO_INFO_OPTION);
                         (isChangeAffTypeLink && isMediaGallery) && $('#Category').html(NO_INFO_OPTION);
                     } else {
@@ -1546,21 +1544,21 @@ var MarketingBase = (function ($) {
         updateLinkToDropdown: function (pageList) {
             if (pageList && !pageList.length) {
                 $("#btnMarketingSubmit").prop("disabled", true);
-                $("#MemberSitePage").html(NO_INFO_OPTION);
+                $("#Page").html(NO_INFO_OPTION);
 
                 return;
             }
 
             var html = Site.buildOptionList(pageList, "Value", "Text", false);
 
-            var previousSelectedPage = $("#MemberSitePage").val();
+            var previousSelectedPage = $("#Page").val();
 
-            $("#MemberSitePage").html(html);
+            $("#Page").html(html);
 
             var hasPreviousSelectedPage = pageList.some(i => i.Value == previousSelectedPage);
 
             if (hasPreviousSelectedPage) {
-                $("#MemberSitePage").val(previousSelectedPage);
+                $("#Page").val(previousSelectedPage);
             }
         },
 
@@ -1622,10 +1620,6 @@ var MarketingBase = (function ($) {
 
     return _me;
 })(jQuery);
-
-$(document).ready(function () {
-    MarketingBase.initialize();
-})
 var MediaGallery = (function ($) {
     var CATEGORY_CASINO = "casino";
     var CATEGORY_SPORTSBOOK = "sportsbook";
@@ -1656,6 +1650,7 @@ var MediaGallery = (function ($) {
             _me.initEvent();
             initPager();
             _me.togglePager();
+            MarketingBase.initEvent();
             MarketingBase.initChannelSelectEvent();
         },
 

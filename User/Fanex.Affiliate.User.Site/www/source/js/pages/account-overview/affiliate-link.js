@@ -17,6 +17,7 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
+            MarketingBase.initEvent();
             _me.renderLinkChannelStatisticPage();
         },
 

@@ -37,7 +37,7 @@
 
                             @RazorHelper.RenderDropdownForMarketing("TargetCountry", Lang.TargetCountry, targetCountries, false)
 
-                            @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, languages)
+                            @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, languages, languages.Count() > 1)
                             
                             @RazorHelper.RenderDropdownForMarketingHasNoInfo("Domain", Lang.AvailableDomains, availableDomains, hasAnyDomain)
 
