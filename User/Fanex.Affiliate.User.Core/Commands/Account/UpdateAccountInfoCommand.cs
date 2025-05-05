@@ -14,6 +14,8 @@
 
         public string NoSiteDesc { get; set; }
 
+        public string TargetCountryCode { get; set; }
+
         public string Ip { get; set; }
 
         public string Language { get; set; }

@@ -12,6 +12,8 @@
 
         public int? SelectedDomainId { get; set; }
 
+        public string SelectedTargetCountry { get; set; }
+
         public AffiliateLinkType SelectedLinkType { get; set; }
     }
 }

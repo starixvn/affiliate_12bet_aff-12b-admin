@@ -37,6 +37,8 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = false, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "DescWebsite")]
         public string NoSiteDesc { get; set; }
 
+        public string TargetCountryCode { get; set; }
+
         public string PreferredLanguage { get; set; }
 
         public string PreferredPayment { get; set; }

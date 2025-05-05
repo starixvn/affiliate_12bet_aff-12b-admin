@@ -25,5 +25,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         [SpParam(Ignored = true)]
         public string SelectedChannel { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string SelectedTargetCountry { get; set; }
     }
 }

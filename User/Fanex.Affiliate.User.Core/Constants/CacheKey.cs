@@ -17,5 +17,10 @@
         public const string SubDomainList = "Affiliate.12B.SubDomainList";
 
         public const string TokenMemoryCache = "Affiliate.12B.TokenMemoryCache";
+
+        public const string TargetCountryList = "Affiliate.12B.TargetCountryList";
+
+        public const string InternalTargetCountryList = "Affiliate.12B.InternalTargetCountryList";
+
     }
 }

@@ -110,7 +110,11 @@
 		<Setting Key="Aff_User_LoginInfo_Sel" SpName="Aff_User_LoginInfo_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 
 		<Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-		<Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+			<Mapping DataField="MarketId" ObjectProperty="Code" />
+			<Mapping DataField="MarketName" ObjectProperty="EnglishName" />
+			<Mapping DataField="MarketNativeName" ObjectProperty="NativeName" />
+		</Setting>
 		<Setting Key="Aff_Admin_MediaCurrency_Sel" SpName="Aff_Admin_MediaCurrency_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_Admin_MediaType_Sel" SpName="Aff_Admin_MediaType_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
@@ -122,7 +126,11 @@
 		<Setting Key="Aff_User_Overview_SubAffiliate_Sel" SpName="Aff_User_Overview_SubAffiliate_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 
 		<Setting Key="Aff_Admin_MediaCategory_Sel_view" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
-		<Setting Key="Aff_Market_Sel_view" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
+		<Setting Key="Aff_Market_Sel_view" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" >
+			<Mapping DataField="MarketId" ObjectProperty="Code" />
+			<Mapping DataField="MarketName" ObjectProperty="EnglishName" />
+			<Mapping DataField="MarketNativeName" ObjectProperty="NativeName" />
+		</Setting>
 		<Setting Key="Aff_Admin_MediaCurrency_Sel_view" SpName="Aff_Admin_MediaCurrency_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_Admin_MediaType_Sel_view" SpName="Aff_Admin_MediaType_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
@@ -141,5 +149,10 @@
 
 	<Function Name="Currency">
 		<Setting Key="Aff_BaseCurrency_Sel" SpName="Aff_BaseCurrency_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	</Function>
+
+	<Function Name="TargetCountry">
+		<Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_TargetCountry_Sel_view" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 	</Function>
 </Functions>

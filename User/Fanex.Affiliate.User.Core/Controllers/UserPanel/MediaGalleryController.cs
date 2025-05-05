@@ -1,33 +1,26 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Html;
     using BusinessService;
     using CoreService;
     using Enum;
     using Filters;
-    using MetalModels.UserPanel;
     using Resources;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Html;
     using Utilities;
     using ViewModels.UserPanel.Marketing;
 
     public class MediaGalleryController : BaseMarketingController
     {
-        private IAccountService AccountService { get; }
-
         public MediaGalleryController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ISystemService systemsService,
             IMarketingService marketingService,
             IAccountService accountService) :
-            base(sessionService, appSetting, systemsService, marketingService)
-        {
-            AccountService = accountService;
-        }
+            base(sessionService, appSetting, systemsService, marketingService, accountService)
+        { }
 
         [HttpGet]
         [AjaxOnly]
@@ -41,13 +34,23 @@
 
         private MediaGallerySearchFormViewModel GetSearchFormViewModel()
         {
-            var isInternal = SessionService.IsInternal;
             var userSession = SessionService.UserSession;
+            var affId = userSession.AffId;
+            var isInternal = SessionService.IsInternal;
 
-            var channels = MarketingService.GetChannels(userSession.AffId);
-            var categoryList = Enum.GetValues(typeof(AffiliateLinkType)).Cast<int>()
-                .ToDictionary(t => t.ToString(), t => GetMediaMainCategory((AffiliateLinkType)t));
-            var languageList = SystemService.GetLanguageList();
+            var targetCountryCode = AccountService.GetAccountInfo(affId)?.TargetCountryCode;
+
+            var commonLinkForm = GetLinkFormViewModel(targetCountryCode, true);
+
+            if (!AccountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
+            {
+                commonLinkForm.LinkTypes = commonLinkForm.LinkTypes.Append(new SelectListItem
+                {
+                    Value = AffiliateLinkType.SubAffiliateLink.ToString(),
+                    Text = Lang.SubAffiliateLink
+                });
+            }
+
             var currencyList = MarketingService.GetCurrencyList(isInternal)
                 .Select(i => new SelectListItem
                 {
@@ -55,44 +58,19 @@
                     Text = Lang.ResourceManager.GetString(i.Currency.Trim()) ?? i.Currency
                 });
 
-            var sizeParam = new SizeParam
-            {
-                AffType = userSession.AffType,
-                Language = userSession.PreferredLanguage
-            };
-            var sizeList = MarketingService.GetSizeList(sizeParam, isInternal)
-                .Select(i => new SelectListItem { Value = i.Size, Text = i.Size });
-
-            var refs = new List<RefLinkViewModel>
-            {
-                GetAffLinkTypeViewModel()
-            };
-
-            var affId = SessionService.UserSession.AffId;
-            if (!AccountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
-            {
-                refs.Add(GetSubAffLinkTypeViewModel());
-            }
-
             return new MediaGallerySearchFormViewModel
             {
-                CategoryList = categoryList,
-                Channels = channels,
+                CategoryList = commonLinkForm.CategoryList,
+                Channels = MarketingService.GetChannels(affId),
                 CurrencyList = currencyList,
                 DeviceList = EnumHelper.GetSelectList(typeof(DeviceType)),
-                Languages = languageList,
-                RefLinks = refs,
-                SizeList = sizeList
+                SizeList = commonLinkForm.SizeList,
+                LinkTypes = commonLinkForm.LinkTypes,
+                TargetCountries = commonLinkForm.TargetCountries,
+                Languages = commonLinkForm.Languages,
+                Domains = commonLinkForm.Domains,
+                SitePages = commonLinkForm.SitePages
             };
         }
-
-        private IEnumerable<SelectListItem> GetMediaMainCategory(AffiliateLinkType type)
-            => MarketingService.GetCategoryList(true, type, SessionService.IsInternal)
-            .Where(c => string.IsNullOrEmpty(c.SubCategory))
-            .Select(c => new SelectListItem
-            {
-                Value = c.Category,
-                Text = Lang.ResourceManager.GetString(RegexHelper.Replace(c.Category, @"\s+", "")) ?? c.Category
-            });
     }
 }

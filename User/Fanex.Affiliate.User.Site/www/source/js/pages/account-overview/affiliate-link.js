@@ -21,17 +21,6 @@
         },
 
         initEvent: function () {
-            $("#AffLinkType").change(function () {
-                let selectedVal = $(this).val();
-                let selectedItem = window.searchOption.RefLinks.find(r => r.AffLinkType == selectedVal);
-
-                let domains = selectedItem.Domains.map(item => new Option(item.DomainName, item.DomainId));
-                let pages = selectedItem.SitePages.map(item => new Option(item.PageName, item.PageCode));
-
-                $("#Page").empty().append(pages);
-                $("#Domain").empty().append(domains);
-            });
-
             $("#Language").on("change", function () {
                 MarketingBase.getLinkTo();
             });
@@ -69,7 +58,8 @@
                 selectedPage: $('#Page').val(),
                 selectedChannel: $('#Channel').val(),
                 selectedDomainId: $('#Domain').val(),
-                selectedLinkType: $('#AffLinkType').val()
+                selectedLinkType: $('#AffLinkType').val(),
+                selectedTargetCountry: $('#TargetCountry').val()
             }
             return MarketingBase.renderQrCodePage(param)
                 .then((response) => {

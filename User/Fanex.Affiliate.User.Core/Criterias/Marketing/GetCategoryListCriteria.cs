@@ -19,6 +19,6 @@
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 
-        public override bool IsValid() => TypeId > 0 && TargetId > 0;
+        public override bool IsValid() => TypeId > 0;
     }
 }

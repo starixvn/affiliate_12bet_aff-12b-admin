@@ -28,6 +28,8 @@
 
         public string NoSiteDesc { get; set; }
 
+        public string TargetCountryCode { get; set; }
+
         public string PreferredLanguage { get; set; }
 
         public static string PreferredPayment => "Player";

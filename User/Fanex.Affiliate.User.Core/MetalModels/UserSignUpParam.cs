@@ -55,6 +55,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         [MaxLength(Number.OneThousand, ErrorMessageResourceType = typeof(Error), ErrorMessageResourceName = "NoSiteDescMaxLength")]
         public string NoSiteDesc { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "TargetCountryErr")]
+        public string TargetCountryCode { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "AffAccountLanguageErr")]
         public string PreferredLanguage { get; set; }
 

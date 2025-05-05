@@ -8,6 +8,7 @@
     using DTO.UserPanel;
     using DTO.UserPanel.MediaGallery;
     using Extensions;
+    using DTO.Systems;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -50,38 +51,45 @@
             return SystemLanguage.GetCurrentShortedLanguage(favoriteLanguage);
         }
 
-        public IEnumerable<Language> GetSupportedLanguages()
+        public IEnumerable<Language> GetSupportedLanguages(string targetCountryCode = "")
         {
-            return GetAllLanguages().Where(l => !l.Code.Equals("te-IN"));
+            return GetAllLanguages(targetCountryCode).Where(l => !l.Code.Equals("te-IN"));
         }
 
-        public IEnumerable<Language> GetLanguageList()
+        public IEnumerable<Language> GetLanguageList(string targetCountryCode = "")
         {
             var languageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.LanguageList);
 
             if (languageList == null)
             {
-                languageList = GetAllLanguages();
+                languageList = GetAllLanguages(targetCountryCode);
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
             return languageList;
         }
 
-        private IEnumerable<Language> GetAllLanguages()
+        private IEnumerable<Language> GetAllLanguages(string targetCountry = "")
         {
             var isForInternal = _sessionService.IsInternal;
-            var languages = FetchTData<LanguageType>(new GetLanguageListCriteria(isForInternal));
+            var languages = FetchTData<Language>(new GetLanguageListCriteria(isForInternal, targetCountry));
 
-            return languages
-                .Select(l => new Language
-                {
-                    Code = l.MarketId,
-                    DisplayName = l.DisplayName,
-                    EnglishName = l.MarketName,
-                    NativeName = l.MarketNativeName,
-                    ShortedCode = l.ShortedCode
-                });
+            return languages;
+        }
+
+        public IEnumerable<TargetCountry> GetSystemTargetCountries()
+        {
+            var isInternal = _sessionService.IsInternal;
+            var cacheKey = isInternal ? CacheKey.InternalTargetCountryList : CacheKey.TargetCountryList;
+
+            var targetCountryList = _cacheService.Get<IEnumerable<TargetCountry>>(cacheKey);
+            if (targetCountryList == null)
+            {
+                targetCountryList = FetchTData<TargetCountry>(new GetTargetCountryCriteria(isInternal));
+                _cacheService.Set(cacheKey, targetCountryList);
+            }
+
+            return targetCountryList ?? new List<TargetCountry>();
         }
 
         public bool IsValid(string langCode)

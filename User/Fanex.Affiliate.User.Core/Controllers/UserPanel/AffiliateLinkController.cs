@@ -1,54 +1,44 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
+    using System.Linq;
+    using System.Web.Mvc;
     using BusinessService;
     using CoreService;
+    using Enum;
     using Filters;
-    using System.Collections.Generic;
-    using System.Web.Mvc;
+    using Resources;
     using Utilities;
-    using ViewModels.UserPanel.Marketing;
 
     public class AffiliateLinkController : BaseMarketingController
     {
-        private readonly IAccountService _accountService;
-
         public AffiliateLinkController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ISystemService systemsService,
             IMarketingService marketingService,
             IAccountService accountService)
-            : base(sessionService, appSetting, systemsService, marketingService)
-        {
-            _accountService = accountService;
-        }
+            : base(sessionService, appSetting, systemsService, marketingService, accountService)
+        { }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
         {
             var affId = SessionService.UserSession.AffId;
-            var langs = SystemService.GetLanguageList();
-            var channels = MarketingService.GetChannels(affId);
+            var targetCountryCode = AccountService.GetAccountInfo(affId)?.TargetCountryCode;
 
-            var refs = new List<RefLinkViewModel>
-            {
-                GetAffLinkTypeViewModel(),
-            };
+            var vm = GetLinkFormViewModel(targetCountryCode);
+            vm.Channels = MarketingService.GetChannels(affId);
 
-            if (!_accountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
+            if (!AccountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
             {
-                refs.Add(GetSubAffLinkTypeViewModel());
+                vm.LinkTypes = vm.LinkTypes
+                    .Append(new SelectListItem
+                    {
+                        Value = AffiliateLinkType.SubAffiliateLink.ToString(),
+                        Text = Lang.SubAffiliateLink
+                    });
             }
-
-            var vm = new AffiliateLinkViewModel
-            {
-                Channels = channels,
-                Languages = langs,
-                RefLinks = refs
-            };
-
-            ViewBag.SelectedLang = SessionService.UserSession.PreferredLanguage;
 
             return View("~/Views/UserPanel/AccountOverview/AffiliateLink/Index.cshtml", vm);
         }

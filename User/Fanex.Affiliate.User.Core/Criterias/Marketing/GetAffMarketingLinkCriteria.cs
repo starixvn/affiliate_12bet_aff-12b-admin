@@ -1,6 +1,6 @@
 ﻿using Fanex.Data.Repository;
 
-namespace Fanex.Affiliate.User.Core.Criterias.Marketing
+namespace Fanex.Affiliate.User.Core.Criterias
 {
     public class GetAffMarketingLinkCriteria : CriteriaBase
     {
