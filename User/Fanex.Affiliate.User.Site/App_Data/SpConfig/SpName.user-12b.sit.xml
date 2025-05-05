@@ -116,7 +116,7 @@
 		<Setting Key="Aff_Admin_MediaSize_Sel" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_User_Domain_Sel" SpName="Aff_User_Domain_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_User_SubAffiliateDomain_Sel" SpName="Aff_User_SubAffiliateDomain_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-		<Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_User_LandingPage_Sel" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_User_Overview_SubAffiliate_Sel" SpName="Aff_User_Overview_SubAffiliate_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
@@ -128,7 +128,7 @@
 		<Setting Key="Aff_Admin_MediaSize_Sel_view" SpName="Aff_Admin_MediaSize_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_User_Domain_Sel_view" SpName="Aff_User_Domain_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_User_SubAffiliateDomain_Sel_view" SpName="Aff_User_SubAffiliateDomain_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
-		<Setting Key="Aff_Admin_LandingPage_Sel_view" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
+		<Setting Key="Aff_User_LandingPage_Sel_view" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_Admin_Text_Sel_view" SpName="Aff_Admin_Text_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 

@@ -165,9 +165,18 @@
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult GetLinkTo(AffiliateLinkType linkType, string language)
+        public ActionResult GetLinkTo(AffiliateLinkType linkType, string language, string targetCountry)
         {
-            var landingPages = MarketingService.GetLandingPageList(SessionService.UserSession.GroupName, SessionService.IsInternal, linkType, language);
+            var landingPageParam = new LandingPageParam
+            {
+                CommGroupName = SessionService.UserSession.GroupName,
+                IsInternal = SessionService.IsInternal,
+                LinkType = linkType,
+                Language = language,
+                TargetCountryCode = targetCountry
+            };
+
+            var landingPages = MarketingService.GetLandingPageList(landingPageParam);
             return Json(landingPages, JsonRequestBehavior.AllowGet);
         }
 

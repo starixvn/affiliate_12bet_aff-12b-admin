@@ -203,13 +203,13 @@
             return bannerList;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink, string language = "")
+        public IEnumerable<LandingPage> GetLandingPageList(LandingPageParam param)
         {
-            var isTargetToMember = linkType == AffiliateLinkType.AffiliateLink;
-            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(isInternal));
+            var isTargetToMember = param.LinkType == AffiliateLinkType.AffiliateLink;
+            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(param.IsInternal, param.TargetCountryCode ?? string.Empty));
 
             return isTargetToMember
-                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName, language)
+                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, param.CommGroupName, param.Language)
                 : GetSubAffLandingPages();
         }
 

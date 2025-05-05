@@ -91,9 +91,14 @@
 
             var languageCode = GetTargetLanguageCode(isChangeAffTypeLink, currentLang, targetLanguages);
 
-            var pages = isChangeAffTypeLink || isDefaultLoading
-                ? MarketingService.GetLandingPageList(userSession.GroupName, isInternal, targetIdOrType, languageCode)
-                : Enumerable.Empty<LandingPage>();
+            var pages = MarketingService.GetLandingPageList(new LandingPageParam
+            {
+                CommGroupName = userSession.GroupName,
+                IsInternal = isInternal,
+                LinkType = targetIdOrType,
+                TargetCountryCode = targetCountryCode,
+                Language = languageCode
+            });
             var categoryList = GetCategoryList(isChangeAffTypeLink, isMediaGallery, targetIdOrType, isInternal);
             var sizeList = GetSizeList(isMediaGallery, userSession, isInternal);
             var domains = GetDomainListByTargetCountry(targetCountryCode, targetIdOrType);

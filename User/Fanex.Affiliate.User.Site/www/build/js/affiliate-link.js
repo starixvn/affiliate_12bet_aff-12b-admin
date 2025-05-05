@@ -1265,7 +1265,8 @@ var MarketingBase = (function ($) {
         getLinkTo: function () {
             let param = {
                 linkType: $("#AffLinkType").val(),
-                language: $("#Language").val()
+                language: $("#Language").val(),
+                targetCountry: $('#TargetCountry').val()
             };
 
             $.ajax({
@@ -1498,7 +1499,7 @@ var MarketingBase = (function ($) {
 
                         $('#Domain').html(NO_INFO_OPTION);
                         isMediaGallery && $('#Size').html(NO_INFO_OPTION);
-                        isChangeAffTypeLink && $("#MemberSitePage").html(NO_INFO_OPTION);
+                        $("#MemberSitePage").html(NO_INFO_OPTION);
                         !isChangeAffTypeLink && $('#Language').html(NO_INFO_OPTION);
                         (isChangeAffTypeLink && isMediaGallery) && $('#Category').html(NO_INFO_OPTION);
                     } else {
@@ -1506,7 +1507,7 @@ var MarketingBase = (function ($) {
 
                         _me.updateAvailableDomainDropdown(domainList);
                         isMediaGallery && _me.updateSizeDropdown(sizeList);
-                        isChangeAffTypeLink && _me.updateLinkToDropdown(pageList);
+                        _me.updateLinkToDropdown(pageList);
                         !isChangeAffTypeLink && _me.updateLanguageDropdown(languageList);
                         (isChangeAffTypeLink && isMediaGallery) && _me.updateCategoryDropdown(categoryList);
 

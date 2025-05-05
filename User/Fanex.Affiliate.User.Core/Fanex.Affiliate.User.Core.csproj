@@ -435,6 +435,7 @@
     <Compile Include="MetalModels\MarketingLinkParam.cs" />
     <Compile Include="MetalModels\UserPanel\AvalableDomainParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
+    <Compile Include="MetalModels\UserPanel\LandingPageParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGeneratingParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingPageStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\MediaCategoryParam.cs" />
