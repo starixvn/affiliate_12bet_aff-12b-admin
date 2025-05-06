@@ -1,25 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Test" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Market_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Domain_BlockTargetCountry_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_TargetCountry_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Affiliate_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_DomainControl_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_DomainControl_Ins" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_DomainControl_Upd" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_DomainControl_Del" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LicenseeDomain_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LicenseeDomain_Ins" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LicenseeDomain_Upd" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LicenseeDomain_Del" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateDomain_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateDomain_Ins" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateDomain_Upd" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateDomain_Del" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LandingPage_Ins" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LandingPage_Sel" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_LandingPage_Upd" Suffix="_xtest"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_LandingPage_ExcludedTargetCountry_Sel" Suffix="_xtest"></item>
 </Root>
