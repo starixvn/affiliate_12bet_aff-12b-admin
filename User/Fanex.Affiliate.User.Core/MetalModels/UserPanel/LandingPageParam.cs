@@ -8,8 +8,6 @@
 
         public string TargetCountryCode  { get; set; }
 
-        public string Language { get; set; }
-
         public bool IsInternal { get; set; }
 
         public AffiliateLinkType LinkType { get; set; } = AffiliateLinkType.AffiliateLink;

@@ -193,7 +193,7 @@
             var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(param.IsInternal, param.TargetCountryCode ?? string.Empty));
 
             return isTargetToMember
-                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, param.CommGroupName, param.Language)
+                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, param.CommGroupName)
                 : GetSubAffLandingPages();
         }
 

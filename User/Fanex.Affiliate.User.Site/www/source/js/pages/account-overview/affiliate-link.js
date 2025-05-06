@@ -22,10 +22,6 @@
         },
 
         initEvent: function () {
-            $("#Language").on("change", function () {
-                MarketingBase.getLinkTo();
-            });
-
             $("#btnGenQRCode").click(function () {
                 Site.showLoader();
                 Promise.all([_me.renderQrCodePage(), _me.renderLinkChannelStatisticPage()])

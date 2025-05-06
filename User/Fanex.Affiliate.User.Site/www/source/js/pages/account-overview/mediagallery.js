@@ -60,7 +60,6 @@
 
             $("#Language").on("change", function () {
                 _me.getSize();
-                MarketingBase.getLinkTo();
             });
 
             $("#Currency").on("change", function () {

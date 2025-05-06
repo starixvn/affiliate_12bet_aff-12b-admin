@@ -55,7 +55,6 @@
             {
                 CommGroupName = userSession.GroupName,
                 IsInternal = isInternal,
-                Language = SystemLanguage.IndiaLanguageCode
             };
 
             var viewModel = new LandingPageStatisticsViewModel

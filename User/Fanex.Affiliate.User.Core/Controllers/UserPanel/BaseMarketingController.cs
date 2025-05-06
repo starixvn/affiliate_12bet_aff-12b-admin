@@ -97,8 +97,7 @@
                 CommGroupName = userSession.GroupName,
                 IsInternal = isInternal,
                 LinkType = param.TargetId,
-                TargetCountryCode = param.TargetCountryCode,
-                Language = param.Language
+                TargetCountryCode = param.TargetCountryCode
             });
             var categoryList = GetCategoryList(param.IsChangeAffTypeLink, param.IsMediaGallery, param.TargetId, isInternal);
             var sizeList = GetSizeList(param, isInternal);

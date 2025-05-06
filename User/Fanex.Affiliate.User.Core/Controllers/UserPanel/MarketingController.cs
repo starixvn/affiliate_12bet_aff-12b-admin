@@ -164,23 +164,6 @@
             return Json(MarketingService.GetChannels(userId));
         }
 
-        [HttpGet]
-        [AjaxOnly]
-        public ActionResult GetLinkTo(AffiliateLinkType linkType, string language, string targetCountry)
-        {
-            var landingPageParam = new LandingPageParam
-            {
-                CommGroupName = SessionService.UserSession.GroupName,
-                IsInternal = SessionService.IsInternal,
-                LinkType = linkType,
-                Language = language,
-                TargetCountryCode = targetCountry
-            };
-
-            var landingPages = MarketingService.GetLandingPageList(landingPageParam);
-            return Json(landingPages, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         [AjaxOnly]
         public ActionResult ToggleMarketingLink(MarketingLinkViewModel model)
