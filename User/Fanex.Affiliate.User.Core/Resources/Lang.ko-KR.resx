@@ -2525,4 +2525,7 @@
     <value>문의사항이 있으시면 텔레그램 {0} 으로 직접 연락주시거나,&lt;br /&gt;
 {1} 으로 이메일을 보내주시거나 아래 양식을 작성해 주세요.</value>
   </data>
+  <data name="VietnamCountry" xml:space="preserve">
+    <value>베트남</value>
+  </data>
 </root>

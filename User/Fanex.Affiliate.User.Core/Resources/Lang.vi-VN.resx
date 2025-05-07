@@ -2541,4 +2541,7 @@ THANH TOÁN ỔN ĐỊNH</value>
     <value>Để được hỗ trợ, bạn có thể liên hệ trực tiếp với chúng tôi qua Telegram: {0}&lt;br /&gt;
 Bạn cũng có thể gửi email đến: {1} hoặc điền vào biểu mẫu bên dưới.</value>
   </data>
+  <data name="VietnamCountry" xml:space="preserve">
+    <value>Việt Nam </value>
+  </data>
 </root>

@@ -2559,4 +2559,7 @@
     <value>如有任何疑问，可通过 Telegram 联系我们：{0}。&lt;br /&gt;
 亦可发送邮件至：{1}，或直接填写下方表单联系。</value>
   </data>
+  <data name="VietnamCountry" xml:space="preserve">
+    <value>越南</value>
+  </data>
 </root>
