@@ -7,6 +7,7 @@ import * as types from '../actions/types';
 
 const today = createReducer(null, {})
 const affName = createReducer(null, {})
+const latestBillingDate = createReducer(null, {})
 const isModifiable = createReducer(false, {})
 
 export const param = createReducer(null, {
@@ -43,6 +44,7 @@ export default combineReducers({
     today,
     param,
     affName,
+    latestBillingDate,
     selectedMemberId,
     gridData,
     pagingOption,

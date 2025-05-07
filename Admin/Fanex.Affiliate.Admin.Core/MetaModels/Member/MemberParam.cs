@@ -9,6 +9,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Member
 
         public string IbcUserName { get; set; }
 
+        public bool IsIncludeRemovedPlayer { get; set; }
+
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }

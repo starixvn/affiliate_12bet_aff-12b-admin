@@ -12,7 +12,7 @@ export const Filter = (props) => {
     const [affName, setAffName] = useState(props.affName);
     const [userName, setUserName] = useState('');
     const [ibcUserName, setIbcUserName] = useState('');
-    const [isIncludeRemovedPlayers, setIsIncludeRemovedPlayers] = useState(false);
+    const [isIncludeRemovedPlayer, setIsIncludeRemovedPlayer] = useState(false);
 
     useEffect(() => {
         if (isFromOtherPages) {
@@ -26,7 +26,7 @@ export const Filter = (props) => {
             AffName: affName,
             UserName: userName,
             IbcUserName: ibcUserName,
-            IsIncludeRemovedPlayers: isIncludeRemovedPlayers,
+            IsIncludeRemovedPlayer: isIncludeRemovedPlayer,
             PageIndex: 1,
             PageSize: pagingOption.PageSize,
         });
@@ -59,7 +59,7 @@ export const Filter = (props) => {
                 <FormGroup className="mr-sm-3">
                     <Label checked>
                         Include removed Players
-                        <Input className="ml-2 mt-1" type="checkbox" id="isIncludeRemovedPlayers" name="isIncludeRemovedPlayers" checked={isIncludeRemovedPlayers} onChange={(e) => setIsIncludeRemovedPlayers(!isIncludeRemovedPlayers)} />
+                        <Input className="ml-2 mt-1" type="checkbox" id="isIncludeRemovedPlayer" name="isIncludeRemovedPlayer" checked={isIncludeRemovedPlayer} onChange={(e) => setIsIncludeRemovedPlayer(!isIncludeRemovedPlayer)} />
                     </Label>
                 </FormGroup>
                 <Button outline color="primary" type="button" onClick={_handleSearch}>

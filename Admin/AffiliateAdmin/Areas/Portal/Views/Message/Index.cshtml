@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.Language>
+﻿@using Fanex.Affiliate.Admin.Core.Utilities
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.Language>
 
 @section pagecss{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/message/message.css")" rel="stylesheet" />
@@ -7,7 +8,7 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-            today: '@DateTimeOffset.Now.ToOffset(new TimeSpan(8, 0, 0)).ToString("MM/dd/yyyy")',
+            today: '@DateTimeHelper.DateTimeGMT8String',
             languageList: @Html.Raw(Json.Encode(Model.Where(
                 l => !(l.LanguageCode == "en-GB"
                 || l.LanguageCode == "en-IN"

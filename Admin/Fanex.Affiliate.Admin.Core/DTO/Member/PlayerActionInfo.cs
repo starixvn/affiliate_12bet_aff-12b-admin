@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Member
 
         public bool IsRemoved { get; set; }
 
-        public DateTime? RemovedDate { get; set; }
+        public DateTime? FromDate { get; set; }
 
         public DateTime? LastAction { get; set; }
     }

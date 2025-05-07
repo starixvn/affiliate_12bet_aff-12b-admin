@@ -19,6 +19,8 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel
 
         public bool IsExportExcel { get; set; }
 
+        public bool IsIncludeRemovedPlayer { get; set; }
+
         public int SortById { get; set; }
 
         [SpParam(SqlParamName = "BaseCurrency")]

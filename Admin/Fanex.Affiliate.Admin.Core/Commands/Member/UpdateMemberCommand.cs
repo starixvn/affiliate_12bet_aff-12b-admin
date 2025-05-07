@@ -1,4 +1,5 @@
 ﻿using Fanex.Data;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.Commands.Member
 {
@@ -13,8 +14,6 @@ namespace Fanex.Affiliate.Admin.Core.Commands.Member
         [SpParam(SqlParamName = "CustId")]
         public int MemberId { get; set; }
 
-        public bool IsInclude { get; set; }
-
-        public bool IsRemoved { get; set; }
+        public DateTime FromDate { get; set; }
     }
 }

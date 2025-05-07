@@ -22,7 +22,7 @@ export class Filter extends PureComponent {
         this.state = {
             selectedProduct: selectedAllProduct,
             monthDate,
-            isIncludeRemovedPlayers: false,
+            isIncludeRemovedPlayer: false,
             selectedBaseCurrency: baseCurrencyList && baseCurrencyList.length && baseCurrencyList[0].ExchangeId || defaultBaseCurrency,
             selectedCurrencyList: currencyList && currencyList.filter(item => item.checked).map(item => item.key).join(',') || '',
             currencyList
@@ -41,9 +41,9 @@ export class Filter extends PureComponent {
         })
     }
 
-    handleCheckIncludeRemovedPlayers = (isIncludeRemovedPlayers) => {
+    handleCheckIncludeRemovedPlayers = (isIncludeRemovedPlayer) => {
         this.setState({
-            isIncludeRemovedPlayers
+            isIncludeRemovedPlayer
         })
     }
 
@@ -65,13 +65,13 @@ export class Filter extends PureComponent {
     }
 
     handleSearch = (monthDate) => {
-        const { selectedProduct, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayers } = this.state;
+        const { selectedProduct, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayer } = this.state;
 
         const param = {
             productId: selectedProduct,
             baseCurrencyId: selectedBaseCurrency,
             currencyIds: selectedCurrencyList,
-            isIncludeRemovedPlayers,
+            isIncludeRemovedPlayer,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
         }
         this.props.setParam(param);
@@ -79,7 +79,7 @@ export class Filter extends PureComponent {
     }
 
     handleExportExcel = async () => {
-        const { selectedProduct, monthDate, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayers } = this.state;
+        const { selectedProduct, monthDate, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayer } = this.state;
         const { affId, sortingColumn, isDepositFeePercent, isWithdrawalFeePercent } = this.props;
 
         const param = {
@@ -87,7 +87,7 @@ export class Filter extends PureComponent {
             productId: selectedProduct,
             baseCurrencyId: selectedBaseCurrency,
             currencyIds: selectedCurrencyList,
-            isIncludeRemovedPlayers,
+            isIncludeRemovedPlayer,
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
             affId,
             sortById: SortByIdList[sortingColumn.ColumnName],
@@ -120,7 +120,7 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { selectedProduct, selectedBaseCurrency, monthDate, currencyList, isIncludeRemovedPlayers } = this.state;
+        const { selectedProduct, selectedBaseCurrency, monthDate, currencyList, isIncludeRemovedPlayer } = this.state;
         const { productList, baseCurrencyList, isProduction } = this.props;
         const dataSource = [{ ProductId: selectedAllProduct, ProductName: globalResource.All }].concat(productList);
 
@@ -181,7 +181,7 @@ export class Filter extends PureComponent {
                     <FormGroup className="mr-sm-3">
                         <Label checked>
                             Include removed Players
-                            <Input className="ml-2 mt-1" type="checkbox" id="isIncludeRemovedPlayers" name="isIncludeRemovedPlayers" checked={isIncludeRemovedPlayers} onChange={(e) => this.handleCheckIncludeRemovedPlayers(!isIncludeRemovedPlayers)} />
+                            <Input className="ml-2 mt-1" type="checkbox" id="isIncludeRemovedPlayer" name="isIncludeRemovedPlayer" checked={isIncludeRemovedPlayer} onChange={(e) => this.handleCheckIncludeRemovedPlayers(!isIncludeRemovedPlayer)} />
                         </Label>
                     </FormGroup>
                     <Button outline color="primary" type="button" onClick={() => this.handleSearch(monthDate)}>

@@ -24,7 +24,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 IsExportExcel = param.IsExportExcel,
                 SortById = param.SortById,
                 BaseCurrencyId = param.BaseCurrencyId,
-                CurrencyIds = param.CurrencyIds
+                CurrencyIds = param.CurrencyIds,
+                IsIncludeRemovedPlayer = param.IsIncludeRemovedPlayer
             };
 
             return FetchEntityResult<PlayerDetail>(criteria);
