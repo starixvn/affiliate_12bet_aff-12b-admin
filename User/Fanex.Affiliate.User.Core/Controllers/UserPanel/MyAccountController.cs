@@ -55,6 +55,7 @@
                 PreferredPayment = Server.HtmlDecode(accountInfo.PreferredPayment),
                 PlayerUsername = Server.HtmlDecode(accountInfo.PlayerUsername),
                 Postal = Server.HtmlDecode(accountInfo.Postal),
+                TargetCountryCode = accountInfo.TargetCountryCode,
                 PreferredLanguage = accountInfo.PreferredLanguage,
                 NoSiteDesc = Server.HtmlDecode(accountInfo.NoSiteDesc),
                 IsRenderState = SessionService.CurrentLanguage == SimplifiedChineseCode || SessionService.CurrentLanguage == TraditionalChineseCode,
@@ -69,7 +70,9 @@
             }
 
             var preferredLanguage = newAccountInfo.PreferredLanguage;
-            var languageName = SystemService.GetSupportedLanguages().FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
+            var languageName = SystemService.GetSupportedLanguages()
+                                   .FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName 
+                               ?? preferredLanguage;
             newAccountInfo.LanguageName = SystemLanguage.GetLanguageText(languageName);
 
             var baseCurrencyList = SystemService.GetBaseCurrencyList();
@@ -78,6 +81,7 @@
             {
                 IsInternal = SessionService.IsInternal,
                 AccountInformation = newAccountInfo,
+                TargetCountryList = SystemService.GetSystemTargetCountries(),
                 BaseCurrencyList = CurrencyHelper.GetCurrencyList(baseCurrencyList, newAccountInfo.DefaultBaseCurrency)
             };
 
@@ -130,6 +134,7 @@
                 SiteUrl = Server.HtmlEncode(model.SiteUrl ?? string.Empty),
                 MoreSiteUrls = Server.HtmlEncode(model.MoreSiteUrls ?? string.Empty),
                 NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc ?? string.Empty),
+                TargetCountryCode = Server.HtmlEncode(model.TargetCountryCode),
                 Ip = Request.GetClientIP(),
                 Language = SessionService.CurrentLanguage,
                 DefaultBaseCurrency = model.DefaultBaseCurrency,

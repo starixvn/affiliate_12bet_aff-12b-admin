@@ -3,18 +3,19 @@
 }
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.AffiliateLinkViewModel
 @{
-    var linkTypes = Model.RefLinks.Select(r => new SelectListItem { Value = ((int)r.AffLinkType).ToString(), Text = r.AffTypeDisplayName });
-    var availableDomains = (Model.RefLinks.FirstOrDefault()?.Domains ?? new List<Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery.Domain>())
-        .Select(d => new SelectListItem { Value = d.DomainId.ToString(), Text = d.DomainName });
-    var landingPages = (Model.RefLinks.FirstOrDefault()?.SitePages ?? new List<Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery.LandingPage>())
-        .Select(l => new SelectListItem { Value = l.PageCode, Text = l.PageName });
-
-    var languages = Model.Languages.Select(l => new SelectListItem { Value = l.Code, Text = l.EnglishName, Selected = l.Code == ViewBag.SelectedLang });
+    var linkTypes = Model.LinkTypes ?? new List<SelectListItem>();
+    var targetCountries = Model.TargetCountries ?? new List<SelectListItem>();
+    var availableDomains = Model.Domains ?? new List<SelectListItem>();
+    var landingPages = Model.SitePages ?? new List<SelectListItem>();
+    var languages = Model.Languages ?? new List<SelectListItem>();
 
     var channels = new List<SelectListItem> { new SelectListItem { Text = Lang.AddNew, Value = "add-new" } };
     channels.AddRange(Model.Channels.Select(c => new SelectListItem { Value = c.Key, Text = c.Value }));
 
     var disabled = channels.Count > 1 ? "" : "disabled";
+
+    var hasAnyDomain = availableDomains.Any();
+    var hasAnyMemberSitePage = landingPages.Any();
 }
 
 @Html.InlineStyles("~/www/build/styles/css/marketing.min.css")
@@ -29,14 +30,16 @@
                     <form>
                         <div class="column-form">
                             @RazorHelper.RenderDropdownForMarketing("AffLinkType", Lang.AffiliateLinkType, linkTypes, false)
+                            
+                            @RazorHelper.RenderDropdownForMarketing("TargetCountry", Lang.TargetCountry, targetCountries, false)
 
-                            @RazorHelper.RenderDropdownForMarketing("Domain", Lang.AvailableDomains, availableDomains, false)
-
-                            @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, languages)
+                            @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, languages, languages.Count() > 1)
 
                         </div>
                         <div class="column-form">
-                            @RazorHelper.RenderDropdownForMarketing("Page", Lang.LinkTo, landingPages, false)
+                            @RazorHelper.RenderDropdownForMarketingHasNoInfo("Domain", Lang.AvailableDomains, availableDomains, hasAnyDomain)
+
+                            @RazorHelper.RenderDropdownForMarketingHasNoInfo("Page", Lang.LinkTo, landingPages, hasAnyMemberSitePage)
 
                             @RazorHelper.RenderDropdownForMarketing("Channel", Lang.Channel, channels, false)
                             <div class="form-group flex-sm-boostrap flex-center form-group-button">

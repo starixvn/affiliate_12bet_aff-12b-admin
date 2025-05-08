@@ -1,5 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
     using Commands.Marketing;
     using Constants;
     using CoreService;
@@ -10,14 +14,9 @@
     using DTO.UserPanel.MediaGallery;
     using Enum;
     using Extensions;
-    using Fanex.Affiliate.User.Core.Criterias.Marketing;
     using MetalModels;
     using MetalModels.UserPanel;
     using Resources;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using Utilities;
     using ViewModels.UserPanel.Marketing;
 
@@ -83,22 +82,13 @@
 
         public IEnumerable<CategoryType> GetCategoryList(bool isMediaPage, AffiliateLinkType linkType, bool isInternal = false)
         {
-            var cacheKey = isMediaPage ? CacheKey.BannerCategoryList : CacheKey.TextCategoryList;
-            cacheKey = $"{cacheKey}-{linkType}";
-
-            var categoryList = _cacheService.Get<IEnumerable<CategoryType>>(cacheKey);
-            if (categoryList == null)
+            var mediaType = isMediaPage ? AffiliateLink : MediaGallery;
+            var param = new MediaCategoryParam
             {
-                var mediaType = isMediaPage ? AffiliateLink : MediaGallery;
-                var param = new MediaCategoryParam
-                {
-                    TargetId = (int)linkType,
-                    TypeId = mediaType
-                };
-                categoryList = FetchTData<CategoryType>(new GetCategoryListCriteria(param.TypeId, param.TargetId, isInternal));
-
-                _cacheService.Set(cacheKey, categoryList);
-            }
+                TargetId = (int)linkType,
+                TypeId = mediaType
+            };
+            var categoryList = FetchTData<CategoryType>(new GetCategoryListCriteria(param.TypeId, param.TargetId, isInternal));
 
             return categoryList ?? new List<CategoryType>();
         }
@@ -118,48 +108,47 @@
 
         public IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal = false)
         {
-            param.Language = ConvertSelectedLanguageNames(param.Language);
+            param.Language = ConvertSelectedLanguageNames(param.TargetCountryCode, param.Language);
 
             var criteria = param.MapTo<SizeParam, GetSizeListCriteria>(isInternal);
 
             return FetchTData<SizeType>(criteria);
         }
 
-        public IEnumerable<Domain> GetAvailableDomainList(int affId, AffiliateLinkType linkType, bool isInternal = false)
+        public IEnumerable<Domain> GetAvailableDomainList(AvailableDomainParam param)
         {
-            var isMember = linkType == AffiliateLinkType.AffiliateLink;
-            var cacheKey = isMember ? CacheKey.DomainList : CacheKey.SubDomainList;
+            var isMember = param.LinkType == AffiliateLinkType.AffiliateLink;
 
-            var domainList = _cacheService.Get<IEnumerable<Domain>>(cacheKey);
+            var domainList = FetchAvailableDomains(param, isMember);
 
-            if (domainList == null)
-            {
-                domainList = HandleGetAvailableDomains(affId, isMember, isInternal);
-
-                _cacheService.Set(cacheKey, domainList, Number.Ten);
-            }
-
-            return domainList ?? new List<Domain>();
+            return domainList ?? Enumerable.Empty<Domain>();
         }
 
-        private IEnumerable<Domain> HandleGetAvailableDomains(int affId, bool isMember, bool isInternal = false)
+        private IEnumerable<Domain> FetchAvailableDomains(AvailableDomainParam param, bool isMember)
         {
             var domains = isMember
-                    ? FetchTData<Domain>(new GetAffDomainListCriteria(affId, isInternal))
-                    : FetchTData<Domain>(new GetSubAffDomainListCriteria(isInternal));
+                ? FetchTData<Domain>(new GetAffDomainListCriteria(param.AffId, param.TargetCountryCode, param.IsInternal))
+                : FetchTData<Domain>(new GetSubAffDomainListCriteria(param.IsInternal));
 
             if (isMember)
             {
-                foreach (var (domain, index) in domains.Select((domain, index) => (domain, index)))
-                {
-                    if (domain.DomainId == 0)
-                    {
-                        domain.DomainId = affId + index;
-                    }
-                }
+                AssignTemporaryDomainIds(domains, param.AffId);
             }
 
             return domains;
+        }
+
+        private static void AssignTemporaryDomainIds(IEnumerable<Domain> domains, int affId)
+        {
+            var index = 0;
+            foreach (var domain in domains)
+            {
+                if (domain.DomainId == 0)
+                {
+                    domain.DomainId = affId + index;
+                }
+                index++;
+            }
         }
 
         public IDictionary<string, LanguageLinkViewModel> GenerateLinkList(LinkGeneratingParam linkGeneratedParam)
@@ -172,7 +161,8 @@
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
             const int LengthOfSplittingSize = 2;
-            bannerParam.Language = ConvertSelectedLanguageNames(bannerParam.Language);
+            bannerParam.Language = ConvertSelectedLanguageNames(bannerParam.SelectedTargetCountry, bannerParam.Language);
+
             var bannerList = FetchTDataWithPaging<MarketingItem>(bannerParam.MapTo<MarketingBannerParam, GetBannerListCriteria>(), bannerParam);
             foreach (var banner in bannerList)
             {
@@ -197,13 +187,13 @@
             return bannerList;
         }
 
-        public IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink, string language = "")
+        public IEnumerable<LandingPage> GetLandingPageList(LandingPageParam param)
         {
-            var isTargetToMember = linkType == AffiliateLinkType.AffiliateLink;
-            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(isInternal));
+            var isTargetToMember = param.LinkType == AffiliateLinkType.AffiliateLink;
+            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(param.IsInternal, param.TargetCountryCode ?? string.Empty));
 
             return isTargetToMember
-                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, commGroupName, language)
+                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, param.CommGroupName)
                 : GetSubAffLandingPages();
         }
 
@@ -256,22 +246,22 @@
         public IEnumerable<IGrouping<string, MarketingChannelLink>> GetUsingMarketingLinks(int userId)
             => FetchTData<MarketingChannelLink>(new GetUsingMarketingLinkCriteria(userId)).GroupBy(c => c.ChannelCode);
 
-        private string ConvertSelectedLanguageNames(string languageCode)
+        private string ConvertSelectedLanguageNames(string targetCountryCode, string languageCode)
         {
-            var allLanguages = _systemsService.GetLanguageList();
-
+            var languageList = _systemsService.GetLanguageByTargetCountry(targetCountryCode);
             if (string.IsNullOrEmpty(languageCode))
             {
-                return languageCode;
+                var allLanguageName = languageList.Select(l => l.EnglishName).ToList();
+                return string.Join(",", allLanguageName);
             }
 
-            return allLanguages.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.EnglishName;
+            return languageList.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.EnglishName;
         }
 
         private Dictionary<string, Language> GetLanguageUsedForGeneration(LinkGeneratingParam linkGeneratedParam)
         {
             var result = new Dictionary<string, Language>();
-            var languageList = _systemsService.GetLanguageList();
+            var languageList = _systemsService.GetLanguageByTargetCountry(linkGeneratedParam.SelectedTargetCountry);
 
             if (string.IsNullOrEmpty(linkGeneratedParam.SelectedLanguage))
             {

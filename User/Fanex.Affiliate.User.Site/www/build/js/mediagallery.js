@@ -1215,13 +1215,16 @@ var MarketingBase = (function ($) {
     let regexChannelNamePartten = /^[a-zA-Z0-9]+$/g;
     let regexChannelName = new RegExp(regexChannelNamePartten);
 
+    const NO_INFO_OPTION = "<option value=''>" + langResource.noInfo + "</option>";
+
     function getDownloadParam(trigger) {
         return {
             selectedLanguage: $(trigger).data("selected-language"),
             selectedDomainId: $(trigger).data("selected-domain-id"),
             selectedPage: $(trigger).data("selected-page"),
             selectedChannel: $(trigger).data("selected-channel"),
-            selectedLinkType: $(trigger).data("selected-link-type")
+            selectedLinkType: $(trigger).data("selected-link-type"),
+            selectedTargetCountry: $(trigger).data("selected-target-country")
         };
     }
 
@@ -1244,6 +1247,19 @@ var MarketingBase = (function ($) {
     }
 
     var _me = {
+
+        initEvent: function () {
+            $("#TargetCountry").off("change").change(function () {
+                $("#btnMarketingSubmit").prop("disabled", false);
+                _me.handleChangeFilter();
+            });
+
+            $("#AffLinkType").off("change").change(function () {
+                $("#btnMarketingSubmit").prop("disabled", false);
+                _me.handleChangeFilter(true);
+            });
+        },
+
         resiterQrcodeEvent: function () {
             new ClipboardJS('.btn-copy-link', {
                 text: function (trigger) {
@@ -1428,22 +1444,46 @@ var MarketingBase = (function ($) {
 
             })
         },
+        handleChangeFilter: function (isChangeAffTypeLink = false) {
+            let isMediaGallery = !!$("#Size").length;
 
-        getLinkTo: function () {
             let param = {
-                linkType: $("#AffLinkType").val(),
-                language: $("#Language").val()
+                category: $("#Category").val(),
+                subCategory: $("#SubCategory").val(),
+                currency: $("#Currency").val(),
+                imageType: $("#ImageType").val(),
+                deviceType: $("#DeviceType").val(),
+                targetId: $("#AffLinkType").val(),
+                targetCountryCode: $('#TargetCountry').val(),
+                isMediaGallery,
+                isChangeAffTypeLink
             };
 
             $.ajax({
-                type: "GET",
-                dataType: "json",
+                type: 'GET',
+                dataType: 'json',
                 cache: false,
                 data: param,
-                url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetLinkTo"),
+                url: Site.resolveRelativeLangUrl('UserPanel/Marketing/GetChangedFilters'),
                 success: function (response) {
-                    var html = Site.buildOptionList(response, "PageCode", "PageName", false);
-                    $("#Page").html(html);
+                    if (response && response.length == 0) {
+                        $('#btnMarketingSubmit').prop('disabled', true);
+
+                        $('#Domain').html(NO_INFO_OPTION);
+                        isMediaGallery && $('#Size').html(NO_INFO_OPTION);
+                        $("#Page").html(NO_INFO_OPTION);
+                        !isChangeAffTypeLink && $('#Language').html(NO_INFO_OPTION);
+                        (isChangeAffTypeLink && isMediaGallery) && $('#Category').html(NO_INFO_OPTION);
+                    } else {
+                        var { domainList, languageList, pageList, sizeList, categoryList } = response;
+
+                        _me.updateAvailableDomainDropdown(domainList);
+                        isMediaGallery && _me.updateSizeDropdown(sizeList);
+                        _me.updateLinkToDropdown(pageList);
+                        !isChangeAffTypeLink && _me.updateLanguageDropdown(languageList);
+                        (isChangeAffTypeLink && isMediaGallery) && _me.updateCategoryDropdown(categoryList);
+
+                    }
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -1454,8 +1494,101 @@ var MarketingBase = (function ($) {
             });
         },
 
-        initialize: function () {
-            this.resiterQrcodeEvent();
+        updateAvailableDomainDropdown: function (availableDomainList) {
+            if (availableDomainList && !availableDomainList.length) {
+                $('#btnMarketingSubmit').prop('disabled', true);
+                $('#Domain').html(NO_INFO_OPTION);
+
+                return;
+            }
+
+            var html = Site.buildOptionList(availableDomainList, 'Value', 'Text', false);
+
+            var previousSelectedDomain = $('#Domain').val();
+
+            $('#Domain').html(html);
+
+            var hasPreviousSelectedDomain = availableDomainList.some(i => i.Value == previousSelectedDomain);
+
+            if (hasPreviousSelectedDomain) {
+                $('#Domain').val(previousSelectedDomain);
+            }
+        },
+
+        updateLinkToDropdown: function (pageList) {
+            if (pageList && !pageList.length) {
+                $("#btnMarketingSubmit").prop("disabled", true);
+                $("#Page").html(NO_INFO_OPTION);
+
+                return;
+            }
+
+            var html = Site.buildOptionList(pageList, "Value", "Text", false);
+
+            var previousSelectedPage = $("#Page").val();
+
+            $("#Page").html(html);
+
+            var hasPreviousSelectedPage = pageList.some(i => i.Value == previousSelectedPage);
+
+            if (hasPreviousSelectedPage) {
+                $("#Page").val(previousSelectedPage);
+            }
+        },
+
+        updateLanguageDropdown: function (languageList) {
+            if (languageList && !languageList.length) {
+                $('#btnMarketingSubmit').prop('disabled', true);
+                $('#Language').html(NO_INFO_OPTION);
+
+                return;
+            }
+
+            const html = Site.buildOptionList(languageList, 'Value', 'Text', languageList.length > 1);
+
+            $('#Language').html(html);
+            $('#Language').val(languageList[0].Value);
+        },
+
+        updateSizeDropdown: function (sizeList) {
+            if (sizeList && !sizeList.length) {
+                $('#btnMarketingSubmit').prop('disabled', true);
+                $('#Size').html(NO_INFO_OPTION);
+
+                return;
+            }
+
+            const html = Site.buildOptionList(sizeList, 'Value', 'Text', true);
+            const previousSelectedSize = $('#Size').val();
+
+            $('#Size').html(html);
+
+            const hasPreviousSelectedSize = sizeList.some(i => i.Value === previousSelectedSize);
+
+            if (hasPreviousSelectedSize) {
+                $('#Size').val(previousSelectedSize);
+            }
+        },
+
+        updateCategoryDropdown: function (categoryList) {
+            if (categoryList && !categoryList.length) {
+                $('#btnMarketingSubmit').prop('disabled', true);
+                $('#Category').html(NO_INFO_OPTION);
+
+                return;
+            }
+
+            var html = Site.buildOptionList(categoryList, "Value", "Text", true);
+
+            var previousSelectedCategory = $("#Category").val();
+
+            $("#Category").html(html);
+
+            var hasPreviousSelectedCategory = categoryList.some(i => i.Value == previousSelectedCategory);
+
+            if (hasPreviousSelectedCategory) {
+                $("#Category").val(previousSelectedCategory);
+            }
         },
     };
 
@@ -1491,6 +1624,7 @@ var MediaGallery = (function ($) {
             _me.initEvent();
             initPager();
             _me.togglePager();
+            MarketingBase.initEvent();
             MarketingBase.initChannelSelectEvent();
         },
 
@@ -1516,28 +1650,12 @@ var MediaGallery = (function ($) {
                 _me.getSize();
             });
 
-            $("#AffLinkType").change(function () {
-                let selectedVal = $(this).val();
-                let selectedItem = window.searchOption.RefLinks.find(r => r.AffLinkType == selectedVal);
-
-
-                let domains = selectedItem.Domains.map(item => new Option(item.DomainName, item.DomainId));
-                let pages = selectedItem.SitePages.map(item => new Option(item.PageName, item.PageCode));
-                let category = [new Option(window.dic.all, "")];
-                category.push(...window.searchOption.CategoryList[selectedVal].map(item => new Option(item.Text, item.Value)));
-
-                $("#Page").empty().append(pages);
-                $("#Domain").empty().append(domains);
-                $("#Category").empty().append(category);
-            })
-
             $("#SubCategory").on("change", function () {
                 _me.getSize();
             });
 
             $("#Language").on("change", function () {
                 _me.getSize();
-                MarketingBase.getLinkTo();
             });
 
             $("#Currency").on("change", function () {
@@ -1608,7 +1726,8 @@ var MediaGallery = (function ($) {
                 currency: $("#Currency").val(),
                 imageType: $("#ImageType").val(),
                 deviceType: $("#DeviceType").val(),
-                targetId: $("#AffLinkType").val()
+                targetId: $("#AffLinkType").val(),
+                targetCountryCode: $('#TargetCountry').val()
             };
 
             $.ajax({
@@ -1643,6 +1762,7 @@ var MediaGallery = (function ($) {
                 selectedPage: $("#Page").val(),
                 selectedChannel: $("#Channel").val(),
                 targetId: $("#AffLinkType").val(),
+                selectedTargetCountry: $('#TargetCountry').val(),
                 pageIndex: _pageIndex + 1,
                 pageSize: _pageSize
             };
@@ -1677,14 +1797,15 @@ var MediaGallery = (function ($) {
                 selectedPage: $('#Page').val(),
                 selectedChannel: $('#Channel').val(),
                 selectedDomainId: $('#Domain').val(),
-                selectedLinkType: $('#AffLinkType').val()
+                selectedLinkType: $('#AffLinkType').val(),
+                selectedTargetCountry: $('#TargetCountry').val()
             }
             return MarketingBase.renderQrCodePage(param)
                 .then((response) => {
                     if (response.ok)
                         return response.text()
                     else {
-                        handleFalseResponse(response);
+                        MarketingBase.handleFalseResponse(response);
                     }
                 })
                 .then(html => {

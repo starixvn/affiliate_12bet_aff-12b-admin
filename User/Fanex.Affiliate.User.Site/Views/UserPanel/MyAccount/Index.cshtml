@@ -290,6 +290,19 @@
                 <span class="text">@Lang.Preference</span>
             </div>
             <div class="form-horizontal">
+                <div class="form-group validate-group">
+                    <label class="col-sm-3 require control-label">@Lang.TargetCountry</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="TargetCountryCode" id="AccountInformation.TargetCountryCode" data-val="true" data-val-required="@Lang.TargetCountryErr">
+                            <option value="">@Lang.SelectOne</option>
+                            @foreach (var item in Model.TargetCountryList)
+                            {
+                                <option value="@item.TargetCountryCode" @(item.TargetCountryCode == Model.AccountInformation.TargetCountryCode ? "selected" : string.Empty)>@SystemHelper.GetTargetCountryText(item.TargetCountryName)</option>
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(x => x.AccountInformation.TargetCountryCode, string.Empty, new { @class = "validate-input hide" })
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">@Lang.Language</label>
                     <div class="col-sm-4">

@@ -42,7 +42,7 @@
             var isInternal = SessionService.IsInternal;
 
             var now = DateTimeOffset.Now.ToOffset(new TimeSpan(GMT.PlusEight, 0, 0));
-            var landingPageParam = new LandingPageStatisticsParam
+            var landingPageStatisticsParam = new LandingPageStatisticsParam
             {
                 AffId = userSession.AffId,
                 IsInternal = isInternal,
@@ -51,13 +51,19 @@
                 DeviceType = (short)DeviceTypeHasAll.All
             };
 
+            var landingPageParam = new LandingPageParam
+            {
+                CommGroupName = userSession.GroupName,
+                IsInternal = isInternal,
+            };
+
             var viewModel = new LandingPageStatisticsViewModel
             {
-                LanguageList = MarketingHelper.GetLanguageList(_systemService.GetLanguageList(), userSession.PreferredLanguage),
-                MemberSitePageList = _marketingService.GetLandingPageList(SessionService.UserSession.GroupName, isInternal, language: SystemLanguage.IndiaLanguageCode),
-                FromDate = landingPageParam.FromDate,
-                ToDate = landingPageParam.ToDate,
-                DataList = GetLandingPageStatisticsData(landingPageParam),
+                LanguageList = SystemHelper.GetTargetLanguageList(_systemService.GetLanguageList(), userSession.PreferredLanguage),
+                MemberSitePageList = _marketingService.GetLandingPageList(landingPageParam),
+                FromDate = landingPageStatisticsParam.FromDate,
+                ToDate = landingPageStatisticsParam.ToDate,
+                DataList = GetLandingPageStatisticsData(landingPageStatisticsParam),
                 IsDetail = false
             };
 

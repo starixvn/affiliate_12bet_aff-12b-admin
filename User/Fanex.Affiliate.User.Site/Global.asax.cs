@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.User.Site
 
             DbSettingProviderManager
                 .StartNewSession()
-                .Register(true)
+                .Register()
                 .Run();
         }
 

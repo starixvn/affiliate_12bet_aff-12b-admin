@@ -1,18 +1,18 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    using Constants;
-    using CoreService;
-    using Criterias;
-    using Data.Repository;
-    using DTO;
-    using DTO.UserPanel;
-    using DTO.UserPanel.MediaGallery;
-    using Extensions;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
     using System.Web;
+    using Constants;
+    using CoreService;
+    using Criterias;
+    using Data.Repository;
+    using DTO;
+    using DTO.Systems;
+    using DTO.UserPanel;
+    using Extensions;
 
     public class SystemService : BaseDynamicService, ISystemService
     {
@@ -68,20 +68,32 @@
             return languageList;
         }
 
-        private IEnumerable<Language> GetAllLanguages()
+        public IEnumerable<Language> GetLanguageByTargetCountry(string targetCountry = "")
+        {
+            return GetAllLanguages(targetCountry);
+        }
+
+        private IEnumerable<Language> GetAllLanguages(string targetCountry = "")
         {
             var isForInternal = _sessionService.IsInternal;
-            var languages = FetchTData<LanguageType>(new GetLanguageListCriteria(isForInternal));
+            var languages = FetchTData<Language>(new GetLanguageListCriteria(isForInternal, targetCountry));
 
-            return languages
-                .Select(l => new Language
-                {
-                    Code = l.MarketId,
-                    DisplayName = l.DisplayName,
-                    EnglishName = l.MarketName,
-                    NativeName = l.MarketNativeName,
-                    ShortedCode = l.ShortedCode
-                });
+            return languages;
+        }
+
+        public IEnumerable<TargetCountry> GetSystemTargetCountries()
+        {
+            var isInternal = _sessionService.IsInternal;
+            var cacheKey = isInternal ? CacheKey.InternalTargetCountryList : CacheKey.TargetCountryList;
+
+            var targetCountryList = _cacheService.Get<IEnumerable<TargetCountry>>(cacheKey);
+            if (targetCountryList == null)
+            {
+                targetCountryList = FetchTData<TargetCountry>(new GetTargetCountryCriteria(isInternal));
+                _cacheService.Set(cacheKey, targetCountryList);
+            }
+
+            return targetCountryList ?? new List<TargetCountry>();
         }
 
         public bool IsValid(string langCode)

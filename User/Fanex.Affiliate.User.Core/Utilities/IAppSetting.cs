@@ -47,10 +47,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         DateTime StatementAvailableFrom { get; }
 
-        DateTime LandingPageAvailableDateTime { get; }
-
-        string LandingPageSupportedOnMarkets { get; }
-
         string SymmetricPassword { get; }
 
         string SymmetricSalt { get; }

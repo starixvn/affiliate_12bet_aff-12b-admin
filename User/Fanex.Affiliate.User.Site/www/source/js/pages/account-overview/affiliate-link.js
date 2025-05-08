@@ -17,25 +17,11 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
+            MarketingBase.initEvent();
             _me.renderLinkChannelStatisticPage();
         },
 
         initEvent: function () {
-            $("#AffLinkType").change(function () {
-                let selectedVal = $(this).val();
-                let selectedItem = window.searchOption.RefLinks.find(r => r.AffLinkType == selectedVal);
-
-                let domains = selectedItem.Domains.map(item => new Option(item.DomainName, item.DomainId));
-                let pages = selectedItem.SitePages.map(item => new Option(item.PageName, item.PageCode));
-
-                $("#Page").empty().append(pages);
-                $("#Domain").empty().append(domains);
-            });
-
-            $("#Language").on("change", function () {
-                MarketingBase.getLinkTo();
-            });
-
             $("#btnGenQRCode").click(function () {
                 Site.showLoader();
                 Promise.all([_me.renderQrCodePage(), _me.renderLinkChannelStatisticPage()])
@@ -69,7 +55,8 @@
                 selectedPage: $('#Page').val(),
                 selectedChannel: $('#Channel').val(),
                 selectedDomainId: $('#Domain').val(),
-                selectedLinkType: $('#AffLinkType').val()
+                selectedLinkType: $('#AffLinkType').val(),
+                selectedTargetCountry: $('#TargetCountry').val()
             }
             return MarketingBase.renderQrCodePage(param)
                 .then((response) => {

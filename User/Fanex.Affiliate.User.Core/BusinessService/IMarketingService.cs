@@ -18,13 +18,13 @@
 
         IEnumerable<SizeType> GetSizeList(SizeParam param, bool isInternal = false);
 
-        IEnumerable<Domain> GetAvailableDomainList(int affId, AffiliateLinkType linkType, bool isInternal = false);
+        IEnumerable<Domain> GetAvailableDomainList(AvailableDomainParam param);
 
         IDictionary<string, LanguageLinkViewModel> GenerateLinkList(LinkGeneratingParam linkGeneratedParam);
 
         IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
 
-        IEnumerable<LandingPage> GetLandingPageList(string commGroupName, bool isInternal = false, AffiliateLinkType linkType = AffiliateLinkType.AffiliateLink, string language = "");
+        IEnumerable<LandingPage> GetLandingPageList(LandingPageParam param);
 
         ResultInfo<MarketingChannel> AddMarketingChannel(int userId, string channelName);
 

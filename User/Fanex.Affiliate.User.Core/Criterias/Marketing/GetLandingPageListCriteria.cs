@@ -4,12 +4,15 @@
 
     public class GetLandingPageListCriteria : BaseCriteria
     {
-        private const string SpKey = "Aff_Admin_LandingPage_Sel";
+        private const string SpKey = "Aff_User_LandingPage_Sel";
 
-        public GetLandingPageListCriteria(bool isInternal)
+        public GetLandingPageListCriteria(bool isInternal, string targetCountryCode)
         {
             IsInternal = isInternal;
+            TargetCountryCode = targetCountryCode;
         }
+
+        public string TargetCountryCode { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

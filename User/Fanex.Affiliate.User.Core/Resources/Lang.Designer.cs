@@ -7013,11 +7013,20 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Viet Nam .
+        ///   Looks up a localized string similar to Vietnam .
         /// </summary>
         public static string Vietnam {
             get {
                 return ResourceManager.GetString("Vietnam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Viet Nam.
+        /// </summary>
+        public static string VietnamCountry {
+            get {
+                return ResourceManager.GetString("VietnamCountry", resourceCulture);
             }
         }
         

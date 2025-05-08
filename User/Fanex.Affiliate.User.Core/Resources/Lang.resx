@@ -1407,7 +1407,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Venezuela </value>
   </data>
   <data name="Vietnam" xml:space="preserve">
-    <value>Viet Nam </value>
+    <value>Vietnam </value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
     <value>Vietnamese</value>
@@ -2653,5 +2653,8 @@ You can also email us to {1} or simply fill the form below.</value>
   </data>
   <data name="FdmAmt" xml:space="preserve">
     <value>FDM Amt</value>
+  </data>
+  <data name="VietnamCountry" xml:space="preserve">
+    <value>Viet Nam</value>
   </data>
 </root>

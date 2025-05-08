@@ -1,22 +1,22 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    using Constants;
-    using DTO.UserPanel;
-    using Extensions;
-    using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.DTO;
-    using Fanex.Affiliate.User.Core.Enum;
-    using Fanex.Affiliate.User.Core.MetalModels;
-    using Fanex.Affiliate.User.Core.Resources;
-    using Fanex.Affiliate.User.Core.Utilities;
-    using Filters;
-    using MetalModels.UserPanel;
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
     using System.Web.Mvc;
+    using BusinessService;
+    using Constants;
+    using CoreService;
+    using DTO;
+    using DTO.UserPanel;
+    using Enum;
+    using Extensions;
+    using Filters;
+    using MetalModels;
+    using MetalModels.UserPanel;
+    using Resources;
+    using Utilities;
     using ViewModels.UserPanel.Marketing;
 
     public class MarketingController : BaseMarketingController
@@ -32,8 +32,10 @@
             IAppSetting appSetting,
             ISystemService systemsService,
             IMarketingService marketingService,
+            IAccountService accountService,
             IQrCodeGeneratorService qrCodeGeneratorService,
-            IFileSystem fileSystem) : base(sessionService, appSetting, systemsService, marketingService)
+            IFileSystem fileSystem) 
+            : base(sessionService, appSetting, systemsService, marketingService, accountService)
         {
             _appSetting = appSetting;
             _qrCodeGeneratorService = qrCodeGeneratorService;
@@ -70,8 +72,7 @@
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
             var userSession = SessionService.UserSession;
-            var selectedDomain = MarketingService.GetAvailableDomainList(userSession.AffId, bannerParam.TargetId, SessionService.IsInternal)
-                                                    .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
+            var selectedDomain = GetDomain(bannerParam.SelectedDomainId, bannerParam.SelectedTargetCountry, bannerParam.TargetId);
 
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
@@ -100,6 +101,7 @@
                 MarketingService.TrackingAffMarketingLink(SessionService.UserSession.AffId, result, param);
             }
 
+            ViewBag.SelectedTargetCountry = param.SelectedTargetCountry;
             ViewBag.SelectedDomainId = param.SelectedDomainId;
             ViewBag.SelectedPage = param.SelectedPage;
             ViewBag.SelectedLinkType = param.SelectedLinkType;
@@ -162,14 +164,6 @@
             return Json(MarketingService.GetChannels(userId));
         }
 
-        [HttpGet]
-        [AjaxOnly]
-        public ActionResult GetLinkTo(AffiliateLinkType linkType, string language)
-        {
-            var landingPages = MarketingService.GetLandingPageList(SessionService.UserSession.GroupName, SessionService.IsInternal, linkType, language);
-            return Json(landingPages, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         [AjaxOnly]
         public ActionResult ToggleMarketingLink(MarketingLinkViewModel model)
@@ -195,6 +189,22 @@
             var userId = SessionService.UserSession.AffId;
 
             return View("~/Views/UserPanel/AccountOverview/Partial/_ChannelLinkStatistic.cshtml", MarketingService.GetUsingMarketingLinks(userId));
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetChangedFilters(MarketingFilterParam param)
+        {
+            var changedForm = GetChangedFilter(param);
+
+            return Json( new
+            {
+                sizeList = changedForm.SizeList,
+                domainList = changedForm.Domains,
+                languageList = changedForm.Languages,
+                pageList = changedForm.SitePages,
+                categoryList = changedForm.CategoryList
+            }, JsonRequestBehavior.AllowGet);
         }
 
         private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)

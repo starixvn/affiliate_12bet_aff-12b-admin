@@ -1,8 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
+    using System.Collections.Generic;
     using DTO;
     using DTO.UserPanel;
-    using System.Collections.Generic;
+    using DTO.Systems;
 
     public interface ISystemService
     {
@@ -13,6 +14,10 @@
         IEnumerable<Language> GetLanguageList();
 
         IEnumerable<Language> GetSupportedLanguages();
+
+        IEnumerable<Language> GetLanguageByTargetCountry(string targetCountry = "");
+
+        IEnumerable<TargetCountry> GetSystemTargetCountries();
 
         bool IsValid(string langCode);
 

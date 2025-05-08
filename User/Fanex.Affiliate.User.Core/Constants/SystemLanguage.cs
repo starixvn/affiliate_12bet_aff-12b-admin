@@ -239,7 +239,10 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public static string GetLanguageText(string value)
         {
-            return Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
+            return (value.Contains("(") 
+                           ? Lang.ResourceManager.GetString(value.Replace(" (", "").Replace(")", "")) 
+                           : Lang.ResourceManager.GetString(value.Replace(" ", "")))
+                   ?? value;
         }
     }
 }

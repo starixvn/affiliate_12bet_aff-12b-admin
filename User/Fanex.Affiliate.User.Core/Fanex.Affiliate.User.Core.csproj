@@ -330,6 +330,8 @@
     <Compile Include="Criterias\Statistics\GetMarketingPageStatisticsCriteria.cs" />
     <Compile Include="Criterias\Statistics\GetReferrerStatisticsCriteria.cs" />
     <Compile Include="Criterias\Statistics\GetStatisticsDetailBySiteCriteria.cs" />
+    <Compile Include="Criterias\Systems\GetTargetCountryCriteria.cs" />
+    <Compile Include="Criterias\Systems\GetTargetLanguageByCountryCriteria.cs" />
     <Compile Include="Criterias\Verification\GetLoginInfoByUserDeviceCriteria.cs" />
     <Compile Include="Criterias\Auth\GetSessionIdCriteria.cs" />
     <Compile Include="Criterias\Auth\GetUserInfoCriteria.cs" />
@@ -415,13 +417,13 @@
     <Compile Include="DTO\MarketingChannel.cs" />
     <Compile Include="DTO\MarketingChannelLink.cs" />
     <Compile Include="DTO\PaymentRequestInfo.cs" />
+    <Compile Include="DTO\Systems\TargetCountry.cs" />
     <Compile Include="DTO\UserPanel\Currency.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\MarketingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\BannerType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CategoryType.cs" />
     <Compile Include="DTO\UserPanel\MediaGallery\CurrencyType.cs" />
-    <Compile Include="DTO\UserPanel\MediaGallery\LanguageType.cs" />
     <Compile Include="DTO\UserPanel\SubAffComInfo.cs" />
     <Compile Include="DTO\UserPanel\SubAffDetail.cs" />
     <Compile Include="Enum\AffiliateLinkType.cs" />
@@ -431,8 +433,11 @@
     <Compile Include="MetalModels\Apis\TokenRequestParam.cs" />
     <Compile Include="MetalModels\ContactUsParam.cs" />
     <Compile Include="MetalModels\MarketingLinkParam.cs" />
+    <Compile Include="MetalModels\UserPanel\AvalableDomainParam.cs" />
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
+    <Compile Include="MetalModels\UserPanel\LandingPageParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGeneratingParam.cs" />
+    <Compile Include="MetalModels\UserPanel\MarketingFilterParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingPageStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\MediaCategoryParam.cs" />
     <Compile Include="MetalModels\UserPanel\QrCodeParam.cs" />
@@ -445,14 +450,15 @@
     <Compile Include="Utilities\FileSystem.cs" />
     <Compile Include="Utilities\MapHelper.cs" />
     <Compile Include="Utilities\IFileSystem.cs" />
-    <Compile Include="Utilities\MarketingHelper.cs" />
+    <Compile Include="Utilities\SystemHelper.cs" />
     <Compile Include="Utilities\RegexHelper.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\BreadcumViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\ChangedFilterFormViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\CommonSearchFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LanguageLinkViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingLinkViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MediaGallerySearchFormViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\Marketing\RefLinkViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\MyAccountViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
@@ -524,7 +530,6 @@
     <Compile Include="Utilities\LogHelper.cs" />
     <Compile Include="Utilities\StatisticsHelper.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\AffiliateLinkViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\Marketing\MediaGalleryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\QrCodeLinkModel.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
     <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
@@ -682,8 +687,6 @@
     <Compile Include="ViewModels\UserPanel\CommissionReportDataViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\LatestHotNewViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
-    <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\MessageHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PaymentViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\StatementHistoryViewModel.cs" />
@@ -763,9 +766,7 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\System\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />

@@ -19,5 +19,7 @@
         public string AffType { get; set; }
 
         public AffiliateLinkType TargetId { get; set; }
+
+        public string TargetCountryCode { get; set; }
     }
 }

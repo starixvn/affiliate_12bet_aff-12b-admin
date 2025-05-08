@@ -1,8 +1,10 @@
 ﻿namespace Fanex.Affiliate.User.Core.Commands
 {
+    using Data.Repository;
+    using Data;
     using Utilities;
 
-    public class RecheckinCommand : BaseNonQueryCommand
+    public class RecheckinCommand : NonQueryCommand
     {
         private const string SpKey = "Aff_Recheckin";
 
@@ -11,6 +13,9 @@
             On_UserId = onUserId;
             IsInternal = isInternal;
         }
+
+        [SpParam(Ignored = true)]
+        public bool IsInternal { get; set; }
 
         public int On_UserId { get; set; }
 

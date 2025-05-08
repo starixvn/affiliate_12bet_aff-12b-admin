@@ -28,6 +28,7 @@
             _me.initEvent();
             initPager();
             _me.togglePager();
+            MarketingBase.initEvent();
             MarketingBase.initChannelSelectEvent();
         },
 
@@ -53,28 +54,12 @@
                 _me.getSize();
             });
 
-            $("#AffLinkType").change(function () {
-                let selectedVal = $(this).val();
-                let selectedItem = window.searchOption.RefLinks.find(r => r.AffLinkType == selectedVal);
-
-
-                let domains = selectedItem.Domains.map(item => new Option(item.DomainName, item.DomainId));
-                let pages = selectedItem.SitePages.map(item => new Option(item.PageName, item.PageCode));
-                let category = [new Option(window.dic.all, "")];
-                category.push(...window.searchOption.CategoryList[selectedVal].map(item => new Option(item.Text, item.Value)));
-
-                $("#Page").empty().append(pages);
-                $("#Domain").empty().append(domains);
-                $("#Category").empty().append(category);
-            })
-
             $("#SubCategory").on("change", function () {
                 _me.getSize();
             });
 
             $("#Language").on("change", function () {
                 _me.getSize();
-                MarketingBase.getLinkTo();
             });
 
             $("#Currency").on("change", function () {
@@ -145,7 +130,8 @@
                 currency: $("#Currency").val(),
                 imageType: $("#ImageType").val(),
                 deviceType: $("#DeviceType").val(),
-                targetId: $("#AffLinkType").val()
+                targetId: $("#AffLinkType").val(),
+                targetCountryCode: $('#TargetCountry').val()
             };
 
             $.ajax({
@@ -180,6 +166,7 @@
                 selectedPage: $("#Page").val(),
                 selectedChannel: $("#Channel").val(),
                 targetId: $("#AffLinkType").val(),
+                selectedTargetCountry: $('#TargetCountry').val(),
                 pageIndex: _pageIndex + 1,
                 pageSize: _pageSize
             };
@@ -214,14 +201,15 @@
                 selectedPage: $('#Page').val(),
                 selectedChannel: $('#Channel').val(),
                 selectedDomainId: $('#Domain').val(),
-                selectedLinkType: $('#AffLinkType').val()
+                selectedLinkType: $('#AffLinkType').val(),
+                selectedTargetCountry: $('#TargetCountry').val()
             }
             return MarketingBase.renderQrCodePage(param)
                 .then((response) => {
                     if (response.ok)
                         return response.text()
                     else {
-                        handleFalseResponse(response);
+                        MarketingBase.handleFalseResponse(response);
                     }
                 })
                 .then(html => {

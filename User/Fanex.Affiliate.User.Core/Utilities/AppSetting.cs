@@ -41,10 +41,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public DateTime StatementAvailableFrom => Convert.ToDateTime(GetValue("StatementAvailableFrom"));
 
-        public DateTime LandingPageAvailableDateTime => Convert.ToDateTime(GetValue("LandingPageAvailableDateTime"));
-
-        public string LandingPageSupportedOnMarkets => GetValue("LandingPageSupportedOnMarkets");
-
         public string RsaPublicKey => GetValue("RsaPublicKey");
 
         public string RsaPrivateKey => GetValue("RsaPrivateKey");
