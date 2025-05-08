@@ -85,7 +85,7 @@ export class DomainPopup extends PureComponent {
             return;
         }
 
-        const initialUsedCountryOnControlDomains = initialTargetCountryList.filter(targetCountry =>
+        const initialUsedCountryOnControlDomains = initialTargetCountryList && initialTargetCountryList.filter(targetCountry =>
             targetCountry.IsUsedDomainControl
         ).map(t => t.TargetCountryCode).join(",");
 
