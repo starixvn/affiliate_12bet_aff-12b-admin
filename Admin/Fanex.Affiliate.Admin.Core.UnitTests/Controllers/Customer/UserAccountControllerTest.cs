@@ -107,7 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
         }
 
         [Fact]
-        public async Task UpdateUserAccount_WhenCallWithValidParam_ExcuteSuccessfullyWithContactAppListIsNull()
+        public async Task UpdateUserAccount_WhenCallWithContactAppListIsNull_ReturnError()
         {
             // Arrange
             var param = GetUserAccountParam();
@@ -124,8 +124,8 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Customer
             var data = result.Data as ResultInfo;
 
             // Assert
-            Assert.True(data.IsSuccessful);
-            Assert.Equal(param.AffId, passedParam.AffId);
+            Assert.False(data.IsSuccessful);
+            Assert.Equal("At least one IM account is required", data.Message);
         }
 
         [Fact]

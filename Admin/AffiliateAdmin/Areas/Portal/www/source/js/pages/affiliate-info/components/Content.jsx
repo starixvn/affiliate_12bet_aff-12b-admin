@@ -24,7 +24,7 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
-        const { param, reportTitle, languageList, columnList } = this.props;
+        const { param, reportTitle, languageList, columnList, targetCountryList } = this.props;
         const selectedColumnList = convertSelectedColumnList(columnList);
         const regexCheckAffCode = new RegExp(regExp.CheckAffCode);
 
@@ -34,12 +34,12 @@ export class Content extends Component {
             const response = await post(url, postData);
 
             if (response && response.status === 200) {
-                const reportExcel = new ReportExcel(response.data, reportTitle, languageList, selectedColumnList)
+                const reportExcel = new ReportExcel(response.data, reportTitle, targetCountryList, languageList, selectedColumnList)
                 reportExcel.export();
             }
         }
         else {
-            const reportExcel = new ReportExcel({ MainData: {}, TotalItem: 0 }, reportTitle, languageList, selectedColumnList)
+            const reportExcel = new ReportExcel({ MainData: {}, TotalItem: 0 }, reportTitle, targetCountryList, languageList, selectedColumnList)
             reportExcel.export();
         }
         this.props.toggleLoader(false);
@@ -57,7 +57,7 @@ export class Content extends Component {
     }
 
     render() {
-        const { reportTitle } = this.props;
+        const { reportTitle, } = this.props;
 
         return (
             <div className="data-content my-2">
@@ -68,8 +68,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, param, languageList, columnList }) {
-    return Object.assign({}, { reportTitle, param, languageList, columnList });
+function mapStateToProps({ reportTitle, param, languageList, columnList, targetCountryList }) {
+    return Object.assign({}, { reportTitle, param, languageList, columnList, targetCountryList });
 }
 
 function mapDispatchToProps(dispatch) {

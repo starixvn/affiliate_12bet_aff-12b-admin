@@ -6,11 +6,11 @@ describe('affiliate report - Report Excel ', () => {
     const TITLE_ROW_INDEX = 0;
     const HEADER_ROW_INDEX = 1;
 
-    const INDEX_DEPOSIT_COLUMN = 13;
-    const COLSPAN_MEMBER_STATISTICS = 16;
-    const TOTAL_COLSPAN = 32;
-    const INDEX_COMM_COLUMN = 23;
-    const COLSPAN_AFFILIATE_STATISTICS = 13;
+    const INDEX_DEPOSIT_COLUMN = 14;
+    const COLSPAN_MEMBER_STATISTICS = 17;
+    const TOTAL_COLSPAN = 33;
+    const INDEX_COMM_COLUMN = 24;
+    const COLSPAN_AFFILIATE_STATISTICS = 14;
 
     const MAIN_SECTION_STYLE = 'mainSectionStyle';
     const TOTAL_SECTION_STYLE = 'totalSectionStyle';
@@ -338,6 +338,7 @@ describe('affiliate report - Report Excel ', () => {
             { field: "Signup", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Fdm", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "Fdm_Amount", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0.00" }, wpx: 120 },
+            { field: "FDM_TotalDeposit", mainSectionStyle: { numFmt: "#,##0.00" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { bold: true }, numFmt: "#,##0.00" }, wpx: 120 },
             { field: "ActivePlayer", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "QualifiedMember", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },
             { field: "NoOfSubAff", mainSectionStyle: { numFmt: "#,##0" }, totalSectionStyle: { fill: { fgColor: { rgb: "ffc4a8" }, patternType: "solid" }, font: { "bold": true }, numFmt: "#,##0" }, wpx: 120 },

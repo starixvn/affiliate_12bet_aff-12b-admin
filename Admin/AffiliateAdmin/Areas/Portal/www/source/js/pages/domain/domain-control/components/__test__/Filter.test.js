@@ -4,14 +4,14 @@ import { shallow } from 'enzyme';
 
 describe('domain control - components - Filter ', () => {
     const defaultProps = {
-        marketList: [
+        targetCountryList: [
             {
-                LanguageCode: "en-GB",
-                DomainName: "English (Euro)"
+                TargetCountryCode: "en-GB",
+                TargetCountryName: "English (Euro)"
             },
             {
-                LanguageCode: "vi-VN",
-                DomainName: "VietNamese"
+                TargetCountryCode: "vi-VN",
+                TargetCountryName: "VietNamese"
             }
         ],
         affSubDomainList: [
@@ -30,23 +30,23 @@ describe('domain control - components - Filter ', () => {
     });
 
     it('_handleSearch - should be called when click Search Button', () => {
-        const props = Object.assign({}, defaultProps, { setSelectedMarketId: jest.fn(), fetchData: jest.fn() });
+        const props = Object.assign({}, defaultProps, { setSelectedTargetCountry: jest.fn(), fetchData: jest.fn() });
         const wrapper = shallow(<Filter {...props} />);
 
         wrapper.find('Button').simulate('click');
 
-        expect(props.setSelectedMarketId).toHaveBeenCalledWith('');
+        expect(props.setSelectedTargetCountry).toHaveBeenCalledWith('');
         expect(props.fetchData).toHaveBeenCalledWith('', defaultProps.affSubDomainList);
     });
 
-    it('setMarket - should change category when change market select', () => {
+    it('setTargetCountry - should change category when change target country select', () => {
         const event = {
             target: { value: 'en-GB' }
         };
         const wrapper = shallow(<Filter {...defaultProps} />);
 
-        wrapper.find('Input[type="select"][name="market"]').simulate('change', event);
+        wrapper.find('Input[type="select"][name="targetCountry"]').simulate('change', event);
 
-        expect(wrapper.find('Input[type="select"][name="market"]').prop('value')).toEqual('en-GB');
+        expect(wrapper.find('Input[type="select"][name="targetCountry"]').prop('value')).toEqual('en-GB');
     });
 })

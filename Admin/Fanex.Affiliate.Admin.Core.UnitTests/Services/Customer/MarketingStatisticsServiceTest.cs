@@ -1,14 +1,14 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Criterias.UserPanel.MarketingStatistics;
     using Data.Repository;
     using DTO.UserPanel.Statistics;
     using Fanex.Affiliate.Admin.Core.Services.UserPanel.Statistics;
     using MetaModels.UserPanel;
     using Moq;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     public class MarketingStatisticsServiceTest

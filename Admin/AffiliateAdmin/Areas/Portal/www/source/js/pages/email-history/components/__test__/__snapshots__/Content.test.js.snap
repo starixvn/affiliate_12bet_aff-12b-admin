@@ -216,7 +216,10 @@ exports[`email history - components - Content  render correctly with have gridDa
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="#"
+          >
+            #
+          </t>
           <t
             asc={true}
             colWidth={300}
@@ -499,7 +502,10 @@ exports[`email history - components - Content  render correctly with have gridDa
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="#"
+          >
+            #
+          </t>
           <t
             asc={true}
             colWidth={300}
@@ -634,7 +640,10 @@ exports[`email history - components - Content  render correctly with have gridDa
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="#"
+          >
+            #
+          </t>
           <t
             asc={true}
             colWidth={300}
@@ -769,7 +778,10 @@ exports[`email history - components - Content  render correctly with have gridDa
             onClick={[Function]}
             sortable={false}
             sorting={false}
-          />
+            title="#"
+          >
+            #
+          </t>
           <t
             asc={true}
             colWidth={150}

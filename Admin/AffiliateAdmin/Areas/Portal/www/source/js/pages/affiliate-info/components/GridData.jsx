@@ -14,6 +14,7 @@ import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl, clearUserPanelMenuCookie } from '../../../modules/utils';
 import { convertSelectedColumnList } from '../libs/utils';
 import { htmlDecode } from '../../../modules/htmlHelper';
+import { claimResource } from '../../../modules/claim';
 import NotificationPopup from '../../common/components/NotificationPopup';
 
 export class GridData extends Component {
@@ -75,6 +76,7 @@ export class GridData extends Component {
         const newParam = {
             ParentAffName: userName,
             GroupId: 0,
+            TargetCountryCode: '',
             Language: '',
             Status: '',
             UserName: '',
@@ -89,27 +91,28 @@ export class GridData extends Component {
     _renderHeader(selectedColumnList) {
         return (
             <tr className="freeze-row" key="theard">
-                <th className="freeze-column-header freeze-column-header-0" width={50} title={headerText.Index}>{headerText.Index}</th>
-                <th className="freeze-column-header freeze-column-header-1" width={90} title={headerText.ParentAffName}>{headerText.ParentAffName}</th>
-                <th className="freeze-column-header freeze-column-header-2" width={125} title={headerText.UserName}>{headerText.UserName}</th>
-                {selectedColumnList['AffCode'] && <th width={75} title={headerText.AffCode}>{headerText.AffCode}</th>}
-                {selectedColumnList['Status'] && <th width={75} title={headerText.Status}>{headerText.Status}</th>}
-                {selectedColumnList['FirstName'] && <th width={75} title={headerText.FirstName}>{headerText.FirstName}</th>}
-                {selectedColumnList['LastName'] && <th width={75} title={headerText.LastName}>{headerText.LastName}</th>}
-                {selectedColumnList['Language'] && <th width={75} title={headerText.Language}>{headerText.Language}</th>}
-                {selectedColumnList['Phone'] && <th width={100} title={headerText.Phone}>{headerText.Phone}</th>}
-                {selectedColumnList['Email'] && <th width={175} title={headerText.Email}>{headerText.Email}</th>}
-                {selectedColumnList['RegistrationDateText'] && <th width={100} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</th>}
-                {selectedColumnList['ApprovalDateText'] && <th width={100} title={headerText.ApprovalDateText}>{headerText.ApprovalDateText}</th>}
-                {selectedColumnList['ApprovedByText'] && <th width={100} title={headerText.ApprovedByText}>{headerText.ApprovedByText}</th>}
-                {selectedColumnList['CommissionGroup'] && <th width={100} title={headerText.CommissionGroup}>{headerText.CommissionGroup}</th>}
-                {selectedColumnList['BalanceBf'] && <th width={100} title={headerText.BalanceBf}>{headerText.BalanceBf}</th>}
-                {selectedColumnList['Currency'] && <th width={75} title={headerText.Currency}>{headerText.Currency}</th>}
-                {selectedColumnList['PlayerUserName'] && <th width={100} title={headerText.PlayerUserName}>{headerText.PlayerUserName}</th>}
-                {selectedColumnList['PlayerCurrency'] && <th width={75} title={headerText.PlayerCurrency}>{headerText.PlayerCurrency}</th>}
-                {selectedColumnList['Member'] && <th width={50} title={headerText.Member}>{headerText.Member}</th>}
-                {selectedColumnList['NoOfSubAff'] && <th width={90} title={headerText.NoOfSubAff}>{headerText.NoOfSubAff}</th>}
-                <th width={70} title={headerText.Password}>{headerText.Password}</th>
+                <th className="freeze-column-header freeze-column-header-0" width={50} title={headerText.Index.label}>{headerText.Index.label}</th>
+                <th className="freeze-column-header freeze-column-header-1" width={90} title={headerText.ParentAffName.label}>{headerText.ParentAffName.label}</th>
+                <th className="freeze-column-header freeze-column-header-2" width={125} title={headerText.UserName.label}>{headerText.UserName.label}</th>
+                {selectedColumnList['AffCode'] && <th width={75} title={headerText.AffCode.label}>{headerText.AffCode.label}</th>}
+                {selectedColumnList['Status'] && <th width={75} title={headerText.Status.label}>{headerText.Status.label}</th>}
+                {selectedColumnList['FirstName'] && <th width={75} title={headerText.FirstName.label}>{headerText.FirstName.label}</th>}
+                {selectedColumnList['LastName'] && <th width={75} title={headerText.LastName.label}>{headerText.LastName.label}</th>}
+                {selectedColumnList['TargetCountryCode'] && <th width={75} title={headerText.TargetCountryCode.label}>{headerText.TargetCountryCode.label}</th>}
+                {selectedColumnList['Language'] && <th width={75} title={headerText.Language.label}>{headerText.Language.label}</th>}
+                {selectedColumnList['Phone'] && <th width={100} title={headerText.Phone.label}>{headerText.Phone.label}</th>}
+                {selectedColumnList['Email'] && <th width={175} title={headerText.Email.label}>{headerText.Email.label}</th>}
+                {selectedColumnList['RegistrationDateText'] && <th width={100} title={headerText.RegistrationDateText.label}>{headerText.RegistrationDateText.label}</th>}
+                {selectedColumnList['ApprovalDateText'] && <th width={100} title={headerText.ApprovalDateText.label}>{headerText.ApprovalDateText.label}</th>}
+                {selectedColumnList['ApprovedByText'] && <th width={100} title={headerText.ApprovedByText.label}>{headerText.ApprovedByText.label}</th>}
+                {selectedColumnList['CommissionGroup'] && <th width={100} title={headerText.CommissionGroup.label}>{headerText.CommissionGroup.label}</th>}
+                {selectedColumnList['BalanceBf'] && <th width={100} title={headerText.BalanceBf.label}>{headerText.BalanceBf.label}</th>}
+                {selectedColumnList['Currency'] && <th width={75} title={headerText.Currency.label}>{headerText.Currency.label}</th>}
+                {selectedColumnList['PlayerUserName'] && <th width={100} title={headerText.PlayerUserName.label}>{headerText.PlayerUserName.label}</th>}
+                {selectedColumnList['PlayerCurrency'] && <th width={75} title={headerText.PlayerCurrency.label}>{headerText.PlayerCurrency.label}</th>}
+                {selectedColumnList['Member'] && <th width={50} title={headerText.Member.label}>{headerText.Member.label}</th>}
+                {selectedColumnList['NoOfSubAff'] && <th width={90} title={headerText.NoOfSubAff.label}>{headerText.NoOfSubAff.label}</th>}
+                <th width={70} title={headerText.Password.label}>{headerText.Password.label}</th>
             </tr>
         );
     }
@@ -118,13 +121,13 @@ export class GridData extends Component {
         const dataRows = [];
 
         if (dataList.length) {
-            const { pagingOption, isShowMemberLink } = this.props;
+            const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
 
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList, isShowMemberLink));
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList));
             }
         }
         else {
@@ -137,8 +140,8 @@ export class GridData extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, selectedColumnList, isShowMemberLink) {
-        const { languageList } = this.props;
+    _buildDataRow(dataItem, index, selectedColumnList) {
+        const { languageList, targetCountryList, isShowMemberLink } = this.props;
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
         const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
@@ -162,6 +165,7 @@ export class GridData extends Component {
             <Button color="link" className="p-0" onClick={() => this._handleViewSubAff(dataItem.UserName)}>
                 {formattedSubAffValue}
             </Button>);
+        const targetCountry = targetCountryList[dataItem.TargetCountryCode];
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.IsUsingPrivateCommGroup ? (
             <Button color="link"
@@ -195,6 +199,7 @@ export class GridData extends Component {
                 {selectedColumnList['Status'] && <td title={dataItem.Status}>{dataItem.Status}</td>}
                 {selectedColumnList['FirstName'] && <td title={firstName}>{firstName}</td>}
                 {selectedColumnList['LastName'] && <td title={lastName}>{lastName}</td>}
+                {selectedColumnList['TargetCountryCode'] && <td title={targetCountry}>{targetCountry}</td>}
                 {selectedColumnList['Language'] && <td title={language}>{language}</td>}
                 {selectedColumnList['Phone'] && <td title={phone}>{phone}</td>}
                 {selectedColumnList['Email'] && <td title={email}>{email}</td>}
@@ -214,7 +219,7 @@ export class GridData extends Component {
                             <span className="oi oi-pencil text-secondary" style={{ position: 'static' }}></span>
                         </Button>)
                     }
-                </td>
+                </td> 
             </tr>
         );
     }
@@ -332,8 +337,10 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, languageList, param, columnList, isShowMemberLink }) {
-    return Object.assign({}, { pagingOption, languageList, param, columnList, isShowMemberLink });
+function mapStateToProps({ pagingOption, targetCountryList, languageList, param, columnList, claimsPrincipal }) {
+    const isShowMemberLink = claimsPrincipal.hasWriteClaim(claimResource.Player);
+
+    return Object.assign({}, { pagingOption, targetCountryList, languageList, param, columnList, isShowMemberLink });
 }
 
 function mapDispatchToProps(dispatch) {

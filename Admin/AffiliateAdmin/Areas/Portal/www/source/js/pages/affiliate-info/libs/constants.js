@@ -26,27 +26,28 @@ export const sortByList = {
 export const defaultColumns = ['Index', 'ParentAffName', 'UserName', 'Password'];
 
 export const headerText = {
-    Index: '#',
-    ParentAffName: 'Parent Affiliate',
-    UserName: 'Username',
-    AffCode: 'Affiliate Code',
-    Status: 'Status',
-    FirstName: 'First Name',
-    LastName: 'Last Name',
-    Language: 'Language',
-    Phone: 'Mobile Phone',
-    Email: 'Email',
-    RegistrationDateText: 'Registration Date',
-    ApprovalDateText: 'Approval Date',
-    ApprovedByText: 'Approved By',
-    CommissionGroup: 'Revenue Group',
-    BalanceBf: 'Balance B/F',
-    Currency: 'Aff. Currency',
-    PlayerUserName: 'Aff. Player',
-    PlayerCurrency: 'Aff. Player Currency',
-    Member: 'Player',
-    NoOfSubAff: 'Sub-Affiliate',
-    Password: 'Password'
+    Index: { label: globalResource.Index },
+    ParentAffName: { label: 'Parent Affiliate' },
+    UserName: { label: 'Username' },
+    AffCode: { label: 'Affiliate Code' },
+    Status: { label: 'Status' },
+    FirstName: { label: 'First Name' },
+    LastName: { label: 'Last Name' },
+    TargetCountryCode: { label: 'Target Country' },
+    Language: { label: 'Language' },
+    Phone: { label: 'Mobile Phone' },
+    Email: { label: 'Email' },
+    RegistrationDateText: { label: 'Registration Date' },
+    ApprovalDateText: { label: 'Approval Date' },
+    ApprovedByText: { label: 'Approved By' },
+    CommissionGroup: { label: 'Revenue Group' },
+    BalanceBf: { label: 'Balance B/F' },
+    Currency: { label: 'Aff. Currency' },
+    PlayerUserName: { label: 'Aff. Player' },
+    PlayerCurrency: { label: 'Aff. Player Currency' },
+    Member: { label: 'Player' },
+    NoOfSubAff: { label: 'Sub-Affiliate' },
+    Password: { label: 'Password' }
 }
 
 export const minWidthOfColumns = {
@@ -54,6 +55,7 @@ export const minWidthOfColumns = {
     Status: 75,
     FirstName: 75,
     LastName: 75,
+    TargetCountryCode: 75,
     Language: 75,
     Phone: 100,
     Email: 175,
@@ -75,6 +77,7 @@ export const resource = {
     ReportName: 'AFFILIATE REPORT',
     AllCommGroups: 'All Revenue Groups',
     AllLanguages: 'All Languages',
+    AllTargetCountries: 'All Target Countries',
     AllStatuses: 'All Statuses',
     UsernameContains: 'USERNAME CONTAINS ',
     EmailContains: 'EMAIL CONTAINS ',
@@ -94,6 +97,7 @@ export const regExp = {
 
 export const defaultState = {
     selectedCommGroup: 0,
+    selectedTargetCountry: '',
     selectedLanguage: '',
     selectedStatus: '',
     parentAffName: '',

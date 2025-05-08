@@ -1,7 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -28,41 +28,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return GetTData<LandingPage>(new LandingPageCriteria { PageId = pageId });
         }
 
-        public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)
+        public IEnumerable<TargetCountry> GetExcludedTargetCountryList(int pageId)
         {
-            if (HasRestrictedCharacter(param.PageCode))
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = RestricedCharacterErrorMessage
-                };
-            }
-
-            var command = new InsertLandingPageCommand();
-            AssignBaseLandingPageCommand(command, param);
-
-            return ExecuteReturnResultInfo(command);
-        }
-
-        public ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param)
-        {
-            if (HasRestrictedCharacter(param.PageCode))
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = RestricedCharacterErrorMessage
-                };
-            }
-
-            var command = new UpdateLandingPageCommand
-            {
-                PageId = param.PageId,
-            };
-            AssignBaseLandingPageCommand(command, param);
-
-            return ExecuteReturnResultInfo(command);
+            return FetchTData<TargetCountry>(new GetBlockTargetCountriesByLandingPageCriteria { PageId = pageId });
         }
 
         public ResultInfo DeleteLandingPage(DeleteLandingPageParam param)
@@ -77,6 +45,35 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             return ExecuteReturnResultInfo(command);
         }
 
+        public ResultInfo HandleSaveLandingPage(InsertUpdateLandingPageParam param, bool isInsert = false)
+        {
+            if (HasRestrictedCharacter(param.PageCode))
+            {
+                return ResultInfo.GenerateErr(RestricedCharacterErrorMessage);
+            }
+
+            return isInsert ? InsertLandingPage(param) : UpdateLandingPage(param);
+        }
+
+        private ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)
+        {
+            var command = new InsertLandingPageCommand();
+            AssignBaseLandingPageCommand(command, param);
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        private ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param)
+        {
+            var command = new UpdateLandingPageCommand
+            {
+                PageId = param.PageId,
+            };
+            AssignBaseLandingPageCommand(command, param);
+
+            return ExecuteReturnResultInfo(command);
+        }
+
         private static bool HasRestrictedCharacter(string input)
         {
             return RegexHelper.IsMatch(input, RestrictedCharacterPattern);
@@ -86,6 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             command.PageCode = param.PageCode;
             command.PageName = param.PageName;
+            command.BlockTargetCountry = param.BlockTargetCountry;
             command.UserId = param.UserId;
             command.Ip = param.Ip;
         }

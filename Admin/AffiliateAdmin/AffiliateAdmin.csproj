@@ -278,6 +278,11 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnoverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\QmTurnOverSetting.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\__test__\redux\QmTurnOverSetting.redux.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\BlockTargetCountryFormGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\utils\targetCountry.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\domain\libs\menus.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\specific-domain-control\actions\__test__\index.test.js" />
@@ -317,6 +322,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\reducers\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\email-history\__test__\index.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\menus.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerConfigs.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\index.js" />
@@ -832,7 +840,6 @@
     <Content Include="Areas\Portal\Views\Affiliate\_AffiliateSubMenu.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\PaymentRequest.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\CommissionGroup.cshtml" />
-    <Content Include="Areas\Portal\Views\MediaGallery\_MediaGallerySubMenu.cshtml" />
     <Content Include="Areas\Portal\Views\MediaGallery\LandingPageList.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\components\Content.jsx" />
@@ -848,7 +855,6 @@
     <Content Include="Areas\Portal\Views\ChangeAdminPassword\Index.cshtml" />
     <Content Include="Areas\Portal\Views\AccessDenied\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Domain\DomainControl.cshtml" />
-    <Content Include="Areas\Portal\Views\Domain\_DomainSubMenu.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\domain-control\index.jsx" />
@@ -1308,8 +1314,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\under-maintenance.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\change-admin-password.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\alert.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\domain\domain-control.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\domain.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\administrator\administrator.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\administrator\department.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_policy-popup.scss" />
@@ -1416,6 +1421,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\email-history.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\marketing-statistics.scss" />
     <Content Include="Areas\Portal\Views\Domain\SpecificDomainControl.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\common\block-target-country-form-group.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

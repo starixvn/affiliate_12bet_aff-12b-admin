@@ -1,14 +1,10 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
-using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
@@ -27,21 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true") },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false") },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") },
-                new SubMenu { Name = Lang.SubAffiliateDomain, Url = Url.Content("~/Portal/SubAffDomain"), IsActive = true },
-                new SubMenu { Name = Lang.SpecificDomainControl, Url = Url.Content("~/Portal/SpecificDomainControl") }
-            };
-
-            var model = new DomainViewModel
-            {
-                SubMenuList = subMenu
-            };
-
-            return View("~/Areas/Portal/Views/Domain/SubAffDomain.cshtml", model);
+            return View("~/Areas/Portal/Views/Domain/SubAffDomain.cshtml");
         }
 
         [HttpPost]

@@ -6,6 +6,7 @@ import * as types from '../actions/types';
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 import { showPopupPassword } from '../../common/reducers';
+import { claimsPrincipal } from '../../../reducers/claimReducer';
 
 const commGroupList = createReducer(null, {
     [types.SET_COMM_GROUP_LIST](prevState, action) {
@@ -14,9 +15,9 @@ const commGroupList = createReducer(null, {
 });
 
 const languageList = createReducer({}, {});
+const targetCountryList = createReducer({}, {});
 
 const groupId = createReducer(0, {});
-const isShowMemberLink = createReducer(false, {});
 
 export const reportTitle = createReducer('', {
     [types.SET_REPORT_TITLE](prevState, action) {
@@ -66,10 +67,11 @@ export default combineReducers({
     param,
     commGroupList,
     languageList,
+    targetCountryList,
     isShowLoader,
     showPopupPassword,
     showPopupCommGroup,
-    isShowMemberLink,
+    claimsPrincipal,
     affId,
     parentAffName,
     commGroup,

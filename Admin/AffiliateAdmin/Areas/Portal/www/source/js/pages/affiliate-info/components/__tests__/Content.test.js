@@ -7,12 +7,19 @@ import ReportExcel from '../../libs/reportExcel';
 jest.mock('../../libs/reportExcel');
 
 describe('affiliate info - Content ', () => {
+    const targetCountryList = {
+        'MY': 'Malaysia',
+        'TH': 'Thailand',
+        'CN': 'China'
+    };
+
     const mockColumnList = [
         { columnKey: "Index", columnName: "#", checked: true },
         { columnKey: "Status", columnName: "Status", checked: true },
         { columnKey: "FirstName", columnName: "First Name", checked: true },
         { columnKey: "LastName", columnName: "Last Name", checked: true },
         { columnKey: "Language", columnName: "Language", checked: true },
+        { columnKey: "TargetCountryCode", columnName: "Target Country", checked: true },
         { columnKey: "Phone", columnName: "Mobile Phone", checked: true },
         { columnKey: "Email", columnName: "Email", checked: true },
         { columnKey: "RegistrationDateText", columnName: "Registration Date", checked: true },
@@ -30,6 +37,7 @@ describe('affiliate info - Content ', () => {
         FirstName: true,
         LastName: true,
         Language: true,
+        TargetCountryCode: true,
         Phone: true,
         Email: true,
         RegistrationDateText: true,
@@ -43,6 +51,7 @@ describe('affiliate info - Content ', () => {
     };
     const defaultProps = {
         columnList: mockColumnList,
+        targetCountryList,
         reportTitle: '',
         param: {},
         languageList: {}
@@ -103,7 +112,7 @@ describe('affiliate info - Content ', () => {
             expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
 
             expect(ajaxRequest.post).toHaveBeenCalledWith(expectedUrl, expectedParam);
-            expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, reportTitle, languageList, selectedColumnList);
+            expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, reportTitle, targetCountryList, languageList, selectedColumnList);
         });
 
         it('should call toggleLoader twice, post but not call ReportExcel when exporting excel with response incorrect', async () => {
@@ -126,7 +135,7 @@ describe('affiliate info - Content ', () => {
             expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
 
             expect(ajaxRequest.post).toHaveBeenCalledWith(expectedUrl, expectedParam);
-            expect(ReportExcel).not.toHaveBeenCalledWith(expectedResponse.data, reportTitle, languageList, selectedColumnList);
+            expect(ReportExcel).not.toHaveBeenCalledWith(expectedResponse.data, reportTitle, targetCountryList, languageList, selectedColumnList);
         });
 
         it('should call toggleLoader twice, ReportExcel but not call post when exporting excel with affId incorrect', async () => {
@@ -147,7 +156,7 @@ describe('affiliate info - Content ', () => {
             expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
 
             expect(ajaxRequest.post).not.toHaveBeenCalledWith(expectedUrl, expectedParam);
-            expect(ReportExcel).toHaveBeenCalledWith(expectData, reportTitle, languageList, selectedColumnList);
+            expect(ReportExcel).toHaveBeenCalledWith(expectData, reportTitle, targetCountryList, languageList, selectedColumnList);
         });
     });
 

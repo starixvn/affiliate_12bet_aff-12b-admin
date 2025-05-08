@@ -23,10 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery
 
         public IEnumerable<AffTypeInfo> AffTypeList { get; set; }
 
-        public IEnumerable<SubMenu> SubMenuList { get; set; }
-
         public BannerParamFromHome Param { get; set; }
-
 
         public string BannerRootUrl { get; set; }
     }

@@ -28,6 +28,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       User Name
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -72,6 +73,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       First Name
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -118,6 +120,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       Last Name
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -256,6 +259,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       Email Address
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -300,6 +304,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       Contact Number
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -326,7 +331,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
     tag="div"
   >
     <Label
-      className=""
+      className="required"
       for="MSN/YM/QQ"
       sm={3}
       tag="label"
@@ -344,6 +349,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
       MSN/YM/QQ
     </Label>
     <Col
+      className="input-item"
       sm={9}
       tag="div"
       widths={
@@ -361,6 +367,7 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
         id="MSN/YM/QQ"
         name="MSN/YM/QQ"
         onChange={[Function]}
+        placeholder=""
         type="text"
         value="@123 Lê Văn"
       />

@@ -1,7 +1,5 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Commands.Domain
 {
-    using Fanex.Data;
-
     public class InsertDomainCommand : BaseNonQueryCommand
     {
         private readonly string SpKey;
@@ -19,7 +17,6 @@
 
         public bool IsSSL { get; set; }
 
-        [SpParam(SqlParamName = "BlockMarket")]
-        public string BlockMarkets { get; set; }
+        public string BlockTargetCountry { get; set; }
     }
 }

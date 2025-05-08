@@ -35,26 +35,26 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
             // Assert
             Assert.Equal("~/Areas/Portal/Views/Domain/DomainControl.cshtml", viewName);
-            Assert.Empty(model.MarketList);
+            Assert.Empty(model.TargetCountryList);
         }
 
         [Fact]
         public void GetDomainControlList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var market = "en";
+            var targetCountryCode = "en";
             string passedParam = null;
             var domainControlService = new Mock<IDomainControlService>();
             domainControlService.Setup(t => t.GetDomainControl(It.IsAny<string>(), It.IsAny<int>())).Returns(new List<DomainControlInfo> { new DomainControlInfo() }).Callback<string, int>((p, i) => passedParam = p);
             var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
 
             // Action
-            var result = controller.GetDomainControlList(market, string.Empty) as JsonNetResult;
+            var result = controller.GetDomainControlList(targetCountryCode, string.Empty) as JsonNetResult;
             var data = result.Data as List<DomainControlInfo>;
 
             // Assert
             Assert.Single(data);
-            Assert.Equal(market, passedParam);
+            Assert.Equal(targetCountryCode, passedParam);
         }
 
         [Fact]
@@ -178,6 +178,123 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
             // Assert
             Assert.False(resultInfo.IsSuccessful);
             Assert.Equal("The Domain Control is incorrect!", resultInfo.Message);
+        }
+
+        [Fact]
+        public void GetSubAffDomainControlList_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var expectedList = new List<string> { "go" };
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(s => s.GetSubAffDomainControlList()).Returns(expectedList);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetSubAffDomainControlList() as JsonNetResult;
+            var data = result.Data as List<string>;
+
+            // Assert
+            Assert.Single(data);
+            Assert.Equal(expectedList, data);
+        }
+
+        [Fact]
+        public void GetDomainControlById_WhenValidId_ReturnCorrectData()
+        {
+            // Arrange
+            var domainControlId = 123;
+            var expectedDomainControl = new DomainControlInfo { DomainControlId = domainControlId };
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(s => s.GetDomainControlById(domainControlId)).Returns(expectedDomainControl);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlById(domainControlId) as JsonNetResult;
+            var data = result.Data as DomainControlInfo;
+
+            // Assert
+            Assert.NotNull(data);
+            Assert.Equal(domainControlId, data.DomainControlId);
+        }
+
+        [Fact]
+        public void GetDomainControlById_WhenInvalidTargetCountryCode_ReturnNull()
+        {
+            // Arrange
+            var domainControlId = 123;
+            var expectedDomainControl = new DomainControlInfo { DomainControlId = domainControlId, TargetCountryCode = "invalid" };
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(s => s.GetDomainControlById(domainControlId)).Returns(expectedDomainControl);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlById(domainControlId) as JsonNetResult;
+            var data = result.Data as DomainControlInfo;
+
+            // Assert
+            Assert.Null(data);
+        }
+
+        [Fact]
+        public void GetDomainControlById_WhenInvalidDomainControlId_ReturnNull()
+        {
+            // Arrange
+            var domainControlId = 123;
+            DomainControlInfo expectedDomainControl = null;
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(s => s.GetDomainControlById(domainControlId)).Returns(expectedDomainControl);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlById(domainControlId) as JsonNetResult;
+            var data = result.Data as DomainControlInfo;
+
+            // Assert
+            Assert.Null(data);
+        }
+
+
+        [Fact]
+        public void GetDomainControlList_WhenIsGetAllTrue_ReturnAllData()
+        {
+            // Arrange
+            var targetCountryCode = "en";
+            var expectedList = new List<DomainControlInfo> { new DomainControlInfo() };
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(s => s.GetDomainControl(targetCountryCode, It.IsAny<int>())).Returns(expectedList);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlList(targetCountryCode, string.Empty, true) as JsonNetResult;
+            var data = result.Data as List<DomainControlInfo>;
+
+            // Assert
+            Assert.Single(data);
+            Assert.Equal(expectedList, data);
+        }
+
+        [Fact]
+        public void GetDomainControlList_WhenSubDomainRegexProvided_ReturnFilteredData()
+        {
+            // Arrange
+            var targetCountryCode = "en";
+            var subDomainRegex = "test";
+            var expectedList = new List<DomainControlInfo>
+            {
+                new DomainControlInfo { AffDomain = "test.domain.com" },
+                new DomainControlInfo { AffDomain = "other.domain.com" }
+            };
+            var domainControlService = new Mock<IDomainControlService>();
+            domainControlService.Setup(s => s.GetDomainControl(targetCountryCode, It.IsAny<int>())).Returns(expectedList);
+            var controller = CreateDomainControlController(domainControlService: domainControlService.Object);
+
+            // Action
+            var result = controller.GetDomainControlList(targetCountryCode, subDomainRegex, false) as JsonNetResult;
+            var data = result.Data as IEnumerable<DomainControlInfo>;
+
+            // Assert
+            Assert.Single(data);
+            //Assert.Equal("test.domain.com", data[0].AffDomain);
         }
 
         private DomainControlController CreateDomainControlController(

@@ -3,14 +3,35 @@ import { InsertUpdateForm } from '../InsertUpdateForm';
 import { shallow } from 'enzyme';
 
 describe('landing page list - components - InsertUpdateForm ', () => {
+    const targetCountryList = [
+        {
+            TargetCountryCode: 'en-US',
+            TargetCountryName: 'English',
+            Status: 0
+        },
+        {
+            TargetCountryCode: 'th-TH',
+            TargetCountryName: 'Thailand',
+            Status: 1
+        },
+        {
+            TargetCountryCode: 'zh-CN',
+            TargetCountryName: 'Chinese',
+            Status: 0
+        }
+    ];
+
     const landingPageInfo = {
         PageCode: "numbergame",
         PageId: 22,
         PageName: "Number Game"
     };
 
+
     const defaultProps = {
         selectedLandingPageId: 22,
+        getTargetCountryListByLandingPage: jest.fn(() => targetCountryList),
+        toggleLoader: jest.fn(),
         fetchData: jest.fn()
     };
 
@@ -48,46 +69,52 @@ describe('landing page list - components - InsertUpdateForm ', () => {
         expect(result.setState).toHaveBeenCalledWith({ isInsert: false });
     });
 
-    it('componentDidUpdate should call setState and _handleGetLandingPageDetail', () => {
+    it('componentDidUpdate should call setState and _handleUpdateState', () => {
         const props = Object.assign({}, defaultProps, { selectedLandingPageId: 1, getLandingPageDetail: jest.fn(() => landingPageInfo) });
         const result = shallow(<InsertUpdateForm {...props} />);
         result.setState = jest.fn();
 
         const instance = result.instance();
-        instance._handleGetLandingPageDetail = jest.fn();
+        instance._handleUpdateState = jest.fn();
 
         instance.componentDidUpdate(defaultProps);
 
         expect(result.setState).toHaveBeenCalledWith({ isInsert: false });
-        expect(instance._handleGetLandingPageDetail).toHaveBeenCalledWith(1);
+        expect(instance._handleUpdateState).toHaveBeenCalledWith(1);
     });
 
-    it('componentDidUpdate should not call setState and _handleGetLandingPageDetail', () => {
+    it('componentDidUpdate should not call setState and _handleUpdateState', () => {
         const result = shallow(<InsertUpdateForm {...defaultProps} />);
         result.setState = jest.fn();
 
         const instance = result.instance();
-        instance._handleGetLandingPageDetail = jest.fn();
+        instance._handleUpdateState = jest.fn();
 
         instance.componentDidUpdate(defaultProps);
 
         expect(result.setState).not.toHaveBeenCalled();
-        expect(instance._handleGetLandingPageDetail).not.toHaveBeenCalled();
+        expect(instance._handleUpdateState).not.toHaveBeenCalled();
     });
 
-    it('_handleGetLandingPageDetail should call getLandingPageDetail and setState', async () => {
+    it('_handleUpdateState should call getLandingPageDetail and setState', async () => {
         const selectedLandingPageId = 22;
         const props = Object.assign({}, defaultProps, { getLandingPageDetail: jest.fn(() => landingPageInfo) });
         const result = shallow(<InsertUpdateForm {...props} />);
 
         result.setState = jest.fn();
 
-        await result.instance()._handleGetLandingPageDetail(selectedLandingPageId);
+        await result.instance()._handleUpdateState(selectedLandingPageId);
 
         expect(props.getLandingPageDetail).toHaveBeenCalledWith(selectedLandingPageId);
         expect(result.setState).toHaveBeenCalledWith({
-            pageCode: "numbergame",
-            pageName: "Number Game"
+            isBlockAllTargetCountries: false,
+            isInsert: false,
+            selectedLandingPage: {
+                pageCode: "numbergame",
+                pageName: "Number Game",
+                blockTargetCountry: 'th-TH'
+            },
+            targetCountryList
         });
     });
 
@@ -105,7 +132,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
 
         result.find('Input[type="text"][name="pageName"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ pageName: 'Bonus' });
+        expect(result.setState).toHaveBeenCalledWith({ selectedLandingPage: { blockTargetCountry: '', pageCode: '', pageName: 'Bonus' } });
     });
 
     it('_handleChange should be called when change pageCode input', () => {
@@ -122,7 +149,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
 
         result.find('Input[type="text"][name="pageCode"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ pageCode: 'test' });
+        expect(result.setState).toHaveBeenCalledWith({ selectedLandingPage: { blockTargetCountry: '', pageCode: 'test', pageName: '' } });
     });
 
     it('_handleKeyPress - should call handleSubmit when press Enter in pageName input', () => {
@@ -200,7 +227,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(instance.setState).toHaveBeenCalledWith({ isClickedSubmit: true });
-        expect(props.insertLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "" });
+        expect(props.insertLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "", blockTargetCountry: '' });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Add Failed!");
     });
 
@@ -219,7 +246,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(instance.setState).toHaveBeenCalledWith({ isClickedSubmit: true });
-        expect(props.insertLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "" });
+        expect(props.insertLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "", blockTargetCountry: '' });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Adding has a error");
     });
 
@@ -238,7 +265,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(instance.setState).toHaveBeenCalledWith({ isClickedSubmit: true });
-        expect(props.insertLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "" });
+        expect(props.insertLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "", blockTargetCountry: '' });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "Add Successfully!");
     });
 
@@ -257,7 +284,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(instance.setState).toHaveBeenCalledWith({ isClickedSubmit: true });
-        expect(props.updateLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "" });
+        expect(props.updateLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "", blockTargetCountry: '' });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Update Failed!");
     });
 
@@ -277,7 +304,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(instance.setState).toHaveBeenCalledWith({ isClickedSubmit: true });
-        expect(props.updateLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "" });
+        expect(props.updateLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "", blockTargetCountry: '' });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(false, "Updating has a error");
     });
 
@@ -297,7 +324,7 @@ describe('landing page list - components - InsertUpdateForm ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(instance.setState).toHaveBeenCalledWith({ isClickedSubmit: true });
-        expect(props.updateLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "" });
+        expect(props.updateLandingPage).toHaveBeenCalledWith({ "pageCode": "", "pageId": 22, "pageName": "", blockTargetCountry: '' });
         expect(instance._handleShowAlert).toHaveBeenCalledWith(true, "Update Successfully!");
     });
 
@@ -345,13 +372,18 @@ describe('landing page list - components - InsertUpdateForm ', () => {
 
         expect(props.setSelectedLandingPageId).toHaveBeenCalledWith(null);
         expect(instance.setState).toHaveBeenCalledWith({
-            pageName: '',
-            pageCode: '',
             isClickedSubmit: false,
             isInsert: true,
             isShowMessage: false,
             isSuccess: true,
-            message: ''
+            message: '',
+            isBlockAllTargetCountries: false,
+            selectedLandingPage: {
+                pageCode: "",
+                pageName: "",
+                blockTargetCountry: ''
+            },
+            targetCountryList: null
         });
     });
 })

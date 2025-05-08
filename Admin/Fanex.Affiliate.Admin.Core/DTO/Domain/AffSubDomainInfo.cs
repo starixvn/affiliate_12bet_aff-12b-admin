@@ -6,6 +6,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
     {
         public string AffDomain { get; set; }
 
-        public string AffSubDomain => AffDomain.ToLowerInvariant().Split('.').FirstOrDefault();
+        public string AffSubDomain => AffDomain?.ToLowerInvariant().Split('.').FirstOrDefault();
     }
 }

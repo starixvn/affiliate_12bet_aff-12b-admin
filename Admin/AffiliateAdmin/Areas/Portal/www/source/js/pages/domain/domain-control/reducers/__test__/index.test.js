@@ -11,7 +11,7 @@ const runTestReducer = ({ name, value, action, expectedResult }) => {
 const testCaseList = [
     { name: 'shouldResetScrollPosition', value: true, action: { type: types.SHOULD_RESET_SCROLL_POSITION, data: false }, expectedResult: false },
     { name: 'gridData', value: null, action: { type: types.SET_GRID_DATA, data: [{ domainName: 'abc.com' }] }, expectedResult: [{ domainName: 'abc.com' }] },
-    { name: 'selectedMarketId', value: null, action: { type: types.SET_SELECTED_MARKET_ID, data: 'en-US' }, expectedResult: 'en-US' },
+    { name: 'selectedTargetCountry', value: null, action: { type: types.SET_SELECTED_TARGET_COUNTRY, data: 'en-US' }, expectedResult: 'en-US' },
     { name: 'selectedDomainId', value: true, action: { type: types.SET_SELECTED_DOMAIN_ID, data: 123 }, expectedResult: 123 },
     { name: 'affDomainList', value: null, action: { type: types.SET_AFF_DOMAIN_LIST, data: [{ domainName: 'abc.com' }] }, expectedResult: [{ domainName: 'abc.com' }] },
     { name: 'affSubDomainList', value: null, action: { type: types.SET_AFF_SUB_DOMAIN_LIST, data: [{ domainName: 'abc' }] }, expectedResult: [{ domainName: 'abc' }] },

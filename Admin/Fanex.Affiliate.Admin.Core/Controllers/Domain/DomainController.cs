@@ -2,46 +2,39 @@
 {
     using Attributes;
     using Constants;
-    using Enum;
     using Extensions;
-    using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
-    using Fanex.Affiliate.Admin.Core.Resources;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
+    using Fanex.Affiliate.Admin.Core.Utilities;
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-    using Newtonsoft.Json;
     using Services.Common;
-    using System.Collections.Generic;
     using System.Web.Mvc;
-    using Utilities.Market;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainController : ReadOnlySessionBaseController
     {
         private readonly IDomainService _domainService;
+        private readonly ISystemService _systemService;
 
         public DomainController(
             ISessionService sessionService,
-            IDomainService domainService) : base(sessionService)
+            IDomainService domainService,
+            ISystemService systemService) : base(sessionService)
         {
             _domainService = domainService;
+            _systemService = systemService;
         }
 
-        public ActionResult Index(bool isAffDomain = true)
+        public virtual ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true"), IsActive = isAffDomain },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false"), IsActive = !isAffDomain },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") },
-                new SubMenu { Name = Lang.SubAffiliateDomain, Url = Url.Content("~/Portal/SubAffDomain") },
-                new SubMenu { Name = Lang.SpecificDomainControl, Url = Url.Content("~/Portal/SpecificDomainControl") }
-            };
+            return RedirectToCommonIndex();
+        }
 
+        protected ActionResult RedirectToCommonIndex(bool IsAffDomain = true)
+        {
             var model = new DomainViewModel
             {
-                SubMenuList = subMenu,
-                IsAffDomain = isAffDomain
+                IsAffDomain = IsAffDomain
             };
 
             return View("~/Areas/Portal/Views/Domain/Index.cshtml", model);
@@ -66,11 +59,11 @@
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetMarketList(int affDomainId = 0, int redirectDomainId = 0)
+        public ActionResult GetTargetCountryListByDomain(int affDomainId = 0, int redirectDomainId = 0)
         {
             return new JsonNetResult
             {
-                Data = _domainService.GetMarketListByDomain(affDomainId, redirectDomainId)
+                Data = _domainService.GetTargetCountryListByDomain(affDomainId, redirectDomainId)
             };
         }
 
@@ -79,15 +72,14 @@
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
         public ActionResult InsertDomain(InsertDomainParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsing()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryCodes(param.BlockTargetCountry, _systemService.GetTargetCountryList()))
             {
-                var encodeParam = EncodeParam(param);
-                AssignUserInfoParam(encodeParam);
+                HandleEncodeParam(param);
 
-                return GenerateJsonNetResult(_domainService.InsertDomain(encodeParam));
+                return GenerateJsonNetResult(_domainService.InsertDomain(param));
             }
 
-            return GenerateErrResult("Please input Domain's name.");
+            return GenerateErrResult("The Domain' info is invalid!");
         }
 
         [HttpPost]
@@ -95,15 +87,11 @@
         [FunctionAuthorize(FunctionName = Function.Domain, IsHost = true)]
         public ActionResult UpdateDomain(UpdateDomainParam param)
         {
-            if (ModelState.IsValid && MarketHelper.IsValidMarketIds(param.BlockMarkets, GetVisibleMarketsNotUsing()))
+            if (ModelState.IsValid && TargetCountryHelper.IsValidTargetCountryCodes(param.BlockTargetCountry, _systemService.GetTargetCountryList()))
             {
-                var encodeParam = EncodeParam(param);
-                var serializedParent = JsonConvert.SerializeObject(encodeParam);
-                var newParam = JsonConvert.DeserializeObject<UpdateDomainParam>(serializedParent);
-                newParam.DomainId = param.DomainId;
-                AssignUserInfoParam(newParam);
+                HandleEncodeParam(param);
 
-                return GenerateJsonNetResult(_domainService.UpdateDomain(newParam));
+                return GenerateJsonNetResult(_domainService.UpdateDomain(param));
             }
 
             return GenerateErrResult("The Domain' info is invalid!");
@@ -124,20 +112,11 @@
             return GenerateErrResult("The Domain is incorrect!");
         }
 
-        private InsertDomainParam EncodeParam(InsertDomainParam param)
+        private void HandleEncodeParam(InsertDomainParam param)
         {
-            return new InsertDomainParam
-            {
-                DomainName = Server.HtmlEncode(param.DomainName),
-                BlockMarkets = Server.HtmlEncode(param.BlockMarkets),
-                IsSSL = param.IsSSL,
-                IsAffDomain = param.IsAffDomain
-            };
-        }
-
-        private IEnumerable<Market> GetVisibleMarketsNotUsing()
-        {
-            return _domainService.GetVisibleMarketNotInStatus((byte)MarketStatus.Using);
+            param.DomainName = Server.HtmlEncode(param.DomainName);
+            param.BlockTargetCountry = Server.HtmlEncode(param.BlockTargetCountry);
+            AssignUserInfoParam(param);
         }
     }
 }

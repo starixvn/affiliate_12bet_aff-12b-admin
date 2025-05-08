@@ -7,9 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
 {
     public interface IDomainService
     {
-        IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0);
-
-        IEnumerable<Market> GetVisibleMarketNotInStatus(byte status);
+        IEnumerable<TargetCountryByDomain> GetTargetCountryListByDomain(int affDomainId = 0, int redirectDomainId = 0);
 
         IEnumerable<DomainInfo> GetDomainList(bool isAffDomain = true);
 

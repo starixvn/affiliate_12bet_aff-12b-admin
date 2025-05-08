@@ -51,6 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 CommGroupList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
                 LanguageList = _systemService.GetLanguageList(),
+                TargetCountryList = _systemService.GetTargetCountryList(),
                 SelectedGroupId = groupId,
                 Param = param,
                 SubMenuList = subMenu

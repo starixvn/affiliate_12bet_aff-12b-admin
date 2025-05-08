@@ -4,14 +4,14 @@ import { shallow } from 'enzyme';
 import Select from '../../../../../components/select';
 
 describe('domain control - components - DomainControlPopup ', () => {
-    const marketList = [
+    const targetCountryList = [
         {
-            MarketId: "en-GB",
-            MarketName: "English (Euro)"
+            TargetCountryCode: "MY",
+            TargetCountryName: "Malaysia"
         },
         {
-            MarketId: "vi-VN",
-            MarketName: "VietNamese"
+            TargetCountryCode: "VN",
+            TargetCountryName: "VietNam"
         }
     ]
 
@@ -39,7 +39,7 @@ describe('domain control - components - DomainControlPopup ', () => {
 
     const emptyDomain = {
         domainId: 0,
-        marketId: 'en-GB',
+        targetCountryCode: 'MY',
         affDomainId: 21,
         redirectDomainId: 46,
         isUsed: false
@@ -47,7 +47,7 @@ describe('domain control - components - DomainControlPopup ', () => {
 
     const selectedDomain = {
         domainId: 89,
-        marketId: 'vi-VN',
+        targetCountryCode: 'VN',
         affDomainId: 34,
         redirectDomainId: 60,
         isUsed: true
@@ -55,7 +55,7 @@ describe('domain control - components - DomainControlPopup ', () => {
 
     const domainControl = {
         DomainId: 89,
-        MarketId: 'vi-VN',
+        TargetCountryCode: 'VN',
         AffDomainId: 34,
         RedirectDomainId: 60,
         IsUsed: true
@@ -63,10 +63,10 @@ describe('domain control - components - DomainControlPopup ', () => {
 
 
     const defaultProps = {
-        selectedMarketId: 'en-GB',
+        selectedtargetCountryCode: 'en-GB',
         affDomainList,
         redirectDomainList,
-        marketList,
+        targetCountryList,
         selectedDomainId: 89,
         affSubDomainList: [
             {
@@ -109,44 +109,44 @@ describe('domain control - components - DomainControlPopup ', () => {
         expect(instance._handleUpdateState).toHaveBeenCalledWith(1);
     });
 
-    it('_handleUpdateState - with insert - should call getMarketListByDomains and setState', async () => {
-        const props = Object.assign({}, defaultProps, { getMarketListByDomains: jest.fn(() => marketList), toggleLoader: jest.fn() });
+    it('_handleUpdateState - with insert - should call getTargetCountryListByDomains and setState', async () => {
+        const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(() => targetCountryList), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
 
         await instance._handleUpdateState(0);
 
-        expect(props.getMarketListByDomains).toHaveBeenCalled();
+        expect(props.getTargetCountryListByDomains).toHaveBeenCalled();
         expect(instance.setState).toHaveBeenCalled();
     });
 
-    it('_handleUpdateState - with insert - should call getMarketListByDomains and setState with empty market', async () => {
-        const props = Object.assign({}, defaultProps, { getMarketListByDomains: jest.fn(), toggleLoader: jest.fn() });
+    it('_handleUpdateState - with insert - should call getTargetCountryListByDomains and setState with empty market', async () => {
+        const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
 
         await instance._handleUpdateState(0);
 
-        expect(props.getMarketListByDomains).toHaveBeenCalled();
+        expect(props.getTargetCountryListByDomains).toHaveBeenCalled();
         expect(instance.setState).toHaveBeenCalled();
     });
 
-    it('_handleUpdateState - with insert - should not call getMarketListByDomains and setState', async () => {
-        const props = Object.assign({}, defaultProps, { getMarketListByDomains: jest.fn(), toggleLoader: jest.fn(), affDomainList: [] });
+    it('_handleUpdateState - with insert - should not call getTargetCountryListByDomains and setState', async () => {
+        const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(), toggleLoader: jest.fn(), affDomainList: [] });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
 
         await instance._handleUpdateState(0);
 
-        expect(props.getMarketListByDomains).not.toHaveBeenCalled();
+        expect(props.getTargetCountryListByDomains).not.toHaveBeenCalled();
         expect(instance.setState).not.toHaveBeenCalled();
     });
 
-    it('_handleUpdateState - with update - should call toggleLoader, getDomainControlById, getMarketListByDomains and setState', async () => {
-        const props = Object.assign({}, defaultProps, { getMarketListByDomains: jest.fn(() => marketList), getDomainControlById: jest.fn(() => domainControl), toggleLoader: jest.fn() });
+    it('_handleUpdateState - with update - should call toggleLoader, getDomainControlById, getTargetCountryListByDomains and setState', async () => {
+        const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(() => targetCountryList), getDomainControlById: jest.fn(() => domainControl), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
@@ -157,7 +157,7 @@ describe('domain control - components - DomainControlPopup ', () => {
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
         expect(props.getDomainControlById).toHaveBeenCalled();
-        expect(props.getMarketListByDomains).toHaveBeenCalled();
+        expect(props.getTargetCountryListByDomains).toHaveBeenCalled();
         expect(instance.setState).toHaveBeenCalled();
     });
 
@@ -181,17 +181,17 @@ describe('domain control - components - DomainControlPopup ', () => {
         const event = {
             target: {
                 type: 'select',
-                name: 'marketId',
-                value: 'en-GB'
+                name: 'targetCountryCode',
+                value: 'MY'
             }
         };
 
         const result = shallow(<DomainControlPopup {...defaultProps} />);
-        result.setState({ selectedDomain, marketListByDomains: marketList });
+        result.setState({ selectedDomain, targetCountryListByDomains: targetCountryList });
         result.setState = jest.fn();
-        result.find('Input[type="select"][name="marketId"]').simulate('change', event);
+        result.find('Input[type="select"][name="targetCountryCode"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { ...selectedDomain, marketId: 'en-GB' } });
+        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { ...selectedDomain, targetCountryCode: 'MY' } });
     });
 
     it('_handleChange should be called when change status', () => {
@@ -208,7 +208,7 @@ describe('domain control - components - DomainControlPopup ', () => {
         result.setState = jest.fn();
         result.find('input[type="checkbox"][name="isUsed"]').simulate('change', event);
 
-        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { domainId: 89, marketId: 'vi-VN', isUsed: true, affDomainId: 34, redirectDomainId: 60, status: false } });
+        expect(result.setState).toHaveBeenCalledWith({ selectedDomain: { domainId: 89, targetCountryCode: 'VN', isUsed: true, affDomainId: 34, redirectDomainId: 60, status: false } });
     });
 
     it('_handleChangeDomain should be called when change aff domain', () => {
@@ -230,8 +230,8 @@ describe('domain control - components - DomainControlPopup ', () => {
         expect(result.instance()._handleChangeDomain).toHaveBeenCalledWith("redirectDomainId", 2);
     });
 
-    it('_handleChangeDomain - should call toggleLoader, getMarketListByDomains and setState', async () => {
-        const props = Object.assign({}, defaultProps, { getMarketListByDomains: jest.fn(() => marketList), toggleLoader: jest.fn() });
+    it('_handleChangeDomain - should call toggleLoader, getTargetCountryListByDomains and setState', async () => {
+        const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(() => targetCountryList), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
@@ -241,12 +241,12 @@ describe('domain control - components - DomainControlPopup ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(props.getMarketListByDomains).toHaveBeenCalled();
+        expect(props.getTargetCountryListByDomains).toHaveBeenCalled();
         expect(instance.setState).toHaveBeenCalled();
     });
 
-    it('_handleChangeDomain - should call toggleLoader, getMarketListByDomains and setState with empty targetCountryList', async () => {
-        const props = Object.assign({}, defaultProps, { getMarketListByDomains: jest.fn(), toggleLoader: jest.fn() });
+    it('_handleChangeDomain - should call toggleLoader, getTargetCountryListByDomains and setState with empty targetCountryList', async () => {
+        const props = Object.assign({}, defaultProps, { getTargetCountryListByDomains: jest.fn(), toggleLoader: jest.fn() });
         const wrapper = shallow(<DomainControlPopup {...props} />);
         const instance = wrapper.instance();
         instance.setState = jest.fn();
@@ -256,7 +256,7 @@ describe('domain control - components - DomainControlPopup ', () => {
         expect(props.toggleLoader).toHaveBeenCalledTimes(2);
         expect(props.toggleLoader.mock.calls[0][0]).toBeTruthy();
         expect(props.toggleLoader.mock.calls[1][0]).toBeFalsy();
-        expect(props.getMarketListByDomains).toHaveBeenCalled();
+        expect(props.getTargetCountryListByDomains).toHaveBeenCalled();
         expect(instance.setState).toHaveBeenCalled();
     });
 

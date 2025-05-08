@@ -34,8 +34,8 @@ describe('domain control - components - Content ', () => {
             Creator: "AAjenny",
             DomainControlId: 89,
             IsUsed: true,
-            Market: "Chinese Simplified",
-            MarketId: "zh-CN",
+            TargetCountry: "Chinese Simplified",
+            TargetCountryCode: "zh-CN",
             RedirectDomain: "www.want.to",
             RedirectDomainId: 58
         },
@@ -46,31 +46,31 @@ describe('domain control - components - Content ', () => {
             Creator: "AAjenny",
             DomainControlId: 92,
             IsUsed: true,
-            Market: "Chinese Simplified",
-            MarketId: "zh-CN",
+            TargetCountry: "Chinese Simplified",
+            TargetCountryCode: "zh-CN",
             RedirectDomain: "12liampc.com",
             RedirectDomainId: 59
         }
     ];
 
-    const marketList = [
+    const targetCountryList = [
         {
-            MarketId: "en-GB",
-            MarketName: "English (Euro)"
+            TargetCountryCode: "en-GB",
+            TargetCountryName: "English (Euro)"
         },
         {
-            MarketId: "vi-VN",
-            MarketName: "VietNamese"
+            TargetCountryCode: "vi-VN",
+            TargetCountryName: "VietNamese"
         }
     ]
 
     const defaultProps = {
         shouldResetScrollPosition: true,
-        selectedMarketId: '',
+        selectedTargetCountry: '',
         gridData,
         affDomainList,
         redirectDomainList,
-        marketList,
+        targetCountryList,
         affSubDomainList: [
             {
                 columnKey: "test",

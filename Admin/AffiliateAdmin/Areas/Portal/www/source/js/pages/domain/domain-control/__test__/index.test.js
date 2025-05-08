@@ -7,14 +7,14 @@ jest.mock('react-dom', () => ({ render: jest.fn() }))
 describe('domain control - App', () => {
     it('Should render correctly', () => {
         window.initialState = {
-            marketList: [
+            targetCountryList: [
                 {
-                    LanguageCode: "en-GB",
-                    DomainName: "English (Euro)"
+                    TargetCountryCode: "en-GB",
+                    TargetCountryName: "English (Euro)"
                 },
                 {
-                    LanguageCode: "vi-VN",
-                    DomainName: "VietNamese"
+                    TargetCountryCode: "vi-VN",
+                    TargetCountryName: "VietNamese"
                 }
             ],
             affSubDomainList: [

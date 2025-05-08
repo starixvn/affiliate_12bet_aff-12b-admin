@@ -25,6 +25,11 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
+  style={
+    Object {
+      "maxWidth": 400,
+    }
+  }
   toggle={[Function]}
   trapFocus={false}
   unmountOnClose={true}
@@ -88,18 +93,18 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-5"
+          className="mb-4"
           tag="form"
         >
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >
             <Label
               className="required"
               htmlFor="domainName"
-              sm={4}
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -114,7 +119,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
               Domain
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [
@@ -137,12 +142,12 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
             </Col>
           </FormGroup>
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >
             <Label
-              sm={4}
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -157,7 +162,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
               SSL
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [
@@ -229,6 +234,11 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
   returnFocusAfterClose={true}
   role="dialog"
   scrollable={false}
+  style={
+    Object {
+      "maxWidth": 400,
+    }
+  }
   toggle={[Function]}
   trapFocus={false}
   unmountOnClose={true}
@@ -292,18 +302,18 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
         </Alert>
         <Form
           autoComplete="off"
-          className="mb-5"
+          className="mb-4"
           tag="form"
         >
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >
             <Label
               className="required"
               htmlFor="domainName"
-              sm={4}
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -318,7 +328,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
               Domain
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [
@@ -341,12 +351,12 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
             </Col>
           </FormGroup>
           <FormGroup
-            className="mb-2"
+            className="align-items-center mb-2"
             row={true}
             tag="div"
           >
             <Label
-              sm={4}
+              sm={3}
               tag="label"
               widths={
                 Array [
@@ -361,7 +371,7 @@ exports[`sub-affiliate domain - components - SubAffDomainPopup  render correctly
               SSL
             </Label>
             <Col
-              sm={8}
+              sm={9}
               tag="div"
               widths={
                 Array [

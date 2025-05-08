@@ -1,15 +1,11 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using Attributes;
     using Constants;
-    using DTO;
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
-    using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-    using Resources;
     using Services.Common;
+    using System.Web.Mvc;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class SpecificDomainControlController : ReadOnlySessionBaseController
@@ -25,21 +21,7 @@
 
         public ActionResult Index()
         {
-            var subMenu = new List<SubMenu>
-            {
-                new SubMenu { Name = Lang.AffiliateDomain, Url = Url.Content("~/Portal/Domain?isAffDomain=true") },
-                new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Portal/Domain?isAffDomain=false") },
-                new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Portal/DomainControl") },
-                new SubMenu { Name = Lang.SubAffiliateDomain, Url = Url.Content("~/Portal/SubAffDomain") },
-                new SubMenu { Name = Lang.SpecificDomainControl, Url = Url.Content("~/Portal/SpecificDomainControl"), IsActive = true }
-            };
-
-            var model = new DomainViewModel
-            {
-                SubMenuList = subMenu
-            };
-
-            return View("~/Areas/Portal/Views/Domain/SpecificDomainControl.cshtml", model);
+            return View("~/Areas/Portal/Views/Domain/SpecificDomainControl.cshtml");
         }
 
         [HttpPost]
@@ -67,7 +49,7 @@
         {
             if (ModelState.IsValid)
             {
-                AssignUserInfoParam(param);
+                HandleEncodeParam(param);
 
                 return GenerateJsonNetResult(_domainControlService.InsertSpecificDomainControl(param));
             }
@@ -82,7 +64,7 @@
         {
             if (ModelState.IsValid)
             {
-                AssignUserInfoParam(param);
+                HandleEncodeParam(param);
 
                 return GenerateJsonNetResult(_domainControlService.UpdateSpecificDomainControl(param));
             }
@@ -103,6 +85,14 @@
             }
 
             return GenerateErrResult("The Specific Domain Control is incorrect!");
+        }
+
+        private void HandleEncodeParam(InsertSpecificDomainControlParam param)
+        {
+            param.AffUsername = Server.HtmlEncode(param.AffUsername);
+            param.AffDomain = Server.HtmlEncode(param.AffDomain);
+            param.RedirectDomain = Server.HtmlEncode(param.RedirectDomain);
+            AssignUserInfoParam(param);
         }
     }
 }

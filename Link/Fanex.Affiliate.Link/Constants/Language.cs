@@ -13,7 +13,6 @@ namespace Fanex.Affiliate.Link.Constants
             ["en"] = ENGLISH_SHORTED_CODE,
             ["eneuro"] = ENGLISH_SHORTED_CODE,
             ["bn"] = BENGALI_SHORTED_CODE,
-            ["hien"] = ENGLISH_SHORTED_CODE,
             ["hitg"] = INDIA_SHORTED_CODE,
             ["id"] = "id",
             ["jp"] = ENGLISH_SHORTED_CODE,
@@ -27,6 +26,7 @@ namespace Fanex.Affiliate.Link.Constants
         {
             ["ch"] = ENGLISH_SHORTED_CODE,
             ["kh"] = ENGLISH_SHORTED_CODE,
+            ["hien"] = "hitg",
         };
     }
 }

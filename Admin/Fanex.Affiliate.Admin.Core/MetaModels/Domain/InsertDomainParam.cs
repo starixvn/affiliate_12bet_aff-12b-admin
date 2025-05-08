@@ -8,7 +8,7 @@
         public string DomainName { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string BlockMarkets { get; set; }
+        public string BlockTargetCountry { get; set; }
 
         public bool IsSSL { get; set; } = true;
 

@@ -21,6 +21,8 @@ describe('affiliate info - GridData - connect', () => {
 	it('props should be mapped correctly', () => {
 		const expectedResult = {
 			languageList: { en: 'English' },
+			targetCountryList: { MY: 'Malaysia' },
+			isShowMemberLink: true,
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
 			columnList: [1, 2, 3]
@@ -28,9 +30,11 @@ describe('affiliate info - GridData - connect', () => {
 
 		const state = {
 			languageList: { en: 'English' },
+			targetCountryList: { MY: 'Malaysia' },
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
 			columnList: [1, 2, 3],
+			claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
 			anotherProp: "Not included"
 		};
 

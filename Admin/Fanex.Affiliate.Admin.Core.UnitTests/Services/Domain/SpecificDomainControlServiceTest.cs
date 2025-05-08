@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
 using Fanex.Data.Repository;
 using Moq;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             // Arrange
             var param = new SpecificDomainControlParam();
             var expectedResult = new List<SpecificDomainControlInfo> { new SpecificDomainControlInfo() };
-            
+
             _dynamicRepositoryMock.Setup(x => x.Fetch<SpecificDomainControlInfo>(It.IsAny<ICriteria>(), It.IsAny<string>()))
                 .Returns(expectedResult);
 
@@ -43,17 +43,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
         {
             // Arrange
             var id = 1;
-            var expectedResult = new SpecificDomainControlInfo();
-            
-            _dynamicRepositoryMock.Setup(x => x.Get<SpecificDomainControlInfo>(It.IsAny<ICriteria>(), It.IsAny<string>()))
-                .Returns(expectedResult);
+            var expectedResult = new SpecificDomainControlInfo { SpecificDomainControlId = id };
+
+            _dynamicRepositoryMock.Setup(x => x.Fetch<SpecificDomainControlInfo>(It.IsAny<ICriteria>(), It.IsAny<string>()))
+                .Returns(new List<SpecificDomainControlInfo>() { expectedResult });
 
             // Act
             var result = _service.GetSpecificDomainControlById(id);
 
             // Assert
             Assert.Equal(expectedResult, result);
-            _dynamicRepositoryMock.Verify(x => x.Get<SpecificDomainControlInfo>(It.IsAny<ICriteria>(), It.IsAny<string>()), Times.Once);
+            _dynamicRepositoryMock.Verify(x => x.Fetch<SpecificDomainControlInfo>(It.IsAny<ICriteria>(), It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -91,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             };
 
             var expectedResult = new ResultInfo();
-            
+
             _dynamicRepositoryMock.Setup(x => x.Execute(It.IsAny<INonQueryCommand>(), It.IsAny<string>()));
 
             // Act
@@ -120,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             };
 
             var expectedResult = new ResultInfo();
-            
+
             _dynamicRepositoryMock.Setup(x => x.Execute(It.IsAny<INonQueryCommand>(), It.IsAny<string>()));
 
             // Act
@@ -143,7 +143,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             };
 
             var expectedResult = new ResultInfo();
-            
+
             _dynamicRepositoryMock.Setup(x => x.Execute(It.IsAny<INonQueryCommand>(), It.IsAny<string>()));
 
             // Act
@@ -154,4 +154,4 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Domain
             _dynamicRepositoryMock.Verify(x => x.Execute(It.IsAny<INonQueryCommand>(), It.IsAny<string>()), Times.Once);
         }
     }
-} 
+}

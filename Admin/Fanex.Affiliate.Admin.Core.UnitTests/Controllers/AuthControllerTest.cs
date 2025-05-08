@@ -100,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         {
             // Arrange
             var authService = new Mock<IAuthService>();
-            authService.Setup(a => a.Login(It.IsAny<LoginParam>())).Returns(new ResultInfo());
+            authService.Setup(a => a.Login(It.IsAny<LoginParam>())).Returns(new ResultInfo { Code = 0 });
             authService.Setup(a => a.GetPermissionList(It.IsAny<int>())).Returns(new List<UserPermission>());
             var controller = CreateAuthController(authService: authService.Object);
 

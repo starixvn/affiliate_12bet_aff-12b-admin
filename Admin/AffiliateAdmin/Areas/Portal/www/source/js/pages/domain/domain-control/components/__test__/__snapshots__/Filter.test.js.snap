@@ -25,26 +25,32 @@ exports[`domain control - components - Filter  render correctly 1`] = `
           ]
         }
       >
-        Market
+        Target Country
       </Label>
       <Input
-        name="market"
+        name="targetCountry"
         onChange={[Function]}
         type="select"
         value=""
       >
         <option
-          key="market-all"
+          key="targetCountry-all"
           value=""
         >
           All
         </option>
         <option
-          key="market-undefined"
-        />
+          key="targetCountry-en-GB"
+          value="en-GB"
+        >
+          English (Euro)
+        </option>
         <option
-          key="market-undefined"
-        />
+          key="targetCountry-vi-VN"
+          value="vi-VN"
+        >
+          VietNamese
+        </option>
       </Input>
     </FormGroup>
     <FormGroup

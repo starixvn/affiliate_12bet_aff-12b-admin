@@ -46,6 +46,10 @@ exports[`affiliate report - GridData  _buildCommonCell - should return correctly
   />
   <td
     className="text-right"
+    title=""
+  />
+  <td
+    className="text-right"
     title="0"
   >
     0
@@ -215,6 +219,10 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
     >
       0
     </td>
+    <td
+      className="text-right"
+      title=""
+    />
     <td
       className="text-right"
       title=""
@@ -400,6 +408,10 @@ exports[`affiliate report - GridData  _buildDataRow - should render correctly is
     />
     <td
       className="text-right"
+      title=""
+    />
+    <td
+      className="text-right"
       title="0"
     >
       0
@@ -579,6 +591,10 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
     />
     <td
       className="text-right"
+      title=""
+    />
+    <td
+      className="text-right"
       title="0"
     >
       0
@@ -752,6 +768,10 @@ exports[`affiliate report - GridData  _renderDataSection - should render correct
     >
       0
     </td>
+    <td
+      className="text-right"
+      title=""
+    />
     <td
       className="text-right"
       title=""
@@ -978,6 +998,13 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             width={65}
           >
             FDM Amt
+          </th>
+          <th
+            rowSpan="2"
+            title="FDM's Total Deposit"
+            width={65}
+          >
+            FDM's Total Deposit
           </th>
           <th
             rowSpan="2"
@@ -1211,6 +1238,10 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           />
           <td
             className="text-right"
+            title=""
+          />
+          <td
+            className="text-right"
             title="0"
           >
             0
@@ -1408,6 +1439,10 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
           />
           <td
             className="text-right"
+            title=""
+          />
+          <td
+            className="text-right"
             title="0"
           >
             0
@@ -1566,6 +1601,10 @@ exports[`affiliate report - GridData  should render correctly 1`] = `
             className="text-center"
           />
           <td />
+          <td
+            className="text-right"
+            title=""
+          />
           <td
             className="text-right"
             title=""
@@ -1788,6 +1827,13 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       width={65}
     >
       FDM Amt
+    </th>
+    <th
+      rowSpan="2"
+      title="FDM's Total Deposit"
+      width={65}
+    >
+      FDM's Total Deposit
     </th>
     <th
       rowSpan="2"
@@ -2044,6 +2090,13 @@ exports[`affiliate report - GridData  should render correctly with _renderHeader
       width={65}
     >
       FDM Amt
+    </th>
+    <th
+      rowSpan="2"
+      title="FDM's Total Deposit"
+      width={65}
+    >
+      FDM's Total Deposit
     </th>
     <th
       rowSpan="2"
@@ -2308,6 +2361,13 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
           </th>
           <th
             rowSpan="2"
+            title="FDM's Total Deposit"
+            width={65}
+          >
+            FDM's Total Deposit
+          </th>
+          <th
+            rowSpan="2"
             title="Active Player"
             width={55}
           >
@@ -2488,7 +2548,7 @@ exports[`affiliate report - GridData  should render correctly with empty data 1`
         >
           <td
             className="text-center"
-            colSpan={34}
+            colSpan={35}
           >
             There is no information available
           </td>

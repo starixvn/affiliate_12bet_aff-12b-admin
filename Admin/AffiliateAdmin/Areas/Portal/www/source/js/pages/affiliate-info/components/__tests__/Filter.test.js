@@ -4,8 +4,15 @@ import { Filter } from '../Filter';
 import MultipleSelect from '../../../../components/multiple-select';
 
 describe('affiliate info - Filter ', () => {
+    const targetCountryList = {
+        'MY': 'Malaysia',
+        'TH': 'Thailand',
+        'CN': 'China'
+    };
+
     const defaultProps = {
         languageList: {},
+        targetCountryList,
         commGroupList: [{ key: 1, name: 'Abc', checked: true }],
         param: {},
         groupId: 0,
@@ -135,12 +142,13 @@ describe('affiliate info - Filter ', () => {
         const wrapper = shallow(<Filter {...props} />);
         wrapper.find('Button').simulate('click');
 
-        const reportTitle = 'AFFILIATE REPORT - ALL REVENUE GROUPS - ALL LANGUAGES - ALL STATUSES';
+        const reportTitle = 'AFFILIATE REPORT - ALL REVENUE GROUPS - ALL TARGET COUNTRIES - ALL LANGUAGES - ALL STATUSES';
         const param = {
             AffCode: '',
             AffPlayer: '',
             GroupIds: 'all',
             Language: '',
+            TargetCountryCode: '',
             Status: '',
             UserName: '',
             Email: '',
@@ -177,16 +185,16 @@ describe('affiliate info - Filter ', () => {
 
     it('buildReportTitle - should return correct string with parameters are empty', () => {
         const componentInstance = new Filter(defaultProps);
-        const result = componentInstance._buildReportTitle('', '', '', '', '', '', true);
+        const result = componentInstance._buildReportTitle('', '', '', '', '', '', '', true);
 
-        expect(result).toEqual('AFFILIATE REPORT - ALL REVENUE GROUPS - ALL LANGUAGES - ALL STATUSES');
+        expect(result).toEqual('AFFILIATE REPORT - ALL REVENUE GROUPS - ALL TARGET COUNTRIES - ALL LANGUAGES - ALL STATUSES');
     });
 
     it('buildReportTitle - should return correct string with correct parameter', () => {
         const componentInstance = new Filter(defaultProps);
-        const result = componentInstance._buildReportTitle('', '', '12BETAFF001', 'walter.tran1@starixsoft.com', 927841, 'test01', true);
+        const result = componentInstance._buildReportTitle('', '', '', '12BETAFF001', 'walter.tran1@starixsoft.com', 927841, 'test01', true);
 
-        expect(result).toEqual(`AFFILIATE REPORT - ALL REVENUE GROUPS - ALL LANGUAGES - ALL STATUSES - USERNAME CONTAINS '12BETAFF001' - EMAIL CONTAINS 'walter.tran1@starixsoft.com' - AFFILIATE CODE '927841' - AFFILIATE PLAYER CONTAINS 'test01'`);
+        expect(result).toEqual(`AFFILIATE REPORT - ALL REVENUE GROUPS - ALL TARGET COUNTRIES - ALL LANGUAGES - ALL STATUSES - USERNAME CONTAINS '12BETAFF001' - EMAIL CONTAINS 'walter.tran1@starixsoft.com' - AFFILIATE CODE '927841' - AFFILIATE PLAYER CONTAINS 'test01'`);
     });
 
     it('should render correctly', () => {

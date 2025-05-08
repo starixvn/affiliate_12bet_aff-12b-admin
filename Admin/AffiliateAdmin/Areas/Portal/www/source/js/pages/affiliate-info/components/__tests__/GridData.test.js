@@ -5,6 +5,12 @@ import * as ajaxRequest from '../../../../modules/ajaxRequest';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 
 describe('affiliate info - GridData ', () => {
+    const targetCountryList = {
+        'MY': 'Malaysia',
+        'TH': 'Thailand',
+        'CN': 'China'
+    };
+
     const dataItem = {
         AffId: 927841,
         UserName: "12BETAFF001",
@@ -12,6 +18,7 @@ describe('affiliate info - GridData ', () => {
         FirstName: "",
         LastName: "媒体册 获取以更新吧！",
         Language: "hi-IN",
+        TargetCountryCode: "MY",
         Email: "walter.tran1@starixsoft.com",
         RegistrationDate: "\/Date(1211413740000)\/",
         ApprovalDate: "\/Date(1211413800000)\/",
@@ -62,6 +69,7 @@ describe('affiliate info - GridData ', () => {
     };
     const defaultProps = {
         columnList: mockColumnList,
+        targetCountryList,
         pagingOption: {
             PageIndex: 1,
             PageSize: 20,
@@ -69,6 +77,7 @@ describe('affiliate info - GridData ', () => {
             PageList: [10, 20, 50, 100, 500]
         },
         languageList: {},
+        claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
         param: {
             AffCode: '',
             GroupId: 0,

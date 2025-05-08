@@ -68,6 +68,10 @@ export const GeneralInfo = (props) => {
                 <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.ApprovedBy) || 'N/A'}</Col>
             </Row>
             <Row>
+                <Col sm={5}>{resource.TargetCountry}</Col>
+                <Col sm={7} className='text-right'>{htmlDecode(affiliateInfo.TargetCountryName)}</Col>
+            </Row>
+            <Row>
                 <Col sm={5}>{resource.Language}</Col>
                 <Col sm={7} className='text-right text-primary'><Language /></Col>
             </Row>

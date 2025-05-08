@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import AppContainer from './components/AppContainer';
@@ -11,7 +10,7 @@ export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        const { marketList, affSubDomainList } = window.initialState;
+        const { targetCountryList, affSubDomainList } = window.initialState;
 
         const newAffSubDomainList = affSubDomainList.map(item => {
             return {
@@ -21,7 +20,7 @@ export default class App extends React.PureComponent {
             }
         });
 
-        this.store = configureStore({ marketList, affSubDomainList: newAffSubDomainList }, reducer);
+        this.store = configureStore({ targetCountryList, affSubDomainList: newAffSubDomainList }, reducer);
     }
 
     render() {
@@ -32,5 +31,3 @@ export default class App extends React.PureComponent {
         );
     }
 }
-
-ReactDOM.render(<App />, document.getElementById("root"));

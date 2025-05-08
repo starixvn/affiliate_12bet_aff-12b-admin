@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Controllers.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
@@ -76,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var param = new InsertUpdateLandingPageParam { PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
             var landingPageService = new Mock<ILandingPageService>();
-            landingPageService.Setup(s => s.InsertLandingPage(It.IsAny<InsertUpdateLandingPageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
+            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), true)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam, bool>((p, i) => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
             // Action
@@ -111,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             var param = new InsertUpdateLandingPageParam { PageId = 123, PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
             var landingPageService = new Mock<ILandingPageService>();
-            landingPageService.Setup(s => s.UpdateLandingPage(It.IsAny<InsertUpdateLandingPageParam>())).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam>(p => passedParam = p);
+            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), false)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam, bool>((p, i) => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
             // Action
@@ -175,15 +176,129 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             Assert.Equal(string.Empty, resultInfo.Message);
         }
 
+        [Fact]
+        public void GetTargetCountryListByLandingPage_WhenCall_ReturnCorrectData()
+        {
+            // Arrange
+            var pageId = 123;
+            var expectedList = new List<TargetCountry> { new TargetCountry() };
+            var landingPageService = new Mock<ILandingPageService>();
+            landingPageService.Setup(s => s.GetExcludedTargetCountryList(pageId)).Returns(expectedList);
+            var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
+
+            // Action
+            var result = controller.GetTargetCountryListByLandingPage(pageId) as JsonNetResult;
+            var data = result.Data as List<TargetCountry>;
+
+            // Assert
+            Assert.Single(data);
+            Assert.Equal(expectedList, data);
+        }
+
+        [Fact]
+        public void InsertLandingPage_WhenInvalidTargetCountry_ReturnError()
+        {
+            // Arrange
+            var param = new InsertUpdateLandingPageParam { PageName = "test", PageCode = "test", BlockTargetCountry = "invalid" };
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(s => s.GetTargetCountryList()).Returns(new List<TargetCountry>());
+            var controller = CreateLandingPageListController(systemService: systemService.Object);
+
+            // Action
+            var result = controller.InsertLandingPage(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal("The target country's info is invalid!", resultInfo.Message);
+        }
+
+        [Fact]
+        public void UpdateLandingPage_WhenInvalidTargetCountry_ReturnError()
+        {
+            // Arrange
+            var param = new InsertUpdateLandingPageParam { PageId = 123, PageName = "test", PageCode = "test", BlockTargetCountry = "invalid" };
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(s => s.GetTargetCountryList()).Returns(new List<TargetCountry>());
+            var controller = CreateLandingPageListController(systemService: systemService.Object);
+
+            // Action
+            var result = controller.UpdateLandingPage(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal("The target country's info is invalid!", resultInfo.Message);
+        }
+
+        [Fact]
+        public void EncodeParam_WhenCall_EncodeAllFields()
+        {
+            // Arrange
+            var param = new InsertUpdateLandingPageParam
+            {
+                PageId = 123,
+                PageName = "test page",
+                PageCode = "test-code",
+                BlockTargetCountry = "en,th"
+            };
+            var landingPageService = new Mock<ILandingPageService>();
+            landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), It.IsAny<bool>())).Returns(new ResultInfo());
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(s => s.GetTargetCountryList()).Returns(new List<TargetCountry>
+            {
+                new TargetCountry { TargetCountryCode = "en" },
+                new TargetCountry { TargetCountryCode = "th" }
+            });
+            var controller = CreateLandingPageListController(
+                landingPageService: landingPageService.Object,
+                systemService: systemService.Object);
+
+            // Action
+            var result = controller.InsertLandingPage(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.True(resultInfo.IsSuccessful);
+            landingPageService.Verify(s => s.HandleSaveLandingPage(It.Is<InsertUpdateLandingPageParam>(p =>
+                p.PageId == 123 &&
+                p.PageName == "Encodedtest page" &&
+                p.PageCode == "Encodedtest-code" &&
+                p.BlockTargetCountry == "Encodeden,th"), true), Times.Once);
+        }
+
+        [Fact]
+        public void HandleSaveLandingPage_WhenModelStateInvalid_ReturnError()
+        {
+            // Arrange
+            var param = new InsertUpdateLandingPageParam { PageName = "test", PageCode = "test" };
+            var systemService = new Mock<ISystemService>();
+            systemService.Setup(s => s.GetTargetCountryList()).Returns(new List<TargetCountry>
+            {
+                new TargetCountry { TargetCountryCode = "en" }
+            });
+            var controller = CreateLandingPageListController(systemService: systemService.Object);
+            controller.ModelState.AddModelError("Error", "Test error");
+
+            // Action
+            var result = controller.InsertLandingPage(param) as JsonNetResult;
+            var resultInfo = result.Data as ResultInfo;
+
+            // Assert
+            Assert.False(resultInfo.IsSuccessful);
+            Assert.Equal("Test error", resultInfo.Message);
+        }
+
         private LandingPageListController CreateLandingPageListController(
         ISessionService sessionService = null,
-        ILandingPageService landingPageService = null
+        ILandingPageService landingPageService = null,
+        ISystemService systemService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLandingPageService = landingPageService ?? Mock.Of<ILandingPageService>();
-
-            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService);
+            var fakeSystemService = systemService ?? Mock.Of<ISystemService>();
+            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeSystemService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

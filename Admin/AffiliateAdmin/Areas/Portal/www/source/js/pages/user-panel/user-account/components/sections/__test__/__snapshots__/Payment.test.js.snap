@@ -26,6 +26,7 @@ exports[`user account - components - sections - Payment render correctly 1`] = `
       Preferred Payment Method
     </Label>
     <Col
+      className="input-item"
       sm={5}
       tag="div"
       widths={
@@ -54,9 +55,11 @@ exports[`user account - components - sections - Payment render correctly 1`] = `
         </option>
       </Input>
     </Col>
-    <p>
+    <span
+      className="input-item"
+    >
       Minimum payment amount is 
-    </p>
+    </span>
   </FormGroup>
   <FormGroup
     row={true}
@@ -81,6 +84,7 @@ exports[`user account - components - sections - Payment render correctly 1`] = `
       Bwing User Name
     </Label>
     <Col
+      className="input-item"
       sm={5}
       tag="div"
       widths={

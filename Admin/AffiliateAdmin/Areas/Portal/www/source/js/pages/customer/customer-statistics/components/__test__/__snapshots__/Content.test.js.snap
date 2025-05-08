@@ -143,6 +143,25 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
+        key="FDM's Total Deposit"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          FDM's Total Deposit
+        </td>
+        <td
+          className="text-right"
+        >
+          -
+        </td>
+        <td
+          className="text-right"
+        >
+          N/A
+        </td>
+      </tr>
+      <tr
         key="Turnover"
       >
         <td
@@ -375,6 +394,25 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           951.44/-
+        </td>
+      </tr>
+      <tr
+        key="FDM's Total Deposit"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          FDM's Total Deposit
+        </td>
+        <td
+          className="text-right"
+        >
+          -
+        </td>
+        <td
+          className="text-right"
+        >
+          N/A
         </td>
       </tr>
       <tr
@@ -614,6 +652,25 @@ exports[`customer statistics - components - Content Should render correctly with
           className="text-right"
         >
           951.44/-
+        </td>
+      </tr>
+      <tr
+        key="FDM's Total Deposit"
+      >
+        <td
+          className="font-weight-bold"
+        >
+          FDM's Total Deposit
+        </td>
+        <td
+          className="text-right"
+        >
+          -
+        </td>
+        <td
+          className="text-right"
+        >
+          N/A
         </td>
       </tr>
       <tr

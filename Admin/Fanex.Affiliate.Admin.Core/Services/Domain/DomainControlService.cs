@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Domain;
 using Fanex.Affiliate.Admin.Core.Criterias.Domain;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.Domain;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Data.Repository;
@@ -20,14 +21,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             _commonDomainService = commonDomainService;
         }
 
-        public IEnumerable<Market> GetMarketListByDomain(int affDomainId = 0, int redirectDomainId = 0)
-            => _commonDomainService.GetMarketListByDomain(affDomainId, redirectDomainId);
+        public IEnumerable<TargetCountry> GetTargetCountryListByDomain(int affDomainId = 0, int redirectDomainId = 0)
+            => _commonDomainService.GetTargetCountryListByDomain(affDomainId, redirectDomainId);
 
-        public IEnumerable<DomainControlInfo> GetDomainControl(string market, int domainControlId = 0)
+        public IEnumerable<DomainControlInfo> GetDomainControl(string targetCountryCode, int domainControlId = 0)
         {
             var criteria = new DomainControlCriteria
             {
-                MarketId = market,
+                TargetCountryCode = targetCountryCode,
                 DomainControlId = domainControlId
             };
 
@@ -82,7 +83,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
         {
             command.AffDomainID = param.AffDomainId;
             command.LicenseeDomainId = param.RedirectDomainId;
-            command.MarketId = param.MarketId;
+            command.TargetCountryCode = param.TargetCountryCode;
             command.Status = param.IsUsed;
             command.UserId = param.UserId;
             command.Ip = param.Ip;

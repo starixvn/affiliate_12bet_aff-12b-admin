@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import AppContainer from './components/AppContainer';
@@ -48,5 +47,3 @@ export default class App extends React.PureComponent {
         );
     }
 }
-
-ReactDOM.render(<App />, document.getElementById("root"));

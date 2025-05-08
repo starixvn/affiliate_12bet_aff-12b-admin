@@ -17,7 +17,7 @@ export const NotificationPopup = (props) => {
         <Modal isOpen={!!props.message} toggle={handleClosePopup} backdrop='static'>
             <div className="notification-popup-content p-3" style={{ fontSize: 14 }}>
                 <h5>{window.location.host} says</h5>
-                <div style={{ whiteSpace: "pre-line" }}>{props.message}</div>
+                <div style={{ whiteSpace: "pre-line" }} dangerouslySetInnerHTML={{ __html: props.message }}></div>
                 {
                     props.isConfirmPopup ? (
                         <div className="float-right mt-4">

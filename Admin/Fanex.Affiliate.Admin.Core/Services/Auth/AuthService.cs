@@ -102,7 +102,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
                 new Claim(ClaimTypes.Role, adminInfo.GroupId.ToString())
             };
 
-            claims.AddRange(permissions.Select(p => BuildClaimFromPermission(p)));
+            if (permissions != null)
+            {
+                claims.AddRange(permissions.Select(p => BuildClaimFromPermission(p)));
+            }
 
             return claims;
         }

@@ -13,6 +13,7 @@
         window.initialState = {
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            targetCountryList: @Html.Raw(Json.Encode(Model.TargetCountryList)),
             groupId: @Model.SelectedGroupId,
             param: @Html.Raw(Json.Encode(Model.Param))
         }

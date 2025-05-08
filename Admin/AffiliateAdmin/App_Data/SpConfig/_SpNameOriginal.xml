@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="Language">
+    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="" />
     <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="" >
       <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
       <Mapping DataField="MarketName" ObjectProperty="LanguageName" />
@@ -148,6 +149,7 @@
     <Setting Key="Aff_Admin_LandingPage_Ins" SpName="Aff_Admin_LandingPage_Ins" DbName="" />
     <Setting Key="Aff_Admin_LandingPage_Upd" SpName="Aff_Admin_LandingPage_Upd" DbName="" />
     <Setting Key="Aff_Admin_LandingPage_Del" SpName="Aff_Admin_LandingPage_Del" DbName="" />
+    <Setting Key="Aff_LandingPage_ExcludedTargetCountry_Sel" SpName="Aff_LandingPage_ExcludedTargetCountry_Sel" DbName="" />
     <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="" >
       <Mapping DataField="Category" ObjectProperty="CategoryName" />
       <Mapping DataField="SubCategory" ObjectProperty="SubCategoryName" />
@@ -237,6 +239,7 @@
     <Setting Key="Aff_Admin_SpecificDomainControl_Ins" SpName="Aff_Admin_SpecificDomainControl_Ins" DbName="" />
     <Setting Key="Aff_Admin_SpecificDomainControl_Upd" SpName="Aff_Admin_SpecificDomainControl_Upd" DbName="" />
     <Setting Key="Aff_Admin_SpecificDomainControl_Del" SpName="Aff_Admin_SpecificDomainControl_Del" DbName="" />
+    <Setting Key="Aff_Domain_BlockTargetCountry_Sel" SpName="Aff_Domain_BlockTargetCountry_Sel" DbName="" />
   </Function>
   <Function Name="Administrator">
     <Setting Key="Aff_Con_GroupInfoSel" SpName="Aff_Con_GroupInfoSel" DbName="" >

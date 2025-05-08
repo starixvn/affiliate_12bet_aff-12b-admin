@@ -46,6 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
                 AffCode = param.AffCode,
                 UserId = param.UserId,
                 GroupIds = param.GroupIds,
+                TargetCountryCode = param.TargetCountryCode,
                 PreferredLanguage = param.Language,
                 Status = param.Status,
                 ParentAffName = param.ParentAffName,

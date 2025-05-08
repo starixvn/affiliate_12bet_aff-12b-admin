@@ -20,10 +20,11 @@ export const Content = (props) => {
     function _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
-                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={250} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
-                <Cell header={true} colWidth={250} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
+                <Cell header={true} colWidth={25}></Cell>
+                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
+                <Cell header={true} colWidth={350} title={headerText.BlockTargetCountry}>{headerText.BlockTargetCountry}</Cell>
                 <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
@@ -50,6 +51,7 @@ export const Content = (props) => {
     function _buildDataRow(dataItem, index) {
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
+        const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -60,6 +62,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
+                <Cell className="text-left" title={blockTargetCountry}>{blockTargetCountry}</Cell>
                 <Cell className="text-center" title="Edit Landing Page">
                     <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>
                         <span className="oi oi-pencil text-secondary"></span>

@@ -48,10 +48,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Chinese Simplified"
-            >
-              Chinese Simplified
-            </t>
+            />
             <t
               asc={true}
               className="text-center"
@@ -168,10 +165,7 @@ exports[`domain control - components - Content  render correctly 1`] = `
               onClick={[Function]}
               sortable={false}
               sorting={false}
-              title="Chinese Simplified"
-            >
-              Chinese Simplified
-            </t>
+            />
             <t
               asc={true}
               className="text-center"
@@ -293,9 +287,9 @@ exports[`domain control - components - Content  render correctly 1`] = `
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Market"
+            title="Target Country"
           >
-            Market
+            Target Country
           </t>
           <t
             asc={true}
@@ -457,9 +451,9 @@ exports[`domain control - components - Content  render correctly with gridData i
             onClick={[Function]}
             sortable={false}
             sorting={false}
-            title="Market"
+            title="Target Country"
           >
-            Market
+            Target Country
           </t>
           <t
             asc={true}

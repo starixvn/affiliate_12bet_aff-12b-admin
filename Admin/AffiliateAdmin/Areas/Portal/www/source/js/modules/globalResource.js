@@ -19,5 +19,6 @@ export const globalResource = {
     BaseCurrency: 'Base Currency',
     UserName: 'User Name',
     SystemUserName: 'System Name',
+    Index: "#",
     NA: 'N/A'
 }
