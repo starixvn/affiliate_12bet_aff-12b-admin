@@ -139,7 +139,7 @@
     <value>Maaf! Pembayaran melalui {0} tidak tersedia. Pada saat ini, hanya metode 'Rekening Pemain 12Bet' yang didukung. Silakan &lt;a href='{1}'&gt;klik di sini&lt;/a&gt; untuk membuat perubahan.</value>
   </data>
   <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
-    <value>Anda hanya bisa meminta pembayaran dari tanggal 10 - 17 dalam bulan.</value>
+    <value>Anda hanya bisa meminta pembayaran dari tanggal 9 - 16 dalam bulan.</value>
   </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>Alamat yang Anda gunakan untuk meminta kata sandi baru, tidak valid.</value>
