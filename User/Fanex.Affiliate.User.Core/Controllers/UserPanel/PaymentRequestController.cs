@@ -69,7 +69,7 @@
                 paymentCreationParam.Language = SessionService.CurrentLanguage;
                 paymentCreationParam.Ip = Request.GetClientIP();
                 paymentCreationParam.IsInternal = SessionService.IsInternal;
-                paymentCreationParam.IsLocalTest = !_appSetting.IsProduction;
+                paymentCreationParam.IsLocalTest = _appSetting.IsLocal || _appSetting.IsDev;
                 paymentCreationParam.TransDate = paymentCreationParam.TransDate ?? DateTimeOffset.Now.DateTime;
 
                 var emailParam = new PaymentEmailParam
@@ -144,7 +144,7 @@
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
                 PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Processing)),
-                IsValidDate = _paymentService.IsInDateRange() || !_appSetting.IsProduction
+                IsValidDate = _paymentService.IsInDateRange() || _appSetting.IsLocal || _appSetting.IsDev,
             };
 
             return viewModel;

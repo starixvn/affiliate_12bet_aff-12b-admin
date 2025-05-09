@@ -148,7 +148,7 @@
     <value>Sorry! The payment via {0} is not available. At the moment, only '12Bet Player Account' method is supported. Please &lt;a href='{1}'&gt;click here&lt;/a&gt; to make a change.</value>
   </data>
   <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
-    <value>You can only request payout from 10th to 17th of the month.</value>
+    <value>You can only request payout from 9th to 16th of the month.</value>
   </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>The address that you have used to request a new password is not valid.</value>

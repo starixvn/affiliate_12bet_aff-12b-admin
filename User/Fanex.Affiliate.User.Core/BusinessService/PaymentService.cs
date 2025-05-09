@@ -17,8 +17,8 @@
 
     public class PaymentService : BaseDynamicService, IPaymentService
     {
-        private const int BeginDay = 10;
-        private const int EndDay = 17;
+        private const int BeginDay = 9;
+        private const int EndDay = 16;
 
         private readonly IAccountService _accountService;
         private readonly IEmailService _emailService;
