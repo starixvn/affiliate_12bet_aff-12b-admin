@@ -21,19 +21,16 @@
     {
         protected readonly IMarketingService MarketingService;
         protected readonly IAppSetting AppSetting;
-        protected readonly IAccountService AccountService;
 
         public BaseMarketingController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ISystemService systemsService,
-            IMarketingService marketingService,
-            IAccountService accountService)
+            IMarketingService marketingService)
             : base(sessionService, systemsService)
         {
             MarketingService = marketingService;
             AppSetting = appSetting;
-            AccountService = accountService;
         }
 
         protected IDictionary<string, LanguageLinkViewModel> GetLinkForMemberList(QrCodeParam param)

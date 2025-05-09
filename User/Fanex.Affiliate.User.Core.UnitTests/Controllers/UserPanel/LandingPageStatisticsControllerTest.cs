@@ -4,7 +4,6 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
 using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
-using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics;
@@ -20,14 +19,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class LandingPageStatisticsControllerTest
     {
         private const bool IsInternal = false;
-        private const string CommGroup = "test";
 
         [Fact]
         public void IndexGet_WhenCall_ReturnViewWithCorrectModelData()
         {
             // Arrange
             var marketingService = new Mock<IMarketingService>();
-            marketingService.Setup(m => m.GetLandingPageList(CommGroup, IsInternal, It.IsAny<AffiliateLinkType>(), It.IsAny<string>())).Returns(new List<LandingPage>());
+            marketingService.Setup(m => m.GetLandingPageList(It.IsAny<LandingPageParam>())).Returns(new List<LandingPage>());
             var languageList = CreateFakeLanguageList();
             var languageService = new Mock<ISystemService>();
             languageService.Setup(m => m.GetLanguageList()).Returns(languageList);
@@ -58,7 +56,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             // Arrange
             LandingPageStatisticsParam passedParam = null;
             var marketingService = new Mock<IMarketingService>();
-            marketingService.Setup(m => m.GetLandingPageList(CommGroup, IsInternal, It.IsAny<AffiliateLinkType>(), It.IsAny<string>())).Returns(new List<LandingPage>());
+            marketingService.Setup(m => m.GetLandingPageList(It.IsAny<LandingPageParam>())).Returns(new List<LandingPage>());
             var languageList = CreateFakeLanguageList();
             var languageService = new Mock<ISystemService>();
             languageService.Setup(m => m.GetLanguageList()).Returns(languageList);

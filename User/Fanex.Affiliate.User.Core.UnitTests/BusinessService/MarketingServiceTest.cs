@@ -15,7 +15,6 @@
     using MetalModels.UserPanel;
     using NSubstitute;
     using NSubstitute.ReturnsExtensions;
-    using System;
     using System.Collections.Generic;
     using TestHelper;
     using Xunit;
@@ -127,7 +126,7 @@
             CacheService.Get<IEnumerable<Domain>>(CacheKey.DomainList).ReturnsNull();
             Repo.Fetch<Domain>(Arg.Any<GetAffDomainListCriteria>()).ReturnsForAnyArgs(Constant.DomainList);
 
-            var result = service.GetAvailableDomainList(0, AffiliateLinkType.AffiliateLink, false);
+            var result = service.GetAvailableDomainList(new AvailableDomainParam());
 
             Repo.Received().Fetch<Domain>(Arg.Any<GetAffDomainListCriteria>());
             CacheService.Received().Set(CacheKey.DomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
@@ -141,7 +140,7 @@
             CacheService.Get<IEnumerable<Domain>>(CacheKey.SubDomainList).ReturnsNull();
             Repo.Fetch<Domain>(Arg.Any<GetSubAffDomainListCriteria>()).ReturnsNullForAnyArgs();
 
-            var result = service.GetAvailableDomainList(0, AffiliateLinkType.SubAffiliateLink, false);
+            var result = service.GetAvailableDomainList(new AvailableDomainParam { LinkType = AffiliateLinkType.SubAffiliateLink });
 
             Repo.Received().Fetch<Domain>(Arg.Any<GetSubAffDomainListCriteria>());
             CacheService.Received().Set(CacheKey.SubDomainList, Arg.Compat.Any<IEnumerable<Domain>>(), Number.Ten);
@@ -236,7 +235,7 @@
         {
             var service = CreateService();
 
-            service.GetLandingPageList(string.Empty, false);
+            service.GetLandingPageList(new LandingPageParam());
 
             Repo.Received().Fetch<LandingPage>(Arg.Any<GetLandingPageListCriteria>());
         }
@@ -246,7 +245,7 @@
         {
             var service = CreateService();
 
-            var result = service.GetLandingPageList(string.Empty, false, AffiliateLinkType.SubAffiliateLink);
+            var result = service.GetLandingPageList(new LandingPageParam { LinkType = AffiliateLinkType.SubAffiliateLink});
 
             Assert.NotEmpty(result);
         }

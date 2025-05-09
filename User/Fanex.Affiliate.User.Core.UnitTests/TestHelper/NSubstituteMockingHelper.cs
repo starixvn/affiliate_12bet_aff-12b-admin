@@ -21,8 +21,8 @@
             var marketingService = Substitute.For<IMarketingService>();
             marketingService.GetCategoryList(Arg.Any<bool>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.CategoryList);
             marketingService.GetCurrencyList(Arg.Any<bool>()).Returns(Constant.CurrencyType);
-            marketingService.GetAvailableDomainList(Arg.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.DomainList);
-            marketingService.GetLandingPageList(Arg.Any<string>(), Arg.Any<bool>(), Arg.Any<AffiliateLinkType>()).Returns(Constant.LandingPageList);
+            marketingService.GetAvailableDomainList(Arg.Any<AvailableDomainParam>()).Returns(Constant.DomainList);
+            marketingService.GetLandingPageList(Arg.Any<LandingPageParam>()).Returns(Constant.LandingPageList);
             marketingService.GenerateLinkList(Arg.Any<LinkGeneratingParam>()).Returns(GetGeneratedLinkList());
 
             return marketingService;
