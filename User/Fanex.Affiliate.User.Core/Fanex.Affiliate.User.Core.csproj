@@ -379,7 +379,6 @@
     <Compile Include="Constants\DefaultValue.cs" />
     <Compile Include="Constants\EarningByType.cs" />
     <Compile Include="Constants\ErrCodes.cs" />
-    <Compile Include="Constants\GMT.cs" />
     <Compile Include="Constants\HeaderKey.cs" />
     <Compile Include="Constants\Number.cs" />
     <Compile Include="Constants\Page.cs" />

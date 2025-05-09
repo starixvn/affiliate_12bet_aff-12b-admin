@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
     {
         public DateTime GetNowDateTime()
         {
-            return DateTimeHelper.Now;
+            return DateTimeHelper.Gmt8Now;
         }
 
         public Random GetRandomGenerator()

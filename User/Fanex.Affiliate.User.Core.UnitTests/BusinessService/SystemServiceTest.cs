@@ -3,7 +3,6 @@
     using Criterias;
     using Data.Repository;
     using DTO;
-    using DTO.UserPanel.MediaGallery;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
@@ -85,7 +84,7 @@
         public void GetSystemLanguage_WhenNotHaveInfoInCacheAndRepo_ReturnEmptyList()
         {
             CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).ReturnsNull();
-            Repository.Fetch<LanguageType>(new GetLanguageListCriteria(false)).ReturnsForAnyArgs(new List<LanguageType>());
+            Repository.Fetch<Language>(Arg.Any<GetLanguageListCriteria>()).ReturnsForAnyArgs(new List<Language>());
             var service = CreateService();
 
             var result = service.GetLanguageList();
@@ -97,7 +96,7 @@
         public void GetSystemLange_WhenRepoHaveInfoButCacheIsNot_SaveInfoInCache()
         {
             CacheServive.Get<IEnumerable<Language>>(CacheKey.LanguageList).ReturnsNull();
-            Repository.Fetch<LanguageType>(Arg.Any<GetLanguageListCriteria>()).ReturnsForAnyArgs(CreateLanguageTypes());
+            Repository.Fetch<Language>(Arg.Any<GetLanguageListCriteria>()).ReturnsForAnyArgs(CreateLanguages());
             var service = CreateService();
 
             var result = service.GetLanguageList();
@@ -135,21 +134,6 @@
                 new Language
                 {
                     DisplayName = "American", Code = "en-US", EnglishName = "American", NativeName = "American",
-                    ShortedCode = "en"
-                }
-            };
-
-        private static IEnumerable<LanguageType> CreateLanguageTypes()
-            => new List<LanguageType>
-            {
-                new LanguageType
-                {
-                    DisplayName = "VietNam", MarketId = "vi-VN", MarketName = "VietNam", MarketNativeName = "Viet Nam",
-                    ShortedCode = "vn"
-                },
-                new LanguageType
-                {
-                    DisplayName = "American", MarketId = "en-US", MarketName = "American", MarketNativeName = "American",
                     ShortedCode = "en"
                 }
             };

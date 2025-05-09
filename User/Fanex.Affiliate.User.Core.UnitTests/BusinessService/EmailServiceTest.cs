@@ -236,7 +236,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var serialBaseClass = JsonConvert.SerializeObject(CreateEmailBaseParam());
             var param = JsonConvert.DeserializeObject<PaymentEmailParam>(serialBaseClass);
             param.PaymentType = type;
-            param.RequestDate = DateTime.Now;
+            param.RequestDate = DateTimeHelper.Gmt8Now;
             param.TransId = 1123;
             param.Amount = 20000;
             return param;

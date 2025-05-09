@@ -27,7 +27,7 @@
 
         public ActionResult Index()
         {
-            var now = DateTimeOffset.Now.ToOffset(new TimeSpan(GMT.PlusEight, 0, 0));
+            var now = DateTimeHelper.Gmt8Now;
             var startMonth = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1);
             var languages = SystemService.GetLanguageList().Select(l => new SelectListItem
             {
@@ -38,7 +38,7 @@
             var viewModel = new MarketingPageStatisticsViewModel
             {
                 FromDate = startMonth,
-                ToDate = now.DateTime,
+                ToDate = now,
                 IncludeInActiveLink = false
             };
 

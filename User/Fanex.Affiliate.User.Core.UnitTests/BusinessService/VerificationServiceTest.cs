@@ -57,7 +57,7 @@
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
             userInfo.Email = "anxcj@com.vn";
-            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
+            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Gmt8Now);
             AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
 
             var result = service.SendCode(param);
@@ -72,7 +72,7 @@
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
             userInfo.SecretKey = null;
-            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
+            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Gmt8Now);
             WrapperUtility.GetRandomGenerator().Returns(new Random());
             AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
             TwoFactorAuthService.GenerateHotp(null, 0).ReturnsForAnyArgs("12345");
@@ -90,7 +90,7 @@
             var service = CreateService();
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
-            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
+            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Gmt8Now);
             WrapperUtility.GetRandomGenerator().Returns(new Random());
             AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
             TwoFactorAuthService.GenerateHotp(null, 0).ReturnsForAnyArgs("12345");

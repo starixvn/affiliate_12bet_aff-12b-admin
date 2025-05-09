@@ -42,25 +42,15 @@
 
         [HttpGet]
         [LanguageRouteChecking]
-        public ActionResult Index(string refId = null, string affCode = null, string affId = null)
+        public ActionResult Index(string affCode = null)
         {
-            if (string.IsNullOrEmpty(affCode) && !string.IsNullOrEmpty(affId))
-            {
-                affCode = affId;
-            }
-
             const string viewPath = "~/Views/Signup/Index.cshtml";
-            if ((string.IsNullOrEmpty(refId) || string.Equals(refId, "index", StringComparison.CurrentCultureIgnoreCase)) && string.IsNullOrEmpty(affCode))
+            if (string.IsNullOrEmpty(affCode))
             {
                 return View(viewPath, new UserSignUpParam());
             }
 
             var affInfo = new GeneralAffInfo();
-
-            if (int.TryParse(refId, out var parentAffId))
-            {
-                affInfo = _accountService.GetGeneralAffInfo(affId: parentAffId);
-            }
 
             if (int.TryParse(affCode, out _))
             {
@@ -99,7 +89,7 @@
             var cookie = new HttpCookie(ParentCodeCookieName)
             {
                 HttpOnly = true,
-                Expires = DateTimeHelper.Now.AddHours(CookieTimeOut),
+                Expires = DateTimeHelper.UtcNow.AddHours(CookieTimeOut),
                 Value = parentAffCode
             };
 

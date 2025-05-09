@@ -39,11 +39,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             Offer offer = new Offer
             {
                 FileName = "abc.html",
-                EffectiveFromDate = DateTimeHelper.Now,
-                EffectiveToDate = DateTimeHelper.Now,
+                EffectiveFromDate = DateTimeHelper.Gmt8Now,
+                EffectiveToDate = DateTimeHelper.Gmt8Now,
                 Language = Constant.DefaultLanguage,
                 PageId = 1,
-                UploadDate = DateTimeHelper.Now
+                UploadDate = DateTimeHelper.Gmt8Now
             };
             var offerRepository = new Mock<IDynamicRepository>();
             offerRepository.Setup(p => p.Get<Offer>(It.IsAny<GetOfferByIdCriteria>(), string.Empty)).Returns(offer);

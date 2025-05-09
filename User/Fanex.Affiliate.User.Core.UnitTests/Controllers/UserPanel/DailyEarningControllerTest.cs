@@ -121,7 +121,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             controller.Index(param);
 
             //Assert
-            Assert.Equal(DateTime.Now.AddDays(-1).Date, param.MonthDate.Value.Date);
+            Assert.Equal(DateTimeHelper.Gmt8Now.AddDays(-1).Date, param.MonthDate.Value.Date);
         }
 
         [Fact]

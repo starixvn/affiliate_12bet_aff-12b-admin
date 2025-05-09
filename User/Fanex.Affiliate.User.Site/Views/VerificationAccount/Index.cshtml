@@ -82,7 +82,7 @@
                                     <div class="captcha-group">
                                         <input type="text" class="form-input" data-val="true" data-val-required="@Lang.CaptchaIsRequired" id="Captcha" name="Captcha" />
                                         <div class="validation-value" id="verifyAccCaptchaBtn">
-                                            <img id="verifyAccCaptchaImg" src="@Url.RenderLanguageContent("~/VerificationAccount/CaptchaImage?_v=" + DateTimeHelper.Now.ToLongTimeString())" alt="captcha" />
+                                            <img id="verifyAccCaptchaImg" src="@Url.RenderLanguageContent("~/VerificationAccount/CaptchaImage?_v=" + DateTimeHelper.Gmt8Now.ToLongTimeString())" alt="captcha" />
                                         </div>
                                     </div>
                                     <span class="validate-input field-validation-error hide" data-valmsg-for="Code" data-valmsg-replace="true"></span>

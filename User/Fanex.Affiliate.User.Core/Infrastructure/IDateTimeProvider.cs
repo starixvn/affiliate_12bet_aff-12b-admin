@@ -4,6 +4,10 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 {
     public interface IDateTimeProvider
     {
-        DateTime Now { get; }
+        DateTime UtcNow { get; }
+
+        DateTime Gmt8Now { get; }
+
+        DateTime ServerTime { get; }
     }
 }

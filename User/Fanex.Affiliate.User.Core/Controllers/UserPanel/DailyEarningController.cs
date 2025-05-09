@@ -28,7 +28,7 @@
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
             param.ProductId = param.ProductId ?? Product.Sportsbook;
-            param.MonthDate = param.MonthDate ?? DateTimeHelper.Now.AddDays(-1);
+            param.MonthDate = param.MonthDate ?? DateTimeHelper.Gmt8Now.AddDays(-1);
 
             var viewModel = new DailyEarningViewModel
             {

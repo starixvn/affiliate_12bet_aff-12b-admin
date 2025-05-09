@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
         {
             var dateTimeProvider = DateTimeProvider ?? DependencyResolver.Current.GetService<IDateTimeProvider>();
 
-            var minDateTime = dateTimeProvider.Now.AddMinutes(expirationByMinute * -1);
+            var minDateTime = dateTimeProvider.UtcNow.AddMinutes(expirationByMinute * -1);
             var timeTicks = Convert.ToInt64(timeTickString);
             var dateTimeRequest = new DateTimeOffset(timeTicks, TimeSpan.Zero).DateTime;
 

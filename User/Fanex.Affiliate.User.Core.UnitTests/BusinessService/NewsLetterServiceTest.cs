@@ -46,11 +46,11 @@
             NewsLetter newsLetter = new NewsLetter
             {
                 FileName = "abc.html",
-                EffectiveFrom = DateTimeHelper.Now,
-                EffectiveTo = DateTimeHelper.Now,
+                EffectiveFrom = DateTimeHelper.Gmt8Now,
+                EffectiveTo = DateTimeHelper.Gmt8Now,
                 Language = Constant.DefaultLanguage,
                 NewsLetterId = 1,
-                UploadDate = DateTimeHelper.Now
+                UploadDate = DateTimeHelper.Gmt8Now
             };
 
             _repository.Setup(p => p.Get<NewsLetter>(It.IsAny<GetNewsLetterByIdCriteria>(), string.Empty)).Returns(newsLetter);

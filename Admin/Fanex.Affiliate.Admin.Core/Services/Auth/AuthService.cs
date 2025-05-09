@@ -98,7 +98,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Auth
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, adminInfo.UserId.ToString()),
-                new Claim(ClaimTypes.GivenName, adminInfo.UserName),
+                new Claim(ClaimTypes.GivenName, adminInfo.UserName ?? string.Empty),
                 new Claim(ClaimTypes.Role, adminInfo.GroupId.ToString())
             };
 
