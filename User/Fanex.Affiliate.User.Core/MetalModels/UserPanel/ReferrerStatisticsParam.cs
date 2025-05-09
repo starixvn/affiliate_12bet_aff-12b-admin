@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
+﻿namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
     public class ReferrerStatisticsParam : StatisticsBySiteBaseParam
     {
@@ -11,8 +9,5 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public int TotalSignUps { get; set; }
 
         public int TotalFdms { get; set; }
-
-        [Required]
-        public string CountryCodes { get; set; }
     }
 }

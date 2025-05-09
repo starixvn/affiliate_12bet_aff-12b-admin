@@ -14,8 +14,6 @@
 
         public int TotalFdms { get; set; }
 
-        public string CountryCodes { get; set; }
-
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 
         public override bool IsValid() => AffId > 0;
