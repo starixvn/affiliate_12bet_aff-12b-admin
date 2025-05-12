@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         IEnumerable<string> MarketingForCommGroups { get; }
 
-        IEnumerable<string> MarketingLandingPages { get; }
+        IEnumerable<string> MarketingPageCodeRegexPatterns { get; }
 
         bool IsMarketingSpecificEmail(string email);
 

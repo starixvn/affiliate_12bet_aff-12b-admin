@@ -2,6 +2,7 @@
 using Fanex.Affiliate.User.Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -14,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 return landingPages;
             }
 
-            return landingPages.Where(l => !appSetting.MarketingLandingPages.Any(m => m.MatchWith(l.PageCode)));
+            return landingPages.Where(l => !appSetting.MarketingPageCodeRegexPatterns.Any(m => RegexHelper.IsMatch(l.PageCode, $"^{m}$", RegexOptions.IgnoreCase)));
         }
     }
 }
