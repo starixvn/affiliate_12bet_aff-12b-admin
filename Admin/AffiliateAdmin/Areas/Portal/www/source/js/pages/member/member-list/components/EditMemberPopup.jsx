@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Button, Form, FormGroup, Col, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
+import { Button, Form, FormGroup, Col, Label, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { globalResource } from '../libs/constants';
 import { monthNames } from '../../../../modules/constants';
@@ -154,7 +154,7 @@ export class EditMemberPopup extends PureComponent {
                             </Alert>
                             <Form tag="form" className="mb-3" autoComplete="off">
                                 <FormGroup className="my-2">
-                                    <strong className="font-italic">Remove Player '{memberName}' from {affUserName}</strong>
+                                    <span className="font-italic">Remove Player <strong>'{memberName}'</strong> from <strong>{affUserName}</strong></span>
                                 </FormGroup>
 
                                 <FormGroup row className="mb-2 align-items-center">
