@@ -2126,8 +2126,8 @@
   <data name="Telugu" xml:space="preserve">
     <value>เตลูกู</value>
   </data>
-  <data name="EnglishBangladesh" xml:space="preserve">
-    <value>อังกฤษ (บังกลาเทศ)</value>
+  <data name="Bengali" xml:space="preserve">
+    <value>Bengali</value>
   </data>
   <data name="EnglishIndia" xml:space="preserve">
     <value>อังกฤษ (อินเดีย)</value>

@@ -175,12 +175,19 @@ namespace Fanex.Affiliate.Link.Controllers
 
                     var isMarketingLandingPage = Array.Exists(MarketingPageCodeRegexPatterns, reg => RegexHelper.IsMatch(pageCode, reg, RegexOptions.IgnoreCase));
 
-                    if ((isMarketingLandingPage && IsValidAffMarketing(affCode)) || !isMarketingLandingPage)
+                    string mappingPageCode;
+                    if (isMarketingLandingPage)
                     {
-                        var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode);
-
-                        return Redirect(result);
+                        mappingPageCode = IsValidAffMarketing(affCode) ? pageCodeOnV2 : LandingPage.JOIN_PAGE_CODE;
                     }
+                    else
+                    {
+                        mappingPageCode = pageCodeOnV2;
+                    }
+
+                    var result = HandleRedirectUrl(redirectUrl, mappingPageCode, command.LanguageCode);
+
+                    return Redirect(result);
                 }
 
                 ViewBag.Result = LinkIsInvalidMessage;
