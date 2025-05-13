@@ -65,6 +65,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingPageCodeRegexPatterns => GetValue("MarketingPageCodeRegexPatterns").Split(',');
 
+        public IEnumerable<string> MarketingAvailDomainMobilePatterns => GetValue("MarketingAvailDomainMobilePatterns").Split(',');
+
         public bool IsMarketingSpecificEmail(string email) => email.MatchWith(GetValue("MarketingSpecificEmail"));
 
         public string MemberSiteApiUrl => GetValue("MemberSiteApiUrl");
