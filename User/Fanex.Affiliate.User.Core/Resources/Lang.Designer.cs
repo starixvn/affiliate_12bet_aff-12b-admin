@@ -971,6 +971,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bengali.
+        /// </summary>
+        public static string Bengali {
+            get {
+                return ResourceManager.GetString("Bengali", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Benin .
         /// </summary>
         public static string Benin {
@@ -2236,15 +2245,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to English (Bangladesh).
-        /// </summary>
-        public static string EnglishBangladesh {
-            get {
-                return ResourceManager.GetString("EnglishBangladesh", resourceCulture);
             }
         }
         

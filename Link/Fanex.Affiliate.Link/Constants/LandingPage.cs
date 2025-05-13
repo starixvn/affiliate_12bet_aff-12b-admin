@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.Link.Constants
     public static class LandingPage
     {
         private const string HOME_PAGE_CODE = "home";
-        private const string JOIN_PAGE_CODE = "join";
+        public const string JOIN_PAGE_CODE = "join";
 
         public static readonly IReadOnlyDictionary<string, string> SupportedPageCodeOnV1 = new Dictionary<string, string>
         {

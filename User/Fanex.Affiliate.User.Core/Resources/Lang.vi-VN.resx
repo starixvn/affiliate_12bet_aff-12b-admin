@@ -2129,8 +2129,8 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="Telugu" xml:space="preserve">
     <value>Tiếng Telugu</value>
   </data>
-  <data name="EnglishBangladesh" xml:space="preserve">
-    <value>Tiếng Anh (Bangladesh)</value>
+  <data name="Bengali" xml:space="preserve">
+    <value>Bengali</value>
   </data>
   <data name="EnglishIndia" xml:space="preserve">
     <value>Tiếng Anh (Ấn Độ)</value>

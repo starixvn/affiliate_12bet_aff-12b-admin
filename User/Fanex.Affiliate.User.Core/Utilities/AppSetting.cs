@@ -63,7 +63,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingForCommGroups => GetValue("MarketingForCommGroups").Split(',');
 
-        public IEnumerable<string> MarketingLandingPages => GetValue("MarketingLandingPages").Split(',');
+        public IEnumerable<string> MarketingPageCodeRegexPatterns => GetValue("MarketingPageCodeRegexPatterns").Split(',');
 
         public bool IsMarketingSpecificEmail(string email) => email.MatchWith(GetValue("MarketingSpecificEmail"));
 

@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Link.Constants;
+using Fanex.Affiliate.Link.Helpers;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -38,7 +39,7 @@ namespace Fanex.Affiliate.Link.Extensions
             }
 
             var ipList = ips.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(i => i.Trim())
-                        .Where(i => Regex.IsMatch(i, IPv4Regex, RegexOptions.None, TimeSpan.FromSeconds(2)));
+                        .Where(i => RegexHelper.IsMatch(i, IPv4Regex, RegexOptions.None));
 
             return ipList.FirstOrDefault();
         }

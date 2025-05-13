@@ -2113,8 +2113,8 @@
   <data name="Telugu" xml:space="preserve">
     <value>텔구루어</value>
   </data>
-  <data name="EnglishBangladesh" xml:space="preserve">
-    <value>영어(방글라데시)</value>
+  <data name="Bengali" xml:space="preserve">
+    <value>Bengali</value>
   </data>
   <data name="EnglishIndia" xml:space="preserve">
     <value>영어(인도)</value>

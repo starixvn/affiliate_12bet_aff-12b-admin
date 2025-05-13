@@ -2256,8 +2256,8 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="Telugu" xml:space="preserve">
     <value>Telugu</value>
   </data>
-  <data name="EnglishBangladesh" xml:space="preserve">
-    <value>English (Bangladesh)</value>
+  <data name="Bengali" xml:space="preserve">
+    <value>Bengali</value>
   </data>
   <data name="EnglishIndia" xml:space="preserve">
     <value>English (India)</value>

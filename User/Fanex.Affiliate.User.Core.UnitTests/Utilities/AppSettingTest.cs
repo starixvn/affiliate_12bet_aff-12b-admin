@@ -285,13 +285,13 @@
         }
 
         [Fact]
-        public void MarketingLandingPages_ShouldReturnCorrectValues()
+        public void MarketingPageCodeRegexPatterns_ShouldReturnCorrectValues()
         {
             SetUpAppSettings(new Dictionary<string, string>
             {
-                { "MarketingLandingPages", "Page1,Page2" }
+                { "MarketingPageCodeRegexPatterns", "Page1,Page2" }
             });
-            var result = _appSetting.MarketingLandingPages;
+            var result = _appSetting.MarketingPageCodeRegexPatterns;
             Assert.Contains("Page1", result);
             Assert.Contains("Page2", result);
         }
