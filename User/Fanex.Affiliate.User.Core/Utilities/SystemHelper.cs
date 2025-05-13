@@ -28,7 +28,7 @@
             var dataList = domainList.Select(d => new SelectListItem
             {
                 Value = d.DomainId.ToString(),
-                Text = d.DomainName,
+                Text = d.DomainDescription,
                 Selected = d.DomainId == domainId
             });
 

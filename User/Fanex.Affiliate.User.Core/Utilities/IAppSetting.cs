@@ -63,6 +63,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         IEnumerable<string> MarketingPageCodeRegexPatterns { get; }
 
+        IEnumerable<string> MarketingAvailDomainMobilePatterns { get; }
+
         bool IsMarketingSpecificEmail(string email);
 
         string MemberSiteApiUrl { get; }

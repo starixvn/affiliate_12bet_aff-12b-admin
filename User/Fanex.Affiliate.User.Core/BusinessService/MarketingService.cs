@@ -126,29 +126,14 @@
 
         private IEnumerable<Domain> FetchAvailableDomains(AvailableDomainParam param, bool isMember)
         {
-            var domains = isMember
-                ? FetchTData<Domain>(new GetAffDomainListCriteria(param.AffId, param.TargetCountryCode, param.IsInternal))
-                : FetchTData<Domain>(new GetSubAffDomainListCriteria(param.IsInternal));
-
             if (isMember)
             {
-                AssignTemporaryDomainIds(domains, param.AffId);
-            }
+                var domainList = FetchTData<MappingDomainInfo>(new GetAffDomainListCriteria(param.AffId, param.TargetCountryCode, param.IsInternal));
 
-            return domains;
-        }
+                return StatisticsHelper.GetCustomAvailableDomainList(_appSetting, domainList, param.AffId);
+            }    
 
-        private static void AssignTemporaryDomainIds(IEnumerable<Domain> domains, int affId)
-        {
-            var index = 0;
-            foreach (var domain in domains)
-            {
-                if (domain.DomainId == 0)
-                {
-                    domain.DomainId = affId + index;
-                }
-                index++;
-            }
+            return FetchTData<Domain>(new GetSubAffDomainListCriteria(param.IsInternal));
         }
 
         public IDictionary<string, LanguageLinkViewModel> GenerateLinkList(LinkGeneratingParam linkGeneratedParam)

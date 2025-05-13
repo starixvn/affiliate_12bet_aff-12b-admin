@@ -8,6 +8,8 @@
 
         public string DomainName { get; set; }
 
+        public string DomainDescription { get; set; }
+
         public DateTime CreateDate { get; set; }
 
         public bool IsSsl { get; set; }
