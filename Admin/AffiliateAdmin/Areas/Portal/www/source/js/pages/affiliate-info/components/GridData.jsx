@@ -338,7 +338,7 @@ export class GridData extends Component {
 }
 
 function mapStateToProps({ pagingOption, targetCountryList, languageList, param, columnList, claimsPrincipal }) {
-    const isShowMemberLink = claimsPrincipal.hasWriteClaim(claimResource.Player);
+    const isShowMemberLink = claimsPrincipal.hasReadClaim(claimResource.Player);
 
     return Object.assign({}, { pagingOption, targetCountryList, languageList, param, columnList, isShowMemberLink });
 }
