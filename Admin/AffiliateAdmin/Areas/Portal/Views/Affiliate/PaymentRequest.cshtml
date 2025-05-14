@@ -1,4 +1,4 @@
-﻿﻿@using Fanex.Affiliate.Admin.Core.Utilities
+﻿@using Fanex.Affiliate.Admin.Core.Utilities
 @model Fanex.Affiliate.Admin.Core.MetaModels.Payment.PaymentRequestParamFromHome
 
 @{
@@ -14,7 +14,7 @@
         window.initialState = {
             licenseeName: '@(AppSetting.Instance.SiteFriendlyName)',
             today: '@DateTimeHelper.DateTimeGMT8String',
-            param: @Html.Raw(Json.Encode(Model),
+            param: @Html.Raw(Json.Encode(Model)),
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/payment/payment-request.js")"></script>
