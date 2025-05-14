@@ -1,7 +1,7 @@
 ﻿@{
     var isFromOtherPages = Model.IsFromOtherPages;
 }
-
+@using Fanex.Affiliate.Admin.Core.Utilities
 @model Fanex.Affiliate.Admin.Core.ViewModels.Member.MemberListViewModel
 
 @section pagecss{
@@ -17,7 +17,8 @@
         window.initialState = {
             affName: '@Model.AffName',
             isFromOtherPages: '@isFromOtherPages'.toLowerCase() === 'true' ? true : false,
-            today: '@DateTimeOffset.Now.ToOffset(new TimeSpan(8, 0, 0)).ToString("MM/dd/yyyy")',
+            today: '@DateTimeHelper.DateTimeGMT8String',
+            latestBillingDate: '@Model.LatestBillingDate.ToString("MM/dd/yyyy")',
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/member/member-list.js")"></script>

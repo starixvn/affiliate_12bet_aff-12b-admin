@@ -1,9 +1,12 @@
 ﻿using Fanex.Affiliate.Admin.Core.Commands.Member;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Criterias.Member;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Member
 {
@@ -19,6 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
                 AffUsername = param.AffName,
                 UserName = param.UserName,
                 IBCUserName = param.IbcUserName,
+                IsIncludeRemovedPlayer = param.IsIncludeRemovedPlayer,
                 PageIndex = param.PageIndex,
                 PageSize = param.PageSize,
             };
@@ -38,16 +42,35 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
 
         public ResultInfo UpdateMember(UpdateMemberParam param)
         {
-            var command = new UpdateMemberCommand
-            {
-                UserId = param.UserId,
-                Ip = param.Ip,
-                MemberId = param.MemberId,
-                IsInclude = param.IsInclude,
-                IsRemoved = param.IsRemoved,
-            };
+            var latestBillingDate = GetLatestBillingDate();
+            var now = DateTimeHelper.DateTimeGMT8;
+            var nextMonth = DateTimeHelper.CreateDateTime(now.Year, now.Month + 2, 1);
 
-            return ExecuteReturnResultInfo(command);
+            if (param.FromDate > latestBillingDate && param.FromDate < nextMonth)
+            {
+                var command = new UpdateMemberCommand
+                {
+                    UserId = param.UserId,
+                    Ip = param.Ip,
+                    MemberId = param.MemberId,
+                    FromDate = param.FromDate
+                };
+
+                return ExecuteReturnResultInfo(command);
+            }
+
+            return new ResultInfo
+            {
+                Code = ErrCode.GeneralErrorCode,
+                Message = "The selected date cannot be earlier than the latest billing date or greater than next month."
+            };
+        }
+
+        public DateTime GetLatestBillingDate()
+        {
+            var latestBillingDate = GetTData<LatestBillingDate>(new LatestBillingDateCriteria());
+
+            return latestBillingDate.SValue;
         }
     }
 }

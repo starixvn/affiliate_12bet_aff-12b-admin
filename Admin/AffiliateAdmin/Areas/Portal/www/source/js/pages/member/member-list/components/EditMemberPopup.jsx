@@ -2,16 +2,19 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Button, Form, FormGroup, Col, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
+import { Button, Form, FormGroup, Col, Label, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
+import { DatePicker } from '@9softstudio/react-datepicker';
 import { globalResource } from '../libs/constants';
 import { monthNames } from '../../../../modules/constants';
 import { fetchData, getMemberDetail, updateMember, setSelectedMemberId } from '../actions';
 
 const initialState = {
     memberName: '',
-    isInclude: true,
-    isRemoved: false,
+    affUserName: '',
     lastActionDate: '',
+    fromDate: '',
+    removedFromDate: '',
+    isCanUpdate: false,
     isClickedSubmit: false,
     isShowMessage: false,
     isSuccess: true,
@@ -22,10 +25,19 @@ export class EditMemberPopup extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.state = initialState
-        this.orignalInfo = {
-            isInclude: true,
-            isRemoved: false
+        const now = new Date(props.today);
+        const nextMonth = new Date(now.getFullYear(), now.getMonth() + 2, 0);
+        this.nextMonthString = `${nextMonth.getMonth() + 1}/${nextMonth.getDate()}/${nextMonth.getFullYear()}`;
+
+        const latestBillingDate = new Date(props.latestBillingDate);
+        this.latestBillingDate = latestBillingDate;
+
+        const minDate = new Date(latestBillingDate.getFullYear(), latestBillingDate.getMonth(), latestBillingDate.getDate() + 1);
+        this.minDateString = `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}`;
+
+        this.state = {
+            ...initialState,
+            fromDate: this.minDateString
         }
     }
 
@@ -41,67 +53,55 @@ export class EditMemberPopup extends PureComponent {
         var memberInfo = await this.props.getMemberDetail(selectedMemberId);
 
         if (!!memberInfo) {
-            this.orignalInfo = {
-                isInclude: memberInfo.IsInclude,
-                isRemoved: memberInfo.IsRemoved
+            let fromDate = this.minDateString;
+            let removedFromDateString = '';
+            let isCanUpdate = false;
+
+            if (memberInfo.IsRemoved && memberInfo.FromDate) {
+                const removedFromDate = new Date(memberInfo.FromDate);
+                removedFromDateString = `${removedFromDate.getMonth() + 1}/${removedFromDate.getDate()}/${removedFromDate.getFullYear()}`;
+                fromDate = removedFromDateString;
+                isCanUpdate = removedFromDate > this.latestBillingDate;
             }
 
             this.setState(prevState => Object.assign({}, prevState, {
                 memberName: memberInfo.UserName,
-                isInclude: memberInfo.IsInclude,
-                isRemoved: memberInfo.IsRemoved,
-                lastActionDate: memberInfo.LastAction
+                affUserName: memberInfo.AffUserName,
+                lastActionDate: memberInfo.LastAction,
+                isCanUpdate: isCanUpdate || fromDate !== removedFromDateString,
+                fromDate,
+                removedFromDate: removedFromDateString
             }))
         }
     }
 
-    getNoteMesssage = (today, isRemoved, isInclude) => {
-        const now = new Date(today);
-        const month = now.getMonth();
+    getNoteMesssage = () => {
+        const billingDate = this.latestBillingDate;
+        const month = billingDate.getMonth();
         const monthName = monthNames[month];
 
-        if (isRemoved) {
-            return isInclude ? `The report will include data from 01/${monthName} to ${now.getDate()}/${monthName}` : `The report will exclude data from 01/${monthName}`;
-        }
-
-        return `The report will include data from 01/${isInclude ? monthName : monthNames[(month + 1) % 12]}`;
+        return `The latest billing date is <strong>${billingDate.getDate()} ${monthName} ${billingDate.getFullYear()}</strong>. Any changes before this date will not be allowed.`;
     }
 
-    isValidData = (today, isRemoved, isInclude) => {
-        if (this.orignalInfo.isRemoved == isRemoved) {
-            if (this.orignalInfo.isInclude == isInclude) {
-                return false;
-            }
-
-            const { lastActionDate } = this.state;
-            if (!lastActionDate) {
-                return true;
-            }
-
-            const lastDate = new Date(lastActionDate);
-            const now = new Date(today);
-
-            if (now.getMonth() != lastDate.getMonth() || now.getFullYear() != lastDate.getFullYear()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    handleChangeSelectBox = (event) => {
-        this.setState({ isInclude: event.target.value === "0" })
-    }
-
-    handleCheckRemoved = (isRemoved) => {
-        this.setState({ isRemoved: !isRemoved })
+    handleChangeFromDate = (momentDate) => {
+        this.setState({ fromDate: momentDate.format("MM/DD/YYYY") });
     }
 
     handleSubmit = async () => {
-        const { selectedMemberId } = this.props;
-        const { isInclude, isRemoved } = this.state;
+        const { selectedMemberId, isModifiable } = this.props;
+        if (!isModifiable) {
+            this.setState({
+                isSuccess: false,
+                isShowMessage: true,
+                message: "You do not have permission to perform this action."
+            }, () => window.setTimeout(this.hideMessage, 3000));
 
-        const result = await this.props.updateMember({ memberId: selectedMemberId, isInclude, isRemoved });
+            return;
+        }
+
+        const { fromDate } = this.state;
+
+        const result = await this.props.updateMember({ memberId: selectedMemberId, fromDate });
 
         if (result) {
             if (result.IsSuccessful) {
@@ -136,45 +136,47 @@ export class EditMemberPopup extends PureComponent {
     }
 
     render() {
-        const { selectedMemberId, today } = this.props;
-        const { memberName, isInclude, isRemoved, isShowMessage, isSuccess, message } = this.state;
+        const { selectedMemberId } = this.props;
+        const { memberName, affUserName, isShowMessage, isSuccess, message, fromDate, isCanUpdate, removedFromDate } = this.state;
 
         const isShowPopup = !!selectedMemberId;
-        const isDisableBtnSave = !this.isValidData(today, isRemoved, isInclude);
-        const noteMessage = this.getNoteMesssage(today, isRemoved, isInclude);
+        const noteMessage = this.getNoteMesssage();
+        const isDisabled = fromDate == removedFromDate;
 
         return (
             <Modal isOpen={isShowPopup} toggle={this.handleClosePopup} backdrop='static'>
-                <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>{memberName}</ModalHeader>
+                <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>Remove Player {memberName}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="edit-member-form-container">
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-4" autoComplete="off">
-                                <FormGroup row>
-                                    <Label htmlFor="isRemoved" sm={5} className="required">Status:</Label>
+                            <Form tag="form" className="mb-3" autoComplete="off">
+                                <FormGroup className="my-2">
+                                    <span className="font-italic">Remove Player <strong>'{memberName}'</strong> from <strong>{affUserName}</strong></span>
+                                </FormGroup>
+
+                                <FormGroup row className="mb-2 align-items-center">
+                                    <Label htmlFor="fromDate" sm={3} className="required">From Date:</Label>
                                     <Col sm={5}>
-                                        <Input type="checkbox" className="mt-3 ml-0" name="isRemoved" id="isRemoved" checked={isRemoved} onChange={() => this.handleCheckRemoved(isRemoved)} />
+                                        <DatePicker
+                                            isEnable={isCanUpdate}
+                                            minDate={this.minDateString}
+                                            maxDate={this.nextMonthString}
+                                            date={fromDate}
+                                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                                            onChange={this.handleChangeFromDate}
+                                        />
                                     </Col>
                                 </FormGroup>
 
-                                <FormGroup row className="mb-2">
-                                    <Label htmlFor="isInclude" sm={5} className="required">Current Month Report:</Label>
-                                    <Col sm={5}>
-                                        <Input type="select" className="mt-2" name="isInclude" id="isInclude" value={isInclude ? "0" : "1"} onChange={this.handleChangeSelectBox}>
-                                            <option key="include" value="0">Include</option>
-                                            <option key="exclude" value="1">Exclude</option>
-                                        </Input>
-                                    </Col>
-                                </FormGroup>
                                 <FormGroup>
-                                    <Label className="font-italic">{noteMessage}</Label>
+                                    <Label className="font-italic" dangerouslySetInnerHTML={{ __html: noteMessage }}></Label>
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" disabled={isDisableBtnSave} className="mr-3" onClick={this.handleSubmit}>{globalResource.Save}</Button>
+                            <Button type="button" color="success" disabled={isDisabled} className="mr-3" onClick={this.handleSubmit}>{globalResource.Save}</Button>
                             <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
                     </div>
@@ -184,8 +186,8 @@ export class EditMemberPopup extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedMemberId, today, param }) {
-    return { selectedMemberId, today, param };
+function mapStateToProps({ selectedMemberId, today, param, latestBillingDate, isModifiable }) {
+    return { selectedMemberId, today, param, latestBillingDate, isModifiable };
 }
 
 function mapDispatchToProps(dispatch) {

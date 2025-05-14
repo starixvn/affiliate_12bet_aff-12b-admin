@@ -1,4 +1,5 @@
-﻿@model Fanex.Affiliate.Admin.Core.MetaModels.Payment.PaymentRequestParamFromHome
+﻿@using Fanex.Affiliate.Admin.Core.Utilities
+@model Fanex.Affiliate.Admin.Core.MetaModels.Payment.PaymentRequestParamFromHome
 
 @{
     Html.RenderPartial("~/Areas/Portal/Views/Affiliate/_AffiliateSubMenu.cshtml", Model.SubMenuList);
@@ -12,8 +13,8 @@
     <script type="text/javascript">
         window.initialState = {
             licenseeName: '@(AppSetting.Instance.SiteFriendlyName)',
-            today: '@DateTimeOffset.Now.ToOffset(new TimeSpan(8, 0, 0)).ToString("MM/dd/yyyy")',
-            param: @Html.Raw(Json.Encode(Model))
+            today: '@DateTimeHelper.DateTimeGMT8String',
+            param: @Html.Raw(Json.Encode(Model)),
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/payment/payment-request.js")"></script>

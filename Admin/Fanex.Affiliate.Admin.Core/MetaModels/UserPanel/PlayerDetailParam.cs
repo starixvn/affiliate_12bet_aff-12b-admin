@@ -18,6 +18,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public bool IsSortAsc { get; set; }
 
+        public bool IsIncludeRemovedPlayer { get; set; }
+
         public int SortById { get; set; } = Turnover;
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]

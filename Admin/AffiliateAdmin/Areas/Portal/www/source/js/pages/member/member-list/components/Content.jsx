@@ -37,7 +37,6 @@ export class Content extends PureComponent {
     }
 
     _renderHeader() {
-        const { isModifiable } = this.props;
         return [
             <Row key="theard">
                 <Cell header={true} rowSpan="2" colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
@@ -47,12 +46,12 @@ export class Content extends PureComponent {
                 <Cell header={true} rowSpan="2" colWidth={100} title={headerText.LastName}>{headerText.LastName}</Cell>
                 <Cell header={true} rowSpan="2" colWidth={100} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} rowSpan="2" colWidth={100} title={headerText.Affiliate}>{headerText.Affiliate}</Cell>
-                <Cell header={true} colSpan={isModifiable ? "3" : "2"} colWidth={200} title={headerText.Removed}>{headerText.Removed}</Cell>
+                <Cell header={true} colSpan="3" colWidth={200} title={headerText.Removed}>{headerText.Removed}</Cell>
             </Row>,
             <Row key="sub-theard">
                 <Cell header={true} colWidth={50} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.LastActionDate}>{headerText.LastActionDate}</Cell>
-                {isModifiable && <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Edit}</Cell>}
+                <Cell header={true} colWidth={50} title={headerText.Edit}>{headerText.Edit}</Cell>
             </Row>
         ];
     }
@@ -61,13 +60,13 @@ export class Content extends PureComponent {
         const dataRows = [];
 
         if (dataList.length) {
-            const { pagingOption, isModifiable } = this.props;
+            const { pagingOption } = this.props;
 
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex, isModifiable));
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
             }
         }
         else {
@@ -79,7 +78,7 @@ export class Content extends PureComponent {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, isModifiable) {
+    _buildDataRow(dataItem, index) {
         const userName = htmlDecode(dataItem.UserName);
         const ibcUserName = htmlDecode(dataItem.IbcUserName);
         const firstName = htmlDecode(dataItem.FirstName);
@@ -95,18 +94,16 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={firstName}>{firstName}</Cell>
                 <Cell className="text-center" title={lastName}>{lastName}</Cell>
                 <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
-                <Cell className="text-center" title={dataItem.AffName}>{dataItem.AffName}</Cell>
+                <Cell className="text-center" title={dataItem.AffUserName}>{dataItem.AffUserName}</Cell>
                 <Cell className="text-center">
                     <input className="mt-1" type="checkbox" checked={dataItem.IsRemoved} disabled />
                 </Cell>
                 <Cell className="text-center" title={lastActionDate}>{lastActionDate}</Cell>
-                {
-                    isModifiable && <Cell className="text-center" title={`Edit ${userName} player`}>
-                        <Button color="link p-0" onClick={() => this._handleUpdateMember(dataItem.MemberId)}>
-                            <span className="oi oi-pencil text-secondary"></span>
-                        </Button>
-                    </Cell>
-                }
+                <Cell className="text-center" title={`Edit ${userName} player`}>
+                    <Button color="link p-0" onClick={() => this._handleUpdateMember(dataItem.MemberId)}>
+                        <span className="oi oi-pencil text-secondary"></span>
+                    </Button>
+                </Cell>
             </Row>
         )
     }
@@ -135,8 +132,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData, isModifiable }) {
-    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData, isModifiable });
+function mapStateToProps({ pagingOption, param, shouldResetScrollPosition, gridData }) {
+    return Object.assign({}, { pagingOption, param, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

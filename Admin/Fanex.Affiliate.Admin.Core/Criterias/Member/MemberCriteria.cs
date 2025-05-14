@@ -14,5 +14,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Member
         public string UserName { get; set; }
 
         public string IBCUserName { get; set; }
+
+        public bool IsIncludeRemovedPlayer { get; set; }
     }
 }

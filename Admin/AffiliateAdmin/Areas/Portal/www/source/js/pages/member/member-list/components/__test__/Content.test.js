@@ -8,7 +8,7 @@ describe('member list - components - Content ', () => {
 
     const gridData = [
         {
-            AffName: "12BETAFF017",
+            AffUserName: "12BETAFF017",
             CreatedDate: "2017-07-06T10:24:00",
             CreatedDateText: "07/06/2017 10:24:00",
             FirstName: "",
@@ -18,7 +18,7 @@ describe('member list - components - Content ', () => {
             UserName: "12BET$wjpwjp"
         },
         {
-            AffName: "12BETAFF177",
+            AffUserName: "12BETAFF177",
             CreatedDate: "2017-07-05T18:25:00",
             CreatedDateText: "07/05/2017 18:25:00",
             FirstName: "",

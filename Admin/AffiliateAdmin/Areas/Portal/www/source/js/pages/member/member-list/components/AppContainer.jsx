@@ -13,15 +13,13 @@ export const AppContainer = (props) => {
             <Loader show={props.isShowLoader} />
             <Filter />
             <Content />
-            {
-                props.isModifiable && < EditMemberPopup />
-            }
+            < EditMemberPopup />
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, isModifiable }) {
-    return Object.assign({}, { isShowLoader, isModifiable });
+function mapStateToProps({ isShowLoader }) {
+    return Object.assign({}, { isShowLoader });
 }
 
 export default connect(mapStateToProps)(React.memo(AppContainer));

@@ -12,6 +12,7 @@ export const Filter = (props) => {
     const [affName, setAffName] = useState(props.affName);
     const [userName, setUserName] = useState('');
     const [ibcUserName, setIbcUserName] = useState('');
+    const [isIncludeRemovedPlayer, setIsIncludeRemovedPlayer] = useState(false);
 
     useEffect(() => {
         if (isFromOtherPages) {
@@ -25,6 +26,7 @@ export const Filter = (props) => {
             AffName: affName,
             UserName: userName,
             IbcUserName: ibcUserName,
+            IsIncludeRemovedPlayer: isIncludeRemovedPlayer,
             PageIndex: 1,
             PageSize: pagingOption.PageSize,
         });
@@ -43,16 +45,22 @@ export const Filter = (props) => {
         <div className="filter-container my-2">
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3">
-                    <Label className="mr-2">{headerText.Affiliate}</Label>
-                    <Input type="text" name="affName" value={affName} onKeyPress={_handlePressEnter} onChange={(e) => setAffName(e.target.value)} />
+                    <Label for="affName" className="mr-2">{headerText.Affiliate}</Label>
+                    <Input type="text" id="affName" name="affName" value={affName} onKeyPress={_handlePressEnter} onChange={(e) => setAffName(e.target.value)} />
                 </FormGroup>
                 <FormGroup className="mr-sm-3">
-                    <Label className="mr-2">{headerText.UserName}</Label>
-                    <Input type="text" name="userName" value={userName} onKeyPress={_handlePressEnter} onChange={(e) => setUserName(e.target.value)} />
+                    <Label for="userName" className="mr-2">{headerText.UserName}</Label>
+                    <Input type="text" id="userName" name="userName" value={userName} onKeyPress={_handlePressEnter} onChange={(e) => setUserName(e.target.value)} />
                 </FormGroup>
                 <FormGroup className="mr-sm-3">
-                    <Label className="mr-2">{headerText.IbcUserName}</Label>
-                    <Input type="text" name="ibcUserName" value={ibcUserName} onKeyPress={_handlePressEnter} onChange={(e) => setIbcUserName(e.target.value)} />
+                    <Label for="ibcUserName" className="mr-2">{headerText.IbcUserName}</Label>
+                    <Input type="text" id="ibcUserName" name="ibcUserName" value={ibcUserName} onKeyPress={_handlePressEnter} onChange={(e) => setIbcUserName(e.target.value)} />
+                </FormGroup>
+                <FormGroup className="mr-sm-3">
+                    <Label checked>
+                        Include removed Players
+                        <Input className="ml-2 mt-1" type="checkbox" id="isIncludeRemovedPlayer" name="isIncludeRemovedPlayer" checked={isIncludeRemovedPlayer} onChange={(e) => setIsIncludeRemovedPlayer(!isIncludeRemovedPlayer)} />
+                    </Label>
                 </FormGroup>
                 <Button outline color="primary" type="button" onClick={_handleSearch}>
                     <span className="oi oi-magnifying-glass"></span> {headerText.Search}

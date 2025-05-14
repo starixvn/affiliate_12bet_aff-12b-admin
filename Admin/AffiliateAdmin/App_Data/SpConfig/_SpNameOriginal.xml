@@ -209,6 +209,7 @@
     </Setting>
     <Setting Key="Aff_Admin_Player_Sel" SpName="Aff_Admin_Player_Sel" DbName="" />
     <Setting Key="Aff_Admin_Member_RemoveStatus_Upd" SpName="Aff_Admin_Member_RemoveStatus_Upd" DbName="" />
+    <Setting Key="Task_Aff_GetSetting" SpName="Task_Aff_GetSetting" DbName="" />
   </Function>
   <Function Name="ChangeAdminPassword">
     <Setting Key="Aff_Admin_ChangePassword" SpName="Aff_Admin_ChangePassword" DbName="" />

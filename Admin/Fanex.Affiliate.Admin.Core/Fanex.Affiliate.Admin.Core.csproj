@@ -396,6 +396,7 @@
     <Compile Include="Criterias\MediaGallery\LandingPageCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\MediaCategoryCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\MediaSizeCriteria.cs" />
+    <Compile Include="Criterias\Member\LatestBillingDateCriteria.cs" />
     <Compile Include="Criterias\Member\MemberCriteria.cs" />
     <Compile Include="Criterias\Member\MemberDetailCriteria.cs" />
     <Compile Include="Commands\Message\BaseMessageCommand.cs" />
@@ -477,6 +478,7 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\Category.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
+    <Compile Include="DTO\Member\LatestBillingDate.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="DTO\Member\PlayerActionInfo.cs" />
     <Compile Include="DTO\Customer\PaymentMethod.cs" />

@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Member
 {
@@ -11,5 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
         PlayerActionInfo GetMemberDetail(int memberId);
 
         ResultInfo UpdateMember(UpdateMemberParam param);
+
+        DateTime GetLatestBillingDate();
     }
 }

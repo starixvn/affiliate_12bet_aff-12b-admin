@@ -1,4 +1,5 @@
-﻿@model Fanex.Affiliate.Admin.Core.ViewModels.Customer.CustomerViewModel
+﻿@using Fanex.Affiliate.Admin.Core.Utilities
+@model Fanex.Affiliate.Admin.Core.ViewModels.Customer.CustomerViewModel
 @{
     var appSetting = AppSetting.Instance;
 }
@@ -11,7 +12,7 @@
     <script type="text/javascript">
         window.initialState = {
             licenseeName: '@(appSetting.SiteFriendlyName)',
-            today: '@DateTimeOffset.Now.ToOffset(new TimeSpan(8, 0, 0)).ToString("MM/dd/yyyy")',
+            today: '@DateTimeHelper.DateTimeGMT8String',
             selectedUserPanel: null,
             affCommonInfo: null,
             leftPanel: {
