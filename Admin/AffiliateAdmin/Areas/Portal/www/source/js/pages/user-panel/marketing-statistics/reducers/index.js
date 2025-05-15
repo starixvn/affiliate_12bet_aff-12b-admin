@@ -10,14 +10,7 @@ export const param = createReducer(null, {
     }
 });
 
-export const languageCodeList = createReducer({}, {
-    [types.SET_LANGUAGE_CODE_LIST]: (prevState, action) => {
-        return { ...action.data };
-    }
-});
-
 export default combineReducers({
     pagingOption,
-    param,
-    languageCodeList
+    param
 }); 

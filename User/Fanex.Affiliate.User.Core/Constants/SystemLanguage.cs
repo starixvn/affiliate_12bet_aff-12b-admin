@@ -197,6 +197,10 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string ShortedEuroCode = "eneuro";
 
+        public const string ShortedTeluguCode = "hitg";
+
+        public const string ShortedChineseSimplifiedInMalaysia = "csmy";
+
         public const string SelectedAllLanguages = "";
 
         public static string GetShortedCodeForTracking(string currentLanguage)

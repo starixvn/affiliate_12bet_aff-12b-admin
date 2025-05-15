@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.Utilities
 {
-    using DTO;
+    using Constants;
 
     public static class DbSettingHelper
     {

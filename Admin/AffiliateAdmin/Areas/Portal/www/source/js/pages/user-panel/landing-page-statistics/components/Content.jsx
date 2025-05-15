@@ -58,9 +58,10 @@ export class Content extends Component {
         const dataRows = [];
 
         if (dataList.length) {
+            const { languageList } = this.props
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i));
+                dataRows.push(this._buildDataRow(dataItem, languageList, i));
             }
         }
         else {
@@ -74,8 +75,8 @@ export class Content extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index) {
-        const language = this.props.shortCodeLanguageList[dataItem.LanguageCode] || dataItem.LanguageCode;
+    _buildDataRow(dataItem, languageList, index) {
+        const language = languageList[dataItem.LanguageCode] || dataItem.LanguageCode;
         const page = htmlDecode(dataItem.Page);
         return (
             <Row key={`dataRow-${index}`}>
@@ -112,10 +113,10 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ landingPageStatistics }) {
-    const { param, shortCodeLanguageList } = landingPageStatistics;
+function mapStateToProps({ landingPageStatistics, languageList }) {
+    const { param } = landingPageStatistics;
 
-    return Object.assign({}, { param, shortCodeLanguageList });
+    return Object.assign({}, { param, languageList });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -52,7 +52,15 @@
 
         public IEnumerable<Language> GetSupportedLanguages()
         {
-            return GetAllLanguages().Where(l => !l.Code.Equals("te-IN"));
+            var supportedLanguageList = _cacheService.Get<IEnumerable<Language>>(CacheKey.SupportedLanguageList);
+
+            if (supportedLanguageList == null)
+            {
+                supportedLanguageList = GetLanguageList().Where(l => !l.ShortedCode.MatchWith(SystemLanguage.ShortedTeluguCode));
+                _cacheService.Set(CacheKey.SupportedLanguageList, supportedLanguageList);
+            }
+
+            return supportedLanguageList;
         }
 
         public IEnumerable<Language> GetLanguageList()
@@ -61,7 +69,7 @@
 
             if (languageList == null)
             {
-                languageList = GetAllLanguages();
+                languageList = GetAllLanguages().Where(l => !l.ShortedCode.MatchWith(SystemLanguage.ShortedChineseSimplifiedInMalaysia));
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
@@ -110,7 +118,15 @@
 
         public IEnumerable<Currency> GetBaseCurrencyList()
         {
-            return FetchTData<Currency>(new GetBaseCurrencyListCriteria());
+            var baseCurrencyList = _cacheService.Get<IEnumerable<Currency>>(CacheKey.BaseCurrencyList);
+
+            if (baseCurrencyList == null)
+            {
+                baseCurrencyList = FetchTData<Currency>(new GetBaseCurrencyListCriteria());
+                _cacheService.Set(CacheKey.BaseCurrencyList, baseCurrencyList);
+            }
+
+            return baseCurrencyList;
         }
     }
 }

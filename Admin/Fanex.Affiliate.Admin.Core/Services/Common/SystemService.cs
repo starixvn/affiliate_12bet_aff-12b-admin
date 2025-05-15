@@ -1,16 +1,19 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Caching;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SystemService : BaseDynamicService, ISystemService
     {
+        private const string ChineseSimplifiedForMalaysia = "csmy";
         private readonly ICacheService _cacheService;
 
         public SystemService(
@@ -28,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             {
                 const string SpKey = "Aff_Market_Sel";
 
-                languageList = FetchTData<Language>(SpKey);
+                languageList = FetchTData<Language>(SpKey).Where(l => !l.ShortedLanguageCode.MatchWith(ChineseSimplifiedForMalaysia));
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 

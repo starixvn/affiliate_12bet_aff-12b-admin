@@ -137,9 +137,9 @@ export const Content = (props) => {
     );
 }
 
-const mapStateToProps = ({ marketingStatistics }) => ({
+const mapStateToProps = ({ marketingStatistics, languageList }) => ({
     param: marketingStatistics.param,
-    languageCodeList: marketingStatistics.languageCodeList
+    languageList
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

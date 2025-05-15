@@ -493,7 +493,7 @@
     <Compile Include="CoreService\SessionService.cs" />
     <Compile Include="DTO\ContactApp.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
-    <Compile Include="DTO\DBMode.cs" />
+    <Compile Include="Constants\DBMode.cs" />
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\InternalPermission.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />

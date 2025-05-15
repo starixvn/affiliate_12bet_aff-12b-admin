@@ -5,7 +5,6 @@ import { Button } from 'reactstrap';
 
 import { updateLanguage, getAffiliateInfo } from '../../actions';
 import { messages } from '../../libs/constants';
-import { htmlDecode } from '../../../../../modules/htmlHelper';
 import NotificationPopup from '../../../../common/components/NotificationPopup';
 
 export class Language extends PureComponent {
@@ -59,8 +58,8 @@ export class Language extends PureComponent {
             <select value={affiliateInfo.PreferredLanguage}
                 onChange={this._handleChangeLanguage} onBlur={() => this.toggleChangingLanguage(false)} ref={this.languageDropdown}>
                 {
-                    languageList.map(language => {
-                        return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{htmlDecode(language.LanguageName)}</option>)
+                    Object.keys(languageList).map(key => {
+                        return (<option value={key} key={`affinfo-lang-${key}`}>{languageList[key]}</option>)
                     })
                 }
             </select>
@@ -69,11 +68,11 @@ export class Language extends PureComponent {
 
     _renderLanguageLabel() {
         const { affiliateInfo, languageList } = this.props;
-        const languageItem = languageList.find(l => l.LanguageCode === affiliateInfo.PreferredLanguage);
+        const languageName = languageList[affiliateInfo.PreferredLanguage];
 
         return (
             <Button color="link" className="left-panel-btn-link" onClick={() => this.toggleChangingLanguage(true)}>
-                {languageItem && htmlDecode(languageItem.LanguageName)}
+                {languageName}
             </Button>
         )
     }

@@ -4,6 +4,8 @@
     {
         public const string LanguageList = "Affiliate.12B.LanguageList";
 
+        public const string SupportedLanguageList = "Affiliate.12B.SupportedLanguageList";
+
         public const string DomainList = "Affiliate.12B.DomainList";
 
         public const string LatestHotNews = "Affiliate.12B.LatestHotNews";
@@ -19,6 +21,8 @@
         public const string TokenMemoryCache = "Affiliate.12B.TokenMemoryCache";
 
         public const string TargetCountryList = "Affiliate.12B.TargetCountryList";
+
+        public const string BaseCurrencyList = "Affiliate.12B.BaseCurrencyList";
 
         public const string InternalTargetCountryList = "Affiliate.12B.InternalTargetCountryList";
 

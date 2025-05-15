@@ -13,17 +13,10 @@ export class Filter extends React.Component {
     constructor(props) {
         super(props);
 
-        const { today, languageList } = this.props;
+        const { today } = this.props;
         const now = new Date(today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-
-        const shortCodeLanguageList = {};
-        for (let languageItem of languageList) {
-            const shortCode = languageItem.ShortedLanguageCode;
-            shortCodeLanguageList[shortCode] = languageItem.LanguageName;
-        }
-        this.props.setShortCodeLanguageList(shortCodeLanguageList);
 
         this.state = {
             selectedPage: '',
@@ -68,7 +61,7 @@ export class Filter extends React.Component {
     }
 
     render() {
-        const { shortCodeLanguageList } = this.props;
+        const { languageList } = this.props;
         const { selectedPage, languageCode, deviceType, fromDate, toDate, pageList } = this.state;
 
         return pageList && (
@@ -90,8 +83,8 @@ export class Filter extends React.Component {
                         <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                Object.keys(shortCodeLanguageList).map(key => {
-                                    return (<option key={`language-${key}`} value={key}>{shortCodeLanguageList[key]}</option>)
+                                Object.keys(languageList).map(key => {
+                                    return (<option key={`language-${key}`} value={key}>{languageList[key]}</option>)
                                 })
                             }
                         </Input>
@@ -129,18 +122,16 @@ export class Filter extends React.Component {
 
 function mapStateToProps({ today, affCommonInfo, languageList, landingPageStatistics }) {
     const { affId } = affCommonInfo;
-    const { shortCodeLanguageList } = landingPageStatistics;
 
     return Object.assign({}, {
         today,
         affId,
-        languageList,
-        shortCodeLanguageList,
+        languageList
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedPage, setParam, setShortCodeLanguageList, getPageList }, dispatch);
+    return bindActionCreators({ setSelectedPage, setParam, getPageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

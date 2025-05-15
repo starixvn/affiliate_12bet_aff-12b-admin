@@ -13,13 +13,6 @@ export const setParam = (data) => {
     }
 }
 
-export const setLanguageCodeList = (data) => {
-    return {
-        type: types.SET_LANGUAGE_CODE_LIST,
-        data
-    }
-}
-
 export const fetchData = (param) => async () => {
     const url = 'Portal/UserPanel/MarketingStatistics/GetMarketingStatisticsList';
     const response = await post(url, param);
