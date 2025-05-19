@@ -78,7 +78,16 @@
 
         public IEnumerable<Language> GetLanguageByTargetCountry(string targetCountry = "")
         {
-            return GetAllLanguages(targetCountry);
+            var cacheKey = $"{CacheKey.LanguageListByTargetCountry}{targetCountry}";
+            var languageListByTargetCountry = _cacheService.Get<IEnumerable<Language>>(cacheKey);
+
+            if (languageListByTargetCountry == null)
+            {
+                languageListByTargetCountry = GetAllLanguages(targetCountry);
+                _cacheService.Set(cacheKey, languageListByTargetCountry);
+            }
+
+            return languageListByTargetCountry;
         }
 
         private IEnumerable<Language> GetAllLanguages(string targetCountry = "")

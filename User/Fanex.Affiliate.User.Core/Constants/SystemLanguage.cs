@@ -195,8 +195,6 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string ShortedDefaultCode = "en";
 
-        public const string ShortedEuroCode = "eneuro";
-
         public const string ShortedTeluguCode = "hitg";
 
         public const string ShortedChineseSimplifiedInMalaysia = "csmy";

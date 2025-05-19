@@ -6,6 +6,8 @@
 
         public const string SupportedLanguageList = "Affiliate.12B.SupportedLanguageList";
 
+        public const string LanguageListByTargetCountry = "Affiliate.12B.Languages.By.TargetCountry";
+
         public const string DomainList = "Affiliate.12B.DomainList";
 
         public const string LatestHotNews = "Affiliate.12B.LatestHotNews";
