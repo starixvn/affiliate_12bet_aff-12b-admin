@@ -17,7 +17,7 @@
         window.initialState = {
             affName: '@Model.AffName',
             isFromOtherPages: '@isFromOtherPages'.toLowerCase() === 'true' ? true : false,
-            today: '@DateTimeHelper.DateTimeGMT8String',
+            today: '@DateTimeHelper.Gmt8NowString',
             latestBillingDate: '@Model.LatestBillingDate.ToString("MM/dd/yyyy")',
         }
     </script>

@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public class WrapperUtility : IWrapperUtility
     {
-        public DateTime GetNowDateTime()
+        public DateTime GetGmt8NowDateTime()
         {
             return DateTimeHelper.Gmt8Now;
         }

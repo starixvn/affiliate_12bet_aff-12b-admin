@@ -20,13 +20,16 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 
         public static TimeSpan TimeSpanGMT8 => new TimeSpan(GMT8, 0, 0);
 
-        public static DateTime DateTimeGMT8 => DateTimeOffset.Now.ToOffset(TimeSpanGMT8).DateTime;
 
-        public static string DateTimeGMT8String => DateTimeGMT8.ToString("MM/dd/yyyy");
+        private static DateTimeOffset ServerTimeOffset => DateTimeOffset.Now;
 
-        public static DateTimeOffset NowDateTimeOffset => DateTimeOffset.Now;
+        public static DateTime ServerTime => ServerTimeOffset.DateTime;
 
-        public static DateTimeOffset UtcNowDateTimeOffset => DateTimeOffset.UtcNow;
+        public static DateTime Gmt8Now => ServerTimeOffset.ToOffset(TimeSpanGMT8).DateTime;
+
+        public static string Gmt8NowString => Gmt8Now.ToString("MM/dd/yyyy");
+
+        public static DateTime UtcNow => ServerTimeOffset.UtcDateTime;
 
         public static DateTime CreateDateTime(int year, int month, int day, int hour = 0, int minute = 0, int second = 0)
             => new DateTimeOffset(year, month, day, hour, minute, second, TimeSpan.Zero).DateTime;

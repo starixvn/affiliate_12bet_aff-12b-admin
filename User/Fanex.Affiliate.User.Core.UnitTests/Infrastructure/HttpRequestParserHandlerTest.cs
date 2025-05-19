@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
             var base64String = ConverterUtils.Base64Encode(encodedQueryString);
             Request.Params["t"] = RequestTickCount.ToString();
-            DateTimeProvider.UtcNow.Returns(new DateTime(RequestTickCount).AddMinutes(ExpriredMin + 1));
+            DateTimeProvider.Gmt8Now.Returns(new DateTime(RequestTickCount).AddMinutes(ExpriredMin + 1));
 
             var result = parser.TryParseQueryString(base64String);
 
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
             var base64String = ConverterUtils.Base64Encode(encodedQueryString);
             Request.Params["t"] = RequestTickCount.ToString();
-            DateTimeProvider.UtcNow.Returns(new DateTime(RequestTickCount));
+            DateTimeProvider.Gmt8Now.Returns(new DateTime(RequestTickCount));
 
             var result = parser.TryParseQueryString(base64String);
 
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
             var base64String = ConverterUtils.Base64Encode(encodedQueryString);
             Request.Params["t"] = RequestTickCount.ToString();
-            DateTimeProvider.UtcNow.Returns(new DateTime(RequestTickCount));
+            DateTimeProvider.Gmt8Now.Returns(new DateTime(RequestTickCount));
 
             var result = parser.TryParseQueryString(base64String);
 
