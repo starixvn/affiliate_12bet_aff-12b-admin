@@ -15,11 +15,39 @@ export const renderInputForm = (name, label, inputValue, isStatic, isRequired, c
     )
 }
 
-export const lowerFirstChar = (obj) => {
-    return Object.fromEntries(
-        Object.entries(obj).map(([k, v]) => [
-            k.charAt(0).toLowerCase() + k.slice(1),
-            v
-        ])
-    );
-}
+export const extractPersonalInfo = (data) => ({
+    firstName: data.FirstName,
+    lastName: data.LastName,
+    gender: data.Gender || false,
+    email: data.Email,
+    phone: data.Phone,
+});
+
+export const extractAdditionalInfo = (data) => ({
+    address: data.Address,
+    city: data.City,
+    state: data.State,
+    postcode: data.Postcode,
+    country: data.Country,
+    question: data.Question,
+    answer: data.Answer,
+    contactAppList: data.ContactAppList,
+});
+
+export const extractPaymentInfo = (data) => ({
+    preferredPayment: data.PreferredPayment,
+    playerUsername: data.PlayerUsername,
+    moneybookersEmail: data.MoneybookersEmail,
+    bankName: data.BankName,
+    bankAddress: data.BankAddress,
+    bankCode: data.BankCode,
+    bankAccountName: data.BankAccountName,
+    bankAccountNumber: data.BankAccountNumber,
+});
+
+export const extractWebsiteInfo = (data) => ({
+    siteUrl: data.SiteUrl,
+    moreSiteUrls: !data.MoreSiteUrls ? [] : data.MoreSiteUrls.split(';'),
+    noSiteDescription: data.NoSiteDescription,
+    hasWebSite: data.HasWebSite,
+});

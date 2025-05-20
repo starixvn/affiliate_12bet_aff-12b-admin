@@ -227,6 +227,7 @@
     <Compile Include="Apis\ITokenApi.cs" />
     <Compile Include="Attributes\AllowByPassFunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\CensoredPermissionCheckAttribute.cs" />
+    <Compile Include="Attributes\ConditionalRequiredAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
@@ -314,6 +315,7 @@
     <Compile Include="Constants\NoteSpPrefix.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
     <Compile Include="Constants\DefaultValue.cs" />
+    <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Constants\TransType.cs" />
     <Compile Include="Constants\UserType.cs" />

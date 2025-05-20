@@ -330,6 +330,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\Personal.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\WebSite.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\libs\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\libs\validation.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\libs\menus.js" />

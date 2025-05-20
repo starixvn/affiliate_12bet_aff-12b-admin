@@ -41,10 +41,10 @@ export class Personal extends PureComponent {
         this.props.setUserAccountInfo(newUserAccountInfo);
     }
 
-    _renderGenderForm(isMale) {
+    _renderGenderForm(isMale, isRequired) {
         return (
             <FormGroup row>
-                <Label sm={3} xl={2} className="required">Gender</Label>
+                <Label sm={3} xl={2} className={isRequired ? 'required' : ''}>Gender</Label>
                 <Col sm={9} xl={10} className="gender-group">
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
@@ -64,22 +64,23 @@ export class Personal extends PureComponent {
     render() {
         const { userAccountInfo } = this.props;
         const isOnlyView = !userAccountInfo.HasHostAffPersonalInfoPermission;
+        const isRequired = userAccountInfo.MarketingAccount === false;
 
         return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true)}
-                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, true, this.handleChange)}
-                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, true, this.handleChange)}
-                {this._renderGenderForm(userAccountInfo.Gender)}
-                {renderInputForm('email', 'Email Address', userAccountInfo.Email, isOnlyView, true, this.handleChange)}
-                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, isOnlyView, true, this.handleChange)}
+                {renderInputForm('username', 'User Name', userAccountInfo.AffName, false, isRequired, this.handleChange)}
+                {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, isRequired, this.handleChange)}
+                {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, isRequired, this.handleChange)}
+                {this._renderGenderForm(userAccountInfo.Gender, isRequired)}
+                {renderInputForm('email', 'Email Address', userAccountInfo.Email, isOnlyView, isRequired, this.handleChange)}
+                {renderInputForm('phone', 'Contact Number', userAccountInfo.Phone, isOnlyView, isRequired, this.handleChange)}
                 {
                     this.arrayContactApps && this.arrayContactApps.map((contactApp, index) => {
                         const appNameDisplay = contactApp.Name == "Skype" ? "Teams" : contactApp.Name;
                         const placeholder = getPlaceHolderByApp(contactApp.Name);
 
                         return (
-                            renderInputForm(contactApp.Name, appNameDisplay, contactApp.Value, false, index == 0, this.handleChangeContactApps, placeholder)
+                            renderInputForm(contactApp.Name, appNameDisplay, contactApp.Value, false, isRequired && index == 0, this.handleChangeContactApps, placeholder)
                         )
                     })
                 }

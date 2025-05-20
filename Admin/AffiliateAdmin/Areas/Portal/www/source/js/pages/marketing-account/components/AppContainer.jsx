@@ -22,7 +22,7 @@ export const AppContainer = ({ isShowLoader, isShowAddAffMktAccountPopup, setIsS
             <Loader show={isShowLoader} />
             <Filter />
             <Content />
-            <AddAffMktAccountPopup isOpen={isShowAddAffMktAccountPopup} toggle={_handleToggleAddAffMktAccountPopup} />
+            {isShowAddAffMktAccountPopup && <AddAffMktAccountPopup isOpen={isShowAddAffMktAccountPopup} toggle={_handleToggleAddAffMktAccountPopup} />}
         </AppLayout>
     );
 };

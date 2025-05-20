@@ -30,6 +30,7 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     const moreSiteUrls = data && data.MoreSiteUrls;
     const moreSiteUrlsList = !moreSiteUrls ? [] : moreSiteUrls.split(';');
     dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
+    data.MarketingAccount = true; // TODO: Need Review
     dispatch(setUserAccountInfo(data));
     dispatch(toggleLoaderUserPanel(false));
 }

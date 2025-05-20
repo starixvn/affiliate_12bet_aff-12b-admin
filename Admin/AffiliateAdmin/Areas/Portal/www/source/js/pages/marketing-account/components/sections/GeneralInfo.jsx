@@ -17,7 +17,7 @@ export const GeneralInfo = (props) => {
     }
 
     // TODO: Need Review
-    const handleMarketingAccountChange = (e) => {
+    const _handleMarketingAccountChange = (e) => {
         props.setAffId(e.target.value);
     }
 
@@ -28,7 +28,7 @@ export const GeneralInfo = (props) => {
                 <Col sm={6}>
                     <Input type="select" id="marketingAccount"
                         value={props.affId}
-                        onChange={handleMarketingAccountChange}>
+                        onChange={_handleMarketingAccountChange}>
                         <option value="927841">927841</option>
                         <option value="1166364">1166364</option>
                         <option value="1185988">1185988</option>
@@ -41,6 +41,7 @@ export const GeneralInfo = (props) => {
                     <Input type="select" name="targetCountryCode" id="targetCountryCode"
                         value={generalInfo.targetCountryCode}
                         onChange={_handleChange}>
+                        <option value="">Select One</option>
                         {
                             Object.keys(props.targetCountryCodeList).map(key => {
                                 return (<option key={`targetCountryCode-${key}`} value={key}>{props.targetCountryCodeList[key]}</option>)
@@ -55,6 +56,7 @@ export const GeneralInfo = (props) => {
                     <Input type="select" name="language" id="language"
                         value={generalInfo.language}
                         onChange={_handleChange}>
+                        <option value="">Select One</option>
                         {
                             Object.keys(props.languageCodeList).map(key => {
                                 return (<option key={`language-${key}`} value={key}>{props.languageCodeList[key]}</option>)

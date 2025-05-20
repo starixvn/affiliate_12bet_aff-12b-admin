@@ -54,29 +54,30 @@ const validatePaymentMethod = (userAccountInfo) => {
 }
 
 export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeName) => {
+    const { MarketingAccount } = userAccountInfo;
     let message = '';
     const checkEmail = new RegExp(regexEmail);
-    const isValidGender = userAccountInfo.Gender != null;
-    const isValidEmail = !userAccountInfo.HasHostAffPersonalInfoPermission || checkEmail.test(userAccountInfo.Email);
+    const isValidGender = MarketingAccount || userAccountInfo.Gender != null;
+    const isValidEmail = !userAccountInfo.HasHostAffPersonalInfoPermission || (MarketingAccount && !userAccountInfo.Email ? true : checkEmail.test(userAccountInfo.Email));
     const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
     const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDescription${licenseeName}`;
 
     const newRequiredFieldList = [...requiredFieldList, selectedField];
     message = isValidGender ? message : message + messageList.Gender + "<br />";
     message = isValidEmail ? message : message + messageList.Email + "<br />";
-    message += getMessage('Country', country);
+    message += MarketingAccount ? '' : getMessage('Country', country);
 
-    const resultValidateContactApps = validateAppContactList(userAccountInfo.ContactAppList);
+    const resultValidateContactApps = validateAppContactList(userAccountInfo.ContactAppList, MarketingAccount);
     message += resultValidateContactApps.isValid ? '' : resultValidateContactApps.message;
 
-    message += newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
+    message += MarketingAccount ? '' : newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
 
-    let isValid = isValidGender && isValidEmail && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' &&
+    let isValid = MarketingAccount || (isValidGender && isValidEmail && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' &&
         userAccountInfo.Phone !== '' && userAccountInfo.Address !== '' && userAccountInfo.City !== '' &&
-        userAccountInfo.Postcode !== '' && userAccountInfo.Country !== '' && userAccountInfo[selectedField] !== '';
+        userAccountInfo.Postcode !== '' && userAccountInfo.Country !== '' && userAccountInfo[selectedField] !== '');
 
-    const resultValidateMoreSiteUrls = (userAccountInfo.HasWebSite && moreSiteUrlsList) ? validateMoreSiteUrls(moreSiteUrlsList) : ({ message: '', isValid: true });
-    const resultValidatePaymentMethod = validatePaymentMethod(userAccountInfo);
+    const resultValidateMoreSiteUrls = (!MarketingAccount && userAccountInfo.HasWebSite && moreSiteUrlsList) ? validateMoreSiteUrls(moreSiteUrlsList) : ({ message: '', isValid: true });
+    const resultValidatePaymentMethod = MarketingAccount ? validatePaymentMethod(userAccountInfo) : ({ message: '', isValid: true });
 
     return {
         message: message + resultValidateMoreSiteUrls.message + resultValidatePaymentMethod.message,
@@ -100,9 +101,9 @@ const validateContactValue = (contactApp) => {
         isValid = false;
     }
 
-    if ((contactApp.Name === contactAppTypes.Telegram || 
-         contactApp.Name === contactAppTypes.Line || 
-         contactApp.Name === contactAppTypes.WhatsApp) && 
+    if ((contactApp.Name === contactAppTypes.Telegram ||
+        contactApp.Name === contactAppTypes.Line ||
+        contactApp.Name === contactAppTypes.WhatsApp) &&
         !new RegExp(getRegexByApp(contactApp.Name)).test(contactApp.Value)) {
         message = getAppMessage(contactApp.Name, "is invalid<br />");
         isValid = false;
@@ -114,17 +115,17 @@ const validateContactValue = (contactApp) => {
     };
 }
 
-export const validateAppContactList = (contactAppList) => {
+export const validateAppContactList = (contactAppList, MarketingAccount) => {
     let message = '';
     let isValid = true;
 
-    if (!contactAppList || contactAppList.length === 0) {
+    if (!MarketingAccount && (!contactAppList || contactAppList.length === 0)) {
         message = 'At least one IM account is required<br />';
         isValid = false;
     }
 
     const firstItem = contactAppList[0];
-    if (!firstItem.Value) {
+    if (!MarketingAccount && !firstItem.Value) {
         message = getAppMessage(firstItem.Name, "is required<br />");
         isValid = false;
     } else {

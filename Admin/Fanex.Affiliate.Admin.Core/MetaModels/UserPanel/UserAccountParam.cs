@@ -2,42 +2,43 @@
 using Fanex.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Fanex.Affiliate.Admin.Core.Attributes;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class UserAccountParam : AffiliateBasicInfoParam
     {
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string FirstName { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string LastName { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public bool Gender { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string Phone { get; set; }
 
         public string ContactApps { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string Address { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string City { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string State { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string Postcode { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string Country { get; set; }
 
 
@@ -51,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string NoSiteDescription { get; set; }
 
-        [Required]
+        [ConditionalRequired("IsMarketingAccount")]
         public string PreferredPayment { get; set; }
 
         [SpParam(Ignored = true)]
@@ -84,5 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         [SpParam(Ignored = true)]
         public bool HasHostAffPersonalInfoPermission { get; set; }
+
+        public bool IsMarketingAccount => false;
     }
 }

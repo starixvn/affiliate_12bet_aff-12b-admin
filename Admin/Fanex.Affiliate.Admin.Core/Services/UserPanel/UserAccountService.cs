@@ -12,10 +12,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.Utilities;
-using Fanex.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
@@ -53,44 +49,54 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             return (paymentMethods, criteria.MinAmount);
         }
 
+        // TODO: Need Review
         public async Task<ResultInfo> UpdateUserAccountAsync(UserAccountParam param)
         {
-            var validateWebSite = ValidateWebSite(param);
-            if (!validateWebSite.IsSuccessful)
+            var validateResult = ValidateWebSite(param);
+            if (!validateResult.IsSuccessful)
             {
-                return validateWebSite;
+                return validateResult;
             }
 
             var isValidPaymentMethod = ValidatePaymentMethod(param);
-
             var curUserAccInfo = GetUserAccountInfo(param.AffId);
 
-            if (isValidPaymentMethod)
+            if (!isValidPaymentMethod)
             {
-                if (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment) && curUserAccInfo.PlayerUsername != param.PlayerUsername)
+                if (param.IsMarketingAccount)
                 {
-                    var memberSiteId = _appSetting.MemberSiteId;
-                    var memberSiteCust = await _licenseeService
-                        .GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
-
-                    var result = _licenseeService.CheckCustomerIsValid(memberSiteCust);
-
-                    if (!result.IsSuccessful)
-                    {
-                        return result;
-                    }
-                    param.Player_CustId = memberSiteCust.CustId;
-                    param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault() ? TEST_CURRENCY_ID : memberSiteCust.CurrencyId.GetValueOrDefault();
+                    param.Player_CustId = -1;
+                    return await UpdateUserAccount(param, curUserAccInfo);
                 }
 
-                return await UpdateUserAccount(param, curUserAccInfo);
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = Lang.UpdateIsFailed
+                };
             }
 
-            return new ResultInfo
+            var isPlayerAccountPreferred = PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
+            var isDifferentUsername = curUserAccInfo.PlayerUsername != param.PlayerUsername;
+
+            if (isPlayerAccountPreferred && isDifferentUsername)
             {
-                Code = ErrCode.GeneralErrorCode,
-                Message = Lang.UpdateIsFailed
-            };
+                var memberSiteId = _appSetting.MemberSiteId;
+                var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
+
+                var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
+                if (!validationResult.IsSuccessful)
+                {
+                    return validationResult;
+                }
+
+                param.Player_CustId = memberSiteCust.CustId;
+                param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
+                    ? TEST_CURRENCY_ID
+                    : memberSiteCust.CurrencyId.GetValueOrDefault();
+            }
+
+            return await UpdateUserAccount(param, curUserAccInfo);
         }
 
         private async Task<ResultInfo> UpdateUserAccount(UserAccountParam param, UserAccount curUserAccInfo)
@@ -173,6 +179,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private ResultInfo ValidateWebSite(UserAccountParam param)
         {
+            if (param.IsMarketingAccount)
+            {
+                return ResultInfo.Success;
+            }
+
             if (param.HasWebSite && string.IsNullOrEmpty(param.SiteUrl))
             {
                 return new ResultInfo

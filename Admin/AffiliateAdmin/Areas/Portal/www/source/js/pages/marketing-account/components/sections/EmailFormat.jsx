@@ -1,12 +1,15 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
 export const EmailFormat = (props) => {
 
-    const [isTextFormat, setIsTextFormat] = useState(true);
+    const { mailOption, setMailOption } = props;
 
     const _handleChange = (isTextFormat) => {
-        setIsTextFormat(isTextFormat);
+        setMailOption(prevState => ({
+            ...prevState,
+            mailOption: isTextFormat,
+        }));
     }
 
     return (
@@ -17,12 +20,12 @@ export const EmailFormat = (props) => {
                     <Col sm={5}>
                         <FormGroup check className="d-inline-block mr-3">
                             <Label check>
-                                <Input type="radio" checked={isTextFormat} onChange={() => _handleChange(true)} />{' '} Plain Text Format
+                                <Input type="radio" checked={mailOption} onChange={() => _handleChange(true)} />{' '} Plain Text Format
                             </Label>
                         </FormGroup>
                         <FormGroup check className="d-inline-block">
                             <Label check>
-                                <Input type="radio" checked={!isTextFormat} onChange={() => _handleChange(false)} />{' '} Html Format
+                                <Input type="radio" checked={!mailOption} onChange={() => _handleChange(false)} />{' '} Html Format
                             </Label>
                         </FormGroup>
                     </Col>
