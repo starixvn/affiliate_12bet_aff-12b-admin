@@ -96,7 +96,7 @@ export default class ReportExcel {
         const fieldName = columnConfig.field;
         let value = fieldName === fields.Index ? rowIndex + 1 : item[fieldName];
 
-        if (fieldName === fields.FirstDepositAmount) {
+        if (fieldName === fields.FirstDepositAmount || fieldName === fields.IbcUserName) {
             value = value === null ? '' : value
         }
 
