@@ -9,7 +9,7 @@
 		{"12b", "DBAFF12B.Affiliate_12B.wsv_afinet"},
 	};
 
-	var environments = new string[] { "uat", "production", "local" };
+	var environments = new string[] { "uat", "production", "local", "kldr" };
 
 	var sites = new List<SiteInfo>();
 
