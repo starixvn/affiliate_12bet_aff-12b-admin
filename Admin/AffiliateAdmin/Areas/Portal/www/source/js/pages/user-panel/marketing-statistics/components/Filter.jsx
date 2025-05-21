@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { globalResource } from '../../../../modules/globalResource';
-import { setParam, setLanguageCodeList } from '../actions';
+import { setParam } from '../actions';
 import { minDate } from '../../../../modules/constants';
 import { getDateRange, formatUnit } from '../../../../modules/utils';
 
@@ -70,8 +70,8 @@ export const Filter = (props) => {
                         onChange={(e) => setLanguageCodes(e.target.value)}>
                         <option value="">{globalResource.All}</option>
                         {
-                            Object.keys(props.languageCodeList).map(key => {
-                                return (<option key={`language-${key}`} value={key}>{props.languageCodeList[key]}</option>)
+                            Object.keys(props.languageList).map(key => {
+                                return (<option key={`language-${key}`} value={key}>{props.languageList[key]}</option>)
                             })
                         }
                     </Input>
@@ -94,20 +94,18 @@ export const Filter = (props) => {
     );
 }
 
-function mapStateToProps({ today, affCommonInfo, marketingStatistics }) {
+function mapStateToProps({ today, affCommonInfo, languageList }) {
     const { affId } = affCommonInfo;
-    const { languageCodeList } = marketingStatistics;
     return {
         affId,
         today,
-        languageCodeList
+        languageList
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        setParam,
-        setLanguageCodeList
+        setParam
     }, dispatch);
 }
 

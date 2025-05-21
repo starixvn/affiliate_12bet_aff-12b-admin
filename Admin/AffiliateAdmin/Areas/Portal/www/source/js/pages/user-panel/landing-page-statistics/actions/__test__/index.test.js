@@ -13,7 +13,6 @@ const runTestAction = ({ name, type, data }) => {
 const actionList = [
     { name: 'setSelectedPage', type: types.SET_SELECTED_PAGE, data: 'abc.com' },
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
-    { name: 'setShortCodeLanguageList', type: types.SET_SHORT_CODE_LANGUAGE_LIST, data: 'vn' },
 ]
 
 describe('landing page actions', () => {

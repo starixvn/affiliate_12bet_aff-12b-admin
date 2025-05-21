@@ -5,7 +5,6 @@
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Fanex.Affiliate.User.Core.Enum;
-    using Fanex.Affiliate.User.Core.Extensions;
     using Filters;
     using MetalModels.UserPanel;
     using System;
@@ -88,29 +87,16 @@
 
         private IEnumerable<LandingPageStatistics> GetLandingPageStatisticsData(LandingPageStatisticsParam landingPageParam)
         {
-            landingPageParam.LanguageCode = ConvertSelectedShortedCodes(landingPageParam.LanguageCode);
             var dataList = _statisticsService.GetLandingPageStatistics(landingPageParam);
 
             foreach (var item in dataList)
             {
-                var language = _systemService.GetLanguageList().FirstOrDefault(p => p.ShortedCode == item.LanguageCode);
+                var language = _systemService.GetLanguageList().FirstOrDefault(p => p.Code == item.LanguageCode);
 
                 item.LanguageName = language == null ? item.LanguageCode : language.NativeName;
             }
 
             return dataList;
-        }
-
-        private string ConvertSelectedShortedCodes(string languageCode)
-        {
-            if (string.IsNullOrEmpty(languageCode))
-            {
-                return languageCode;
-            }
-
-            var allLanguages = _systemService.GetLanguageList();
-
-            return allLanguages.FirstOrDefault(l => l.Code.MatchWith(languageCode))?.ShortedCode ?? SystemLanguage.ShortedDefaultCode;
         }
     }
 }

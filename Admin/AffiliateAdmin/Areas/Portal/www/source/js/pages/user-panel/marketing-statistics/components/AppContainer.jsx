@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import UserPanelSubMenu from '../../../common/components/UserPanelSubMenu';
-import { setSelectedUserPanel, setLanguageCodeList } from '../actions';
+import { setSelectedUserPanel } from '../actions';
 import Filter from './Filter';
 import Content from './Content';
 
@@ -15,16 +15,6 @@ export const AppContainer = (props) => {
         { isActive: true, handleClick: () => props.setSelectedUserPanel('marketingStatistics'), title: 'Marketing Page' }
     ];
 
-    useEffect(() => {
-        const languageCodeList = {};
-        for (let languageItem of props.languageList) {
-            const languageCode = languageItem.LanguageCode;
-            languageCodeList[languageCode] = languageItem.LanguageName;
-        }
-
-        props.setLanguageCodeList(languageCodeList);
-    }, [props.languageList]);
-
     return (
         <AppLayout>
             <UserPanelSubMenu subMenuList={subMenuList} />
@@ -34,12 +24,8 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ languageList }) {
-    return { languageList };
-}
-
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedUserPanel, setLanguageCodeList }, dispatch);
+    return bindActionCreators({ setSelectedUserPanel }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
+export default connect(() => ({}), mapDispatchToProps)(React.memo(AppContainer));

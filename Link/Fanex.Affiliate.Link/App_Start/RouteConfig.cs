@@ -10,7 +10,7 @@
     {
         private const string AFF_ID_CONSTRAINT = @"\d+";
         private const string AFF_CODE_CONSTRAINT = @"\d+";
-        private const string LANGUAGE_CONSTRAINT = @"(\w{2}|hien|hitg|eneuro)";
+        private const string LANGUAGE_CONSTRAINT = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)";
 
         /// <summary>
         /// Register Routes.

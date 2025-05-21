@@ -3,7 +3,7 @@ import { setPagingOption } from '../../../../actions/pagingAction';
 import { getPageList as pageList } from '../../../customer/user-panel/modules/service';
 import { setSelectedUserPanel } from '../../../customer/user-panel/actions';
 import { toggleLoaderUserPanel } from '../../../customer/user-panel/actions';
-import { SET_SELECTED_PAGE, SET_PARAM, SET_SHORT_CODE_LANGUAGE_LIST } from '../actions/types';
+import { SET_SELECTED_PAGE, SET_PARAM } from '../actions/types';
 
 export { setPagingOption, toggleLoaderUserPanel, setSelectedUserPanel };
 
@@ -17,13 +17,6 @@ export const setSelectedPage = (data) => {
 export const setParam = (data) => {
     return {
         type: SET_PARAM,
-        data
-    }
-}
-
-export const setShortCodeLanguageList = (data) => {
-    return {
-        type: SET_SHORT_CODE_LANGUAGE_LIST,
         data
     }
 }

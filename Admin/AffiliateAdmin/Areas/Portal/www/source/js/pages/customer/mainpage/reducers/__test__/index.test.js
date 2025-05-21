@@ -39,8 +39,7 @@ describe('customer - mainpage reducer', () => {
             pageList: [],
             pagingOption: defaultPagingOption,
             param: {},
-            selectedPage: null,
-            shortCodeLanguageList: {},
+            selectedPage: null
         },
         languageList: null,
         leftPanel: {

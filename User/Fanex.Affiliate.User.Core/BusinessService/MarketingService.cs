@@ -161,7 +161,7 @@
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = _systemsService.GetLanguageList().FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
+                var language = _systemsService.GetLanguageByTargetCountry(bannerParam.SelectedTargetCountry).FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
 
                 if (language != null)
                 {

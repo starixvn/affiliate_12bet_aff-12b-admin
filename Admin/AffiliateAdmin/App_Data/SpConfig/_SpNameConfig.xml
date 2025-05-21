@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Test" Suffix="_xtest"></item>
-  <!--<item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_MemberList_Sel" Suffix="_UAT2"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Member_RemoveStatus_Upd" Suffix="_UAT2"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Member_Sel" Suffix="_UAT2"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_PlayersDetail_Sel" Suffix="_UAT2"></item>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Player_Sel" Suffix="_UAT2"></item>-->
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Market_Sel" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ClickStatisticsDetailBySite" Suffix="_xpre"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ClickStatisticsSelByPage" Suffix="_xpre"></item>
 </Root>
