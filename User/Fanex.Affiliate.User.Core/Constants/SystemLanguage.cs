@@ -197,7 +197,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string ShortedTeluguCode = "hitg";
 
-        public const string ShortedChineseSimplifiedInMalaysia = "csmy";
+        public const string ShortedChineseSimplifiedInMalaysia = "mycs";
 
         public const string SelectedAllLanguages = "";
 

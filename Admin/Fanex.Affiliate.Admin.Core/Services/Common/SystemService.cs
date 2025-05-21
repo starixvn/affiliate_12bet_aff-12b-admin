@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SystemService : BaseDynamicService, ISystemService
     {
-        private const string ChineseSimplifiedForMalaysia = "csmy";
+        private const string ChineseSimplifiedForMalaysia = "mycs";
         private readonly ICacheService _cacheService;
 
         public SystemService(

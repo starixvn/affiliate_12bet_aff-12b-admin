@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Link.Constants
             ["th"] = "th",
             ["vn"] = "vn",
             ["cs"] = CHINA_SHORTED_CODE,
-            ["csmy"] = CHINA_SHORTED_CODE,
+            ["mycs"] = CHINA_SHORTED_CODE,
         };
 
         public static readonly IReadOnlyDictionary<string, string> RemovedLanguageCodes = new Dictionary<string, string>
