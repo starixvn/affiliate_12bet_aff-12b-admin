@@ -72,6 +72,8 @@
 
         bool IsUseMemberSiteProxy { get; }
 
+        bool IsApiDataModifiable { get; }
+
         bool IsMarketingSpecificEmail(string email);
     }
 }
