@@ -72,8 +72,8 @@
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Data.ProxyClient, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.ProxyClient.1.0.3\lib\net472\Fanex.Data.ProxyClient.dll</HintPath>
+    <Reference Include="Fanex.Data.ProxyClient, Version=1.0.3.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.ProxyClient.1.0.3.6\lib\net472\Fanex.Data.ProxyClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1.1\lib\net461\Fanex.Logging.dll</HintPath>
@@ -326,13 +326,13 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
     <Content Include="12monitor.aspx" />
+    <Content Include="App_Data\SpConfig\SpName.user-12b.kldr.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpConfig\SpName.user-12b.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\SpName.user-12b.production.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.user-12b.sit.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\SpName.user-12b.uat.xml">
@@ -342,6 +342,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.user-12b.kldr.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="App_Data\SpConfig\SpName.xml">
@@ -756,15 +759,13 @@
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
     <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.local.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.uat.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.sit.config" />
     <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.production.config" />
     <Content Include="Configurations\AppSetting\Transform\local.config" />
-    <Content Include="Configurations\AppSetting\Transform\sit.config" />
+    <Content Include="Configurations\AppSetting\Transform\kldr.config" />
     <Content Include="Configurations\AppSetting\Transform\uat.config" />
     <Content Include="Configurations\AppSetting\Transform\production.config" />
     <Content Include="Configurations\Web\Transform\local.config" />
     <Content Include="Configurations\Web\Transform\production.config" />
-    <Content Include="Configurations\Web\Transform\sit.config" />
     <Content Include="Configurations\Web\Transform\uat.config" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\RecoverPassword\Content.en-US.cshtml" />
@@ -1336,9 +1337,6 @@
     <Content Include="Configurations\AppSetting\AppSetting.user-12b.production.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.user-12b.sit.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\AppSetting\AppSetting.user-12b.uat.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
@@ -1348,15 +1346,17 @@
     <Content Include="Configurations\Web\Web.user-12b.production.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\Web\Web.user-12b.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\Web\Web.user-12b.uat.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.kldr.config" />
+    <Content Include="Configurations\Web\Transform\kldr.config" />
+    <Content Include="Configurations\Web\Web.user-12b.kldr.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

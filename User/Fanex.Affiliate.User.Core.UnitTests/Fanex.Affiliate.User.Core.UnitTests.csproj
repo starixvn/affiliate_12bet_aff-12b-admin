@@ -37,8 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
@@ -55,8 +55,8 @@
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Data.ProxyClient, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.ProxyClient.1.0.3\lib\net472\Fanex.Data.ProxyClient.dll</HintPath>
+    <Reference Include="Fanex.Data.ProxyClient, Version=1.0.3.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.ProxyClient.1.0.3.6\lib\net472\Fanex.Data.ProxyClient.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.1.1\lib\net461\Fanex.Logging.dll</HintPath>
@@ -300,9 +300,9 @@
   <ItemGroup>
     <Analyzer Include="..\..\packages\NSubstitute.Analyzers.CSharp.1.0.13\analyzers\dotnet\cs\NSubstitute.Analyzers.CSharp.dll" />
     <Analyzer Include="..\..\packages\NSubstitute.Analyzers.CSharp.1.0.13\analyzers\dotnet\cs\NSubstitute.Analyzers.Shared.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.13.0.8313\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup />
