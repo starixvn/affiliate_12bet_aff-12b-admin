@@ -140,9 +140,9 @@
       <Mapping DataField="DisabledTransfer" ObjectProperty="IsDisabledTransfer" />
     </Setting>
     <Setting Key="Aff_Admin_TransferLimit_Upd" SpName="Aff_Admin_TransferLimit_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_User_Rpt_MarketingPage_Statistics" SpName="Aff_User_Rpt_MarketingPage_Statistics" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
-      <Mapping DataField="AffMediaLink" ObjectProperty="WebsiteUrl" />
-    </Setting>
+	<Setting Key="Aff_User_Rpt_MarketingPage_Statistics" SpName="Aff_User_Rpt_MarketingPage_Statistics" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
+	  <Mapping DataField="AffMediaLink" ObjectProperty="WebsiteUrl" />
+	</Setting>
   </Function>
   <Function Name="MediaGallery">
     <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
@@ -286,3 +286,4 @@
   </Function>
 </Functions>
 
+		

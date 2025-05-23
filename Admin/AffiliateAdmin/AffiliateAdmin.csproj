@@ -259,16 +259,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpConfig\SpName.admin-12b.kldr.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-admin.kldr.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.admin-12b.local.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-admin.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.admin-12b.production.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-admin.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.admin-12b.uat.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-admin.uat.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="Areas\Portal\www\dist\imgs\theme\12bet.png" />
@@ -1431,10 +1431,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Web.admin-12b.local.config" />
-    <Content Include="Web.admin-12b.production.config" />
-    <Content Include="Web.admin-12b.uat.config" />
-    <Content Include="Web.admin-12b.kldr.config" />
+    <Content Include="Web.12b-admin.local.config" />
+    <Content Include="Web.12b-admin.production.config" />
+    <Content Include="Web.12b-admin.uat.config" />
+    <Content Include="Web.12b-admin.kldr.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">

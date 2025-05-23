@@ -326,16 +326,16 @@
       <Link>SonarLint.xml</Link>
     </AdditionalFiles>
     <Content Include="12monitor.aspx" />
-    <Content Include="App_Data\SpConfig\SpName.user-12b.kldr.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-user.kldr.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.user-12b.local.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-user.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.user-12b.production.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-user.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="App_Data\SpConfig\SpName.user-12b.uat.xml">
+    <Content Include="App_Data\SpConfig\SpName.12b-user.uat.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\_SpName.txt">
@@ -343,7 +343,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.user-12b.kldr.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12b-user.kldr.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.12b-user.local.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.12b-user.production.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.12b-user.uat.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
@@ -757,9 +766,9 @@
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Password\Update.cshtml" />
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.uat.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.production.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12b-user.local.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12b-user.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12b-user.production.config" />
     <Content Include="Configurations\AppSetting\Transform\local.config" />
     <Content Include="Configurations\AppSetting\Transform\kldr.config" />
     <Content Include="Configurations\AppSetting\Transform\uat.config" />
@@ -1331,30 +1340,21 @@
     <Content Include="Views\UserPanel\AccountOverView\Partial\_GeneratedQrCode.cshtml" />
     <Content Include="www\source\styles\scss\components\_toogle-button.scss" />
     <Content Include="Views\UserPanel\AccountOverView\MediaGallery\Index.cshtml" />
-    <Content Include="Configurations\AppSetting\AppSetting.user-12b.local.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.user-12b.production.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.user-12b.uat.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.user-12b.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.user-12b.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
-    <Content Include="Configurations\Web\Web.user-12b.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </Content>
     <Content Include="packages.config" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.user-12b.kldr.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12b-user.kldr.config" />
     <Content Include="Configurations\Web\Transform\kldr.config" />
-    <Content Include="Configurations\Web\Web.user-12b.kldr.config">
+    <Content Include="Configurations\Web\Web.12b-user.kldr.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12b-user.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12b-user.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12b-user.uat.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
   </ItemGroup>

@@ -14,7 +14,7 @@ foreach(var environment in environments)
 		var document = new XmlDocument();
 		document.Load(projectPath + "Web.config");
 		transform.Apply(document);
-		document.Save(projectPath + @"Configurations\Web\Web.user-12b." + fileName);
+		document.Save(projectPath + @"Configurations\Web\Web.12b-user." + fileName);
 	}
 }
 #>

@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public async Task<ResultInfo> UnlockUser(int userId)
         {
-            if(!_appSetting.IsApiDataModifiable)
+            if (!_appSetting.IsApiDataModifiable)
             {
                 return ResultInfo.Success;
             }

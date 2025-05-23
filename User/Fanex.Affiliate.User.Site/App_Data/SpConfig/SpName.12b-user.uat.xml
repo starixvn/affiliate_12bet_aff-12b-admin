@@ -36,15 +36,15 @@
 		<Setting Key="Aff_ClickStatisticsSelBySite" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_ClickStatisticsSelBySite_view" SpName="Aff_ClickStatisticsSelBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 
-		<Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
+		<Setting Key="Aff_ClickStatisticsDetailBySite" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
 			<Mapping DataField="UrlReferrer" ObjectProperty="DomainReferrer" />
 		</Setting>
-		<Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv">
+		<Setting Key="Aff_ClickStatisticsDetailBySite_view" SpName="Aff_ClickStatisticsDetailBySite" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv">
 			<Mapping DataField="UrlReferrer" ObjectProperty="DomainReferrer" />
 		</Setting>
 
-		<Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-		<Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
+		<Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 
 		<Setting Key="Aff_User_Rpt_MarketingPage_Statistics" SpName="Aff_User_Rpt_MarketingPage_Statistics" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_User_Rpt_MarketingPage_Statistics_view" SpName="Aff_User_Rpt_MarketingPage_Statistics" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
@@ -110,7 +110,7 @@
 		<Setting Key="Aff_User_LoginInfo_Sel" SpName="Aff_User_LoginInfo_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 
 		<Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-		<Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
+		<Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
 			<Mapping DataField="MarketId" ObjectProperty="Code" />
 			<Mapping DataField="MarketName" ObjectProperty="EnglishName" />
 			<Mapping DataField="MarketNativeName" ObjectProperty="NativeName" />
@@ -126,7 +126,7 @@
 		<Setting Key="Aff_User_Overview_SubAffiliate_Sel" SpName="Aff_User_Overview_SubAffiliate_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 
 		<Setting Key="Aff_Admin_MediaCategory_Sel_view" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
-		<Setting Key="Aff_Market_Sel_view" SpName="Aff_Market_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv">
+		<Setting Key="Aff_Market_Sel_view" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv">
 			<Mapping DataField="MarketId" ObjectProperty="Code" />
 			<Mapping DataField="MarketName" ObjectProperty="EnglishName" />
 			<Mapping DataField="MarketNativeName" ObjectProperty="NativeName" />
