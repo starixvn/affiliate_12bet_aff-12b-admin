@@ -142,7 +142,6 @@
                 return new LoginResultInfo { IsOk = false, Message = Error.LoginWrongInfo };
             }
 
-            user.IsMaxSubLevel = true;
             if (!string.Equals(Approved, user.Status, StringComparison.CurrentCultureIgnoreCase))
             {
                 if (isInternal && string.Equals(Suspended, user.Status, StringComparison.CurrentCultureIgnoreCase))

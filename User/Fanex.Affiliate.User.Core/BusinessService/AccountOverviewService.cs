@@ -35,7 +35,6 @@
         public OverviewSummary GetUserOverviewSummary(int affId, DateTime monthDate)
         {
             var overviewInfo = GetTData<OverviewSummary>(new GetUserOverviewSummaryCriteria(affId, monthDate)) ?? new OverviewSummary();
-            overviewInfo.IsMaxSubLevel = true;
 
             return overviewInfo;
         }

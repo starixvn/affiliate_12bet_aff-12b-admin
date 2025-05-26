@@ -81,7 +81,6 @@
         public GeneralAffInfo GetGeneralAffInfo(int? affId = null, string affCode = null)
         {
             var affInfo = GetTData<GeneralAffInfo>(new GetGeneralAffInfoCriteria(affId, affCode)) ?? new GeneralAffInfo();
-            affInfo.IsMaxSubLevel = true;
 
             return affInfo;
         }

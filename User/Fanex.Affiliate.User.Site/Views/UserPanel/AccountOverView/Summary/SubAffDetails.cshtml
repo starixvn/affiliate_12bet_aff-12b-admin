@@ -15,7 +15,8 @@
                 <th width="10%">@Lang.TotalTurnover <br /> (@Lang.CurrencyLabel)</th>
                 <th width="10%">@Lang.TotalGGR <br /> (@Lang.CurrencyLabel)</th>
                 <th width="10%">@Lang.TotalCommission <br /> (@Lang.CurrencyLabel)</th>
-                <th width="10%">@Lang.NumberOfActivePlayers</th>
+                <th width="10%">@Lang.ActivePlayers</th>
+                <th width="10%">@Lang.QualifiedActivePlayers</th>
                 <th width="10%" hidden>@Lang.Remove</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                             <td class="text-center">@item.GGR.FormatDecimal()</td>
                             <td class="text-center">@item.Commission.FormatDecimal()</td>
                             <td class="text-center">@item.ActivePlayer</td>
+                            <td class="text-center">@item.QualifiedMember</td>
                         </tr>
 
                         startRowNumber++;
@@ -44,7 +46,7 @@
                 else
                 {
                     <tr>
-                        <td class="text-center" colspan="9">@Lang.NoInfo</td>
+                        <td class="text-center" colspan="10">@Lang.NoInfo</td>
                     </tr>
                 }
             }

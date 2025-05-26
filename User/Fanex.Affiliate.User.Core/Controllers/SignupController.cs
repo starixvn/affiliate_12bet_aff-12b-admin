@@ -57,7 +57,7 @@
                 affInfo = _accountService.GetGeneralAffInfo(affCode: affCode);
             }
 
-            if (!affInfo.IsValidAff)
+            if (affInfo.IsValidAff)
             {
                 SetCookie(affInfo.AffCode);
 
@@ -140,6 +140,7 @@
 
         private UserSignUpParam CreateSignUpParam(UserSignUpParam param)
         {
+            var affParentCode = HttpContext.Request.Cookies[ParentCodeCookieName]?.Value;
             return new UserSignUpParam
             {
                 FirstName = Server.HtmlEncode(param.FirstName),
@@ -170,6 +171,7 @@
                 AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
                 Ip = Request.GetClientIP(),
                 IsLocal = _appSetting.IsLocal,
+                AffParentCode = affParentCode
             };
         }
 

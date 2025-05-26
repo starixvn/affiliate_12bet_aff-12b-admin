@@ -105,7 +105,7 @@
             {
                 TargetCountries = SystemHelper.GetTargetCountryList(targetCountries, param.TargetCountryCode),
                 Languages = SystemHelper.GetTargetLanguageList(targetLanguages, languageCode),
-                Domains = SystemHelper.GetDomainList(domains, selectedDomain?.DomainId),
+                Domains = SystemHelper.GetDomainList(domains, param.TargetId, selectedDomain?.DomainId),
                 SitePages = SystemHelper.GetPageList(pages),
                 CategoryList = categoryList,
                 SizeList = sizeList
