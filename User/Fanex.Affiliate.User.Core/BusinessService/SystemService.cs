@@ -83,7 +83,7 @@
 
             if (languageListByTargetCountry == null)
             {
-                languageListByTargetCountry = GetAllLanguages(targetCountry);
+                languageListByTargetCountry = GetAllLanguages(targetCountry).Where(l => !l.ShortedCode.MatchWith(SystemLanguage.ShortedChineseSimplifiedInMalaysia));
                 _cacheService.Set(cacheKey, languageListByTargetCountry);
             }
 
