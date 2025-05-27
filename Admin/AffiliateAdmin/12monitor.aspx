@@ -21,7 +21,7 @@
         Server Time: <%= DateTime.Now%>
     </div>
     <div>
-        GMT+8 Time: <%= DateTimeHelper.DateTimeGMT8%>
+        GMT+8 Time: <%= DateTimeHelper.Gmt8Now%>
     </div>
     <div class="haproxy">
         Client IP: <%= Request.UserHostAddress%>

@@ -5,6 +5,10 @@
 
     public class DateTimeProvider : IDateTimeProvider
     {
-        public DateTime Now => DateTimeHelper.Now;
+        public DateTime UtcNow => DateTimeHelper.UtcNow;
+
+        public DateTime Gmt8Now => DateTimeHelper.Gmt8Now;
+
+        public DateTime ServerTime => DateTimeHelper.ServerTime;
     }
 }

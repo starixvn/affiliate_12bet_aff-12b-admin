@@ -18,7 +18,10 @@
         Server IP: <%= Request.ServerVariables["LOCAL_ADDR"]%>
     </div>
     <div class="servertime">
-        Server Time: <%= DateTimeHelper.Now%>
+        Server Time: <%= DateTimeHelper.ServerTime%>
+    </div>
+    <div>
+        GMT+8: <%= DateTimeHelper.Gmt8Now%>
     </div>
     <div class="haproxy">
         Client IP: <%= Request.UserHostAddress%>

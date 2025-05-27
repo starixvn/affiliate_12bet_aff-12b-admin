@@ -97,7 +97,7 @@
 
         public VerificationAction CreateActionLink(string key, string salt, int expirationInMinute)
         {
-            var nowTicks = _wrapperUtility.GetNowDateTime().Ticks.ToString();
+            var nowTicks = _wrapperUtility.GetGmt8NowDateTime().Ticks.ToString();
             var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks + "&e=" + expirationInMinute;
 
             return new VerificationAction
@@ -146,14 +146,14 @@
 
         private bool CanSendCode(long sendCodeTimeSession, int intervalInMinute)
         {
-            var maxTime = _wrapperUtility.GetNowDateTime().AddMinutes(intervalInMinute * -1).Ticks;
+            var maxTime = _wrapperUtility.GetGmt8NowDateTime().AddMinutes(intervalInMinute * -1).Ticks;
 
             return sendCodeTimeSession == 0 || maxTime - sendCodeTimeSession >= 0;
         }
 
         private long GetNewSendCodeTime()
         {
-            var now = _wrapperUtility.GetNowDateTime();
+            var now = _wrapperUtility.GetGmt8NowDateTime();
 
             return DateTimeHelper.CreateDateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
         }

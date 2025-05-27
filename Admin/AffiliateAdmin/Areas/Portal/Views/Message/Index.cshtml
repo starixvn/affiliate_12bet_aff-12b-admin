@@ -8,7 +8,7 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-            today: '@DateTimeHelper.DateTimeGMT8String',
+            today: '@DateTimeHelper.Gmt8NowString',
             languageList: @Html.Raw(Json.Encode(Model.Where(
                 l => !(l.LanguageCode == "en-GB"
                 || l.LanguageCode == "en-IN"

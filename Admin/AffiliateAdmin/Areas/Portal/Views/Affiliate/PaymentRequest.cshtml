@@ -13,7 +13,7 @@
     <script type="text/javascript">
         window.initialState = {
             licenseeName: '@(AppSetting.Instance.SiteFriendlyName)',
-            today: '@DateTimeHelper.DateTimeGMT8String',
+            today: '@DateTimeHelper.Gmt8NowString',
             param: @Html.Raw(Json.Encode(Model)),
         }
     </script>

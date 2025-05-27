@@ -13,14 +13,17 @@
 
     public class MediaGalleryController : BaseMarketingController
     {
+        private readonly IAccountService _accountService;
         public MediaGalleryController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ISystemService systemsService,
             IMarketingService marketingService,
             IAccountService accountService) :
-            base(sessionService, appSetting, systemsService, marketingService, accountService)
-        { }
+            base(sessionService, appSetting, systemsService, marketingService)
+        {
+            _accountService = accountService;
+        }
 
         [HttpGet]
         [AjaxOnly]
@@ -38,11 +41,11 @@
             var affId = userSession.AffId;
             var isInternal = SessionService.IsInternal;
 
-            var targetCountryCode = AccountService.GetAccountInfo(affId)?.TargetCountryCode;
+            var targetCountryCode = _accountService.GetAccountInfo(affId)?.TargetCountryCode;
 
             var commonLinkForm = GetLinkFormViewModel(targetCountryCode, true);
 
-            if (!AccountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
+            if (!_accountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
             {
                 commonLinkForm.LinkTypes = commonLinkForm.LinkTypes.Append(new SelectListItem
                 {

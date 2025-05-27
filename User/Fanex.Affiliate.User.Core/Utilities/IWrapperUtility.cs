@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public interface IWrapperUtility
     {
-        DateTime GetNowDateTime();
+        DateTime GetGmt8NowDateTime();
 
         Random GetRandomGenerator();
     }

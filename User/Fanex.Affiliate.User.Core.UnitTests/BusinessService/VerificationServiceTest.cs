@@ -43,7 +43,7 @@
             var lastSendTime = now.AddMinutes(-5);
             param.SentCodeTime = lastSendTime.Ticks;
             param.IntervalInMinute = interval;
-            WrapperUtility.GetNowDateTime().Returns(now);
+            WrapperUtility.GetGmt8NowDateTime().Returns(now);
 
             var result = service.SendCode(param);
 
@@ -57,7 +57,7 @@
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
             userInfo.Email = "anxcj@com.vn";
-            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
+            WrapperUtility.GetGmt8NowDateTime().Returns(DateTimeHelper.Gmt8Now);
             AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
 
             var result = service.SendCode(param);
@@ -72,7 +72,7 @@
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
             userInfo.SecretKey = null;
-            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
+            WrapperUtility.GetGmt8NowDateTime().Returns(DateTimeHelper.Gmt8Now);
             WrapperUtility.GetRandomGenerator().Returns(new Random());
             AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
             TwoFactorAuthService.GenerateHotp(null, 0).ReturnsForAnyArgs("12345");
@@ -90,7 +90,7 @@
             var service = CreateService();
             var param = CreateSendCodeParam();
             var userInfo = CreateUserInfo();
-            WrapperUtility.GetNowDateTime().Returns(DateTimeHelper.Now);
+            WrapperUtility.GetGmt8NowDateTime().Returns(DateTimeHelper.Gmt8Now);
             WrapperUtility.GetRandomGenerator().Returns(new Random());
             AccountService.GetUserInfoById(1, false).ReturnsForAnyArgs(userInfo);
             TwoFactorAuthService.GenerateHotp(null, 0).ReturnsForAnyArgs("12345");
@@ -190,7 +190,7 @@
             var expirationMin = 10;
             var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTick + "&e=" + expirationMin;
             var link = ConverterUtils.Base64Encode(SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, "abc", "12233333"));
-            WrapperUtility.GetNowDateTime().ReturnsForAnyArgs(new DateTime(nowTick));
+            WrapperUtility.GetGmt8NowDateTime().ReturnsForAnyArgs(new DateTime(nowTick));
 
             var result = service.CreateActionLink("abc", "12233333", expirationMin);
 

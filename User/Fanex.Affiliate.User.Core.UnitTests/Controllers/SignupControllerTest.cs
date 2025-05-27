@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = CreateController(accountService.Object);
 
             // Action
-            var result = controller.Index("123", "abc") as ViewResult;
+            var result = controller.Index("abc") as ViewResult;
             var model = result.Model as UserSignUpParam;
 
             // Assert
@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = CreateController(accountService.Object);
 
             // Action
-            var result = controller.Index("abc", null, "12345") as ViewResult;
+            var result = controller.Index("12345") as ViewResult;
             var model = result.Model as UserSignUpParam;
 
             // Assert
@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = CreateController();
 
             // Action
-            var result = controller.Index("index", "abc", "abc") as ViewResult;
+            var result = controller.Index("abc") as ViewResult;
             var model = result.Model as UserSignUpParam;
 
             // Assert

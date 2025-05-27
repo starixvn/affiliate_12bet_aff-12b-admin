@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void GetBanner_WhenCallWithNoSelectedDomain_ReturnEmptyModelItem()
         {
             var controller = CreateMarketingController();
-            MarketingService.GetAvailableDomainList(Arg.Compat.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(new List<Domain>());
+            MarketingService.GetAvailableDomainList(Arg.Compat.Any<AvailableDomainParam>()).Returns(new List<Domain>());
             var param = new MarketingBannerParam();
 
             var result = controller.GetBanner(param) as ViewResult;
@@ -115,7 +115,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var controller = CreateMarketingController();
             var bannerItems = MarketingItems;
             MarketingService.GetBannerList(Arg.Compat.Any<MarketingBannerParam>()).Returns(bannerItems);
-            MarketingService.GetAvailableDomainList(Arg.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.DomainList);
+            MarketingService.GetAvailableDomainList(Arg.Any<AvailableDomainParam>()).Returns(Constant.DomainList);
             var domainId = Constant.DomainList.First().DomainId;
             var param = new MarketingBannerParam { SelectedDomainId = domainId, Language = "vi-VN" };
 
@@ -142,7 +142,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void RenderQrCodePage_WhenCallWithAffiliateLinkButNotHasDomain_ReturnCorrectView()
         {
             var controller = CreateMarketingController();
-            MarketingService.GetAvailableDomainList(Arg.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.DomainList);
+            MarketingService.GetAvailableDomainList(Arg.Any<AvailableDomainParam>()).Returns(Constant.DomainList);
             MarketingService.GetUsingMarketingLinks(Arg.Compat.Any<int>()).Returns(new List<MarketingChannelLink> { new MarketingChannelLink { ChannelName = "ABC" } }.GroupBy(i => i.ChannelName));
 
             var result = controller.RenderQrCodePage(new QrCodeParam { SelectedDomainId = 3, SelectedLinkType = AffiliateLinkType.AffiliateLink }) as ViewResult;
@@ -156,7 +156,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void RenderQrCodePage_WhenCallWithSubAffiliateLinkButNotHasDomain_ReturnCorrectView()
         {
             var controller = CreateMarketingController();
-            MarketingService.GetAvailableDomainList(Arg.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.DomainList);
+            MarketingService.GetAvailableDomainList(Arg.Any<AvailableDomainParam>()).Returns(Constant.DomainList);
             MarketingService.GetUsingMarketingLinks(Arg.Compat.Any<int>()).Returns(new List<MarketingChannelLink> { new MarketingChannelLink { ChannelName = "ABC" } }.GroupBy(i => i.ChannelName));
 
             var result = controller.RenderQrCodePage(new QrCodeParam { SelectedDomainId = 3, SelectedLinkType = AffiliateLinkType.SubAffiliateLink }) as ViewResult;
@@ -185,7 +185,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 QrCodeService.GetImage(Arg.Compat.Any<string>()).Returns(image);
                 QrCodeService.GenerateBase64QrCode(Arg.Compat.Any<string>(), Arg.Compat.Any<Image>(), Arg.Compat.Any<bool>())
                     .Returns(BASE64_IMAGE);
-                MarketingService.GetAvailableDomainList(Arg.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.DomainList);
+                MarketingService.GetAvailableDomainList(Arg.Any<AvailableDomainParam>()).Returns(Constant.DomainList);
                 MarketingService.GetUsingMarketingLinks(Arg.Compat.Any<int>()).Returns(new List<MarketingChannelLink>
                 {
                     new MarketingChannelLink { ChannelName = "ABC", AffMediaLink = "English.com", ChannelCode = "123", MarketName = "English" }
@@ -218,7 +218,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                 QrCodeService.GetImage(Arg.Compat.Any<string>()).Returns(image);
                 QrCodeService.GenerateBase64QrCode(Arg.Compat.Any<string>(), Arg.Compat.Any<Image>(), Arg.Compat.Any<bool>())
                     .Returns(BASE64_IMAGE);
-                MarketingService.GetAvailableDomainList(Arg.Any<int>(), Arg.Any<AffiliateLinkType>(), Arg.Any<bool>()).Returns(Constant.DomainList);
+                MarketingService.GetAvailableDomainList(Arg.Any<AvailableDomainParam>()).Returns(Constant.DomainList);
                 MarketingService.GetUsingMarketingLinks(Arg.Compat.Any<int>()).Returns(new List<MarketingChannelLink>
                 {
                     new MarketingChannelLink { ChannelName = "ABC", AffMediaLink = "English.com" }

@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
         private readonly IDateTimeProvider DateTimeProvider;
 
         private static readonly long RequestTickCount = (new DateTime(2020, 10, 10)).Ticks;
-        private static readonly long ExpriredMin = 10;
+        private const int ExpriredMin = 10;
 
         private const string PASSWORD = "password";
         private const string SALT = "ABCDEFGHABCDEF";
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
             var base64String = ConverterUtils.Base64Encode(encodedQueryString);
             Request.Params["t"] = RequestTickCount.ToString();
-            DateTimeProvider.Now.Returns(new DateTime(RequestTickCount).AddMinutes(ExpriredMin + 1));
+            DateTimeProvider.Gmt8Now.Returns(new DateTime(RequestTickCount).AddMinutes(ExpriredMin + 1));
 
             var result = parser.TryParseQueryString(base64String);
 
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
             var base64String = ConverterUtils.Base64Encode(encodedQueryString);
             Request.Params["t"] = RequestTickCount.ToString();
-            DateTimeProvider.Now.Returns(new DateTime(RequestTickCount));
+            DateTimeProvider.Gmt8Now.Returns(new DateTime(RequestTickCount));
 
             var result = parser.TryParseQueryString(base64String);
 
@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Infrastructure
             var encodedQueryString = SymmetricEncryptionUtility.Encrypt<AesManaged>(queryString, PASSWORD, SALT);
             var base64String = ConverterUtils.Base64Encode(encodedQueryString);
             Request.Params["t"] = RequestTickCount.ToString();
-            DateTimeProvider.Now.Returns(new DateTime(RequestTickCount));
+            DateTimeProvider.Gmt8Now.Returns(new DateTime(RequestTickCount));
 
             var result = parser.TryParseQueryString(base64String);
 

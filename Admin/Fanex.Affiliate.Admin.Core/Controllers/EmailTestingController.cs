@@ -214,7 +214,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                         MailContact = _appSetting.MailContact,
                         FirstName = _firstName,
                         TransId = _transId,
-                        TransDate = DateTimeHelper.NowDateTimeOffset.ToString("MM/dd/yyyy hh:mm:ss"),
+                        TransDate = DateTimeHelper.Gmt8Now.ToString("MM/dd/yyyy hh:mm:ss"),
                         Amount = _amount
                     };
                 case TemplateString.PaymentRequestRejected:
@@ -226,7 +226,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                         MailContact = _appSetting.MailContact,
                         FirstName = _firstName,
                         TransId = _transId,
-                        TransDate = DateTimeHelper.NowDateTimeOffset.ToString("MM/dd/yyyy hh:mm:ss"),
+                        TransDate = DateTimeHelper.Gmt8Now.ToString("MM/dd/yyyy hh:mm:ss"),
                         Amount = _amount
                     };
                 default:

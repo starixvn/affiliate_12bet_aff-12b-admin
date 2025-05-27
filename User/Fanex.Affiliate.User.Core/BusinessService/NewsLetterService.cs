@@ -38,7 +38,7 @@
 
         public async Task<string> GetCurrentContent()
         {
-            var items = FetchTData<NewsLetter>(new GetNewsLettersByDateCriteria(DateTimeHelper.Now))
+            var items = FetchTData<NewsLetter>(new GetNewsLettersByDateCriteria(DateTimeHelper.Gmt8Now))
                 .OrderByDescending(n => n.UploadDate);
 
             var currentLang = SessionService.CurrentLanguage;

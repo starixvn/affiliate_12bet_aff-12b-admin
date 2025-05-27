@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Member
         public ResultInfo UpdateMember(UpdateMemberParam param)
         {
             var latestBillingDate = GetLatestBillingDate();
-            var now = DateTimeHelper.DateTimeGMT8;
+            var now = DateTimeHelper.Gmt8Now;
             var nextMonth = DateTimeHelper.CreateDateTime(now.Year, now.Month + 2, 1);
 
             if (param.FromDate > latestBillingDate && param.FromDate < nextMonth)

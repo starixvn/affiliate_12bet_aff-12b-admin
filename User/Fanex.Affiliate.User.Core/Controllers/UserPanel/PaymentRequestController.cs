@@ -33,14 +33,14 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTimeOffset.Now.Year));
+            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTimeHelper.Gmt8Now.Year));
         }
 
         [HttpPost]
         [AjaxOnly]
         public ActionResult GetPaymentListByYear(int year)
         {
-            var viewModel = year >= 2009 && year <= DateTimeHelper.CurrentYear ? GetViewModel(year) : GetViewModel(DateTimeHelper.CurrentYear);
+            var viewModel = year >= 2009 && year <= DateTimeHelper.Gmt8CurrentYear ? GetViewModel(year) : GetViewModel(DateTimeHelper.Gmt8CurrentYear);
 
             return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", viewModel);
         }
@@ -48,7 +48,7 @@
         [AjaxOnly]
         public ActionResult PaymentRequestPartial()
         {
-            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTimeHelper.CurrentYear));
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTimeHelper.Gmt8CurrentYear));
         }
 
         [HttpPost]
@@ -70,7 +70,7 @@
                 paymentCreationParam.Ip = Request.GetClientIP();
                 paymentCreationParam.IsInternal = SessionService.IsInternal;
                 paymentCreationParam.IsLocalTest = _appSetting.IsLocal || _appSetting.IsDev;
-                paymentCreationParam.TransDate = paymentCreationParam.TransDate ?? DateTimeOffset.Now.DateTime;
+                paymentCreationParam.TransDate = paymentCreationParam.TransDate ?? DateTimeHelper.Gmt8Now;
 
                 var emailParam = new PaymentEmailParam
                 {

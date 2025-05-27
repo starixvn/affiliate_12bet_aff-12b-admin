@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         [Fact]
         public void Index_WhenCallWithYearReportNotInRange_ReceiveNoItemList()
         {
-            var date = DateTimeHelper.Now.AddYears(2);
+            var date = DateTimeHelper.Gmt8Now.AddYears(2);
             var controller = CreateController();
 
             var result = controller.Index(date.Year) as JsonResult;
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         [Fact]
         public void Index_WhenCallWithYearReportInRange_ServiceRecieveCall()
         {
-            var thisYear = DateTimeHelper.Now.Year;
+            var thisYear = DateTimeHelper.Gmt8Now.Year;
             var controller = CreateController();
 
             controller.Index(thisYear, 1);

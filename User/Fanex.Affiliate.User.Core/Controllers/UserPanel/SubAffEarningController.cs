@@ -3,6 +3,7 @@
     using BusinessService;
     using CoreService;
     using Fanex.Affiliate.User.Core.Filters;
+    using Fanex.Affiliate.User.Core.Utilities;
     using MetalModels.UserPanel;
     using System;
     using System.Linq;
@@ -27,7 +28,7 @@
         {
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
-            param.MonthDate = param.MonthDate ?? DateTimeOffset.Now.AddDays(-1).DateTime;
+            param.MonthDate = param.MonthDate ?? DateTimeHelper.Gmt8Now.AddDays(-1);
 
             var subAffComm = _statementHistoryService.GetSubAffCommission(param);
             var requestPage = param.RequestPage;

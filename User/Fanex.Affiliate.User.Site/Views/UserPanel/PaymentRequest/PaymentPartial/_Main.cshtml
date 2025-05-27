@@ -4,7 +4,7 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 @{ 
-    var currentYear = DateTimeOffset.Now.ToOffset(new TimeSpan(GMT.PlusEight, 0, 0)).Year;
+    var currentYear = DateTimeHelper.Gmt8CurrentYear;
 }
 @Html.InlineStyles("~/www/build/styles/css/pages/payment-request.css")
 

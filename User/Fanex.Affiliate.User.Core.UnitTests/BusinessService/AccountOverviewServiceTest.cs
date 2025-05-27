@@ -24,7 +24,7 @@
             var expected = new LastLoginInfo
             {
                 AffCode = "123",
-                LastLoginDate = DateTimeHelper.Now,
+                LastLoginDate = DateTimeHelper.Gmt8Now,
                 LastLoginIP = "127.0.0.1"
             };
 
@@ -93,7 +93,7 @@
             var service = CreateService(_repository);
 
             // Action
-            var result = service.GetUserOverviewDetailList(AffId, DateTimeHelper.Now);
+            var result = service.GetUserOverviewDetailList(AffId, DateTimeHelper.Gmt8Now);
 
             // Assert
             Assert.Equal(JsonConvert.SerializeObject(expected), JsonConvert.SerializeObject(result));
@@ -110,7 +110,7 @@
             var service = CreateService(_repository);
 
             // Action
-            var result = service.GetUserOverviewSummary(AffId, DateTimeHelper.Now);
+            var result = service.GetUserOverviewSummary(AffId, DateTimeHelper.Gmt8Now);
 
             // Assert
             Assert.Equal(JsonConvert.SerializeObject(expected), JsonConvert.SerializeObject(result));

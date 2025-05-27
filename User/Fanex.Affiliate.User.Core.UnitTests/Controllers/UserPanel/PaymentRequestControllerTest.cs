@@ -377,7 +377,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             PaymentCreationParam passedParam = null;
-            var transDate = DateTimeOffset.Now.DateTime;
+            var transDate = DateTimeHelper.Gmt8Now;
             var creationParam = new PaymentCreationParam
             {
                 AffId = Constant.DefaultAffId,

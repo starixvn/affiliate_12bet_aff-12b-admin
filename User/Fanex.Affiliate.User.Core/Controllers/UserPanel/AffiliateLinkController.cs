@@ -11,26 +11,30 @@
 
     public class AffiliateLinkController : BaseMarketingController
     {
+        private readonly IAccountService _accountService;
+
         public AffiliateLinkController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ISystemService systemsService,
             IMarketingService marketingService,
             IAccountService accountService)
-            : base(sessionService, appSetting, systemsService, marketingService, accountService)
-        { }
+            : base(sessionService, appSetting, systemsService, marketingService)
+        {
+            _accountService = accountService;
+        }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
         {
             var affId = SessionService.UserSession.AffId;
-            var targetCountryCode = AccountService.GetAccountInfo(affId)?.TargetCountryCode;
+            var targetCountryCode = _accountService.GetAccountInfo(affId)?.TargetCountryCode;
 
             var vm = GetLinkFormViewModel(targetCountryCode);
             vm.Channels = MarketingService.GetChannels(affId);
 
-            if (!AccountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
+            if (!_accountService.GetGeneralAffInfo(affId).IsMaxSubLevel)
             {
                 vm.LinkTypes = vm.LinkTypes
                     .Append(new SelectListItem

@@ -11,9 +11,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             ISessionService sessionService,
             IAppSetting appSetting,
             ISystemService systemsService,
-            IMarketingService marketingService,
-            IAccountService accountService)
-            : base(sessionService, appSetting, systemsService, marketingService, accountService)
+            IMarketingService marketingService)
+            : base(sessionService, appSetting, systemsService, marketingService)
         { }
 
         public ActionResult Index()

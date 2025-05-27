@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
-    var now = DateTimeOffset.Now.Date;
+    var now = DateTimeHelper.Gmt8Now;
 }
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.MessageHistoryViewModel

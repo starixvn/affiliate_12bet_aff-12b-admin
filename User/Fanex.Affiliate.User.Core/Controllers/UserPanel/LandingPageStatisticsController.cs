@@ -40,13 +40,13 @@
             var userSession = SessionService.UserSession;
             var isInternal = SessionService.IsInternal;
 
-            var now = DateTimeOffset.Now.ToOffset(new TimeSpan(GMT.PlusEight, 0, 0));
+            var now = DateTimeHelper.Gmt8Now;
             var landingPageStatisticsParam = new LandingPageStatisticsParam
             {
                 AffId = userSession.AffId,
                 IsInternal = isInternal,
                 FromDate = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1),
-                ToDate = now.DateTime,
+                ToDate = now,
                 DeviceType = (short)DeviceTypeHasAll.All
             };
 

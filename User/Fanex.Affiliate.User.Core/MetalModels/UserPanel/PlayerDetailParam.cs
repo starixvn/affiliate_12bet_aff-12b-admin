@@ -14,7 +14,7 @@
 
         public int PageSize { get; set; } = Page.PageSize;
 
-        public DateTime MonthDate { get; set; } = DateTimeHelper.Now;
+        public DateTime MonthDate { get; set; } = DateTimeHelper.Gmt8Now;
 
         public int SortById { get; set; } = Turnover;
 

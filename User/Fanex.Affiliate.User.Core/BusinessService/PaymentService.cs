@@ -100,7 +100,7 @@
         }
         public bool IsInDateRange()
         {
-            var currentDay = _dateTimeProvider.Now.Day;
+            var currentDay = _dateTimeProvider.Gmt8Now.Day;
             return (currentDay >= BeginDay && currentDay <= EndDay);
         }
 
@@ -144,7 +144,7 @@
                 emailParam.MailTo = userInfo.Email;
                 emailParam.TransId = paymentCreationParam.TransId;
                 emailParam.Amount = paymentCreationParam.Amount;
-                emailParam.RequestDate = paymentCreationParam.TransDate ?? DateTimeOffset.Now.DateTime;
+                emailParam.RequestDate = paymentCreationParam.TransDate ?? _dateTimeProvider.Gmt8Now;
             }
         }
 

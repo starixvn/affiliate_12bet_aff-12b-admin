@@ -32,10 +32,9 @@
             IAppSetting appSetting,
             ISystemService systemsService,
             IMarketingService marketingService,
-            IAccountService accountService,
             IQrCodeGeneratorService qrCodeGeneratorService,
             IFileSystem fileSystem) 
-            : base(sessionService, appSetting, systemsService, marketingService, accountService)
+            : base(sessionService, appSetting, systemsService, marketingService)
         {
             _appSetting = appSetting;
             _qrCodeGeneratorService = qrCodeGeneratorService;

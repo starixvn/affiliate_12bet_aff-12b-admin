@@ -23,7 +23,7 @@
         [Fact]
         public void GenerateCommissionReportData_WhenRepoReturnDataNotNull_NotThrowException()
         {
-            var param = new CommissionReportParam { AffId = 1, BaseCurrency = 20, WinLostDate = DateTimeHelper.Now };
+            var param = new CommissionReportParam { AffId = 1, BaseCurrency = 20, WinLostDate = DateTimeHelper.Gmt8Now };
             _repository.Setup(_ => _.Fetch<AffiliateCommission>(It.IsAny<GetAffiliateCommissionCriteria>(), string.Empty))
                 .Returns(GetAffiliateCommission());
 

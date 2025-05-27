@@ -37,7 +37,7 @@
         public ActionResult Index(int year, int baseCurrency = 0)
         {
             var currency = baseCurrency == 0 ? SessionService.UserSession.BaseCurrency : baseCurrency;
-            var viewModel = year >= 2009 && year <= DateTimeHelper.CurrentYear
+            var viewModel = year >= 2009 && year <= DateTimeHelper.Gmt8CurrentYear
                 ? _commissionReportService.GenerateCommissionReportData(new CommissionReportParam
                 {
                     AffId = SessionService.UserSession.AffId,
