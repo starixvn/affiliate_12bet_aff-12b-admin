@@ -2657,4 +2657,16 @@ You can also email us to {1} or simply fill the form below.</value>
   <data name="VietnamCountry" xml:space="preserve">
     <value>Viet Nam</value>
   </data>
+  <data name="ActiveReferredPlayers" xml:space="preserve">
+    <value>Active Referred Players</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>Company Net Win ($)</value>
+  </data>
+  <data name="YourRevenueShare" xml:space="preserve">
+    <value>Your Revenue Share</value>
+  </data>
+  <data name="RevenueSharePayoutExample" xml:space="preserve">
+    <value>Revenue Share Payout Example</value>
+  </data>
 </root>

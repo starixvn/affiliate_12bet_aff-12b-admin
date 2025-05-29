@@ -2562,4 +2562,16 @@
   <data name="VietnamCountry" xml:space="preserve">
     <value>越南</value>
   </data>
+  <data name="ActiveReferredPlayers" xml:space="preserve">
+    <value>活跃推荐玩家</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>公司净赢额 ($)</value>
+  </data>
+  <data name="YourRevenueShare" xml:space="preserve">
+    <value>您的佣金盈利</value>
+  </data>
+  <data name="RevenueSharePayoutExample" xml:space="preserve">
+    <value>佣金盈利计算示例</value>
+  </data>
 </root>

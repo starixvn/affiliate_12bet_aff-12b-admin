@@ -439,6 +439,7 @@
     <Content Include="www\build\styles\Images\404-illus.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
     <Content Include="www\build\styles\Images\account-overview\qr-disabled.png" />
+    <Content Include="www\build\styles\Images\commission\revenue_share_hierarchy.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-US.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-IN.jpg" />
@@ -1356,6 +1357,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
+    <Content Include="Views\CommissionStructure\Partial\_ExampleTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1045,3 +1045,5 @@ button.swiper-pagination-bullet {
     background: #fff; }
   .block-faq .group-faq .anwser {
     background: #F6F6F6; }
+    .block-faq .group-faq .anwser i {
+      font-weight: bold; }

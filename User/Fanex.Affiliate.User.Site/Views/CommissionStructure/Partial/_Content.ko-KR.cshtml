@@ -49,6 +49,60 @@
             <div class="group-faq">
                 <div class="question">
                     <div class="title">
+                        <span>Sub-Affiliate Structure</span>
+                    </div>
+                    <span class="button-toggle"></span>
+                </div>
+                <div class="anwser">
+                    <div class="anwser-text">
+                        You will be eligible to receive an extra 5% from your referred affiliates’ revenue share, and as long as they bring other affiliates in, you can also have a share from their sub-affiliates’ revenue share either!
+                    </div>
+                </div>
+            </div>
+            <div class="group-faq">
+                <div class="question">
+                    <div class="title">
+                        <span>@Lang.RevenueSharePayoutExample</span>
+                    </div>
+                    <span class="button-toggle"></span>
+                </div>
+                <div class="anwser">
+                    <div class="anwser-text">
+                        <p class="text">
+                            <i>Figure 1:</i> An example to show you how your revenue share earned from your referred players is calculated
+                        </p>
+                        <div class="block block-commission">
+                            @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_ExampleTable.cshtml"); }
+                        </div>
+                        <p class="text">
+                            <i>Figure 2:</i> An example to show you how your revenue share earned from your referred affiliates (and their sub-affiliates) is calculated
+                        </p>
+                        <div class="img-support" style="max-width: 600px; margin: 15px auto;">
+                            <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue_share_hierarchy.png?v=224371" alt="hierarchy banner" />
+                        </div>
+                        <p class="text">
+                            Your revenue share earned from the referred affiliates:
+                        </p>
+                        <div style="padding-left: 30px;">
+                            <p class="text">
+                                = [B1+ ((C1 + C2) * 5%)]*5% + [B2 * 5%]
+                            </p>
+                            <p class="text">
+                                = [0 + ($50,000 + $30,000) * 5%)]*5% + [$70,000 * 5%]
+                            </p>
+                            <p class="text">
+                                = $3,700
+                            </p>
+                        </div>
+                        <p class="text">
+                            <strong>=></strong> Your total revenue share for the month would be: $51,600 + $3,700 = <strong>$55,300</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="group-faq">
+                <div class="question">
+                    <div class="title">
                         <span>커미션 지급</span>
                     </div>
                     <span class="button-toggle"></span>
