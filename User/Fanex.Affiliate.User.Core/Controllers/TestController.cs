@@ -5,12 +5,14 @@
     using CoreService;
     using DTO;
     using Enum;
+    using Fanex.Affiliate.User.Core.Apis;
     using Filters;
     using MetalModels.Email;
     using ONEbook.UM.AspNetMVC.Filters;
     using Resources;
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using Utilities;
     using ViewModels;
@@ -43,16 +45,18 @@
 
         private readonly IMailProcessor _mailProcessor;
         private readonly IAppSetting _appSetting;
+        private readonly ILicenseeApi _licenseeApi;
 
         private readonly string _mailContact;
         private readonly string _userName;
 
         public TestController(ISessionService sessionService,
-            ISystemService languageService, IAppSetting appSetting, IMailProcessor mailProcessor) : base(sessionService, languageService)
+            ISystemService languageService, IAppSetting appSetting,
+            IMailProcessor mailProcessor, ILicenseeApi licenseeApi) : base(sessionService, languageService)
         {
             _mailProcessor = mailProcessor;
             _appSetting = appSetting;
-
+            _licenseeApi = licenseeApi;
             _mailContact = appSetting.MailContact;
             _userName = sessionService.UserSession?.UserName ?? "12B0000";
         }
@@ -66,6 +70,14 @@
             }
 
             return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult> AccessApi()
+        {
+            var message = await _licenseeApi.AccessApi();
+            return View(model: message);
         }
 
         [HttpGet]

@@ -1357,6 +1357,7 @@
     <Content Include="Configurations\Web\Web.12b-user.uat.config">
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Test\AccessApi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

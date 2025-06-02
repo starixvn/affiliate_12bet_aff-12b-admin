@@ -11,5 +11,8 @@
 
         [Post("/api/customer/UnlockUser")]
         Task<ApiResultInfo> UnlockUser(int[] userIds);
+
+        [Get("/")]
+        Task<string> AccessApi();
     }
 }
