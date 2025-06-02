@@ -29,7 +29,7 @@ namespace AffiliateAdmin.Areas.Portal
                 namespaces: new[] { "Fanex.Affiliate.Admin.Core.Controllers", "Fanex.Affiliate.Admin.Core.Controllers.Affiliate",
                     "Fanex.Affiliate.Admin.Core.Controllers.MediaGallery", "Fanex.Affiliate.Admin.Core.Controllers.Player",
                     "Fanex.Affiliate.Admin.Core.Controllers.Domain", "Fanex.Affiliate.Admin.Core.Controllers.Administrator",
-                    "Fanex.Affiliate.Admin.Core.Controllers.Report"}
+                    "Fanex.Affiliate.Admin.Core.Controllers.Report", "Fanex.Affiliate.Admin.Core.Controllers.Operation"}
             );
         }
     }

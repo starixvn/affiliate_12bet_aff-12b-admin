@@ -332,6 +332,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Domain\MemberDomainController.cs" />
     <Compile Include="Controllers\Domain\SpecificDomainControlController.cs" />
+    <Compile Include="Controllers\Operation\OperationController.cs" />
     <Compile Include="Controllers\ReadOnlySessionBaseController.cs" />
     <Compile Include="Controllers\Affiliate\RevenueGroupController.cs" />
     <Compile Include="Controllers\Affiliate\CommGroupAssignmentController.cs" />
@@ -407,6 +408,7 @@
     <Compile Include="Commands\Message\BaseMessageCommand.cs" />
     <Compile Include="Criterias\Message\MessageCriteria.cs" />
     <Compile Include="Criterias\Message\MessageDetailCriteria.cs" />
+    <Compile Include="Criterias\Operation\DealCriteria.cs" />
     <Compile Include="Criterias\PagingByDateCriteria.cs" />
     <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
@@ -489,6 +491,8 @@
     <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="DTO\Member\PlayerActionInfo.cs" />
     <Compile Include="DTO\Customer\PaymentMethod.cs" />
+    <Compile Include="DTO\Operation\DealInfo.cs" />
+    <Compile Include="DTO\Operation\DealType.cs" />
     <Compile Include="DTO\Report\PlayerGgrProductInfo.cs" />
     <Compile Include="DTO\Report\PlayerGgrReport.cs" />
     <Compile Include="DTO\Report\TransferReport.cs" />
@@ -590,6 +594,7 @@
     <Compile Include="MetaModels\Message\DeleteMessageParam.cs" />
     <Compile Include="MetaModels\Message\InsertUpdateMessageParam.cs" />
     <Compile Include="MetaModels\Message\MessageParam.cs" />
+    <Compile Include="MetaModels\Operation\DealParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
@@ -631,6 +636,8 @@
     <Compile Include="Services\Domain\SpecificDomainControlService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
+    <Compile Include="Services\Operation\IOperationService.cs" />
+    <Compile Include="Services\Operation\OperationService.cs" />
     <Compile Include="Services\Tracker\IJobTrackerService.cs" />
     <Compile Include="Services\Tracker\JobTrackerService.cs" />
     <Compile Include="Services\UserPanel\Statistics\ILandingPageStatisticsService.cs" />

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.Operation.DealType>
+
+
+@section pagejs{
+    <script type="text/javascript">
+         window.initialState = {
+             dealTypes: @Html.Raw(Json.Encode(Model))
+         }
+    </script>
+
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/operation/deal.js")"></script>
+}

@@ -240,6 +240,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Portal\PortalAreaRegistration.cs" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_operation.png" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\actions\types.jsx" />
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -346,6 +350,14 @@
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\libs\menus.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerConfigs.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\index.js" />
@@ -1445,6 +1457,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\common\block-target-country-form-group.scss" />
     <Content Include="Areas\Portal\Views\Affiliate\MarketingAccount.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\marketing-account\index.scss" />
+    <Content Include="Areas\Portal\Views\Operation\Deal.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

@@ -11,6 +11,7 @@
 {
         {"Customer",Function.Affiliate },
         {"Affiliate",Function.Affiliate },
+        {"Operation", Function.RevenueGroup }, // TODO: Need Review
         {"Player",Function.Player },
         {"Report",Function.AffReport },
         {"MediaGallery",Function.Media },
@@ -80,6 +81,9 @@
             break;
         case 'Report': case 'PlayerGgrReport': case 'TransferReport':
             element = document.getElementById('Report');
+            break;
+        case 'Operation':
+            element = document.getElementById('Operation');
             break;
         case 'LandingPageList':
             element = document.getElementById('MediaGallery');
