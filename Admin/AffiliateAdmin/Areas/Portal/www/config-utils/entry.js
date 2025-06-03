@@ -54,4 +54,5 @@ module.exports = {
     [`${styleDist}/home`]: clientRoot + "/style/pages/home.scss",
     [`${styleDist}/12bet`]: clientRoot + "/style/themes/12bet.scss",
     [`${styleDist}/pages/marketing-account`]: clientRoot + "/style/pages/marketing-account/index.scss",
+    [`${styleDist}/pages/operation/deal`]: clientRoot + "/style/pages/operation/deal.scss",
 };

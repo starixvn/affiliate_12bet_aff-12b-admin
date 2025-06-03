@@ -15,10 +15,24 @@ const param = createReducer(null, {
     }
 });
 
+const dealInfo = createReducer(null, {
+    [types.SET_DEAL_INFO]: (prevState, action) => {
+        return !action.data ? null : { ...prevState, ...action.data };
+    }
+});
+
+const gridData = createReducer(null, {
+    [types.SET_GRID_DATA]: (prevState, action) => {
+        return action.data;
+    }
+});
+
 export default combineReducers({
     pagingOption,
     isShowLoader,
     claimsPrincipal,
     param,
-    dealTypeList
+    dealTypeList,
+    dealInfo,
+    gridData
 });

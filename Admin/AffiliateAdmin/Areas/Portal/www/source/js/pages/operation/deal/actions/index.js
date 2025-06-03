@@ -12,9 +12,45 @@ export const setParam = (data) => {
     };
 }
 
-export const fetchData = (param) => async () => {
+export const setDealInfo = (data) => {
+    return {
+        type: types.SET_DEAL_INFO,
+        data
+    };
+}
+
+export const setGridData = (data) => {
+    return {
+        type: types.SET_GRID_DATA,
+        data
+    };
+}
+
+export const fetchData = (param) => async (dispatch) => {
+    dispatch(toggleLoader(true));
+
     const url = 'Portal/Operation/GetDeals';
     const response = await post(url, param);
 
-    return response && response.status === 200 ? response.data : null;
-} 
+    if (response && response.status === 200) {
+        const data = response.data;
+        dispatch(setGridData(data ? data.MainData : null));
+        dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
+    }
+
+    dispatch(toggleLoader(false));
+}
+
+export const deleteDeal = (param) => async () => {
+    const url = 'Portal/Operation/DeleteDeal';
+    //const response = await post(url, param);
+
+    // TODO: Need Review
+    return {
+        status: 200,
+        data: {
+            IsSuccessful: true,
+            Message: 'Delete Deal Successfully.'
+        }
+    };
+}
