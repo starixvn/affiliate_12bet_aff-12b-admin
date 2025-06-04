@@ -26,6 +26,66 @@
 
 @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_RevenueShareOfNetProfit.cshtml"); }
 
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="top-title">
+                Struktur Komisi Sub-Afiliasi
+            </div>
+            <div class="description">
+                Selain model bagi hasil standar, Afiliasi 12BET kini dapat memperoleh manfaat dari Program Komisi Sub-Afiliasi kami, yang memungkinkan Anda memperoleh komisi dari afiliasi yang Anda referensikan ke program kami.
+            </div>
+            <div class="description">
+                Cara kerjanya:
+                <ul>
+                    <li>Tingkat 1: Anda memperoleh komisi 5% dari pendapatan bersih yang dihasilkan oleh afiliasi yang Anda referensikan secara langsung (sub-afiliasi Anda).</li>
+                    <li>Tingkat 2: Jika sub-afiliasi Anda merujuk afiliasi lain, Anda juga memperoleh komisi 5% dari pendapatan bersih yang dihasilkan oleh afiliasi tingkat kedua ini.</li>
+                    <li>Tingkat 3: Struktur ini meluas ke tingkat ketiga, di mana Anda memperoleh komisi 5% dari pendapatan bersih dari afiliasi yang dirujuk oleh afiliasi tingkat kedua Anda.</li>
+                </ul>
+            </div>
+            <div class="description">
+                Sistem bertingkat ini memungkinkan Anda membangun jaringan afiliasi dan memperoleh penghasilan tambahan berdasarkan kinerja mereka.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="description">
+                <strong>Contoh:</strong>
+            </div>
+            <div class="description">
+                <div class="img-support" style="max-width: 600px; margin: 15px auto;">
+                    <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue-share-hierarchy/revenue_share_hierarchy.id-ID.png?v=224371" alt="hierarchy banner" />
+                </div>
+            </div>
+            <div class="description">
+                Bagi hasil pendapatan yang Anda peroleh dari afiliasi yang dirujuk:
+            </div>
+            <div class="description">
+                = [B1+ ((C1 + C2) * 5%)] * 5% + [B2 * 5%]
+            </div>
+            <div class="description">
+                = [0 + (50,000 + 30,000) * 5%)] * 5% + [70,000 * 5%]
+            </div>
+            <div class="description">
+                = (8,000 * 5%) + 3,500
+            </div>
+            <div class="description">
+                = 200 + 3,500
+            </div>
+            <div class="description">
+                = $3,700
+            </div>
+            <div class="description">
+                => Total bagi hasil Anda untuk bulan tersebut adalah: 58,050 + 3,700 = $61,750
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="block block-faq">
     <div class="page-container">
         <div class="block-content">
@@ -42,60 +102,6 @@
                     </div>
                     <div class="anwser-text">
                         Namun jika akun Anda masih menghasilkan kerugian di akhir bulan Februari, sebagai contoh -$1,600, maka jumlah tersebut akan ditambahkan ke saldo negatif sebelumnya dan akan dibawa ke bulan Maret, sehingga saldo negatif Anda menjadi -$4,155. Komisi yang didapatkan akan dibayar sesuai dengan tingkatannya.
-                    </div>
-                </div>
-            </div>
-            <div class="group-faq">
-                <div class="question">
-                    <div class="title">
-                        <span>Struktur Sub Afiliasi</span>
-                    </div>
-                    <span class="button-toggle"></span>
-                </div>
-                <div class="anwser">
-                    <div class="anwser-text">
-                        Anda berhak menerima tambahan 5% dari pembagian hasil afiliasi Anda, dan selama mereka membawa afiliasi lain, Anda juga dapat mengambil bagian dari pembagian hasil sub-afiliasi mereka juga!
-                    </div>
-                </div>
-            </div>
-            <div class="group-faq">
-                <div class="question">
-                    <div class="title">
-                        <span>@Lang.RevenueSharePayoutExample</span>
-                    </div>
-                    <span class="button-toggle"></span>
-                </div>
-                <div class="anwser">
-                    <div class="anwser-text">
-                        <p class="text">
-                            <i>Gambaran 1:</i> contoh untuk menunjukkan kepada Anda bagaimana perhitungan pembagian hasil Anda dari pemain yang Anda referensikan.
-                        </p>
-                        <div class="block block-commission">
-                            @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_ExampleTable.cshtml"); }
-                        </div>
-                        <p class="text">
-                            <i>Gambaran 2:</i> contoh untuk menunjukkan kepada Anda bagaimana perhitungan pembagian penghasilan Anda dari afiliasi yang anda referensikan (dan sub-afiliasi mereka)
-                        </p>
-                        <div class="img-support" style="max-width: 600px; margin: 15px auto;">
-                            <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue_share_hierarchy.png?v=224371" alt="hierarchy banner" />
-                        </div>
-                        <p class="text">
-                            Pembagian penghasilan Anda diperoleh dari afiliasi yang Anda referensikan:
-                        </p>
-                        <div style="padding-left: 30px;">
-                            <p class="text">
-                                = [B1+ ((C1 + C2) * 5%)]*5% + [B2 * 5%]
-                            </p>
-                            <p class="text">
-                                = [0 + ($50,000 + $30,000) * 5%)]*5% + [$70,000 * 5%]
-                            </p>
-                            <p class="text">
-                                = $3,700
-                            </p>
-                        </div>
-                        <p class="text">
-                            <strong>=></strong> Total pembagian hasil Anda untuk bulan ini adalah: $51,600 + $3,700 = <strong>$55,300</strong>
-                        </p>
                     </div>
                 </div>
             </div>

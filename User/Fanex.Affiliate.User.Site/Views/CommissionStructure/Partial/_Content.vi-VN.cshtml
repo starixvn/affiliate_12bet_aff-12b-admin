@@ -26,6 +26,67 @@
 
 @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_RevenueShareOfNetProfit.cshtml"); }
 
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="top-title">
+                Chính sách hoa hồng cho đại lý cấp dưới
+            </div>
+            <div class="description">
+                Ngoài mô hình chia sẻ doanh thu tiêu chuẩn, các đại lý 12BET giờ đây còn có thể hưởng lợi từ Chương trình Hoa hồng Đại Lý Cấp Dưới, cho phép bạn kiếm thêm hoa hồng từ những đối tác mà bạn giới thiệu tham gia chương trình của chúng tôi.
+            </div>
+            <div class="description">
+                Cách thức hoạt động:
+                <ul>
+                    <li>Cấp 1: Bạn nhận được 5% hoa hồng trên doanh thu ròng do các cộng tác viên mà bạn trực tiếp giới thiệu (cộng tác viên cấp dưới) tạo ra.</li>
+                    <li>Cấp 2: Nếu cộng tác viên cấp dưới của bạn tiếp tục giới thiệu thêm người khác tham gia, bạn cũng nhận được 5% hoa hồng trên doanh thu ròng do cộng tác viên cấp hai tạo ra.</li>
+                    <li>Cấp 3: Cấu trúc này mở rộng đến cấp ba, nơi bạn tiếp tục nhận 5% hoa hồng trên doanh thu ròng từ những cộng tác viên được giới thiệu bởi cộng tác viên cấp hai của bạn.</li>
+                </ul>
+            </div>
+            <div class="description">
+                Hệ thống nhiều cấp này cho phép bạn xây dựng một mạng lưới cộng tác viên và tạo ra thu nhập bổ sung dựa trên hiệu suất của họ.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="description">
+                <strong>Ví Dụ:</strong>
+            </div>
+            <div class="description">
+                <div class="img-support" style="max-width: 600px; margin: 15px auto;">
+                    <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue-share-hierarchy/revenue_share_hierarchy.vi-VN.png?v=224371" alt="hierarchy banner" />
+                </div>
+            </div>
+            <div class="description">
+                Phần chia sẻ doanh thu bạn kiếm được từ các cộng tác viên đã giới thiệu:
+            </div>
+            <div class="description">
+                = [B1+ ((C1 + C2) * 5%)] * 5% + [B2 * 5%]
+            </div>
+            <div class="description">
+                = [0 + (50,000 + 30,000) * 5%)] * 5% + [70,000 * 5%]
+            </div>
+            <div class="description">
+                = (8,000 * 5%) + 3,500
+            </div>
+            <div class="description">
+                = 200 + 3,500
+            </div>
+            <div class="description">
+                = $3,700
+            </div>
+            <div class="description">
+                => Tổng doanh thu chia sẻ của bạn trong tháng sẽ là: 58,050 + 3,700 = $61,750
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="block block-faq">
     <div class="page-container">
         <div class="block-content">
@@ -42,62 +103,6 @@
                     </div>
                     <div class="anwser-text">
                         Tuy nhiên, nếu tài khoản của bạn vẫn ghi lỗ vào cuối tháng 2, ví dụ -$1,600, thì nó sẽ được cộng thêm vào số dư âm trước đó và được chuyển tiếp sang tháng 3, dẫn đến số dư của bạn vào tháng 3 là -$4,155. Hoa hồng kiếm được sau đó sẽ được thanh toán theo tỷ lệ cấp
-                    </div>
-                </div>
-            </div>
-            <div class="group-faq">
-                <div class="question">
-                    <div class="title">
-                        <span>Cấu trúc tiền hoa hồng từ Đại Lý Cấp Dưới</span>
-                    </div>
-                    <span class="button-toggle"></span>
-                </div>
-                <div class="anwser">
-                    <div class="anwser-text">
-                        Bạn sẽ nhận được 5% doanh thu của các Đại Lý Cấp Dưới do bạn giới thiệu,
-                        và nếu họ lại tiếp tục giới thiệu thành công các Đại Lý khác tham gia vào chương trình, bạn sẽ được nhận thêm một khoản
-                        doanh thu từ đó!
-                    </div>
-                </div>
-            </div>
-            <div class="group-faq">
-                <div class="question">
-                    <div class="title">
-                        <span>@Lang.RevenueSharePayoutExample</span>
-                    </div>
-                    <span class="button-toggle"></span>
-                </div>
-                <div class="anwser">
-                    <div class="anwser-text">
-                        <p class="text">
-                            <i>Hình 1:</i> ví dụ về cách tính tiền hoa hồng bạn nhận được từ người chơi được bạn giới thiệu
-                        </p>
-                        <div class="block block-commission">
-                            @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_ExampleTable.cshtml"); }
-                        </div>
-                        <p class="text">
-                            <i>Hình 2:</i> ví dụ về cách tính tiền hoa hồng bạn nhận được từ Đại Lý được bạn giới thiệu, và từ Đại Lý Cấp Dưới của họ
-                        </p>
-                        <div class="img-support" style="max-width: 600px; margin: 15px auto;">
-                            <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue_share_hierarchy.png?v=224371" alt="hierarchy banner" />
-                        </div>
-                        <p class="text">
-                            Tiền hoa hồng bạn nhận được:
-                        </p>
-                        <div style="padding-left: 30px;">
-                            <p class="text">
-                                = [B1+ ((C1 + C2) * 5%)]*5% + [B2 * 5%]
-                            </p>
-                            <p class="text">
-                                = [0 + ($50,000 + $30,000) * 5%)]*5% + [$70,000 * 5%]
-                            </p>
-                            <p class="text">
-                                = $3,700
-                            </p>
-                        </div>
-                        <p class="text">
-                            <strong>=></strong> Tổng tiền hoa hồng trong tháng bạn nhận được: $51,600 + $3,700 = <strong>$55,300</strong>
-                        </p>
                     </div>
                 </div>
             </div>

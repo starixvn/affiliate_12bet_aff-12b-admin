@@ -439,7 +439,15 @@
     <Content Include="www\build\styles\Images\404-illus.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
     <Content Include="www\build\styles\Images\account-overview\qr-disabled.png" />
-    <Content Include="www\build\styles\Images\commission\revenue_share_hierarchy.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.zh-CN.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.vi-VN.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.th-TH.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.ko-KR.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.ja-JP.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.id-ID.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.en-IN.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.bn-BD.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.en-US.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-US.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-IN.jpg" />
@@ -1357,7 +1365,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\Shared\Email\ContactInfo\Html\Content.te-IN.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
-    <Content Include="Views\CommissionStructure\Partial\_ExampleTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1441,6 +1448,7 @@
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

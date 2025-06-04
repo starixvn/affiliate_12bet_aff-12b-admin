@@ -26,6 +26,66 @@
 
 @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_RevenueShareOfNetProfit.cshtml"); }
 
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="top-title">
+                โครงสร้างค่าคอมมิชชั่นพันธมิตรรายย่อย
+            </div>
+            <div class="description">
+                นอกจากโมเดลการแบ่งรายได้ตามมาตรฐานแล้ว พันธมิตร 12BET ยังสามารถใช้ประโยชน์จากโปรแกรมค่าคอมมิชชั่นพันธมิตรรายย่อยของเรา ซึ่งช่วยให้คุณสามารถรับค่าคอมมิชชั่นจากพันธมิตรที่คุณแนะนำไปยังโปรแกรมของเราได้
+            </div>
+            <div class="description">
+                ทำงานอย่างไร:
+                <ul>
+                    <li>ระดับที่ 1: คุณจะได้รับค่าคอมมิชชั่น 5% จากรายได้สุทธิที่สร้างขึ้นโดยบริษัทในเครือที่คุณแนะนำโดยตรง (บริษัทในเครือรองของคุณ)</li>
+                    <li>ระดับที่ 2: หากพันธมิตรรายย่อยของคุณแนะนำพันธมิตรคนอื่น คุณจะได้รับค่าคอมมิชชั่น 5% จากรายได้สุทธิที่สร้างโดยพันธมิตรลำดับที่สองนี้ด้วย</li>
+                    <li>ระดับที่ 3: โครงสร้างนี้ขยายไปสู่ระดับที่สาม ซึ่งคุณจะได้รับค่าคอมมิชชั่น 5% จากรายได้สุทธิของพันธมิตรที่ถูกแนะนำโดยพันธมิตรลำดับที่สองของคุณ</li>
+                </ul>
+            </div>
+            <div class="description">
+                ระบบหลายชั้นนี้ช่วยให้คุณสามารถสร้างเครือข่ายพันธมิตรและรับรายได้เพิ่มจากผลงานของพวกเขาได้
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="description">
+                <strong>ตัวอย่าง:</strong>
+            </div>
+            <div class="description">
+                <div class="img-support" style="max-width: 600px; margin: 15px auto;">
+                    <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue-share-hierarchy/revenue_share_hierarchy.th-TH.png?v=224371" alt="hierarchy banner" />
+                </div>
+            </div>
+            <div class="description">
+                ส่วนแบ่งรายได้ของคุณที่ได้รับจากสมาชิกที่แนะนำ:
+            </div>
+            <div class="description">
+                = [B1+ ((C1 + C2) * 5%)] * 5% + [B2 * 5%]
+            </div>
+            <div class="description">
+                = [0 + (50,000 + 30,000) * 5%)] * 5% + [70,000 * 5%]
+            </div>
+            <div class="description">
+                = (8,000 * 5%) + 3,500
+            </div>
+            <div class="description">
+                = 200 + 3,500
+            </div>
+            <div class="description">
+                = $3,700
+            </div>
+            <div class="description">
+                => ส่วนแบ่งรายได้ทั้งหมดของคุณสำหรับเดือนนี้จะเป็น: 58,050 + 3,700 = $61,750
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="block block-faq">
     <div class="page-container">
         <div class="block-content">
@@ -42,60 +102,6 @@
                     </div>
                     <div class="anwser-text">
                         อย่างไรก็ตาม หากบัญชีของคุณยังคงขาดทุน ณ สิ้นเดือนกุมภาพันธ์ เช่น -$1,600 บัญชีของคุณจะถูกเพิ่มไปยังยอดคงเหลือติดลบก่อนหน้าและยกยอดไปจนถึงเดือนมีนาคม ส่งผลให้ยอดคงเหลือในเดือนมีนาคมของคุณยกยอดเป็น -$4,155 ค่าคอมมิชชั่นที่ได้รับจะต้องจ่ายตามระดับชั้น
-                    </div>
-                </div>
-            </div>
-            <div class="group-faq">
-                <div class="question">
-                    <div class="title">
-                        <span>โครงสร้างพันธมิตรย่อย</span>
-                    </div>
-                    <span class="button-toggle"></span>
-                </div>
-                <div class="anwser">
-                    <div class="anwser-text">
-                        คุณจะมีสิทธิ์ได้รับส่วนแบ่งรายได้พิเศษ 5% จากพันธมิตร (Affiliates)ในเครือของคุณและตราบใดที่พวกเขาสามารถนำพันธมิตร Affiliates อื่นเข้ามา คุณก็สามารถมีส่วนแบ่งรายได้จากพันธมิตร Affiliates ย่อยของพวกเขาด้วยเช่นกัน!
-                    </div>
-                </div>
-            </div>
-            <div class="group-faq">
-                <div class="question">
-                    <div class="title">
-                        <span>@Lang.RevenueSharePayoutExample</span>
-                    </div>
-                    <span class="button-toggle"></span>
-                </div>
-                <div class="anwser">
-                    <div class="anwser-text">
-                        <p class="text">
-                            <i>รูปที่ 1:</i> ตัวอย่างเพื่อแสดงให้คุณเห็นว่าการคำนวณส่วนแบ่งรายได้ของคุณจากผู้เล่นที่แนะนำของคุณ
-                        </p>
-                        <div class="block block-commission">
-                            @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_ExampleTable.cshtml"); }
-                        </div>
-                        <p class="text">
-                            <i>รูปที่ 2:</i> ตัวอย่างเพื่อแสดงให้เห็นว่าการคำนวณส่วนแบ่งรายได้ของคุณจากพันธมิตร Affiliates ของคุณ (และ บริษัท ในเครือย่อย sub-affiliates) คำนวณอย่างไร
-                        </p>
-                        <div class="img-support" style="max-width: 600px; margin: 15px auto;">
-                            <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue_share_hierarchy.png?v=224371" alt="hierarchy banner" />
-                        </div>
-                        <p class="text">
-                            ส่วนแบ่งรายได้ของคุณได้รับจากพันธมิตรที่ได้รับการแนะนำ:
-                        </p>
-                        <div style="padding-left: 30px;">
-                            <p class="text">
-                                = [B1+ ((C1 + C2) * 5%)]*5% + [B2 * 5%]
-                            </p>
-                            <p class="text">
-                                = [0 + ($50,000 + $30,000) * 5%)]*5% + [$70,000 * 5%]
-                            </p>
-                            <p class="text">
-                                = $3,700
-                            </p>
-                        </div>
-                        <p class="text">
-                            <strong>=></strong> ส่วนแบ่งรายได้รวมของคุณสำหรับเดือนนั้นคือ: $51,600 + $3,700 = <strong>$55,300</strong>
-                        </p>
                     </div>
                 </div>
             </div>
