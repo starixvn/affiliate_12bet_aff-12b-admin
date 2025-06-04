@@ -1,2 +1,23 @@
 @import "../../components/modal";
 @import "../../components/multiple-select";
+
+.tabs {
+    display: flex;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.tabs button {
+    background: #ccc;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    transition: background 0.2s;
+}
+
+.tabs button.active {
+    background: #b6cef0;
+    font-weight: bold;
+}

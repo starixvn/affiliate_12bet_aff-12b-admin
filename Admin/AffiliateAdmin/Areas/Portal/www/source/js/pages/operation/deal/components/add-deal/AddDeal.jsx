@@ -15,6 +15,8 @@ export const AddDeal = (props) => {
     const [message, setMessage] = useState([]);
     const [isSuccess, setIsSuccess] = useState(true);
 
+    const [activeTab, setActiveTab] = useState('CPA');
+
     useEffect(() => {
         const dealInfo = buildDefaultDealInfo();
 
@@ -28,6 +30,10 @@ export const AddDeal = (props) => {
             </Alert>
             <DealInfo />
             <SubAffRateSetting />
+            <div className="tabs">
+                <button onClick={() => setActiveTab('CPA')} className={activeTab === 'CPA' ? 'active' : ''}><h6>CPA</h6></button>
+                <button onClick={() => setActiveTab('RevenueShare')} className={activeTab === 'RevenueShare' ? 'active' : ''}><h6>Revenue Share</h6></button>
+            </div>
         </React.Fragment>
     )
 }
