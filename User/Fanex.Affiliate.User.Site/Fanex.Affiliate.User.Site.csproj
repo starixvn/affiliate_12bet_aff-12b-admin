@@ -439,14 +439,14 @@
     <Content Include="www\build\styles\Images\404-illus.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
     <Content Include="www\build\styles\Images\account-overview\qr-disabled.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.bn-BD.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.en-IN.png" />
+    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.ja-JP.png" />
     <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.zh-CN.png" />
     <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.vi-VN.png" />
     <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.th-TH.png" />
     <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.ko-KR.png" />
-    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.ja-JP.png" />
     <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.id-ID.png" />
-    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.en-IN.png" />
-    <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.bn-BD.png" />
     <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.en-US.png" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.jpg" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-US.jpg" />
