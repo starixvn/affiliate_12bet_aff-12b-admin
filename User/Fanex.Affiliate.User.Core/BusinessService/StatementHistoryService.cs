@@ -39,8 +39,9 @@
         public IEnumerable<SubAffComInfo> GetSubAffCommission(SubAffComParam subAffParam)
         {
             var criteria = subAffParam.MapTo<SubAffComParam, GetSubAffCommissionCriteria>();
+            var entity = FetchEntityResult<SubAffComInfo>(criteria);
 
-            return FetchTData<SubAffComInfo>(criteria);
+            return entity.MainDataList;
         }
     }
 }

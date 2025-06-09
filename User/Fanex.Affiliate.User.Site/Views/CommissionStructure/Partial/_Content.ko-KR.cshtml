@@ -27,6 +27,66 @@
 
 @{ Html.RenderPartial("~/Views/CommissionStructure/Partial/_RevenueShareOfNetProfit.cshtml"); }
 
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="top-title">
+                하위 계정위원회 구조
+            </div>
+            <div class="description">
+                표준 수익 공유 모델 외에도 12bet 계열사는 이제 하위 계약위원회 프로그램의 혜택을<span class="font-bold">받을 수 있으므로 프로그램을 참</span>조하는 계열사로부터 커미션을받을 수 있습니다.
+</div>
+            <div class="description">
+                <strong>작동 방식 :</strong>
+                <ul>
+                    <li><strong>1 단계 :</strong> 귀하는 직접 참조하는 계열사가 생성 한 순수익에 대해 <span class="font-bold">5%의 커미션을받습니다</span> (하위 계약자).</li>
+                    <li><strong>2 단계 :</strong> 하위 계약자가 다른 계열사를 지칭하는 경우,이 2 단계 계열사가 생성 한 순수익에 대해 <span class="font-bold">5%의 수수료를받습니다</span>.</li>
+                    <li><strong>3 단계 :</strong> 이 구조는 세 번째 계층으로 확장되며, 여기서 2 단계 계열사가 언급 한 계열사의 순수익에 대해 <span class="font-bold">5%의 수수료를받습니다</span>.</li>
+                </ul>
+            </div>
+            <div class="description">
+                이 멀티 계층 시스템을 사용하면 계열사 네트워크를 구축하고 성과에 따라 추가 수입을 얻을 수 있습니다.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block block-text">
+    <div class="page-container">
+        <div class="group-page">
+            <div class="description">
+                <strong>예:</strong>
+            </div>
+            <div class="description">
+                <div class="img-support" style="max-width: 600px; margin: 15px auto;">
+                    <img class="img-responsive" src="~/www/build/styles/Images/commission/revenue-share-hierarchy/revenue_share_hierarchy.ko-KR.png?v=224371" alt="hierarchy banner" />
+                </div>
+            </div>
+            <div class="description">
+                참조 계열사에서 얻은 수익 주식 :
+            </div>
+            <div class="description">
+                = [B1+ ((C1 + C2) * 5%)] * 5% + [B2 * 5%]
+            </div>
+            <div class="description">
+                = [0 + (50,000 + 30,000) * 5%)] * 5% + [70,000 * 5%]
+            </div>
+            <div class="description">
+                = (4,000 * 5%) + 3,500
+            </div>
+            <div class="description">
+                = 200 + 3,500
+            </div>
+            <div class="description">
+                = $3,700
+            </div>
+            <div class="description">
+                => 한 달의 총 수익 지분은 다음과 같습니다: 58,050 + 3,700 = $61,750
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="block block-faq">
     <div class="page-container">
         <div class="block-content">

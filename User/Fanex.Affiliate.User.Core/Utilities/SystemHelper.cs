@@ -4,9 +4,10 @@
     using System.Linq;
     using System.Web.Mvc;
     using DTO;
-    using Extensions;
     using DTO.Systems;
     using DTO.UserPanel.MediaGallery;
+    using Extensions;
+    using Fanex.Affiliate.User.Core.Enum;
     using Resources;
 
     public static class SystemHelper
@@ -23,12 +24,12 @@
             return dataList;
         }
 
-        public static IEnumerable<SelectListItem> GetDomainList(IEnumerable<Domain> domainList, int? domainId = null)
+        public static IEnumerable<SelectListItem> GetDomainList(IEnumerable<Domain> domainList, AffiliateLinkType linkType, int? domainId = null)
         {
             var dataList = domainList.Select(d => new SelectListItem
             {
                 Value = d.DomainId.ToString(),
-                Text = d.DomainDescription,
+                Text = linkType == AffiliateLinkType.AffiliateLink ? d.DomainDescription : d.DomainName,
                 Selected = d.DomainId == domainId
             });
 

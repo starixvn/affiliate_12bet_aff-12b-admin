@@ -215,6 +215,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active Referred Players.
+        /// </summary>
+        public static string ActiveReferredPlayers {
+            get {
+                return ResourceManager.GetString("ActiveReferredPlayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add channel succeeded.
         /// </summary>
         public static string AddChannelSuccess {
@@ -4181,6 +4190,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company Net Win ($).
+        /// </summary>
+        public static string NetWinLoss {
+            get {
+                return ResourceManager.GetString("NetWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New banner is now available! .
         /// </summary>
         public static string NewBannerIsNowAvailable {
@@ -5478,6 +5496,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string RevenueShareByWinloss {
             get {
                 return ResourceManager.GetString("RevenueShareByWinloss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revenue Share Payout Example.
+        /// </summary>
+        public static string RevenueSharePayoutExample {
+            get {
+                return ResourceManager.GetString("RevenueSharePayoutExample", resourceCulture);
             }
         }
         
@@ -7288,6 +7315,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string YourRegisterEmail {
             get {
                 return ResourceManager.GetString("YourRegisterEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Revenue Share.
+        /// </summary>
+        public static string YourRevenueShare {
+            get {
+                return ResourceManager.GetString("YourRevenueShare", resourceCulture);
             }
         }
         

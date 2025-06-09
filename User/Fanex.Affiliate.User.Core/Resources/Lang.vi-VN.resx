@@ -2544,4 +2544,16 @@ Bạn cũng có thể gửi email đến: {1} hoặc điền vào biểu mẫu b
   <data name="VietnamCountry" xml:space="preserve">
     <value>Việt Nam </value>
   </data>
+  <data name="ActiveReferredPlayers" xml:space="preserve">
+    <value>Người Chơi Đủ Điều Kiện</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>Lãi Thực Công Ty ($)</value>
+  </data>
+  <data name="YourRevenueShare" xml:space="preserve">
+    <value>Hoa Hồng Của Bạn</value>
+  </data>
+  <data name="RevenueSharePayoutExample" xml:space="preserve">
+    <value>Ví dụ về cách tính tiền hoa hồng</value>
+  </data>
 </root>

@@ -2566,4 +2566,16 @@
   <data name="VietnamCountry" xml:space="preserve">
     <value>เวียดนาม</value>
   </data>
+  <data name="ActiveReferredPlayers" xml:space="preserve">
+    <value>ผู้เล่นที่แนะนำมาที่ยัง Active</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>รายได้ทั้งหมดของบริษัท ($)</value>
+  </data>
+  <data name="YourRevenueShare" xml:space="preserve">
+    <value>ส่วนแบ่งรายได้ของคุณ</value>
+  </data>
+  <data name="RevenueSharePayoutExample" xml:space="preserve">
+    <value>ตัวอย่างการจ่ายส่วนแบ่งรายได้</value>
+  </data>
 </root>

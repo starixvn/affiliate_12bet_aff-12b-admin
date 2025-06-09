@@ -82,9 +82,9 @@
         private IEnumerable<StatementHistoryViewModel> GetStatementHistoryViewModel(StatementHistoryParam param)
         {
             var vms = new List<StatementHistoryViewModel>();
-            var statementHistoryList = _statementHistoryService.GetStatementHistory(param).Where(s => s.TransType != TransType.SubAffBonus);
+            var statementHistoryList = _statementHistoryService.GetStatementHistory(param);
 
-            if (!SessionService.UserSession.IsMaxSubLevel)
+            if (SessionService.UserSession.IsMaxSubLevel)
             {
                 vms.AddRange(statementHistoryList.Select(CreateViewModelFromStatementHistoryItem));
 

@@ -25,5 +25,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public decimal Commission { get; set; }
 
         public int ActivePlayer { get; set; }
+
+        public int QualifiedMember { get; set; }
     }
 }

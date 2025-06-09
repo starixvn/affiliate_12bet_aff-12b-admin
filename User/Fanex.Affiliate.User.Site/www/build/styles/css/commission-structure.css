@@ -844,6 +844,8 @@ button.swiper-pagination-bullet {
   font-weight: 500;
   line-height: normal;
   margin-bottom: 24px; }
+  .description ul {
+    margin-left: 30px; }
   @media (max-width: 500px) {
     .description {
       line-height: normal;
@@ -1045,3 +1047,5 @@ button.swiper-pagination-bullet {
     background: #fff; }
   .block-faq .group-faq .anwser {
     background: #F6F6F6; }
+    .block-faq .group-faq .anwser i {
+      font-weight: bold; }
