@@ -5,15 +5,25 @@ import { connect } from 'react-redux';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import NotificationPopup from '../../../../../common/components/NotificationPopup';
+import MultipleSelect from '../../../../../../components/multiple-select';
 
 import { setDealInfo } from '../../../actions';
 import { INFINITY_NUMBER } from '../../../libs/constants';
 import { format } from '../../../../../../modules/numberFormat';
+import { convertTargetCountryList } from '../../../libs/service';
 
 export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
 
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(true);
+
+    const _getAllTargetCountryCodes = () => {
+        return targetCountryList.map(c => c.TargetCountryCode).join(',');
+    }
+
+    const _handleChangeTargetCountry = (item, selectedTargetCountry) => {
+        setDealInfo({ CountryCodes: selectedTargetCountry });
+    }
 
     const _handleCloseNotificationPopup = (confirmResult) => {
         setMessage('');
@@ -30,11 +40,6 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
                 IsInstantPayment: true
             });
         }
-    }
-
-    const _handleChange = (e) => {
-        const { name, value } = e.target;
-        setDealInfo({ [name]: value });
     }
 
     const _handleChangePositiveInteger = (e) => {
@@ -104,6 +109,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
         setDealInfo(updatedInfo);
     }
 
+    const _targetCountryList = convertTargetCountryList(targetCountryList, dealInfo.CountryCodes || _getAllTargetCountryCodes());
     return (
         <div>
             <FormGroup row inline className='align-items-center'>
@@ -111,23 +117,26 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
                     <span className="text-danger required" style={{ margin: 0 }}>*</span>
                 </Label>
                 <Col sm={3}>
-                    <Input type="select"
-                        name='CountryCodes'
-                        id='CountryCodes'
-                        className="mr-sm-2 search-box"
-                        value={dealInfo.CountryCodes}
-                        onChange={_handleChange}
-                    >
-                        <option key={0} value={''}>All Target Countries</option>
-                        {Object.keys(targetCountryList).map((key, index) => (
-                            <option key={index} value={key}>{targetCountryList[key]}</option>
-                        ))}
-                    </Input>
+                    <MultipleSelect
+                        dataSource={_targetCountryList}
+                        keyField="TargetCountryCode"
+                        valueField="TargetCountryName"
+                        statusField="Checked"
+                        maxDisplayItemCount={1}
+                        hasInputOption={false}
+                        noneSelectedLabel="Please Select"
+                        selectedAllLabel="All Target Countries"
+                        onChange={_handleChangeTargetCountry} />
                 </Col>
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="ActiveDays" sm={4}>Activity Period <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
+                <Label htmlFor="ActiveDays" sm={4} className="d-flex">
+                    Activity Period
+                    <span className="text-danger required" style={{ margin: 0 }}>*</span>
+                    <span title="The player must complete all required actions within this time period to qualify. For example: within 30 days from registration." className="ml-1 oi icon-info"></span>
+
+                </Label>
                 <Col sm={3} className="d-flex align-items-center">
                     <Input type="text"
                         name="ActiveDays"
@@ -139,14 +148,15 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label sm={4}>
+                <Label sm={4} className="d-flex" htmlFor='IsActivePlayerHoldingPeriod'>
                     <input
                         type="checkbox"
                         name="IsActivePlayerHoldingPeriod"
                         checked={dealInfo.IsActivePlayerHoldingPeriod}
                         onChange={_handleCheckMinPlayerHoldingPeriod}
                     />
-                    <span>{' '}Minimum Player Holding Period</span>
+                    <span className="ml-1">Minimum Player Holding Period</span>
+                    <span title="After completing the activity period, the player must reach the required ticket amount within the holding period (e.g., 30 days)." className="ml-1 oi icon-info"></span>
                 </Label>
 
                 <Col sm={3} className="d-flex align-items-center">
@@ -170,14 +180,15 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label sm={4}>
+                <Label sm={4} className="d-flex" htmlFor='IsQuota'>
                     <input
                         type="checkbox"
                         name="IsQuota"
                         checked={dealInfo.IsQuota}
                         onChange={_handleCheckQuota}
                     />
-                    <span>{' '}Quota</span>
+                    <span className="ml-1">Quota</span>
+                    <span title="The maximum number of players eligible for CPA payment in this deal." className="ml-1 oi icon-info"></span>
                 </Label>
                 <Col sm={3} className="d-flex align-items-center">
                     <Input type="text"
@@ -191,7 +202,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label sm={4}>
+                <Label sm={4} className="d-flex" htmlFor='IsInstantPayment'>
                     <input
                         type="checkbox"
                         disabled={dealInfo.CheckedMinWagering}
@@ -199,7 +210,8 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
                         checked={!dealInfo.CheckedMinWagering && dealInfo.IsInstantPayment}
                         onChange={_handleChangeInstantPayment}
                     />
-                    <span>{' '}Instant Payment</span>
+                    <span className="ml-1">Instant Payment</span>
+                    <span title="If enabled, CPA will be paid on the same day a player qualifies by meeting all deal conditions. Only available for deals that use FDM or Total Deposit as condition type." className="ml-1 oi icon-info"></span>
                 </Label>
             </FormGroup>
             {

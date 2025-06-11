@@ -407,6 +407,7 @@
     <Content Include="Areas\Portal\www\source\js\reducers\claimReducer.js" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-copy-link.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon-copy-text.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon-info.png" />
     <Content Include="favicon.ico" />
     <Content Include="12monitor.aspx" />
     <Content Include="App_Data\SpConfig\SpName.xml">

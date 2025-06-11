@@ -1,3 +1,5 @@
+import { messages } from './constants';
+
 
 const commonDealInfo = {
     DealId: 0,
@@ -38,15 +40,44 @@ export const buildDefaultDealInfo = () => {
     return Object.assign({}, commonDealInfo);
 }
 
-export const convertProductList = (productList, productIds = '') => {
-    const idList = productIds.split(',').filter(p => !!p);
-    const isCheckAll = idList.length === productList.length;
+const convertListWithChecked = (list, selectedIdsCSV, idKey, nameKey) => {
+    const selectedIds = selectedIdsCSV.split(',').map(id => id.trim()).filter(Boolean).map(id => id.toString());
+    const isCheckAll = selectedIds.length === list.length;
 
-    return productList.map(item => {
-        return {
-            ProductId: item.ProductId,
-            ProductName: item.ProductName,
-            Checked: isCheckAll || idList.filter(i => Number(i) === item.ProductId).length > 0
-        }
-    })
+    return list.map(item => ({
+        [idKey]: item[idKey],
+        [nameKey]: item[nameKey],
+        Checked: isCheckAll || selectedIds.includes(item[idKey])
+    }));
+};
+
+export const convertProductList = (productList, productIds = '') => {
+    return convertListWithChecked(productList, productIds, 'ProductId', 'ProductName');
+}
+
+export const convertTargetCountryList = (targetCountryList, targetCountryCodes = '') => {
+    return convertListWithChecked(targetCountryList, targetCountryCodes, 'TargetCountryCode', 'TargetCountryName');
+}
+
+export const validateDealInfo = (dealInfo) => {
+    const { DealName, CPATierSetting } = dealInfo;
+
+    const groupNameValidation = validateGroupName(DealName);
+
+}
+
+export const validateGroupName = (groupName) => {
+    let isValid = true;
+    const messageList = [];
+
+    if (!groupName) {
+        isValid = false;
+        messageList.push(messages.requireGroupName);
+    }
+
+    return { isValid, messageList };
+}
+
+export const validateGeneralDealInfo = (dealInfo) => {
+
 }

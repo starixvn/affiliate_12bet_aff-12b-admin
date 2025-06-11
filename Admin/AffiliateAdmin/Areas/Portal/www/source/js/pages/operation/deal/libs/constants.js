@@ -22,3 +22,18 @@ const _subAffRateValueList = () => {
 export const subAffRateValueList = _subAffRateValueList();
 
 export const defaultSubAffRate = 5.0;
+
+export const propsGreaterThanThreshold = {
+    MinFdm: 0,
+    MinTotalDeposit: 0,
+    MinWagering: 0,
+    ActiveDays: 1,
+    CpaAmount: 1,
+    HoldingTickets: 1,
+    HoldingDays: 1,
+    Quota: 1,
+}
+
+export const messages = {
+    requireGroupName: 'Group Name cannot be empty. Please check!',
+}

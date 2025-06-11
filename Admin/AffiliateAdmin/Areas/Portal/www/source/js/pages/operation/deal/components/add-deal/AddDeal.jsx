@@ -22,6 +22,12 @@ export const AddDeal = (props) => {
         props.setDealInfo(dealInfo);
     }, []);
 
+    const _handleSave = () => {
+        const { dealInfo } = props;
+        
+        props.onSave();
+    }
+
     return props.dealInfo && (
         <React.Fragment>
             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
@@ -33,10 +39,10 @@ export const AddDeal = (props) => {
             <p className="text-danger my-2">Note: Change will take effect on current month (GMT-4)</p>
             <FormGroup row inline className="align-items-center">
                 <Col sm={1}>
-                    <Button type="button" className="my-2 btn btn-success btn-save" onClick={() => { }}>SAVE</Button>
+                    <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
                 </Col>
                 <Col sm={1}>
-                    <Button type="button" className="my-2 btn btn-info" onClick={() => { }}>CANCEL</Button>
+                    <Button type="button" className="my-2 btn btn-info" onClick={props.onClose}>CANCEL</Button>
                 </Col>
             </FormGroup>
         </React.Fragment>

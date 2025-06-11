@@ -40,10 +40,14 @@ export const TierSettingDataItem = (props) => {
         const newValue = getValidatedValue(value, numericValue, oldValue, true, 0);
 
         if (isFirstItem) {
-            updateTierSetting(
-                (t) => t.TierId === tierId,
-                (t) => ({ ...t, [name]: newValue })
+            const newTierSetting = dealInfo.CPATierSetting.map(t =>
+                (t.GroupProductId === tier.GroupProductId && t.TierId === tierId)
+                    || (t.GroupProductId !== tier.GroupProductId && t.MinFdm === tier.MinFdm && t.MinTotalDeposit === tier.MinTotalDeposit)
+                    ? { ...t, [name]: newValue }
+                    : t
             );
+
+            props.setDealInfo({ CPATierSetting: newTierSetting });
         }
     };
 
@@ -89,19 +93,29 @@ export const TierSettingDataItem = (props) => {
         } else {
             const firstGroupProductId = dealInfo.ProductGroup[0].GroupProductId;
             const firstTier = dealInfo.CPATierSetting.filter(t => t.GroupProductId === firstGroupProductId);
+            const lastFirstTierItem = firstTier[firstTier.length - 1];
 
             const currentTier = dealInfo.CPATierSetting.filter(t => t.GroupProductId === groupProductId);
             const lastCurrentTierItem = currentTier[currentTier.length - 1];
 
-            const existTier = firstTier.find(t => t.TierId === lastCurrentTierItem.TierId);
-            const nextFirstTierItem = existTier ? firstTier.find(t => t.TierId > existTier.TierId) : null;
+            const existNextTierItem = lastFirstTierItem.MinFdm > lastCurrentTierItem.MinFdm && lastFirstTierItem.MinTotalDeposit > lastCurrentTierItem.MinTotalDeposit;
+            const nextCurrentTierItem = existNextTierItem ? firstTier.find(t => t.MinFdm > lastCurrentTierItem.MinFdm && t.MinTotalDeposit > lastCurrentTierItem.MinTotalDeposit) : null;
 
-            if (nextFirstTierItem) {
+            if (nextCurrentTierItem) {
                 newTierItem = {
-                    TierId: nextFirstTierItem.TierId,
+                    TierId: lastCurrentTierItem.TierId + 1,
                     GroupProductId: groupProductId,
-                    MinFdm: nextFirstTierItem.MinFdm,
-                    MinTotalDeposit: nextFirstTierItem.MinTotalDeposit,
+                    MinFdm: nextCurrentTierItem.MinFdm,
+                    MinTotalDeposit: nextCurrentTierItem.MinTotalDeposit,
+                    MinWagering: lastCurrentTierItem.MinWagering + 1,
+                    CpaAmount: lastCurrentTierItem.CpaAmount + 1
+                }
+            } else {
+                newTierItem = {
+                    TierId: lastCurrentTierItem.TierId + 1,
+                    GroupProductId: groupProductId,
+                    MinFdm: lastCurrentTierItem.MinFdm + 1,
+                    MinTotalDeposit: lastCurrentTierItem.MinTotalDeposit + 1,
                     MinWagering: lastCurrentTierItem.MinWagering + 1,
                     CpaAmount: lastCurrentTierItem.CpaAmount + 1
                 }
@@ -123,7 +137,7 @@ export const TierSettingDataItem = (props) => {
 
     return (
         <tr key={index}>
-            <td className="text-center">{tier.TierId}</td>
+            <td className="text-center">{index + 1}</td>
             <td className="text-center">
                 <Input
                     disabled={!isFirstItem || !dealInfo.CheckedMinFdm}

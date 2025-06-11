@@ -8,7 +8,7 @@ import { claimsPrincipal } from '../../../../reducers/claimReducer';
 import * as types from '../actions/types';
 
 const dealTypeList = createReducer([], []);
-const targetCountryList = createReducer({}, {});
+const targetCountryList = createReducer([], []);
 const productList = createReducer([], []);
 
 const param = createReducer(null, {
