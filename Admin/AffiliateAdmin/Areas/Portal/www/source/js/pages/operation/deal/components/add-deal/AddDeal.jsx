@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Alert } from 'reactstrap';
+import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
 import { setDealInfo } from '../../actions';
 import { buildDefaultDealInfo } from '../../libs/service';
 
 import DealInfo from './../shared/DealInfo';
 import SubAffRateSetting from './../shared/sub-aff-rate';
+import { DealTypeInfo } from './../shared/DealTypeInfo';
 
 export const AddDeal = (props) => {
 
     const [isShowMessage, setIsShowMessage] = useState(false);
     const [message, setMessage] = useState([]);
     const [isSuccess, setIsSuccess] = useState(true);
-
-    const [activeTab, setActiveTab] = useState('CPA');
 
     useEffect(() => {
         const dealInfo = buildDefaultDealInfo();
@@ -30,10 +29,16 @@ export const AddDeal = (props) => {
             </Alert>
             <DealInfo />
             <SubAffRateSetting />
-            <div className="tabs">
-                <button onClick={() => setActiveTab('CPA')} className={activeTab === 'CPA' ? 'active' : ''}><h6>CPA</h6></button>
-                <button onClick={() => setActiveTab('RevenueShare')} className={activeTab === 'RevenueShare' ? 'active' : ''}><h6>Revenue Share</h6></button>
-            </div>
+            <DealTypeInfo />
+            <p className="text-danger my-2">Note: Change will take effect on current month (GMT-4)</p>
+            <FormGroup row inline className="align-items-center">
+                <Col sm={1}>
+                    <Button type="button" className="my-2 btn btn-success btn-save" onClick={() => { }}>SAVE</Button>
+                </Col>
+                <Col sm={1}>
+                    <Button type="button" className="my-2 btn btn-info" onClick={() => { }}>CANCEL</Button>
+                </Col>
+            </FormGroup>
         </React.Fragment>
     )
 }

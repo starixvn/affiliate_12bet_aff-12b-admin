@@ -6,10 +6,11 @@ import AppContainer from './components/AppContainer';
 import { configureStore } from '../../../modules/store';
 import { convertArrayToObjectProps } from '../../../modules/utils';
 
-const { dealTypes } = window.initialState;
-const dealTypeList = convertArrayToObjectProps(dealTypes, 'GroupTypeId', 'GroupTypeName');
+const { dealTypes, targetCountries, products } = window.initialState;
 
-const store = configureStore({ dealTypeList }, reducer);
+const targetCountryList = convertArrayToObjectProps(targetCountries, 'TargetCountryCode', 'TargetCountryName');
+
+const store = configureStore({ dealTypeList: dealTypes, targetCountryList, productList: products }, reducer);
 
 const App = () => {
 

@@ -20,9 +20,12 @@ export const SubAffRateSetting = (props) => {
         <fieldset>
             <legend><h6 className="font-weight-bold">Sub-Affiliate Rate</h6></legend>
             <FormGroup row className='align-items-center'>
-                <Label sm={2}>Fixed Rate</Label>
-                <Col sm={2}>
-                    <Input type="select" name="SubCommRate" className="form-control"
+                <Label htmlFor='SubCommRate' sm={2}>Fixed Rate</Label>
+                <Col sm={3}>
+                    <Input type="select"
+                        className="form-control"
+                        name="SubCommRate"
+                        id='SubCommRate'
                         value={format(SubCommRate || defaultSubAffRate, 3)}
                         onChange={_handleChangeCommRate}>
                         {

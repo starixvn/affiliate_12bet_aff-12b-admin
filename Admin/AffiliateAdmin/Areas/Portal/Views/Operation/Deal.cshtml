@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.Operation.DealType>
+﻿@model Fanex.Affiliate.Admin.Core.ViewModels.Operation.OperationViewModel
 
 @section pagecss{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/operation/deal.css")" rel="stylesheet" />
@@ -7,8 +7,10 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
-            dealTypes: @Html.Raw(Json.Encode(Model))
-         };
+            dealTypes: @Html.Raw(Json.Encode(Model.DealTypes)),
+            targetCountries: @Html.Raw(Json.Encode(Model.TargetCountries)),
+            products: @Html.Raw(Json.Encode(Model.Products)),
+        };
     </script>
 
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/operation/deal.js")"></script>

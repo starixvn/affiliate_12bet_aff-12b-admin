@@ -62,8 +62,8 @@ export const GridData = (props) => {
                 <Cell header={true} colWidth={30}>No.Aff</Cell>
                 <Cell header={true} colWidth={120}>Description</Cell>
                 <Cell header={true} colWidth={50}>Updated By</Cell>
-                <Cell header={true} colWidth={100}>Updated Date</Cell>
-                <Cell header={true} colWidth={30}>Action</Cell>
+                <Cell header={true} colWidth={70}>Updated Date</Cell>
+                <Cell header={true} colWidth={35}>Action</Cell>
             </Row>
         );
     }
@@ -82,14 +82,14 @@ export const GridData = (props) => {
                     <a href={resolveClientUrl("Portal/Affiliate?groupId=") + item.GroupId} target="_top">{item.NoAff}</a>
                 </Cell>
                 <Cell title={item.Description}>{item.Description}</Cell>
-                <Cell title={item.UpdatedBy}>{item.UpdatedBy}</Cell>
-                <Cell title={item.UpdatedDateStr}>{item.UpdatedDateStr}</Cell>
+                <Cell title={item.UpdatedBy} className="text-center">{item.UpdatedBy}</Cell>
+                <Cell title={item.UpdatedDateStr} className="text-center">{item.UpdatedDateStr}</Cell>
                 <Cell title={item.Action} className="text-center">
                     <button title="Copy" className="btn btn-link">
-                        <span className="oi icon-copy text-secondary"></span>
+                        <span className="oi icon-copy-link"></span>
                     </button>
                     <button disabled={item.NoAff > 0} title="Delete" className="btn btn-link" onClick={() => _handleDeleteDeal(item.DealName)}>
-                        <span className="oi oi-x text-danger"></span>
+                        <span className={`oi ${item.NoAff > 0 ? 'oi-x text-secondary' : 'oi-x text-danger'}`}></span>
                     </button>
                 </Cell>
             </Row>

@@ -1,23 +1,90 @@
 @import "../../components/modal";
 @import "../../components/multiple-select";
 
-.tabs {
-    display: flex;
-    margin-bottom: 16px;
-    margin-top: 16px;
-}
+.deal-popup-container {
+    font-size: 12px;
 
-.tabs button {
-    background: #ccc;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    transition: background 0.2s;
-}
+    .tabs {
+        display: flex;
+        margin-top: 16px;
+    }
 
-.tabs button.active {
-    background: #b6cef0;
-    font-weight: bold;
+    .tabs button {
+        background: #ccc;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        transition: background 0.2s;
+    }
+
+    .tabs button.active {
+        background: #b6cef0;
+        font-weight: bold;
+    }
+
+    .tab-content {
+        border: 1px solid #a7a6a6;
+        padding: 19px 10px 10px 10px;
+    }
+
+    .text-group {
+        position: relative;
+
+        .text-content {
+            &::before {
+                display: inline-block;
+                position: relative;
+            }
+        }
+    }
+
+    .tier-setting-group {
+
+        .btn-action {
+            font-weight: bold;
+            padding: 8px 2px;
+            font-size: 14px;
+            border: 1px solid #7b7c7d;
+            background-color: #ecf6ff;
+            width: 100%;
+    
+            &:hover, &:disabled {
+                background-color: #d8d8d8;
+            }
+        }
+
+        .btn-tier {
+            font-weight: bold;
+            border: 1px solid #7b7c7d;
+            background-color: #ecf6ff;
+            width: 30px;
+
+            &:hover,
+            &:disabled {
+                background-color: #d8d8d8;
+            }
+        }
+
+        .group-index {
+            font-weight: bold;
+            line-height: 1.5rem;
+            float: left;
+        }
+
+        .select-product {
+            margin-left: 15px;
+
+            &.is-invalid {
+                .multiple-select-label {
+                    border-color: #dc3545;
+                }
+
+                .invalid-feedback {
+                    display: block;
+                }
+            }
+        }
+    }
 }

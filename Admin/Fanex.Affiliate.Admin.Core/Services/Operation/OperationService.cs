@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.Operation
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Fanex.Affiliate.Admin.Core.Criterias.Operation;
     using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
@@ -15,7 +16,8 @@
 
         public IEnumerable<DealType> GetDealTypes()
         {
-            return FetchTData<DealType>("Aff_Admin_CommGroup_GroupTypeSel");
+            var data = FetchTData<DealType>("Aff_Admin_CommGroup_GroupTypeSel");
+            return data.OrderBy(_ => _.GroupTypeName);
         }
 
         public EntityResult<DealInfo> GetDeals(DealParam param)

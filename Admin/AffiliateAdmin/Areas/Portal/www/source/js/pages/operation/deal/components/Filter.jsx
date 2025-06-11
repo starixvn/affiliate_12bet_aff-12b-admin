@@ -27,22 +27,26 @@ export const Filter = (props) => {
         <div className="filter-container">
             <Form inline tag="div">
                 <FormGroup className="mb-2 mr-sm-2 my-2">
-                    <Label className="mr-sm-2">Deal Name</Label>{' '}
+                    <Label htmlFor="DealName" className="mr-sm-2">Deal Name</Label>{' '}
                     <Input type="text"
+                        name="DealName"
+                        id="DealName"
                         className="mr-sm-2 search-box"
                         value={groupName}
                         onChange={(e) => setGroupName(e.target.value)}
                         onKeyPress={_handlePressEnter} />
                 </FormGroup>
                 <FormGroup className="mb-2 mr-sm-2 my-2">
-                    <Label className="mr-sm-2">Deal Type</Label>{' '}
+                    <Label htmlFor="DealType" className="mr-sm-2">Deal Type</Label>{' '}
                     <Input type="select"
+                        name="DealType"
+                        id="DealType"
                         className="mr-sm-2 search-box"
                         value={groupTypeId}
                         onChange={(e) => setGroupTypeId(e.target.value)}>
                         <option key={0} value={0}>All Types</option>
-                        {Object.keys(props.dealTypeList).map((key, index) => (
-                            <option key={index} value={key}>{props.dealTypeList[key]}</option>
+                        {props.dealTypeList.map((item, index) => (
+                            <option key={index} value={item.GroupTypeId}>{item.GroupTypeName}</option>
                         ))}
                     </Input>
                 </FormGroup>

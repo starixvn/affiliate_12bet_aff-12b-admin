@@ -26,33 +26,43 @@ export const DealInfo = (props) => {
 
     return (
         <div>
-            <FormGroup row>
+            <FormGroup row className='align-items-center'>
                 <Label htmlFor="DealName" sm={2}>Deal Name <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
                 <Col sm={8}>
-                    <Input type="text" name="DealName" id="DealName" value={htmlDecode(DealName)} onChange={_handleChangeText} />
+                    <Input type="text"
+                        name="DealName"
+                        id="DealName"
+                        value={htmlDecode(DealName)}
+                        onChange={_handleChangeText} />
                 </Col>
                 <Col sm={2}>
                 </Col>
             </FormGroup>
-            <FormGroup row>
+            <FormGroup row className='align-items-center'>
                 <Label htmlFor="DealType" sm={2}>Deal Types <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
                 <Col sm={8}>
                     <Input type="select"
                         className="mr-sm-2 search-box"
+                        name="DealType"
+                        id="DealType"
                         value={DealType}
                         onChange={_handleChangeDealType}>
-                        {Object.keys(dealTypeList).map((key, index) => (
-                            <option key={index} value={key}>{dealTypeList[key]}</option>
+                        {dealTypeList.map((item, index) => (
+                            <option key={index} value={item.GroupTypeId}>{item.GroupTypeName}</option>
                         ))}
                     </Input>
                 </Col>
                 <Col sm={2}>
                 </Col>
             </FormGroup>
-            <FormGroup row>
+            <FormGroup row className='align-items-center'>
                 <Label htmlFor="Description" sm={2}>Description </Label>
                 <Col sm={8}>
-                    <Input type="text" name="Description" id="Description" value={htmlDecode(Description)} onChange={_handleChangeText} />
+                    <Input type="text"
+                        name="Description"
+                        id="Description"
+                        value={htmlDecode(Description)}
+                        onChange={_handleChangeText} />
                 </Col>
                 <Col sm={2}>
                 </Col>

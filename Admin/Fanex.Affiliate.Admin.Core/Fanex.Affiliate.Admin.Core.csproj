@@ -768,6 +768,7 @@
     <Compile Include="Utilities\TargetCountryHelper.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\Affiliate\MarketingAccountViewModel.cs" />
+    <Compile Include="ViewModels\Operation\OperationViewModel.cs" />
     <Compile Include="ViewModels\Report\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />

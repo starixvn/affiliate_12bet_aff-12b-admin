@@ -1,4 +1,9 @@
-import { formatDecimal, format } from "../../../../modules/numberFormat";
+import { format } from "../../../../modules/numberFormat";
+import { money } from "../../../../modules/constants";
+
+export const FIRST_ITEM_INDEX = 0;
+export const INFINITY_MONEY = money.AllowedMaxValue;
+export const INFINITY_NUMBER = 1000000000;
 
 const _subAffRateValueList = () => {
     let min = 0.0,

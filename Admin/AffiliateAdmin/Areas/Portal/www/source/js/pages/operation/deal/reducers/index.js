@@ -7,7 +7,9 @@ import { claimsPrincipal } from '../../../../reducers/claimReducer';
 
 import * as types from '../actions/types';
 
-const dealTypeList = createReducer({}, {});
+const dealTypeList = createReducer([], []);
+const targetCountryList = createReducer({}, {});
+const productList = createReducer([], []);
 
 const param = createReducer(null, {
     [types.SET_PARAM]: (prevState, action) => {
@@ -33,6 +35,8 @@ export default combineReducers({
     claimsPrincipal,
     param,
     dealTypeList,
+    targetCountryList,
+    productList,
     dealInfo,
     gridData
 });

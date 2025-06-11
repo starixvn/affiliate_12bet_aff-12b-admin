@@ -355,7 +355,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\deal-list\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\deal-cpa\CPAInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\deal-cpa\tier-setting\TierSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\deal-cpa\tier-setting\TierSettingDataItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\deal-cpa\tier-setting\TierSettingItem.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\DealInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\DealTypeInfo.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\sub-aff-rate\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\sub-aff-rate\SubAffRateSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\index.jsx" />
@@ -400,7 +405,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\claimReducer.js" />
-    <Content Include="Areas\Portal\www\source\style\assets\i_copy.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon-copy-link.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon-copy-text.png" />
     <Content Include="favicon.ico" />
     <Content Include="12monitor.aspx" />
     <Content Include="App_Data\SpConfig\SpName.xml">
