@@ -49,7 +49,7 @@ export const TierSettingItem = (props) => {
             MinFdm: firstTierItem.MinFdm,
             MinTotalDeposit: firstTierItem.MinTotalDeposit,
             MinWagering: 0,
-            CpaAmount: 0
+            CpaAmount: 1
         }
 
         props.setDealInfo({
@@ -147,9 +147,9 @@ export const TierSettingItem = (props) => {
                                     </Label>
                                 </FormGroup>
                             }
-                            Min Wagering
+                            Min Turnover
                         </Form>
-                        : 'Min Wagering'
+                        : 'Min Turnover'
                     }
                 </th>
                 <th style={{ width: '20%' }}>CPA Amount</th>

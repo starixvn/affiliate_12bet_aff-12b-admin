@@ -5,6 +5,7 @@ import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
 import { setDealInfo } from '../../actions';
 import { buildDefaultDealInfo } from '../../libs/service';
+import { validateDealInfo } from '../../libs/service';
 
 import DealInfo from './../shared/DealInfo';
 import SubAffRateSetting from './../shared/sub-aff-rate';
@@ -24,7 +25,15 @@ export const AddDeal = (props) => {
 
     const _handleSave = () => {
         const { dealInfo } = props;
-        
+        const { isValid, messageList } = validateDealInfo(dealInfo);
+
+        if (!isValid) {
+            setIsShowMessage(true);
+            setMessage(messageList);
+            setIsSuccess(false);
+            return;
+        }
+
         props.onSave();
     }
 
