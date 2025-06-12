@@ -1,10 +1,10 @@
 ﻿@{ 
     var altList = new Dictionary<string, string>
     {
-        ["Partnership1"] = "12Bet Partner Leincester City FC",
-        ["Partnership2"] = "12Bet Partner Wolves",
-        ["Partnership3"] = "12Bet Partner Arsenal",
-        ["Partnership4"] = "12Bet partner Yonex All England",
+        ["Partnership1"] = "12Bet partner Yonex All England",
+        ["Partnership2"] = "12Bet Partner Leincester City FC",
+        ["Partnership3"] = "12Bet Partner Wolves",
+        ["Partnership4"] = "12Bet Partner Arsenal",
         ["Partnership5"] = "12Bet partner Asia Fighting Champion",
         ["Partnership6"] = "12Bet partner BWF",
         ["Partnership7"] = "12Bet Partner Birmingham City FC",
@@ -33,7 +33,7 @@
                 var key = $"Partnership{i}";
 
                 <div class="swiper-slide">
-                    <img src="~/www/build/styles/Images/home/partnership/item@(i).png" alt="@(altList.ContainsKey(key) ? altList[key] : key)" class="img-responsive" />
+                    <img src="~/www/build/styles/Images/home/partnership/item@(i).png?v=001" alt="@(altList.ContainsKey(key) ? altList[key] : key)" class="img-responsive" />
                     <span class="partnership-products arrow-1">
                         <img src="~/www/build/styles/Images/arrow-1.svg" alt="arrow-1" />
                     </span>
