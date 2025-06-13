@@ -59,12 +59,26 @@
                 return GenerateModelStateErrResult();
             }
 
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.GetClientIP();
+            AssignUserInfoParam(param);
             param.DealName = Server.HtmlDecode(param.DealName);
             param.Description = Server.HtmlDecode(param.Description);
 
             return GenerateJsonNetResult(_operationService.AddCpaDeal(param));
+        }
+
+        [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult DeleteDeal(DeleteDealParam param)
+        {
+            if(!ModelState.IsValid)
+            {
+                return GenerateErrResult();
+            }
+
+            AssignUserInfoParam(param);
+
+            return GenerateJsonNetResult(_operationService.DeleteDeal(param));
         }
     }
 }

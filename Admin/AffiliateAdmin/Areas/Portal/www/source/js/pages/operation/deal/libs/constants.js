@@ -42,5 +42,6 @@ export const messages = {
     requireIncreasingMinTotalDeposit: 'Min Total Deposit must have increasing values across tiers. Please check!',
     requireIncreasingMinWagering: 'Min Wagering must have increasing values across tiers. Please check!',
     requireIncreasingCpaAmount: 'Cpa Amount must have increasing values across tiers. Please check!',
-    requireAllTierSettingsMatchGroupProduct1: 'Group Product {0} has different Min FDM or Min Total Deposit values in some tiers compared to Group Product 1. Please check and update it.'
+    requireAllTierSettingsMatchGroupProduct1: 'Group Product {0} has different Min FDM or Min Total Deposit values in some tiers compared to Group Product 1. Please check and update it.',
+    requireCheckBox: 'Please select at least one condition: Min FDM, Min Total Deposit, or Min Wagering.'
 }

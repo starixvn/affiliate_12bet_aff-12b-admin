@@ -46,3 +46,7 @@ export const addCPADeal = (param) => async () => {
     return await post(url, param);
 }
 
+export const deleteDeal = (dealId) => async () => {
+    const url = 'Portal/Operation/DeleteDeal';
+    return await post(url, { dealId });
+}

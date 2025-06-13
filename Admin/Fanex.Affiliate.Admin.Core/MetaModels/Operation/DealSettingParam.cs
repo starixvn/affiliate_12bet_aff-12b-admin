@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using Fanex.Affiliate.Admin.Core.Constants;
 
-    public class DealSettingParam
+    public class DealSettingParam : UserInfoParam
     {
         public int DealType { get; set; }
 
@@ -40,9 +40,5 @@
         public IEnumerable<CpaTierSettingParam> CPATierSetting { get; set; }
 
         public IEnumerable<CpaProductGroupParam> ProductGroup { get; set; }
-
-        public int UserId { get; set; }
-
-        public string Ip { get; set; }
     }
 }

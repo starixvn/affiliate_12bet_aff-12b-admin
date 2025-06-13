@@ -63,11 +63,12 @@ export const validateDealInfo = (dealInfo) => {
 
     const groupNameValidation = validateGroupName(DealName);
     const generalDealInfoValidation = validateGeneralDealInfo(dealInfo);
+    const checkBoxValidation = validateCheckBox(CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering);
     const productGroupValidation = validateProductGroup(ProductGroup, CheckedMinWagering);
     const tierSettingValidation = validateTierSetting(CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering);
 
-    const isValid = groupNameValidation.isValid && generalDealInfoValidation.isValid && productGroupValidation.isValid && tierSettingValidation.isValid;
-    const messageList = [...groupNameValidation.messageList, ...generalDealInfoValidation.messageList, ...productGroupValidation.messageList, ...tierSettingValidation.messageList];
+    const isValid = groupNameValidation.isValid && generalDealInfoValidation.isValid && checkBoxValidation.isValid && productGroupValidation.isValid && tierSettingValidation.isValid;
+    const messageList = [...groupNameValidation.messageList, ...generalDealInfoValidation.messageList, ...checkBoxValidation.messageList, ...productGroupValidation.messageList, ...tierSettingValidation.messageList];
 
     return { isValid, messageList };
 }
@@ -118,6 +119,17 @@ export const validateGeneralDealInfo = (dealInfo) => {
     return { isValid, messageList };
 };
 
+export const validateCheckBox = (checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering) => {
+    let isValid = true;
+    const messageList = [];
+
+    if (!checkedMinFdm && !checkedMinTotalDeposit && !checkedMinWagering) {
+        isValid = false;
+        messageList.push(messages.requireCheckBox);
+    }
+
+    return { isValid, messageList };
+}
 
 export const validateProductGroup = (productGroup, checkedMinWagering) => {
     let isValid = true;

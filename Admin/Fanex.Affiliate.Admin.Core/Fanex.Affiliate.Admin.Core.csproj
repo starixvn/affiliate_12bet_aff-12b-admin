@@ -285,6 +285,7 @@
     <Compile Include="Commands\Message\InsertMessageCommand.cs" />
     <Compile Include="Commands\Message\DeleteMessageCommand.cs" />
     <Compile Include="Commands\Message\UpdateMessageCommand.cs" />
+    <Compile Include="Commands\Operation\DeleteDealCommand.cs" />
     <Compile Include="Commands\Operation\InsertCpaDealCommand.cs" />
     <Compile Include="Commands\Tracker\InsertJobTrackerCommand.cs" />
     <Compile Include="Commands\Tracker\UpdateJobTrackerCommand.cs" />
@@ -599,6 +600,7 @@
     <Compile Include="MetaModels\Operation\CpaTierSettingParam.cs" />
     <Compile Include="MetaModels\Operation\DealParam.cs" />
     <Compile Include="MetaModels\Operation\DealSettingParam.cs" />
+    <Compile Include="MetaModels\Operation\DeleteDealParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />

@@ -12,6 +12,7 @@ import { deleteDeal, fetchData } from '../../actions';
 export const GridData = (props) => {
     const { gridData } = props;
 
+    const [selectedDealId, setSelectedDealId] = useState(0);
     const [shouldResetScrollPosition, setShouldResetScrollPosition] = useState(true);
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(true);
@@ -19,8 +20,8 @@ export const GridData = (props) => {
     const _handleCloseNotificationPopup = (confirmResult) => {
         setMessage('');
 
-        if (confirmResult) {
-            _deleteDeal();
+        if (confirmResult && selectedDealId > 0) {
+            _deleteDeal(selectedDealId);
         }
     }
 
@@ -41,8 +42,9 @@ export const GridData = (props) => {
         }
     }
 
-    const _handleDeleteDeal = (dealName) => {
+    const _handleDeleteDeal = (groupId, dealName) => {
         setShouldResetScrollPosition(false);
+        setSelectedDealId(groupId);
         setMessage(`Are you sure you want to delete the deal <strong>${dealName}</strong>? This action cannot be undone.`);
         setIsConfirmPopup(true);
     }
@@ -88,7 +90,7 @@ export const GridData = (props) => {
                     <button title="Copy" className="btn btn-link">
                         <span className="oi icon-copy-link"></span>
                     </button>
-                    <button disabled={item.NoAff > 0} title="Delete" className="btn btn-link" onClick={() => _handleDeleteDeal(item.DealName)}>
+                    <button disabled={item.NoAff > 0} title="Delete" className="btn btn-link" onClick={() => _handleDeleteDeal(item.GroupId, item.DealName)}>
                         <span className={`oi ${item.NoAff > 0 ? 'oi-x text-secondary' : 'oi-x text-danger'}`}></span>
                     </button>
                 </Cell>
@@ -130,7 +132,8 @@ const mapStateToProps = ({ gridData, param }) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         deleteDeal,
-        fetchData
+        fetchData,
+        deleteDeal
     }, dispatch);
 };
 

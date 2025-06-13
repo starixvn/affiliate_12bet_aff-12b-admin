@@ -60,6 +60,18 @@
             return ExecuteReturnResultInfo(command);
         }
 
+        public ResultInfo DeleteDeal(DeleteDealParam param)
+        {
+            var command = new DeleteDealCommand
+            {
+                GroupId = param.DealId,
+                UserId = param.UserId,
+                Ip = param.Ip
+            };
+
+            return ExecuteReturnResultInfo(command);
+        }
+
         private static string BuildCpaTierListXml(IEnumerable<CpaTierSettingParam> cpaTierSettingParams, bool checkedMinFdm, bool checkedMinTotalDeposit, bool checkedMinWagering)
         {
             var result = new StringBuilder("<root>");

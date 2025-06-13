@@ -34,13 +34,6 @@ export const AddDeal = (props) => {
 
         const { dealInfo } = props;
 
-        if (!_validateCheckBox()) {
-            setIsShowMessage(true);
-            setMessage(['Please select at least one condition: Min FDM, Min Total Deposit, or Min Wagering.']);
-            setIsSuccess(false);
-            return;
-        }
-
         const { isValid, messageList } = validateDealInfo(dealInfo);
 
         if (!isValid) {
@@ -83,16 +76,6 @@ export const AddDeal = (props) => {
         }
 
         return cloneDealInfo;
-    }
-
-    const _validateCheckBox = () => {
-        const { CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering } = props.dealInfo;
-
-        if (!CheckedMinFdm && !CheckedMinTotalDeposit && !CheckedMinWagering) {
-            return false;
-        }
-
-        return true;
     }
 
     return props.dealInfo && (

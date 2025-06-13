@@ -12,5 +12,7 @@
         EntityResult<DealInfo> GetDeals(DealParam param);
 
         ResultInfo AddCpaDeal(DealSettingParam param);
+
+        ResultInfo DeleteDeal(DeleteDealParam param);
     }
 }
