@@ -63,7 +63,7 @@ export const validateDealInfo = (dealInfo) => {
 
     const groupNameValidation = validateGroupName(DealName);
     const generalDealInfoValidation = validateGeneralDealInfo(dealInfo);
-    const productGroupValidation = validateProductGroup(ProductGroup);
+    const productGroupValidation = validateProductGroup(ProductGroup, CheckedMinWagering);
     const tierSettingValidation = validateTierSetting(CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering);
 
     const isValid = groupNameValidation.isValid && generalDealInfoValidation.isValid && productGroupValidation.isValid && tierSettingValidation.isValid;
@@ -119,9 +119,13 @@ export const validateGeneralDealInfo = (dealInfo) => {
 };
 
 
-export const validateProductGroup = (productGroup) => {
+export const validateProductGroup = (productGroup, checkedMinWagering) => {
     let isValid = true;
     const messageList = [];
+
+    if (!checkedMinWagering) {
+        return { isValid, messageList };
+    }
 
     if (ensureProductGroupAtLeastOne(productGroup)) {
         isValid = false;
@@ -358,11 +362,11 @@ const validateValueField = (
         const { MinFdm, MinTotalDeposit, MinWagering, CpaAmount } = tier;
 
         if (index === 0) {
-            validateField(checkedMinFdm && (MinFdm < 0 || MinFdm > INFINITY_MONEY), 'requireMinFdm', tierIndex);
-            validateField(checkedMinTotalDeposit && (MinTotalDeposit < 0 || MinTotalDeposit > INFINITY_MONEY), 'requireMinTotalDeposit', tierIndex);
+            validateField(checkedMinFdm && (MinFdm < 1 || MinFdm > INFINITY_MONEY), 'requireMinFdm', tierIndex);
+            validateField(checkedMinTotalDeposit && (MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'requireMinTotalDeposit', tierIndex);
         }
 
-        validateField(checkedMinWagering && (MinWagering < 0 || MinWagering > INFINITY_MONEY), 'requireMinWagering', tierIndex);
+        validateField(checkedMinWagering && (MinWagering < 1 || MinWagering > INFINITY_MONEY), 'requireMinWagering', tierIndex);
         validateField(CpaAmount < 1 || CpaAmount > INFINITY_MONEY, 'requireCpaAmount', tierIndex);
     });
 

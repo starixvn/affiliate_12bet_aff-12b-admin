@@ -41,16 +41,8 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const deleteDeal = (param) => async () => {
-    const url = 'Portal/Operation/DeleteDeal';
-    //const response = await post(url, param);
-
-    // TODO: Need Review
-    return {
-        status: 200,
-        data: {
-            IsSuccessful: true,
-            Message: 'Delete Deal Successfully.'
-        }
-    };
+export const addCPADeal = (param) => async () => {
+    const url = 'Portal/Operation/AddCpaDeal';
+    return await post(url, param);
 }
+

@@ -10,5 +10,7 @@
         IEnumerable<DealType> GetDealTypes();
 
         EntityResult<DealInfo> GetDeals(DealParam param);
+
+        ResultInfo AddCpaDeal(DealSettingParam param);
     }
 }

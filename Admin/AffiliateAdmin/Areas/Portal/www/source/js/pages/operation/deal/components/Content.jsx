@@ -67,14 +67,16 @@ export const Content = (props) => {
             <GridData />
             <Pager pageOption={props.pagingOption} onPaging={_handlePaging} />
 
-            <Modal className="deal-popup-container" isOpen={!!popupInfo.Content} toggle={_handleHidePopup} size="lg" backdrop='static' innerRef={modalRef}>
-                <ModalHeader toggle={_handleHidePopup}><span className="iconpopup"></span>{popupInfo.Title}</ModalHeader>
-                <ModalBody>
-                    <div className="modal-body-wrapper">
-                        {popupInfo.Content}
-                    </div>
-                </ModalBody>
-            </Modal>
+            {
+                popupInfo.Content && <Modal className="deal-popup-container" isOpen={!!popupInfo.Content} toggle={_handleHidePopup} size="lg" backdrop='static' innerRef={modalRef}>
+                    <ModalHeader toggle={_handleHidePopup}><span className="iconpopup"></span>{popupInfo.Title}</ModalHeader>
+                    <ModalBody>
+                        <div className="modal-body-wrapper">
+                            {popupInfo.Content}
+                        </div>
+                    </ModalBody>
+                </Modal>
+            }
         </div>
     );
 }

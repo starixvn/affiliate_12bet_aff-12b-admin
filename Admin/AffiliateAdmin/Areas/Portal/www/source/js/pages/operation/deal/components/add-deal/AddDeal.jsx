@@ -3,13 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { setDealInfo } from '../../actions';
+import { setDealInfo, toggleLoader, addCPADeal, setParam } from '../../actions';
 import { buildDefaultDealInfo } from '../../libs/service';
 import { validateDealInfo } from '../../libs/service';
 
 import DealInfo from './../shared/DealInfo';
 import SubAffRateSetting from './../shared/sub-aff-rate';
 import { DealTypeInfo } from './../shared/DealTypeInfo';
+import { messages } from '../../libs/constants';
 
 export const AddDeal = (props) => {
 
@@ -19,22 +20,79 @@ export const AddDeal = (props) => {
 
     useEffect(() => {
         const dealInfo = buildDefaultDealInfo();
+        const countryCodes = _getAllTargetCountryCodes();
 
-        props.setDealInfo(dealInfo);
+        props.setDealInfo({ ...dealInfo, CountryCodes: countryCodes });
     }, []);
 
-    const _handleSave = () => {
+    const _getAllTargetCountryCodes = () => {
+        return props.targetCountryList.map(c => c.TargetCountryCode).join(',');
+    }
+
+    const _handleSave = async () => {
+        props.onSave();
+
         const { dealInfo } = props;
+
+        if (!_validateCheckBox()) {
+            setIsShowMessage(true);
+            setMessage(['Please select at least one condition: Min FDM, Min Total Deposit, or Min Wagering.']);
+            setIsSuccess(false);
+            return;
+        }
+
         const { isValid, messageList } = validateDealInfo(dealInfo);
 
         if (!isValid) {
             setIsShowMessage(true);
             setMessage(messageList);
             setIsSuccess(false);
-            return;
+        } else {
+            props.toggleLoader(true);
+            const param = _handleSaveParam(dealInfo);
+
+            const response = await props.addCPADeal(param);
+            if (response && response.status === 200) {
+                const result = response.data;
+                if (result.IsSuccessful) {
+                    setTimeout(props.onClose, 3000);
+                    const { pagingOption, param } = props;
+                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize }, param);
+                    props.setParam(gettingParam);
+                }
+
+                setIsShowMessage(true);
+                setIsSuccess(result.IsSuccessful);
+                setMessage([result.IsSuccessful ? messages.addCPASuccessfully : result.Message]);
+            }
+
+            props.toggleLoader(false);
+        }
+    }
+
+    const _handleSaveParam = (dealInfo) => {
+        const cloneDealInfo = { ...dealInfo };
+        const { IsActivePlayerHoldingPeriod, IsQuota } = cloneDealInfo;
+
+        if (!IsActivePlayerHoldingPeriod) {
+            cloneDealInfo.HoldingTickets = 0;
+            cloneDealInfo.HoldingDays = 0;
+        }
+        if (!IsQuota) {
+            cloneDealInfo.Quota = 0;
         }
 
-        props.onSave();
+        return cloneDealInfo;
+    }
+
+    const _validateCheckBox = () => {
+        const { CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering } = props.dealInfo;
+
+        if (!CheckedMinFdm && !CheckedMinTotalDeposit && !CheckedMinWagering) {
+            return false;
+        }
+
+        return true;
     }
 
     return props.dealInfo && (
@@ -58,15 +116,20 @@ export const AddDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList }) => {
     return {
-        dealInfo
+        dealInfo,
+        targetCountryList,
+        pagingOption
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        setDealInfo
+        setDealInfo,
+        toggleLoader,
+        addCPADeal,
+        setParam
     }, dispatch);
 }
 

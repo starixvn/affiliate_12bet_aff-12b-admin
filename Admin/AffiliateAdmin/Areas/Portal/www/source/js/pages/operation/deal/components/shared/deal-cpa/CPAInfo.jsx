@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,10 +16,6 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
 
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(true);
-
-    const _getAllTargetCountryCodes = () => {
-        return targetCountryList.map(c => c.TargetCountryCode).join(',');
-    }
 
     const _handleChangeTargetCountry = (item, selectedTargetCountry) => {
         setDealInfo({ CountryCodes: selectedTargetCountry });
@@ -109,7 +105,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
         setDealInfo(updatedInfo);
     }
 
-    const _targetCountryList = convertTargetCountryList(targetCountryList, dealInfo.CountryCodes || _getAllTargetCountryCodes());
+    const _targetCountryList = convertTargetCountryList(targetCountryList, dealInfo.CountryCodes);
     return (
         <div>
             <FormGroup row inline className='align-items-center'>

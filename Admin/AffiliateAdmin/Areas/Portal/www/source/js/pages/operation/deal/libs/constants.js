@@ -23,19 +23,12 @@ export const subAffRateValueList = _subAffRateValueList();
 
 export const defaultSubAffRate = 5.0;
 
-export const propsGreaterThanThreshold = {
-    MinFdm: 0,
-    MinTotalDeposit: 0,
-    MinWagering: 0,
-    ActiveDays: 1,
-    CpaAmount: 1
-}
-
 export const messages = {
+    addCPASuccessfully: 'Add CPA Successfully',
     requireGroupName: 'Group Name cannot be empty. Please check!',
-    requireMinFdm: `Min FDM cannot be less than 0 or greater than ${format(INFINITY_MONEY)}. Please check!`,
-    requireMinTotalDeposit: `Min Total Deposit cannot be less than 0 or greater than ${format(INFINITY_MONEY)}. Please check!`,
-    requireMinWagering: `Min Wagering cannot be less than 0 or greater than ${format(INFINITY_MONEY)}. Please check!`,
+    requireMinFdm: `Min FDM cannot be less than 1 or greater than ${format(INFINITY_MONEY)}. Please check!`,
+    requireMinTotalDeposit: `Min Total Deposit cannot be less than 1 or greater than ${format(INFINITY_MONEY)}. Please check!`,
+    requireMinWagering: `Min Wagering cannot be less than 1 or greater than ${format(INFINITY_MONEY)}. Please check!`,
     requireCpaAmount: `Cpa Amount cannot be less than 1 or greater than ${format(INFINITY_MONEY)}. Please check!`,
     requireActiveDays: `Active Days cannot be less than 1 or greater than ${format(INFINITY_NUMBER)}. Please check!`,
     requireHoldingTickets: `Holding Tickets cannot be less than 1 or greater than ${format(INFINITY_NUMBER)}. Please check!`,
