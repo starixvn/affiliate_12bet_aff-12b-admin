@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Fanex.Affiliate.Admin.Core.Constants;
+    using Fanex.Affiliate.Admin.Core.DTO.Operation;
 
     public class DealSettingParam : UserInfoParam
     {
@@ -33,12 +34,12 @@
 
         public bool CheckedMinTotalDeposit { get; set; }
 
-        public bool CheckedMinWagering { get; set; }
+        public bool CheckedMinTurnover { get; set; }
 
-        public bool IsInstantPayment { get; set; }
+        public bool IsInstant { get; set; }
 
-        public IEnumerable<CpaTierSettingParam> CPATierSetting { get; set; }
+        public IEnumerable<CpaTierSetting> CPATierSetting { get; set; }
 
-        public IEnumerable<CpaProductGroupParam> ProductGroup { get; set; }
+        public IEnumerable<CpaGroupProduct> ProductGroup { get; set; }
     }
 }

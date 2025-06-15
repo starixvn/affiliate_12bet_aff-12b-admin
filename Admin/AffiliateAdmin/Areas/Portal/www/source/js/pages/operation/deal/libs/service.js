@@ -1,7 +1,7 @@
 import { INFINITY_MONEY, INFINITY_NUMBER, messages } from './constants';
 
 const commonDealInfo = {
-    DealId: 0,
+    GroupId: 0,
     DealName: '',
     DealType: 3,
     Description: '',
@@ -12,18 +12,18 @@ const commonDealInfo = {
     HoldingTickets: 0,
     HoldingDays: 0,
     IsQuota: false,
-    IsInstantPayment: false,
+    IsInstant: false,
     Quota: 0,
     CheckedMinFdm: false,
     CheckedMinTotalDeposit: false,
-    CheckedMinWagering: false,
+    CheckedMinTurnover: false,
     CPATierSetting: [
         {
             TierId: 1,
             GroupProductId: 1,
             MinFdm: 0,
             MinTotalDeposit: 0,
-            MinWagering: 0,
+            MinTO: 0,
             CpaAmount: 1
         }
     ],
@@ -59,13 +59,13 @@ export const convertTargetCountryList = (targetCountryList, targetCountryCodes =
 }
 
 export const validateDealInfo = (dealInfo) => {
-    const { DealName, CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering, ProductGroup } = dealInfo;
+    const { DealName, CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover, ProductGroup } = dealInfo;
 
     const groupNameValidation = validateGroupName(DealName);
     const generalDealInfoValidation = validateGeneralDealInfo(dealInfo);
-    const checkBoxValidation = validateCheckBox(CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering);
-    const productGroupValidation = validateProductGroup(ProductGroup, CheckedMinWagering);
-    const tierSettingValidation = validateTierSetting(CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinWagering);
+    const checkBoxValidation = validateCheckBox(CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
+    const productGroupValidation = validateProductGroup(ProductGroup, CheckedMinTurnover);
+    const tierSettingValidation = validateTierSetting(CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
 
     const isValid = groupNameValidation.isValid && generalDealInfoValidation.isValid && checkBoxValidation.isValid && productGroupValidation.isValid && tierSettingValidation.isValid;
     const messageList = [...groupNameValidation.messageList, ...generalDealInfoValidation.messageList, ...checkBoxValidation.messageList, ...productGroupValidation.messageList, ...tierSettingValidation.messageList];
@@ -119,11 +119,11 @@ export const validateGeneralDealInfo = (dealInfo) => {
     return { isValid, messageList };
 };
 
-export const validateCheckBox = (checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering) => {
+export const validateCheckBox = (checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover) => {
     let isValid = true;
     const messageList = [];
 
-    if (!checkedMinFdm && !checkedMinTotalDeposit && !checkedMinWagering) {
+    if (!checkedMinFdm && !checkedMinTotalDeposit && !checkedMinTurnover) {
         isValid = false;
         messageList.push(messages.requireCheckBox);
     }
@@ -131,11 +131,11 @@ export const validateCheckBox = (checkedMinFdm, checkedMinTotalDeposit, checkedM
     return { isValid, messageList };
 }
 
-export const validateProductGroup = (productGroup, checkedMinWagering) => {
+export const validateProductGroup = (productGroup, checkedMinTurnover) => {
     let isValid = true;
     const messageList = [];
 
-    if (!checkedMinWagering) {
+    if (!checkedMinTurnover) {
         return { isValid, messageList };
     }
 
@@ -200,7 +200,7 @@ const checkDuplicateProductsInGroups = (productGroups) => {
     return { isValid, messageList };
 };
 
-export const validateTierSetting = (tierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering) => {
+export const validateTierSetting = (tierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover) => {
     let isValid = true;
     const messageList = [];
 
@@ -217,7 +217,7 @@ export const validateTierSetting = (tierSetting, checkedMinFdm, checkedMinTotalD
     // Validate increasing by field
     Object.keys(groupedTierSetting).forEach((groupProductId, index) => {
         const groupTiers = groupedTierSetting[groupProductId];
-        const increasingTiersValidation = validateIncreasingTiers(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering);
+        const increasingTiersValidation = validateIncreasingTiers(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
 
         if (!increasingTiersValidation.isValid) {
             isValid = false;
@@ -233,7 +233,7 @@ export const validateTierSetting = (tierSetting, checkedMinFdm, checkedMinTotalD
     }
 
     // Validate value field of tier setting
-    const valueFieldValidation = validateValueFieldOfTierSetting(groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering);
+    const valueFieldValidation = validateValueFieldOfTierSetting(groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
     if (!valueFieldValidation.isValid) {
         isValid = false;
         messageList.push(...valueFieldValidation.messageList);
@@ -246,7 +246,7 @@ const ensureTierSettingAtLeastOne = (tierSetting) => {
     return !tierSetting || tierSetting.length === 0;
 }
 
-const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering) => {
+const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover) => {
     let isValid = true;
     const messageList = [];
     const groupProduct = `Group Product ${index + 1}`;
@@ -254,7 +254,7 @@ const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTot
     const validations = [
         { fn: minFdmValidationIncreasing, isChecked: checkedMinFdm && index === 0 },
         { fn: minTotalDepositValidationIncreasing, isChecked: checkedMinTotalDeposit && index === 0 },
-        { fn: minWageringValidationIncreasing, isChecked: checkedMinWagering },
+        { fn: minTurnoverValidationIncreasing, isChecked: checkedMinTurnover },
         { fn: cpaAmountValidationIncreasing, isChecked: true },
     ];
 
@@ -295,8 +295,8 @@ const minTotalDepositValidationIncreasing = (tiers, isChecked) => {
     return validateIncreasingByField(tiers, 'MinTotalDeposit', messages.requireIncreasingMinTotalDeposit, isChecked);
 }
 
-const minWageringValidationIncreasing = (tiers, isChecked) => {
-    return validateIncreasingByField(tiers, 'MinWagering', messages.requireIncreasingMinWagering, isChecked);
+const minTurnoverValidationIncreasing = (tiers, isChecked) => {
+    return validateIncreasingByField(tiers, 'MinTO', messages.requireIncreasingMinTurnover, isChecked);
 }
 
 const cpaAmountValidationIncreasing = (tiers, isChecked) => {
@@ -336,13 +336,13 @@ const isGroup2MatchGroup1 = (group2, group1, checkedMinFdm, checkedMinTotalDepos
 // End validate all tier settings match group product 1
 
 // Start validate value field of tier setting
-const validateValueFieldOfTierSetting = (groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering) => {
+const validateValueFieldOfTierSetting = (groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover) => {
     let isValid = true;
     const messageList = [];
 
     Object.keys(groupedTierSetting).forEach((groupProductId, index) => {
         const groupTiers = groupedTierSetting[groupProductId];
-        const valueFieldValidation = validateValueField(index, groupProductId, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinWagering);
+        const valueFieldValidation = validateValueField(index, groupProductId, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
         if (!valueFieldValidation.isValid) {
             isValid = false;
             messageList.push(...valueFieldValidation.messageList);
@@ -358,7 +358,7 @@ const validateValueField = (
     groupTiers,
     checkedMinFdm,
     checkedMinTotalDeposit,
-    checkedMinWagering
+    checkedMinTurnover
 ) => {
     let isValid = true;
     const messageList = [];
@@ -371,14 +371,14 @@ const validateValueField = (
     };
 
     groupTiers.forEach((tier, tierIndex) => {
-        const { MinFdm, MinTotalDeposit, MinWagering, CpaAmount } = tier;
+        const { MinFdm, MinTotalDeposit, MinTO, CpaAmount } = tier;
 
         if (index === 0) {
             validateField(checkedMinFdm && (MinFdm < 1 || MinFdm > INFINITY_MONEY), 'requireMinFdm', tierIndex);
             validateField(checkedMinTotalDeposit && (MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'requireMinTotalDeposit', tierIndex);
         }
 
-        validateField(checkedMinWagering && (MinWagering < 1 || MinWagering > INFINITY_MONEY), 'requireMinWagering', tierIndex);
+        validateField(checkedMinTurnover && (MinTO < 1 || MinTO > INFINITY_MONEY), 'requireMinTurnover', tierIndex);
         validateField(CpaAmount < 1 || CpaAmount > INFINITY_MONEY, 'requireCpaAmount', tierIndex);
     });
 

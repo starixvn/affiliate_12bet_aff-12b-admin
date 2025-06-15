@@ -493,7 +493,11 @@
     <Compile Include="DTO\Member\MemberInfo.cs" />
     <Compile Include="DTO\Member\PlayerActionInfo.cs" />
     <Compile Include="DTO\Customer\PaymentMethod.cs" />
+    <Compile Include="DTO\Operation\CpaGroupProduct.cs" />
+    <Compile Include="DTO\Operation\CpaTierSetting.cs" />
     <Compile Include="DTO\Operation\DealInfo.cs" />
+    <Compile Include="DTO\Operation\DealSettingDetail.cs" />
+    <Compile Include="DTO\Operation\DealSettingInfo.cs" />
     <Compile Include="DTO\Operation\DealType.cs" />
     <Compile Include="DTO\Report\PlayerGgrProductInfo.cs" />
     <Compile Include="DTO\Report\PlayerGgrReport.cs" />
@@ -596,8 +600,6 @@
     <Compile Include="MetaModels\Message\DeleteMessageParam.cs" />
     <Compile Include="MetaModels\Message\InsertUpdateMessageParam.cs" />
     <Compile Include="MetaModels\Message\MessageParam.cs" />
-    <Compile Include="MetaModels\Operation\CpaProductGroupParam.cs" />
-    <Compile Include="MetaModels\Operation\CpaTierSettingParam.cs" />
     <Compile Include="MetaModels\Operation\DealParam.cs" />
     <Compile Include="MetaModels\Operation\DealSettingParam.cs" />
     <Compile Include="MetaModels\Operation\DeleteDealParam.cs" />

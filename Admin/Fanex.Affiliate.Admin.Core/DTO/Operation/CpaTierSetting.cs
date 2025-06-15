@@ -1,7 +1,9 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Operation
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.Operation
 {
-    public class CpaTierSettingParam
+    public class CpaTierSetting
     {
+        public int GroupId { get; set; }
+
         public int GroupProductId { get; set; }
 
         public int TierId { get; set; }
@@ -10,7 +12,7 @@
 
         public decimal MinTotalDeposit { get; set; }
 
-        public decimal MinWagering { get; set; }
+        public decimal MinTO { get; set; }
 
         public decimal CpaAmount { get; set; }
     }

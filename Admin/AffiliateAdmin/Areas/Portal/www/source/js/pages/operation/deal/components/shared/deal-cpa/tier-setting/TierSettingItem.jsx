@@ -29,7 +29,7 @@ export const TierSettingItem = (props) => {
             props.setDealInfo({
                 ProductGroup: [newGroupProduct],
                 CPATierSetting: newTierSetting,
-                CheckedMinWagering: false
+                CheckedMinTurnover: false
             });
         }
     }
@@ -48,7 +48,7 @@ export const TierSettingItem = (props) => {
             GroupProductId: lastGroupProductId + 1,
             MinFdm: firstTierItem.MinFdm,
             MinTotalDeposit: firstTierItem.MinTotalDeposit,
-            MinWagering: 0,
+            MinTO: 0,
             CpaAmount: 1
         }
 
@@ -93,13 +93,13 @@ export const TierSettingItem = (props) => {
         });
     }
 
-    const _handleCheckMinWagering = () => {
-        const isChecked = !dealInfo.CheckedMinWagering;
+    const _handleCheckMinTurnover = () => {
+        const isChecked = !dealInfo.CheckedMinTurnover;
 
         if (isChecked) {
-            props.setDealInfo({ CheckedMinWagering: true });
+            props.setDealInfo({ CheckedMinTurnover: true });
         } else {
-            setMessage('Unchecking for Min Wagering will enable Instant Payment and remove all data from additional Product Groups, if present. Only the first Product Group will be retained. </br></br>Do you want to proceed?');
+            setMessage('Unchecking for Min Turnover will enable Instant Payment and remove all data from additional Product Groups, if present. Only the first Product Group will be retained. </br></br>Do you want to proceed?');
             setIsConfirmPopup(true);
         }
 
@@ -143,7 +143,7 @@ export const TierSettingItem = (props) => {
                             {isFirstItem &&
                                 <FormGroup check className="mx-sm-1">
                                     <Label check>
-                                        <Input type="checkbox" disabled={dealInfo.IsInstantPayment} name="CheckedMinWagering" checked={dealInfo.CheckedMinWagering} onChange={_handleCheckMinWagering} />
+                                        <Input type="checkbox" disabled={dealInfo.IsInstant} name="CheckedMinTurnover" checked={dealInfo.CheckedMinTurnover} onChange={_handleCheckMinTurnover} />
                                     </Label>
                                 </FormGroup>
                             }
@@ -164,7 +164,7 @@ export const TierSettingItem = (props) => {
             <FormGroup row className="align-items-center my-2">
                 <Col sm={3}>
                     <span className="group-index">{index + 1}.</span>
-                    <div disabled={!dealInfo.CheckedMinWagering} className={`select-product`}>
+                    <div disabled={!dealInfo.CheckedMinTurnover} className={`select-product`}>
                         <MultipleSelect
                             dataSource={ProductGroup}
                             keyField="ProductId"
@@ -175,7 +175,7 @@ export const TierSettingItem = (props) => {
                             maxDisplayItemCount={1}
                             noneSelectedLabel="Please Select"
                             onChange={(selectedItem) => _handleSelect(index, selectedItem)}
-                            isDisable={!dealInfo.CheckedMinWagering} />
+                            isDisable={!dealInfo.CheckedMinTurnover} />
                     </div>
                 </Col>
             </FormGroup>
@@ -198,7 +198,7 @@ export const TierSettingItem = (props) => {
                 </Col>
                 <Col sm={1} className='pl-0'>
                     {isFirstItem
-                        ? <button disabled={!dealInfo.CheckedMinWagering} className="btn btn-action" onClick={_handleAddTier}>Add +</button>
+                        ? <button disabled={!dealInfo.CheckedMinTurnover} className="btn btn-action" onClick={_handleAddTier}>Add +</button>
                         : <button className="btn btn-action" onClick={() => _handleDeleteTier(TierSetting[0].GroupProductId)}>
                             <span className="oi oi-trash text-secondary"></span>
                         </button>}

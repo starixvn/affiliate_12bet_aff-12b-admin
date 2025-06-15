@@ -50,8 +50,8 @@
                 HoldingDays = param.HoldingDays,
                 HoldingTickets = param.HoldingTickets,
                 Quota = param.Quota,
-                IsInstant = param.IsInstantPayment,
-                CpaTierList = BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinWagering),
+                IsInstant = param.IsInstant,
+                CpaTierList = BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover),
                 CpaProductList = BuildCpaProductListXml(param.ProductGroup),
                 UserId = param.UserId,
                 Ip = param.Ip
@@ -72,7 +72,7 @@
             return ExecuteReturnResultInfo(command);
         }
 
-        private static string BuildCpaTierListXml(IEnumerable<CpaTierSettingParam> cpaTierSettingParams, bool checkedMinFdm, bool checkedMinTotalDeposit, bool checkedMinWagering)
+        private static string BuildCpaTierListXml(IEnumerable<CpaTierSetting> cpaTierSettingParams, bool checkedMinFdm, bool checkedMinTotalDeposit, bool checkedMinTurnover)
         {
             var result = new StringBuilder("<root>");
 
@@ -83,7 +83,7 @@
                     item.TierId, 
                     checkedMinFdm ? $"minfdm=\"{item.MinFdm}\"": "", 
                     checkedMinTotalDeposit ? $"mintotaldeposit=\"{item.MinTotalDeposit}\"" : "", 
-                    checkedMinWagering ? $"minto=\"{item.MinWagering}\"" : "", 
+                    checkedMinTurnover ? $"minto=\"{item.MinTO}\"" : "", 
                     item.CpaAmount);
             }
 
@@ -92,7 +92,7 @@
             return result.ToString();
         }
 
-        private static string BuildCpaProductListXml(IEnumerable<CpaProductGroupParam> cpaProductGroups)
+        private static string BuildCpaProductListXml(IEnumerable<CpaGroupProduct> cpaProductGroups)
         {
             var result = new StringBuilder("<root>");
             foreach (var item in cpaProductGroups)

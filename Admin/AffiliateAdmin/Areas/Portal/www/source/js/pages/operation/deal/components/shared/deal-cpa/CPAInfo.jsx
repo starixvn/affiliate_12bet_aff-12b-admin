@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -33,7 +33,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
             setDealInfo({
                 ProductGroup: [newGroupProduct],
                 CPATierSetting: newTierSetting,
-                IsInstantPayment: true
+                IsInstant: true
             });
         }
     }
@@ -58,13 +58,13 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
 
 
     const _handleChangeInstantPayment = () => {
-        const isInstantPayment = !dealInfo.IsInstantPayment;
+        const isInstant = !dealInfo.IsInstant;
 
-        if (isInstantPayment) {
-            setMessage('Checking for Instant Payment will disable Min Wagering and remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br></br>Do you want to proceed?');
+        if (isInstant) {
+            setMessage('Checking for Instant Payment will disable Min Turnover and remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br></br>Do you want to proceed?');
             setIsConfirmPopup(true);
         } else {
-            setDealInfo({ IsInstantPayment: false });
+            setDealInfo({ IsInstant: false });
         }
     }
 
@@ -198,12 +198,12 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label sm={4} className="d-flex" htmlFor='IsInstantPayment'>
+                <Label sm={4} className="d-flex" htmlFor='IsInstant'>
                     <input
                         type="checkbox"
-                        disabled={dealInfo.CheckedMinWagering}
-                        name="IsInstantPayment"
-                        checked={!dealInfo.CheckedMinWagering && dealInfo.IsInstantPayment}
+                        disabled={dealInfo.CheckedMinTurnover}
+                        name="IsInstant"
+                        checked={!dealInfo.CheckedMinTurnover && dealInfo.IsInstant}
                         onChange={_handleChangeInstantPayment}
                     />
                     <span className="ml-1">Instant Payment</span>

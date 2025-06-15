@@ -51,7 +51,7 @@ export const TierSettingDataItem = (props) => {
         }
     };
 
-    const _handleChangeMinWagering = (e, groupProductId, tierId) => {
+    const _handleChangeMinTurnover = (e, groupProductId, tierId) => {
         const { name, value } = e.target;
         const numericValue = parseValue(value);
         const oldValue = tier[name];
@@ -87,7 +87,7 @@ export const TierSettingDataItem = (props) => {
                 GroupProductId: lastTierItem.GroupProductId,
                 MinFdm: lastTierItem.MinFdm + 1,
                 MinTotalDeposit: lastTierItem.MinTotalDeposit + 1,
-                MinWagering: lastTierItem.MinWagering + 1,
+                MinTO: lastTierItem.MinTO + 1,
                 CpaAmount: lastTierItem.CpaAmount + 1
             }
         } else {
@@ -107,7 +107,7 @@ export const TierSettingDataItem = (props) => {
                     GroupProductId: groupProductId,
                     MinFdm: nextCurrentTierItem.MinFdm,
                     MinTotalDeposit: nextCurrentTierItem.MinTotalDeposit,
-                    MinWagering: lastCurrentTierItem.MinWagering + 1,
+                    MinTO: lastCurrentTierItem.MinTO + 1,
                     CpaAmount: lastCurrentTierItem.CpaAmount + 1
                 }
             } else {
@@ -116,7 +116,7 @@ export const TierSettingDataItem = (props) => {
                     GroupProductId: groupProductId,
                     MinFdm: lastCurrentTierItem.MinFdm + 1,
                     MinTotalDeposit: lastCurrentTierItem.MinTotalDeposit + 1,
-                    MinWagering: lastCurrentTierItem.MinWagering + 1,
+                    MinTO: lastCurrentTierItem.MinTO + 1,
                     CpaAmount: lastCurrentTierItem.CpaAmount + 1
                 }
             }
@@ -160,12 +160,12 @@ export const TierSettingDataItem = (props) => {
             </td>
             <td className="text-center">
                 <Input
-                    disabled={dealInfo.IsInstantPayment || !dealInfo.CheckedMinWagering}
+                    disabled={dealInfo.IsInstant || !dealInfo.CheckedMinTurnover}
                     type="text"
-                    name="MinWagering"
-                    id={"MinWagering" + tier.TierId}
-                    value={format(tier.MinWagering)}
-                    onChange={(e) => _handleChangeMinWagering(e, tier.GroupProductId, tier.TierId)}
+                    name="MinTO"
+                    id={"MinTO" + tier.TierId}
+                    value={format(tier.MinTO)}
+                    onChange={(e) => _handleChangeMinTurnover(e, tier.GroupProductId, tier.TierId)}
                 />
             </td>
             <td className="text-center">
