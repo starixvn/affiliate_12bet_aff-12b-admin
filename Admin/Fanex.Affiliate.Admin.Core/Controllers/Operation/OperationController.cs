@@ -3,10 +3,10 @@
     using System.Web.Mvc;
     using Fanex.Affiliate.Admin.Core.Attributes;
     using Fanex.Affiliate.Admin.Core.Constants;
-    using Fanex.Affiliate.Admin.Core.Extensions;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
     using Fanex.Affiliate.Admin.Core.Services.Common;
     using Fanex.Affiliate.Admin.Core.Services.Operation;
+    using Fanex.Affiliate.Admin.Core.Utilities.Operation;
     using Fanex.Affiliate.Admin.Core.ViewModels.Operation;
 
     [FunctionAuthorize(FunctionName = Function.RevenueGroup)] // TODO: Need Review
@@ -57,6 +57,12 @@
             if (!ModelState.IsValid)
             {
                 return GenerateModelStateErrResult();
+            }
+
+            var (isValid, message) = DealInfoValidator.Validate(param);
+            if (!isValid)
+            {
+                return GenerateErrResult(message);
             }
 
             AssignUserInfoParam(param);

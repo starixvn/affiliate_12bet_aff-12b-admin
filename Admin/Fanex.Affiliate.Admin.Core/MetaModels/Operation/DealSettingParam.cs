@@ -24,9 +24,13 @@
 
         public int ActiveDays { get; set; }
 
+        public bool IsActivePlayerHoldingPeriod { get; set; }
+
         public int HoldingDays { get; set; }
 
         public int HoldingTickets { get; set; }
+
+        public bool IsQuota { get; set; }
 
         public int Quota { get; set; }
 
