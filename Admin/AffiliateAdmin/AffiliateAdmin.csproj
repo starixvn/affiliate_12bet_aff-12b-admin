@@ -354,6 +354,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\deal-list\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\edit-deal\EditDeal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\edit-deal\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\deal-cpa\CPAInfo.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\shared\deal-cpa\tier-setting\TierSetting.jsx" />

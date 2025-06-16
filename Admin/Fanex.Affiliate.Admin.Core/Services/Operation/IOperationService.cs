@@ -11,6 +11,8 @@
 
         EntityResult<DealInfo> GetDeals(DealParam param);
 
+        DealSettingDetail GetDealSettingDetail(int groudId);
+
         ResultInfo AddCpaDeal(DealSettingParam param);
 
         ResultInfo DeleteDeal(DeleteDealParam param);

@@ -6,6 +6,7 @@
     using Fanex.Affiliate.Admin.Core.Commands.Operation;
     using Fanex.Affiliate.Admin.Core.Criterias.Operation;
     using Fanex.Affiliate.Admin.Core.DTO;
+    using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
     using Fanex.Data.Repository;
@@ -36,11 +37,46 @@
             return FetchEntityResult<DealInfo>(criteria);
         }
 
+        public DealSettingDetail GetDealSettingDetail(int groudId)
+        {
+            var criteria = new DealDetailCriteria
+            {
+                GroupId = groudId
+            };
+
+            var (dealSettingInfoList, revevueTierSettingList, revenueDeductionSettingList,  cpaTierSettingList, cpaGroupProductList)
+                = DynamicRepository.FetchMultiple<DealSettingDetail, RevevueTierSetting, RevenueDeductionSetting, CpaTierSetting, CpaGroupProduct>(criteria);
+
+            var dealSettingInfo = dealSettingInfoList.FirstOrDefault();
+            if (dealSettingInfo == null)
+            {
+                return null;
+            }
+
+            dealSettingInfo.CPATierSetting = cpaTierSettingList;
+            dealSettingInfo.ProductGroup = cpaGroupProductList; 
+            dealSettingInfo.RevevueTierSetting = revevueTierSettingList;
+
+            if (revenueDeductionSettingList?.Any() == true)
+            {
+                dealSettingInfo.PlatformFeeSetting = revenueDeductionSettingList.Where(p => 
+                    p.DeductionId == Constants.Deduction.PlatformFeeId);
+                    
+                dealSettingInfo.DepositFeeSetting = revenueDeductionSettingList.FirstOrDefault(p => 
+                    p.DeductionId == Constants.Deduction.DepositFeeId);
+                    
+                dealSettingInfo.WithdrawalFeeSetting = revenueDeductionSettingList.FirstOrDefault(p => 
+                    p.DeductionId == Constants.Deduction.WithdrawalFeeId);
+            }
+
+            return dealSettingInfo;
+        }
+
         public ResultInfo AddCpaDeal(DealSettingParam param)
         {
             var command = new InsertCpaDealCommand
             {
-                GroupId = param.DealId,
+                GroupId = param.GroupId,
                 GroupTypeId = param.DealType,
                 GroupName = param.DealName,
                 SubCommRate = param.SubCommRate,

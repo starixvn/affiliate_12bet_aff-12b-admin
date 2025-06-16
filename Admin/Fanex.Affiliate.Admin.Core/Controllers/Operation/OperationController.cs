@@ -49,6 +49,18 @@
             return GenerateModelStateErrResult();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDealDetail(int groupId)
+        {
+            if (ModelState.IsValid)
+            {
+                return GenerateJsonNetResult(_operationService.GetDealSettingDetail(groupId));
+            }
+
+            return GenerateModelStateErrResult();
+        }
+
         [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]

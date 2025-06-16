@@ -411,6 +411,7 @@
     <Compile Include="Criterias\Message\MessageCriteria.cs" />
     <Compile Include="Criterias\Message\MessageDetailCriteria.cs" />
     <Compile Include="Criterias\Operation\DealCriteria.cs" />
+    <Compile Include="Criterias\Operation\DealDetailCriteria.cs" />
     <Compile Include="Criterias\PagingByDateCriteria.cs" />
     <Compile Include="Criterias\PagingCriteria.cs" />
     <Compile Include="Criterias\BaseCriteria.cs" />
@@ -499,6 +500,8 @@
     <Compile Include="DTO\Operation\DealSettingDetail.cs" />
     <Compile Include="DTO\Operation\DealSettingInfo.cs" />
     <Compile Include="DTO\Operation\DealType.cs" />
+    <Compile Include="DTO\Operation\RevenueDeductionSetting.cs" />
+    <Compile Include="DTO\Operation\RevevueTierSetting.cs" />
     <Compile Include="DTO\Report\PlayerGgrProductInfo.cs" />
     <Compile Include="DTO\Report\PlayerGgrReport.cs" />
     <Compile Include="DTO\Report\TransferReport.cs" />

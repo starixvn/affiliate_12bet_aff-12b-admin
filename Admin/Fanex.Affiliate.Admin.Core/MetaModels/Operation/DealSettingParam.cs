@@ -9,9 +9,9 @@
     {
         public int DealType { get; set; }
 
-        public int DealId { get; set; }
+        public int GroupId { get; set; }
 
-        [Required(ErrorMessage = "Group Name is required!")]
+        [Required(ErrorMessage = "Deal Name is required!")]
         public string DealName { get; set; }
 
         [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Sub-Affiliate Rate is incorrect!")]

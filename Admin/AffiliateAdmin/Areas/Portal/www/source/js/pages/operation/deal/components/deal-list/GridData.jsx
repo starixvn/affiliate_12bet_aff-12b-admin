@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
+import { Button } from 'reactstrap';
 
 import { globalResource } from '../../../../../modules/globalResource';
 import { resolveClientUrl } from '../../../../../modules/utils';
@@ -77,7 +78,9 @@ export const GridData = (props) => {
             <Row key={index}>
                 <Cell title={item.RowNum} className="text-center">{item.RowNum}</Cell>
                 <Cell title={item.DealName}>
-                    <a href={resolveClientUrl("Portal/Affiliate?groupId=") + item.GroupId} target="_top">{item.DealName}</a>
+                    <Button color="link" className="p-0" onClick={() => props.onEdit(item.GroupId)}>
+                        {item.DealName}
+                    </Button>
                 </Cell>
                 <Cell title={item.DealType} className="text-center">{item.DealType}</Cell>
                 <Cell title={item.NoAff} className="text-center">

@@ -8,6 +8,7 @@ import { setParam, setPagingOption, fetchData } from '../actions';
 
 import GridData from './deal-list/GridData';
 import AddDeal from './add-deal/AddDeal';
+import EditDeal from './edit-deal/EditDeal';
 
 export const Content = (props) => {
 
@@ -52,6 +53,13 @@ export const Content = (props) => {
         });
     };
 
+    const _handleShowEditPopup = (dealId) => {
+        setPopupInfo({
+            Content: <EditDeal onClose={_handleHidePopup} onSave={_handleSave} dealId={dealId} />,
+            Title: 'Edit Deal'
+        });
+    }
+
     const _handleSave = () => {
         modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -64,7 +72,7 @@ export const Content = (props) => {
                     <span className="oi oi-plus ml-2"></span>
                 </Button>
             </div>
-            <GridData />
+            <GridData onEdit={_handleShowEditPopup} />
             <Pager pageOption={props.pagingOption} onPaging={_handlePaging} />
 
             {

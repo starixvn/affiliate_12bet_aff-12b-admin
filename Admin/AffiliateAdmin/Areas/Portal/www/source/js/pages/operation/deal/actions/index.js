@@ -41,6 +41,19 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
+export const getDealDetail = (groupId) => async (dispatch) => {
+    dispatch(toggleLoader(true));
+
+    const url = 'Portal/Operation/GetDealDetail';
+    const response = await post(url, { groupId });
+
+    let data = response && response.status === 200 ? response.data : null;
+
+    dispatch(setDealInfo(data));
+
+    dispatch(toggleLoader(false));
+}
+
 export const addCPADeal = (param) => async () => {
     const url = 'Portal/Operation/AddCpaDeal';
     return await post(url, param);

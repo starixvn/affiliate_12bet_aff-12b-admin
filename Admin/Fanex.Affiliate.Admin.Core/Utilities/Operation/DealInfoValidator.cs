@@ -12,24 +12,33 @@
         private const int INFINITY_NUMBER = 1_000_000_000;
         private const decimal INFINITY_MONEY = Money.AllowedMaxValue;
 
+        private const string MIN_FDM = "MinFdm";
+        private const string MIN_TOTAL_DEPOSIT = "MinTotalDeposit";
+        private const string MIN_TURNOVER = "MinTO";
+        private const string CPA_AMOUNT = "CpaAmount";
+
+        private static readonly IDictionary<string, string> mappingFields = new Dictionary<string, string>
+        {
+            [MIN_FDM] = "Min FDM",
+            [MIN_TOTAL_DEPOSIT] = "Min Total Deposit",
+            [MIN_TURNOVER] = "Min Turnover",
+            [CPA_AMOUNT] = "Cpa Amount"
+        };
+
         private static readonly IDictionary<string, string> messages = new Dictionary<string, string>
         {
+            ["addCPASuccessfully"] = "Add Deal Successfully.",
             ["requireGroupName"] = "Deal name cannot be empty. Please check!",
-            ["requireMinFdm"] = $"Min FDM must be greater than 0 and less than {INFINITY_MONEY}.",
-            ["requireMinTotalDeposit"] = $"Min Total Deposit must be greater than 0 and less than {INFINITY_MONEY}.",
-            ["requireMinTurnover"] = $"Min Turnover must be greater than 0 and less than {INFINITY_MONEY}.",
-            ["requireCpaAmount"] = $"Cpa Amount must be greater than 0 and less than {INFINITY_MONEY}.",
+            ["requireMinMaxValue"] = "{0} must be greater than 0.",
             ["requireCountryCodes"] = "At least 1 Target Country is selected.",
-            ["requireActiveDays"] = $"Activity Period must be greater than 0 and less than {INFINITY_NUMBER}.",
-            ["requireHoldingTicketsAndHoldingDays"] = $"Holding Tickets and Holding Days must both be greater than 0 and less than {INFINITY_NUMBER}.",
-            ["requireQuota"] = $"Quota must be greater than 0 and less than {INFINITY_NUMBER}.",
+            ["requireActiveDays"] = "Activity Period must be greater than 0.",
+            ["requireHoldingTicketsAndHoldingDays"] = "Holding Tickets and Holding Days must both be greater than 0.",
+            ["requireQuota"] = "Quota must be greater than 0.",
             ["requireTierSetting"] = "Tier Setting must be at least 1.",
             ["requireProductGroup"] = "Product Group must be at least 1.",
             ["requireProductGroupHasSelectedProduct"] = "Product Group {0} - Must choose at least 1 product",
             ["requireDuplicateProductsInGroups"] = "You've selected the same Product in more than one Product Group. Please correct it.",
-            ["requireIncreasingMinFdm"] = "The value in the Min FDM column must increase sequentially",
-            ["requireIncreasingMinTotalDeposit"] = "The value in the Min Total Deposit column must increase sequentially",
-            ["requireIncreasingMinTurnover"] = "The value in the Min Turnover column must increase sequentially",
+            ["requireIncreasing"] = "The values in the {0} columns must increase sequentially.",
             ["requireAllTierSettingsMatchGroupProduct1"] = "Group Product {0} has different Min FDM or Min Total Deposit values in some tiers compared to Group Product 1. Please check and update it.",
             ["requireCheckBox"] = "Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover."
         };
@@ -278,76 +287,66 @@
             bool checkedMinTotalDeposit,
             bool checkedMinTurnover)
         {
+            var isValid = true;
             var messageList = new List<string>();
-            var groupProduct = $"Group Product {index + 1}";
+            var groupProduct = $"Product Group {index + 1}";
+            var fields = new List<string>();
 
-            var validations = new List<(Func<(bool isValid, List<string> messageList)> fn, bool isChecked)>
+            var validations = new List<(string Field, bool ShouldCheck)>
             {
-                (() => ValidateIncreasingByField(groupTiers, "MinFdm", messages["requireIncreasingMinFdm"], checkedMinFdm && index == 0), checkedMinFdm && index == 0),
-                (() => ValidateIncreasingByField(groupTiers, "MinTotalDeposit", messages["requireIncreasingMinTotalDeposit"],
-                        checkedMinTotalDeposit && index == 0), checkedMinTotalDeposit && index == 0),
-                (() => ValidateIncreasingByField(groupTiers, "MinTO", messages["requireIncreasingMinTurnover"], checkedMinTurnover), checkedMinTurnover)
+                (MIN_FDM, checkedMinFdm && index == 0),
+                (MIN_TOTAL_DEPOSIT, checkedMinTotalDeposit && index == 0),
+                (MIN_TURNOVER, checkedMinTurnover)
             };
 
-            foreach (var (fn, isChecked) in validations)
+            foreach (var (field, shouldCheck) in validations)
             {
-                var result = fn();
-                if (!result.isValid)
+                if (shouldCheck)
                 {
-                    messageList.Add($"{groupProduct}: {string.Join(", ", result.messageList)}");
-#pragma warning disable S1227 // break statements should not be used except for switch cases
-                    break;
-#pragma warning restore S1227 // break statements should not be used except for switch cases
-                }
-            }
-
-            var isValid = messageList.Count == 0;
-
-            return (isValid, messageList);
-        }
-
-        private static (bool isValid, List<string> messageList) ValidateIncreasingByField(
-            List<CpaTierSetting> tiers,
-            string field,
-            string message,
-            bool isChecked)
-        {
-            var messageList = new List<string>();
-
-            if (isChecked)
-            {
-                for (int i = 1; i < tiers.Count; i++)
-                {
-                    var prev = GetValue(tiers[i - 1], field);
-                    var curr = GetValue(tiers[i], field);
-
-                    if (curr <= prev)
+                    var result = ValidateIncreasingByField(groupTiers, field);
+                    if (!result.isValid)
                     {
-                        messageList.Add(message);
-#pragma warning disable S1227 // break statements should not be used except for switch cases
-                        break;
-#pragma warning restore S1227 // break statements should not be used except for switch cases
+                        isValid = false;
+                        fields.Add(mappingFields[result.field]);
                     }
                 }
             }
 
-            var isValid = messageList.Count == 0;
+            if (!isValid)
+            {
+                messageList.Add($"{groupProduct}: {string.Format(messages["requireIncreasing"], string.Join(", ", fields))}");
+            }
 
             return (isValid, messageList);
         }
 
+        private static (bool isValid, string field) ValidateIncreasingByField(List<CpaTierSetting> tiers, string field)
+        {
+            for (int i = 1; i < tiers.Count; i++)
+            {
+                var prev = GetValue(tiers[i - 1], field);
+                var curr = GetValue(tiers[i], field);
+
+                if (curr <= prev)
+                {
+                    return (false, field);
+                }
+            }
+
+            return (true, string.Empty);
+        }
 
         private static decimal GetValue(CpaTierSetting tier, string fieldName)
         {
             switch (fieldName)
             {
-                case "MinFdm":
+                case MIN_FDM:
                     return tier.MinFdm;
-                case "MinTotalDeposit":
+                case MIN_TOTAL_DEPOSIT:
                     return tier.MinTotalDeposit;
-                case "MinTO":
+                case MIN_TURNOVER:
                     return tier.MinTO;
-                case "CpaAmount":
+                case CPA_AMOUNT:
                     return tier.CpaAmount;
                 default:
                     throw new ArgumentException("Invalid field", nameof(fieldName));
@@ -424,31 +423,38 @@
             bool checkedMinTotalDeposit,
             bool checkedMinTurnover)
         {
+            var isValid = true;
             var messageList = new List<string>();
+            var fields = new List<string>();
 
             for (int tierIndex = 0; tierIndex < groupTiers.Count; tierIndex++)
             {
                 var tier = groupTiers[tierIndex];
 
-                void ValidateField(bool condition, string messageKey)
+                void ValidateField(bool condition, string field)
                 {
                     if (condition)
                     {
-                        messageList.Add($"Group Product {groupProductId} - Tier {tierIndex + 1}: {messages[messageKey]}");
+                        isValid = false;
+                        fields.Add(mappingFields[field]);
                     }
                 }
 
                 if (index == 0)
                 {
-                    ValidateField(checkedMinFdm && (tier.MinFdm < 1 || tier.MinFdm > INFINITY_MONEY), "requireMinFdm");
-                    ValidateField(checkedMinTotalDeposit && (tier.MinTotalDeposit < 1 || tier.MinTotalDeposit > INFINITY_MONEY), "requireMinTotalDeposit");
+                    ValidateField(checkedMinFdm && (tier.MinFdm < 1 || tier.MinFdm > INFINITY_MONEY), MIN_FDM);
+                    ValidateField(checkedMinTotalDeposit && (tier.MinTotalDeposit < 1 || tier.MinTotalDeposit > INFINITY_MONEY), MIN_TOTAL_DEPOSIT);
                 }
 
-                ValidateField(checkedMinTurnover && (tier.MinTO < 1 || tier.MinTO > INFINITY_MONEY), "requireMinTurnover");
-                ValidateField(tier.CpaAmount < 1 || tier.CpaAmount > INFINITY_MONEY, "requireCpaAmount");
+                ValidateField(checkedMinTurnover && (tier.MinTO < 1 || tier.MinTO > INFINITY_MONEY), MIN_TURNOVER);
+                ValidateField(tier.CpaAmount < 1 || tier.CpaAmount > INFINITY_MONEY, CPA_AMOUNT);
             }
 
-            var isValid = messageList.Count == 0;
+            if(!isValid)
+            {
+                var fieldNames = string.Join(", ", fields);
+                messageList.Add($"Product Group {groupProductId}: {string.Format(messages["requireMinMaxValue"], fieldNames)}");
+            }
 
             return (isValid, messageList);
         }

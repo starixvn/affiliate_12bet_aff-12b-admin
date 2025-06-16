@@ -1,4 +1,4 @@
-import { INFINITY_MONEY, INFINITY_NUMBER, messages } from './constants';
+import { INFINITY_MONEY, INFINITY_NUMBER, messages, mappingFields } from './constants';
 
 const commonDealInfo = {
     GroupId: 0,
@@ -253,7 +253,8 @@ const ensureTierSettingAtLeastOne = (tierSetting) => {
 const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover) => {
     let isValid = true;
     const messageList = [];
-    const groupProduct = `Group Product ${index + 1}`;
+    const groupProduct = `Product Group ${index + 1}`;
+    const fields = [];
 
     const validations = [
         { fn: minFdmValidationIncreasing, isChecked: checkedMinFdm && index === 0 },
@@ -265,43 +266,41 @@ const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTot
         const result = fn(groupTiers, isChecked);
         if (!result.isValid) {
             isValid = false;
-            messageList.push(`${groupProduct}: ${result.messageList.join(', ')}`);
-
-            break;
+            fields.push(mappingFields[result.field]);
         }
+    }
+
+    if (!isValid) {
+        messageList.push(`${groupProduct}: ${messages.requireIncreasing.replace('{0}', fields.join(', '))}`);
     }
 
     return { isValid, messageList };
 }
 
 // Start validate increasing by field
-const validateIncreasingByField = (tiers, field, message, isChecked) => {
-    const messageList = [];
-    let isValid = true;
+const validateIncreasingByField = (tiers, field, isChecked) => {
 
     if (isChecked) {
         for (let i = 1; i < tiers.length; i++) {
             if (tiers[i][field] <= tiers[i - 1][field]) {
-                isValid = false;
-                messageList.push(message);
-                break;
+                return { isValid: false, field };
             }
         }
     }
 
-    return { isValid, messageList };
+    return { isValid: true, field };
 };
 
 const minFdmValidationIncreasing = (tiers, isChecked) => {
-    return validateIncreasingByField(tiers, 'MinFdm', messages.requireIncreasingMinFDM, isChecked);
+    return validateIncreasingByField(tiers, 'MinFdm', isChecked);
 }
 
 const minTotalDepositValidationIncreasing = (tiers, isChecked) => {
-    return validateIncreasingByField(tiers, 'MinTotalDeposit', messages.requireIncreasingMinTotalDeposit, isChecked);
+    return validateIncreasingByField(tiers, 'MinTotalDeposit', isChecked);
 }
 
 const minTurnoverValidationIncreasing = (tiers, isChecked) => {
-    return validateIncreasingByField(tiers, 'MinTO', messages.requireIncreasingMinTurnover, isChecked);
+    return validateIncreasingByField(tiers, 'MinTO', isChecked);
 }
 // End validate increasing by field
 
@@ -363,25 +362,30 @@ const validateValueField = (
 ) => {
     let isValid = true;
     const messageList = [];
+    const fields = [];
 
-    const validateField = (condition, messageKey, tierIndex) => {
+    const validateField = (condition, field) => {
         if (condition) {
             isValid = false;
-            messageList.push(`Group Product ${groupProductId} - Tier ${tierIndex + 1}: ${messages[messageKey]}`);
+            fields.push(mappingFields[field]);
         }
     };
 
-    groupTiers.forEach((tier, tierIndex) => {
+    groupTiers.forEach((tier) => {
         const { MinFdm, MinTotalDeposit, MinTO, CpaAmount } = tier;
 
         if (index === 0) {
-            validateField(checkedMinFdm && (!MinFdm || MinFdm < 1 || MinFdm > INFINITY_MONEY), 'requireMinFdm', tierIndex);
-            validateField(checkedMinTotalDeposit && (!MinTotalDeposit || MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'requireMinTotalDeposit', tierIndex);
+            validateField(checkedMinFdm && (!MinFdm || MinFdm < 1 || MinFdm > INFINITY_MONEY), 'MinFdm');
+            validateField(checkedMinTotalDeposit && (!MinTotalDeposit || MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'MinTotalDeposit');
         }
 
-        validateField(checkedMinTurnover && (!MinTO || MinTO < 1 || MinTO > INFINITY_MONEY), 'requireMinTurnover', tierIndex);
-        validateField(!CpaAmount || CpaAmount < 1 || CpaAmount > INFINITY_MONEY, 'requireCpaAmount', tierIndex);
+        validateField(checkedMinTurnover && (!MinTO || MinTO < 1 || MinTO > INFINITY_MONEY), 'MinTO');
+        validateField(!CpaAmount || CpaAmount < 1 || CpaAmount > INFINITY_MONEY, 'CpaAmount');
     });
+
+    if (!isValid) {
+        messageList.push(`Product Group ${groupProductId}: ${messages.requireMinMaxValue.replace('{0}', fields.join(', '))}`);
+    }
 
     return { isValid, messageList };
 };
