@@ -30,6 +30,7 @@ export const TierSetting = (props) => {
     return (
         <fieldset className="tier-setting-group">
             <legend><h6 className="font-weight-bold">Tier Setting</h6></legend>
+            <p className="font-weight-bold mr-5">Product Groups</p>
             {tierSettingList && tierSettingList.map((tierSetting, index) => {
                 const isFirstItem = index === FIRST_ITEM_INDEX;
 

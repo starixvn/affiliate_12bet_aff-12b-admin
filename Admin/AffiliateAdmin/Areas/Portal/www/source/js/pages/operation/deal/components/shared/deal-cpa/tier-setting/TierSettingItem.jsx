@@ -99,7 +99,7 @@ export const TierSettingItem = (props) => {
         if (isChecked) {
             props.setDealInfo({ CheckedMinTurnover: true });
         } else {
-            setMessage('Unchecking for Min Turnover will enable Instant Payment and remove all data from additional Product Groups, if present. Only the first Product Group will be retained. </br></br>Do you want to proceed?');
+            setMessage('Unchecking for Min Turnover will enable Instant Payment and remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br>Do you want to proceed?');
             setIsConfirmPopup(true);
         }
 
@@ -158,13 +158,14 @@ export const TierSettingItem = (props) => {
         )
     }
 
+    const isValid = dealInfo.CheckedMinTurnover ? ProductGroup.filter(p => !p.Checked).length < ProductGroup.length : true;
+
     return (
-        <div className='my-2'>
-            <p className="font-weight-bold mr-5">Product Groups</p>
+        <div>
             <FormGroup row className="align-items-center my-2">
                 <Col sm={3}>
                     <span className="group-index">{index + 1}.</span>
-                    <div disabled={!dealInfo.CheckedMinTurnover} className={`select-product`}>
+                    <div disabled={!dealInfo.CheckedMinTurnover} className={`select-product ${isValid ? '' : 'is-invalid'}`}>
                         <MultipleSelect
                             dataSource={ProductGroup}
                             keyField="ProductId"

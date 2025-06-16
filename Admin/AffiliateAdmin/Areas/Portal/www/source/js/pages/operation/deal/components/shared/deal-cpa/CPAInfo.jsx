@@ -61,7 +61,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
         const isInstant = !dealInfo.IsInstant;
 
         if (isInstant) {
-            setMessage('Checking for Instant Payment will disable Min Turnover and remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br></br>Do you want to proceed?');
+            setMessage('Checking for Instant Payment will disable Min Turnover.</br>Do you want to proceed?');
             setIsConfirmPopup(true);
         } else {
             setDealInfo({ IsInstant: false });
@@ -112,7 +112,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
                 <Label htmlFor="CountryCodes" sm={4}>Player Target Country
                     <span className="text-danger required" style={{ margin: 0 }}>*</span>
                 </Label>
-                <Col sm={3}>
+                <Col sm={3} className={`${dealInfo.CountryCodes ? '' : 'is-invalid'}`}>
                     <MultipleSelect
                         dataSource={_targetCountryList}
                         keyField="TargetCountryCode"

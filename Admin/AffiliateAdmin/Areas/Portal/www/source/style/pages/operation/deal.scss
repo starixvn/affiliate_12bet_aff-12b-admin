@@ -48,6 +48,12 @@
         text-align: center;
     }
 
+    .is-invalid {
+        .multiple-select-label {
+            border-color: #dc3545;
+        }
+    }
+
     .tier-setting-group {
 
         .btn-action {
@@ -57,7 +63,7 @@
             border: 1px solid #7b7c7d;
             background-color: #ecf6ff;
             width: 100%;
-    
+
             &:hover, &:disabled {
                 background-color: #d8d8d8;
             }
