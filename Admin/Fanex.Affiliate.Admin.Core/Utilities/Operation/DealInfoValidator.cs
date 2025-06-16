@@ -14,28 +14,26 @@
 
         private static readonly IDictionary<string, string> messages = new Dictionary<string, string>
         {
-            { "addCPASuccessfully", "Add CPA Successfully" },
-            { "requireGroupName", "Group Name cannot be empty. Please check!" },
-            { "requireMinFdm", $"Min FDM cannot be less than 1 or greater than {INFINITY_MONEY}. Please check!" },
-            { "requireMinTotalDeposit", $"Min Total Deposit cannot be less than 1 or greater than {INFINITY_MONEY}. Please check!" },
-            { "requireMinTurnover", $"Min Turnover cannot be less than 1 or greater than {INFINITY_MONEY}. Please check!" },
-            { "requireCpaAmount", $"Cpa Amount cannot be less than 1 or greater than {INFINITY_MONEY}. Please check!" },
-            { "requireActiveDays", $"Active Days cannot be less than 1 or greater than {INFINITY_NUMBER}. Please check!" },
-            { "requireHoldingTickets", $"Holding Tickets cannot be less than 1 or greater than {INFINITY_NUMBER}. Please check!" },
-            { "requireHoldingDays", $"Holding Days cannot be less than 1 or greater than {INFINITY_NUMBER}. Please check!" },
-            { "requireQuota", $"Quota cannot be less than 1 or greater than {INFINITY_NUMBER}. Please check!" },
-            { "requireTierSetting", "Tier Setting must be at least 1. Please check!" },
-            { "requireProductGroup", "Product Group must be at least 1. Please check!" },
-            { "requireProductGroupHasSelectedProduct", "Product Group {0} must have at least 1 selected product. Please check!" },
-            { "requireDuplicateProductsInGroups", "Duplicate products found in groups. Please check!" },
-            { "requireIncreasingMinFdm", "Min FDM must have increasing values across tiers. Please check!" },
-            { "requireIncreasingMinTotalDeposit", "Min Total Deposit must have increasing values across tiers. Please check!" },
-            { "requireIncreasingMinTurnover", "Min Turnover must have increasing values across tiers. Please check!" },
-            { "requireIncreasingCpaAmount", "Cpa Amount must have increasing values across tiers. Please check!" },
-            { "requireAllTierSettingsMatchGroupProduct1",
-                "Group Product {0} has different Min FDM or Min Total Deposit values in some tiers compared to Group Product 1. Please check and update it." },
-            { "requireCheckBox", "Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover." }
+            ["requireGroupName"] = "Deal name cannot be empty. Please check!",
+            ["requireMinFdm"] = $"Min FDM must be greater than 0 and less than {INFINITY_MONEY}.",
+            ["requireMinTotalDeposit"] = $"Min Total Deposit must be greater than 0 and less than {INFINITY_MONEY}.",
+            ["requireMinTurnover"] = $"Min Turnover must be greater than 0 and less than {INFINITY_MONEY}.",
+            ["requireCpaAmount"] = $"Cpa Amount must be greater than 0 and less than {INFINITY_MONEY}.",
+            ["requireCountryCodes"] = "At least 1 Target Country is selected.",
+            ["requireActiveDays"] = $"Activity Period must be greater than 0 and less than {INFINITY_NUMBER}.",
+            ["requireHoldingTicketsAndHoldingDays"] = $"Holding Tickets and Holding Days must both be greater than 0 and less than {INFINITY_NUMBER}.",
+            ["requireQuota"] = $"Quota must be greater than 0 and less than {INFINITY_NUMBER}.",
+            ["requireTierSetting"] = "Tier Setting must be at least 1.",
+            ["requireProductGroup"] = "Product Group must be at least 1.",
+            ["requireProductGroupHasSelectedProduct"] = "Product Group {0} - Must choose at least 1 product",
+            ["requireDuplicateProductsInGroups"] = "You've selected the same Product in more than one Product Group. Please correct it.",
+            ["requireIncreasingMinFdm"] = "The value in the Min FDM column must increase sequentially",
+            ["requireIncreasingMinTotalDeposit"] = "The value in the Min Total Deposit column must increase sequentially",
+            ["requireIncreasingMinTurnover"] = "The value in the Min Turnover column must increase sequentially",
+            ["requireAllTierSettingsMatchGroupProduct1"] = "Group Product {0} has different Min FDM or Min Total Deposit values in some tiers compared to Group Product 1. Please check and update it.",
+            ["requireCheckBox"] = "Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover."
         };
+
 
         public static (bool isValid, string message) Validate(DealSettingParam dealInfo)
         {
@@ -70,7 +68,7 @@
                 messageList.AddRange(tierSettingValidation.messageList);
             }
             var isValid = messageList.Count == 0;
-            var message = isValid ? messages["addCPASuccessfully"] : string.Join("</br>", messageList);
+            var message = isValid ? string.Empty : string.Join("</br>", messageList);
 
             return (isValid, message);
         }
@@ -101,12 +99,15 @@
                 }
             }
 
+            AddIfInvalid(string.IsNullOrWhiteSpace(dealInfo.DealName), messages["requireCountryCodes"]);
+
             AddIfInvalid(dealInfo.ActiveDays < 1 || dealInfo.ActiveDays > INFINITY_NUMBER, messages["requireActiveDays"]);
 
             if (dealInfo.IsActivePlayerHoldingPeriod)
             {
-                AddIfInvalid(dealInfo.HoldingTickets < 1 || dealInfo.HoldingTickets > INFINITY_NUMBER, messages["requireHoldingTickets"]);
-                AddIfInvalid(dealInfo.HoldingDays < 1 || dealInfo.HoldingDays > INFINITY_NUMBER, messages["requireHoldingDays"]);
+                AddIfInvalid((dealInfo.HoldingTickets < 1 || dealInfo.HoldingTickets > INFINITY_NUMBER)
+                    || (dealInfo.HoldingDays < 1 || dealInfo.HoldingDays > INFINITY_NUMBER),
+                    messages["requireHoldingTicketsAndHoldingDays"]);
             }
 
             if (dealInfo.IsQuota)
@@ -285,8 +286,7 @@
                 (() => ValidateIncreasingByField(groupTiers, "MinFdm", messages["requireIncreasingMinFdm"], checkedMinFdm && index == 0), checkedMinFdm && index == 0),
                 (() => ValidateIncreasingByField(groupTiers, "MinTotalDeposit", messages["requireIncreasingMinTotalDeposit"],
                         checkedMinTotalDeposit && index == 0), checkedMinTotalDeposit && index == 0),
-                (() => ValidateIncreasingByField(groupTiers, "MinTO", messages["requireIncreasingMinTurnover"], checkedMinTurnover), checkedMinTurnover),
-                (() => ValidateIncreasingByField(groupTiers, "CpaAmount", messages["requireIncreasingCpaAmount"], true), true)
+                (() => ValidateIncreasingByField(groupTiers, "MinTO", messages["requireIncreasingMinTurnover"], checkedMinTurnover), checkedMinTurnover)
             };
 
             foreach (var (fn, isChecked) in validations)
@@ -295,6 +295,9 @@
                 if (!result.isValid)
                 {
                     messageList.Add($"{groupProduct}: {string.Join(", ", result.messageList)}");
+#pragma warning disable S1227 // break statements should not be used except for switch cases
+                    break;
+#pragma warning restore S1227 // break statements should not be used except for switch cases
                 }
             }
 
@@ -321,7 +324,9 @@
                     if (curr <= prev)
                     {
                         messageList.Add(message);
+#pragma warning disable S1227 // break statements should not be used except for switch cases
                         break;
+#pragma warning restore S1227 // break statements should not be used except for switch cases
                     }
                 }
             }

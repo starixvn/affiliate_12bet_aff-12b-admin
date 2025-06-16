@@ -87,6 +87,7 @@ export const validateGroupName = (groupName) => {
 
 export const validateGeneralDealInfo = (dealInfo) => {
     const {
+        CountryCodes,
         ActiveDays,
         IsActivePlayerHoldingPeriod,
         HoldingTickets,
@@ -103,15 +104,18 @@ export const validateGeneralDealInfo = (dealInfo) => {
         }
     };
 
-    addIfInvalid(ActiveDays < 1 || ActiveDays > INFINITY_NUMBER, messages.requireActiveDays);
+    addIfInvalid(!CountryCodes, messages.requireCountryCodes);
+
+    addIfInvalid(!ActiveDays || ActiveDays < 1 || ActiveDays > INFINITY_NUMBER, messages.requireActiveDays);
 
     if (IsActivePlayerHoldingPeriod) {
-        addIfInvalid(HoldingTickets < 1 || HoldingTickets > INFINITY_NUMBER, messages.requireHoldingTickets);
-        addIfInvalid(HoldingDays < 1 || HoldingDays > INFINITY_NUMBER, messages.requireHoldingDays);
+        addIfInvalid((!HoldingTickets || HoldingTickets < 1 || HoldingTickets > INFINITY_NUMBER)
+            || (!HoldingDays || HoldingDays < 1 || HoldingDays > INFINITY_NUMBER),
+            messages.requireHoldingTicketsAndHoldingDays);
     }
 
     if (IsQuota) {
-        addIfInvalid(Quota < 1 || Quota > INFINITY_NUMBER, messages.requireQuota);
+        addIfInvalid(!Quota || Quota < 1 || Quota > INFINITY_NUMBER, messages.requireQuota);
     }
 
     const isValid = messageList.length === 0;
@@ -254,8 +258,7 @@ const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTot
     const validations = [
         { fn: minFdmValidationIncreasing, isChecked: checkedMinFdm && index === 0 },
         { fn: minTotalDepositValidationIncreasing, isChecked: checkedMinTotalDeposit && index === 0 },
-        { fn: minTurnoverValidationIncreasing, isChecked: checkedMinTurnover },
-        { fn: cpaAmountValidationIncreasing, isChecked: true },
+        { fn: minTurnoverValidationIncreasing, isChecked: checkedMinTurnover }
     ];
 
     for (const { fn, isChecked } of validations) {
@@ -263,6 +266,8 @@ const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTot
         if (!result.isValid) {
             isValid = false;
             messageList.push(`${groupProduct}: ${result.messageList.join(', ')}`);
+
+            break;
         }
     }
 
@@ -288,7 +293,7 @@ const validateIncreasingByField = (tiers, field, message, isChecked) => {
 };
 
 const minFdmValidationIncreasing = (tiers, isChecked) => {
-    return validateIncreasingByField(tiers, 'MinFdm', messages.requireIncreasingMinFdm, isChecked);
+    return validateIncreasingByField(tiers, 'MinFdm', messages.requireIncreasingMinFDM, isChecked);
 }
 
 const minTotalDepositValidationIncreasing = (tiers, isChecked) => {
@@ -297,10 +302,6 @@ const minTotalDepositValidationIncreasing = (tiers, isChecked) => {
 
 const minTurnoverValidationIncreasing = (tiers, isChecked) => {
     return validateIncreasingByField(tiers, 'MinTO', messages.requireIncreasingMinTurnover, isChecked);
-}
-
-const cpaAmountValidationIncreasing = (tiers, isChecked) => {
-    return validateIncreasingByField(tiers, 'CpaAmount', messages.requireIncreasingCpaAmount, isChecked);
 }
 // End validate increasing by field
 
@@ -374,12 +375,12 @@ const validateValueField = (
         const { MinFdm, MinTotalDeposit, MinTO, CpaAmount } = tier;
 
         if (index === 0) {
-            validateField(checkedMinFdm && (MinFdm < 1 || MinFdm > INFINITY_MONEY), 'requireMinFdm', tierIndex);
-            validateField(checkedMinTotalDeposit && (MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'requireMinTotalDeposit', tierIndex);
+            validateField(checkedMinFdm && (!MinFdm || MinFdm < 1 || MinFdm > INFINITY_MONEY), 'requireMinFdm', tierIndex);
+            validateField(checkedMinTotalDeposit && (!MinTotalDeposit || MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'requireMinTotalDeposit', tierIndex);
         }
 
-        validateField(checkedMinTurnover && (MinTO < 1 || MinTO > INFINITY_MONEY), 'requireMinTurnover', tierIndex);
-        validateField(CpaAmount < 1 || CpaAmount > INFINITY_MONEY, 'requireCpaAmount', tierIndex);
+        validateField(checkedMinTurnover && (!MinTO || MinTO < 1 || MinTO > INFINITY_MONEY), 'requireMinTurnover', tierIndex);
+        validateField(!CpaAmount || CpaAmount < 1 || CpaAmount > INFINITY_MONEY, 'requireCpaAmount', tierIndex);
     });
 
     return { isValid, messageList };
