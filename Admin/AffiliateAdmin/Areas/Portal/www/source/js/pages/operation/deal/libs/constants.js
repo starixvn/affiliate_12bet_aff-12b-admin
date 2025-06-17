@@ -4,6 +4,7 @@ import { money } from "../../../../modules/constants";
 export const FIRST_ITEM_INDEX = 0;
 export const INFINITY_MONEY = money.AllowedMaxValue;
 export const INFINITY_NUMBER = 30000;
+export const DEFAULT_DEAL_TYPE = 3; // CPA
 
 const _subAffRateValueList = () => {
     let min = 0.0,

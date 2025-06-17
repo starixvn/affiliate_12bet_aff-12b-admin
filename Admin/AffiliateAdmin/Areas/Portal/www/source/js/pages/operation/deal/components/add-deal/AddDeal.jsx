@@ -10,7 +10,7 @@ import { validateDealInfo } from '../../libs/service';
 import DealInfo from './../shared/DealInfo';
 import SubAffRateSetting from './../shared/sub-aff-rate';
 import { DealTypeInfo } from './../shared/DealTypeInfo';
-import { messages } from '../../libs/constants';
+import { messages, DEFAULT_DEAL_TYPE } from '../../libs/constants';
 
 export const AddDeal = (props) => {
 
@@ -20,6 +20,7 @@ export const AddDeal = (props) => {
 
     useEffect(() => {
         const dealInfo = buildDefaultDealInfo();
+        dealInfo.DealType = props.param.DealType || DEFAULT_DEAL_TYPE;
         const countryCodes = _getAllTargetCountryCodes();
 
         props.setDealInfo({ ...dealInfo, CountryCodes: countryCodes });
