@@ -39,19 +39,22 @@ export const buildDefaultDealInfo = () => {
     return Object.assign({}, commonDealInfo);
 }
 
-const convertListWithChecked = (list, selectedIdsCSV, idKey, nameKey) => {
+const convertListWithChecked = (list, selectedIdsCSV, idKey, nameKey, checkedItems = []) => {
     const selectedIds = selectedIdsCSV.split(',').filter(p => !!p);
     const isCheckAll = selectedIds.length === list.length;
+
+    const isDisabledItem = checkedItems.filter(i => !selectedIds.includes(i));
 
     return list.map(item => ({
         [idKey]: item[idKey],
         [nameKey]: item[nameKey],
-        Checked: isCheckAll || selectedIds.filter(i => i === item[idKey].toString()).length > 0
+        Checked: isCheckAll || selectedIds.filter(i => i === item[idKey].toString()).length > 0,
+        IsDisabledItem: isDisabledItem && isDisabledItem.filter(i => i === item[idKey].toString()).length > 0
     }));
 };
 
-export const convertProductList = (productList, productIds = '') => {
-    return convertListWithChecked(productList, productIds, 'ProductId', 'ProductName');
+export const convertProductList = (productList, productIds = '', checkedProducts = []) => {
+    return convertListWithChecked(productList, productIds, 'ProductId', 'ProductName', checkedProducts);
 }
 
 export const convertTargetCountryList = (targetCountryList, targetCountryCodes = '') => {

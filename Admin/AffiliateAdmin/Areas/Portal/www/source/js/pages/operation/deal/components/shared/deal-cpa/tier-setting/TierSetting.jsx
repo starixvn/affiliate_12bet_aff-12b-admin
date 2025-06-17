@@ -14,15 +14,25 @@ export const TierSetting = (props) => {
 
     const _handleTierSetting = () => {
         const tierSettingList = ProductGroup.map(p => {
+            const checkedProducts = _getCheckedProducts();
             const tierSetting = CPATierSetting.filter(t => t.GroupProductId === p.GroupProductId);
             return {
-                ProductGroup: convertProductList(productList, p.ProductIds),
+                ProductGroup: convertProductList(productList, p.ProductIds, checkedProducts),
                 TierSetting: tierSetting,
                 GroupProductId: p.GroupProductId
             };
         });
 
         return tierSettingList;
+    }
+
+    const _getCheckedProducts = () => {
+        const checkedProducts = [];
+        ProductGroup.forEach(p => {
+            checkedProducts.push(...p.ProductIds.split(',').filter(p => !!p));
+        });
+
+        return checkedProducts;
     }
 
     const tierSettingList = _handleTierSetting();

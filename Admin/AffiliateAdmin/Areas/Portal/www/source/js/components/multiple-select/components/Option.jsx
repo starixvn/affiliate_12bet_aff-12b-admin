@@ -23,7 +23,7 @@ const Option = (props) => {
                 className="option-checkbox"
                 checked={itemData.checked}
                 onChange={handleChange}
-                disabled={isDisable}
+                disabled={isDisable || itemData.isDisabledItem}
             />
             <span className="option-label" htmlFor={id}>
                 {itemData.value}

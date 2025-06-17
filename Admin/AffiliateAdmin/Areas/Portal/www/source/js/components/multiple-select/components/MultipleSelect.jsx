@@ -8,6 +8,7 @@ import OptionAll from './OptionAll';
 const KEY_NAME = "key";
 const VALUE_NAME = "value";
 const STATUS_NAME = "checked";
+const IS_DISABLED_ITEM_NAME = 'isDisabledItem';
 
 let id = 1;
 
@@ -27,6 +28,7 @@ export default class MultipleSelect extends PureComponent {
         keyField: PropTypes.string,
         valueField: PropTypes.string,
         statusField: PropTypes.string,
+        isDisableItemField: PropTypes.bool,
         noneSelectedLabel: PropTypes.string,
         optionAllLabel: PropTypes.string,
         maxDisplayItemCount: PropTypes.number,
@@ -40,6 +42,7 @@ export default class MultipleSelect extends PureComponent {
         keyField: KEY_NAME,
         valueField: VALUE_NAME,
         statusField: STATUS_NAME,
+        isDisableItemField: IS_DISABLED_ITEM_NAME,
         hasAllOption: true,
         hasInputOption: false,
         isDisable: false
@@ -54,12 +57,13 @@ export default class MultipleSelect extends PureComponent {
     }
 
     onChangeHandler = (item) => {
-        const { keyField, valueField, statusField, dataSource } = this.props;
+        const { keyField, valueField, statusField, isDisableItemField, dataSource } = this.props;
 
         const selectedItem = {
             [keyField]: item.key,
             [valueField]: item.value,
-            [statusField]: item.checked
+            [statusField]: item.checked,
+            [isDisableItemField]: item.isDisabledItem || false
         }
 
         const newDataSource = dataSource.map(option => {
@@ -72,7 +76,8 @@ export default class MultipleSelect extends PureComponent {
             return {
                 [KEY_NAME]: newItem[keyField],
                 [VALUE_NAME]: newItem[valueField],
-                [STATUS_NAME]: newItem[statusField]
+                [STATUS_NAME]: newItem[statusField],
+                [IS_DISABLED_ITEM_NAME]: newItem[isDisableItemField] || false
             }
         });
 
@@ -89,7 +94,8 @@ export default class MultipleSelect extends PureComponent {
             return {
                 key: item[keyField],
                 value: item[valueField],
-                checked: checked
+                checked: checked,
+                isDisabledItem: item[IS_DISABLED_ITEM_NAME] || false
             }
         });
 
@@ -108,14 +114,15 @@ export default class MultipleSelect extends PureComponent {
     }
 
     _convertDataSource(inputOption) {
-        const { keyField, valueField, statusField, dataSource } = this.props;
+        const { keyField, valueField, statusField, isDisableItemField, dataSource } = this.props;
         const dataSourceAfterFilter = dataSource.filter(i => i[valueField].toLowerCase().includes(inputOption || ''));
 
         return dataSourceAfterFilter.map(item => {
             return {
                 [KEY_NAME]: item[keyField],
                 [VALUE_NAME]: item[valueField],
-                [STATUS_NAME]: item[statusField]
+                [STATUS_NAME]: item[statusField],
+                [IS_DISABLED_ITEM_NAME]: item[isDisableItemField] || false
             }
         })
     }

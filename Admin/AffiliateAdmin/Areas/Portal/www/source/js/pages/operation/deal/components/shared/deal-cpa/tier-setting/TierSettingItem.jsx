@@ -171,6 +171,7 @@ export const TierSettingItem = (props) => {
                             keyField="ProductId"
                             valueField="ProductName"
                             statusField="Checked"
+                            isDisableItemField="IsDisabledItem"
                             hasAllOption={false}
                             hasInputOption={false}
                             maxDisplayItemCount={1}
