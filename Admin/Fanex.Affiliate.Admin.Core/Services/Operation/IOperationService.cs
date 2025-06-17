@@ -14,9 +14,11 @@
 
         DealSettingDetail GetDealSettingDetail(int groudId);
 
-        ResultInfo AddCpaDeal(DealSettingParam param);
+        ResultInfo AddDeal(DealSettingParam param);
 
         ResultInfo DeleteDeal(DeleteDealParam param);
+
+        ResultInfo UpdateDeal(DealSettingParam param);
 
         IEnumerable<DeductionItem> GetDeductionList();
     }

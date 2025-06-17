@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { setDealInfo, toggleLoader, addCPADeal, setParam, setIsSubmitted } from '../../actions';
+import { setDealInfo, toggleLoader, addDeal, setParam, setIsSubmitted } from '../../actions';
 import { buildDefaultDealInfo } from '../../libs/service';
 import { validateDealInfo } from '../../libs/service';
 
@@ -48,7 +48,7 @@ export const AddDeal = (props) => {
             props.toggleLoader(true);
             const param = _handleSaveParam(dealInfo);
 
-            const response = await props.addCPADeal(param);
+            const response = await props.addDeal(param);
             if (response && response.status === 200) {
                 const result = response.data;
                 if (result.IsSuccessful) {
@@ -121,7 +121,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setDealInfo,
         toggleLoader,
-        addCPADeal,
+        addDeal,
         setParam,
         setIsSubmitted
     }, dispatch);

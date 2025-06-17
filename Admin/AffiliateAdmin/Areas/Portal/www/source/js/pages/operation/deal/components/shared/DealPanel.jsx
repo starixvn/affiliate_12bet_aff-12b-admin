@@ -1,5 +1,5 @@
 ﻿import React, { Suspense, useState, useEffect } from 'react';
-import { DEAL_REVENUE_SHARE, dealPanelKey, dealPanelList } from '../../libs/deal-panels';
+import { DEAL_CPA, DEAL_REVENUE_SHARE, dealPanelKey, dealPanelList } from '../../libs/deal-panels';
 
 export const DealPanel = ({ dealType }) => {
     const [activePanel, setActivePanel] = useState(dealType == DEAL_REVENUE_SHARE ? dealPanelKey.revenueShare : dealPanelKey.cpa);
@@ -12,7 +12,7 @@ export const DealPanel = ({ dealType }) => {
             setActivePanel(activeKey);
         }
 
-        setDealPanels(dealPanelList.filter(m => m.supportedDeals.includes(Number(dealType))));
+        setDealPanels(dealPanelList.filter(m => m.supportedDeals.includes(dealType)));
 
     }, [dealType]);
 
@@ -36,6 +36,9 @@ export const DealPanel = ({ dealType }) => {
                     </Suspense>
                 }
             </div>
+            {
+                dealType != DEAL_CPA && <p className="text-danger my-2">Note: Change will take effect on current month (GMT-4)</p>
+            }
         </React.Fragment>
     );
 };

@@ -3,8 +3,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Operation
 {
     public class RevevueTierSetting
     {
-        public int GroupId { get; set; }
-
         public int TierId { get; set; }
 
         public int GroupProductId { get; set; }

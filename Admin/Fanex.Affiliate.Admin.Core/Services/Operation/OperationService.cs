@@ -9,12 +9,19 @@
     using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
+    using Fanex.Affiliate.Admin.Core.Services.Common;
+    using Fanex.Affiliate.Admin.Core.Utilities.Operation;
     using Fanex.Data.Repository;
 
     public class OperationService : BaseDynamicService, IOperationService
     {
-        public OperationService(IDynamicRepository dynamicRepository) : base(dynamicRepository)
+        private readonly ISystemService _systemService;
+
+        public OperationService(
+            IDynamicRepository dynamicRepository,
+            ISystemService systemService) : base(dynamicRepository)
         {
+            _systemService = systemService;
         }
 
         public IEnumerable<DealType> GetDealTypes()
@@ -79,28 +86,36 @@
             return dealSettingInfo;
         }
 
-        public ResultInfo AddCpaDeal(DealSettingParam param)
+        public ResultInfo AddDeal(DealSettingParam param)
         {
-            var command = new InsertCpaDealCommand
+            var (isValid, message) = ValidateDeal(param);
+            if (!isValid)
             {
-                GroupId = param.GroupId,
-                GroupTypeId = param.DealType,
-                GroupName = param.DealName,
-                SubCommRate = param.SubCommRate,
-                Description = param.Description,
-                CountryCodes = param.CountryCodes,
-                ActiveDays = param.ActiveDays,
-                HoldingDays = param.HoldingDays,
-                HoldingTickets = param.HoldingTickets,
-                Quota = param.Quota,
-                IsInstant = param.IsInstant,
-                CpaTierList = BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover),
-                CpaProductList = BuildCpaProductListXml(param.ProductGroup),
-                UserId = param.UserId,
-                Ip = param.Ip
-            };
+                return ResultInfo.GenerateErr(message);
+            }
 
-            return ExecuteReturnResultInfo(command);
+            if (param.DealType == Constants.DealType.CPA)
+            {
+                return AddCpaDeal(param);
+            }
+
+            return ResultInfo.GenerateErr("Only support add CPA Deal");
+        }
+
+        public ResultInfo UpdateDeal(DealSettingParam param)
+        {
+            var (isValid, message) = ValidateDeal(param);
+            if (!isValid)
+            {
+                return ResultInfo.GenerateErr(message);
+            }
+
+            if (param.DealType == Constants.DealType.CPA)
+            {
+                return UpdateCpaDeal(param);
+            }
+
+            return ResultInfo.GenerateErr("Only support update CPA Deal");
         }
 
         public ResultInfo DeleteDeal(DeleteDealParam param)
@@ -113,6 +128,78 @@
             };
 
             return ExecuteReturnResultInfo(command);
+        }
+
+        private (bool isValid, string message) ValidateDeal(DealSettingParam dealInfo)
+        {
+            var messageList = new List<string>();
+            if (dealInfo == null)
+            {
+                return (false, "Deal information cannot be null.");
+            }
+            var validateResult = DealInfoValidator.ValidateGroupName(dealInfo.DealName);
+            if (!validateResult.isValid)
+            {
+                messageList.AddRange(validateResult.messageList);
+            }
+
+            if (dealInfo.DealType == Constants.DealType.CPA)
+            {
+                validateResult = DealInfoValidator.ValidateCPAInfo(dealInfo);
+            }
+            else if (dealInfo.DealType == Constants.DealType.RevenueShare)
+            {
+                validateResult = DealInfoValidator.ValidateRevenueShare(dealInfo, _systemService.GetProductList());
+            }
+            else
+            {
+                validateResult = DealInfoValidator.ValidateHybirdDeal(dealInfo, _systemService.GetProductList());
+            }
+
+            if (!validateResult.isValid)
+            {
+                messageList.AddRange(validateResult.messageList);
+            }
+
+            var isValid = messageList.Count == 0;
+            var message = isValid ? string.Empty : string.Join("</br>", messageList);
+
+            return (isValid, message);
+        }
+
+        private ResultInfo AddCpaDeal(DealSettingParam param)
+        {
+            var command = new InsertDealCommand();
+            AssignDeal(command, param);
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        private ResultInfo UpdateCpaDeal(DealSettingParam param)
+        {
+            var command = new UpdateDealCommand();
+            AssignDeal(command, param);
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        private static void AssignDeal(BaseDealCommand command, DealSettingParam param)
+        {
+            command.GroupId = param.GroupId;
+            command.GroupTypeId = param.DealType;
+            command.GroupName = param.DealName;
+            command.SubCommRate = param.SubCommRate;
+            command.Description = param.Description;
+            command.CountryCodes = param.CountryCodes;
+            command.ActiveDays = param.ActiveDays;
+            command.HoldingDays = param.HoldingDays;
+            command.HoldingTickets = param.HoldingTickets;
+            command.Quota = param.Quota;
+            command.IsInstant = param.IsInstant;
+            command.CpaTierList = BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover);
+            command.CpaProductList = BuildCpaProductListXml(param.ProductGroup);
+            command.UserId = param.UserId;
+            command.Ip = param.Ip;
         }
 
         private static string BuildCpaTierListXml(IEnumerable<CpaTierSetting> cpaTierSettingParams, bool checkedMinFdm, bool checkedMinTotalDeposit, bool checkedMinTurnover)

@@ -65,24 +65,18 @@
         [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult AddCpaDeal(DealSettingParam param)
+        public ActionResult AddDeal(DealSettingParam param)
         {
             if (!ModelState.IsValid)
             {
                 return GenerateModelStateErrResult();
             }
 
-            var (isValid, message) = DealInfoValidator.Validate(param);
-            if (!isValid)
-            {
-                return GenerateErrResult(message);
-            }
-
             AssignUserInfoParam(param);
             param.DealName = Server.HtmlDecode(param.DealName);
             param.Description = Server.HtmlDecode(param.Description);
 
-            return GenerateJsonNetResult(_operationService.AddCpaDeal(param));
+            return GenerateJsonNetResult(_operationService.AddDeal(param));
         }
 
         [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]

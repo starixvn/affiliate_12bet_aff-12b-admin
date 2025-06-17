@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Fanex.Affiliate.Admin.Core.Constants;
+    using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 
@@ -43,19 +44,48 @@
             ["requireCheckBox"] = "Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover."
         };
 
-
-        public static (bool isValid, string message) Validate(DealSettingParam dealInfo)
+        public static (bool isValid, List<string> messageList) ValidateGroupName(string groupName)
         {
             var messageList = new List<string>();
-            if (dealInfo == null)
+
+            if (string.IsNullOrWhiteSpace(groupName))
             {
-                return (false, "Deal information cannot be null.");
+                messageList.Add(messages["requireGroupName"]);
+                return (false, messageList);
             }
-            var groupNameValidation = ValidateGroupName(dealInfo.DealName);
-            if (!groupNameValidation.isValid)
+
+            return (true, messageList);
+        }
+
+        public static (bool isValid, List<string> messageList) ValidateHybirdDeal(DealSettingParam dealInfo, IEnumerable<Product> products)
+        {
+            var messageList = new List<string>();
+
+            var validateCPAInfoResult = ValidateCPAInfo(dealInfo);
+
+            if (!validateCPAInfoResult.isValid)
             {
-                messageList.AddRange(groupNameValidation.messageList);
+                messageList.AddRange(validateCPAInfoResult.messageList);
             }
+
+            var validateRevenueShareInfoResult = RevenueShareValidator.ValidateRevenueShare(dealInfo, products);
+            if (!validateRevenueShareInfoResult.isValid)
+            {
+                messageList.AddRange(validateRevenueShareInfoResult.messageList);
+            }
+
+            var isValid = messageList.Count == 0;
+
+            return (isValid, messageList);
+        }
+
+        public static (bool isValid, List<string> messageList) ValidateRevenueShare(DealSettingParam dealInfo, IEnumerable<Product> products)
+            => RevenueShareValidator.ValidateRevenueShare(dealInfo, products);
+
+        public static (bool isValid, List<string> messageList) ValidateCPAInfo(DealSettingParam dealInfo)
+        {
+            var messageList = new List<string>();
+
             var generalDealInfoValidation = ValidateGeneralDealInfo(dealInfo);
             if (!generalDealInfoValidation.isValid)
             {
@@ -75,20 +105,6 @@
             if (!tierSettingValidation.isValid)
             {
                 messageList.AddRange(tierSettingValidation.messageList);
-            }
-            var isValid = messageList.Count == 0;
-            var message = isValid ? string.Empty : string.Join("</br>", messageList);
-
-            return (isValid, message);
-        }
-
-        public static (bool isValid, List<string> messageList) ValidateGroupName(string groupName)
-        {
-            var messageList = new List<string>();
-
-            if (string.IsNullOrWhiteSpace(groupName))
-            {
-                messageList.Add(messages["requireGroupName"]);
             }
 
             var isValid = messageList.Count == 0;

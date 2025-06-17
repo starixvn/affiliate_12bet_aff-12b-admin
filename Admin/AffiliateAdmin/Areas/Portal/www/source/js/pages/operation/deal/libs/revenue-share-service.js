@@ -103,18 +103,17 @@ export const convertStringToArrayNumber = (stringIds) => {
     return stringIds.split(',').filter(id => !!id).map(i => Number(i));
 }
 
-export const validateRevenueShare = (dealInfo) => {
-    const { DealName, RevenueTierSetting, PlatformFeeSetting, DepositFeeSetting, WithdrawalFeeSetting } = dealInfo;
+export const validateRevenueShareInfo = (dealInfo) => {
+    const { RevenueTierSetting, PlatformFeeSetting, DepositFeeSetting, WithdrawalFeeSetting } = dealInfo;
 
-    const groupNameValidation = validateGroupName(DealName);
     const tierSettingValidation = validateTierSettingList(RevenueTierSetting);
     const selectedProductValidation = validateItemMustHaveAProduct(PlatformFeeSetting);
     const depositFeeValidation = validateDeductedFees(DepositFeeSetting, messages.requireDepositAmount, messages.invalidDepositAmount);
     const withdrawalFeeValidation = validateDeductedFees(WithdrawalFeeSetting, messages.requireWithdrawalAmount, messages.invalidWithdrawalAmount);
 
-    const isValid = groupNameValidation.isValid && tierSettingValidation.isValid && selectedProductValidation.isValid
+    const isValid = tierSettingValidation.isValid && selectedProductValidation.isValid
         && depositFeeValidation.isValid && withdrawalFeeValidation.isValid;
-    const messageList = [...groupNameValidation.messageList, ...tierSettingValidation.messageList, ...selectedProductValidation.messageList,
+    const messageList = [...tierSettingValidation.messageList, ...selectedProductValidation.messageList,
     ...depositFeeValidation.messageList, ...withdrawalFeeValidation.messageList
     ];
 

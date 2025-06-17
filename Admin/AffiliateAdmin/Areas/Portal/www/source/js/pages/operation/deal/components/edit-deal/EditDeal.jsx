@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { getDealDetail, toggleLoader, addCPADeal, setParam } from '../../actions';
+import { getDealDetail, toggleLoader, updateDeal, setParam } from '../../actions';
 import { validateDealInfo } from '../../libs/service';
 
 import DealInfo from '../shared/DealInfo';
@@ -38,7 +38,7 @@ export const EditDeal = (props) => {
             props.toggleLoader(true);
             const param = _handleSaveParam(dealInfo);
 
-            const response = await props.addCPADeal(param);
+            const response = await props.updateDeal(param);
             if (response && response.status === 200) {
                 const result = response.data;
                 if (result.IsSuccessful) {
@@ -80,7 +80,6 @@ export const EditDeal = (props) => {
             <DealInfo />
             <SubAffRateSetting />
             <DealPanel dealType={props.dealInfo.DealType} />
-            <p className="text-danger my-2">Note: Change will take effect on current month (GMT-4)</p>
             <FormGroup row inline className="align-items-center">
                 <Col sm={1}>
                     <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
@@ -105,7 +104,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         getDealDetail,
         toggleLoader,
-        addCPADeal,
+        updateDeal,
         setParam
     }, dispatch);
 }

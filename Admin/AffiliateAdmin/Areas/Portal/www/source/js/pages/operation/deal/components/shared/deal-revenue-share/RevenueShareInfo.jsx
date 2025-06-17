@@ -1,4 +1,4 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -6,6 +6,7 @@ import { setDealInfo } from '../../../actions';
 
 import PlatformFeeSetting from './tier-deduction/PlatformFeeSetting';
 import FeeSettingItem from './tier-deduction/FeeSettingItem';
+import QmTurnoverSetting from './qp-turnover/QmTurnoverSetting';
 
 export class RevenueShareInfo extends PureComponent {
     constructor(props) {
@@ -37,24 +38,27 @@ export class RevenueShareInfo extends PureComponent {
         const { DepositFeeSetting, WithdrawalFeeSetting } = this.props.dealInfo;
 
         return (
-            <fieldset className="tier-setting-group">
-                <legend><h6 className="font-weight-bold">Tier Rated Products Deduction</h6></legend>
-                <PlatformFeeSetting />
+            <Fragment>
+                <QmTurnoverSetting />
+                <fieldset className="tier-setting-group">
+                    <legend><h6 className="font-weight-bold">Tier Rated Products Deduction</h6></legend>
+                    <PlatformFeeSetting />
 
-                <p className="font-weight-bold pt-3">Banking Fee</p>
-                <FeeSettingItem label="+ Deposit Fee" basedValueName="Deposit"
-                    handleChange={this.handleChangeDepositFee}
-                    handleUpdateState={() => this.setState({ isInitialDepositFee: false })}
-                    data={DepositFeeSetting}
-                    defaultCurrency={defaultCurrency}
-                    isInitial={isInitialDepositFee} />
-                <FeeSettingItem label="+ Withdrawal Fee" basedValueName="Withdrawal"
-                    handleChange={this.handleChangeWithdrawalFee}
-                    handleUpdateState={() => this.setState({ isInitialWithdrawalFee: false })}
-                    data={WithdrawalFeeSetting}
-                    defaultCurrency={defaultCurrency}
-                    isInitial={isInitialWithdrawalFee} />
-            </fieldset>
+                    <p className="font-weight-bold pt-3">Banking Fee</p>
+                    <FeeSettingItem label="+ Deposit Fee" basedValueName="Deposit"
+                        handleChange={this.handleChangeDepositFee}
+                        handleUpdateState={() => this.setState({ isInitialDepositFee: false })}
+                        data={DepositFeeSetting}
+                        defaultCurrency={defaultCurrency}
+                        isInitial={isInitialDepositFee} />
+                    <FeeSettingItem label="+ Withdrawal Fee" basedValueName="Withdrawal"
+                        handleChange={this.handleChangeWithdrawalFee}
+                        handleUpdateState={() => this.setState({ isInitialWithdrawalFee: false })}
+                        data={WithdrawalFeeSetting}
+                        defaultCurrency={defaultCurrency}
+                        isInitial={isInitialWithdrawalFee} />
+                </fieldset>
+            </Fragment>
         )
     }
 }

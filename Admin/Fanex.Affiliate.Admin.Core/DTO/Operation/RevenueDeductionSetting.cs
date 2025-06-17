@@ -3,8 +3,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Operation
 {
     public class RevenueDeductionSetting
     {
-        public int GroupId { get; set; }
-
         public string ProductIds { get; set; } = string.Empty;
 
         public int DeductionId { get; set; }

@@ -61,12 +61,17 @@ export const getDealDetail = (groupId) => async (dispatch) => {
     dispatch(toggleLoader(false));
 }
 
-export const addCPADeal = (param) => async () => {
-    const url = 'Portal/Operation/AddCpaDeal';
+export const addDeal = (param) => async () => {
+    const url = 'Portal/Operation/AddDeal';
     return await post(url, param);
 }
 
 export const deleteDeal = (dealId) => async () => {
     const url = 'Portal/Operation/DeleteDeal';
     return await post(url, { dealId });
+}
+
+export const updateDeal = (param) => async () => {
+    const url = 'Portal/Operation/UpdateDeal';
+    return await post(url, param);
 }

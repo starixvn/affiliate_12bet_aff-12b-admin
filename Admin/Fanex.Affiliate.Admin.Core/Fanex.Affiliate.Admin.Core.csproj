@@ -285,8 +285,10 @@
     <Compile Include="Commands\Message\InsertMessageCommand.cs" />
     <Compile Include="Commands\Message\DeleteMessageCommand.cs" />
     <Compile Include="Commands\Message\UpdateMessageCommand.cs" />
+    <Compile Include="Commands\Operation\BaseDealCommand.cs" />
     <Compile Include="Commands\Operation\DeleteDealCommand.cs" />
-    <Compile Include="Commands\Operation\InsertCpaDealCommand.cs" />
+    <Compile Include="Commands\Operation\InsertDealCommand.cs" />
+    <Compile Include="Commands\Operation\UpdateDealCommand.cs" />
     <Compile Include="Commands\Tracker\InsertJobTrackerCommand.cs" />
     <Compile Include="Commands\Tracker\UpdateJobTrackerCommand.cs" />
     <Compile Include="Commands\UserPanel\Adjustment\BalanceBroughtForwardCommand.cs" />
@@ -775,6 +777,7 @@
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
     <Compile Include="Utilities\Operation\DealInfoValidator.cs" />
+    <Compile Include="Utilities\Operation\RevenueShareValidator.cs" />
     <Compile Include="Utilities\RegexHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="Utilities\SystemFile.cs" />

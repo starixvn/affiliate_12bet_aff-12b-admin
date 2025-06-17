@@ -1,4 +1,5 @@
-import { INFINITY_MONEY, INFINITY_NUMBER, messages, mappingFields, cpaTierSettingDefault, productGroupDefault } from './constants';
+import { INFINITY_MONEY, INFINITY_NUMBER, messages, mappingFields, cpaTierSettingDefault, productGroupDefault, DEAL_CPA, DEAL_REVENUE_SHARE, DEAL_HYBRID } from './constants';
+import { validateRevenueShareInfo } from './revenue-share-service';
 
 const commonDealInfo = {
     GroupId: 0,
@@ -56,16 +57,45 @@ export const convertTargetCountryList = (targetCountryList, targetCountryCodes =
 }
 
 export const validateDealInfo = (dealInfo) => {
-    const { DealName, CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover, ProductGroup } = dealInfo;
+    const { DealType, DealName } = dealInfo;
+    let validateResult = { isValid: false, messageList: [] };
 
     const groupNameValidation = validateGroupName(DealName);
+
+    if (DealType === DEAL_CPA) {
+        validateResult = validateCPAInfo(dealInfo);
+    } else if (DealType === DEAL_REVENUE_SHARE) {
+        validateResult = validateRevenueShareInfo(dealInfo);
+    } else {
+        validateResult = validateHybridInfo(dealInfo);
+    }
+
+    const isValid = groupNameValidation.isValid && validateResult.isValid;
+    const messageList = [...groupNameValidation.messageList, ...validateResult.messageList];
+
+    return { isValid, messageList };
+}
+
+export const validateCPAInfo = (dealInfo) => {
+    const { CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover, ProductGroup } = dealInfo;
+
     const generalDealInfoValidation = validateGeneralDealInfo(dealInfo);
     const checkBoxValidation = validateCheckBox(CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
     const productGroupValidation = validateProductGroup(ProductGroup, CheckedMinTurnover);
     const tierSettingValidation = validateTierSetting(CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
 
-    const isValid = groupNameValidation.isValid && generalDealInfoValidation.isValid && checkBoxValidation.isValid && productGroupValidation.isValid && tierSettingValidation.isValid;
-    const messageList = [...groupNameValidation.messageList, ...generalDealInfoValidation.messageList, ...checkBoxValidation.messageList, ...productGroupValidation.messageList, ...tierSettingValidation.messageList];
+    const isValid = generalDealInfoValidation.isValid && checkBoxValidation.isValid && productGroupValidation.isValid && tierSettingValidation.isValid;
+    const messageList = [...generalDealInfoValidation.messageList, ...checkBoxValidation.messageList, ...productGroupValidation.messageList, ...tierSettingValidation.messageList];
+
+    return { isValid, messageList };
+}
+
+export const validateHybridInfo = (dealInfo) => {
+    const validateCPAInfoResult = validateCPAInfo(dealInfo);
+    const validateRevenueShareInfoResult = validateRevenueShareInfo(dealInfo);
+
+    const isValid = validateCPAInfoResult.isValid && validateRevenueShareInfoResult.isValid;
+    const messageList = [...validateCPAInfoResult.messageList, ...validateRevenueShareInfoResult.messageList];
 
     return { isValid, messageList };
 }
