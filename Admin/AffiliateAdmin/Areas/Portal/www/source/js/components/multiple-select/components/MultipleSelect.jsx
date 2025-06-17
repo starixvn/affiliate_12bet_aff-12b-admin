@@ -89,13 +89,14 @@ export default class MultipleSelect extends PureComponent {
     }
 
     checkAllHandler = (checked) => {
-        const { keyField, valueField, dataSource } = this.props;
+        const { keyField, valueField, statusField, isDisableItemField, dataSource } = this.props;
+
         const newDataSource = dataSource.map(item => {
             return {
                 key: item[keyField],
                 value: item[valueField],
-                checked: checked,
-                isDisabledItem: item[IS_DISABLED_ITEM_NAME] || false
+                checked: item[isDisableItemField] ? item[statusField] : checked,
+                isDisabledItem: item[isDisableItemField] || false
             }
         });
 
@@ -154,9 +155,12 @@ export default class MultipleSelect extends PureComponent {
     _renderOptionAll(dataSource) {
         const checkedItemCount = dataSource.filter(x => x.checked).length;
         const checkedAll = checkedItemCount === dataSource.length;
+        const disableItems = dataSource.filter(x => x.isDisabledItem);
+        const isDisableItem = disableItems && disableItems.length === dataSource.length;
+
         const { optionAllLabel, isDisable } = this.props;
 
-        return (<OptionAll id={this.id} checked={checkedAll} label={optionAllLabel} onChange={this.checkAllHandler} isDisable={isDisable} />);
+        return (<OptionAll id={this.id} checked={checkedAll} label={optionAllLabel} onChange={this.checkAllHandler} isDisable={isDisable || isDisableItem} />);
     }
 
     render() {

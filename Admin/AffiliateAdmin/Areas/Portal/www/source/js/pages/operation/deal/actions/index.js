@@ -26,6 +26,13 @@ export const setGridData = (data) => {
     };
 }
 
+export const setIsSubmitted = (data) => {
+    return {
+        type: types.SET_IS_SUBMITTED,
+        data
+    };
+}
+
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 

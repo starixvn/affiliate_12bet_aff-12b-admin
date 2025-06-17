@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { setDealInfo, toggleLoader, addCPADeal, setParam } from '../../actions';
+import { setDealInfo, toggleLoader, addCPADeal, setParam, setIsSubmitted } from '../../actions';
 import { buildDefaultDealInfo } from '../../libs/service';
 import { validateDealInfo } from '../../libs/service';
 
@@ -32,10 +32,13 @@ export const AddDeal = (props) => {
     const _handleSave = async () => {
         props.onSave();
 
+        if (!props.isSubmitted) {
+            props.setIsSubmitted(true);
+        }
+
         const { dealInfo } = props;
 
         const { isValid, messageList } = validateDealInfo(dealInfo);
-
         if (!isValid) {
             setIsShowMessage(true);
             setMessage(messageList);
@@ -59,6 +62,7 @@ export const AddDeal = (props) => {
                 setMessage([result.IsSuccessful ? messages.addCPASuccessfully : result.Message]);
             }
 
+            props.setIsSubmitted(false);
             props.toggleLoader(false);
         }
     }
@@ -99,11 +103,12 @@ export const AddDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, isSubmitted }) => {
     return {
         dealInfo,
         targetCountryList,
-        pagingOption
+        pagingOption,
+        isSubmitted
     }
 }
 
@@ -112,7 +117,8 @@ const mapDispatchToProps = (dispatch) => {
         setDealInfo,
         toggleLoader,
         addCPADeal,
-        setParam
+        setParam,
+        setIsSubmitted
     }, dispatch);
 }
 

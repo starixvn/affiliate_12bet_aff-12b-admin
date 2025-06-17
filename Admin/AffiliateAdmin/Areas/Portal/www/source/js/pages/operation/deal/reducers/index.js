@@ -29,6 +29,12 @@ const gridData = createReducer(null, {
     }
 });
 
+const isSubmitted = createReducer(false, {
+    [types.SET_IS_SUBMITTED]: (prevState, action) => {
+        return action.data;
+    }
+});
+
 export default combineReducers({
     pagingOption,
     isShowLoader,
@@ -38,5 +44,6 @@ export default combineReducers({
     targetCountryList,
     productList,
     dealInfo,
-    gridData
+    gridData,
+    isSubmitted
 });

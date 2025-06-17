@@ -74,24 +74,28 @@ export const TierSettingItem = (props) => {
     }
 
     const _handleSelect = (item, selectedItem) => {
-        const isCheckedItem = !!item || (!item && selectedItem !== '');
+        const isSelecting = !!item || (selectedItem !== '');
+        const isChecked = item?.Checked;
 
-        const { ProductGroup } = dealInfo;
-        const productGroup = deepClone(ProductGroup);
+        const productGroup = deepClone(dealInfo.ProductGroup);
+        const currentIds = productGroup[index].ProductIds.split(',').filter(Boolean);
 
-        const currentProductIds = productGroup[index].ProductIds.split(',').filter(p => !!p);
+        let updatedIds = [];
 
-        if (isCheckedItem) {
-            const newProductIds = [...currentProductIds, selectedItem];
-            productGroup[index].ProductIds = newProductIds.join(',');
-        } else {
-            productGroup[index].ProductIds = '';
+        if (isSelecting) {
+            if (isChecked) {
+                updatedIds = [...currentIds, selectedItem];
+            } else {
+                updatedIds = item
+                    ? currentIds.filter(p => Number(p) !== Number(item.ProductId))
+                    : selectedItem.split(',').filter(Boolean);
+            }
         }
 
-        props.setDealInfo({
-            ProductGroup: productGroup
-        });
-    }
+        productGroup[index].ProductIds = updatedIds.length > 0 ? updatedIds.join(',') : '';
+
+        props.setDealInfo({ ProductGroup: productGroup });
+    };
 
     const _handleCheckMinTurnover = () => {
         const isChecked = !dealInfo.CheckedMinTurnover;
@@ -158,7 +162,10 @@ export const TierSettingItem = (props) => {
         )
     }
 
-    const isValid = dealInfo.CheckedMinTurnover ? ProductGroup.filter(p => !p.Checked).length < ProductGroup.length : true;
+    const isValid =
+        !dealInfo.CheckedMinTurnover ||
+        !props.isSubmitted ||
+        ProductGroup.some(p => p.Checked);
 
     return (
         <div>
@@ -173,7 +180,7 @@ export const TierSettingItem = (props) => {
                             statusField="Checked"
                             isDisableItemField="IsDisabledItem"
                             hasAllOption={true}
-                            hasInputOption={false}
+                            hasInputOption={true}
                             maxDisplayItemCount={1}
                             noneSelectedLabel="Please Select"
                             selectedAllLabel="All Products"
@@ -218,9 +225,10 @@ export const TierSettingItem = (props) => {
     );
 };
 
-const mapStateToProps = ({ dealInfo }) => {
+const mapStateToProps = ({ dealInfo, isSubmitted }) => {
     return {
-        dealInfo
+        dealInfo,
+        isSubmitted
     }
 }
 
