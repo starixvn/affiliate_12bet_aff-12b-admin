@@ -22,17 +22,17 @@
 
         public string CountryCodes { get; set; }
 
-        public int ActiveDays { get; set; }
+        public short ActiveDays { get; set; }
 
         public bool IsActivePlayerHoldingPeriod { get; set; }
 
-        public int HoldingDays { get; set; }
+        public short HoldingDays { get; set; }
 
-        public int HoldingTickets { get; set; }
+        public short HoldingTickets { get; set; }
 
         public bool IsQuota { get; set; }
 
-        public int Quota { get; set; }
+        public short Quota { get; set; }
 
         public bool CheckedMinFdm { get; set; }
 

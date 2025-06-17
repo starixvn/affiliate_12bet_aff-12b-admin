@@ -53,7 +53,11 @@ export const AddDeal = (props) => {
                 if (result.IsSuccessful) {
                     setTimeout(props.onClose, 3000);
                     const { pagingOption, param } = props;
-                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize }, param);
+                    const gettingParam = {
+                        ...param,
+                        PageIndex: pagingOption.PageIndex,
+                        PageSize: pagingOption.PageSize,
+                    };
                     props.setParam(gettingParam);
                 }
 
@@ -90,7 +94,6 @@ export const AddDeal = (props) => {
             <DealInfo />
             <SubAffRateSetting />
             <DealTypeInfo />
-            <p className="text-danger my-2">Note: Change will take effect on current month (GMT-4)</p>
             <FormGroup row inline className="align-items-center">
                 <Col sm={1}>
                     <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
@@ -103,12 +106,13 @@ export const AddDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, isSubmitted }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, isSubmitted, param }) => {
     return {
         dealInfo,
         targetCountryList,
         pagingOption,
-        isSubmitted
+        isSubmitted,
+        param
     }
 }
 

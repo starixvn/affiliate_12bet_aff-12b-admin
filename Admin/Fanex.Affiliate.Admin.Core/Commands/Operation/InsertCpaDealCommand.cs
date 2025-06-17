@@ -9,7 +9,7 @@
 
         public int GroupId { get; set; }
 
-        [Required(ErrorMessage = "Group Name is required!")]
+        [Required(ErrorMessage = "Deal Name is required!")]
         public string GroupName { get; set; }
 
         [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Sub-Affiliate Rate is incorrect!")]
@@ -20,13 +20,13 @@
 
         public string CountryCodes { get; set; }
 
-        public int ActiveDays { get; set; }
+        public short ActiveDays { get; set; }
 
-        public int HoldingDays { get; set; }
+        public short HoldingDays { get; set; }
 
-        public int HoldingTickets { get; set; }
+        public short HoldingTickets { get; set; }
 
-        public int Quota { get; set; }
+        public short Quota { get; set; }
 
         public bool IsInstant { get; set; }
 

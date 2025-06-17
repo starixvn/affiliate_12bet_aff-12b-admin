@@ -9,7 +9,7 @@
 
     public static class DealInfoValidator
     {
-        private const int INFINITY_NUMBER = 1_000_000_000;
+        private const int INFINITY_NUMBER = 30_000;
         private const decimal INFINITY_MONEY = Money.AllowedMaxValue;
 
         private const string MIN_FDM = "MinFdm";
@@ -22,7 +22,7 @@
             [MIN_FDM] = "Min FDM",
             [MIN_TOTAL_DEPOSIT] = "Min Total Deposit",
             [MIN_TURNOVER] = "Min Turnover",
-            [CPA_AMOUNT] = "Cpa Amount"
+            [CPA_AMOUNT] = "CPA Amount"
         };
 
         private static readonly IDictionary<string, string> messages = new Dictionary<string, string>
@@ -31,15 +31,15 @@
             ["requireGroupName"] = "Deal name cannot be empty. Please check!",
             ["requireMinMaxValue"] = "{0} must be greater than 0.",
             ["requireCountryCodes"] = "At least 1 Target Country is selected.",
-            ["requireActiveDays"] = "Activity Period must be greater than 0.",
-            ["requireHoldingTicketsAndHoldingDays"] = "Holding Tickets and Holding Days must both be greater than 0.",
-            ["requireQuota"] = "Quota must be greater than 0.",
-            ["requireTierSetting"] = "Tier Setting must be at least 1.",
-            ["requireProductGroup"] = "Product Group must be at least 1.",
+            ["requireActiveDays"] = "Activity Period must be Activity Period must be between 1 and 30,000.",
+            ["requireHoldingTicketsAndHoldingDays"] = "Holding Tickets and Holding Days must both be between 1 and 30,000.",
+            ["requireQuota"] = "Quota must be between 1 and 30,000.",
+            ["requireTierSetting"] = "Missing or invalid Tier Setting. Please contact your system administrator to resolve this issue.",
+            ["requireProductGroup"] = "Missing or invalid Product List. Please contact your system administrator to resolve this issue.",
             ["requireProductGroupHasSelectedProduct"] = "Product Group {0} - Must choose at least 1 product",
             ["requireDuplicateProductsInGroups"] = "You've selected the same Product in more than one Product Group. Please correct it.",
             ["requireIncreasing"] = "The values in the {0} columns must increase sequentially.",
-            ["requireAllTierSettingsMatchGroupProduct1"] = "Group Product {0} has different Min FDM or Min Total Deposit values in some tiers compared to Group Product 1. Please check and update it.",
+            ["requireAllTierSettingsMatchGroupProduct1"] = "Product Group {0} has different Min FDM or Min Total Deposit values in some tiers compared to Product Group 1. Please check and update it.",
             ["requireCheckBox"] = "Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover."
         };
 
@@ -215,7 +215,7 @@
                 {
                     if (seen.Contains(id))
                     {
-                        messageList.Add($"Product Group {i + 1}: {messages["requireDuplicateProductsInGroups"]}");
+                        messageList.Add($"Product Group {i + 1} - {messages["requireDuplicateProductsInGroups"]}");
                         break;
                     }
                     seen.Add(id);
@@ -314,7 +314,7 @@
 
             if (!isValid)
             {
-                messageList.Add($"{groupProduct}: {string.Format(messages["requireIncreasing"], string.Join(", ", fields))}");
+                messageList.Add($"{groupProduct} - {string.Format(messages["requireIncreasing"], string.Join(", ", fields))}");
             }
 
             return (isValid, messageList);
@@ -393,12 +393,11 @@
             var messageList = new List<string>();
             int index = 0;
 
-            foreach (var kvp in groupedTierSetting)
-            {
-                var groupProductId = kvp.Key;
-                var groupTiers = kvp.Value;
+            var groupedValues = groupedTierSetting.Select(kvp => kvp.Value).ToList();
 
-                var result = ValidateValueField(index, groupProductId, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+            foreach (var groupTiers in groupedValues)
+            {
+                var result = ValidateValueField(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
 
                 if (!result.isValid)
                 {
@@ -417,7 +416,6 @@
         private static (bool isValid, List<string> messageList) ValidateValueField(
 #pragma warning restore S1541 // Methods and properties should not be too complex
             int index,
-            int groupProductId,
             List<CpaTierSetting> groupTiers,
             bool checkedMinFdm,
             bool checkedMinTotalDeposit,
@@ -453,7 +451,7 @@
             if(!isValid)
             {
                 var fieldNames = string.Join(", ", fields);
-                messageList.Add($"Product Group {groupProductId}: {string.Format(messages["requireMinMaxValue"], fieldNames)}");
+                messageList.Add($"Product Group {index + 1} - {string.Format(messages["requireMinMaxValue"], fieldNames)}");
             }
 
             return (isValid, messageList);

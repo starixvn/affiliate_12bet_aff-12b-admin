@@ -197,7 +197,7 @@ const checkDuplicateProductsInGroups = (productGroups) => {
         for (const id of productIds) {
             if (seen.has(id)) {
                 isValid = false;
-                messageList.push(`Product Group ${index + 1}: ${messages.requireDuplicateProductsInGroups}`);
+                messageList.push(`Product Group ${index + 1} - ${messages.requireDuplicateProductsInGroups}`);
                 break;
             }
             seen.add(id);
@@ -274,7 +274,7 @@ const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTot
     }
 
     if (!isValid) {
-        messageList.push(`${groupProduct}: ${messages.requireIncreasing.replace('{0}', fields.join(', '))}`);
+        messageList.push(`${groupProduct} - ${messages.requireIncreasing.replace('{0}', fields.join(', '))}`);
     }
 
     return { isValid, messageList };
@@ -345,7 +345,7 @@ const validateValueFieldOfTierSetting = (groupedTierSetting, checkedMinFdm, chec
 
     Object.keys(groupedTierSetting).forEach((groupProductId, index) => {
         const groupTiers = groupedTierSetting[groupProductId];
-        const valueFieldValidation = validateValueField(index, groupProductId, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+        const valueFieldValidation = validateValueField(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
         if (!valueFieldValidation.isValid) {
             isValid = false;
             messageList.push(...valueFieldValidation.messageList);
@@ -357,7 +357,6 @@ const validateValueFieldOfTierSetting = (groupedTierSetting, checkedMinFdm, chec
 
 const validateValueField = (
     index,
-    groupProductId,
     groupTiers,
     checkedMinFdm,
     checkedMinTotalDeposit,
@@ -387,7 +386,7 @@ const validateValueField = (
     });
 
     if (!isValid) {
-        messageList.push(`Product Group ${groupProductId}: ${messages.requireMinMaxValue.replace('{0}', fields.join(', '))}`);
+        messageList.push(`Product Group ${index + 1} - ${messages.requireMinMaxValue.replace('{0}', fields.join(', '))}`);
     }
 
     return { isValid, messageList };
