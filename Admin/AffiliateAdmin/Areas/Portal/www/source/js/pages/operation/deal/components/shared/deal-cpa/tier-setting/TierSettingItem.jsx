@@ -73,19 +73,19 @@ export const TierSettingItem = (props) => {
         });
     }
 
-    const _handleSelect = (index, selectedItem) => {
-        const isChecked = selectedItem.Checked;
+    const _handleSelect = (item, selectedItem) => {
+        const isCheckedItem = !!item || (!item && selectedItem !== '');
 
         const { ProductGroup } = dealInfo;
         const productGroup = deepClone(ProductGroup);
 
         const currentProductIds = productGroup[index].ProductIds.split(',').filter(p => !!p);
-        if (isChecked) {
-            const newProductIds = [...currentProductIds, selectedItem.ProductId];
+
+        if (isCheckedItem) {
+            const newProductIds = [...currentProductIds, selectedItem];
             productGroup[index].ProductIds = newProductIds.join(',');
         } else {
-            const newProductIds = currentProductIds.filter(p => Number(p) !== Number(selectedItem.ProductId));
-            productGroup[index].ProductIds = newProductIds.join(',');
+            productGroup[index].ProductIds = '';
         }
 
         props.setDealInfo({
@@ -165,18 +165,19 @@ export const TierSettingItem = (props) => {
             <FormGroup row className="align-items-center my-2">
                 <Col sm={3}>
                     <span className="group-index">{index + 1}.</span>
-                    <div disabled={!dealInfo.CheckedMinTurnover} className={`select-product ${isValid ? '' : 'is-invalid'}`}>
+                    <div className={`select-product ${isValid ? '' : 'is-invalid'}`}>
                         <MultipleSelect
                             dataSource={ProductGroup}
                             keyField="ProductId"
                             valueField="ProductName"
                             statusField="Checked"
                             isDisableItemField="IsDisabledItem"
-                            hasAllOption={false}
+                            hasAllOption={true}
                             hasInputOption={false}
                             maxDisplayItemCount={1}
                             noneSelectedLabel="Please Select"
-                            onChange={(selectedItem) => _handleSelect(index, selectedItem)}
+                            selectedAllLabel="All Products"
+                            onChange={_handleSelect}
                             isDisable={!dealInfo.CheckedMinTurnover} />
                     </div>
                 </Col>
