@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Pager } from '@9softstudio/react-fixed-table-header';
 
-import { setParam, setPagingOption, fetchData } from '../actions';
+import { setParam, setDealInfo, setPagingOption, fetchData } from '../actions';
 
 import GridData from './deal-list/GridData';
 import AddDeal from './add-deal/AddDeal';
@@ -44,6 +44,7 @@ export const Content = (props) => {
 
     const _handleHidePopup = () => {
         setPopupInfo({ Content: null, Title: '' });
+        props.setDealInfo(null);
     }
 
     const _handleShowAddPopup = (dealId = null) => {
@@ -100,6 +101,7 @@ const mapStateToProps = ({ param, pagingOption, gridData }) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setParam,
+        setDealInfo,
         setPagingOption,
         fetchData
     }, dispatch);

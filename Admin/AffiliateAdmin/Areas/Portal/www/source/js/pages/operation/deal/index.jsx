@@ -7,11 +7,15 @@ import { configureStore } from '../../../modules/store';
 import ClaimPrincipal from '../../../modules/claim';
 
 const App = () => {
-    const { dealTypes, targetCountries, products } = window.initialState;
+    const { dealTypes, targetCountries, products, deductions } = window.initialState;
     const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
-    const store = configureStore({ claimsPrincipal, dealTypeList: dealTypes, targetCountryList: targetCountries, productList: products }, reducer);
-
-    console.log("initial store!");
+    const store = configureStore({
+        claimsPrincipal,
+        dealTypeList: dealTypes,
+        targetCountryList: targetCountries,
+        productList: products,
+        deductionList: deductions,
+    }, reducer);
 
     return (
         <Provider store={store}>

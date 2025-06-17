@@ -37,6 +37,13 @@
             return FetchEntityResult<DealInfo>(criteria);
         }
 
+        public IEnumerable<DeductionItem> GetDeductionList()
+        {
+            const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
+
+            return FetchTData<DeductionItem>(SpKey);
+        }
+
         public DealSettingDetail GetDealSettingDetail(int groudId)
         {
             var criteria = new DealDetailCriteria
@@ -57,7 +64,7 @@
             dealSettingInfo.ProductGroup = cpaGroupProductList; 
             dealSettingInfo.RevevueTierSetting = revevueTierSettingList;
 
-            if (revenueDeductionSettingList?.Any() == true)
+            if (dealSettingInfo.DealType != Constants.DealType.CPA && revenueDeductionSettingList != null)
             {
                 dealSettingInfo.PlatformFeeSetting = revenueDeductionSettingList.Where(p => 
                     p.DeductionId == Constants.Deduction.PlatformFeeId);

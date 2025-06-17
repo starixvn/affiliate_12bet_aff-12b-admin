@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Fanex.Affiliate.Admin.Core.DTO;
+    using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 
@@ -16,5 +17,7 @@
         ResultInfo AddCpaDeal(DealSettingParam param);
 
         ResultInfo DeleteDeal(DeleteDealParam param);
+
+        IEnumerable<DeductionItem> GetDeductionList();
     }
 }

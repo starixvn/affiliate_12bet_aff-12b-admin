@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
 import { getDealDetail, toggleLoader, addCPADeal, setParam } from '../../actions';
-import { buildDefaultDealInfo } from '../../libs/service';
 import { validateDealInfo } from '../../libs/service';
 
 import DealInfo from '../shared/DealInfo';
 import SubAffRateSetting from '../shared/sub-aff-rate';
-import { DealTypeInfo } from '../shared/DealTypeInfo';
+import DealPanel from '../shared/DealPanel';
 import { messages } from '../../libs/constants';
 
 export const EditDeal = (props) => {
@@ -80,7 +79,7 @@ export const EditDeal = (props) => {
             </Alert>
             <DealInfo />
             <SubAffRateSetting />
-            <DealTypeInfo />
+            <DealPanel dealType={props.dealInfo.DealType} />
             <p className="text-danger my-2">Note: Change will take effect on current month (GMT-4)</p>
             <FormGroup row inline className="align-items-center">
                 <Col sm={1}>

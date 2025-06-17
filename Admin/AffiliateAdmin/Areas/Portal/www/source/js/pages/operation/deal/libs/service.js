@@ -1,4 +1,4 @@
-import { INFINITY_MONEY, INFINITY_NUMBER, messages, mappingFields } from './constants';
+import { INFINITY_MONEY, INFINITY_NUMBER, messages, mappingFields, cpaTierSettingDefault, productGroupDefault } from './constants';
 
 const commonDealInfo = {
     GroupId: 0,
@@ -19,18 +19,12 @@ const commonDealInfo = {
     CheckedMinTurnover: false,
     CPATierSetting: [
         {
-            TierId: 1,
-            GroupProductId: 1,
-            MinFdm: 0,
-            MinTotalDeposit: 0,
-            MinTO: 0,
-            CpaAmount: 1
+            ...cpaTierSettingDefault
         }
     ],
     ProductGroup: [
         {
-            ProductIds: '',
-            GroupProductId: 1,
+            ...productGroupDefault
         },
     ]
 }

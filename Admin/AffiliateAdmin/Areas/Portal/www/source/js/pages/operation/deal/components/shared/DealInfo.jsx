@@ -5,12 +5,14 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { setDealInfo } from '../../actions';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
+import { DEAL_CPA } from '../../libs/constants';
+import { buildDefaultRevenueShare } from '../../libs/revenue-share-service';
 
 const MAX_LENGTH = 100;
 
 export const DealInfo = (props) => {
 
-    const { DealName, DealType, Description, dealTypeList } = props;
+    const { DealName, DealType, Description, RevenueTierSetting, dealTypeList } = props;
 
     const _handleChangeText = (e) => {
         const { name, value } = e.target;
@@ -21,7 +23,16 @@ export const DealInfo = (props) => {
 
     const _handleChangeDealType = (e) => {
         const { value } = e.target;
-        props.setDealInfo({ DealType: value });
+        var dealType = Number(value);
+
+        if (dealType != DEAL_CPA && !RevenueTierSetting) {
+            const { deductionList, productList } = props;
+            const revenueShareInfo = buildDefaultRevenueShare(deductionList, productList);
+
+            props.setDealInfo({ DealType: dealType, ...revenueShareInfo });
+        } else {
+            props.setDealInfo({ DealType: dealType });
+        }
     }
 
     return (
@@ -71,13 +82,16 @@ export const DealInfo = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, dealTypeList }) => {
-    const { DealName, DealType, Description } = dealInfo;
+const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList }) => {
+    const { DealName, DealType, Description, RevenueTierSetting } = dealInfo;
     return {
         DealName,
         DealType,
         Description,
-        dealTypeList
+        RevenueTierSetting,
+        dealTypeList,
+        deductionList,
+        productList
     }
 }
 

@@ -6,6 +6,7 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import NotificationPopup from '../../../../../common/components/NotificationPopup';
 import MultipleSelect from '../../../../../../components/multiple-select';
+import TierSetting from './tier-setting/TierSetting';
 
 import { setDealInfo } from '../../../actions';
 import { INFINITY_NUMBER } from '../../../libs/constants';
@@ -107,7 +108,8 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
 
     const _targetCountryList = convertTargetCountryList(targetCountryList, dealInfo.CountryCodes);
     return (
-        <div>
+        <React.Fragment>
+            <div>
             <FormGroup row inline className='align-items-center'>
                 <Label htmlFor="CountryCodes" sm={4}>Player Target Country
                     <span className="text-danger required" style={{ margin: 0 }}>*</span>
@@ -217,7 +219,9 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo }) => {
                     onClose={_handleCloseNotificationPopup}
                 />
             }
-        </div>
+            </div>
+            <TierSetting />
+        </React.Fragment>
     );
 };
 

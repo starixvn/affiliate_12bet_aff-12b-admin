@@ -4,7 +4,9 @@ import { money } from "../../../../modules/constants";
 export const FIRST_ITEM_INDEX = 0;
 export const INFINITY_MONEY = money.AllowedMaxValue;
 export const INFINITY_NUMBER = 30000;
-export const DEFAULT_DEAL_TYPE = 3; // CPA
+export const DEAL_REVENUE_SHARE = 1;
+export const DEAL_CPA = 3;
+export const DEAL_HYBRID = 4;
 
 const _subAffRateValueList = () => {
     let min = 0.0,
@@ -46,4 +48,18 @@ export const messages = {
     requireIncreasing: 'The values in the {0} columns must increase sequentially.',
     requireAllTierSettingsMatchGroupProduct1: 'Product Group {0} has different Min FDM or Min Total Deposit values in some tiers compared to Product Group 1. Please check and update it.',
     requireCheckBox: 'Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover.'
+}
+
+export const cpaTierSettingDefault = {
+    TierId: 1,
+    GroupProductId: 1,
+    MinFdm: 0,
+    MinTotalDeposit: 0,
+    MinTO: 0,
+    CpaAmount: 1,
+}
+
+export const productGroupDefault = {
+    ProductIds: '',
+    GroupProductId: 1,
 }

@@ -309,6 +309,7 @@
     <Compile Include="Constants\CalculatedType.cs" />
     <Compile Include="Constants\DataTrackerStatus.cs" />
     <Compile Include="Constants\DataTrackerType.cs" />
+    <Compile Include="Constants\DealType.cs" />
     <Compile Include="Constants\ErrCode.cs" />
     <Compile Include="Constants\CommGroupErrorMessage.cs" />
     <Compile Include="Constants\Deduction.cs" />

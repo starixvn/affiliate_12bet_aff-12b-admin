@@ -30,6 +30,7 @@
             var viewModel = new OperationViewModel
             {
                 DealTypes = _operationService.GetDealTypes(),
+                Deductions = _operationService.GetDeductionList(),
                 TargetCountries = _systemService.GetTargetCountryList(),
                 Products = _systemService.GetProductList()
             };

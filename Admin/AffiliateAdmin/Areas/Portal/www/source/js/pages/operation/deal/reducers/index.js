@@ -10,6 +10,7 @@ import * as types from '../actions/types';
 const dealTypeList = createReducer([], []);
 const targetCountryList = createReducer([], []);
 const productList = createReducer([], []);
+const deductionList = createReducer([], []);
 
 const param = createReducer(null, {
     [types.SET_PARAM]: (prevState, action) => {
@@ -41,6 +42,7 @@ export default combineReducers({
     claimsPrincipal,
     param,
     dealTypeList,
+    deductionList,
     targetCountryList,
     productList,
     dealInfo,

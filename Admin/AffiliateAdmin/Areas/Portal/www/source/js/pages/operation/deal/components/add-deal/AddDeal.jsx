@@ -7,10 +7,10 @@ import { setDealInfo, toggleLoader, addCPADeal, setParam, setIsSubmitted } from 
 import { buildDefaultDealInfo } from '../../libs/service';
 import { validateDealInfo } from '../../libs/service';
 
-import DealInfo from './../shared/DealInfo';
-import SubAffRateSetting from './../shared/sub-aff-rate';
-import { DealTypeInfo } from './../shared/DealTypeInfo';
-import { messages, DEFAULT_DEAL_TYPE } from '../../libs/constants';
+import DealInfo from '../shared/DealInfo';
+import DealPanel from '../shared/DealPanel';
+import SubAffRateSetting from '../shared/sub-aff-rate';
+import { messages, DEAL_CPA } from '../../libs/constants';
 
 export const AddDeal = (props) => {
 
@@ -20,7 +20,7 @@ export const AddDeal = (props) => {
 
     useEffect(() => {
         const dealInfo = buildDefaultDealInfo();
-        dealInfo.DealType = props.param.DealType || DEFAULT_DEAL_TYPE;
+        dealInfo.DealType = props.param.DealType || DEAL_CPA;
         const countryCodes = _getAllTargetCountryCodes();
 
         props.setDealInfo({ ...dealInfo, CountryCodes: countryCodes });
@@ -94,7 +94,7 @@ export const AddDeal = (props) => {
             </Alert>
             <DealInfo />
             <SubAffRateSetting />
-            <DealTypeInfo />
+            <DealPanel dealType={props.dealInfo.DealType} />
             <FormGroup row inline className="align-items-center">
                 <Col sm={1}>
                     <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
