@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.Operation
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -205,12 +206,22 @@
         private static string BuildCpaTierListXml(IEnumerable<CpaTierSetting> cpaTierSettingParams, bool checkedMinFdm, bool checkedMinTotalDeposit, bool checkedMinTurnover)
         {
             var result = new StringBuilder("<root>");
+            var groupProductId = 0;
+            var currentGroupProductId = 0;
+            var index = 0;
 
-            foreach (var item in cpaTierSettingParams)
+            foreach (var item in cpaTierSettingParams.OrderBy(g=>g.GroupProductId).ThenBy(g => g.TierId))
             {
+                if(item.GroupProductId != currentGroupProductId)
+                {
+                    index = 0;   
+                    currentGroupProductId = item.GroupProductId;
+                    groupProductId = groupProductId + 1;
+                }
+
                 result.AppendFormat("<row groupproductid=\"{0}\" tierid=\"{1}\" {2} {3} {4} cpaamount=\"{5}\" />",
-                    item.GroupProductId, 
-                    item.TierId, 
+                    groupProductId, 
+                    ++index, 
                     checkedMinFdm ? $"minfdm=\"{item.MinFdm}\"": "", 
                     checkedMinTotalDeposit ? $"mintotaldeposit=\"{item.MinTotalDeposit}\"" : "", 
                     checkedMinTurnover ? $"minto=\"{item.MinTO}\"" : "", 
@@ -225,11 +236,14 @@
         private static string BuildCpaProductListXml(IEnumerable<CpaGroupProduct> cpaProductGroups)
         {
             var result = new StringBuilder("<root>");
-            foreach (var item in cpaProductGroups)
+            var index = 0;
+
+            foreach (var item in cpaProductGroups.OrderBy(p => p.GroupProductId))
             {
-                result.AppendFormat(" <row groupproductid=\"{0}\" productids=\"{1}\" />", item.GroupProductId, item.ProductIds);
+                result.AppendFormat("<row groupproductid=\"{0}\" productids=\"{1}\" />", ++index, item.ProductIds);
             }
             result.Append("</root>");
+
             return result.ToString();
         }
     }
