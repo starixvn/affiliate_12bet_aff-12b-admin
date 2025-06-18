@@ -40,12 +40,24 @@ export const TierSettingDataItem = (props) => {
         const newValue = getValidatedValue(value, numericValue, oldValue, true, 0);
 
         if (isFirstItem) {
-            const newTierSetting = dealInfo.CPATierSetting.map(t =>
-                (t.GroupProductId === tier.GroupProductId && t.TierId === tierId)
-                    || (t.GroupProductId !== tier.GroupProductId && t.MinFdm === tier.MinFdm && t.MinTotalDeposit === tier.MinTotalDeposit)
-                    ? { ...t, [name]: newValue }
-                    : t
-            );
+            const currentTierIndex = tierSetting.findIndex(s => s.TierId === tierId);
+
+            const newTierSetting = dealInfo.CPATierSetting.map(t => {
+                if (t.GroupProductId === tier.GroupProductId && t.TierId === tierId) {
+                    return { ...t, [name]: newValue };
+                }
+
+                if (t.GroupProductId !== tier.GroupProductId) {
+                    const updatedTierSetting = dealInfo.CPATierSetting.filter(c => c.GroupProductId === t.GroupProductId);
+                    const updateTierItemIndex = updatedTierSetting.findIndex(c => c.TierId === t.TierId);
+
+                    if (updateTierItemIndex !== -1 && updateTierItemIndex === currentTierIndex) {
+                        return { ...t, [name]: newValue };
+                    }
+                }
+
+                return t;
+            });
 
             props.setDealInfo({ CPATierSetting: newTierSetting });
         }
@@ -93,13 +105,10 @@ export const TierSettingDataItem = (props) => {
         } else {
             const firstGroupProductId = dealInfo.ProductGroup[0].GroupProductId;
             const firstTier = dealInfo.CPATierSetting.filter(t => t.GroupProductId === firstGroupProductId);
-            const lastFirstTierItem = firstTier[firstTier.length - 1];
 
             const currentTier = dealInfo.CPATierSetting.filter(t => t.GroupProductId === groupProductId);
             const lastCurrentTierItem = currentTier[currentTier.length - 1];
-
-            const existNextTierItem = lastFirstTierItem.MinFdm > lastCurrentTierItem.MinFdm && lastFirstTierItem.MinTotalDeposit > lastCurrentTierItem.MinTotalDeposit;
-            const nextCurrentTierItem = existNextTierItem ? firstTier.find(t => t.MinFdm > lastCurrentTierItem.MinFdm && t.MinTotalDeposit > lastCurrentTierItem.MinTotalDeposit) : null;
+            const nextCurrentTierItem = firstTier[currentTier.length];
 
             if (nextCurrentTierItem) {
                 newTierItem = {
