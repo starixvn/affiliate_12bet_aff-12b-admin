@@ -286,7 +286,8 @@ const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTot
     const validations = [
         { fn: minFdmValidationIncreasing, isChecked: checkedMinFdm && index === 0 },
         { fn: minTotalDepositValidationIncreasing, isChecked: checkedMinTotalDeposit && index === 0 },
-        { fn: minTurnoverValidationIncreasing, isChecked: checkedMinTurnover }
+        { fn: minTurnoverValidationIncreasing, isChecked: checkedMinTurnover },
+        { fn: cpaAmountValidationIncreasing, isChecked: true }
     ];
 
     for (const { fn, isChecked } of validations) {
@@ -328,6 +329,10 @@ const minTotalDepositValidationIncreasing = (tiers, isChecked) => {
 
 const minTurnoverValidationIncreasing = (tiers, isChecked) => {
     return validateIncreasingByField(tiers, 'MinTO', isChecked);
+}
+
+const cpaAmountValidationIncreasing = (tiers, isChecked) => {
+    return validateIncreasingByField(tiers, 'CpaAmount', isChecked);
 }
 // End validate increasing by field
 

@@ -88,7 +88,7 @@ export const TierSettingDataItem = (props) => {
                 MinFdm: lastTierItem.MinFdm + 1,
                 MinTotalDeposit: lastTierItem.MinTotalDeposit + 1,
                 MinTO: lastTierItem.MinTO + 1,
-                CpaAmount: 1
+                CpaAmount: lastTierItem.CpaAmount + 1
             }
         } else {
             const firstGroupProductId = dealInfo.ProductGroup[0].GroupProductId;
@@ -108,7 +108,7 @@ export const TierSettingDataItem = (props) => {
                     MinFdm: nextCurrentTierItem.MinFdm,
                     MinTotalDeposit: nextCurrentTierItem.MinTotalDeposit,
                     MinTO: lastCurrentTierItem.MinTO + 1,
-                    CpaAmount: 1
+                    CpaAmount: lastCurrentTierItem.CpaAmount + 1
                 }
             } else {
                 newTierItem = {
@@ -117,7 +117,7 @@ export const TierSettingDataItem = (props) => {
                     MinFdm: lastCurrentTierItem.MinFdm + 1,
                     MinTotalDeposit: lastCurrentTierItem.MinTotalDeposit + 1,
                     MinTO: lastCurrentTierItem.MinTO + 1,
-                    CpaAmount: 1
+                    CpaAmount: lastCurrentTierItem.CpaAmount + 1
                 }
             }
         }

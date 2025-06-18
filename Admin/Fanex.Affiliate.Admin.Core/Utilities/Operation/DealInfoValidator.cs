@@ -312,7 +312,8 @@
             {
                 (MIN_FDM, checkedMinFdm && index == 0),
                 (MIN_TOTAL_DEPOSIT, checkedMinTotalDeposit && index == 0),
-                (MIN_TURNOVER, checkedMinTurnover)
+                (MIN_TURNOVER, checkedMinTurnover),
+                (CPA_AMOUNT, true)
             };
 
             foreach (var (field, shouldCheck) in validations)
