@@ -54,12 +54,43 @@ export const getDealDetail = (groupId) => async (dispatch) => {
     const url = 'Portal/Operation/GetDealDetail';
     const response = await post(url, { groupId });
 
-    let data = response && response.status === 200 ? response.data : null;
+    let data = response && response.status === 200 ? _buildDealInfo(response.data) : null;
 
     dispatch(setDealInfo(data));
 
     dispatch(toggleLoader(false));
 }
+
+const _buildDealInfo = (dealInfo) => {
+    const {
+        HoldingDays,
+        HoldingTickets,
+        Quota,
+        ProductGroup,
+        CPATierSetting,
+        ...rest
+    } = dealInfo;
+
+    const isActivePlayerHoldingPeriod = HoldingDays > 0 && HoldingTickets > 0;
+    const isQuota = Quota > 0;
+
+    const firstGroupProductId = ProductGroup?.[0]?.GroupProductId;
+    const firstTier = CPATierSetting.find(t => t.GroupProductId === firstGroupProductId);
+
+    return {
+        ...rest,
+        HoldingDays,
+        HoldingTickets,
+        Quota,
+        ProductGroup,
+        CPATierSetting,
+        IsActivePlayerHoldingPeriod: isActivePlayerHoldingPeriod,
+        IsQuota: isQuota,
+        CheckedMinFdm: firstTier?.MinFdm > 0 || false,
+        CheckedMinTotalDeposit: firstTier?.MinTotalDeposit > 0 || false,
+        CheckedMinTurnover: firstTier?.MinTO > 0 || false
+    };
+};
 
 export const addDeal = (param) => async () => {
     const url = 'Portal/Operation/AddDeal';

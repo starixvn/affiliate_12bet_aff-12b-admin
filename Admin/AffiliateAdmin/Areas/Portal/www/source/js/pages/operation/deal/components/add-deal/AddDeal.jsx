@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { setDealInfo, toggleLoader, addDeal, setParam, setIsSubmitted } from '../../actions';
+import { setDealInfo, toggleLoader, addDeal, setParam, setIsSubmitted, getDealDetail } from '../../actions';
 import { buildDefaultDealInfo } from '../../libs/service';
 import { validateDealInfo } from '../../libs/service';
 
@@ -14,17 +14,22 @@ import { messages, DEAL_CPA } from '../../libs/constants';
 
 export const AddDeal = (props) => {
 
+    const { dealId } = props;
     const [isShowMessage, setIsShowMessage] = useState(false);
     const [message, setMessage] = useState([]);
     const [isSuccess, setIsSuccess] = useState(true);
 
     useEffect(() => {
-        const dealInfo = buildDefaultDealInfo();
-        dealInfo.DealType = props.param.DealType || DEAL_CPA;
-        const countryCodes = _getAllTargetCountryCodes();
+        if (dealId) {
+            props.getDealDetail(dealId);
+        } else {
+            const newDealInfo = buildDefaultDealInfo();
+            newDealInfo.DealType = props.param.DealType || DEAL_CPA;
+            const countryCodes = _getAllTargetCountryCodes();
 
-        props.setDealInfo({ ...dealInfo, CountryCodes: countryCodes });
-    }, []);
+            props.setDealInfo({ ...newDealInfo, CountryCodes: countryCodes });
+        }
+    }, [dealId]);
 
     const _getAllTargetCountryCodes = () => {
         return props.targetCountryList.map(c => c.TargetCountryCode).join(',');
@@ -123,7 +128,8 @@ const mapDispatchToProps = (dispatch) => {
         toggleLoader,
         addDeal,
         setParam,
-        setIsSubmitted
+        setIsSubmitted,
+        getDealDetail
     }, dispatch);
 }
 

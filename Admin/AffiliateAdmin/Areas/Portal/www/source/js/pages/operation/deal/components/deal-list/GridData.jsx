@@ -90,7 +90,7 @@ export const GridData = (props) => {
                 <Cell title={item.UpdatedBy} className="text-center">{item.UpdatedBy}</Cell>
                 <Cell title={item.UpdatedDateStr} className="text-center">{item.UpdatedDateStr}</Cell>
                 <Cell title={item.Action} className="text-center">
-                    <button title="Copy" className="btn btn-link">
+                    <button title="Copy" className="btn btn-link" onClick={() => props.onCopy(item.GroupId)}>
                         <span className="oi icon-copy-link"></span>
                     </button>
                     <button disabled={item.NoAff > 0} title="Delete" className="btn btn-link" onClick={() => _handleDeleteDeal(item.GroupId, item.DealName)}>
