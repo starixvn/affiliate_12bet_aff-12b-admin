@@ -329,6 +329,9 @@
     <Content Include="App_Data\SpConfig\SpName.12b-user.kldr.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpConfig\SpName.12b-user.klprod.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpConfig\SpName.12b-user.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
@@ -344,6 +347,9 @@
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSetting\AppSetting.12b-user.kldr.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.12b-user.klprod.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <Content Include="Configurations\AppSetting\AppSetting.12b-user.local.config">
@@ -1358,6 +1364,12 @@
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Views\Test\AccessApi.cshtml" />
+    <Content Include="Configurations\AppSetting\Transform\klprod.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12b-user.klprod.config" />
+    <Content Include="Configurations\Web\Transform\klprod.config" />
+    <Content Include="Configurations\Web\Web.12b-user.klprod.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
