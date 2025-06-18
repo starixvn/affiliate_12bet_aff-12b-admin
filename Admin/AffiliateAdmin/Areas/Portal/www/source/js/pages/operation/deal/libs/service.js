@@ -401,12 +401,12 @@ const validateValueField = (
         const { MinFdm, MinTotalDeposit, MinTO, CpaAmount } = tier;
 
         if (index === 0) {
-            validateField(checkedMinFdm && (!MinFdm || MinFdm < 1 || MinFdm > INFINITY_MONEY), 'MinFdm');
-            validateField(checkedMinTotalDeposit && (!MinTotalDeposit || MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'MinTotalDeposit');
+            validateField(checkedMinFdm && !fields.includes(mappingFields.MinFdm) && (!MinFdm || MinFdm < 1 || MinFdm > INFINITY_MONEY), 'MinFdm');
+            validateField(checkedMinTotalDeposit && !fields.includes(mappingFields.MinTotalDeposit) && (!MinTotalDeposit || MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'MinTotalDeposit');
         }
 
-        validateField(checkedMinTurnover && (!MinTO || MinTO < 1 || MinTO > INFINITY_MONEY), 'MinTO');
-        validateField(!CpaAmount || CpaAmount < 1 || CpaAmount > INFINITY_MONEY, 'CpaAmount');
+        validateField(checkedMinTurnover && !fields.includes(mappingFields.MinTO) && (!MinTO || MinTO < 1 || MinTO > INFINITY_MONEY), 'MinTO');
+        validateField(!fields.includes(mappingFields.CpaAmount) && (!CpaAmount || CpaAmount < 1 || CpaAmount > INFINITY_MONEY), 'CpaAmount');
     });
 
     if (!isValid) {

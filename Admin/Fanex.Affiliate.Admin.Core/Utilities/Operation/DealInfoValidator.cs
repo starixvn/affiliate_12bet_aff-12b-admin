@@ -456,12 +456,13 @@
 
                 if (index == 0)
                 {
-                    ValidateField(checkedMinFdm && (tier.MinFdm < 1 || tier.MinFdm > INFINITY_MONEY), MIN_FDM);
-                    ValidateField(checkedMinTotalDeposit && (tier.MinTotalDeposit < 1 || tier.MinTotalDeposit > INFINITY_MONEY), MIN_TOTAL_DEPOSIT);
+                    ValidateField(checkedMinFdm && !fields.Contains(mappingFields[MIN_FDM]) && (tier.MinFdm < 1 || tier.MinFdm > INFINITY_MONEY), MIN_FDM);
+                    ValidateField(checkedMinTotalDeposit && !fields.Contains(mappingFields[MIN_TOTAL_DEPOSIT])
+                        && (tier.MinTotalDeposit < 1 || tier.MinTotalDeposit > INFINITY_MONEY), MIN_TOTAL_DEPOSIT);
                 }
 
-                ValidateField(checkedMinTurnover && (tier.MinTO < 1 || tier.MinTO > INFINITY_MONEY), MIN_TURNOVER);
-                ValidateField(tier.CpaAmount < 1 || tier.CpaAmount > INFINITY_MONEY, CPA_AMOUNT);
+                ValidateField(checkedMinTurnover && !fields.Contains(mappingFields[MIN_TURNOVER]) && (tier.MinTO < 1 || tier.MinTO > INFINITY_MONEY), MIN_TURNOVER);
+                ValidateField(!fields.Contains(mappingFields[CPA_AMOUNT]) && tier.CpaAmount < 1 || tier.CpaAmount > INFINITY_MONEY, CPA_AMOUNT);
             }
 
             if(!isValid)
