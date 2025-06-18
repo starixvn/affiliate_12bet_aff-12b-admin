@@ -81,6 +81,7 @@ export const AddDeal = (props) => {
         const cloneDealInfo = { ...dealInfo };
         const { IsActivePlayerHoldingPeriod, IsQuota } = cloneDealInfo;
 
+        cloneDealInfo.GroupId = 0;
         if (!IsActivePlayerHoldingPeriod) {
             cloneDealInfo.HoldingTickets = 0;
             cloneDealInfo.HoldingDays = 0;
