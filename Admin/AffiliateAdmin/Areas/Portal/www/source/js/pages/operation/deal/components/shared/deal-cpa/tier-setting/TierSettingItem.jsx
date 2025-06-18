@@ -35,6 +35,10 @@ export const TierSettingItem = (props) => {
     }
 
     const _handleAddTier = () => {
+        if (!dealInfo.CheckedMinTurnover) {
+            return;
+        }
+
         const firstGroupProductId = dealInfo.ProductGroup[0].GroupProductId;
         const lastGroupProductId = dealInfo.ProductGroup[dealInfo.ProductGroup.length - 1].GroupProductId;
         const firstTierItem = dealInfo.CPATierSetting.find(t => t.GroupProductId === firstGroupProductId && t.TierId === 1);
@@ -90,6 +94,10 @@ export const TierSettingItem = (props) => {
     };
 
     const _handleCheckMinTurnover = () => {
+        if (dealInfo.IsInstant) {
+            return;
+        }
+
         const isChecked = !dealInfo.CheckedMinTurnover;
 
         if (isChecked) {

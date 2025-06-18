@@ -59,13 +59,15 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
 
 
     const _handleChangeInstantPayment = () => {
-        const isInstant = !dealInfo.IsInstant;
+        if (!dealInfo.CheckedMinTurnover && !isEdit) {
+            const isInstant = !dealInfo.IsInstant;
 
-        if (isInstant) {
-            setMessage('Checking for Instant Payment will disable Min Turnover.</br>Do you want to proceed?');
-            setIsConfirmPopup(true);
-        } else {
-            setDealInfo({ IsInstant: false });
+            if (isInstant) {
+                setMessage('Checking for Instant Payment will disable Min Turnover.</br>Do you want to proceed?');
+                setIsConfirmPopup(true);
+            } else {
+                setDealInfo({ IsInstant: false });
+            }
         }
     }
 
