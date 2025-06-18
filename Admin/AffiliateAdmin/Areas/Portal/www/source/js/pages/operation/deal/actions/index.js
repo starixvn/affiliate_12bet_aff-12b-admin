@@ -33,6 +33,13 @@ export const setIsSubmitted = (data) => {
     };
 }
 
+export const setIsEdit = (data) => {
+    return {
+        type: types.SET_IS_EDIT,
+        data
+    };
+}
+
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 

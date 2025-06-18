@@ -50,7 +50,7 @@ export const EditDeal = (props) => {
 
                 setIsShowMessage(true);
                 setIsSuccess(result.IsSuccessful);
-                setMessage([result.IsSuccessful ? messages.addCPASuccessfully : result.Message]);
+                setMessage([result.IsSuccessful ? messages.updateDealSuccessfully : result.Message]);
             }
 
             props.toggleLoader(false);
@@ -92,11 +92,12 @@ export const EditDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param }) => {
     return {
         dealInfo,
         targetCountryList,
-        pagingOption
+        pagingOption,
+        param
     }
 }
 

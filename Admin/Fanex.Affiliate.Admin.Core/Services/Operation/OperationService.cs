@@ -172,6 +172,8 @@
         {
             var command = new InsertDealCommand();
             AssignDeal(command, param);
+            command.GroupTypeId = param.DealType;
+            command.IsInstant = param.IsInstant;
 
             return ExecuteReturnResultInfo(command);
         }
@@ -187,7 +189,6 @@
         private static void AssignDeal(BaseDealCommand command, DealSettingParam param)
         {
             command.GroupId = param.GroupId;
-            command.GroupTypeId = param.DealType;
             command.GroupName = param.DealName;
             command.SubCommRate = param.SubCommRate;
             command.Description = param.Description;
@@ -196,7 +197,6 @@
             command.HoldingDays = param.HoldingDays;
             command.HoldingTickets = param.HoldingTickets;
             command.Quota = param.Quota;
-            command.IsInstant = param.IsInstant;
             command.CpaTierList = BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover);
             command.CpaProductList = BuildCpaProductListXml(param.ProductGroup);
             command.UserId = param.UserId;

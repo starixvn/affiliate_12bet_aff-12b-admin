@@ -2,8 +2,6 @@
 {
     public abstract class BaseDealCommand : BaseNonQueryCommand
     {
-        public int GroupTypeId { get; set; }
-
         public int GroupId { get; set; }
 
         public string GroupName { get; set; }
@@ -21,8 +19,6 @@
         public short HoldingTickets { get; set; }
 
         public short Quota { get; set; }
-
-        public bool IsInstant { get; set; }
 
         public string CpaTierList { get; set; }
 

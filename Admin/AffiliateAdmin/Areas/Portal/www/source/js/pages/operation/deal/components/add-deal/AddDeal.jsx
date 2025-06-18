@@ -69,7 +69,7 @@ export const AddDeal = (props) => {
 
                 setIsShowMessage(true);
                 setIsSuccess(result.IsSuccessful);
-                setMessage([result.IsSuccessful ? messages.addCPASuccessfully : result.Message]);
+                setMessage([result.IsSuccessful ? messages.addDealSuccessfully : result.Message]);
             }
 
             props.setIsSubmitted(false);

@@ -36,6 +36,12 @@ const isSubmitted = createReducer(false, {
     }
 });
 
+const isEdit = createReducer(false, {
+    [types.SET_IS_EDIT]: (prevState, action) => {
+        return action.data;
+    }
+});
+
 export default combineReducers({
     pagingOption,
     isShowLoader,
@@ -47,5 +53,6 @@ export default combineReducers({
     productList,
     dealInfo,
     gridData,
-    isSubmitted
+    isSubmitted,
+    isEdit
 });

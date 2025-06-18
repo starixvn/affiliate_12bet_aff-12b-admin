@@ -12,7 +12,7 @@ const MAX_LENGTH = 100;
 
 export const DealInfo = (props) => {
 
-    const { GroupId, DealName, DealType, Description, RevenueTierSetting, dealTypeList } = props;
+    const { isEdit, DealName, DealType, Description, RevenueTierSetting, dealTypeList, GroupId } = props;
 
     const _handleChangeText = (e) => {
         const { name, value } = e.target;
@@ -56,7 +56,7 @@ export const DealInfo = (props) => {
                         className="mr-sm-2 search-box"
                         name="DealType"
                         id="DealType"
-                        disabled={!!GroupId && GroupId > 0}
+                        disabled={!!GroupId && GroupId > 0 || isEdit}
                         value={DealType}
                         onChange={_handleChangeDealType}>
                         {dealTypeList.map((item, index) => (
@@ -83,7 +83,7 @@ export const DealInfo = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList }) => {
+const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList, isEdit }) => {
     const { GroupId, DealName, DealType, Description, RevenueTierSetting } = dealInfo;
     return {
         GroupId,
@@ -93,7 +93,8 @@ const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList })
         RevenueTierSetting,
         dealTypeList,
         deductionList,
-        productList
+        productList,
+        isEdit
     }
 }
 

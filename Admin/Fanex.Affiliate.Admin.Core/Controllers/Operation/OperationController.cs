@@ -6,7 +6,6 @@
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
     using Fanex.Affiliate.Admin.Core.Services.Common;
     using Fanex.Affiliate.Admin.Core.Services.Operation;
-    using Fanex.Affiliate.Admin.Core.Utilities.Operation;
     using Fanex.Affiliate.Admin.Core.ViewModels.Operation;
 
     [FunctionAuthorize(FunctionName = Function.RevenueGroup)] // TODO: Need Review
@@ -82,9 +81,25 @@
         [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        public ActionResult UpdateDeal(DealSettingParam param)
+        {
+            if (!ModelState.IsValid)
+            {
+                return GenerateModelStateErrResult();
+            }
+
+            AssignUserInfoParam(param);
+            param.DealName = Server.HtmlDecode(param.DealName);
+            param.Description = Server.HtmlDecode(param.Description);
+            return GenerateJsonNetResult(_operationService.UpdateDeal(param));
+        }
+
+        [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult DeleteDeal(DeleteDealParam param)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return GenerateErrResult();
             }

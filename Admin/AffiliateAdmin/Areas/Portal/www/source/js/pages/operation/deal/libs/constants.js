@@ -34,7 +34,8 @@ export const mappingFields = {
 }
 
 export const messages = {
-    addCPASuccessfully: 'Add Deal Successfully.',
+    addDealSuccessfully: 'Add Deal Successfully.',
+    updateDealSuccessfully: 'Update Deal Successfully.',
     requireGroupName: 'Deal name cannot be empty. Please check!',
     requireMinMaxValue: `{0} must be greater than 0.`,
     requireCountryCodes: 'At least 1 Target Country is selected.',
