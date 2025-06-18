@@ -75,21 +75,13 @@ export const TierSettingItem = (props) => {
 
     const _handleSelect = (item, selectedItem) => {
         const isSelecting = !!item || (selectedItem !== '');
-        const isChecked = item?.Checked;
 
         const productGroup = deepClone(dealInfo.ProductGroup);
-        const currentIds = productGroup[index].ProductIds.split(',').filter(Boolean);
 
         let updatedIds = [];
 
         if (isSelecting) {
-            if (isChecked) {
-                updatedIds = [...currentIds, selectedItem];
-            } else {
-                updatedIds = item
-                    ? currentIds.filter(p => Number(p) !== Number(item.ProductId))
-                    : selectedItem.split(',').filter(Boolean);
-            }
+            updatedIds = [...selectedItem.split(',').filter(Boolean)];
         }
 
         productGroup[index].ProductIds = updatedIds.length > 0 ? updatedIds.join(',') : '';
