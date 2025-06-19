@@ -35,18 +35,25 @@ export const buildDefaultDealInfo = () => {
 }
 
 const convertListWithChecked = (list, selectedIdsCSV, idKey, nameKey, checkedItems = []) => {
-    const selectedIds = selectedIdsCSV.split(',').filter(p => !!p);
+    const selectedIds = selectedIdsCSV.split(',').filter(Boolean);
     const isCheckAll = selectedIds.length === list.length;
 
-    const isDisabledItem = checkedItems.filter(i => !selectedIds.includes(i));
+    const disabledSet = new Set(checkedItems.filter(id => !selectedIds.includes(id)));
 
-    return list.map(item => ({
-        [idKey]: item[idKey],
-        [nameKey]: item[nameKey],
-        Checked: isCheckAll || selectedIds.filter(i => i === item[idKey].toString()).length > 0,
-        IsDisabledItem: isDisabledItem && isDisabledItem.filter(i => i === item[idKey].toString()).length > 0
-    }));
+    return list.map(item => {
+        const itemId = item[idKey].toString();
+        const isDisabled = disabledSet.has(itemId);
+        const isChecked = !isDisabled && (isCheckAll || selectedIds.includes(itemId));
+
+        return {
+            [idKey]: item[idKey],
+            [nameKey]: item[nameKey],
+            Checked: isChecked,
+            IsDisabledItem: isDisabled
+        };
+    });
 };
+
 
 export const convertProductList = (productList, productIds = '', checkedProducts = []) => {
     return convertListWithChecked(productList, productIds, 'ProductId', 'ProductName', checkedProducts);

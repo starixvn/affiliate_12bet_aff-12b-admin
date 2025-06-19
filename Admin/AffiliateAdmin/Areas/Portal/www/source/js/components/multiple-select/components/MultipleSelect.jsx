@@ -155,7 +155,7 @@ export default class MultipleSelect extends PureComponent {
     _renderOptionAll(dataSource) {
         const checkedItemCount = dataSource.filter(x => x.checked).length;
         const dataSourceWithoutDisabledItem = dataSource.filter(x => !x.isDisabledItem);
-        const checkedAll = checkedItemCount === dataSourceWithoutDisabledItem.length;
+        const checkedAll = checkedItemCount > 0 && checkedItemCount === dataSourceWithoutDisabledItem.length;
         const disableItems = dataSource.filter(x => x.isDisabledItem);
         const isDisableItem = disableItems && disableItems.length === dataSource.length;
 

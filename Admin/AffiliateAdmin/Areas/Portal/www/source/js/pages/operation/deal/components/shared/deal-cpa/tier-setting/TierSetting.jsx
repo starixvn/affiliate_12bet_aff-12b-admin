@@ -14,10 +14,13 @@ export const TierSetting = (props) => {
 
     const _handleTierSetting = () => {
         const tierSettingList = ProductGroup.map(p => {
+
             const checkedProducts = _getCheckedProducts();
+            const productGroup = convertProductList(productList, p.ProductIds, checkedProducts);
             const tierSetting = CPATierSetting.filter(t => t.GroupProductId === p.GroupProductId);
+
             return {
-                ProductGroup: convertProductList(productList, p.ProductIds, checkedProducts),
+                ProductGroup: productGroup,
                 TierSetting: tierSetting,
                 GroupProductId: p.GroupProductId
             };
