@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { getDealDetail, toggleLoader, updateDeal, setParam } from '../../actions';
+import { getDealDetail, toggleLoader, updateDeal, setParam, setIsSubmitted } from '../../actions';
 import { validateDealInfo } from '../../libs/service';
 
 import DealInfo from '../shared/DealInfo';
@@ -25,6 +25,10 @@ export const EditDeal = (props) => {
 
     const _handleSave = async () => {
         props.onSave();
+
+        if (!props.isSubmitted) {
+            props.setIsSubmitted(true);
+        }
 
         const { dealInfo } = props;
 
@@ -53,6 +57,7 @@ export const EditDeal = (props) => {
                 setMessage([result.IsSuccessful ? messages.updateDealSuccessfully : result.Message]);
             }
 
+            props.setIsSubmitted(false);
             props.toggleLoader(false);
         }
     }
@@ -92,12 +97,13 @@ export const EditDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param, isSubmitted }) => {
     return {
         dealInfo,
         targetCountryList,
         pagingOption,
-        param
+        param,
+        isSubmitted
     }
 }
 
@@ -106,7 +112,8 @@ const mapDispatchToProps = (dispatch) => {
         getDealDetail,
         toggleLoader,
         updateDeal,
-        setParam
+        setParam,
+        setIsSubmitted
     }, dispatch);
 }
 
