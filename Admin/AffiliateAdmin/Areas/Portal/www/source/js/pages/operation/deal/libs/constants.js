@@ -36,19 +36,19 @@ export const mappingFields = {
 export const messages = {
     addDealSuccessfully: 'Add Deal Successfully.',
     updateDealSuccessfully: 'Update Deal Successfully.',
-    requireGroupName: 'Deal name cannot be empty. Please check!',
+    requireGroupName: 'Deal name cannot be empty.',
     requireMinValue: `{0} must be greater than 0.`,
     requireMaxValue: `{0} must be less than ${format(INFINITY_MONEY)}.`,
-    requireCountryCodes: 'At least 1 Target Country is selected.',
+    requireCountryCodes: 'At least one Target Country must be selected.',
     requireActiveDays: `Activity Period must be between 1 and ${format(INFINITY_NUMBER)}.`,
     requireHoldingTicketsAndHoldingDays: `Holding tickets and Holding days must both be between 1 and ${format(INFINITY_NUMBER)}.`,
     requireQuota: `Quota must be between 1 and ${format(INFINITY_NUMBER)}.`,
     requireTierSetting: 'Missing or invalid Tier Setting. Please contact your system administrator to resolve this issue.',
     requireProductGroup: 'Missing or invalid Product List. Please contact your system administrator to resolve this issue.',
-    requireProductGroupHasSelectedProduct: 'Product Group {0} - Must choose at least 1 product',
+    requireProductGroupHasSelectedProduct: 'Product Group {0} - At least one product must be selected.',
     requireDuplicateProductsInGroups: 'You\'ve selected the same Product in more than one Product Group. Please correct it.',
     requireIncreasing: 'The values in the {0} columns must increase sequentially.',
-    requireAllTierSettingsMatchGroupProduct1: 'Product Group {0} has different Min FDM or Min Total Deposit values in some tiers compared to Product Group 1. Please check and update it.',
+    requireAllTierSettingsMatchGroupProduct1: 'Product Group {0} has different Min FDM or Min Total Deposit values in some tiers compared to Product Group 1.',
     requireCheckBox: 'Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover.'
 }
 

@@ -135,8 +135,7 @@ const mapStateToProps = ({ gridData, param }) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         deleteDeal,
-        fetchData,
-        deleteDeal
+        fetchData
     }, dispatch);
 };
 

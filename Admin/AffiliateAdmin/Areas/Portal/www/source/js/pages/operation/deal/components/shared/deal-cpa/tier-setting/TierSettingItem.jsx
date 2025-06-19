@@ -102,12 +102,16 @@ export const TierSettingItem = (props) => {
 
         if (isChecked) {
             props.setDealInfo({ CheckedMinTurnover: true });
-        } else {
-            setMessage('Unchecking for Min Turnover will enable Instant Payment and remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br>Do you want to proceed?');
-            setIsConfirmPopup(true);
+            return;
         }
 
-    }
+        const message = props.isEdit
+            ? 'Unchecking for Min Turnover will remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br>Do you want to proceed?'
+            : 'Unchecking for Min Turnover will enable Instant Payment and remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br>Do you want to proceed?';
+
+        setMessage(message);
+        setIsConfirmPopup(true);
+    };
 
     const _buildHeader = () => {
         return (
@@ -225,10 +229,11 @@ export const TierSettingItem = (props) => {
     );
 };
 
-const mapStateToProps = ({ dealInfo, isSubmitted }) => {
+const mapStateToProps = ({ dealInfo, isSubmitted, isEdit }) => {
     return {
         dealInfo,
-        isSubmitted
+        isSubmitted,
+        isEdit
     }
 }
 
