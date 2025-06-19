@@ -306,7 +306,7 @@ const validateIncreasingTiers = (index, groupTiers, checkedMinFdm, checkedMinTot
     }
 
     if (!isValid) {
-        messageList.push(`${groupProduct} - ${messages.requireIncreasing.replace('{0}', fields.join(', '))}`);
+        messageList.push(`${groupProduct} - ${messages.requireIncreasing.replace('{0}', fields.join('/'))}`);
     }
 
     return { isValid, messageList };
@@ -381,17 +381,26 @@ const validateValueFieldOfTierSetting = (groupedTierSetting, checkedMinFdm, chec
 
     Object.keys(groupedTierSetting).forEach((groupProductId, index) => {
         const groupTiers = groupedTierSetting[groupProductId];
-        const valueFieldValidation = validateValueField(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
-        if (!valueFieldValidation.isValid) {
+
+        const minValidation = validateValueField('min', index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+        const maxValidation = validateValueField('max', index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+
+        if (!minValidation.isValid) {
             isValid = false;
-            messageList.push(...valueFieldValidation.messageList);
+            messageList.push(...minValidation.messageList);
+        }
+
+        if (!maxValidation.isValid) {
+            isValid = false;
+            messageList.push(...maxValidation.messageList);
         }
     });
 
     return { isValid, messageList };
-}
+};
 
 const validateValueField = (
+    type, // 'min' | 'max'
     index,
     groupTiers,
     checkedMinFdm,
@@ -400,34 +409,42 @@ const validateValueField = (
 ) => {
     let isValid = true;
     const messageList = [];
-    const fields = [];
+    const fields = new Set();
 
-    const validateField = (condition, field) => {
-        if (condition) {
+    const validateField = (condition, fieldKey) => {
+        if (condition && !fields.has(mappingFields[fieldKey])) {
             isValid = false;
-            fields.push(mappingFields[field]);
+            fields.add(mappingFields[fieldKey]);
         }
     };
 
     groupTiers.forEach((tier) => {
         const { MinFdm, MinTotalDeposit, MinTO, CpaAmount } = tier;
 
+        const isMinCheck = type === 'min';
+
+        const fdmInvalid = isMinCheck ? !MinFdm || MinFdm < 1 : MinFdm >= INFINITY_MONEY;
+        const depositInvalid = isMinCheck ? !MinTotalDeposit || MinTotalDeposit < 1 : MinTotalDeposit >= INFINITY_MONEY;
+        const turnoverInvalid = isMinCheck ? !MinTO || MinTO < 1 : MinTO >= INFINITY_MONEY;
+        const cpaInvalid = isMinCheck ? !CpaAmount || CpaAmount < 1 : CpaAmount >= INFINITY_MONEY;
+
         if (index === 0) {
-            validateField(checkedMinFdm && !fields.includes(mappingFields.MinFdm) && (!MinFdm || MinFdm < 1 || MinFdm > INFINITY_MONEY), 'MinFdm');
-            validateField(checkedMinTotalDeposit && !fields.includes(mappingFields.MinTotalDeposit) && (!MinTotalDeposit || MinTotalDeposit < 1 || MinTotalDeposit > INFINITY_MONEY), 'MinTotalDeposit');
+            validateField(checkedMinFdm && fdmInvalid, 'MinFdm');
+            validateField(checkedMinTotalDeposit && depositInvalid, 'MinTotalDeposit');
         }
 
-        validateField(checkedMinTurnover && !fields.includes(mappingFields.MinTO) && (!MinTO || MinTO < 1 || MinTO > INFINITY_MONEY), 'MinTO');
-        validateField(!fields.includes(mappingFields.CpaAmount) && (!CpaAmount || CpaAmount < 1 || CpaAmount > INFINITY_MONEY), 'CpaAmount');
+        validateField(checkedMinTurnover && turnoverInvalid, 'MinTO');
+        validateField(cpaInvalid, 'CpaAmount');
     });
 
     if (!isValid) {
-        messageList.push(`Product Group ${index + 1} - ${messages.requireMinMaxValue.replace('{0}', fields.join(', '))}`);
+        const fieldNames = [...fields].join('/');
+        const messageTemplate = type === 'min' ? messages.requireMinValue : messages.requireMaxValue;
+        messageList.push(`Product Group ${index + 1} - ${messageTemplate.replace('{0}', fieldNames)}`);
     }
 
     return { isValid, messageList };
 };
-
 
 const groupTierSettingByGroupProductId = (tierSetting) => {
     const groupedTierSetting = {};

@@ -30,7 +30,8 @@
         {
             ["addCPASuccessfully"] = "Add Deal Successfully.",
             ["requireGroupName"] = "Deal name cannot be empty. Please check!",
-            ["requireMinMaxValue"] = "{0} must be greater than 0.",
+            ["requireMinValue"] = "{0} must be greater than 0.",
+            ["requireMaxValue"] = "{0} must be less than 100,000,000,000.",
             ["requireCountryCodes"] = "At least 1 Target Country is selected.",
             ["requireActiveDays"] = "Activity Period must be Activity Period must be between 1 and 30,000.",
             ["requireHoldingTicketsAndHoldingDays"] = "Holding Tickets and Holding Days must both be between 1 and 30,000.",
@@ -331,7 +332,7 @@
 
             if (!isValid)
             {
-                messageList.Add($"{groupProduct} - {string.Format(messages["requireIncreasing"], string.Join(", ", fields))}");
+                messageList.Add($"{groupProduct} - {string.Format(messages["requireIncreasing"], string.Join("/", fields))}");
             }
 
             return (isValid, messageList);
@@ -407,31 +408,40 @@
             bool checkedMinTotalDeposit,
             bool checkedMinTurnover)
         {
+            var isValid = true;
             var messageList = new List<string>();
-            int index = 0;
 
             var groupedValues = groupedTierSetting.Select(kvp => kvp.Value).ToList();
 
-            foreach (var groupTiers in groupedValues)
+            for (int index = 0; index < groupedValues.Count; index++)
             {
-                var result = ValidateValueField(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+                var groupTiers = groupedValues[index];
 
-                if (!result.isValid)
+                var minValidation = ValidateValueField("min", index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+                var maxValidation = ValidateValueField("max", index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+
+                if (!minValidation.isValid)
                 {
-                    messageList.AddRange(result.messageList);
+                    isValid = false;
+                    messageList.AddRange(minValidation.messageList);
                 }
 
-                index++;
+                if (!maxValidation.isValid)
+                {
+                    isValid = false;
+                    messageList.AddRange(maxValidation.messageList);
+                }
             }
-
-            var isValid = messageList.Count == 0;
 
             return (isValid, messageList);
         }
 
 #pragma warning disable S1541 // Methods and properties should not be too complex
+#pragma warning disable S3776 // Cognitive Complexity of methods should not be too high
         private static (bool isValid, List<string> messageList) ValidateValueField(
+#pragma warning restore S3776 // Cognitive Complexity of methods should not be too high
 #pragma warning restore S1541 // Methods and properties should not be too complex
+            string type, // "min" or "max"
             int index,
             List<CpaTierSetting> groupTiers,
             bool checkedMinFdm,
@@ -440,39 +450,45 @@
         {
             var isValid = true;
             var messageList = new List<string>();
-            var fields = new List<string>();
+            var fields = new HashSet<string>();
 
-            for (int tierIndex = 0; tierIndex < groupTiers.Count; tierIndex++)
+            void ValidateField(bool condition, string fieldKey)
             {
-                var tier = groupTiers[tierIndex];
-
-                void ValidateField(bool condition, string field)
+                if (condition && !fields.Contains(mappingFields[fieldKey]))
                 {
-                    if (condition)
-                    {
-                        isValid = false;
-                        fields.Add(mappingFields[field]);
-                    }
+                    isValid = false;
+                    fields.Add(mappingFields[fieldKey]);
                 }
+            }
+
+            foreach (var tier in groupTiers)
+            {
+                var isMinCheck = type == "min";
+
+                bool fdmInvalid = isMinCheck ? tier.MinFdm < 1 : tier.MinFdm >= INFINITY_MONEY;
+                bool depositInvalid = isMinCheck ? tier.MinTotalDeposit < 1 : tier.MinTotalDeposit >= INFINITY_MONEY;
+                bool turnoverInvalid = isMinCheck ? tier.MinTO < 1 : tier.MinTO >= INFINITY_MONEY;
+                bool cpaInvalid = isMinCheck ? tier.CpaAmount < 1 : tier.CpaAmount >= INFINITY_MONEY;
 
                 if (index == 0)
                 {
-                    ValidateField(checkedMinFdm && !fields.Contains(mappingFields[MIN_FDM]) && (tier.MinFdm < 1 || tier.MinFdm > INFINITY_MONEY), MIN_FDM);
-                    ValidateField(checkedMinTotalDeposit && !fields.Contains(mappingFields[MIN_TOTAL_DEPOSIT])
-                        && (tier.MinTotalDeposit < 1 || tier.MinTotalDeposit > INFINITY_MONEY), MIN_TOTAL_DEPOSIT);
+                    ValidateField(checkedMinFdm && fdmInvalid, "MinFdm");
+                    ValidateField(checkedMinTotalDeposit && depositInvalid, "MinTotalDeposit");
                 }
 
-                ValidateField(checkedMinTurnover && !fields.Contains(mappingFields[MIN_TURNOVER]) && (tier.MinTO < 1 || tier.MinTO > INFINITY_MONEY), MIN_TURNOVER);
-                ValidateField(!fields.Contains(mappingFields[CPA_AMOUNT]) && tier.CpaAmount < 1 || tier.CpaAmount > INFINITY_MONEY, CPA_AMOUNT);
+                ValidateField(checkedMinTurnover && turnoverInvalid, "MinTO");
+                ValidateField(cpaInvalid, "CpaAmount");
             }
 
-            if(!isValid)
+            if (!isValid)
             {
-                var fieldNames = string.Join(", ", fields);
-                messageList.Add($"Product Group {index + 1} - {string.Format(messages["requireMinMaxValue"], fieldNames)}");
+                var fieldNames = string.Join("/", fields);
+                var messageTemplate = type == "min" ? messages["requireMinValue"] : messages["requireMaxValue"];
+                messageList.Add($"Product Group {index + 1} - {string.Format(messageTemplate, fieldNames)}");
             }
 
             return (isValid, messageList);
         }
+
     }
 }

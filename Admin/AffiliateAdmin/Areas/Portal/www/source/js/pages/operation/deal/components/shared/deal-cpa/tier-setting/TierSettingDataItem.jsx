@@ -18,7 +18,7 @@ export const TierSettingDataItem = (props) => {
             return emptyFallback;
         }
 
-        if ((allowZero ? numericValue >= 0 : numericValue > 0) && numericValue <= INFINITY_MONEY) {
+        if ((allowZero ? numericValue >= 0 : numericValue > 0) && numericValue < INFINITY_MONEY) {
             return numericValue;
         }
 

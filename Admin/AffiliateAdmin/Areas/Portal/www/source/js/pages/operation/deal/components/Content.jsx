@@ -76,7 +76,7 @@ export const Content = (props) => {
                     <span className="oi oi-plus ml-2"></span>
                 </Button>
             </div>
-            <GridData onEdit={_handleShowEditPopup} onCopy={(dealId) => _handleShowAddPopup(dealId)} />
+            <GridData onEdit={_handleShowEditPopup} onCopy={_handleShowAddPopup} />
             <Pager pageOption={props.pagingOption} onPaging={_handlePaging} />
 
             {
