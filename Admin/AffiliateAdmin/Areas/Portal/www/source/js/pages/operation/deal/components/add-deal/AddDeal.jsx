@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { setDealInfo, toggleLoader, addDeal, setParam, setIsSubmitted, getDealDetail } from '../../actions';
+import { setDealInfo, toggleLoader, addDeal, setParam, getDealDetail } from '../../actions';
 import { buildDefaultDealInfo } from '../../libs/service';
 import { validateDealInfo } from '../../libs/service';
 
@@ -38,17 +38,11 @@ export const AddDeal = (props) => {
     const _handleSave = async () => {
         props.onSave();
 
-        if (!props.isSubmitted) {
-            props.setIsSubmitted(true);
-        }
-
         const { dealInfo } = props;
 
         const { isValid, messageList } = validateDealInfo(dealInfo);
         if (!isValid) {
-            setIsShowMessage(true);
-            setMessage(messageList);
-            setIsSuccess(false);
+            _handleShowMessage(false, messageList);
         } else {
             props.toggleLoader(true);
             const param = _handleSaveParam(dealInfo);
@@ -67,14 +61,17 @@ export const AddDeal = (props) => {
                     props.setParam(gettingParam);
                 }
 
-                setIsShowMessage(true);
-                setIsSuccess(result.IsSuccessful);
-                setMessage([result.IsSuccessful ? messages.addDealSuccessfully : result.Message]);
+                _handleShowMessage(result.IsSuccessful, [result.IsSuccessful ? messages.addDealSuccessfully : result.Message]);
             }
 
-            props.setIsSubmitted(false);
             props.toggleLoader(false);
         }
+    }
+
+    const _handleShowMessage = (isSuccess, message) => {
+        setIsShowMessage(true);
+        setIsSuccess(isSuccess);
+        setMessage(message);
     }
 
     const _handleSaveParam = (dealInfo) => {
@@ -113,12 +110,11 @@ export const AddDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, isSubmitted, param }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param }) => {
     return {
         dealInfo,
         targetCountryList,
-        pagingOption,
-        isSubmitted,
+        pagingOption,   
         param
     }
 }
@@ -129,7 +125,6 @@ const mapDispatchToProps = (dispatch) => {
         toggleLoader,
         addDeal,
         setParam,
-        setIsSubmitted,
         getDealDetail
     }, dispatch);
 }

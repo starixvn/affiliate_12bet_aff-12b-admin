@@ -66,6 +66,9 @@ export const Content = (props) => {
     }
 
     const _handleSave = () => {
+        if (!props.isSubmitted) {
+            props.setIsSubmitted(true);
+        }
         modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
 
