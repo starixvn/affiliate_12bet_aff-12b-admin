@@ -24,7 +24,7 @@ export const DealPanel = ({ dealType }) => {
             <div className="tabs">
                 {
                     dealPanels.map(m => (
-                        <button key={m.key} onClick={() => setActivePanel(m.key)} className={activePanel === m.key ? 'active' : ''}><h6>{m.name}</h6></button>
+                        <button key={m.key} onClick={() => setActivePanel(m.key)} className={activePanel === m.key ? 'active' : ''}><h7>{m.name}</h7></button>
                     ))
                 }
             </div>

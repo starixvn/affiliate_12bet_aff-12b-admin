@@ -7,18 +7,17 @@ import { FIRST_ITEM_INDEX, INFINITY_MONEY } from '../../../../libs/constants';
 import { setDealInfo } from '../../../../actions';
 import { format } from '../../../../../../../modules/numberFormat';
 
-export const TierSettingDataItem = (props) => {
-    const { tierSetting, isFirstItem, tier, index, dealInfo } = props;
+export const TierSettingDataItem = ({ tierSetting, isFirstItem, tier, index, dealInfo, setDealInfo, isSubmitted }) => {
     const isFirstTier = index === FIRST_ITEM_INDEX;
 
     const parseValue = (value) => Number(value.replace(/,/g, ''));
 
-    const getValidatedValue = (rawValue, numericValue, oldValue, allowZero = true, emptyFallback = 0) => {
+    const getValidatedValue = (rawValue, numericValue, oldValue, emptyFallback = 0) => {
         if (rawValue === '') {
             return emptyFallback;
         }
 
-        if ((allowZero ? numericValue >= 0 : numericValue > 0) && numericValue < INFINITY_MONEY) {
+        if (numericValue >= 0 && numericValue < INFINITY_MONEY) {
             return numericValue;
         }
 
@@ -29,7 +28,7 @@ export const TierSettingDataItem = (props) => {
         const newTierSetting = dealInfo.CPATierSetting.map(t =>
             conditionFn(t) ? updateFn(t) : t
         );
-        props.setDealInfo({ CPATierSetting: newTierSetting });
+        setDealInfo({ CPATierSetting: newTierSetting });
     };
 
     const _handleChangeValue = (e, tierId) => {
@@ -37,7 +36,7 @@ export const TierSettingDataItem = (props) => {
         const numericValue = parseValue(value);
         const oldValue = tier[name];
 
-        const newValue = getValidatedValue(value, numericValue, oldValue, true, 0);
+        const newValue = getValidatedValue(value, numericValue, oldValue, 0);
 
         if (isFirstItem) {
             const currentTierIndex = tierSetting.findIndex(s => s.TierId === tierId);
@@ -59,7 +58,7 @@ export const TierSettingDataItem = (props) => {
                 return t;
             });
 
-            props.setDealInfo({ CPATierSetting: newTierSetting });
+            setDealInfo({ CPATierSetting: newTierSetting });
         }
     };
 
@@ -68,7 +67,7 @@ export const TierSettingDataItem = (props) => {
         const numericValue = parseValue(value);
         const oldValue = tier[name];
 
-        const newValue = getValidatedValue(value, numericValue, oldValue, true, 0);
+        const newValue = getValidatedValue(value, numericValue, oldValue, 0);
 
         updateTierSetting(
             (t) => t.GroupProductId === groupProductId && t.TierId === tierId,
@@ -81,7 +80,7 @@ export const TierSettingDataItem = (props) => {
         const numericValue = parseValue(value);
         const oldValue = tier[name];
 
-        const newValue = getValidatedValue(value, numericValue, oldValue, false, 1);
+        const newValue = getValidatedValue(value, numericValue, oldValue, 0);
 
         updateTierSetting(
             (t) => t.GroupProductId === groupProductId && t.TierId === tierId,
@@ -92,14 +91,16 @@ export const TierSettingDataItem = (props) => {
     const _handleAddTierItem = (groupProductId) => {
         let newTierItem = null;
 
+        const { CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover } = dealInfo;
+
         if (isFirstItem) {
             const lastTierItem = tierSetting[tierSetting.length - 1];
             newTierItem = {
                 TierId: lastTierItem.TierId + 1,
                 GroupProductId: lastTierItem.GroupProductId,
-                MinFdm: lastTierItem.MinFdm + 1,
-                MinTotalDeposit: lastTierItem.MinTotalDeposit + 1,
-                MinTO: lastTierItem.MinTO + 1,
+                MinFdm: CheckedMinFdm ? lastTierItem.MinFdm + 1 : 0,
+                MinTotalDeposit: CheckedMinTotalDeposit ? lastTierItem.MinTotalDeposit + 1 : 0,
+                MinTO: CheckedMinTurnover ? lastTierItem.MinTO + 1 : 0,
                 CpaAmount: lastTierItem.CpaAmount + 1
             }
         } else {
@@ -123,8 +124,8 @@ export const TierSettingDataItem = (props) => {
                 newTierItem = {
                     TierId: lastCurrentTierItem.TierId + 1,
                     GroupProductId: groupProductId,
-                    MinFdm: lastCurrentTierItem.MinFdm + 1,
-                    MinTotalDeposit: lastCurrentTierItem.MinTotalDeposit + 1,
+                    MinFdm: CheckedMinFdm ? lastCurrentTierItem.MinFdm + 1 : 0,
+                    MinTotalDeposit: CheckedMinTotalDeposit ? lastCurrentTierItem.MinTotalDeposit + 1 : 0,
                     MinTO: lastCurrentTierItem.MinTO + 1,
                     CpaAmount: lastCurrentTierItem.CpaAmount + 1
                 }
@@ -132,16 +133,24 @@ export const TierSettingDataItem = (props) => {
         }
 
         if (newTierItem) {
-            props.setDealInfo({
-                CPATierSetting: [...props.dealInfo.CPATierSetting, newTierItem]
+            setDealInfo({
+                CPATierSetting: [...dealInfo.CPATierSetting, newTierItem]
             });
         }
     }
 
     const _handleDeleteTierItem = (groupProductId, tierId) => {
-        props.setDealInfo({
-            CPATierSetting: props.dealInfo.CPATierSetting.filter(t => t.GroupProductId !== groupProductId || t.TierId !== tierId)
+        setDealInfo({
+            CPATierSetting: dealInfo.CPATierSetting.filter(t => t.GroupProductId !== groupProductId || t.TierId !== tierId)
         });
+    }
+
+    const _getErrorClass = (value, checkedField = true, defaultValue = 1) => {
+        if (isSubmitted && checkedField) {
+            return Number.isNaN(value) || value < defaultValue || value >= INFINITY_MONEY ? 'has-error' : '';
+        }
+
+        return '';
     }
 
     return (
@@ -149,6 +158,7 @@ export const TierSettingDataItem = (props) => {
             <td className="text-center">{index + 1}</td>
             <td className="text-center">
                 <Input
+                    className={_getErrorClass(tier.MinFdm, isFirstItem && dealInfo.CheckedMinFdm)}
                     disabled={!isFirstItem || !dealInfo.CheckedMinFdm}
                     type="text"
                     name="MinFdm"
@@ -159,6 +169,7 @@ export const TierSettingDataItem = (props) => {
             </td>
             <td className="text-center">
                 <Input
+                    className={_getErrorClass(tier.MinTotalDeposit, isFirstItem && dealInfo.CheckedMinTotalDeposit)}
                     disabled={!isFirstItem || !dealInfo.CheckedMinTotalDeposit}
                     type="text"
                     name="MinTotalDeposit"
@@ -169,6 +180,7 @@ export const TierSettingDataItem = (props) => {
             </td>
             <td className="text-center">
                 <Input
+                    className={_getErrorClass(tier.MinTO, dealInfo.CheckedMinTurnover)}
                     disabled={dealInfo.IsInstant || !dealInfo.CheckedMinTurnover}
                     type="text"
                     name="MinTO"
@@ -179,6 +191,7 @@ export const TierSettingDataItem = (props) => {
             </td>
             <td className="text-center">
                 <Input
+                    className={_getErrorClass(tier.CpaAmount, true, 0)}
                     type="text"
                     name="CpaAmount"
                     id={"CpaAmount" + tier.TierId}
@@ -195,9 +208,10 @@ export const TierSettingDataItem = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo }) => {
+const mapStateToProps = ({ dealInfo, isSubmitted }) => {
     return {
-        dealInfo
+        dealInfo,
+        isSubmitted
     }
 }
 

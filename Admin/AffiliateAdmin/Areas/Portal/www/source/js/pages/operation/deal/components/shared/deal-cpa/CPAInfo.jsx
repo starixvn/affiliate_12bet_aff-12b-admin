@@ -13,7 +13,7 @@ import { INFINITY_NUMBER } from '../../../libs/constants';
 import { format } from '../../../../../../modules/numberFormat';
 import { convertTargetCountryList } from '../../../libs/service';
 
-export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) => {
+export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit, isSubmitted }) => {
 
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(true);
@@ -77,13 +77,10 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
 
         const updatedInfo = { [name]: toggledValue };
 
-        const isZero = dealInfo.HoldingDays === 0 && dealInfo.HoldingTickets === 0;
-        const isEmpty = dealInfo.HoldingDays === '' && dealInfo.HoldingTickets === '';
-
-        if (toggledValue && isZero) {
+        if (toggledValue) {
             updatedInfo.HoldingDays = '';
             updatedInfo.HoldingTickets = '';
-        } else if (!toggledValue && isEmpty) {
+        } else {
             updatedInfo.HoldingDays = 0;
             updatedInfo.HoldingTickets = 0;
         }
@@ -97,18 +94,24 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
 
         const updatedInfo = { [name]: toggledValue };
 
-        const isZero = dealInfo.Quota === 0;
-        const isEmpty = dealInfo.Quota === '';
-
-        if (toggledValue && isZero) {
+        if (toggledValue) {
             updatedInfo.Quota = '';
-        } else if (!toggledValue && isEmpty) {
+        } else {
             updatedInfo.Quota = 0;
         }
         setDealInfo(updatedInfo);
     }
 
+    const _getErrorClass = (value, checkedField = true) => {
+        if (isSubmitted && checkedField) {
+            return Number.isNaN(value) || value < 1 || value > INFINITY_NUMBER ? 'has-error' : '';
+        }
+
+        return '';
+    }
+
     const _targetCountryList = convertTargetCountryList(targetCountryList, dealInfo.CountryCodes);
+
     return (
         <React.Fragment>
             <div>
@@ -140,6 +143,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
                     <Col sm={3} className="d-flex align-items-center">
                         <Input type="text"
                             name="ActiveDays"
+                            className={_getErrorClass(dealInfo.ActiveDays)}
                             id="ActiveDays"
                             value={format(dealInfo.ActiveDays)}
                             onChange={_handleChangePositiveInteger} />
@@ -152,6 +156,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
                         <input
                             type="checkbox"
                             name="IsActivePlayerHoldingPeriod"
+                            className={_getErrorClass(dealInfo.HoldingTickets, dealInfo.IsActivePlayerHoldingPeriod)}
                             checked={dealInfo.IsActivePlayerHoldingPeriod}
                             onChange={_handleCheckMinPlayerHoldingPeriod}
                         />
@@ -163,6 +168,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
                         <Input type="text"
                             disabled={!dealInfo.IsActivePlayerHoldingPeriod}
                             name="HoldingTickets"
+                            className={_getErrorClass(dealInfo.HoldingTickets, dealInfo.IsActivePlayerHoldingPeriod)}
                             id="HoldingTickets"
                             value={format(dealInfo.HoldingTickets)}
                             onChange={_handleChangePositiveInteger} />
@@ -172,6 +178,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
                         <Input type="text"
                             disabled={!dealInfo.IsActivePlayerHoldingPeriod}
                             name="HoldingDays"
+                            className={_getErrorClass(dealInfo.HoldingDays, dealInfo.IsActivePlayerHoldingPeriod)}
                             id="HoldingDays"
                             value={format(dealInfo.HoldingDays)}
                             onChange={_handleChangePositiveInteger} />
@@ -194,6 +201,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
                         <Input type="text"
                             disabled={!dealInfo.IsQuota}
                             name="Quota"
+                            className={_getErrorClass(dealInfo.Quota, dealInfo.IsQuota)}
                             id="Quota"
                             value={format(dealInfo.Quota)}
                             onChange={_handleChangePositiveInteger} />
@@ -227,11 +235,12 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit }) =>
     );
 };
 
-const mapStateToProps = ({ dealInfo, targetCountryList, isEdit }) => {
+const mapStateToProps = ({ dealInfo, targetCountryList, isEdit, isSubmitted }) => {
     return {
         targetCountryList,
         dealInfo,
-        isEdit
+        isEdit,
+        isSubmitted
     };
 };
 

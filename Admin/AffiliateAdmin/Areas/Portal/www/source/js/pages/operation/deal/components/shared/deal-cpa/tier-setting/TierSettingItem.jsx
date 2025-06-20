@@ -71,9 +71,14 @@ export const TierSettingItem = (props) => {
 
     const _handleCheck = (e) => {
         const { name } = e.target;
+        const isChecked = !dealInfo[name];
+
+        if (!isChecked) {
+            _handleResetTierSettingData(name === 'CheckedMinFdm' ? 'MinFdm' : 'MinTotalDeposit');
+        }
 
         props.setDealInfo({
-            [name]: !dealInfo[name]
+            [name]: isChecked
         });
     }
 
@@ -99,11 +104,12 @@ export const TierSettingItem = (props) => {
         }
 
         const isChecked = !dealInfo.CheckedMinTurnover;
-
         if (isChecked) {
             props.setDealInfo({ CheckedMinTurnover: true });
             return;
         }
+
+        _handleResetTierSettingData('MinTO');
 
         const message = props.isEdit
             ? 'Unchecking for Min Turnover will remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br>Do you want to proceed?'
@@ -112,6 +118,13 @@ export const TierSettingItem = (props) => {
         setMessage(message);
         setIsConfirmPopup(true);
     };
+
+    const _handleResetTierSettingData = (propName, value = 0) => {
+        const newTierSetting = dealInfo.CPATierSetting.map(t => ({ ...t, [propName]: value }));
+        props.setDealInfo({
+            CPATierSetting: newTierSetting,
+        });
+    }
 
     const _buildHeader = () => {
         return (
@@ -186,7 +199,7 @@ export const TierSettingItem = (props) => {
                             hasAllOption={true}
                             hasInputOption={true}
                             maxDisplayItemCount={1}
-                            noneSelectedLabel="Please Select"
+                            noneSelectedLabel={!dealInfo.CheckedMinTurnover ? 'None' : 'Please Select'}
                             selectedAllLabel="All Products"
                             onChange={_handleSelect}
                             isDisable={!dealInfo.CheckedMinTurnover} />

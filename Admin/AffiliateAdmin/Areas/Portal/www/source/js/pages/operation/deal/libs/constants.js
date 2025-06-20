@@ -49,7 +49,8 @@ export const messages = {
     requireDuplicateProductsInGroups: 'You\'ve selected the same Product in more than one Product Group. Please correct it.',
     requireIncreasing: 'The values in the {0} columns must increase sequentially.',
     requireAllTierSettingsMatchGroupProduct1: 'Product Group {0} has different Min FDM or Min Total Deposit values in some tiers compared to Product Group 1.',
-    requireCheckBox: 'Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover.'
+    requireCheckBox: 'Please select at least one condition: Min FDM, Min Total Deposit, or Min Turnover.',
+    requireMinCpaAmount: 'CPA Amount cannot be negative.'
 }
 
 export const cpaTierSettingDefault = {

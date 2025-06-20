@@ -12,11 +12,12 @@ const MAX_LENGTH = 100;
 
 export const DealInfo = (props) => {
 
-    const { isEdit, DealName, DealType, Description, RevenueTierSetting, dealTypeList, GroupId } = props;
+    const { isEdit, isSubmitted, DealName, DealType, Description, RevenueTierSetting, dealTypeList, GroupId } = props;
 
     const _handleChangeText = (e) => {
         const { name, value } = e.target;
-        if (value.length <= MAX_LENGTH) {
+        const trimmedValue = value.trim();
+        if (trimmedValue.length <= MAX_LENGTH) {
             props.setDealInfo({ [name]: value });
         }
     }
@@ -41,6 +42,7 @@ export const DealInfo = (props) => {
                 <Label htmlFor="DealName" sm={2}>Deal Name <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
                 <Col sm={8}>
                     <Input type="text"
+                        className={isSubmitted && !DealName ? 'has-error' : ''}
                         name="DealName"
                         id="DealName"
                         value={htmlDecode(DealName)}
@@ -83,7 +85,7 @@ export const DealInfo = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList, isEdit }) => {
+const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList, isEdit, isSubmitted }) => {
     const { GroupId, DealName, DealType, Description, RevenueTierSetting } = dealInfo;
     return {
         GroupId,
@@ -94,7 +96,8 @@ const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList, i
         dealTypeList,
         deductionList,
         productList,
-        isEdit
+        isEdit,
+        isSubmitted
     }
 }
 

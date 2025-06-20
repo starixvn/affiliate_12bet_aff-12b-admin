@@ -103,7 +103,7 @@ export const AddDeal = (props) => {
                     <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
                 </Col>
                 <Col sm={1}>
-                    <Button type="button" className="my-2 btn btn-info" onClick={props.onClose}>CANCEL</Button>
+                    <Button type="button" className="my-2 btn btn-info btn-cancel" onClick={props.onClose}>CANCEL</Button>
                 </Col>
             </FormGroup>
         </React.Fragment>
