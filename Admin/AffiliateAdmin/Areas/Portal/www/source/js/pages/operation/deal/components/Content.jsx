@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
@@ -49,21 +49,21 @@ export const Content = (props) => {
         props.setDealInfo(null);
     }
 
-    const _handleShowAddPopup = (dealId = null) => {
+    const _handleShowAddPopup = useCallback((dealId = null) => {
         props.setIsEdit(false);
         setPopupInfo({
             Content: <AddDeal onClose={_handleHidePopup} onSave={_handleSave} dealId={dealId} />,
             Title: 'Add new Deal'
         });
-    };
+    }, []);
 
-    const _handleShowEditPopup = (dealId) => {
+    const _handleShowEditPopup = useCallback((dealId) => {
         props.setIsEdit(true);
         setPopupInfo({
             Content: <EditDeal onClose={_handleHidePopup} onSave={_handleSave} dealId={dealId} />,
             Title: 'Edit Deal'
         });
-    }
+    }, []);
 
     const _handleSave = () => {
         if (!props.isSubmitted) {
