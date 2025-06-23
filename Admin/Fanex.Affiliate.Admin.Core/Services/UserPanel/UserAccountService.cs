@@ -1,4 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Criterias.Affiliate;
@@ -12,6 +15,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Data.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
