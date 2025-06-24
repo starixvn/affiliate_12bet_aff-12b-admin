@@ -44,7 +44,7 @@ function generateSubAffCommRateValues() {
 const _subAffCommRateValueList = generateSubAffCommRateValues();
 
 export const subAffCommRateValueList = _subAffCommRateValueList;
-export const defaultSubAffCommRate = 5.0;
+export const defaultSubAffCommRate = 0.05;
 
 export const GGR = '| Gross Game Revenue |';
 
