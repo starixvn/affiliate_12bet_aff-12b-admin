@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Criterias.Member;
 using Fanex.Affiliate.Admin.Core.DTO.Member;
 using Fanex.Affiliate.Admin.Core.MetaModels.Member;
 using Fanex.Affiliate.Admin.Core.Services.Member;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
 using Moq;
 using System.Collections.Generic;
@@ -49,9 +50,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Member
         public void UpdateMember_WhenCall_UpdateSuccessfully()
         {
             // Arrange
-            var param = new UpdateMemberParam();
+            var param = new UpdateMemberParam
+            {
+                FromDate = DateTimeHelper.CreateDateTime(2025, 5, 14)
+            };
             var dynamicRepository = new Mock<IDynamicRepository>();
             dynamicRepository.Setup(comm => comm.Execute(It.IsAny<UpdateMemberCommand>(), It.IsAny<string>()));
+            dynamicRepository.Setup(comm => comm.Get<LatestBillingDate>(It.IsAny<LatestBillingDateCriteria>(), It.IsAny<string>())).Returns(new LatestBillingDate { SValue = DateTimeHelper.CreateDateTime(2025, 4, 30) });
             var service = CreateMemberService(dynamicRepository.Object);
 
             // Action

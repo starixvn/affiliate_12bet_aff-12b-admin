@@ -210,44 +210,8 @@ export const validateItemMustHaveAProduct = (platformFeeList) => {
     return { isValid, messageList: isValid ? [] : [messages.requireSelectedProduct] };
 }
 
-export const updatePlatfromFeeList = (platformFeeList, allProductIds) => {
-    const feeIdListInArrayForm = platformFeeList.map(fee => convertStringToArrayNumber(fee.ProductIds));
-    const newFeeListIds = getPlatformFeeListIds(feeIdListInArrayForm, allProductIds);
-    const newPlatformFeeList = [];
-
-    newFeeListIds.forEach((arrId, index) => {
-        const platformFee = platformFeeList[index];
-        const newplatformFee = Object.assign({}, platformFee, { ProductIds: arrId.join(',') })
-        newPlatformFeeList.push(newplatformFee);
-    });
-
-    return newPlatformFeeList;
-}
-
 export const removeTierItem = (tierId, groupProductId, dataList) => {
     return dataList.filter(item => !(item.TierId === tierId && item.GroupProductId === groupProductId));
-}
-
-const getPlatformFeeListIds = (prePlatformFeeIds, allProductIds) => {
-    const preSelProductIds = prePlatformFeeIds.reduce((acc, cur) => acc.concat(cur), []);
-    const additionIds = getAdditionId(preSelProductIds, allProductIds);
-    const platformFeeIdsAfterRemoveProduct = removeCheckedProductId(prePlatformFeeIds);
-    const firstPlatformFeeProductIds = platformFeeIdsAfterRemoveProduct[0];
-    additionIds.length && firstPlatformFeeProductIds.push(additionIds);
-
-    return [firstPlatformFeeProductIds, ...platformFeeIdsAfterRemoveProduct.slice(1)]
-}
-
-const getAdditionId = (preSelIds, allProductIds) => {
-    return allProductIds.filter(i => preSelIds.find(t => t === i));
-}
-
-const removeCheckedProductId = (curSelIds, preListIds) => {
-    const newList = [];
-    preListIds.forEach(list => {
-        newList.push(list.filter(i => !curSelIds.find(p => p === i)));
-    })
-    return newList;
 }
 
 const isMinNetWinNotIncreaseSequentially = (tierSettingList) => {
