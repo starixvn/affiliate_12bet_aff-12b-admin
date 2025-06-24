@@ -1,39 +1,29 @@
 ﻿import React from 'react';
 import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
-
-import { renderInputForm } from '../../libs/service';
+import RowField from './RowField';
 
 export const Personal = (props) => {
-
     const { personalInfo, setPersonalInfo } = props;
-
-    const _handleChange = (e) => {
+    const onChange = (e) => {
         setPersonalInfo({
             ...personalInfo,
             [e.target.name]: e.target.value
         });
     }
 
-    const _handleChangeGender = (isMale) => {
-        setPersonalInfo({
-            ...personalInfo,
-            gender: isMale
-        });
-    }
-
-    const _renderGenderForm = (isMale) => {
+    const _renderGenderForm = () => {
         return (
             <FormGroup row>
                 <Label sm={2}>Gender</Label>
                 <Col sm={4} className="gender-group">
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
-                            <Input type="radio" checked={isMale !== null && isMale} onChange={() => _handleChangeGender(true)} />{' '} Male
+                            <Input name='gender' type="radio" checked={!personalInfo.gender} onChange={onChange} value={0}/>{' '} Male
                         </Label>
                     </FormGroup>
                     <FormGroup check className="d-inline-block">
                         <Label check>
-                            <Input type="radio" checked={isMale !== null && !isMale} onChange={() => _handleChangeGender(false)} />{' '} Female
+                            <Input name='gender' type="radio" checked={personalInfo.gender} onChange={onChange} value={1}/>{' '} Female
                         </Label>
                     </FormGroup>
                 </Col>
@@ -45,11 +35,32 @@ export const Personal = (props) => {
         <fieldset>
             <legend><h6 className="font-weight-bold">Personal Information</h6></legend>
             <Form>
-                {renderInputForm('firstName', 'First Name', personalInfo.firstName, false, false, _handleChange)}
-                {renderInputForm('lastName', 'Last Name', personalInfo.lastName, false, false, _handleChange)}
-                {_renderGenderForm(personalInfo.gender)}
-                {renderInputForm('email', 'Email Address', personalInfo.email, false, false, _handleChange)}
-                {renderInputForm('phone', 'Contact Number', personalInfo.phone, false, false, _handleChange)}
+            
+                <RowField
+                    label="First Name"
+                    name="firstName"
+                    value={personalInfo.firstName}
+                    onChange={onChange}
+                />
+                <RowField
+                    label="Last Name"
+                    name="lastName"
+                    value={personalInfo.lastName}
+                    onChange={onChange}
+                />
+                {_renderGenderForm()}
+                <RowField
+                    label="Email Address"
+                    name="email"
+                    value={personalInfo.email}
+                    onChange={onChange}
+                />
+                <RowField
+                    label="Contact Number"
+                    name="phone"
+                    value={personalInfo.phone}
+                    onChange={onChange}
+                />
             </Form>
         </fieldset>
     );

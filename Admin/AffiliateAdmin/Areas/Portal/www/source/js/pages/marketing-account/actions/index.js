@@ -1,7 +1,8 @@
 ﻿import * as types from './types';
 import { setPagingOption } from '../../../actions/pagingAction';
-import { post } from './../../../modules/ajaxRequest';
+import { post, get } from './../../../modules/ajaxRequest';
 import { getPaymentMethod } from './../../user-panel/user-account/actions/index';
+import { defaultAdditionalInfo, defaultPaymentInfo, defaultPersonalInfo, defaultWebsiteInfo } from '../libs/constants';
 
 export { setPagingOption, getPaymentMethod };
 
@@ -33,13 +34,31 @@ export const fetchData = (param) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
+const getInfos = (original, data) => {
+    for (var attrname in original) {
+        original[attrname] = data[attrname];
+    }
+
+    return original;
+}
+
 // TODO: Need Review
 export const getMarketingAccountInfo = (affId) => async () => {
-    const url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';
+    const url = 'Portal/MarketingAccount/GetUserAccountInfo';
 
     const response = await post(url, { affId });
-
+    console.log('response', response);
     const data = response && response.status === 200 ? response.data : null;
 
-    return data;
+    return {
+        personalInfo: getInfos(defaultPersonalInfo, data),
+        additionalInfo: getInfos(defaultAdditionalInfo, data),
+        paymentInfo: getInfos(defaultPaymentInfo, data),
+        websiteInfo: getInfos(defaultWebsiteInfo, data),
+        generalInfo: {
+            hasData: true,
+            mailOption: data.mailOption,
+            hasHostAffPersonalInfoPermission: data.hasHostAffPersonalInfoPermission
+        }
+    }
 }

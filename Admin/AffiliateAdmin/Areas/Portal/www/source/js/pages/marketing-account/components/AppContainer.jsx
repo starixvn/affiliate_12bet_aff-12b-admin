@@ -9,9 +9,10 @@ import Loader from '../../../components/Loader';
 import AddAffMktAccountPopup from './AddAffMktAccountPopup';
 
 import { setIsShowAddAffMktAccountPopup, setAffId } from '../actions';
+import { Button } from 'reactstrap';
 
 export const AppContainer = ({ isShowLoader, isShowAddAffMktAccountPopup, setIsShowAddAffMktAccountPopup, setAffId }) => {
-
+    console.log('isShowAddAffMktAccountPopup 123', isShowAddAffMktAccountPopup);
     const _handleToggleAddAffMktAccountPopup = () => {
         setIsShowAddAffMktAccountPopup(!isShowAddAffMktAccountPopup);
         setAffId(null);

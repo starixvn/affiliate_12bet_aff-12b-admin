@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 
-import { setParam } from '../actions';
+import { setParam, setIsShowAddAffMktAccountPopup, setAffId } from '../actions';
 import { allStatuses, globalResource, statusList } from '../libs/constants';
 
 export const Filter = (props) => {
-    const { languageCodeList, targetCountryCodeList } = props;
+    const { languageCodeList, targetCountryCodeList, canAddAffMktAccount } = props;
 
     const [languageCode, setLanguageCode] = useState('');
     const [targetCountryCode, setTargetCountryCode] = useState('');
@@ -52,6 +52,11 @@ export const Filter = (props) => {
         props.setParam(params);
     };
 
+    const _handleAddNewAccount = () => {
+        props.setIsShowAddAffMktAccountPopup(true);
+        props.setAffId(927841);
+    }
+    
     return (
         <div className="filter-container">
             <Form inline tag="div">
@@ -100,20 +105,29 @@ export const Filter = (props) => {
                     </Button>
                 </FormGroup>
             </Form>
+            {canAddAffMktAccount && <div className="my-2">
+                <Button outline type="button" onClick={() => _handleAddNewAccount()}>
+                    Add New Account
+                    <span className="oi oi-plus ml-2"></span>
+                </Button>
+            </div>}
         </div>
     );
 };
 
-const mapStateToProps = ({ languageCodeList, targetCountryCodeList }) => {
+const mapStateToProps = ({ languageCodeList, targetCountryCodeList, canAddAffMktAccount }) => {
     return {
         languageCodeList,
-        targetCountryCodeList
+        targetCountryCodeList,
+        canAddAffMktAccount
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        setParam
+        setParam,
+        setIsShowAddAffMktAccountPopup,
+        setAffId
     }, dispatch);
 };
 

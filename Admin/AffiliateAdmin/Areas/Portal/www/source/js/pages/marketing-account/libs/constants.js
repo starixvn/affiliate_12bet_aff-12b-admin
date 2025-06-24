@@ -23,3 +23,49 @@ export const headerText = {
     RegistrationDateText: 'Registration Date',
     CreatedBy: 'Created by'
 }
+
+export const defaultPersonalInfo = {
+    firstName: '',
+    lastName: '',
+    gender: 0,
+    email: '',
+    phone: ''
+}
+
+export const defaultAdditionalInfo = {
+    address: '',
+    city: '',
+    state: '',
+    postcode: '',
+    country: '',
+    question: '',
+    answer: ''
+}
+
+export const defaultGeneralInfo = {
+    hasData: false,
+    paymentMethods: [],
+    minimumPayment: 0,
+    targetCountryCode: '',
+    language: '',
+    mailOption: true,
+    hasHostAffPersonalInfoPermission: false
+}
+
+export const defaultWebsiteInfo = {
+    siteUrl: '',
+    moreSiteUrls: [],
+    noSiteDescription: "",
+    hasWebSite: false
+}
+
+export const defaultPaymentInfo = {
+    preferredPayment: '',
+    playerUsername: '',
+    moneybookersEmail: '',
+    bankName: '',
+    bankAddress: '',
+    bankCode: '',
+    bankAccountName: '',
+    bankAccountNumber: '',
+}

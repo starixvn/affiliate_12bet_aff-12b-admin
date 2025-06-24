@@ -19,6 +19,12 @@ namespace Fanex.Affiliate.Admin.Core.Extensions
             Formatting = Formatting.None;
         }
 
+        public JsonNetResult(JsonSerializerSettings settings)
+        {
+            SerializerSettings = settings;
+            Formatting = Formatting.None;
+        }
+
         public override void ExecuteResult(ControllerContext context)
         {
             if (context == null)

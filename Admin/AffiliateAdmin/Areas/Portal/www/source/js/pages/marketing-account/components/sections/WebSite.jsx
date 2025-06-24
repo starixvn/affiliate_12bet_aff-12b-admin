@@ -1,15 +1,18 @@
 ﻿import React, { useRef, useEffect } from 'react';
 import { Form, FormGroup, Label, Col, Button, Input } from 'reactstrap';
 
-export const WebSite = (props) => {
+const getUrls = (moreSiteUrls) => {
+    return moreSiteUrls ? moreSiteUrls.split(";").map(url => url.trim()) : [];
+}
 
+export const WebSite = (props) => {
     const { websiteInfo, setWebsiteInfo } = props;
 
     const moreSiteUrlsRefs = useRef([]);
 
     useEffect(() => {
-        moreSiteUrlsRefs.current = websiteInfo.moreSiteUrls.map(
-            (_, i) => moreSiteUrlsRefs.current[i] || React.createRef()
+        moreSiteUrlsRefs.current = getUrls(websiteInfo.moreSiteUrls)?.map(
+           (_, i) => moreSiteUrlsRefs.current[i] || React.createRef()
         );
     }, [websiteInfo.moreSiteUrls]);
 
@@ -39,18 +42,8 @@ export const WebSite = (props) => {
         if (!websiteInfo.siteUrl.trim()) {
             return;
         }
-
-        const trimmedUrls = websiteInfo.moreSiteUrls.map(url => url.trim());
-        const emptyIndex = trimmedUrls.indexOf('');
-
-        if (emptyIndex === -1) {
-            setWebsiteInfo({
-                ...websiteInfo,
-                moreSiteUrls: [...websiteInfo.moreSiteUrls, '']
-            });
-        } else {
-            moreSiteUrlsRefs.current[emptyIndex]?.current?.focus();
-        }
+        console.log('push')
+        moreSiteUrlsRefs.current.push(React.createRef());
     };
 
     const _handleDeleteUrl = (siteIndex) => {
@@ -70,16 +63,16 @@ export const WebSite = (props) => {
         });
     }
 
-    const _renderMoreSiteUrl = (moreSiteUrlsList, hasWebSite) => {
+    const _renderMoreSiteUrl = (hasWebSite) => {
         return (
             <React.Fragment>
                 {
-                    moreSiteUrlsList.map((value, index) => {
+                    moreSiteUrlsRefs && moreSiteUrlsRefs.current.map((currentRef, index) => {
                         return (
                             <FormGroup row key={`siteUrl${index} ${123}`}>
                                 <Label for={`${index}`} sm={3} xl={2} >Website URL {index + 2}</Label>
                                 <Col sm={5} xl={6} className="input-item">
-                                    <input className="form-control" disabled={!hasWebSite} name={index} value={value} onChange={_handleChangeMoreUrl} ref={moreSiteUrlsRefs.current[index]} />
+                                    <input className="form-control" disabled={!hasWebSite} name={index} value={currentRef.value} onChange={_handleChangeMoreUrl} ref={currentRef} />
                                 </Col>
                                 <Button outline color="danger" disabled={!hasWebSite} className="my-1" onClick={() => _handleDeleteUrl(index)}><span aria-hidden>Del</span></Button>
                             </FormGroup>
@@ -97,20 +90,37 @@ export const WebSite = (props) => {
                 <FormGroup>
                     <FormGroup check>
                         <Label check>
-                            <Input type="radio" checked={websiteInfo.hasWebSite} onChange={() => _handleChangeHasWebSite(true)} />I have my own website
+                            <Input 
+                                type="radio" 
+                                checked={websiteInfo.hasWebSite} 
+                                onChange={() => _handleChangeHasWebSite(true)} 
+                                onBlur={_handleChange} />I have my own website
                         </Label>
                     </FormGroup>
                     <FormGroup row className="pt-1">
-                        <Label htmlFor="siteUrl" sm={2} >Website URL</Label>
+                        <Label htmlFor="siteUrl" sm={2}>Website URL</Label>
                         <Col sm={6} className="input-item">
-                            <Input type="text" name="siteUrl" disabled={!websiteInfo.hasWebSite} value={websiteInfo.siteUrl} onChange={_handleChange} />
+                            <Input 
+                                type="text" 
+                                name="siteUrl" 
+                                disabled={!websiteInfo.hasWebSite} 
+                                value={websiteInfo.siteUrl} 
+                                onChange={_handleChange} 
+                                onBlur={_handleChange} />
                         </Col>
-                        <Button outline color="secondary" disabled={!websiteInfo.hasWebSite} className="my-1" onClick={_handleAddUrl}>Add Url</Button>
+                        <Button 
+                            outline 
+                            color="secondary" 
+                            disabled={!websiteInfo.hasWebSite} 
+                            className="my-1" 
+                            onClick={_handleAddUrl}>
+                            Add Url
+                        </Button>
                     </FormGroup>
-                    {
-                        _renderMoreSiteUrl(websiteInfo.moreSiteUrls, websiteInfo.hasWebSite)
-                    }
                 </FormGroup>
+                {
+                    _renderMoreSiteUrl(websiteInfo.hasWebSite)
+                }
                 <FormGroup className="pt-3">
                     <FormGroup check>
                         <Label check>
@@ -124,6 +134,7 @@ export const WebSite = (props) => {
                         </Col>
                     </FormGroup>
                 </FormGroup>
+
             </Form>
         </fieldset>
     );

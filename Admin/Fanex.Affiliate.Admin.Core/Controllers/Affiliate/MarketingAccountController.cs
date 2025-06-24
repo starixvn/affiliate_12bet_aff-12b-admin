@@ -1,7 +1,11 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
+﻿using Fanex.Affiliate.Admin.Core.Extensions;
+using Newtonsoft.Json.Serialization;
+
+namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.Json;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Attributes;
@@ -50,6 +54,20 @@
             };
 
             return View("~/Areas/Portal/Views/Affiliate/MarketingAccount.cshtml", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult GetUserAccountInfo(int affId)
+        {
+            var options = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            return new JsonNetResult(options)
+            {
+                Data = _userAccountService.GetUserAccountInfo(affId)
+            };
         }
 
         // TODO: Need Review

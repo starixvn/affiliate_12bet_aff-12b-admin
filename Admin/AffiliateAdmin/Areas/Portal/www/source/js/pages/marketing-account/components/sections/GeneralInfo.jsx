@@ -4,67 +4,75 @@ import { connect } from 'react-redux';
 import { FormGroup, Label, Input, Col } from 'reactstrap';
 
 import { setAffId } from '../../actions';
+import Field from '../../../../components/Field';
+import RowField from './RowField';
 
 export const GeneralInfo = (props) => {
-
     const { generalInfo, setGeneralInfo } = props;
-
-    const _handleChange = (e) => {
+    console.log('generalInfo', generalInfo)
+    const onChange = (e) => {
         setGeneralInfo({
             ...generalInfo,
             [e.target.name]: e.target.value
         });
     }
 
-    // TODO: Need Review
-    const _handleMarketingAccountChange = (e) => {
-        props.setAffId(e.target.value);
-    }
+    const options = [
+        {
+            label: '12BETAFF001',
+            value: 927841
+        },
+        {
+            label: '12BETAFF12606',
+            value: 927841
+        },
+        {
+            label: '12BETAFF16517',
+            value: 92043606
+        },
+        {
+            label: '12BETAFF16518',
+            value: 92043606
+        }
+    ]
+
+    const targetCountryCodeList = Object.keys(props.targetCountryCodeList).map(key => {
+        return {
+            label: props.targetCountryCodeList[key],
+            value: key
+        }
+    })
+
+    const languageCodeList = Object.keys(props.languageCodeList).map(key => {
+        return {
+            label: props.languageCodeList[key],
+            value: key
+        }
+    })
 
     return (
         <div>
-            <FormGroup row>
-                <Label htmlFor="accountName" sm={3}>Copy from Marketing account</Label>
-                <Col sm={6}>
-                    <Input type="select" id="marketingAccount"
-                        value={props.affId}
-                        onChange={_handleMarketingAccountChange}>
-                        <option value="927841">927841</option>
-                        <option value="1166364">1166364</option>
-                        <option value="1185988">1185988</option>
-                    </Input>
-                </Col>
-            </FormGroup>
-            <FormGroup row>
-                <Label htmlFor="targetCountryCode" sm={3}>Target Country</Label>
-                <Col sm={6}>
-                    <Input type="select" name="targetCountryCode" id="targetCountryCode"
-                        value={generalInfo.targetCountryCode}
-                        onChange={_handleChange}>
-                        <option value="">Select One</option>
-                        {
-                            Object.keys(props.targetCountryCodeList).map(key => {
-                                return (<option key={`targetCountryCode-${key}`} value={key}>{props.targetCountryCodeList[key]}</option>)
-                            })
-                        }
-                    </Input>
-                </Col>
-            </FormGroup>
-            <FormGroup row>
-                <Label htmlFor="language" sm={3}>Language</Label>
-                <Col sm={6}>
-                    <Input type="select" name="language" id="language"
-                        value={generalInfo.language}
-                        onChange={_handleChange}>
-                        <option value="">Select One</option>
-                        {
-                            Object.keys(props.languageCodeList).map(key => {
-                                return (<option key={`language-${key}`} value={key}>{props.languageCodeList[key]}</option>)
-                            })
-                        }
-                    </Input>
-                </Col>
-            </FormGroup>
+            <RowField
+                label="Copy from Marketing account"
+                name="marketingAccount"
+                value={props.affId}
+                onChange={e => props.setAffId(e.target.value)}
+                selectOptions={options}
+            />
+            <RowField
+                label="Target Country"
+                name="targetCountryCode"
+                value={generalInfo.targetCountryCode}
+                onChange={onChange}
+                selectOptions={targetCountryCodeList}
+            />
+            <RowField
+                label="Language"
+                name="language"
+                value={generalInfo.language}
+                onChange={onChange}
+                selectOptions={languageCodeList}
+            />
         </div>
     );
 };

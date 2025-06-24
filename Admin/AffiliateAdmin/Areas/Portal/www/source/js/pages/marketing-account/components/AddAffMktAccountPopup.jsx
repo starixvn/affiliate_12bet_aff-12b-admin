@@ -14,6 +14,7 @@ import { getMarketingAccountInfo, getPaymentMethod } from '../actions';
 import { toggleLoader } from './../../../actions/loaderAction';
 import { extractPersonalInfo, extractAdditionalInfo, extractPaymentInfo, extractWebsiteInfo } from '../libs/service';
 import { validationEmail } from '../libs/validation';
+import useNewMarketingAccountData from '../hooks/useNewMarketingAccountData';
 
 export const AddAffMktAccountPopup = (props) => {
 
@@ -25,20 +26,7 @@ export const AddAffMktAccountPopup = (props) => {
         message: ''
     });
 
-    const [commonMarketingAccount, setCommonMarketingAccount] = useState({
-        hasData: false,
-        paymentMethods: [],
-        minimumPayment: 0,
-        targetCountryCode: '',
-        language: '',
-        mailOption: true,
-        hasHostAffPersonalInfoPermission: false
-    });
-
-    const [personalInfo, setPersonalInfo] = useState(null);
-    const [additionalInfo, setAdditionalInfo] = useState(null);
-    const [paymentInfo, setPaymentInfo] = useState(null);
-    const [websiteInfo, setWebsiteInfo] = useState(null);
+    const { generalInfo, setGeneralInfo, personalInfo, setPersonalInfo, additionalInfo, setAdditionalInfo, paymentInfo, setPaymentInfo, websiteInfo, setWebsiteInfo } = useNewMarketingAccountData(props.affId);
 
     // TODO: Need Review
     useEffect(() => {
@@ -63,34 +51,21 @@ export const AddAffMktAccountPopup = (props) => {
 
     const _fetchData = async () => {
         const data = await props.getMarketingAccountInfo(props.affId);
-
         if (data) {
-            setPersonalInfo(extractPersonalInfo(data));
-            setAdditionalInfo(extractAdditionalInfo(data));
-            setPaymentInfo(extractPaymentInfo(data));
-            setWebsiteInfo(extractWebsiteInfo(data));
-
-            setCommonMarketingAccount(prevState => ({
+            setPersonalInfo(data.personalInfo);
+            setAdditionalInfo(data.additionalInfo);
+            setPaymentInfo(data.paymentInfo);
+            setWebsiteInfo(data.websiteInfo);
+            setGeneralInfo(prevState => ({
                 ...prevState,
-                hasData: true,
-                targetCountryCode: 'BD',
-                language: 'en-US',
-                mailOption: data.MailOption,
-                hasHostAffPersonalInfoPermission: data.HasHostAffPersonalInfoPermission
+                ...data.generalInfo,
+                hasData: true
             }));
         }
     }
 
     const _fetchPaymentMethod = async () => {
-        const data = await props.getPaymentMethod();
-
-        if (data) {
-            setCommonMarketingAccount(prevState => ({
-                ...prevState,
-                paymentMethods: data.PaymentMethods,
-                minimumPayment: data.MinAmount
-            }));
-        }
+        
     }
 
     const _handleGetMoreSiteUrls = (moreSiteUrlsList) => {
@@ -119,7 +94,7 @@ export const AddAffMktAccountPopup = (props) => {
 
     const _handleSubmit = () => {
         const rawData = {
-            ...commonMarketingAccount,
+            ...generalInfo,
             ...personalInfo,
             ...additionalInfo,
             ...paymentInfo,
@@ -129,7 +104,7 @@ export const AddAffMktAccountPopup = (props) => {
         const marketingAccount = _handleTrimObject(rawData);
         const moreSiteUrls = marketingAccount.hasWebSite ? _handleGetMoreSiteUrls(marketingAccount.moreSiteUrls) : '';
         marketingAccount.moreSiteUrls = moreSiteUrls;
-        const validateEmail = validationEmail(marketingAccount.email, commonMarketingAccount.hasHostAffPersonalInfoPermission);
+        const validateEmail = validationEmail(marketingAccount.email, generalInfo.hasHostAffPersonalInfoPermission);
 
         if (modalBodyRef.current) {
             modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
@@ -160,7 +135,7 @@ export const AddAffMktAccountPopup = (props) => {
         }));
     }
 
-    return commonMarketingAccount.hasData && (
+    return generalInfo.hasData && (
         <Modal isOpen={props.isOpen} toggle={props.toggle} size="lg" backdrop="static" innerRef={modalBodyRef}>
             <ModalHeader toggle={props.toggle}>
                 <span className="iconpopup"></span> Add a new Marketing account
@@ -170,31 +145,19 @@ export const AddAffMktAccountPopup = (props) => {
                     <Alert color={resultInfo.isSuccess ? 'success' : 'danger'} isOpen={resultInfo.isShowMessage}>
                         <div dangerouslySetInnerHTML={{ __html: resultInfo.message }}></div>
                     </Alert>
-                    <GeneralInfo
-                        generalInfo={commonMarketingAccount}
-                        setGeneralInfo={setCommonMarketingAccount}
-                    />
-                    <Personal
-                        personalInfo={personalInfo}
-                        setPersonalInfo={setPersonalInfo}
-                    />
-                    <Additional
-                        additionalInfo={additionalInfo}
-                        setAdditionalInfo={setAdditionalInfo}
-                    />
-                    <EmailFormat
-                        mailOption={commonMarketingAccount.mailOption}
-                        setMailOption={setCommonMarketingAccount}
+                    <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
+                    <Personal personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} />
+                    <Additional additionalInfo={additionalInfo} setAdditionalInfo={setAdditionalInfo}/>
+                    <EmailFormat mailOption={generalInfo.mailOption} setMailOption={setGeneralInfo} />
+                    <WebSite
+                        websiteInfo={websiteInfo}
+                        setWebsiteInfo={setWebsiteInfo}
                     />
                     <Payment
                         paymentInfo={paymentInfo}
                         setPaymentInfo={setPaymentInfo}
-                        paymentMethodList={commonMarketingAccount.paymentMethods}
-                        minimumPayment={commonMarketingAccount.minimumPayment}
-                    />
-                    <WebSite
-                        websiteInfo={websiteInfo}
-                        setWebsiteInfo={setWebsiteInfo}
+                        paymentMethodList={generalInfo.paymentMethods}
+                        minimumPayment={generalInfo.minimumPayment}
                     />
                     <Form tag="div">
                         <Button className="mb-3" color="success" onClick={_handleSubmit}>SAVE</Button>

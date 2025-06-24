@@ -21,10 +21,7 @@
     EditAffDetails: "[EditAffiliateDetails]",
     TransferPlayerSetting: "[HideTransferPlayerSetting]", //Hide Transfer Player
     TransferPlayerReport: "[HideTransferPlayerReport]", //Hide Transfer Player,
-    CreateAffMktAccount: {
-        type: "[CreateAffMarketingAccount]",
-        value: "Write"
-    }
+    CreateAffMktAccount: "[CreateAffMarketingAccount]"
 }
 
 export const claimTypes = {
