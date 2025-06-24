@@ -37,7 +37,7 @@ export const DealPanel = ({ dealType }) => {
                 }
             </div>
             {
-                dealType != DEAL_CPA && <p className="text-danger my-2">Note: Change will take effect on current month (GMT-4)</p>
+                dealType != DEAL_CPA && <p className="text-danger my-2">Note: Revenue Share change will take effect in the current month (GMT-4)</p>
             }
         </React.Fragment>
     );

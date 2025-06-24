@@ -11,7 +11,8 @@ const dealTypeList = createReducer([], []);
 const targetCountryList = createReducer([], []);
 const productList = createReducer([], []);
 const deductionList = createReducer([], []);
-const isModifiable = createReducer(false, false);
+const isModifiable = createReducer(false, {});
+const defaultCurrency = createReducer(null, {});
 
 const param = createReducer(null, {
     [types.SET_PARAM]: (prevState, action) => {
@@ -56,5 +57,6 @@ export default combineReducers({
     gridData,
     isSubmitted,
     isEdit,
-    isModifiable
+    isModifiable,
+    defaultCurrency
 });

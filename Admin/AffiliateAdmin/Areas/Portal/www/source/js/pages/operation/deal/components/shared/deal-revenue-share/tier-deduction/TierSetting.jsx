@@ -100,7 +100,7 @@ export class TierSetting extends PureComponent {
                                         const handleClick = isFirst ? this.handleAdd : () => this.handleRemove(item.TierId, groupProductId);
 
                                         return (<TierSettingItem data={item} key={`tier-${item.TierId}`}
-                                            index={i+1}
+                                            index={i + 1}
                                             handleClick={handleClick}
                                             btnText={isFirst ? '+' : '-'}
                                             isFirst={isFirst}

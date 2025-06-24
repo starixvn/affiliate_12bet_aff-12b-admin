@@ -23,7 +23,7 @@ export class SubAffCommRateSetting extends PureComponent {
         const { selectedGroup } = this.props;
 
         return (
-            <fieldset className="sub-aff-comm-group">
+            <fieldset className="tier-setting-group">
                 <legend><h6 className="font-weight-bold">Sub-Affiliate Comm Rate</h6></legend>
                 <SubAffCommRateItem
                     data={selectedGroup.SubAffCommRate}

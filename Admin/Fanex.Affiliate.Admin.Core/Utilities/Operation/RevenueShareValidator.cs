@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.Operation
                 messageList.AddRange(validateAllFees.messageList);
             }
 
-            var validateTierSettingList = ValidateTierSettingList(dealInfo.RevevueTierSetting);
+            var validateTierSettingList = ValidateTierSettingList(dealInfo.RevenueTierSetting);
 
             if (!validateTierSettingList.isValid)
             {
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.Operation
             return (isValid, messageList);
         }
 
-        private static (bool isValid, string message) ValidateTierSettingList(IEnumerable<RevevueTierSetting> tierSettingList)
+        private static (bool isValid, string message) ValidateTierSettingList(IEnumerable<RevenueTierSetting> tierSettingList)
         {
             var tierSettingListByGroupProduct = tierSettingList.GroupBy(t => t.GroupProductId);
 
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.Operation
             return (true, string.Empty);
         }
 
-        private static (bool isValid, string message) ValidateMinAmount(IEnumerable<RevevueTierSetting> tierSettings)
+        private static (bool isValid, string message) ValidateMinAmount(IEnumerable<RevenueTierSetting> tierSettings)
         {
             if (tierSettings == null || !tierSettings.Any())
             {
@@ -123,9 +123,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.Operation
             return (true, string.Empty);
         }
 
-        private static bool IsNotIncreasingMinNetWin(IEnumerable<RevevueTierSetting> tierSettingList)
+        private static bool IsNotIncreasingMinNetWin(IEnumerable<RevenueTierSetting> tierSettingList)
         {
-            RevevueTierSetting previous = null;
+            RevenueTierSetting previous = null;
 
             foreach (var tierSetting in tierSettingList)
             {
@@ -139,9 +139,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities.Operation
             return false;
         }
 
-        private static bool IsMinNetWinNotStartFromOneAfterNegative(IEnumerable<RevevueTierSetting> tierSettingList)
+        private static bool IsMinNetWinNotStartFromOneAfterNegative(IEnumerable<RevenueTierSetting> tierSettingList)
         {
-            RevevueTierSetting previous = null;
+            RevenueTierSetting previous = null;
 
             foreach (var tierSetting in tierSettingList)
             {

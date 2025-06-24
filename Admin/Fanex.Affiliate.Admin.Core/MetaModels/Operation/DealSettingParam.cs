@@ -11,13 +11,10 @@
 
         public int GroupId { get; set; }
 
-        [Required(ErrorMessage = "Deal Name is required!")]
         public string DealName { get; set; }
 
-        [Range(Validation.Zero, Validation.MaxPercentage, ErrorMessage = "Sub-Affiliate Rate is incorrect!")]
         public decimal SubCommRate { get; set; }
 
-        [MaxLength(Validation.MaxLengthCommGroupDescription, ErrorMessage = "Description should shorter than 100 characters!")]
         public string Description { get; set; }
 
         public string CountryCodes { get; set; }
@@ -50,7 +47,7 @@
 
         public bool IsActivePlayerSum { get; set; }
 
-        public IEnumerable<RevevueTierSetting> RevevueTierSetting { get; set; }
+        public IEnumerable<RevenueTierSetting> RevenueTierSetting { get; set; }
 
         public IEnumerable<RevenueDeductionSetting> PlatformFeeSetting { get; set; }
 

@@ -31,6 +31,11 @@
 
 .deal-popup-container {
     font-size: 12px;
+    
+    .required {
+        margin: 0 0 0 -1.25rem;
+        font-size: 1rem;
+    }
 
     .tabs {
         display: flex;
@@ -143,5 +148,35 @@
                 }
             }
         }
+    }
+
+    .x-group {
+        position: relative;
+
+        .x-content {
+            &::before {
+                content: 'x';
+                display: inline-block;
+                position: absolute;
+                left: 2px;
+            }
+        }
+    }
+
+    .label-group {
+        flex-basis: 28.5%;
+
+        .label-amount {
+            flex: 1;
+            text-align: right;
+        }
+    }
+
+    .deducted-amount {
+        margin-left: -2.5rem;
+    }
+
+    .form-max {
+        width: calc(100% - 32px);
     }
 }

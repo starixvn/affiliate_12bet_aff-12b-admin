@@ -504,7 +504,7 @@
     <Compile Include="DTO\Operation\DealSettingInfo.cs" />
     <Compile Include="DTO\Operation\DealType.cs" />
     <Compile Include="DTO\Operation\RevenueDeductionSetting.cs" />
-    <Compile Include="DTO\Operation\RevevueTierSetting.cs" />
+    <Compile Include="DTO\Operation\RevenueTierSetting.cs" />
     <Compile Include="DTO\Report\PlayerGgrProductInfo.cs" />
     <Compile Include="DTO\Report\PlayerGgrReport.cs" />
     <Compile Include="DTO\Report\TransferReport.cs" />
@@ -776,6 +776,7 @@
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
+    <Compile Include="Utilities\Operation\DealInfoHelper.cs" />
     <Compile Include="Utilities\Operation\DealInfoValidator.cs" />
     <Compile Include="Utilities\Operation\RevenueShareValidator.cs" />
     <Compile Include="Utilities\RegexHelper.cs" />

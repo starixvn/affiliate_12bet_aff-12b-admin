@@ -1,7 +1,7 @@
 ﻿
 namespace Fanex.Affiliate.Admin.Core.DTO.Operation
 {
-    public class RevevueTierSetting
+    public class RevenueTierSetting
     {
         public int TierId { get; set; }
 

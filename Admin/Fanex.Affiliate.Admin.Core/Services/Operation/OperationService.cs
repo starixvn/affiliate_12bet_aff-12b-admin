@@ -1,9 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.Operation
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using Fanex.Affiliate.Admin.Core.Commands.Operation;
     using Fanex.Affiliate.Admin.Core.Criterias.Operation;
     using Fanex.Affiliate.Admin.Core.DTO;
@@ -59,8 +57,8 @@
                 GroupId = groudId
             };
 
-            var (dealSettingInfoList, revevueTierSettingList, revenueDeductionSettingList,  cpaTierSettingList, cpaGroupProductList)
-                = DynamicRepository.FetchMultiple<DealSettingDetail, RevevueTierSetting, RevenueDeductionSetting, CpaTierSetting, CpaGroupProduct>(criteria);
+            var (dealSettingInfoList, revenueTierSettingList, revenueDeductionSettingList, cpaTierSettingList, cpaGroupProductList)
+                = DynamicRepository.FetchMultiple<DealSettingDetail, RevenueTierSetting, RevenueDeductionSetting, CpaTierSetting, CpaGroupProduct>(criteria);
 
             var dealSettingInfo = dealSettingInfoList.FirstOrDefault();
             if (dealSettingInfo == null)
@@ -69,18 +67,18 @@
             }
 
             dealSettingInfo.CPATierSetting = cpaTierSettingList;
-            dealSettingInfo.ProductGroup = cpaGroupProductList; 
-            dealSettingInfo.RevevueTierSetting = revevueTierSettingList;
+            dealSettingInfo.ProductGroup = cpaGroupProductList;
+            dealSettingInfo.RevenueTierSetting = revenueTierSettingList;
 
             if (dealSettingInfo.DealType != Constants.DealType.CPA && revenueDeductionSettingList != null)
             {
-                dealSettingInfo.PlatformFeeSetting = revenueDeductionSettingList.Where(p => 
+                dealSettingInfo.PlatformFeeSetting = revenueDeductionSettingList.Where(p =>
                     p.DeductionId == Constants.Deduction.PlatformFeeId);
-                    
-                dealSettingInfo.DepositFeeSetting = revenueDeductionSettingList.FirstOrDefault(p => 
+
+                dealSettingInfo.DepositFeeSetting = revenueDeductionSettingList.FirstOrDefault(p =>
                     p.DeductionId == Constants.Deduction.DepositFeeId);
-                    
-                dealSettingInfo.WithdrawalFeeSetting = revenueDeductionSettingList.FirstOrDefault(p => 
+
+                dealSettingInfo.WithdrawalFeeSetting = revenueDeductionSettingList.FirstOrDefault(p =>
                     p.DeductionId == Constants.Deduction.WithdrawalFeeId);
             }
 
@@ -95,12 +93,13 @@
                 return ResultInfo.GenerateErr(message);
             }
 
-            if (param.DealType == Constants.DealType.CPA)
-            {
-                return AddCpaDeal(param);
-            }
+            var command = new InsertDealCommand();
+            AssignCommonDeal(command, param);
+            command.GroupTypeId = param.DealType;
 
-            return ResultInfo.GenerateErr("Only support add CPA Deal");
+            AssignDealByType(command, param, isAdd: true);
+
+            return ExecuteReturnResultInfo(command);
         }
 
         public ResultInfo UpdateDeal(DealSettingParam param)
@@ -111,13 +110,41 @@
                 return ResultInfo.GenerateErr(message);
             }
 
-            if (param.DealType == Constants.DealType.CPA)
-            {
-                return UpdateCpaDeal(param);
-            }
+            var command = new UpdateDealCommand();
+            AssignCommonDeal(command, param);
 
-            return ResultInfo.GenerateErr("Only support update CPA Deal");
+            AssignDealByType(command, param, isAdd: false);
+
+            return ExecuteReturnResultInfo(command);
         }
+
+        private static void AssignDealByType(dynamic command, DealSettingParam param, bool isAdd)
+        {
+            switch (param.DealType)
+            {
+                case Constants.DealType.CPA:
+                    AssignCpaDeal(command, param);
+                    if (isAdd)
+                    {
+                        command.IsInstant = param.IsInstant;
+                    }
+                    break;
+
+                case Constants.DealType.RevenueShare:
+                    AssignRevenueShareDeal(command, param);
+                    break;
+
+                default:
+                    AssignCpaDeal(command, param);
+                    AssignRevenueShareDeal(command, param);
+                    if (isAdd)
+                    {
+                        command.IsInstant = param.IsInstant;
+                    }
+                    break;
+            }
+        }
+
 
         public ResultInfo DeleteDeal(DeleteDealParam param)
         {
@@ -138,6 +165,7 @@
             {
                 return (false, "Deal information cannot be null.");
             }
+
             var validateResult = DealInfoValidator.ValidateGroupName(dealInfo.DealName);
             if (!validateResult.isValid)
             {
@@ -154,7 +182,7 @@
             }
             else
             {
-                validateResult = DealInfoValidator.ValidateHybirdDeal(dealInfo, _systemService.GetProductList());
+                validateResult = DealInfoValidator.ValidateHybridDeal(dealInfo, _systemService.GetProductList());
             }
 
             if (!validateResult.isValid)
@@ -168,83 +196,46 @@
             return (isValid, message);
         }
 
-        private ResultInfo AddCpaDeal(DealSettingParam param)
-        {
-            var command = new InsertDealCommand();
-            AssignDeal(command, param);
-            command.GroupTypeId = param.DealType;
-            command.IsInstant = param.IsInstant;
-
-            return ExecuteReturnResultInfo(command);
-        }
-
-        private ResultInfo UpdateCpaDeal(DealSettingParam param)
-        {
-            var command = new UpdateDealCommand();
-            AssignDeal(command, param);
-
-            return ExecuteReturnResultInfo(command);
-        }
-
-        private static void AssignDeal(BaseDealCommand command, DealSettingParam param)
+        private static void AssignCommonDeal(BaseDealCommand command, DealSettingParam param)
         {
             command.GroupId = param.GroupId;
             command.GroupName = param.DealName;
             command.SubCommRate = param.SubCommRate;
             command.Description = param.Description;
+            command.UserId = param.UserId;
+            command.Ip = param.Ip;
+        }
+
+        private static void AssignCpaDeal(BaseDealCommand command, DealSettingParam param)
+        {
             command.CountryCodes = param.CountryCodes;
             command.ActiveDays = param.ActiveDays;
             command.HoldingDays = param.HoldingDays;
             command.HoldingTickets = param.HoldingTickets;
             command.Quota = param.Quota;
-            command.CpaTierList = BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover);
-            command.CpaProductList = BuildCpaProductListXml(param.ProductGroup);
-            command.UserId = param.UserId;
-            command.Ip = param.Ip;
+            command.CpaTierList = DealInfoHelper.BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover);
+            command.CpaProductList = DealInfoHelper.BuildCpaProductListXml(param.ProductGroup);
         }
 
-        private static string BuildCpaTierListXml(IEnumerable<CpaTierSetting> cpaTierSettingParams, bool checkedMinFdm, bool checkedMinTotalDeposit, bool checkedMinTurnover)
+        private static void AssignRevenueShareDeal(BaseDealCommand command, DealSettingParam param)
         {
-            var result = new StringBuilder("<root>");
-            var groupProductId = 0;
-            var currentGroupProductId = 0;
-            var tierId = 0;
+            var (tierSettingXml, tierDeductionsXml) = GetRevenueShareSettingXmls(param);
 
-            foreach (var item in cpaTierSettingParams.OrderBy(g=>g.GroupProductId).ThenBy(g => g.TierId))
-            {
-                if(item.GroupProductId != currentGroupProductId)
-                {
-                    tierId = 0;   
-                    currentGroupProductId = item.GroupProductId;
-                    groupProductId = groupProductId + 1;
-                }
-
-                result.AppendFormat("<row groupproductid=\"{0}\" tierid=\"{1}\" {2} {3} {4} cpaamount=\"{5}\" />",
-                    groupProductId, 
-                    ++tierId, 
-                    checkedMinFdm ? $"minfdm=\"{item.MinFdm}\"": "", 
-                    checkedMinTotalDeposit ? $"mintotaldeposit=\"{item.MinTotalDeposit}\"" : "", 
-                    checkedMinTurnover ? $"minto=\"{item.MinTO}\"" : "", 
-                    item.CpaAmount);
-            }
-
-            result.Append("</root>");
-
-            return result.ToString();
+            command.QMTurnover = param.QmTurnover;
+            command.IsActivePlayerSum = param.IsActivePlayerSum;
+            command.TierList = tierSettingXml;
+            command.DeductionList = tierDeductionsXml;
         }
 
-        private static string BuildCpaProductListXml(IEnumerable<CpaGroupProduct> cpaProductGroups)
+        private static (string tierSettingXml, string tierDeductionsXml) GetRevenueShareSettingXmls(DealSettingParam param)
         {
-            var result = new StringBuilder("<root>");
-            var groupProductId = 0;
+            var tierSettingXml = DealInfoHelper.BuildRevenueShareTierSettingXml(param.RevenueTierSetting, param.PlatformFeeSetting);
 
-            foreach (var item in cpaProductGroups.OrderBy(p => p.GroupProductId))
-            {
-                result.AppendFormat("<row groupproductid=\"{0}\" productids=\"{1}\" />", ++groupProductId, item.ProductIds);
-            }
-            result.Append("</root>");
+            var tierDeductionSettingList = param.PlatformFeeSetting.Concat(new[] { param.DepositFeeSetting, param.WithdrawalFeeSetting });
 
-            return result.ToString();
+            var tierDeductionsXml = DealInfoHelper.BuildRevenueShareTierDeductionSettingXml(tierDeductionSettingList);
+
+            return (tierSettingXml, tierDeductionsXml);
         }
     }
 }

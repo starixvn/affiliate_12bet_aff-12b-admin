@@ -4,7 +4,7 @@
 
     public class DealSettingDetail : DealSettingInfo
     {
-        public IEnumerable<RevevueTierSetting> RevevueTierSetting { get; set; }
+        public IEnumerable<RevenueTierSetting> RevenueTierSetting { get; set; }
 
         public IEnumerable<RevenueDeductionSetting> PlatformFeeSetting { get; set; }
 

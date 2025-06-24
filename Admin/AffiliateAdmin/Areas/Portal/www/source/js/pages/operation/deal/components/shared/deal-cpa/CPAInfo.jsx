@@ -116,7 +116,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit, isSu
         <React.Fragment>
             <div>
                 <FormGroup row inline className='align-items-center'>
-                    <Label htmlFor="CountryCodes" sm={4}>Player Target Country
+                    <Label htmlFor="CountryCodes" sm={4}>Player Target Country{' '}
                         <span className="text-danger required" style={{ margin: 0 }}>*</span>
                     </Label>
                     <Col sm={3} className={`${dealInfo.CountryCodes ? '' : 'is-invalid'}`}>
@@ -136,7 +136,7 @@ export const CPAInfo = ({ targetCountryList, dealInfo, setDealInfo, isEdit, isSu
                 <FormGroup row className='align-items-center'>
                     <Label htmlFor="ActiveDays" sm={4} className="d-flex">
                         Activity Period
-                        <span className="text-danger required" style={{ margin: 0 }}>*</span>
+                        <span className="text-danger required" style={{ marginLeft: 3 }}>*</span>
                         <span title="The player must complete all required actions within this time period to qualify. For example: within 30 days from registration." className="ml-1 oi icon-info"></span>
 
                     </Label>

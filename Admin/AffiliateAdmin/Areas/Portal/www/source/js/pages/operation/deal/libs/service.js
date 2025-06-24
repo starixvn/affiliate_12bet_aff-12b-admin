@@ -102,7 +102,24 @@ export const validateHybridInfo = (dealInfo) => {
     const validateRevenueShareInfoResult = validateRevenueShareInfo(dealInfo);
 
     const isValid = validateCPAInfoResult.isValid && validateRevenueShareInfoResult.isValid;
-    const messageList = [...validateCPAInfoResult.messageList, ...validateRevenueShareInfoResult.messageList];
+
+    const cpaMessageList = validateCPAInfoResult.messageList;
+    const revenueShareMessageList = validateRevenueShareInfoResult.messageList;
+
+    const addMessage = (messageList, message) => {
+        messageList[0] = `<div style="margin-left: 25px; ${message === 'CPA:' && !validateRevenueShareInfoResult.isValid ? 'margin-bottom: -18px' : ''}">` + messageList[0];
+        messageList.unshift(message);
+        messageList[messageList.length - 1] = messageList[messageList.length - 1] + '</div>';
+    }
+
+    if (!validateCPAInfoResult.isValid) {
+        addMessage(cpaMessageList, 'CPA:');
+    }
+    if (!validateRevenueShareInfoResult.isValid) {
+        addMessage(revenueShareMessageList, 'Revenue Share:');
+    }
+
+    const messageList = [...cpaMessageList, ...revenueShareMessageList];
 
     return { isValid, messageList };
 }
@@ -111,7 +128,7 @@ export const validateGroupName = (groupName) => {
     let isValid = true;
     const messageList = [];
 
-    if (!groupName.trim()) {
+    if (!groupName?.trim()) {
         isValid = false;
         messageList.push(messages.requireGroupName);
     }

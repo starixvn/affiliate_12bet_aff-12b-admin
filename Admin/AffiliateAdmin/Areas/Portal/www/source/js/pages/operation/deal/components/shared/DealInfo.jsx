@@ -42,7 +42,7 @@ export const DealInfo = (props) => {
                 <Label htmlFor="DealName" sm={2}>Deal Name <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
                 <Col sm={8}>
                     <Input type="text"
-                        className={isSubmitted && !DealName ? 'has-error' : ''}
+                        className={isSubmitted && !DealName?.trim() ? 'has-error' : ''}
                         name="DealName"
                         id="DealName"
                         value={htmlDecode(DealName)}

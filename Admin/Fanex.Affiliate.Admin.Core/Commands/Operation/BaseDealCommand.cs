@@ -27,5 +27,9 @@
         public decimal QMTurnover { get; set; }
 
         public bool IsActivePlayerSum { get; set; }
+
+        public string TierList { get; set; }
+
+        public string DeductionList { get; set; }
     }
 }

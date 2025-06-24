@@ -58,20 +58,35 @@
             return (true, messageList);
         }
 
-        public static (bool isValid, List<string> messageList) ValidateHybirdDeal(DealSettingParam dealInfo, IEnumerable<Product> products)
+        public static (bool isValid, List<string> messageList) ValidateHybridDeal(DealSettingParam dealInfo, IEnumerable<Product> products)
         {
             var messageList = new List<string>();
 
             var validateCPAInfoResult = ValidateCPAInfo(dealInfo);
+            var validateRevenueShareInfoResult = RevenueShareValidator.ValidateRevenueShare(dealInfo, products);
+
+            void AddMessage(List<string> messageListInfo, string message)
+            {
+                var style = "margin-left: 25px;";
+                if (message == "CPA:" && validateRevenueShareInfoResult.isValid)
+                {
+                    style += " margin-bottom: -18px;";
+                }
+
+                messageListInfo[0] = $"<div style=\"{style}\">{messageListInfo[0]}";
+                messageListInfo.Insert(0, message);
+                messageListInfo[messageListInfo.Count - 1] += "</div>";
+            }
 
             if (!validateCPAInfoResult.isValid)
             {
+                AddMessage(validateCPAInfoResult.messageList, "CPA:");
                 messageList.AddRange(validateCPAInfoResult.messageList);
             }
 
-            var validateRevenueShareInfoResult = RevenueShareValidator.ValidateRevenueShare(dealInfo, products);
             if (!validateRevenueShareInfoResult.isValid)
             {
+                AddMessage(validateRevenueShareInfoResult.messageList, "Revenue Share:");
                 messageList.AddRange(validateRevenueShareInfoResult.messageList);
             }
 
@@ -233,7 +248,9 @@
                     if (seen.Contains(id))
                     {
                         messageList.Add($"Product Group {i + 1} - {messages["requireDuplicateProductsInGroups"]}");
+#pragma warning disable S1227 // break statements should not be used except for switch cases
                         break;
+#pragma warning restore S1227 // break statements should not be used except for switch cases
                     }
                     seen.Add(id);
                 }

@@ -136,7 +136,7 @@ export class PlatformFeeSetting extends PureComponent {
         const isOnlyOnePlatformFeeRow = productGroupsDeductionData.length === ONLY_ONE_ITEM;
 
         return (
-            <div className="platformfee-group">
+            <div className="tier-setting-group">
                 <div className="d-flex">
                     <p className="font-weight-bold mr-5">Product Groups</p>
                     <Form inline>

@@ -10,7 +10,7 @@ import { validateDealInfo } from '../../libs/service';
 import DealInfo from '../shared/DealInfo';
 import DealPanel from '../shared/DealPanel';
 import SubAffRateSetting from '../shared/sub-aff-rate';
-import { messages, DEAL_CPA } from '../../libs/constants';
+import { messages } from '../../libs/constants';
 
 export const AddDeal = (props) => {
 
@@ -24,7 +24,6 @@ export const AddDeal = (props) => {
             props.getDealDetail(dealId);
         } else {
             const newDealInfo = buildDefaultDealInfo();
-            newDealInfo.DealType = props.param.DealType || DEAL_CPA;
             const countryCodes = _getAllTargetCountryCodes();
 
             props.setDealInfo({ ...newDealInfo, CountryCodes: countryCodes });
@@ -76,8 +75,9 @@ export const AddDeal = (props) => {
 
     const _handleSaveParam = (dealInfo) => {
         const cloneDealInfo = { ...dealInfo };
-        const { IsActivePlayerHoldingPeriod, IsQuota } = cloneDealInfo;
+        const { IsActivePlayerHoldingPeriod, IsQuota, ActiveDays } = cloneDealInfo;
 
+        cloneDealInfo.ActiveDays = ActiveDays || 0;
         cloneDealInfo.GroupId = 0;
         if (!IsActivePlayerHoldingPeriod) {
             cloneDealInfo.HoldingTickets = 0;
@@ -114,7 +114,7 @@ const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param }) =
     return {
         dealInfo,
         targetCountryList,
-        pagingOption,   
+        pagingOption,
         param
     }
 }

@@ -11,6 +11,7 @@
             deductions: @Html.Raw(Json.Encode(Model.Deductions)),
             targetCountries: @Html.Raw(Json.Encode(Model.TargetCountries)),
             products: @Html.Raw(Json.Encode(Model.Products)),
+            defaultCurrency: '@(AppSetting.Instance.DefaultCurrency)',
         };
     </script>
 

@@ -160,7 +160,7 @@ export const validateTierSettingList = (tierSettingList) => {
     const tierSettingListByGroupProduct = handleGroupBy(tierSettingList, "GroupProductId");
 
     Object.values(tierSettingListByGroupProduct).forEach((tierSettings, i) => {
-        const groupProductName = `Product Groups ${i + 1}`;
+        const groupProductName = `Product Group ${i + 1}`;
 
         if (tierSettings.length === 0) {
             isValid = false;
