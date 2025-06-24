@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { commissionValueList, format, money, NEGATIVE_INFINITY_SYMBOL, regexAcceptNegativeAmountFormat, regexValidNegativeAmount } from '../../../../libs/revenue-share-constants';
+import { Input } from 'reactstrap';
+import { commissionValueList, format, money, firstMinNetWinValueList, NEGATIVE_INFINITY_SYMBOL, regexAcceptNegativeAmountFormat, regexValidNegativeAmount } from '../../../../libs/revenue-share-constants';
 
 export default class TierSettingItem extends React.PureComponent {
     constructor(props) {
@@ -45,17 +45,17 @@ export default class TierSettingItem extends React.PureComponent {
         return isValidAmount ? format(Number(minAmount)) : minAmount;
     }
 
-    handleCheckNegativeInfinitySymbol = (event) => {
-        const isChecked = event.target.checked;
+    handleChangeFirstMinNetWin = (event) => {
+        const isNegativeInfinity = event.target.value === NEGATIVE_INFINITY_SYMBOL;
         const { data, onChange } = this.props;
 
-        const newItem = isChecked ? { MinAmount: money.AllowedMinValue } : { MinAmount: 0 };
+        const newItem = isNegativeInfinity ? { MinAmount: money.AllowedMinValue } : { MinAmount: 0 };
 
         onChange && onChange(data.TierId, newItem);
     }
 
     render() {
-        const { index, data, handleClick, btnText, isShowNegativeInfinity } = this.props;
+        const { index, data, handleClick, btnText, isFirst } = this.props;
         const { TierId, MinAmount, MinQm, Commission } = data;
 
         const isValidAmount = regexValidNegativeAmount.test(MinAmount);
@@ -66,17 +66,15 @@ export default class TierSettingItem extends React.PureComponent {
                 <td className="text-center">{index}</td>
                 <td>
                     {
-                        isShowNegativeInfinity ? (
-                            <Form inline className={isValidAmount ? "group-input-infinity" : "group-input-infinity has-error"}>
-                                <FormGroup check className="mx-sm-1">
-                                    <Label check>
-                                        <Input type="checkbox" checked={isNegativeInfinity}
-                                            onChange={this.handleCheckNegativeInfinitySymbol} />{NEGATIVE_INFINITY_SYMBOL}
-                                    </Label>
-                                </FormGroup>
-                                <Input type="text" name="MinAmount" id={"MinAmount" + TierId}
-                                    disabled="true" value={isNegativeInfinity ? "" : this.handleGetMinAmount(MinAmount, isValidAmount)} onChange={this.handleChangeAmount} />
-                            </Form>
+                        isFirst ? (
+                            <select className="form-control" name="MinAmount" id={"MinAmount" + TierId}
+                                onChange={this.handleChangeFirstMinNetWin} value={isNegativeInfinity ? NEGATIVE_INFINITY_SYMBOL : this.handleGetMinAmount(MinAmount, isValidAmount)}>
+                                {
+                                    Object.keys(firstMinNetWinValueList).map(key => {
+                                        return (<option key={`MinAmount-${key}`} value={key}>{firstMinNetWinValueList[key]}</option>);
+                                    })
+                                }
+                            </select>
                         ) : (
                                 <Input className={isValidAmount ? "" : "has-error"} type="text" name="MinAmount" id={"MinAmount" + TierId}
                                     value={this.handleGetMinAmount(MinAmount, isValidAmount)} onChange={this.handleChangeAmount} />

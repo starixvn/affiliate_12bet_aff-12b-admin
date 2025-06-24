@@ -103,7 +103,7 @@ export class TierSetting extends PureComponent {
                                             index={i+1}
                                             handleClick={handleClick}
                                             btnText={isFirst ? '+' : '-'}
-                                            isShowNegativeInfinity={isFirst}
+                                            isFirst={isFirst}
                                             onChange={this.handleChangeInput} />);
                                     })
                                 }

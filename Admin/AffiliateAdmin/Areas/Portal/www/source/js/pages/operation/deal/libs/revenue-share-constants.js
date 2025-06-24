@@ -28,6 +28,11 @@ const _commValueList = generateCommissionValues();
 
 export const commissionValueList = _commValueList;
 
+export const firstMinNetWinValueList = {
+    "0": "0",
+    [NEGATIVE_INFINITY_SYMBOL]: NEGATIVE_INFINITY_SYMBOL
+}
+
 export const GGR = '| Gross Game Revenue |';
 
 export const MinNetWin = 'Min Net Win';
