@@ -11,6 +11,6 @@ export const menus = [
         label: 'Deal',
         href: relativePaths[menuKey.operation],
         component: deal,
-        renderClaim: new Claim(claimResource.RevenueGroup) // TODO: Need Review
+        renderClaim: new Claim(claimResource.Deal)
     }
 ]

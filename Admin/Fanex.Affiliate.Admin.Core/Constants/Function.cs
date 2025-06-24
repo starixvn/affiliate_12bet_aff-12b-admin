@@ -49,5 +49,7 @@
         public const string DisabledFunction = "[AffDisabledFunction]";
 
         public const string ShouldBeIgnoredForClient = "[ShouldBeIgnoredForClient]";
+
+        public const string Deal = "[Deal]";
     }
 }

@@ -8,7 +8,7 @@
     using Fanex.Affiliate.Admin.Core.Services.Operation;
     using Fanex.Affiliate.Admin.Core.ViewModels.Operation;
 
-    [FunctionAuthorize(FunctionName = Function.RevenueGroup)] // TODO: Need Review
+    [FunctionAuthorize(FunctionName = Function.Deal)]
     public class OperationController : ReadOnlySessionBaseController
     {
         private readonly IOperationService _operationService;
@@ -61,7 +61,7 @@
             return GenerateModelStateErrResult();
         }
 
-        [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Deal, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult AddDeal(DealSettingParam param)
@@ -78,7 +78,7 @@
             return GenerateJsonNetResult(_operationService.AddDeal(param));
         }
 
-        [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Deal, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateDeal(DealSettingParam param)
@@ -94,7 +94,7 @@
             return GenerateJsonNetResult(_operationService.UpdateDeal(param));
         }
 
-        [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Deal, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult DeleteDeal(DeleteDealParam param)

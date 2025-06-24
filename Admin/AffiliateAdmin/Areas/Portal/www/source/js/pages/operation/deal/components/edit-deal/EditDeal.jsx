@@ -83,23 +83,34 @@ export const EditDeal = (props) => {
             <SubAffRateSetting />
             <DealPanel dealType={props.dealInfo.DealType} />
             <FormGroup row inline className="align-items-center">
-                <Col sm={1}>
-                    <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
-                </Col>
-                <Col sm={1}>
-                    <Button type="button" className="my-2 btn btn-info" onClick={props.onClose}>CANCEL</Button>
-                </Col>
+                {
+                    props.isModifiable ? (
+                        <React.Fragment>
+                            <Col sm={1}>
+                                <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
+                            </Col>
+                            <Col sm={1}>
+                                <Button type="button" className="my-2 btn btn-info" onClick={props.onClose}>CANCEL</Button>
+                            </Col>
+                        </React.Fragment>
+                    ) : (
+                        <Col sm={1}>
+                            <Button type="button" className="my-2 btn-close" onClick={props.onClose}>CLOSE</Button>
+                        </Col>
+                    )
+                }
             </FormGroup>
         </React.Fragment>
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param, isModifiable }) => {
     return {
         dealInfo,
         targetCountryList,
         pagingOption,
-        param
+        param,
+        isModifiable
     }
 }
 

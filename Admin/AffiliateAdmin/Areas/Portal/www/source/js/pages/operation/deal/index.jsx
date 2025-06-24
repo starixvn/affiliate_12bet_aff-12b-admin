@@ -4,17 +4,19 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import AppContainer from './components/AppContainer';
 import { configureStore } from '../../../modules/store';
-import ClaimPrincipal from '../../../modules/claim';
+import ClaimPrincipal, { claimResource } from '../../../modules/claim';
 
 const App = () => {
     const { dealTypes, targetCountries, products, deductions } = window.initialState;
     const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+    const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Deal);
     const store = configureStore({
         claimsPrincipal,
         dealTypeList: dealTypes,
         targetCountryList: targetCountries,
         productList: products,
         deductionList: deductions,
+        isModifiable
     }, reducer);
 
     return (

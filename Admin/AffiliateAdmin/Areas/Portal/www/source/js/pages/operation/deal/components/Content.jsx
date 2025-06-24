@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Pager } from '@9softstudio/react-fixed-table-header';
 
 import { setParam, setDealInfo, setPagingOption, fetchData, setIsEdit, setIsSubmitted } from '../actions';
+import { claimResource } from '../../../../modules/claim';
 
 import GridData from './deal-list/GridData';
 import AddDeal from './add-deal/AddDeal';
@@ -50,6 +51,10 @@ export const Content = (props) => {
     }
 
     const _handleShowAddPopup = useCallback((dealId = null) => {
+        if (!props.isModifiable) {
+            return;
+        }
+
         props.setIsEdit(false);
         setPopupInfo({
             Content: <AddDeal onClose={_handleHidePopup} onSave={_handleSave} dealId={dealId} />,
@@ -61,7 +66,7 @@ export const Content = (props) => {
         props.setIsEdit(true);
         setPopupInfo({
             Content: <EditDeal onClose={_handleHidePopup} onSave={_handleSave} dealId={dealId} />,
-            Title: 'Edit Deal'
+            Title: props.isModifiable ? 'Edit Deal' : 'View Deal'
         });
     }, []);
 
@@ -74,19 +79,23 @@ export const Content = (props) => {
 
     return props.gridData && (
         <div className='data-content my-2'>
-            <div className="my-2">
-                <Button outline type="button" onClick={() => _handleShowAddPopup()}>
-                    Add Deal
-                    <span className="oi oi-plus ml-2"></span>
-                </Button>
-            </div>
+            {
+                props.isModifiable && (
+                    <div className="my-2">
+                        <Button outline type="button" onClick={() => _handleShowAddPopup()}>
+                            Add Deal
+                            <span className="oi oi-plus ml-2"></span>
+                        </Button>
+                    </div>
+                )
+            }
             <GridData onEdit={_handleShowEditPopup} onCopy={_handleShowAddPopup} />
             <Pager pageOption={props.pagingOption} onPaging={_handlePaging} />
 
             {
                 popupInfo.Content && <Modal className="deal-popup-container" isOpen={!!popupInfo.Content} toggle={_handleHidePopup} size="lg" backdrop='static' innerRef={modalRef}>
                     <ModalHeader toggle={_handleHidePopup}><span className="iconpopup"></span>{popupInfo.Title}</ModalHeader>
-                    <ModalBody>
+                    <ModalBody className={props.isModifiable ? '' : 'disabled-all'}>
                         <div className="modal-body-wrapper">
                             {popupInfo.Content}
                         </div>
@@ -97,11 +106,12 @@ export const Content = (props) => {
     );
 }
 
-const mapStateToProps = ({ param, pagingOption, gridData }) => {
+const mapStateToProps = ({ param, pagingOption, gridData, isModifiable }) => {
     return {
         param,
         pagingOption,
-        gridData
+        gridData,
+        isModifiable
     };
 };
 

@@ -44,6 +44,10 @@ export const GridData = (props) => {
     }
 
     const _handleDeleteDeal = (groupId, dealName) => {
+        if (!props.isModifiable) {
+            return;
+        }
+
         setShouldResetScrollPosition(false);
         setSelectedDealId(groupId);
         setMessage(`Are you sure you want to delete the deal <strong>${dealName}</strong>? This action cannot be undone.`);
@@ -90,11 +94,11 @@ export const GridData = (props) => {
                 <Cell title={item.UpdatedBy} className="text-center">{item.UpdatedBy}</Cell>
                 <Cell title={item.UpdatedDateStr} className="text-center">{item.UpdatedDateStr}</Cell>
                 <Cell title={item.Action} className="text-center">
-                    <button title="Copy" className="btn btn-link" onClick={() => props.onCopy(item.GroupId)}>
-                        <span className="oi icon-copy-link"></span>
+                    <button disabled={!props.isModifiable} title="Copy" className="btn btn-link" onClick={() => props.onCopy(item.GroupId)}>
+                        <span className={`oi ${props.isModifiable ? 'icon-copy-link' : 'icon-copy-text'}`}></span>
                     </button>
-                    <button disabled={item.NoAff > 0} title="Delete" className="btn btn-link" onClick={() => _handleDeleteDeal(item.GroupId, item.DealName)}>
-                        <span className={`oi ${item.NoAff > 0 ? 'oi-x text-secondary' : 'oi-x text-danger'}`}></span>
+                    <button disabled={!props.isModifiable || item.NoAff > 0} title="Delete" className="btn btn-link" onClick={() => _handleDeleteDeal(item.GroupId, item.DealName)}>
+                        <span className={`oi ${props.isModifiable ? (item.NoAff > 0 ? 'oi-x text-secondary' : 'oi-x text-danger') : 'oi-x text-secondary'}`}></span>
                     </button>
                 </Cell>
             </Row>
@@ -125,10 +129,11 @@ export const GridData = (props) => {
     );
 }
 
-const mapStateToProps = ({ gridData, param }) => {
+const mapStateToProps = ({ gridData, param, isModifiable }) => {
     return {
         gridData,
-        param
+        param,
+        isModifiable
     };
 };
 
