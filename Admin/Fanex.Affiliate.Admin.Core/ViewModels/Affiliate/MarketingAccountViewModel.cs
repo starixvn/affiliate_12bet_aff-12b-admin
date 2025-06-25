@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
+﻿using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+
+namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
 {
     using System.Collections.Generic;
     using DTO;
@@ -11,5 +13,7 @@
         public IEnumerable<TargetCountry> TargetCountryList { get; set; }
 
         public IEnumerable<SubMenu> SubMenuList { get; set; }
+
+        public IEnumerable<NormalCommGroup> DealList { get; set; }
     }
 }

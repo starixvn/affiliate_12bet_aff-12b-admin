@@ -1,4 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.Extensions;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Services.Affiliate;
+using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Newtonsoft.Json.Serialization;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
@@ -25,14 +29,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     {
         private readonly ISystemService _systemService;
         private readonly IUserAccountService _userAccountService;
+        private readonly IMarketingAccountService _marketingAccountService;
+        private readonly ICommGroupCommonService _commGroupCommonService;
+
+        private readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
 
         public MarketingAccountController(
             ISessionService sessionService,
             ISystemService systemService,
-            IUserAccountService userAccountService) : base(sessionService)
+            IUserAccountService userAccountService,
+            IMarketingAccountService marketingAccountService,
+            ICommGroupCommonService commService) : base(sessionService)
         {
             _systemService = systemService;
             _userAccountService = userAccountService;
+            _marketingAccountService = marketingAccountService;
+            _commGroupCommonService = commService;
         }
 
         public ActionResult Index()
@@ -49,6 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             var viewModel = new MarketingAccountViewModel
             {
                 LanguageList = _systemService.GetLanguageList(),
+                DealList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
                 TargetCountryList = _systemService.GetTargetCountryList(),
                 SubMenuList = subMenu
             };
@@ -59,14 +75,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [HttpPost]
         public ActionResult GetUserAccountInfo(int affId)
         {
-            var options = new JsonSerializerSettings
+            return new JsonNetResult(_jsonSettings)
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-
-            return new JsonNetResult(options)
-            {
-                Data = _userAccountService.GetUserAccountInfo(affId)
+                Data = _marketingAccountService.GetMarketingAccountInfo(affId)
             };
         }
 
@@ -74,63 +85,26 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
         [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public async Task<ActionResult> CreateMarketingAccount(UserAccountParam param)
+        public ActionResult CreateMarketingAccount(CreateMarketingAccountModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var validateAppContacts = AppContactHelper.ValidateAppContactList(param.ContactAppList);
-                if (!validateAppContacts.IsSuccessful)
-                {
-                    return GenerateJsonNetResult(validateAppContacts);
-                }
-
-                var userAccountParam = new UserAccountParam
-                {
-                    AffId = param.AffId,
-                    FirstName = Server.HtmlEncode(param.FirstName),
-                    LastName = Server.HtmlEncode(param.LastName),
-                    Gender = param.Gender,
-                    Email = Server.HtmlEncode(param.Email),
-                    Phone = Server.HtmlEncode(param.Phone),
-                    Address = Server.HtmlEncode(param.Address),
-                    City = Server.HtmlEncode(param.City),
-                    State = Server.HtmlEncode(param.State),
-                    Postcode = Server.HtmlEncode(param.Postcode),
-                    Country = Server.HtmlEncode(param.Country),
-                    SiteUrl = Server.HtmlEncode(param.SiteUrl),
-                    MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
-                    NoSiteDescription = Server.HtmlEncode(param.NoSiteDescription),
-                    PreferredPayment = Server.HtmlEncode(param.PreferredPayment),
-                    PlayerUsername = Server.HtmlEncode(param.PlayerUsername),
-                    NetellerAccountId = Server.HtmlEncode(param.NetellerAccountId),
-                    MoneybookersEmail = Server.HtmlEncode(param.MoneybookersEmail),
-                    BankName = Server.HtmlEncode(param.BankName),
-                    BankAddress = Server.HtmlEncode(param.BankAddress),
-                    BankCode = Server.HtmlEncode(param.BankCode),
-                    BankAccountName = Server.HtmlEncode(param.BankAccountName),
-                    BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
-                    MailOption = param.MailOption,
-                    HasWebSite = param.HasWebSite,
-                    HasHostAffPersonalInfoPermission = SessionService.HasHostPermission(Function.AffPersonalInfo),
-                };
-                AssignUserInfoParam(userAccountParam);
-
-                param.Player_CustId = -1; // Default value for Player_CustId
-                if (param.ContactAppList != null)
-                {
-                    param.ContactAppList = AppContactHelper.HandleContactApps(param.ContactAppList, "en-US");
-                    userAccountParam.ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
-                    {
-                        Name = Server.HtmlEncode(p.Name),
-                        Value = Server.HtmlEncode(p.Value),
-                        Order = p.Order
-                    }));
-                }
-
-                return GenerateJsonNetResult(await _userAccountService.UpdateUserAccountAsync(userAccountParam));
+                return GenerateModelStateErrResult(_jsonSettings);
             }
 
-            return GenerateModelStateErrResult();
+            model.ContactAppList = AppContactHelper.HandleContactApps(model.PreferredLanguage);
+            model.ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
+            {
+                Name = Server.HtmlEncode(p.Name),
+                Value = Server.HtmlEncode(p.Value),
+                Order = p.Order
+            }));
+            AssignUserInfoParam(model);
+
+            return new JsonNetResult(_jsonSettings)
+            {
+                Data = _marketingAccountService.CreateMarketingAccount(model)
+            };
         }
     }
 }

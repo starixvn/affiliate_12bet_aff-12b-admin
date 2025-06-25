@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             return ResultInfo.Success;
         }
 
-        public static IEnumerable<ContactApp> HandleContactApps(IEnumerable<ContactApp> contactApps, string languageCode)
+        public static IEnumerable<ContactApp> HandleContactApps(string languageCode, IEnumerable<ContactApp> contactApps = null)
         {
             var result = new ContactApp[3];
 

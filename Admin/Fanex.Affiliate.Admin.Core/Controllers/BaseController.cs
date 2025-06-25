@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using ONEbook.UM.AspNetMVC.Filters;
 using System.Linq;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -12,6 +13,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class BaseController : Controller
     {
         protected ActionResult GenerateModelStateErrResult() => new JsonNetResult
+        {
+            Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
+        };
+
+        protected ActionResult GenerateModelStateErrResult(JsonSerializerSettings options) => new JsonNetResult(options)
         {
             Data = ResultInfo.GenerateErr(string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)))
         };

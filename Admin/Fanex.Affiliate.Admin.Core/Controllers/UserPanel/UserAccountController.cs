@@ -83,65 +83,65 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             return new JsonNetResult();
         }
 
-        [FunctionAuthorize(FunctionName = Function.EditAffDetails, IsHost = true)]
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public async Task<ActionResult> UpdateUserAccount(UserAccountParam param)
-        {
-            if (ModelState.IsValid)
-            {
-                var validateAppContacts = AppContactHelper.ValidateAppContactList(param.ContactAppList);
-                if (!validateAppContacts.IsSuccessful)
-                {
-                    return GenerateJsonNetResult(validateAppContacts);
-                }
+        //[FunctionAuthorize(FunctionName = Function.EditAffDetails, IsHost = true)]
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //public async Task<ActionResult> UpdateUserAccount(UserAccountParam param)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var validateAppContacts = AppContactHelper.ValidateAppContactList(param.ContactAppList);
+        //        if (!validateAppContacts.IsSuccessful)
+        //        {
+        //            return GenerateJsonNetResult(validateAppContacts);
+        //        }
 
-                var userAccountParam = new UserAccountParam
-                {
-                    AffId = param.AffId,
-                    FirstName = Server.HtmlEncode(param.FirstName),
-                    LastName = Server.HtmlEncode(param.LastName),
-                    Gender = param.Gender,
-                    Email = Server.HtmlEncode(param.Email),
-                    Phone = Server.HtmlEncode(param.Phone),
-                    Address = Server.HtmlEncode(param.Address),
-                    City = Server.HtmlEncode(param.City),
-                    State = Server.HtmlEncode(param.State),
-                    Postcode = Server.HtmlEncode(param.Postcode),
-                    Country = Server.HtmlEncode(param.Country),
-                    SiteUrl = Server.HtmlEncode(param.SiteUrl),
-                    MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
-                    NoSiteDescription = Server.HtmlEncode(param.NoSiteDescription),
-                    PreferredPayment = Server.HtmlEncode(param.PreferredPayment),
-                    PlayerUsername = Server.HtmlEncode(param.PlayerUsername),
-                    NetellerAccountId = Server.HtmlEncode(param.NetellerAccountId),
-                    MoneybookersEmail = Server.HtmlEncode(param.MoneybookersEmail),
-                    BankName = Server.HtmlEncode(param.BankName),
-                    BankAddress = Server.HtmlEncode(param.BankAddress),
-                    BankCode = Server.HtmlEncode(param.BankCode),
-                    BankAccountName = Server.HtmlEncode(param.BankAccountName),
-                    BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
-                    MailOption = param.MailOption,
-                    HasWebSite = param.HasWebSite,
-                    HasHostAffPersonalInfoPermission = SessionService.HasHostPermission(Function.AffPersonalInfo),
-                };
-                AssignUserInfoParam(userAccountParam);
+        //        var userAccountParam = new UserAccountParam
+        //        {
+        //            AffId = param.AffId,
+        //            FirstName = Server.HtmlEncode(param.FirstName),
+        //            LastName = Server.HtmlEncode(param.LastName),
+        //            Gender = param.Gender,
+        //            Email = Server.HtmlEncode(param.Email),
+        //            Phone = Server.HtmlEncode(param.Phone),
+        //            Address = Server.HtmlEncode(param.Address),
+        //            City = Server.HtmlEncode(param.City),
+        //            State = Server.HtmlEncode(param.State),
+        //            Postcode = Server.HtmlEncode(param.Postcode),
+        //            Country = Server.HtmlEncode(param.Country),
+        //            SiteUrl = Server.HtmlEncode(param.SiteUrl),
+        //            MoreSiteUrls = Server.HtmlEncode(param.MoreSiteUrls),
+        //            NoSiteDescription = Server.HtmlEncode(param.NoSiteDescription),
+        //            PreferredPayment = Server.HtmlEncode(param.PreferredPayment),
+        //            PlayerUsername = Server.HtmlEncode(param.PlayerUsername),
+        //            NetellerAccountId = Server.HtmlEncode(param.NetellerAccountId),
+        //            MoneybookersEmail = Server.HtmlEncode(param.MoneybookersEmail),
+        //            BankName = Server.HtmlEncode(param.BankName),
+        //            BankAddress = Server.HtmlEncode(param.BankAddress),
+        //            BankCode = Server.HtmlEncode(param.BankCode),
+        //            BankAccountName = Server.HtmlEncode(param.BankAccountName),
+        //            BankAccountNumber = Server.HtmlEncode(param.BankAccountNumber),
+        //            MailOption = param.MailOption,
+        //            HasWebSite = param.HasWebSite,
+        //            HasHostAffPersonalInfoPermission = SessionService.HasHostPermission(Function.AffPersonalInfo),
+        //        };
+        //        AssignUserInfoParam(userAccountParam);
 
-                if (param.ContactAppList != null)
-                {
-                    userAccountParam.ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
-                    {
-                        Name = Server.HtmlEncode(p.Name),
-                        Value = Server.HtmlEncode(p.Value),
-                        Order = p.Order
-                    }));
-                }
+        //        if (param.ContactAppList != null)
+        //        {
+        //            userAccountParam.ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
+        //            {
+        //                Name = Server.HtmlEncode(p.Name),
+        //                Value = Server.HtmlEncode(p.Value),
+        //                Order = p.Order
+        //            }));
+        //        }
 
-                return GenerateJsonNetResult(await _userAccountService.UpdateUserAccountAsync(userAccountParam));
-            }
+        //        return GenerateJsonNetResult(await _userAccountService.UpdateUserAccountAsync(userAccountParam));
+        //    }
 
-            return GenerateModelStateErrResult();
-        }
+        //    return GenerateModelStateErrResult();
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryHeader]

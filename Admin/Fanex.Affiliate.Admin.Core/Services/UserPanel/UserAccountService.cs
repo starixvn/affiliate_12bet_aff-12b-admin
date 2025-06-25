@@ -81,12 +81,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             }
 
             var isPlayerAccountPreferred = PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
-            var isDifferentUsername = curUserAccInfo.PlayerUsername != param.PlayerUsername;
+            var isDifferentUsername = curUserAccInfo.PlayerUsername != param.Player_UserName;
 
             if (isPlayerAccountPreferred && isDifferentUsername)
             {
                 var memberSiteId = _appSetting.MemberSiteId;
-                var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
+                var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.Player_UserName, memberSiteId);
 
                 var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
                 if (!validationResult.IsSuccessful)
@@ -105,53 +105,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private async Task<ResultInfo> UpdateUserAccount(UserAccountParam param, UserAccount curUserAccInfo)
         {
-            var command = new UpdateUserAccountCommand
-            {
-                AffId = param.AffId,
-                UserId = param.UserId,
-                Ip = param.Ip,
-                FirstName = param.FirstName,
-                LastName = param.LastName,
-                Gender = param.Gender,
-                Email = param.Email,
-                Phone = param.Phone,
-                ContactApps = param.ContactApps,
-                Address = param.Address,
-                City = param.City,
-                State = param.State,
-                Postcode = param.Postcode,
-                Country = param.Country,
-                MailOption = param.MailOption,
-                SiteUrl = param.SiteUrl,
-                MoreSiteUrls = param.MoreSiteUrls,
-                NoSiteDescription = param.NoSiteDescription,
-                PreferredPayment = param.PreferredPayment,
-                PlayerUsername = param.PlayerUsername,
-                NetellerAccountId = param.NetellerAccountId,
-                MoneybookersEmail = param.MoneybookersEmail,
-                BankName = param.BankName,
-                BankAddress = param.BankAddress,
-                BankCode = param.BankCode,
-                BankAccountName = param.BankAccountName,
-                BankAccountNumber = param.BankAccountNumber,
-                Player_CustId = param.Player_CustId,
-                Player_Currency = param.Player_Currency,
-            };
-
-            if (!param.HasHostAffPersonalInfoPermission)
-            {
-                command.Email = curUserAccInfo.Email;
-                command.Phone = curUserAccInfo.Phone;
-            }
-
-            var result = await ExecuteReturnResultInfoAsync(command);
-
-            if (result.IsSuccessful)
-            {
-                await SendAffiliateInfoToLicensee(param.AffId, curUserAccInfo);
-            }
-
-            return result;
+            return null;
         }
 
         private async Task SendAffiliateInfoToLicensee(int affId, UserAccount curInfo)
@@ -188,41 +142,42 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 return ResultInfo.Success;
             }
 
-            if (param.HasWebSite && string.IsNullOrEmpty(param.SiteUrl))
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = "Website URL is required"
-                };
-            }
+            //if (param.HasWebSite && string.IsNullOrEmpty(param.SiteUrl))
+            //{
+            //    return new ResultInfo
+            //    {
+            //        Code = ErrCode.GeneralErrorCode,
+            //        Message = "Website URL is required"
+            //    };
+            //}
 
-            if (!param.HasWebSite && string.IsNullOrEmpty(param.NoSiteDescription))
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = $"Please describe how you would like to promote {_appSetting.SiteFriendlyName} if you don't have the URL is required"
-                };
-            }
+            //if (!param.HasWebSite && string.IsNullOrEmpty(param.NoSiteDescription))
+            //{
+            //    return new ResultInfo
+            //    {
+            //        Code = ErrCode.GeneralErrorCode,
+            //        Message = $"Please describe how you would like to promote {_appSetting.SiteFriendlyName} if you don't have the URL is required"
+            //    };
+            //}
 
             return new ResultInfo();
         }
 
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {
-            var isPlayerUsername = (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment))
-                                        && !string.IsNullOrEmpty(param.PlayerUsername);
-            var isMoneybookersEmail = PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.MoneybookersEmail);
-            var isBankTranfer = PaymentMethod.Wire.Equals(param.PreferredPayment) && IsValidWirePaymentMethod(param);
+            //var isPlayerUsername = (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment))
+            //                            && !string.IsNullOrEmpty(param.PlayerUsername);
+            //var isMoneybookersEmail = PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.MoneybookersEmail);
+            //var isBankTranfer = PaymentMethod.Wire.Equals(param.PreferredPayment) && IsValidWirePaymentMethod(param);
 
-            return isPlayerUsername || isMoneybookersEmail || isBankTranfer;
+            return true;
         }
 
         private static bool IsValidWirePaymentMethod(UserAccountParam param)
         {
-            return !(string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
-                string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber));
+            //return !(string.IsNullOrEmpty(param.BankName) || string.IsNullOrEmpty(param.BankAddress) ||
+                //    string.IsNullOrEmpty(param.BankAccountName) || string.IsNullOrEmpty(param.BankAccountNumber));
+                return true;
         }
     }
 }
