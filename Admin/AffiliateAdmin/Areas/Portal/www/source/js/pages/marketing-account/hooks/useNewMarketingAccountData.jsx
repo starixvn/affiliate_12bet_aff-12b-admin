@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { extractPersonalInfo, extractAdditionalInfo, extractPaymentInfo, extractWebsiteInfo } from '../libs/service';
 import { validationEmail } from '../libs/validation';
 import { defaultAdditionalInfo, defaultGeneralInfo, defaultPaymentInfo, defaultPersonalInfo, defaultWebsiteInfo } from '../libs/constants';
+import { getMarketingAccountInfo, createMarketingAccount } from '../actions';
 
 export default function useNewMarketingAccountData(
     affId, 
-    getMarketingAccountInfo, 
-    getPaymentMethod, 
+    toggleLoader
 ) {
     const [resultInfo, setResultInfo] = useState({
         isSuccess: true,
@@ -20,7 +19,6 @@ export default function useNewMarketingAccountData(
     const [paymentInfo, setPaymentInfo] = useState(defaultPaymentInfo);
     const [websiteInfo, setWebsiteInfo] = useState(defaultWebsiteInfo);
 
-    // Fetch marketing account data when affId changes
     useEffect(() => {
         if (!affId) {
             setGeneralInfo(prevState => ({
@@ -29,72 +27,43 @@ export default function useNewMarketingAccountData(
             }));
             return;
         }
+        toggleLoader(true);
+        _fetchData().finally(() => {
+            toggleLoader(false);
+        });
 
-        _fetchData();
     }, [affId]);
 
-    // Fetch payment methods on mount
-    useEffect(() => {
-        _fetchPaymentMethod();
-    }, []);
-
     const _fetchData = async () => {
-        /*const data = await getMarketingAccountInfo(affId);
+        const data = await getMarketingAccountInfo(affId);
 
         if (data) {
-            setPersonalInfo(extractPersonalInfo(data));
-            setAdditionalInfo(extractAdditionalInfo(data));
-            setPaymentInfo(extractPaymentInfo(data));
-            setWebsiteInfo(extractWebsiteInfo(data));
-
+            setPersonalInfo(prev => ({
+                ...prev,
+                ...data.personalInfo,
+            }));
+            setAdditionalInfo(prev => ({
+                ...prev,
+                ...data.additionalInfo,
+            }));
+            setPaymentInfo(prev => ({
+                ...prev,
+                ...data.paymentInfo,
+            }));
+            setWebsiteInfo(prev => ({
+                ...prev,
+                ...data.websiteInfo,
+            }));
             setGeneralInfo(prevState => ({
                 ...prevState,
+                ...data.generalInfo,
                 hasData: true,
-                targetCountryCode: 'BD',
-                language: 'en-US',
-                mailOption: data.MailOption,
-                hasHostAffPersonalInfoPermission: data.HasHostAffPersonalInfoPermission
+                groupId: data.generalInfo.groupId
             }));
-        }*/
-    };
-
-    const _fetchPaymentMethod = async () => {
-        /*const data = await getPaymentMethod();
-
-        if (data) {
-            setGeneralInfo(prevState => ({
-                ...prevState,
-                paymentMethods: data.PaymentMethods,
-                minimumPayment: data.MinAmount
-            }));
-        }*/
-    };
-
-    const _handleGetMoreSiteUrls = (moreSiteUrlsList) => {
-        return moreSiteUrlsList && moreSiteUrlsList.map(siteUrl => siteUrl.trim()).join(';');
-    };
-
-    const _handleTrimObject = (objectOriginal) => {
-        const newObject = Object.keys(objectOriginal).reduce((accumulator, key) => {
-            let item = objectOriginal[key];
-            if (typeof item === 'string') {
-                item = item.trim();
-            }
-            accumulator[key] = item;
-
-            return accumulator;
-        }, {});
-
-        if (newObject.hasWebSite) {
-            newObject.noSiteDescription = '';
-        } else {
-            newObject.siteUrl = '';
         }
-
-        return newObject;
     };
 
-    const _handleSubmit = (modalBodyRef) => {
+    const _handleSubmit = async (modalBodyRef) => {
         const rawData = {
             ...generalInfo,
             ...personalInfo,
@@ -102,33 +71,41 @@ export default function useNewMarketingAccountData(
             ...paymentInfo,
             ...websiteInfo,
         };
-
-        const marketingAccount = _handleTrimObject(rawData);
-        const moreSiteUrls = marketingAccount.hasWebSite ? _handleGetMoreSiteUrls(marketingAccount.moreSiteUrls) : '';
-        marketingAccount.moreSiteUrls = moreSiteUrls;
-        const validateEmail = validationEmail(marketingAccount.email, generalInfo.hasHostAffPersonalInfoPermission);
-
-        if (modalBodyRef?.current) {
-            modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        if (validateEmail.isValid) {
-            setResultInfo(prevState => ({
-                ...prevState,
-                isSuccess: true,
-                isShowMessage: true,
-                message: 'Successfully added a new marketing account'
-            }));
-            setTimeout(_handleCloseAlert, 3000);
-        } else {
+        const emailResult = validationEmail(rawData.email, true);
+        if(!emailResult.isValid) {
             setResultInfo(prevState => ({
                 ...prevState,
                 isSuccess: false,
                 isShowMessage: true,
-                message: validateEmail.message
+                message: emailResult.message
+            }));    
+            setTimeout(_handleCloseAlert, 3000);
+            return;
+        }
+        toggleLoader(true);
+        const result = await createMarketingAccount(rawData);
+        toggleLoader(false);
+        if (modalBodyRef?.current) {
+            modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        if (!result.isSuccessful) {
+            setResultInfo(prevState => ({
+                ...prevState,
+                isSuccess: false,
+                isShowMessage: true,
+                message: result.message
             }));
             setTimeout(_handleCloseAlert, 3000);
+            return;
         }
+
+        setResultInfo(prevState => ({
+            ...prevState,
+            isSuccess: true,
+            isShowMessage: true,
+            message: 'Successfully added a new marketing account'
+        }));
+        setTimeout(_handleCloseAlert, 3000);
     };
 
     const _handleCloseAlert = () => {
@@ -156,6 +133,5 @@ export default function useNewMarketingAccountData(
         
         // Functions
         handleSubmit: _handleSubmit,
-        handleCloseAlert: _handleCloseAlert
     };
 }

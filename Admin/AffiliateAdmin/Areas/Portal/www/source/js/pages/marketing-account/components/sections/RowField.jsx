@@ -17,7 +17,7 @@ export default function RowField({
 
     return (
         <FormGroup row> 
-            <Label xs={2} htmlFor={label} className="mr-sm-2" {...labelProps}>{label}</Label>
+            <Label xs={3} htmlFor={label} {...labelProps}>{label}</Label>
             <Col xs={4} {...colProps}>
                 {
                     colComponent ? colComponent : <Input
@@ -30,7 +30,7 @@ export default function RowField({
                         placeholder={placeholder}
                     >
                         {selectOptions && selectOptions.map((option) => (
-                            <option key={option.value} value={option.value}>{option.label}</option>
+                            <option key={option.value} value={option.value} selected={option.value === value}>{option.label}</option>
                         ))}
                     </Input>
                 }

@@ -20,7 +20,6 @@ export const Additional = (props) => {
         });
     }
 
-
     return (
         <fieldset>
             <legend><h6 className="font-weight-bold">Additional Information</h6></legend>
@@ -45,8 +44,8 @@ export const Additional = (props) => {
                 />
                 <RowField
                     label="Postcode/Zip"
-                    name="postcode"
-                    value={additionalInfo.postcode}
+                    name="postal"
+                    value={additionalInfo.postal}
                     onChange={onChange}
                 />
                 <RowField
@@ -62,7 +61,7 @@ export const Additional = (props) => {
                     value={additionalInfo.question}
                     onChange={onChange}
                     colComponent={
-                        <p className="form-control-plaintext">Your childhood nickname?</p>
+                        <p className="form-control-plaintext">{additionalInfo.question}</p>
                     }
                 />
                 <RowField
@@ -71,7 +70,7 @@ export const Additional = (props) => {
                     value={additionalInfo.answer}
                     onChange={onChange}
                     colComponent={
-                        <p className="form-control-plaintext">Answer</p>
+                        <p className="form-control-plaintext">{additionalInfo.answer}</p>
                     }
                 />
                 

@@ -9,6 +9,7 @@ import { defaultPersonalInfo, defaultAdditionalInfo, defaultGeneralInfo } from '
 
 const languageCodeList = createReducer({}, {});
 const targetCountryCodeList = createReducer({}, {});
+const dealOptionsList = createReducer({}, {});
 const canAddAffMktAccount = createReducer(false, {});
 const defaultAffId = '12BETAFF001';
 const defaultParams = {
@@ -43,5 +44,6 @@ export default combineReducers({
     targetCountryCodeList,
     canAddAffMktAccount,
     isShowAddAffMktAccountPopup,
-    affId
+    affId,
+    dealOptionsList
 });

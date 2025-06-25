@@ -24,48 +24,45 @@ export const headerText = {
     CreatedBy: 'Created by'
 }
 
+export const defaultGeneralInfo = {
+    affType: 0,
+    groupId: '',
+    preferredLanguage: '',
+    targetCountryName: '',
+    targetCountryCode: '',
+}
+
 export const defaultPersonalInfo = {
     firstName: '',
     lastName: '',
-    gender: 0,
+    gender: false,
     email: '',
-    phone: ''
+    phone: '',
+    contactApps: ''
 }
 
 export const defaultAdditionalInfo = {
     address: '',
     city: '',
     state: '',
-    postcode: '',
+    postal: '',
     country: '',
     question: '',
+    questionId: 0, 
     answer: ''
-}
-
-export const defaultGeneralInfo = {
-    hasData: false,
-    paymentMethods: [],
-    minimumPayment: 0,
-    targetCountryCode: '',
-    language: '',
-    mailOption: true,
-    hasHostAffPersonalInfoPermission: false
 }
 
 export const defaultWebsiteInfo = {
     siteUrl: '',
-    moreSiteUrls: [],
-    noSiteDescription: "",
+    moreSiteUrls: '',
+    noSiteDesc: "",
     hasWebSite: false
 }
 
 export const defaultPaymentInfo = {
     preferredPayment: '',
+    playerCustId: -1,
     playerUsername: '',
-    moneybookersEmail: '',
-    bankName: '',
-    bankAddress: '',
-    bankCode: '',
-    bankAccountName: '',
-    bankAccountNumber: '',
+    playerCurrency: '',
+    playerCurrencyId: 0
 }

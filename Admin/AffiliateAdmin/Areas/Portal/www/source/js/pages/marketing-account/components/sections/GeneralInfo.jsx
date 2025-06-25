@@ -1,15 +1,13 @@
 ﻿import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { FormGroup, Label, Input, Col } from 'reactstrap';
-
 import { setAffId } from '../../actions';
-import Field from '../../../../components/Field';
 import RowField from './RowField';
 
 export const GeneralInfo = (props) => {
     const { generalInfo, setGeneralInfo } = props;
-    console.log('generalInfo', generalInfo)
+
+    console.log('generalInfo', generalInfo);
     const onChange = (e) => {
         setGeneralInfo({
             ...generalInfo,
@@ -50,6 +48,13 @@ export const GeneralInfo = (props) => {
         }
     })
 
+    const dealOptions = Object.keys(props.dealOptionsList).map(key => {
+        return {
+            label: props.dealOptionsList[key],
+            value: key
+        }
+    })
+
     return (
         <div>
             <RowField
@@ -68,20 +73,28 @@ export const GeneralInfo = (props) => {
             />
             <RowField
                 label="Language"
-                name="language"
-                value={generalInfo.language}
+                name="preferredLanguage"
+                value={generalInfo.preferredLanguage}
                 onChange={onChange}
                 selectOptions={languageCodeList}
+            />
+            <RowField
+                label="Deal Name"
+                name="groupId"
+                value={generalInfo.groupId}
+                onChange={onChange}
+                selectOptions={dealOptions}
             />
         </div>
     );
 };
 
-const mapStateToProps = ({ affId, languageCodeList, targetCountryCodeList }) => {
+const mapStateToProps = ({ affId, languageCodeList, targetCountryCodeList, dealOptionsList }) => {
     return {
         affId,
         languageCodeList,
-        targetCountryCodeList
+        targetCountryCodeList,
+        dealOptionsList
     }
 }
 

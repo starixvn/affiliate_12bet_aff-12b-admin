@@ -12,130 +12,30 @@ import WebSite from './sections/WebSite';
 
 import { getMarketingAccountInfo, getPaymentMethod } from '../actions';
 import { toggleLoader } from './../../../actions/loaderAction';
-import { extractPersonalInfo, extractAdditionalInfo, extractPaymentInfo, extractWebsiteInfo } from '../libs/service';
-import { validationEmail } from '../libs/validation';
 import useNewMarketingAccountData from '../hooks/useNewMarketingAccountData';
 
 export const AddAffMktAccountPopup = (props) => {
-
     const modalBodyRef = useRef();
+    const {
+        resultInfo,
+        generalInfo, 
+        setGeneralInfo, 
+        personalInfo, 
+        setPersonalInfo, 
+        additionalInfo, 
+        setAdditionalInfo, 
+        paymentInfo, 
+        setPaymentInfo, 
+        websiteInfo, 
+        setWebsiteInfo,
+        handleSubmit,
+    } = useNewMarketingAccountData(props.affId, props.toggleLoader);
 
-    const [resultInfo, setResultInfo] = useState({
-        isSuccess: true,
-        isShowMessage: false,
-        message: ''
-    });
-
-    const { generalInfo, setGeneralInfo, personalInfo, setPersonalInfo, additionalInfo, setAdditionalInfo, paymentInfo, setPaymentInfo, websiteInfo, setWebsiteInfo } = useNewMarketingAccountData(props.affId);
-
-    // TODO: Need Review
-    useEffect(() => {
-        if (!props.affId) {
-            setCommonMarketingAccount(prevState => ({
-                ...prevState,
-                hasData: false,
-            }));
-            return;
-        }
-
-        props.toggleLoader(true);
-
-        _fetchData();
-
-        props.toggleLoader(false);
-    }, [props.affId]);
-
-    useEffect(() => {
-        _fetchPaymentMethod();
-    }, []);
-
-    const _fetchData = async () => {
-        const data = await props.getMarketingAccountInfo(props.affId);
-        if (data) {
-            setPersonalInfo(data.personalInfo);
-            setAdditionalInfo(data.additionalInfo);
-            setPaymentInfo(data.paymentInfo);
-            setWebsiteInfo(data.websiteInfo);
-            setGeneralInfo(prevState => ({
-                ...prevState,
-                ...data.generalInfo,
-                hasData: true
-            }));
-        }
+    if(!generalInfo.hasData) {
+        return null;
     }
 
-    const _fetchPaymentMethod = async () => {
-        
-    }
-
-    const _handleGetMoreSiteUrls = (moreSiteUrlsList) => {
-        return moreSiteUrlsList && moreSiteUrlsList.map(siteUrl => siteUrl.trim()).join(';');
-    }
-
-    const _handleTrimObject = (objectOriginal) => {
-        const newObject = Object.keys(objectOriginal).reduce((accumulator, key) => {
-            let item = objectOriginal[key];
-            if (typeof item === 'string') {
-                item = item.trim();
-            }
-            accumulator[key] = item;
-
-            return accumulator;
-        }, {});
-
-        if (newObject.hasWebSite) {
-            newObject.noSiteDescription = '';
-        } else {
-            newObject.siteUrl = '';
-        }
-
-        return newObject;
-    }
-
-    const _handleSubmit = () => {
-        const rawData = {
-            ...generalInfo,
-            ...personalInfo,
-            ...additionalInfo,
-            ...paymentInfo,
-            ...websiteInfo,
-        }
-
-        const marketingAccount = _handleTrimObject(rawData);
-        const moreSiteUrls = marketingAccount.hasWebSite ? _handleGetMoreSiteUrls(marketingAccount.moreSiteUrls) : '';
-        marketingAccount.moreSiteUrls = moreSiteUrls;
-        const validateEmail = validationEmail(marketingAccount.email, generalInfo.hasHostAffPersonalInfoPermission);
-
-        if (modalBodyRef.current) {
-            modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        if (validateEmail.isValid) {
-            setResultInfo(prevState => ({
-                ...prevState,
-                isSuccess: true,
-                isShowMessage: true,
-                message: 'Successfully added a new marketing account'
-            }));
-            setTimeout(_handleCloseAlert, 3000);
-        } else {
-            setResultInfo(prevState => ({
-                ...prevState,
-                isSuccess: false,
-                isShowMessage: true,
-                message: validateEmail.message
-            }));
-            setTimeout(_handleCloseAlert, 3000);
-        }
-    }
-
-    const _handleCloseAlert = () => {
-        setResultInfo(prevState => ({
-            ...prevState,
-            isShowMessage: false
-        }));
-    }
-
-    return generalInfo.hasData && (
+    return (
         <Modal isOpen={props.isOpen} toggle={props.toggle} size="lg" backdrop="static" innerRef={modalBodyRef}>
             <ModalHeader toggle={props.toggle}>
                 <span className="iconpopup"></span> Add a new Marketing account
@@ -148,7 +48,7 @@ export const AddAffMktAccountPopup = (props) => {
                     <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
                     <Personal personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} />
                     <Additional additionalInfo={additionalInfo} setAdditionalInfo={setAdditionalInfo}/>
-                    <EmailFormat mailOption={generalInfo.mailOption} setMailOption={setGeneralInfo} />
+                    <EmailFormat generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
                     <WebSite
                         websiteInfo={websiteInfo}
                         setWebsiteInfo={setWebsiteInfo}
@@ -160,7 +60,7 @@ export const AddAffMktAccountPopup = (props) => {
                         minimumPayment={generalInfo.minimumPayment}
                     />
                     <Form tag="div">
-                        <Button className="mb-3" color="success" onClick={_handleSubmit}>SAVE</Button>
+                        <Button className="mb-3" color="success" onClick={() => handleSubmit(modalBodyRef)}>SAVE</Button>
                     </Form>
                 </div>
             </ModalBody>

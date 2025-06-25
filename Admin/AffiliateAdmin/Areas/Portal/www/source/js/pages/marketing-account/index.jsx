@@ -8,17 +8,17 @@ import AppContainer from './components/AppContainer';
 import { convertArrayToObjectProps } from '../../modules/utils';
 import ClaimPrincipal, { claimResource } from '../../modules/claim';
 
-const { languageList, targetCountryList } = window.initialState;
-
+const { languageList, targetCountryList, dealList } = window.initialState;
 const languageCodeList = convertArrayToObjectProps(languageList, 'LanguageCode', 'LanguageName');
 const targetCountryCodeList = convertArrayToObjectProps(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
-
+const dealOptionsList = convertArrayToObjectProps(dealList, 'GroupId', 'GroupName');
 const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
 const canAddAffMktAccount = claimsPrincipal.hasWriteClaim(claimResource.CreateAffMktAccount);
 
 const store = configureStore({
     languageCodeList,
     targetCountryCodeList,
+    dealOptionsList,
     canAddAffMktAccount
 }, reducer);
 

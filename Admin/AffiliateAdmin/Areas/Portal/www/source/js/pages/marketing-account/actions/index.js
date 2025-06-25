@@ -2,7 +2,7 @@
 import { setPagingOption } from '../../../actions/pagingAction';
 import { post, get } from './../../../modules/ajaxRequest';
 import { getPaymentMethod } from './../../user-panel/user-account/actions/index';
-import { defaultAdditionalInfo, defaultPaymentInfo, defaultPersonalInfo, defaultWebsiteInfo } from '../libs/constants';
+import { defaultAdditionalInfo, defaultGeneralInfo, defaultPaymentInfo, defaultPersonalInfo, defaultWebsiteInfo } from '../libs/constants';
 
 export { setPagingOption, getPaymentMethod };
 
@@ -27,7 +27,6 @@ export const setAffId = (data) => {
     }
 }
 
-// TODO: Need Review
 export const fetchData = (param) => async () => {
     const response = await post('Portal/Affiliate/GetAffiliateList', param);
 
@@ -42,12 +41,10 @@ const getInfos = (original, data) => {
     return original;
 }
 
-// TODO: Need Review
-export const getMarketingAccountInfo = (affId) => async () => {
+export const getMarketingAccountInfo = async (affId) => {
     const url = 'Portal/MarketingAccount/GetUserAccountInfo';
 
     const response = await post(url, { affId });
-    console.log('response', response);
     const data = response && response.status === 200 ? response.data : null;
 
     return {
@@ -55,10 +52,14 @@ export const getMarketingAccountInfo = (affId) => async () => {
         additionalInfo: getInfos(defaultAdditionalInfo, data),
         paymentInfo: getInfos(defaultPaymentInfo, data),
         websiteInfo: getInfos(defaultWebsiteInfo, data),
-        generalInfo: {
-            hasData: true,
-            mailOption: data.mailOption,
-            hasHostAffPersonalInfoPermission: data.hasHostAffPersonalInfoPermission
-        }
+        generalInfo: getInfos(defaultGeneralInfo, data)
     }
-}
+}   
+
+export const createMarketingAccount = async (data) => {
+    const url = 'Portal/MarketingAccount/CreateMarketingAccount';
+
+    const response = await post(url, data);
+
+    return response && response.status === 200 ? response.data : null;
+}   
