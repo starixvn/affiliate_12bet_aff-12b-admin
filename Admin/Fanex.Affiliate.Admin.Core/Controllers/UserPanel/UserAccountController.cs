@@ -68,7 +68,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                         Question = Server.HtmlDecode(userAccountInfo.Question),
                         Answer = Server.HtmlDecode(userAccountInfo.Answer),
                         HasHostAffPersonalInfoPermission = SessionService.HasHostPermission(Function.AffPersonalInfo),
-                        MailOption = userAccountInfo.MailOption
+                        MailOption = userAccountInfo.MailOption,
+                        AffCategoryDesc = Server.HtmlDecode(userAccountInfo.AffCategoryDesc)
                     };
 
                     if (!string.IsNullOrEmpty(newUserAccountInfo.ContactApps))

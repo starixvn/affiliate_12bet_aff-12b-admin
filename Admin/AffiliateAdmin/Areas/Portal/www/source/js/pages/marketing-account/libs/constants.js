@@ -30,6 +30,10 @@ export const defaultGeneralInfo = {
     preferredLanguage: '',
     targetCountryName: '',
     targetCountryCode: '',
+    affId: 0,
+    affParentName: '',
+    affCode: '',
+    userName: '',
 }
 
 export const defaultPersonalInfo = {

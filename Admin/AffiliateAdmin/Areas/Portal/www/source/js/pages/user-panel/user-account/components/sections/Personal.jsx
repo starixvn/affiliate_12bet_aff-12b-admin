@@ -68,7 +68,8 @@ export class Personal extends PureComponent {
 
         return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('username', 'User Name', userAccountInfo.AffName, false, isRequired, this.handleChange)}
+                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true, isRequired, this.handleChange)}
+                {renderInputForm('affCategoryDesc', 'Account Type', userAccountInfo.AffCategoryDesc, true, isRequired, this.handleChange)}
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, isRequired, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, isRequired, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender, isRequired)}

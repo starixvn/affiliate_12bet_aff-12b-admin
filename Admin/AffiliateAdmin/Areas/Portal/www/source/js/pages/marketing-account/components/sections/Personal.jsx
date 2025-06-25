@@ -4,7 +4,7 @@ import RowField from './RowField';
 
 export const Personal = (props) => {
     const { personalInfo, setPersonalInfo } = props;
-    const isMale = !personalInfo.gender || personalInfo.gender === 'false';
+    const isMale = personalInfo.gender || personalInfo.gender === 'true';
     const onChange = (e) => {
         const { name, value } = e.target;
 
@@ -21,12 +21,12 @@ export const Personal = (props) => {
                 <Col sm={4} className="gender-group">
                     <FormGroup check className="d-inline-block mr-3">
                         <Label check>
-                            <Input name="gender" type="radio" checked={isMale} onChange={onChange} value={false}/>{' '} Male
+                            <Input name="gender" type="radio" checked={isMale} onChange={onChange} value={true}/>{' '} Male
                         </Label>
                     </FormGroup>
                     <FormGroup check className="d-inline-block">
                         <Label check>
-                            <Input name="gender" type="radio" checked={!isMale} onChange={onChange} value={true}/>{' '} Female
+                            <Input name="gender" type="radio" checked={!isMale} onChange={onChange} value={false}/>{' '} Female
                         </Label>
                     </FormGroup>
                 </Col>
