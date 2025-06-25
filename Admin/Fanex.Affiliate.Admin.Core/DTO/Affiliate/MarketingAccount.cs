@@ -6,6 +6,18 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
     public class MarketingAccount
     {
         // General Info
+        public int AffId { get; set; }
+
+        public string ParentAffName { get; set; }
+
+        public string AffCode { get; set; }
+
+        public string UserName { get; set; }
+
+        public string Status { get; set; }
+
+        public bool IsPrivate { get; set; }
+
         public int AffType { get; set; }
 
         public int GroupId { get; set; }
@@ -23,7 +35,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string LastName { get; set; }
 
-        public bool? Gender { get; set; }
+        public bool Gender { get; set; }
 
         public string Email { get; set; }
 

@@ -1,17 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Services.Affiliate;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
-using Newtonsoft.Json.Serialization;
-
-namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
+﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.Json;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
+    using System.Threading.Tasks;
     using Attributes;
     using Constants;
     using DTO;
@@ -23,6 +15,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     using Resources;
     using Services.Common;
     using ViewModels.Affiliate;
+    using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+    using Fanex.Affiliate.Admin.Core.Extensions;
+    using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+    using Fanex.Affiliate.Admin.Core.Services.Affiliate;
+    using Fanex.Affiliate.Admin.Core.Services.CommGroup;
+    using Newtonsoft.Json.Serialization;
 
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class MarketingAccountController : ReadOnlySessionBaseController
@@ -81,11 +79,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             };
         }
 
-        // TODO: Need Review
         [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult CreateMarketingAccount(CreateMarketingAccountModel model)
+        public async Task<ActionResult> CreateMarketingAccount(CreateMarketingAccountModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -103,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 
             return new JsonNetResult(_jsonSettings)
             {
-                Data = _marketingAccountService.CreateMarketingAccount(model)
+                Data = await _marketingAccountService.CreateMarketingAccountAsync(model)
             };
         }
     }

@@ -60,6 +60,9 @@
 
         public string TargetCountryCode { get; set; }
 
+        // Output
+        public string Username { get; set; }
+
         public override string GetSettingKey()
         {
             return "Aff_Admin_MarketingAccount_Affiliate_Ins";

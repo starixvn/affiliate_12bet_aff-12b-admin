@@ -1,6 +1,6 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using System.Threading.Tasks;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
@@ -8,6 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
     {
         MarketingAccount GetMarketingAccountInfo(int affId);
 
-        ResultInfo CreateMarketingAccount(CreateMarketingAccountModel model);
+        Task<ResultInfo> CreateMarketingAccountAsync(CreateMarketingAccountModel model);
     }
 }
