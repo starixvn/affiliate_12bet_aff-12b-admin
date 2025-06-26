@@ -52,7 +52,7 @@ export const DealInfo = (props) => {
                 </Col>
             </FormGroup>
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="DealType" sm={2}>Deal Types <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
+                <Label htmlFor="DealType" sm={2}>Deal Types</Label>
                 <Col sm={8}>
                     <Input type="select"
                         className="mr-sm-2 search-box"

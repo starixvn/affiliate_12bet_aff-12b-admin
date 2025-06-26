@@ -21,17 +21,24 @@ export const TierSettingItem = (props) => {
         setMessage('');
 
         if (confirmResult) {
-            const firstGroupProductId = dealInfo.ProductGroup[0].GroupProductId;
-
-            const newGroupProduct = dealInfo.ProductGroup.find(p => p.GroupProductId === firstGroupProductId);
-            const newTierSetting = dealInfo.CPATierSetting.filter(t => t.GroupProductId === firstGroupProductId);
-
-            props.setDealInfo({
-                ProductGroup: [newGroupProduct],
-                CPATierSetting: newTierSetting,
-                CheckedMinTurnover: false
-            });
+            _handleDisableMinTurnover();
         }
+    }
+
+    const _handleDisableMinTurnover = () => {
+        const firstGroupProductId = dealInfo.ProductGroup[0].GroupProductId;
+
+        const newGroupProduct = dealInfo.ProductGroup.find(p => p.GroupProductId === firstGroupProductId);
+        newGroupProduct.ProductIds = '';
+
+        const newTierSetting = dealInfo.CPATierSetting.filter(t => t.GroupProductId === firstGroupProductId);
+        const resetTierSetting = newTierSetting.map(t => ({ ...t, MinTO: 0 }));
+
+        props.setDealInfo({
+            ProductGroup: [newGroupProduct],
+            CPATierSetting: resetTierSetting,
+            CheckedMinTurnover: false
+        });
     }
 
     const _handleAddTier = () => {
@@ -109,8 +116,6 @@ export const TierSettingItem = (props) => {
             return;
         }
 
-        _handleResetTierSettingData('MinTO');
-
         const message = props.isEdit
             ? 'Unchecking for Min Turnover will remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br>Do you want to proceed?'
             : 'Unchecking for Min Turnover will enable Instant Payment and remove all data from additional Product Groups, if present. Only the first Product Group will be retained.</br>Do you want to proceed?';
@@ -138,9 +143,9 @@ export const TierSettingItem = (props) => {
                                     <Input type="checkbox" name="CheckedMinFdm" checked={dealInfo.CheckedMinFdm} onChange={_handleCheck} />
                                 </Label>
                             </FormGroup>
-                            Min FDM
+                            Min FTD
                         </Form>
-                        : 'Min FDM'
+                        : 'Min FTD'
                     }
                 </th>
                 <th style={{ width: '30%' }}>

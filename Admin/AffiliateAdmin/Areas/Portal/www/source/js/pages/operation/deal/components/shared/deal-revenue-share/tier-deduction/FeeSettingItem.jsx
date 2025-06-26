@@ -44,7 +44,7 @@ export default class FeeSettingItem extends React.PureComponent {
         const { label, data, basedValueName, isInitial, defaultCurrency } = this.props;
         const isDeductedPercent = data && data.IsDeductedPercent;
         const deductionAmount = isInitial && data && regexValidAmount.test(data.DeductedAmount) && formatDecimal(Number(data.DeductedAmount));
-
+        
         return (
             <FormGroup row className="align-items-center">
                 <Label sm={3} className="font-weight-bold">{label}</Label>
@@ -62,24 +62,24 @@ export default class FeeSettingItem extends React.PureComponent {
                             </Col>
                         </Fragment>
                     ) : (
-                            <Fragment>
-                                <Col sm={4}>
-                                    <Form inline>
-                                        <FormGroup className="label-group">
-                                            <Label className="label-amount">Amount</Label>
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <Input type="text" name="DeductedAmount" className="form-control"
-                                                value={deductionAmount || (data && data.DeductedAmount) || ''}
-                                                onChange={this.handleChangeAmount} style={{ width: 120 }} />
-                                        </FormGroup>
-                                    </Form>
-                                </Col>
-                                <Col sm={1}>
-                                    <p className="deducted-amount"><span className="text-danger required">*</span>{` (${defaultCurrency})`}</p>
-                                </Col>
-                            </Fragment>
-                        )
+                        <Fragment>
+                            <Col sm={4}>
+                                <Form inline>
+                                    <FormGroup className="label-group">
+                                        <Label className="label-amount">Amount</Label>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Input type="text" name="DeductedAmount" className={`form-control ${data && data.DeductedAmount ? '' : 'has-error'}`}
+                                            value={deductionAmount || (data && data.DeductedAmount) || ''}
+                                            onChange={this.handleChangeAmount} style={{ width: 120 }} />
+                                    </FormGroup>
+                                </Form>
+                            </Col>
+                            <Col sm={1}>
+                                <p className="deducted-amount"><span className="text-danger required">*</span>{` (${defaultCurrency})`}</p>
+                            </Col>
+                        </Fragment>
+                    )
                 }
                 <Col sm={3}>
                     <Form inline>
