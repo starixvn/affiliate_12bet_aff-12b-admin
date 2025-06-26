@@ -16,6 +16,7 @@ export const EditDeal = (props) => {
     const [isShowMessage, setIsShowMessage] = useState(false);
     const [message, setMessage] = useState([]);
     const [isSuccess, setIsSuccess] = useState(true);
+    const [isDisabledSubmitBtn, setIsDisabledSubmitBtn] = useState(false);
 
     useEffect(() => {
         if (props.dealId) {
@@ -40,6 +41,7 @@ export const EditDeal = (props) => {
             if (response && response.status === 200) {
                 const result = response.data;
                 if (result.IsSuccessful) {
+                    setIsDisabledSubmitBtn(true);
                     setTimeout(props.onClose, 3000);
                     const { pagingOption, param } = props;
                     const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize }, param);
@@ -87,10 +89,19 @@ export const EditDeal = (props) => {
                     props.isModifiable ? (
                         <React.Fragment>
                             <Col sm={1}>
-                                <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
+                                <Button type="button"
+                                    className="my-2 btn btn-success btn-save"
+                                    onClick={_handleSave}
+                                    disabled={isDisabledSubmitBtn}>
+                                    SAVE
+                                </Button>
                             </Col>
                             <Col sm={1}>
-                                <Button type="button" className="my-2 btn btn-info" onClick={props.onClose}>CANCEL</Button>
+                                <Button type="button"
+                                    className="my-2 btn btn-info"
+                                    onClick={props.onClose}>
+                                    CANCEL
+                                </Button>
                             </Col>
                         </React.Fragment>
                     ) : (

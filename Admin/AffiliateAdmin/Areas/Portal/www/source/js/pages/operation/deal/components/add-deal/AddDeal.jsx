@@ -18,6 +18,7 @@ export const AddDeal = (props) => {
     const [isShowMessage, setIsShowMessage] = useState(false);
     const [message, setMessage] = useState([]);
     const [isSuccess, setIsSuccess] = useState(true);
+    const [isDisabledSubmitBtn, setIsDisabledSubmitBtn] = useState(false);
 
     useEffect(() => {
         if (dealId) {
@@ -50,6 +51,7 @@ export const AddDeal = (props) => {
             if (response && response.status === 200) {
                 const result = response.data;
                 if (result.IsSuccessful) {
+                    setIsDisabledSubmitBtn(true);
                     setTimeout(props.onClose, 3000);
                     const { pagingOption, param } = props;
                     const gettingParam = {
@@ -100,10 +102,19 @@ export const AddDeal = (props) => {
             <DealPanel dealType={props.dealInfo.DealType} />
             <FormGroup row inline className="align-items-center">
                 <Col sm={1}>
-                    <Button type="button" className="my-2 btn btn-success btn-save" onClick={_handleSave}>SAVE</Button>
+                    <Button type="button"
+                        className="my-2 btn btn-success btn-save"
+                        onClick={_handleSave}
+                        disabled={isDisabledSubmitBtn}>
+                        SAVE
+                    </Button>
                 </Col>
                 <Col sm={1}>
-                    <Button type="button" className="my-2 btn btn-info btn-cancel" onClick={props.onClose}>CANCEL</Button>
+                    <Button type="button"
+                        className="my-2 btn btn-info btn-cancel"
+                        onClick={props.onClose}>
+                        CANCEL
+                    </Button>
                 </Col>
             </FormGroup>
         </React.Fragment>
