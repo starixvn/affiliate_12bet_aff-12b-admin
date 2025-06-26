@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
     public interface IMarketingAccountService
     {
-        MarketingAccount GetMarketingAccountInfo(int affId);
+        MarketingAccount GetMarketingAccountInfo(int affId, HttpServerUtilityBase server);
 
         Task<ResultInfo> CreateMarketingAccountAsync(CreateMarketingAccountModel model, HttpServerUtilityBase server);
     }

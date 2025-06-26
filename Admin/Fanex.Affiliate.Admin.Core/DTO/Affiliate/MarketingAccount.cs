@@ -62,7 +62,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string Answer { get; set; }
 
         // Site 
-
         public string SiteUrl { get; set; }
 
         public string MoreSiteUrls { get; set; }

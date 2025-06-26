@@ -1,4 +1,11 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
+﻿using System;
+using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
+
+namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -16,36 +23,156 @@
     public class MarketingAccountService : BaseDynamicService, IMarketingAccountService
     {
         private readonly IThirdPartyLicenseeService _thirdPartyLicenseeService;
+        private readonly IAffiliateService _affiliateService;
+        private readonly ILicenseeService _licenseeService;
+        private readonly IUserAccountService _userAccountService;
+        private readonly IAppSetting _appSetting;
+        
+        private const int TEST_CURRENCY_ID = 20;
 
-        public MarketingAccountService(IDynamicRepository dynamicRepository, IThirdPartyLicenseeService thirdPartyLicenseeService) : base(dynamicRepository)
+        public MarketingAccountService(
+            IDynamicRepository dynamicRepository, 
+            IThirdPartyLicenseeService thirdPartyLicenseeService,
+            IAffiliateService affiliateService,
+            ILicenseeService licenseeService,
+            IUserAccountService userAccountService,
+            IAppSetting appSetting
+        ) : base(dynamicRepository)
         {
             _thirdPartyLicenseeService = thirdPartyLicenseeService;
+            _affiliateService = affiliateService;
+            _licenseeService = licenseeService;
+            _userAccountService = userAccountService;
+            _appSetting = appSetting;
         }
 
-        public MarketingAccount GetMarketingAccountInfo(int affId)
+        public MarketingAccount GetMarketingAccountInfo(int affId, HttpServerUtilityBase server)
         {
             var criteria = new UserAccountCriteria { AffId = affId };
+            var account = GetTData<MarketingAccount>(criteria);
 
-            return GetTData<MarketingAccount>(criteria);
+            HtmlDecodeModelStringProperties(account, server, typeof(MarketingAccount));
+            
+            return account;
         }
 
         public async Task<ResultInfo> CreateMarketingAccountAsync(CreateMarketingAccountModel model, HttpServerUtilityBase server)
         {
-            AssignContactApps(model, server);
-            HtmlEncodeModelStringProperties(model, server);
+            try
+            {
+                PrepareModelForCreation(model, server);
 
-            var command = model.CreateCommand();
-            var result = await ExecuteReturnResultInfoAsync(command);
-            var affInfo = CreateAffInfo(model, command.Username);
+                var validationResult = ValidateCreateMarketingAccountModel(model);
+                if (!validationResult.IsSuccessful)
+                {
+                    return validationResult;
+                }
 
-            await _thirdPartyLicenseeService.SendAffiliateInfo(affInfo);
+                var command = model.CreateCommand();
+                await ConfigurePlayerAccountIfNeeded(model, command);
 
-            return result;
+                var result = await ExecuteCreateMarketingAccountCommand(command);
+                if (!result.IsSuccessful)
+                {
+                    return result;
+                }
+
+                await NotifyThirdPartyServices(model.AffId);
+                return result;
+            }
+            catch (InvalidOperationException ex)
+            {
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = ex.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = Lang.UpdateIsFailed
+                };
+            }
         }
 
-        private static void HtmlEncodeModelStringProperties(CreateMarketingAccountModel model, HttpServerUtilityBase server)
+        private void PrepareModelForCreation(CreateMarketingAccountModel model, HttpServerUtilityBase server)
         {
-            var stringProperties = typeof(CreateMarketingAccountModel)
+            AssignContactApps(model, server);
+            HtmlEncodeModelStringProperties(model, server, typeof(CreateMarketingAccountModel));
+        }
+
+        private ResultInfo ValidateCreateMarketingAccountModel(CreateMarketingAccountModel model)
+        {
+            if (!ValidatePaymentMethod(model.PreferredPayment))
+            {
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = Lang.UpdateIsFailed
+                };
+            }
+
+            return new ResultInfo(); // Default constructor should create a successful result
+        }
+
+        private async Task ConfigurePlayerAccountIfNeeded(CreateMarketingAccountModel model, dynamic command)
+        {
+            if (string.IsNullOrEmpty(command.Player_UserName))
+            {
+                command.Player_CustId = null;
+                command.Player_Currency = null;
+                return;
+            }
+
+            var currentAffInfo = _userAccountService.GetUserAccountInfo(model.AffId);
+            var isPlayerAccountPreferred = PaymentMethod.PlayerAccount.Equals(model.PreferredPayment);
+            var isDifferentUsername = currentAffInfo.PlayerUsername != model.PlayerUsername;
+
+            if (isPlayerAccountPreferred && isDifferentUsername)
+            {
+                await SetPlayerAccountDetails(model, command);
+            }
+        }
+
+        private async Task SetPlayerAccountDetails(CreateMarketingAccountModel model, dynamic command)
+        {
+            var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(model.PlayerUsername, _appSetting.MemberSiteId);
+            var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
+            
+            if (!validationResult.IsSuccessful)
+            {
+                throw new InvalidOperationException($"Customer validation failed: {validationResult.Message}");
+            }
+
+            command.Player_CustId = memberSiteCust.CustId;
+            command.Player_Currency = DetermineCurrencyId(memberSiteCust);
+        }
+
+        private int DetermineCurrencyId(dynamic memberSiteCust)
+        {
+            return memberSiteCust.IsTest.GetValueOrDefault()
+                ? TEST_CURRENCY_ID
+                : memberSiteCust.CurrencyId.GetValueOrDefault();
+        }
+
+        private async Task<ResultInfo> ExecuteCreateMarketingAccountCommand(dynamic command)
+        {
+            return await ExecuteReturnResultInfoAsync(command);
+        }
+
+        private async Task NotifyThirdPartyServices(int affId)
+        {
+            var affInfo = _affiliateService.GetAffiliateBasicInfo(affId);
+            affInfo.PlayerCustId = -1;
+            await _thirdPartyLicenseeService.SendAffiliateInfo(affInfo);
+        }
+
+        private static void HtmlEncodeModelStringProperties(object model, HttpServerUtilityBase server, Type type)
+        {
+            var stringProperties = type
                 .GetProperties()
                 .Where(p => p.PropertyType == typeof(string) && p.CanWrite);
 
@@ -59,40 +186,37 @@
             }
         }
 
+        private static void HtmlDecodeModelStringProperties(object model, HttpServerUtilityBase server, Type type)
+        {
+            var stringProperties = type
+                .GetProperties()
+                .Where(p => p.PropertyType == typeof(string) && p.CanWrite);
+
+            foreach (var property in stringProperties)
+            {
+                var value = property.GetValue(model) as string;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    property.SetValue(model, server.HtmlDecode(value));
+                }
+            }
+        }
+
         private static void AssignContactApps(CreateMarketingAccountModel model, HttpServerUtilityBase server)
         {
             var contactApps = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(model.ContactApps);
             model.ContactAppList = AppContactHelper.HandleContactApps(model.PreferredLanguage, contactApps);
             model.ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
             {
-                Name = server.HtmlEncode(p.Name),
-                Value = server.HtmlEncode(p.Value),
+                Name = server.HtmlDecode(p.Name),
+                Value = server.HtmlDecode(p.Value),
                 Order = p.Order
-
             }));
         }
 
-        private static AffiliateBasicInfo CreateAffInfo(CreateMarketingAccountModel model, string userName)
+        private static bool ValidatePaymentMethod(string preferredPayment)
         {
-            return new AffiliateBasicInfo
-            {
-                AffId = model.AffId,
-                AffCode = model.AffCode,
-                ParentAffName = model.ParentAffName,
-                GroupId = model.GroupId,
-                AffName = model.UserName,
-                AffType = model.AffType,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Phone = model.Phone,
-                Email = model.Email,
-                Status = model.Status,
-                MailOption = model.MailOption ?? false,
-                PreferredLanguage = model.PreferredLanguage,
-                PlayerUsername = userName,
-                PlayerCustId = model.PlayerCustId,
-                IsUsingPrivateCommGroup = model.IsPrivate
-            };
+            return PaymentMethod.PlayerAccount.Equals(preferredPayment);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Fanex.Affiliate.Admin.Core.Commands.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels;
@@ -60,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string Answer { get; set; }
 
         // Site 
-
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string SiteUrl { get; set; }
 
         public string MoreSiteUrls { get; set; }
@@ -72,11 +73,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string PlayerUsername { get; set; }
 
-        public int PlayerCustId { get; set; }
+        public int? PlayerCustId { get; set; }
 
-        public string PlayerCurrency { get; set; }
-
-        public int PlayerCurrencyId { get; set; }
+        public int? PlayerCurrencyId { get; set; }
 
         public bool? MailOption { get; set; }
 
@@ -105,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
                 Postal = Postal,
                 Country = Country,
                 
-                SiteUrl = string.IsNullOrEmpty(SiteUrl) ? "" : SiteUrl,
+                SiteUrl = SiteUrl,
                 MoreSiteUrls = MoreSiteUrls,
                 NoSiteDesc = NoSiteDesc,
                 
@@ -114,7 +113,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
                 Answer = string.Empty,
 
                 PreferredPayment = PreferredPayment,
-                Player_CustId = -1,
+                Player_CustId = PlayerCustId,
                 Player_UserName = PlayerUsername,
                 Player_Currency = PlayerCurrencyId,
 

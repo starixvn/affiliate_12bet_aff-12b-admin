@@ -49,11 +49,11 @@
         // Payment Info
         public string PreferredPayment { get; set; }
 
-        public int Player_CustId { get; set; } = 1;
+        public int? Player_CustId { get; set; }
 
         public string Player_UserName { get; set; }
 
-        public int Player_Currency { get; set; }
+        public int? Player_Currency { get; set; }
 
         // Others
         public string Language { get; set; }

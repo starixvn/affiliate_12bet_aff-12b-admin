@@ -67,7 +67,7 @@
         {
             return new JsonNetResult(_jsonSettings)
             {
-                Data = _marketingAccountService.GetMarketingAccountInfo(affId)
+                Data = _marketingAccountService.GetMarketingAccountInfo(affId, Server)
             };
         }
 
