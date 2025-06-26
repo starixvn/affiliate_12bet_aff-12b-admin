@@ -2,6 +2,7 @@
 
 @{
     Html.RenderPartial("~/Areas/Portal/Views/Affiliate/_AffiliateSubMenu.cshtml", Model.SubMenuList);
+    var time = DateTime.Now.Ticks;
 }
 
 @section pagecss{
@@ -12,8 +13,9 @@
     <script type="text/javascript">
         window.initialState = {
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
-            targetCountryList: @Html.Raw(Json.Encode(Model.TargetCountryList))
+            targetCountryList: @Html.Raw(Json.Encode(Model.TargetCountryList)),
+            dealList: @Html.Raw(Json.Encode(Model.DealList)),
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/affiliate/marketing-account.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/affiliate/marketing-account.js?v="+time)"></script>
 }

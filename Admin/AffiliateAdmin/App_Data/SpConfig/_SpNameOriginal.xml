@@ -26,6 +26,7 @@
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="" />
     <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="" />
     <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="" />
+    <Setting Key="Aff_Admin_MarketingAccount_Affiliate_Ins" SpName="Aff_Admin_MarketingAccount_Affiliate_Ins" DbName="" />
   </Function>
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="" />
