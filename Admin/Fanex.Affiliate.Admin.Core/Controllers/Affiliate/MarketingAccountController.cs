@@ -1,16 +1,11 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
     using System.Threading.Tasks;
     using Attributes;
     using Constants;
     using DTO;
-    using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-    using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-    using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-    using Fanex.Affiliate.Admin.Core.Utilities;
     using Newtonsoft.Json;
     using Resources;
     using Services.Common;
@@ -26,7 +21,6 @@
     public class MarketingAccountController : ReadOnlySessionBaseController
     {
         private readonly ISystemService _systemService;
-        private readonly IUserAccountService _userAccountService;
         private readonly IMarketingAccountService _marketingAccountService;
         private readonly ICommGroupCommonService _commGroupCommonService;
 
@@ -38,12 +32,10 @@
         public MarketingAccountController(
             ISessionService sessionService,
             ISystemService systemService,
-            IUserAccountService userAccountService,
             IMarketingAccountService marketingAccountService,
             ICommGroupCommonService commService) : base(sessionService)
         {
             _systemService = systemService;
-            _userAccountService = userAccountService;
             _marketingAccountService = marketingAccountService;
             _commGroupCommonService = commService;
         }
@@ -89,19 +81,13 @@
                 return GenerateModelStateErrResult(_jsonSettings);
             }
 
-            model.ContactAppList = AppContactHelper.HandleContactApps(model.PreferredLanguage);
-            model.ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
-            {
-                Name = Server.HtmlEncode(p.Name),
-                Value = Server.HtmlEncode(p.Value),
-                Order = p.Order
-            }));
             AssignUserInfoParam(model);
 
             return new JsonNetResult(_jsonSettings)
             {
-                Data = await _marketingAccountService.CreateMarketingAccountAsync(model)
+                Data = await _marketingAccountService.CreateMarketingAccountAsync(model, Server)
             };
         }
+
     }
 }

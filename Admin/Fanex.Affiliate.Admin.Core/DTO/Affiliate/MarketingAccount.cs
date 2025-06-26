@@ -80,7 +80,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string PlayerCurrencyId { get; set; }
 
-
         public bool? MailOption { get; set; }
 
         public bool HasHostAffPersonalInfoPermission { get; set; }

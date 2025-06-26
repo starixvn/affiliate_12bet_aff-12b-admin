@@ -3,133 +3,88 @@ using Fanex.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Commands.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class UserAccountParam : AffiliateBasicInfoParam
     {
-        public int GroupId { get; set; }
-
-        public int AffType { get; set; }
-
-        // Contact Info
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         public string FirstName { get; set; }
 
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         public string LastName { get; set; }
 
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         public bool Gender { get; set; }
 
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         public string Phone { get; set; }
 
         public string ContactApps { get; set; }
 
-        // Mailing Info
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         public string Address { get; set; }
 
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         public string City { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string State { get; set; }
 
-        [ConditionalRequired("IsMarketingAccount")]
-        public string Postal { get; set; }
+        [Required]
+        public string Postcode { get; set; }
 
-        [ConditionalRequired("IsMarketingAccount")]
+        [Required]
         public string Country { get; set; }
 
-        // Website Info
+
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string SiteUrl { get; set; }
+
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string MoreSiteUrls { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string NoSiteDesc { get; set; }
+        public string NoSiteDescription { get; set; }
 
-        // Preference
-        [ConditionalRequired("IsMarketingAccount")]
-        public string PreferredLanguage { get; set; }
-
-        [ConditionalRequired("IsMarketingAccount")]
-
-        public int QuestionId { get; set; }
-
-        [ConditionalRequired("IsMarketingAccount")]
-        public string Answer { get; set; }
-
-        // Payment Info
+        [Required]
         public string PreferredPayment { get; set; }
 
-        public int Player_CustId { get; set; } = 1;
+        [SpParam(Ignored = true)]
+        public string PlayerUsername { get; set; }
 
-        public string Player_UserName { get; set; }
+        public string NetellerAccountId { get; set; }
 
-        public int? Player_Currency { get; set; }
+        public string MoneybookersEmail { get; set; }
 
-        // Others
-        public string IP { get; set; }
+        public string BankName { get; set; }
 
-        public string Language { get; set; }
+        public string BankAddress { get; set; }
 
-        // Target Country code
-        public string TargetCountryCode { get; set; }
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string BankCode { get; set; }
+
+        public string BankAccountName { get; set; }
+
+        public string BankAccountNumber { get; set; }
+
+        public bool MailOption { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
 
-        public bool IsMarketingAccount => false;
+        public bool HasWebSite { get; set; }
 
-        public CreateMarketingAccountCommand CreateCommand()
-        {
-            return new CreateMarketingAccountCommand
-            {
-                UserId = UserId,
-                GroupId = GroupId,
-                Ip = IP,
-                Language = Language,
-                TargetCountryCode = TargetCountryCode,
+        public int? Player_CustId { get; set; }
 
-                // Contact Info
-                FirstName = FirstName,
-                LastName = LastName,
-                Gender = Gender,
-                Email = Email,
-                Phone = Phone,
-                ContactApps = ContactApps,
+        public int? Player_Currency { get; set; }
 
-                // Mailing Info
-                Address = Address,
-                City = City,
-                State = State,
-                Postal = Postal,
-                Country = Country,
+        [SpParam(Ignored = true)]
+        public bool HasHostAffPersonalInfoPermission { get; set; }
 
-                // Website Info
-                SiteUrl = SiteUrl,
-                MoreSiteUrls = MoreSiteUrls,
-                NoSiteDesc = NoSiteDesc,
-
-                // Preference
-                PreferredLanguage = PreferredLanguage,
-                QuestionId = QuestionId,
-                Answer = Answer,
-
-                // Payment Info
-                PreferredPayment = PreferredPayment,
-                Player_CustId = Player_CustId,
-                Player_UserName = Player_UserName,
-            };
-        }
     }
 }

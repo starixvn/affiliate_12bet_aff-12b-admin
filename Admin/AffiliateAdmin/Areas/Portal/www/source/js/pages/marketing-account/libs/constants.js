@@ -34,6 +34,7 @@ export const defaultGeneralInfo = {
     affParentName: '',
     affCode: '',
     userName: '',
+    mailOption: false
 }
 
 export const defaultPersonalInfo = {
