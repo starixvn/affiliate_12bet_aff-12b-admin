@@ -1,7 +1,7 @@
 ﻿import React, { Suspense, useState, useEffect } from 'react';
-import { DEAL_CPA, DEAL_REVENUE_SHARE, dealPanelKey, dealPanelList } from '../../libs/deal-panels';
+import { DEAL_CPA, DEAL_REVENUE_SHARE, DEAL_HYBRID, dealPanelKey, dealPanelList } from '../../libs/deal-panels';
 
-export const DealPanel = ({ dealType }) => {
+export const DealPanel = ({ dealType, activePanelWhenHasInvalid }) => {
     const [activePanel, setActivePanel] = useState(dealType == DEAL_REVENUE_SHARE ? dealPanelKey.revenueShare : dealPanelKey.cpa);
     const [dealPanels, setDealPanels] = useState(dealPanelList.filter(m => m.supportedDeals.includes(dealType)));
 
@@ -15,6 +15,12 @@ export const DealPanel = ({ dealType }) => {
         setDealPanels(dealPanelList.filter(m => m.supportedDeals.includes(dealType)));
 
     }, [dealType]);
+
+    useEffect(() => {
+        if (dealType === DEAL_HYBRID && activePanelWhenHasInvalid && activePanelWhenHasInvalid.panel !== activePanel) {
+            setActivePanel(activePanelWhenHasInvalid.panel);
+        }
+    }, [activePanelWhenHasInvalid]);
 
     const selectedPanel = dealPanels.find(p => p.key === activePanel);
     const PanelComponent = !selectedPanel ? null : selectedPanel.component;

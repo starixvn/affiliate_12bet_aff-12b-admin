@@ -1,4 +1,16 @@
-import { INFINITY_MONEY, INFINITY_NUMBER, messages, mappingFields, cpaTierSettingDefault, productGroupDefault, DEAL_CPA, DEAL_REVENUE_SHARE, DEAL_HYBRID } from './constants';
+import { 
+    INFINITY_MONEY, 
+    INFINITY_NUMBER, 
+    messages, 
+    mappingFields, 
+    cpaTierSettingDefault, 
+    productGroupDefault, 
+    DEAL_CPA, 
+    DEAL_REVENUE_SHARE, 
+    DEAL_HYBRID_CPA_SECTION,
+    DEAL_HYBRID_REVENUE_SHARE_SECTION
+} from './constants';
+
 import { validateRevenueShareInfo } from './revenue-share-service';
 
 const commonDealInfo = {
@@ -107,16 +119,16 @@ export const validateHybridInfo = (dealInfo) => {
     const revenueShareMessageList = validateRevenueShareInfoResult.messageList;
 
     const addMessage = (messageList, message) => {
-        messageList[0] = `<div style="margin-left: 25px; ${message === 'CPA:' && !validateRevenueShareInfoResult.isValid ? 'margin-bottom: -18px' : ''}">` + messageList[0];
+        messageList[0] = `<div style="margin-left: 25px; ${message === DEAL_HYBRID_CPA_SECTION && !validateRevenueShareInfoResult.isValid ? 'margin-bottom: -18px' : ''}">` + messageList[0];
         messageList.unshift(message);
         messageList[messageList.length - 1] = messageList[messageList.length - 1] + '</div>';
     }
 
     if (!validateCPAInfoResult.isValid) {
-        addMessage(cpaMessageList, 'CPA:');
+        addMessage(cpaMessageList, DEAL_HYBRID_CPA_SECTION);
     }
     if (!validateRevenueShareInfoResult.isValid) {
-        addMessage(revenueShareMessageList, 'Revenue Share:');
+        addMessage(revenueShareMessageList, DEAL_HYBRID_REVENUE_SHARE_SECTION);
     }
 
     const messageList = [...cpaMessageList, ...revenueShareMessageList];

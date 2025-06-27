@@ -7,6 +7,8 @@ export const INFINITY_NUMBER = 30000;
 export const DEAL_REVENUE_SHARE = 1;
 export const DEAL_CPA = 3;
 export const DEAL_HYBRID = 4;
+export const DEAL_HYBRID_CPA_SECTION = 'CPA:';
+export const DEAL_HYBRID_REVENUE_SHARE_SECTION = 'Revenue Share:';
 
 const _subAffRateValueList = () => {
     let min = 0.0,
