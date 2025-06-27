@@ -23,6 +23,10 @@ export const DealInfo = (props) => {
     }
 
     const _handleChangeDealType = (e) => {
+        if (!!GroupId && GroupId > 0 || isEdit) {
+            return;
+        }
+
         const { value } = e.target;
         var dealType = Number(value);
 
