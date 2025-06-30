@@ -29,7 +29,7 @@ export const AddAffMktAccountPopup = (props) => {
         websiteInfo, 
         setWebsiteInfo,
         handleSubmit,
-    } = useNewMarketingAccountData(props.affId, props.toggleLoader);
+    } = useNewMarketingAccountData(props.aff.affId, props.toggleLoader);
 
     if(!generalInfo.hasData) {
         return null;
@@ -68,9 +68,9 @@ export const AddAffMktAccountPopup = (props) => {
     );
 };
 
-const mapStateToProps = ({ affId }) => {
+const mapStateToProps = ({ aff }) => {
     return {
-        affId
+        aff
     }
 }
 

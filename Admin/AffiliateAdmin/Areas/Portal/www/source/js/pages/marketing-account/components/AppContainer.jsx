@@ -8,13 +8,12 @@ import Content from './Content';
 import Loader from '../../../components/Loader';
 import AddAffMktAccountPopup from './AddAffMktAccountPopup';
 
-import { setIsShowAddAffMktAccountPopup, setAffId } from '../actions';
-import { Button } from 'reactstrap';
+import { setIsShowAddAffMktAccountPopup, setAff } from '../actions';
 
-export const AppContainer = ({ isShowLoader, isShowAddAffMktAccountPopup, setIsShowAddAffMktAccountPopup, setAffId }) => {
+export const AppContainer = ({ isShowLoader, isShowAddAffMktAccountPopup, setIsShowAddAffMktAccountPopup, setAff }) => {
     const _handleToggleAddAffMktAccountPopup = () => {
         setIsShowAddAffMktAccountPopup(!isShowAddAffMktAccountPopup);
-        setAffId(null);
+        setAff({ affId: '', affName: '' });
     }
 
     return (
@@ -37,7 +36,7 @@ const mapStateToProps = ({ isShowLoader, isShowAddAffMktAccountPopup }) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setIsShowAddAffMktAccountPopup,
-        setAffId
+        setAff
     }, dispatch);
 };
 

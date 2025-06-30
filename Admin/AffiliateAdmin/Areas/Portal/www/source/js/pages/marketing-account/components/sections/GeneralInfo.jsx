@@ -1,38 +1,18 @@
-﻿import React from 'react';
+﻿import React, { useState} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setAffId } from '../../actions';
+import { setAff } from '../../actions';
 import RowField from './RowField';
 
 export const GeneralInfo = (props) => {
-    const { generalInfo, setGeneralInfo } = props;
-
-    console.log('generalInfo', generalInfo);
+    const { generalInfo, setGeneralInfo, aff } = props;
+    const affOptions = [{ label: aff.affName, value: aff.affId }]
     const onChange = (e) => {
         setGeneralInfo({
             ...generalInfo,
             [e.target.name]: e.target.value
         });
     }
-
-    const options = [
-        {
-            label: '12BETAFF001',
-            value: 927841
-        },
-        {
-            label: '12BETAFF12606',
-            value: 927841
-        },
-        {
-            label: '12BETAFF16517',
-            value: 92043606
-        },
-        {
-            label: '12BETAFF16518',
-            value: 92043606
-        }
-    ]
 
     const targetCountryCodeList = Object.keys(props.targetCountryCodeList).map(key => {
         return {
@@ -60,9 +40,9 @@ export const GeneralInfo = (props) => {
             <RowField
                 label="Copy from Marketing account"
                 name="marketingAccount"
-                value={props.affId}
-                onChange={e => props.setAffId(e.target.value)}
-                selectOptions={options}
+                value={aff.affId}
+                onChange={e => props.setAff(e.target.value)}
+                selectOptions={affOptions}
             />
             <RowField
                 label="Target Country"
@@ -89,9 +69,9 @@ export const GeneralInfo = (props) => {
     );
 };
 
-const mapStateToProps = ({ affId, languageCodeList, targetCountryCodeList, dealOptionsList }) => {
+const mapStateToProps = ({ aff, languageCodeList, targetCountryCodeList, dealOptionsList }) => {
     return {
-        affId,
+        aff,
         languageCodeList,
         targetCountryCodeList,
         dealOptionsList
@@ -100,7 +80,7 @@ const mapStateToProps = ({ affId, languageCodeList, targetCountryCodeList, dealO
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        setAffId
+        setAff
     }, dispatch);
 }
 

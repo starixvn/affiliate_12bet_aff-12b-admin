@@ -7,7 +7,7 @@ import { setParam, setIsShowAddAffMktAccountPopup, setAffId } from '../actions';
 import { allStatuses, globalResource, statusList } from '../libs/constants';
 
 export const Filter = (props) => {
-    const { languageCodeList, targetCountryCodeList, canAddAffMktAccount } = props;
+    const { languageCodeList, targetCountryCodeList } = props;
 
     const [languageCode, setLanguageCode] = useState('');
     const [targetCountryCode, setTargetCountryCode] = useState('');
@@ -23,15 +23,6 @@ export const Filter = (props) => {
     }
 
     const _handleSearch = () => {
-        // TODO: Need Review
-
-        // const params = {
-        //     languageCode,
-        //     targetCountryCode,
-        //     status,
-        //     userName
-        // };
-
         const params = {
             "ParentAffName": "",
             "Status": "",
@@ -104,11 +95,10 @@ export const Filter = (props) => {
     );
 };
 
-const mapStateToProps = ({ languageCodeList, targetCountryCodeList, canAddAffMktAccount }) => {
+const mapStateToProps = ({ languageCodeList, targetCountryCodeList }) => {
     return {
         languageCodeList,
         targetCountryCodeList,
-        canAddAffMktAccount
     };
 };
 

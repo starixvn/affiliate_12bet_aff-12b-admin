@@ -35,6 +35,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Affiliate
 
         public bool IsExportExcel { get; set; }
 
-        public bool IsExcludeMarketingAccount { get; set; }
+        public string AffCategoryIds { get; set; }
     }
 }

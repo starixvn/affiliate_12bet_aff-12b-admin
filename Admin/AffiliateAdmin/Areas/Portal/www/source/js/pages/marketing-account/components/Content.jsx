@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 
 import { toggleLoader } from '../../../actions/loaderAction';
-import { setIsShowAddAffMktAccountPopup, setAffId } from '../actions';
+import { setIsShowAddAffMktAccountPopup, setAff } from '../actions';
 import { allStatuses, statusList } from '../libs/constants';
 
 import ReportTitle from '../../../components/ReportTitle';
@@ -38,21 +38,21 @@ export const Content = (props) => {
         </div>
     };
 
-    const _handleAddNewAccount = () => {
+    const _handleAddNewAccount = (affId, affName) => {
         props.setIsShowAddAffMktAccountPopup(true);
-        props.setAffId(927841);
+        props.setAff({ affId, affName });
     }
 
     return (
         <div className="data-content my-2">
             {isShowCreateAffMktAccBtn && <div className="my-2">
-                <Button outline type="button" onClick={() => _handleAddNewAccount()}>
+                <Button outline type="button" onClick={() => _handleAddNewAccount(927841, '	12BETAFF001')}>
                     Add New Account
                     <span className="oi oi-plus ml-2"></span>
                 </Button>
             </div>}
             {title && <ReportTitle content={_renderReportTitle()} />}
-            <GridData />
+            <GridData handleAddNewAccount={_handleAddNewAccount} />
         </div>
     )
 }
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         toggleLoader,
         setIsShowAddAffMktAccountPopup,
-        setAffId
+        setAff
     }, dispatch);
 };
 

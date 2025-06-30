@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell, Pager } from '@9softstudio/react-fixed-table-header';
 
 import { toggleLoader } from '../../../actions/loaderAction';
-import { fetchData, setPagingOption } from '../actions';
+import { fetchData, setAff, setPagingOption } from '../actions';
 import { headerText } from '../libs/constants';
 import { resolveClientUrl } from '../../../modules/utils';
 import { globalResource } from '../../../modules/globalResource';
@@ -110,6 +110,7 @@ export const GridData = (props) => {
                 <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.Actions}>{headerText.Actions}</Cell>
             </Row>
         );
     }
@@ -141,6 +142,11 @@ export const GridData = (props) => {
                 <Cell title={language}>{language}</Cell>
                 <Cell title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
                 <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
+                <Cell className="text-center">
+                    <button title="Copy" className="btn btn-link" onClick={() => props.handleAddNewAccount(dataItem.AffId, dataItem.UserName)}>
+                        <span className={`oi icon-copy-link`}></span>
+                    </button>
+                </Cell>
             </Row>
         );
     }
@@ -195,7 +201,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         toggleLoader,
         fetchData,
-        setPagingOption
+        setPagingOption,
     }, dispatch);
 };
 

@@ -20,9 +20,9 @@ export const setIsShowAddAffMktAccountPopup = (data) => {
     }
 }
 
-export const setAffId = (data) => {
+export const setAff = (data) => {
     return {
-        type: types.SET_AFF_ID,
+        type: types.SET_AFF,
         data
     }
 }
@@ -63,3 +63,7 @@ export const createMarketingAccount = async (data) => {
 
     return response && response.status === 200 ? response.data : null;
 }   
+
+export const getMarketingAccountOptions = async () => {
+
+}
