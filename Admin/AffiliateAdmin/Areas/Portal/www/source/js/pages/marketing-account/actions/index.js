@@ -27,7 +27,7 @@ export const setAff = (data) => {
     }
 }
 
-export const fetchData = (param) => async () => {
+export const fetchMarketingAccounts = (param) => async () => {
     const response = await post('Portal/Affiliate/GetAffiliateList', param);
 
     return response && response.status === 200 ? response.data : null;
@@ -63,7 +63,3 @@ export const createMarketingAccount = async (data) => {
 
     return response && response.status === 200 ? response.data : null;
 }   
-
-export const getMarketingAccountOptions = async () => {
-
-}

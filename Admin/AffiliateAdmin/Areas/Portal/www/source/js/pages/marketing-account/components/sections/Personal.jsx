@@ -57,6 +57,7 @@ export const Personal = (props) => {
                     name="email"
                     value={personalInfo.email}
                     onChange={onChange}
+                    labelProps={{ className: 'required' }}
                 />
                 <RowField
                     label="Contact Number"

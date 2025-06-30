@@ -37,7 +37,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string LastName { get; set; }
 
         public bool? Gender { get; set; }
-
+        
+        [Required]
         public string Email { get; set; }
 
         public string Phone { get; set; }
@@ -118,7 +119,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
                 Player_Currency = PlayerCurrencyId,
 
                 Ip = Ip,
-                Language = PreferredLanguage,
                 TargetCountryCode = TargetCountryCode,
             };
         }

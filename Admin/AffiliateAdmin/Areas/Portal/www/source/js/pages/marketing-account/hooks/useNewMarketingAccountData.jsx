@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { validationEmail } from '../libs/validation';
 import { defaultAdditionalInfo, defaultGeneralInfo, defaultPaymentInfo, defaultPersonalInfo, defaultWebsiteInfo } from '../libs/constants';
-import { getMarketingAccountInfo, createMarketingAccount } from '../actions';
+import { getMarketingAccountInfo, createMarketingAccount, getPaymentMethod } from '../actions';
 
 export default function useNewMarketingAccountData(
     affId, 
@@ -18,6 +18,21 @@ export default function useNewMarketingAccountData(
     const [additionalInfo, setAdditionalInfo] = useState(defaultAdditionalInfo);
     const [paymentInfo, setPaymentInfo] = useState(defaultPaymentInfo);
     const [websiteInfo, setWebsiteInfo] = useState(defaultWebsiteInfo);
+    const [minimumPayment, setMinimumPayment] = useState(0);
+
+    useEffect(() => {
+        toggleLoader(true);
+        _fetchPaymentMethod().finally(() => {
+            toggleLoader(false);
+        });
+    }, []);
+
+    const _fetchPaymentMethod = async () => {
+        const response = await getPaymentMethod()();
+        if (response) {
+            setMinimumPayment(response.MinAmount);
+        }
+    }
 
     useEffect(() => {
         if (!affId) {
@@ -63,6 +78,20 @@ export default function useNewMarketingAccountData(
         }
     };
 
+    const notify = (errMsg, modalBodyRef, isSuccess = false) => {
+        setResultInfo(prevState => ({
+            ...prevState,
+            isSuccess: isSuccess,
+            isShowMessage: true,
+            message: errMsg
+        }));
+        setTimeout(_handleCloseAlert, 3000);
+        if (modalBodyRef?.current) {
+            modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        return;
+    }
+
     const _handleSubmit = async (modalBodyRef) => {
         const rawData = {
             ...generalInfo,
@@ -71,41 +100,26 @@ export default function useNewMarketingAccountData(
             ...paymentInfo,
             ...websiteInfo,
         };
+
+        if (!rawData.email) {
+            notify('Email Address is required', modalBodyRef);
+            return;
+        }
+
         const emailResult = validationEmail(rawData.email, true);
         if(!emailResult.isValid) {
-            setResultInfo(prevState => ({
-                ...prevState,
-                isSuccess: false,
-                isShowMessage: true,
-                message: emailResult.message
-            }));    
-            setTimeout(_handleCloseAlert, 3000);
+            notify(emailResult.message, modalBodyRef);
             return;
         }
         toggleLoader(true);
         const result = await createMarketingAccount(rawData);
         toggleLoader(false);
-        if (modalBodyRef?.current) {
-            modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+
         if (!result.isSuccessful) {
-            setResultInfo(prevState => ({
-                ...prevState,
-                isSuccess: false,
-                isShowMessage: true,
-                message: result.message
-            }));
-            setTimeout(_handleCloseAlert, 3000);
+            notify(result.message, modalBodyRef);
             return;
         }
-
-        setResultInfo(prevState => ({
-            ...prevState,
-            isSuccess: true,
-            isShowMessage: true,
-            message: 'Successfully added a new marketing account'
-        }));
-        setTimeout(_handleCloseAlert, 3000);
+        notify('Successfully added a new marketing account', modalBodyRef, true);
     };
 
     const _handleCloseAlert = () => {
@@ -123,7 +137,8 @@ export default function useNewMarketingAccountData(
         additionalInfo,
         paymentInfo,
         websiteInfo,
-        
+        minimumPayment,
+
         // State setters
         setGeneralInfo,
         setPersonalInfo,

@@ -12,13 +12,14 @@ export default function RowField({
     selectOptions,
     labelProps = {},
     colProps = {},
-    colComponent = null
+    colComponent = null,
+    disabled = false
 }) {
 
     return (
         <FormGroup row> 
-            <Label xs={3} htmlFor={label} {...labelProps}>{label}</Label>
-            <Col xs={4} {...colProps}>
+            <Label xs={3} {...labelProps}>{label}</Label>
+            <Col xs={5} {...colProps}>
                 {
                     colComponent ? colComponent : <Input
                         type={selectOptions ? 'select' : type}
@@ -28,6 +29,7 @@ export default function RowField({
                         onChange={onChange}
                         value={value}
                         placeholder={placeholder}
+                        disabled={disabled}
                     >
                         {selectOptions && selectOptions.map((option) => (
                             <option key={option.value} value={option.value} selected={option.value === value}>{option.label}</option>

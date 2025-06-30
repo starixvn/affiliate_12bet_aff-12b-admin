@@ -98,13 +98,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
             }
         }
 
-        private void PrepareModelForCreation(CreateMarketingAccountModel model, HttpServerUtilityBase server)
+        private static void PrepareModelForCreation(CreateMarketingAccountModel model, HttpServerUtilityBase server)
         {
             AssignContactApps(model, server);
             HtmlEncodeModelStringProperties(model, server, typeof(CreateMarketingAccountModel));
         }
 
-        private ResultInfo ValidateCreateMarketingAccountModel(CreateMarketingAccountModel model)
+        private static ResultInfo ValidateCreateMarketingAccountModel(CreateMarketingAccountModel model)
         {
             if (!ValidatePaymentMethod(model.PreferredPayment))
             {

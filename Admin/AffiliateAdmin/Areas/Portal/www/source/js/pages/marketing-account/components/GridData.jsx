@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell, Pager } from '@9softstudio/react-fixed-table-header';
 
 import { toggleLoader } from '../../../actions/loaderAction';
-import { fetchData, setAff, setPagingOption } from '../actions';
+import { fetchData, fetchMarketingAccounts, setAff, setPagingOption } from '../actions';
 import { headerText } from '../libs/constants';
 import { resolveClientUrl } from '../../../modules/utils';
 import { globalResource } from '../../../modules/globalResource';
@@ -29,7 +29,7 @@ export const GridData = (props) => {
     const _fetchData = async (param) => {
         props.toggleLoader(true);
 
-        const data = await props.fetchData(param);
+        const data = await props.fetchMarketingAccounts(param);
         if (data) {
             setShouldResetScrollPosition(true);
 
@@ -157,7 +157,7 @@ export const GridData = (props) => {
             PageSize: size
         };
 
-        const newParam = { ...props.param, ...newPaging };
+        const newParam = { ...props.params, ...newPaging };
         _fetchData(newParam);
     }
 
@@ -200,7 +200,7 @@ const mapStateToProps = ({ params, languageCodeList, targetCountryCodeList, pagi
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         toggleLoader,
-        fetchData,
+        fetchMarketingAccounts,
         setPagingOption,
     }, dispatch);
 };

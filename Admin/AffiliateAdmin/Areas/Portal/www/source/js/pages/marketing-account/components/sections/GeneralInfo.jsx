@@ -1,4 +1,4 @@
-﻿import React, { useState} from 'react';
+﻿import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setAff } from '../../actions';
@@ -40,9 +40,10 @@ export const GeneralInfo = (props) => {
             <RowField
                 label="Copy from Marketing account"
                 name="marketingAccount"
-                value={aff.affId}
+                value={aff.affName}
                 onChange={e => props.setAff(e.target.value)}
-                selectOptions={affOptions}
+                disabled={true}
+                labelProps={{ style: { paddingRight: '0px' } }}
             />
             <RowField
                 label="Target Country"

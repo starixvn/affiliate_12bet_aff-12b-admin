@@ -87,5 +87,6 @@ export const defaultFilterParams = {
     "AffCode": "",
     "AffPlayer": "",
     "PageIndex": 1,
-    "PageSize": 20
+    "PageSize": 20,
+    "AffCategoryIds": "2"
 }

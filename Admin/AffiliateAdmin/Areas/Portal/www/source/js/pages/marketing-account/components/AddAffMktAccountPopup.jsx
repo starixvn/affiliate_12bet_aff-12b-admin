@@ -29,6 +29,7 @@ export const AddAffMktAccountPopup = (props) => {
         websiteInfo, 
         setWebsiteInfo,
         handleSubmit,
+        minimumPayment  
     } = useNewMarketingAccountData(props.aff.affId, props.toggleLoader);
 
     if(!generalInfo.hasData) {
@@ -56,8 +57,7 @@ export const AddAffMktAccountPopup = (props) => {
                     <Payment
                         paymentInfo={paymentInfo}
                         setPaymentInfo={setPaymentInfo}
-                        paymentMethodList={generalInfo.paymentMethods}
-                        minimumPayment={generalInfo.minimumPayment}
+                        minimumPayment={minimumPayment}
                     />
                     <Form tag="div">
                         <Button className="mb-3" color="success" onClick={() => handleSubmit(modalBodyRef)}>SAVE</Button>

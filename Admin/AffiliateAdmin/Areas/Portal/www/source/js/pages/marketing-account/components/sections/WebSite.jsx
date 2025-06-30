@@ -21,7 +21,7 @@ const createMoreSiteUrl = (url) => ({
 const SiteFieldComponent = ({ label, name, value, onChange, onBlur, disabled, ref }) => {
     return (
         <React.Fragment>
-            <Label sm={2} className="d-flex align-items-center">{label}</Label>
+            <Label sm={3} className="d-flex align-items-center">{label}</Label>
             <Col sm={6} className="input-item d-flex align-items-center">
                 <Input 
                     type="text" 
