@@ -8,6 +8,8 @@ import { setUserAccountInfo } from '../../actions';
 import { updateObjectInArray } from '../../../../../modules/dataHandler';
 import { getPlaceHolderByApp } from '../../modules/utils';
 
+const NORMAL_ACCOUNT_TYPE = 'Normal AFF Account';
+
 export class Personal extends PureComponent {
     constructor(props) {
         super(props);
@@ -64,12 +66,12 @@ export class Personal extends PureComponent {
     render() {
         const { userAccountInfo } = this.props;
         const isOnlyView = !userAccountInfo.HasHostAffPersonalInfoPermission;
-        const isRequired = userAccountInfo.MarketingAccount === false;
+        const isRequired = userAccountInfo.AffCategoryDesc === NORMAL_ACCOUNT_TYPE;
 
         return userAccountInfo && (
             <Form tag="div">
-                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true, isRequired, this.handleChange)}
-                {renderInputForm('affCategoryDesc', 'Account Type', userAccountInfo.AffCategoryDesc, true, isRequired, this.handleChange)}
+                {renderInputForm('username', 'User Name', userAccountInfo.AffName, true, false, this.handleChange)}
+                {renderInputForm('affCategoryDesc', 'Account Type', userAccountInfo.AffCategoryDesc, true, false, this.handleChange)}
                 {renderInputForm('firstName', 'First Name', userAccountInfo.FirstName, false, isRequired, this.handleChange)}
                 {renderInputForm('lastName', 'Last Name', userAccountInfo.LastName, false, isRequired, this.handleChange)}
                 {this._renderGenderForm(userAccountInfo.Gender, isRequired)}

@@ -11,23 +11,23 @@ import ReportTitle from '../../../components/ReportTitle';
 import GridData from './GridData';
 
 export const Content = (props) => {
-    const { param, canAddAffMktAccount } = props;
+    const { params, canAddAffMktAccount } = props;
 
-    const isShowCreateAffMktAccBtn = param && canAddAffMktAccount;
+    const isShowCreateAffMktAccBtn = params && canAddAffMktAccount;
     const [title, setTitle] = useState('');
 
     useEffect(() => {
         setTitle(_buildTitleString());
-    }, [JSON.stringify(param)]);
+    }, [JSON.stringify(params)]);
 
     const _buildTitleString = () => {
-        if (!param) return '';
+        if (!params) return '';
 
         const { languageCodeList, targetCountryCodeList } = props;
 
-        const language = languageCodeList[param.languageCode] || 'All Languages';
-        const targetCountry = targetCountryCodeList[param.targetCountryCode] || 'All Target Countries';
-        const status = statusList[param.status] || statusList[allStatuses];
+        const language = languageCodeList[params.languageCode] || 'All Languages';
+        const targetCountry = targetCountryCodeList[params.targetCountryCode] || 'All Target Countries';
+        const status = statusList[params.status] || statusList[allStatuses];
 
         return `MARKETING ACCOUNT REPORT - ${targetCountry.toUpperCase()} - ${language.toUpperCase()} - ${status.toUpperCase()}`;
     };
@@ -57,9 +57,9 @@ export const Content = (props) => {
     )
 }
 
-const mapStateToProps = ({ param, languageCodeList, targetCountryCodeList, canAddAffMktAccount }) => {
+const mapStateToProps = ({ params, languageCodeList, targetCountryCodeList, canAddAffMktAccount }) => {
     return {
-        param,
+        params,
         languageCodeList,
         targetCountryCodeList,
         canAddAffMktAccount

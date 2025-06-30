@@ -5,22 +5,17 @@ import * as types from '../actions/types';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
-import { defaultPersonalInfo, defaultAdditionalInfo, defaultGeneralInfo } from '../libs/constants';
+import { defaultFilterParams } from '../libs/constants';
 
 const languageCodeList = createReducer({}, {});
 const targetCountryCodeList = createReducer({}, {});
 const dealOptionsList = createReducer({}, {});
 const canAddAffMktAccount = createReducer(false, {});
 const defaultAffId = '12BETAFF001';
-const defaultParams = {
-    ...defaultPersonalInfo,
-    ...defaultAdditionalInfo,
-    ...defaultGeneralInfo
-}
 
-export const params = createReducer(defaultParams, {
+export const params = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
-        return Object.assign({}, prevState, action.data);
+        return Object.assign({}, defaultFilterParams, prevState, action.data);
     }
 });
 

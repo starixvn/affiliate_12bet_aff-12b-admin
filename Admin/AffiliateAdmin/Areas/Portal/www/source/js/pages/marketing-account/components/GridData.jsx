@@ -20,15 +20,13 @@ export const GridData = (props) => {
     const [messageNotification, setMessageNotification] = useState('');
 
     useEffect(() => {
-        const { pagingOption, param } = props;
-        if (!param) return;
-
-        const updateParam = { ...param, PageIndex: 1, PageSize: pagingOption.PageSize };
+        const { pagingOption, params } = props;
+        if (!params) return;
+        const updateParam = { ...params, PageIndex: 1, PageSize: pagingOption.PageSize };
         _fetchData(updateParam);
-    }, [props.param]);
+    }, [props.params]);
 
     const _fetchData = async (param) => {
-        // TODO: Need Review
         props.toggleLoader(true);
 
         const data = await props.fetchData(param);
@@ -184,9 +182,9 @@ export const GridData = (props) => {
     )
 }
 
-const mapStateToProps = ({ param, languageCodeList, targetCountryCodeList, pagingOption }) => {
+const mapStateToProps = ({ params, languageCodeList, targetCountryCodeList, pagingOption }) => {
     return {
-        param,
+        params,
         languageCodeList,
         targetCountryCodeList,
         pagingOption

@@ -71,3 +71,20 @@ export const defaultPaymentInfo = {
     playerCurrency: '',
     playerCurrencyId: 0
 }
+
+export const defaultFilterParams = {
+    "ParentAffName": "",
+    "Status": "",
+    "IsFromHome": false,
+    "GroupIds": "all",
+    "TargetCountryCode": "",
+    "Language": "",
+    "UserName": "",
+    "Email": "",
+    "SortBy": 1,
+    "SortDirectionType": false,
+    "AffCode": "",
+    "AffPlayer": "",
+    "PageIndex": 1,
+    "PageSize": 20
+}

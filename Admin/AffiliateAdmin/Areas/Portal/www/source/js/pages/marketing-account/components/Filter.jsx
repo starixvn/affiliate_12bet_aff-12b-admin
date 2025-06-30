@@ -49,14 +49,9 @@ export const Filter = (props) => {
             "PageSize": 20
         }
 
-        props.setParam(params);
+        props.setParam({...params, TargetCountryCode: targetCountryCode, Language: languageCode, Status: status === allStatuses ? '' : status, UserName: userName});
     };
 
-    const _handleAddNewAccount = () => {
-        props.setIsShowAddAffMktAccountPopup(true);
-        props.setAffId(927841);
-    }
-    
     return (
         <div className="filter-container">
             <Form inline tag="div">
@@ -88,7 +83,7 @@ export const Filter = (props) => {
                     <Input type="select" name="status" value={status} onChange={(e) => setStatus(e.target.value)}>
                         {
                             Object.keys(statusList).map(key => {
-                                return (<option key={`status-${key === allStatuses ? 'all' : key}`} value={key}>{statusList[key]}</option>)
+                                return (<option key={`status-${key === allStatuses ? '' : key}`} value={key}>{statusList[key]}</option>)
                             })
                         }
                     </Input>
@@ -105,12 +100,6 @@ export const Filter = (props) => {
                     </Button>
                 </FormGroup>
             </Form>
-            {canAddAffMktAccount && <div className="my-2">
-                <Button outline type="button" onClick={() => _handleAddNewAccount()}>
-                    Add New Account
-                    <span className="oi oi-plus ml-2"></span>
-                </Button>
-            </div>}
         </div>
     );
 };
