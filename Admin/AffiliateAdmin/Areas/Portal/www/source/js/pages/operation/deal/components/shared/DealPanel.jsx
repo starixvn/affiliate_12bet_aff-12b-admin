@@ -43,7 +43,7 @@ export const DealPanel = ({ dealType, activePanelWhenHasInvalid }) => {
                 }
             </div>
             {
-                dealType != DEAL_CPA && <p className="text-danger my-2">Note: Revenue Share change will take effect in the current month (GMT-4)</p>
+                activePanel === dealPanelKey.revenueShare && <p className="text-danger my-2">Note: Revenue Share change will take effect in the current month (GMT-4)</p>
             }
         </React.Fragment>
     );
