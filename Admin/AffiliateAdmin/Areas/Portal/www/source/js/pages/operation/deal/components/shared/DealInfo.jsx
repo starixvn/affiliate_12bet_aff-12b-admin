@@ -5,14 +5,13 @@ import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 import { setDealInfo } from '../../actions';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
-import { DEAL_CPA } from '../../libs/constants';
-import { buildDefaultRevenueShare } from '../../libs/revenue-share-service';
+import { buildDefaultDealInfo } from '../../libs/service';
 
 const MAX_LENGTH = 100;
 
 export const DealInfo = (props) => {
 
-    const { isEdit, isSubmitted, DealName, DealType, Description, RevenueTierSetting, dealTypeList, GroupId } = props;
+    const { isEdit, isSubmitted, DealName, DealType, Description, dealTypeList, GroupId, targetCountryList } = props;
 
     const _handleChangeText = (e) => {
         const { name, value } = e.target;
@@ -30,14 +29,9 @@ export const DealInfo = (props) => {
         const { value } = e.target;
         var dealType = Number(value);
 
-        if (dealType != DEAL_CPA && !RevenueTierSetting) {
-            const { deductionList, productList } = props;
-            const revenueShareInfo = buildDefaultRevenueShare(deductionList, productList);
-
-            props.setDealInfo({ DealType: dealType, ...revenueShareInfo });
-        } else {
-            props.setDealInfo({ DealType: dealType });
-        }
+        const { deductionList, productList } = props;
+        const newDealInfo = buildDefaultDealInfo(targetCountryList, DealName, dealType, deductionList, productList);
+        props.setDealInfo(newDealInfo);
     }
 
     return (
@@ -56,7 +50,7 @@ export const DealInfo = (props) => {
                 </Col>
             </FormGroup>
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="DealType" sm={2}>Deal Types</Label>
+                <Label htmlFor="DealType" sm={2}>Deal Type</Label>
                 <Col sm={8}>
                     <Input type="select"
                         className="mr-sm-2 search-box"
@@ -89,7 +83,7 @@ export const DealInfo = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList, isEdit, isSubmitted }) => {
+const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList, targetCountryList, isEdit, isSubmitted }) => {
     const { GroupId, DealName, DealType, Description, RevenueTierSetting } = dealInfo;
     return {
         GroupId,
@@ -101,7 +95,8 @@ const mapStateToProps = ({ dealInfo, dealTypeList, deductionList, productList, i
         deductionList,
         productList,
         isEdit,
-        isSubmitted
+        isSubmitted,
+        targetCountryList
     }
 }
 

@@ -13,6 +13,7 @@ import SubAffRateSetting from '../shared/sub-aff-rate';
 import { messages, DEAL_HYBRID, DEAL_HYBRID_CPA_SECTION, DEAL_HYBRID_REVENUE_SHARE_SECTION } from '../../libs/constants';
 import { dealPanelKey } from '../../libs/deal-panels';
 
+
 export const AddDeal = (props) => {
 
     const { dealId } = props;
@@ -26,16 +27,10 @@ export const AddDeal = (props) => {
         if (dealId) {
             props.getDealDetail(dealId);
         } else {
-            const newDealInfo = buildDefaultDealInfo();
-            const countryCodes = _getAllTargetCountryCodes();
-
-            props.setDealInfo({ ...newDealInfo, CountryCodes: countryCodes });
+            const newDealInfo = buildDefaultDealInfo(props.targetCountryList);
+            props.setDealInfo(newDealInfo);
         }
     }, [dealId]);
-
-    const _getAllTargetCountryCodes = () => {
-        return props.targetCountryList.map(c => c.TargetCountryCode).join(',');
-    }
 
     const _handleSave = async () => {
         props.onSave();

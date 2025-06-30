@@ -1,17 +1,17 @@
-import { 
-    INFINITY_MONEY, 
-    INFINITY_NUMBER, 
-    messages, 
-    mappingFields, 
-    cpaTierSettingDefault, 
-    productGroupDefault, 
-    DEAL_CPA, 
-    DEAL_REVENUE_SHARE, 
+import {
+    INFINITY_MONEY,
+    INFINITY_NUMBER,
+    messages,
+    mappingFields,
+    cpaTierSettingDefault,
+    productGroupDefault,
+    DEAL_CPA,
+    DEAL_REVENUE_SHARE,
     DEAL_HYBRID_CPA_SECTION,
     DEAL_HYBRID_REVENUE_SHARE_SECTION
 } from './constants';
 
-import { validateRevenueShareInfo } from './revenue-share-service';
+import { buildDefaultRevenueShare, validateRevenueShareInfo } from './revenue-share-service';
 
 const commonDealInfo = {
     GroupId: 0,
@@ -42,8 +42,18 @@ const commonDealInfo = {
     ]
 }
 
-export const buildDefaultDealInfo = () => {
-    return Object.assign({}, commonDealInfo);
+export const buildDefaultDealInfo = (targetCountryList, dealName = '', dealType = DEAL_CPA, deductionList = [], productList = []) => {
+    const newDealInfo = { ...commonDealInfo };
+    newDealInfo.CountryCodes = getAllTargetCountryCodes(targetCountryList);
+    newDealInfo.DealType = dealType;
+    newDealInfo.DealName = dealName;
+
+    if (dealType !== DEAL_CPA) {
+        const revenueShareInfo = buildDefaultRevenueShare(deductionList, productList);
+        return { ...newDealInfo, ...revenueShareInfo };
+    }
+
+    return newDealInfo;
 }
 
 const convertListWithChecked = (list, selectedIdsCSV, idKey, nameKey, checkedItems = []) => {
@@ -73,6 +83,10 @@ export const convertProductList = (productList, productIds = '', checkedProducts
 
 export const convertTargetCountryList = (targetCountryList, targetCountryCodes = '') => {
     return convertListWithChecked(targetCountryList, targetCountryCodes, 'TargetCountryCode', 'TargetCountryName');
+}
+
+export const getAllTargetCountryCodes = (targetCountryList) => {
+    return targetCountryList.map(c => c.TargetCountryCode).join(',');
 }
 
 export const validateDealInfo = (dealInfo) => {
