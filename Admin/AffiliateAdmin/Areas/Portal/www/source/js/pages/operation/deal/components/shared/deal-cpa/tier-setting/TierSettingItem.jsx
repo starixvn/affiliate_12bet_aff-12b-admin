@@ -9,6 +9,7 @@ import NotificationPopup from '../../../../../../common/components/NotificationP
 
 import { setDealInfo } from '../../../../actions';
 import { deepClone } from '../../../../../../../modules/dataHandler';
+import { cpaTierSettingTitle } from '../../../../libs/constants';
 
 export const TierSettingItem = (props) => {
     const { tierSetting, isFirstItem, index, dealInfo } = props;
@@ -143,9 +144,9 @@ export const TierSettingItem = (props) => {
                                     <Input type="checkbox" name="CheckedMinFdm" checked={dealInfo.CheckedMinFdm} onChange={_handleCheck} />
                                 </Label>
                             </FormGroup>
-                            Min FTD
+                            {cpaTierSettingTitle.MinFdm}
                         </Form>
-                        : 'Min FTD'
+                        : cpaTierSettingTitle.MinFdm
                     }
                 </th>
                 <th style={{ width: '30%' }}>
@@ -158,9 +159,9 @@ export const TierSettingItem = (props) => {
                                     </Label>
                                 </FormGroup>
                             }
-                            Min Total Deposit
+                            {cpaTierSettingTitle.MinTotalDeposit}
                         </Form>
-                        : 'Min Total Deposit'
+                        : cpaTierSettingTitle.MinTotalDeposit
                     }
                 </th>
                 <th style={{ width: '30%' }}>
@@ -173,13 +174,13 @@ export const TierSettingItem = (props) => {
                                     </Label>
                                 </FormGroup>
                             }
-                            Min Turnover
+                            {cpaTierSettingTitle.MinTO}
                         </Form>
-                        : 'Min Turnover'
+                        : cpaTierSettingTitle.MinTO
                     }
                 </th>
-                <th style={{ width: '20%' }}>CPA Amount</th>
-                <th style={{ width: '12%' }}>Action</th>
+                <th style={{ width: '20%' }}>{cpaTierSettingTitle.CpaAmount}</th>
+                <th style={{ width: '12%' }}>{cpaTierSettingTitle.Action}</th>
             </tr>
         )
     }

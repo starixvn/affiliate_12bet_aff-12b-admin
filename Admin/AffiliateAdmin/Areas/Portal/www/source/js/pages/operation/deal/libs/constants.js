@@ -35,6 +35,22 @@ export const mappingFields = {
     CpaAmount: 'CPA Amount'
 }
 
+export const gridHeader = {
+    RowNum: '#',
+    DealName: 'Deal Name',
+    DealType: 'Deal Type',
+    NoAff: 'No.Aff',
+    Description: 'Description',
+    UpdatedBy: 'Updated By',
+    UpdatedDate: 'Updated Date',
+    Action: 'Action'
+}
+
+export const cpaTierSettingTitle = {
+    ...mappingFields,
+    Action: 'Action'
+}
+
 export const messages = {
     addDealSuccessfully: 'Add Deal Successfully.',
     updateDealSuccessfully: 'Update Deal Successfully.',

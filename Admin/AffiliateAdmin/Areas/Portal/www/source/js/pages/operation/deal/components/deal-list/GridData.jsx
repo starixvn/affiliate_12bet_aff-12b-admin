@@ -9,6 +9,7 @@ import { resolveClientUrl } from '../../../../../modules/utils';
 import NotificationPopup from '../../../../common/components/NotificationPopup';
 
 import { deleteDeal, fetchData } from '../../actions';
+import { gridHeader } from '../../libs/constants';
 
 export const GridData = (props) => {
     const { gridData } = props;
@@ -63,14 +64,14 @@ export const GridData = (props) => {
     const _renderHeader = () => {
         return (
             <Row key="theard">
-                <Cell header={true} colWidth={20}>#</Cell>
-                <Cell header={true} colWidth={100}>Deal Name</Cell>
-                <Cell header={true} colWidth={70}>Deal Type</Cell>
-                <Cell header={true} colWidth={30}>No.Aff</Cell>
-                <Cell header={true} colWidth={120}>Description</Cell>
-                <Cell header={true} colWidth={50}>Updated By</Cell>
-                <Cell header={true} colWidth={70}>Updated Date</Cell>
-                <Cell header={true} colWidth={35}>Action</Cell>
+                <Cell header={true} colWidth={20}>{gridHeader.RowNum}</Cell>
+                <Cell header={true} colWidth={100}>{gridHeader.DealName}</Cell>
+                <Cell header={true} colWidth={70}>{gridHeader.DealType}</Cell>
+                <Cell header={true} colWidth={30}>{gridHeader.NoAff}</Cell>
+                <Cell header={true} colWidth={120}>{gridHeader.Description}</Cell>
+                <Cell header={true} colWidth={50}>{gridHeader.UpdatedBy}</Cell>
+                <Cell header={true} colWidth={70}>{gridHeader.UpdatedDate}</Cell>
+                <Cell header={true} colWidth={35}>{gridHeader.Action}</Cell>
             </Row>
         );
     }
