@@ -144,7 +144,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
             
             if (!validationResult.IsSuccessful)
             {
-                throw new InvalidOperationException($"Customer validation failed: {validationResult.Message}");
+                throw new InvalidOperationException(validationResult.Message);
             }
 
             command.Player_CustId = memberSiteCust.CustId;

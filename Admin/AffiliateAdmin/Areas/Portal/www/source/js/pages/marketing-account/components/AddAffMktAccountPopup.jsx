@@ -63,8 +63,9 @@ export const AddAffMktAccountPopup = ({
             isOpen={isShowAddAffMktAccountPopup} 
             toggle={toggle} 
             size="lg" 
-            backdrop="static" 
+            backdrop="static"
             innerRef={modalBodyRef}
+            style={{ transform: 'translate(0, 0)' }}
         >
             <ModalHeader toggle={toggle}>
                 <span className="iconpopup"></span> Add a new Marketing account
