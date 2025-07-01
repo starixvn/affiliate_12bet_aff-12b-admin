@@ -40,10 +40,7 @@
 
     <script src="~/Areas/Portal/www/dist/jquery-3.3.1.min.js"></script>
     <script src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/layout/pagelayout.js")"></script>
-    @if (appSetting.IsApiDataModifiable)
-    {
-        <iframe width="0" height="0" style="display: none" src="@Url.Content("~/Portal/Auth/ReCheckIn")"></iframe>
-    }
+    <iframe width="0" height="0" style="display: none" src="@Url.Content("~/Portal/Auth/ReCheckIn")"></iframe>
     @RenderSection("vendorjs", required: false)
 
 </body>
