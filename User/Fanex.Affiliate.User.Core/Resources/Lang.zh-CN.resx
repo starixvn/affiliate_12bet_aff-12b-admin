@@ -537,8 +537,8 @@
   <data name="Faqs" xml:space="preserve">
     <value>常见问题</value>
   </data>
-  <data name="FDM" xml:space="preserve">
-    <value>FDM</value>
+  <data name="FTD" xml:space="preserve">
+    <value>FTD</value>
   </data>
   <data name="February" xml:space="preserve">
     <value>二月</value>
@@ -2051,7 +2051,7 @@
   <data name="Flat50" xml:space="preserve">
     <value>统一50%</value>
   </data>
-  <data name="NewFDMs" xml:space="preserve">
+  <data name="NewFTDs" xml:space="preserve">
     <value>新会员首次存款</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
@@ -2087,7 +2087,7 @@
   <data name="TransactionInReport" xml:space="preserve">
     <value>交易</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
+  <data name="NewFTD" xml:space="preserve">
     <value>首次存款新会员</value>
   </data>
   <data name="MonthlyTotal" xml:space="preserve">

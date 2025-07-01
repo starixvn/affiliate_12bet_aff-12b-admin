@@ -10,7 +10,7 @@ export const headerText = {
     TotalClick: 'Total Click',
     UniqueClick: 'Unique Click',
     Signups: 'Signups',
-    Fdm: 'FDM',
+    Fdm: 'FTD',
     Device: 'Device',
     WebsiteUrl: 'Website URL',
     TotalClicks: 'Total Clicks',

@@ -14,8 +14,8 @@ export const sortByMainView = {
     Affiliate: 1,
     ...sortByCommon,
     Signup: 5,
-    FDM: 6,
-    "FDM Amt": 7,
+    FTD: 6,
+    "FTD Amt": 7,
     "Active players": 8,
     "Qualified active players": 9
 };
@@ -102,9 +102,9 @@ export const headerText = {
     [reportKey.TotalClick]: 'Total Click',
     [reportKey.UniqueClick]: 'Unique Click',
     [reportKey.Signup]: 'Signup',
-    [reportKey.Fdm]: 'FDM',
-    [reportKey.Fdm_Amount]: 'FDM Amt',
-    [reportKey.FDM_TotalDeposit]: "FDM's Total Deposit",
+    [reportKey.Fdm]: 'FTD',
+    [reportKey.Fdm_Amount]: 'FTD Amt',
+    [reportKey.FDM_TotalDeposit]: "FTD's Total Deposit",
     [reportKey.ActivePlayer]: 'Active Player',
     [reportKey.QualifiedMember]: 'Qualified Player',
     [reportKey.NoOfSubAff]: 'Sub-Affiliate',

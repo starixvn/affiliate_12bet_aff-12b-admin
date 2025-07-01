@@ -1862,7 +1862,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current New FDM Commission Bonus.
+        ///   Looks up a localized string similar to Current New FTD Commission Bonus.
         /// </summary>
         public static string CurrentNewFdmCommBonus {
             get {
@@ -2546,16 +2546,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FDM.
-        /// </summary>
-        public static string FDM {
-            get {
-                return ResourceManager.GetString("FDM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to FDM Amt.
+        ///   Looks up a localized string similar to FTD Amt.
         /// </summary>
         public static string FdmAmt {
             get {
@@ -2564,7 +2555,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FDM Date.
+        ///   Looks up a localized string similar to FTD Date.
         /// </summary>
         public static string FdmDate {
             get {
@@ -2573,7 +2564,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FDM&apos;s Deposit.
+        ///   Looks up a localized string similar to FTD&apos;s Deposit.
         /// </summary>
         public static string FdmDeposit {
             get {
@@ -2582,7 +2573,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FDM.
+        ///   Looks up a localized string similar to FTD.
         /// </summary>
         public static string FdmEnglandCalling {
             get {
@@ -2591,7 +2582,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FDM Extra Comm.
+        ///   Looks up a localized string similar to FTD Extra Comm.
         /// </summary>
         public static string FdmExtraComm {
             get {
@@ -2759,6 +2750,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FTD.
+        /// </summary>
+        public static string FTD {
+            get {
+                return ResourceManager.GetString("FTD", resourceCulture);
             }
         }
         
@@ -4217,16 +4217,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New FDM.
-        /// </summary>
-        public static string NewFDM {
-            get {
-                return ResourceManager.GetString("NewFDM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New FDM Commission Bonus.
+        ///   Looks up a localized string similar to New FTD Commission Bonus.
         /// </summary>
         public static string NewFdmCommBonus {
             get {
@@ -4235,11 +4226,20 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NEW MEMBER FIRST DEPOSIT (FDM).
+        ///   Looks up a localized string similar to New FTD.
         /// </summary>
-        public static string NewFDMs {
+        public static string NewFTD {
             get {
-                return ResourceManager.GetString("NewFDMs", resourceCulture);
+                return ResourceManager.GetString("NewFTD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW MEMBER FIRST DEPOSIT (FTD).
+        /// </summary>
+        public static string NewFTDs {
+            get {
+                return ResourceManager.GetString("NewFTDs", resourceCulture);
             }
         }
         
@@ -6617,7 +6617,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TOTAL FDM&apos;s DEPOSIT ($).
+        ///   Looks up a localized string similar to TOTAL FTD&apos;s DEPOSIT ($).
         /// </summary>
         public static string TotalFdmDeposit {
             get {
@@ -6797,7 +6797,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uncalculated New FDM Commission Bonus.
+        ///   Looks up a localized string similar to Uncalculated New FTD Commission Bonus.
         /// </summary>
         public static string UncalculatedNewFdmCommBonus {
             get {

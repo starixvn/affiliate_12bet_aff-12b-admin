@@ -17,7 +17,7 @@ export const headerText = {
     AffName: 'Affiliate',
     PlayerName: 'Player',
     RegistrationDateText: 'Registration Date',
-    FdmDateText: 'FDM Date',
+    FdmDateText: 'FTD Date',
     AllSelectedProducts: 'All Selected Products',
     TotalTurnover: 'Turnover',
     TotalGgr: 'GGR',

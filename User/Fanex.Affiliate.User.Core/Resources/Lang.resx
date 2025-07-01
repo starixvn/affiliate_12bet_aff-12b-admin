@@ -574,8 +574,8 @@
     <value>FAQs</value>
     <comment>87923</comment>
   </data>
-  <data name="FDM" xml:space="preserve">
-    <value>FDM</value>
+  <data name="FTD" xml:space="preserve">
+    <value>FTD</value>
   </data>
   <data name="February" xml:space="preserve">
     <value>February</value>
@@ -2157,8 +2157,8 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
-  <data name="NewFDMs" xml:space="preserve">
-    <value>NEW MEMBER FIRST DEPOSIT (FDM)</value>
+  <data name="NewFTDs" xml:space="preserve">
+    <value>NEW MEMBER FIRST DEPOSIT (FTD)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; Above</value>
@@ -2176,7 +2176,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>40 &amp; Above</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
-    <value>TOTAL FDM's DEPOSIT ($)</value>
+    <value>TOTAL FTD's DEPOSIT ($)</value>
   </data>
   <data name="ExtraComm" xml:space="preserve">
     <value>EXTRA COMMISSION</value>
@@ -2191,10 +2191,10 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Bangladesh Support</value>
   </data>
   <data name="FdmDeposit" xml:space="preserve">
-    <value>FDM's Deposit</value>
+    <value>FTD's Deposit</value>
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
-    <value>FDM Extra Comm</value>
+    <value>FTD Extra Comm</value>
   </data>
   <data name="TotalCommission" xml:space="preserve">
     <value>Total Revenue Share</value>
@@ -2215,13 +2215,13 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Current Monthly Earning</value>
   </data>
   <data name="NewFdmCommBonus" xml:space="preserve">
-    <value>New FDM Commission Bonus</value>
+    <value>New FTD Commission Bonus</value>
   </data>
   <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
-    <value>Uncalculated New FDM Commission Bonus</value>
+    <value>Uncalculated New FTD Commission Bonus</value>
   </data>
   <data name="CurrentNewFdmCommBonus" xml:space="preserve">
-    <value>Current New FDM Commission Bonus</value>
+    <value>Current New FTD Commission Bonus</value>
   </data>
   <data name="UncalculatedMonth" xml:space="preserve">
     <value>Uncalculated Month</value>
@@ -2229,8 +2229,8 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="CurrentMonthStatistics" xml:space="preserve">
     <value>Current Month Statistics</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
-    <value>New FDM</value>
+  <data name="NewFTD" xml:space="preserve">
+    <value>New FTD</value>
   </data>
   <data name="AffCountLanguage" xml:space="preserve">
     <value>Affiliate Account Language</value>
@@ -2380,7 +2380,7 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
     <value>Contact Affiliate Manager</value>
   </data>
   <data name="FdmEnglandCalling" xml:space="preserve">
-    <value>FDM</value>
+    <value>FTD</value>
   </data>
   <data name="Aff274TestimonialTitle" xml:space="preserve">
     <value>TIMELY PAYMENTS &amp;&lt;br/&gt;SUPPORT</value>
@@ -2464,7 +2464,7 @@ CONSISTENT PAYMENT</value>
     <value>Min required</value>
   </data>
   <data name="FdmDate" xml:space="preserve">
-    <value>FDM Date</value>
+    <value>FTD Date</value>
   </data>
   <data name="Rebate" xml:space="preserve">
     <value>Rebate</value>
@@ -2649,7 +2649,7 @@ You can also email us to {1} or simply fill the form below.</value>
     <value>Telegram Channel</value>
   </data>
   <data name="FdmAmt" xml:space="preserve">
-    <value>FDM Amt</value>
+    <value>FTD Amt</value>
   </data>
   <data name="VietnamCountry" xml:space="preserve">
     <value>Viet Nam</value>
