@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Affiliate.Infrastructure.Helpers;
 using Fanex.Affiliate.Admin.Core.Commands.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
@@ -89,7 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
             {
                 UserId = UserId,
                 AffType = AffType,
-                Password = string.Empty,
+                Password = GetRandomEncryptPassword(),
                 GroupId = GroupId,
 
                 FirstName = FirstName,
@@ -121,6 +123,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
                 Ip = Ip,
                 TargetCountryCode = TargetCountryCode,
             };
+        }
+
+        private static string GetRandomEncryptPassword()
+        {
+            const int PASSWORD_LENGTH = 10;
+
+            return CryptographyHelper.Encrypt(Generator.GetRandomString(PASSWORD_LENGTH));
         }
     }
 }
