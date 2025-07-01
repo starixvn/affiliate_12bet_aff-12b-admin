@@ -1,6 +1,7 @@
 ﻿using System;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO.Api;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
@@ -90,6 +91,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
             }
             catch (Exception ex)
             {
+                LogHelper.WriteError(ex);
                 return new ResultInfo
                 {
                     Code = ErrCode.GeneralErrorCode,
@@ -151,7 +153,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
             command.Player_Currency = DetermineCurrencyId(memberSiteCust);
         }
 
-        private int DetermineCurrencyId(dynamic memberSiteCust)
+        private static int DetermineCurrencyId(MemberSiteCustomerInfo memberSiteCust)
         {
             return memberSiteCust.IsTest.GetValueOrDefault()
                 ? TEST_CURRENCY_ID
