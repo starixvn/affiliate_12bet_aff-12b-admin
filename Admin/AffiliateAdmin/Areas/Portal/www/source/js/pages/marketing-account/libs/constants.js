@@ -21,8 +21,8 @@ export const headerText = {
     TargetCountryCode: 'Target Country',
     Language: 'Language',
     RegistrationDateText: 'Registration Date',
-    CreatedBy: 'Created by',
-    Actions: 'Actions'
+    CreatedBy: 'Created By',
+    Action: 'Action'
 }
 
 export const defaultGeneralInfo = {

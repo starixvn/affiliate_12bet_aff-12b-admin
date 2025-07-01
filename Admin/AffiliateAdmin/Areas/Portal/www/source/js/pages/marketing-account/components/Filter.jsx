@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 
-import { setParam, setIsShowAddAffMktAccountPopup, setAffId } from '../actions';
+import { setParam, setIsShowAddAffMktAccountPopup } from '../actions';
 import { allStatuses, globalResource, statusList } from '../libs/constants';
 
 export const Filter = (props) => {
@@ -82,6 +82,7 @@ export const Filter = (props) => {
                 <FormGroup className="my-sm-1 mr-sm-2">
                     <Input type="text" name="affiliate" id="affiliate" maxLength="30"
                         onKeyPress={_handlePressEnter}
+                        placeholder='Username'
                         onChange={(e) => setUserName(e.target.value)}
                         value={userName} />
                 </FormGroup>
@@ -106,7 +107,6 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setParam,
         setIsShowAddAffMktAccountPopup,
-        setAffId
     }, dispatch);
 };
 

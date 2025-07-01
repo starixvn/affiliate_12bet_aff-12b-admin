@@ -4,13 +4,10 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell, Pager } from '@9softstudio/react-fixed-table-header';
 
 import { toggleLoader } from '../../../actions/loaderAction';
-import { fetchData, fetchMarketingAccounts, setAff, setPagingOption } from '../actions';
+import { fetchMarketingAccounts, setPagingOption } from '../actions';
 import { headerText } from '../libs/constants';
 import { resolveClientUrl } from '../../../modules/utils';
 import { globalResource } from '../../../modules/globalResource';
-import { htmlDecode } from '../../../modules/htmlHelper';
-import { post } from '../../../modules/ajaxRequest';
-import { updateObjectInArray } from '../../../modules/dataHandler';
 import { NotificationPopup } from '../../common/components/NotificationPopup';
 
 export const GridData = (props) => {
@@ -41,41 +38,6 @@ export const GridData = (props) => {
         props.toggleLoader(false);
     }
 
-    const _handleToggleFavorite = (affId, isFavorite) => {
-        setShouldResetScrollPosition(false);
-        const param = {
-            AffId: affId,
-            IsFavorite: !isFavorite
-        }
-
-        _saveToggleFavorite(param);
-    }
-
-    const _saveToggleFavorite = async (param) => {
-        const url = `Portal/Affiliate/ToggleFavorite`;
-        const response = await post(url, param);
-
-        if (!response?.data) return;
-
-        const { IsSuccessful, Message } = response.data;
-
-        if (!IsSuccessful) {
-            setMessageNotification(Message);
-            return;
-        }
-
-        const index = gridData.findIndex(item => item.AffId === param.AffId);
-        if (index === -1) return;
-
-        const updatedItem = {
-            ...gridData[index],
-            IsFavorite: param.IsFavorite
-        };
-
-        const updatedGridData = updateObjectInArray(gridData, index, updatedItem);
-        setGridData(updatedGridData);
-    }
-
     const _renderDataSection = (dataList) => {
         const dataRows = [];
 
@@ -91,26 +53,25 @@ export const GridData = (props) => {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={8}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan={9}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
         return dataRows;
     }
 
-
     const _renderHeader = () => {
         return (
             <Row key="thread">
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.UserName}>{headerText.UserName}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={40} title={headerText.AffCode}>{headerText.AffCode}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.TargetCountryCode}>{headerText.TargetCountryCode}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.Actions}>{headerText.Actions}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.Action}>{headerText.Action}</Cell>
             </Row>
         );
     }
@@ -118,30 +79,23 @@ export const GridData = (props) => {
     const _renderDataRow = (dataItem, index) => {
         const { targetCountryCodeList, languageCodeList } = props;
 
-        const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
-        const isApproved = status == "approved";
         const language = languageCodeList[dataItem.Language];
         const targetCountry = targetCountryCodeList[dataItem.TargetCountryCode];
-
-        const isFavorite = dataItem.IsFavorite
-        const checkFavorite = isFavorite ? "favor-check" : "favor-uncheck";
-        const classNameFavorite = (isApproved || status == "closed") ? checkFavorite : "";
-
+        
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-right" title={index}>{index}</Cell>
-                <Cell title={dataItem.UserName}>
+                <Cell className="text-center" title={index}>{index}</Cell>
+                <Cell className="text-center" title={dataItem.UserName}>
                     <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="_top">
                         {dataItem.UserName}
                     </a>
-                    <span className={classNameFavorite} onClick={() => _handleToggleFavorite(dataItem.AffId, isFavorite)}></span>
                 </Cell>
-                <Cell title={dataItem.AffCode}>{dataItem.AffCode}</Cell>
-                <Cell title={dataItem.Status}>{dataItem.Status}</Cell>
-                <Cell title={targetCountry}>{targetCountry}</Cell>
-                <Cell title={language}>{language}</Cell>
-                <Cell title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
-                <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
+                <Cell className="text-center" title={dataItem.AffCode}>{dataItem.AffCode}</Cell>
+                <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>
+                <Cell className="text-center" title={targetCountry}>{targetCountry}</Cell>
+                <Cell className="text-center" title={language}>{language}</Cell>
+                <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
+                <Cell className="text-center" title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
                 <Cell className="text-center">
                     <button title="Copy" className="btn btn-link" onClick={() => props.handleAddNewAccount(dataItem.AffId, dataItem.UserName)}>
                         <span className={`oi icon-copy-link`}></span>
@@ -161,7 +115,7 @@ export const GridData = (props) => {
         _fetchData(newParam);
     }
 
-    return gridData && gridData.length > 0 && (
+    return gridData && (
         <React.Fragment>
             <div className="table-responsive table-striped">
                 <Table

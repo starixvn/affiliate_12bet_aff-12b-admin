@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Modal, ModalHeader, ModalBody, Button, Form, Alert } from 'reactstrap';
@@ -29,7 +29,8 @@ export const AddAffMktAccountPopup = (props) => {
         websiteInfo, 
         setWebsiteInfo,
         handleSubmit,
-        minimumPayment  
+        minimumPayment ,
+        paymentMethods
     } = useNewMarketingAccountData(props.aff.affId, props.toggleLoader);
 
     if(!generalInfo.hasData) {
@@ -58,6 +59,7 @@ export const AddAffMktAccountPopup = (props) => {
                         paymentInfo={paymentInfo}
                         setPaymentInfo={setPaymentInfo}
                         minimumPayment={minimumPayment}
+                        paymentMethods={paymentMethods}
                     />
                     <Form tag="div">
                         <Button className="mb-3" color="success" onClick={() => handleSubmit(modalBodyRef)}>SAVE</Button>

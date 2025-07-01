@@ -18,7 +18,7 @@ export default function RowField({
 
     return (
         <FormGroup row> 
-            <Label xs={3} {...labelProps}>{label}</Label>
+            <Label htmlFor={name} xs={3} {...labelProps}>{label}</Label>
             <Col xs={5} {...colProps}>
                 {
                     colComponent ? colComponent : <Input

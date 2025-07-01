@@ -19,6 +19,7 @@ export default function useNewMarketingAccountData(
     const [paymentInfo, setPaymentInfo] = useState(defaultPaymentInfo);
     const [websiteInfo, setWebsiteInfo] = useState(defaultWebsiteInfo);
     const [minimumPayment, setMinimumPayment] = useState(0);
+    const [paymentMethods, setPaymentMethods] = useState([]);
 
     useEffect(() => {
         toggleLoader(true);
@@ -31,6 +32,7 @@ export default function useNewMarketingAccountData(
         const response = await getPaymentMethod()();
         if (response) {
             setMinimumPayment(response.MinAmount);
+            setPaymentMethods(response.PaymentMethods);
         }
     }
 
@@ -85,7 +87,6 @@ export default function useNewMarketingAccountData(
             isShowMessage: true,
             message: errMsg
         }));
-        setTimeout(_handleCloseAlert, 3000);
         if (modalBodyRef?.current) {
             modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -138,6 +139,7 @@ export default function useNewMarketingAccountData(
         paymentInfo,
         websiteInfo,
         minimumPayment,
+        paymentMethods,
 
         // State setters
         setGeneralInfo,

@@ -61,7 +61,7 @@ export const Additional = (props) => {
                     value={additionalInfo.question}
                     onChange={onChange}
                     colComponent={
-                        <p className="form-control-plaintext">{additionalInfo.question}</p>
+                        <p className="form-control-plaintext" style={{ fontSize: '0.7rem' }}>{additionalInfo.question}</p>
                     }
                 />
                 <RowField
@@ -70,7 +70,7 @@ export const Additional = (props) => {
                     value={additionalInfo.answer}
                     onChange={onChange}
                     colComponent={
-                        <p className="form-control-plaintext">{additionalInfo.answer}</p>
+                        <p className="form-control-plaintext" style={{ fontSize: '0.7rem' }}>{additionalInfo.answer}</p>
                     }
                 />
                 

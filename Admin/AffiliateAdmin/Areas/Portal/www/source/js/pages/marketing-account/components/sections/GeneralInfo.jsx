@@ -6,7 +6,6 @@ import RowField from './RowField';
 
 export const GeneralInfo = (props) => {
     const { generalInfo, setGeneralInfo, aff } = props;
-    const affOptions = [{ label: aff.affName, value: aff.affId }]
     const onChange = (e) => {
         setGeneralInfo({
             ...generalInfo,
@@ -36,7 +35,7 @@ export const GeneralInfo = (props) => {
     })
 
     return (
-        <div>
+        <div style={{ paddingLeft: '10px' }}>
             <RowField
                 label="Copy from Marketing account"
                 name="marketingAccount"
