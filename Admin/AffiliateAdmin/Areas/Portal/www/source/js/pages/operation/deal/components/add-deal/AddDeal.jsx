@@ -19,8 +19,7 @@ export const AddDeal = (props) => {
     const { dealId } = props;
     const [isShowMessage, setIsShowMessage] = useState(false);
     const [message, setMessage] = useState([]);
-    const [isSuccess, setIsSuccess] = useState(true);
-    const [isDisabledSubmitBtn, setIsDisabledSubmitBtn] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
     const [activePanelWhenHasInvalid, setActivePanelWhenHasInvalid] = useState({ panel: dealPanelKey.cpa });
 
     useEffect(() => {
@@ -33,8 +32,6 @@ export const AddDeal = (props) => {
     }, [dealId]);
 
     const _handleSave = async () => {
-        props.onSave();
-
         const { dealInfo } = props;
 
         const { isValid, messageList } = validateDealInfo(dealInfo);
@@ -63,7 +60,6 @@ export const AddDeal = (props) => {
             if (response && response.status === 200) {
                 const result = response.data;
                 if (result.IsSuccessful) {
-                    setIsDisabledSubmitBtn(true);
                     setTimeout(props.onClose, 3000);
                     const { pagingOption, param } = props;
                     const gettingParam = {
@@ -79,6 +75,7 @@ export const AddDeal = (props) => {
 
             props.toggleLoader(false);
         }
+        setTimeout(props.onSave, 100);
     }
 
     const _handleShowMessage = (isSuccess, message) => {
@@ -117,7 +114,7 @@ export const AddDeal = (props) => {
                     <Button type="button"
                         className="my-2 btn btn-success btn-save"
                         onClick={_handleSave}
-                        disabled={isDisabledSubmitBtn}>
+                        disabled={isSuccess}>
                         SAVE
                     </Button>
                 </Col>
