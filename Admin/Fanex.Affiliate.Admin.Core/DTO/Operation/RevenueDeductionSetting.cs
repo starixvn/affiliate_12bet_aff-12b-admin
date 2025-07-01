@@ -11,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Operation
 
         public decimal DeductedPercentage { get; set; }
 
-        public bool IsDeductedPercent { get; set; }
+        public bool IsDeductedPercent { get; set; } = true;
 
         public string DeductedAmount { get; set; }
 
