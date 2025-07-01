@@ -537,8 +537,8 @@
   <data name="Faqs" xml:space="preserve">
     <value>Câu hỏi thường gặp</value>
   </data>
-  <data name="FDM" xml:space="preserve">
-    <value>FDM</value>
+  <data name="FTD" xml:space="preserve">
+    <value>FTD</value>
   </data>
   <data name="February" xml:space="preserve">
     <value>Tháng 2</value>
@@ -2051,8 +2051,8 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="Flat50" xml:space="preserve">
     <value>50% cố định</value>
   </data>
-  <data name="NewFDMs" xml:space="preserve">
-    <value>LỆNH NẠP ĐẦU CHO THÀNH VIÊN MỚI (FDM)</value>
+  <data name="NewFTDs" xml:space="preserve">
+    <value>LỆNH NẠP ĐẦU CHO THÀNH VIÊN MỚI (FTD)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; lớn hơn</value>
@@ -2082,13 +2082,13 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>BDT</value>
   </data>
   <data name="FdmDeposit" xml:space="preserve">
-    <value>Khoản gửi của FDM</value>
+    <value>Khoản gửi của FTD</value>
   </data>
   <data name="TransactionInReport" xml:space="preserve">
     <value>Giao dịch</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
-    <value>FDM mới</value>
+  <data name="NewFTD" xml:space="preserve">
+    <value>FTD mới</value>
   </data>
   <data name="MonthlyTotal" xml:space="preserve">
     <value>Tổng hàng tháng</value>
@@ -2103,13 +2103,13 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Thu nhập hàng tháng hiện tại</value>
   </data>
   <data name="CurrentNewFdmCommBonus" xml:space="preserve">
-    <value>Tiền thưởng hoa hồng FDM mới hiện tại</value>
+    <value>Tiền thưởng hoa hồng FTD mới hiện tại</value>
   </data>
   <data name="NewFdmCommBonus" xml:space="preserve">
-    <value>Tiền thưởng hoa hồng FDM mới</value>
+    <value>Tiền thưởng hoa hồng FTD mới</value>
   </data>
   <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
-    <value>Tiền thưởng hoa hồng FDM mới chưa tính</value>
+    <value>Tiền thưởng hoa hồng FTD mới chưa tính</value>
   </data>
   <data name="UncalculatedMonth" xml:space="preserve">
     <value>Tháng chưa tính</value>
@@ -2118,7 +2118,7 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
     <value>Thống kê tháng hiện tại</value>
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
-    <value>Tiền thưởng hoa hồng FDM bổ sung</value>
+    <value>Tiền thưởng hoa hồng FTD bổ sung</value>
   </data>
   <data name="TotalCommission" xml:space="preserve">
     <value>Tổng hoa hồng</value>
@@ -2355,7 +2355,7 @@ THANH TOÁN ỔN ĐỊNH</value>
     <value>Yêu cầu tối thiểu</value>
   </data>
   <data name="FdmDate" xml:space="preserve">
-    <value>Ngày FDM</value>
+    <value>Ngày FTD</value>
   </data>
   <data name="Rebate" xml:space="preserve">
     <value>Khuyến Mãi Hoàn Trả</value>

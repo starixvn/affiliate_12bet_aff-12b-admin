@@ -544,7 +544,7 @@
   <data name="Faqs" xml:space="preserve">
     <value>자주 묻는 질문</value>
   </data>
-  <data name="FDM" xml:space="preserve">
+  <data name="FTD" xml:space="preserve">
     <value>첫 입금회원</value>
   </data>
   <data name="February" xml:space="preserve">
@@ -2038,8 +2038,8 @@
   <data name="Flat50" xml:space="preserve">
     <value>고정 50%</value>
   </data>
-  <data name="NewFDMs" xml:space="preserve">
-    <value>신규 회원 첫 입금 (FDM)</value>
+  <data name="NewFTDs" xml:space="preserve">
+    <value>신규 회원 첫 입금 (FTD)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; 이상</value>
@@ -2057,7 +2057,7 @@
     <value>40 &amp; 이상</value>
   </data>
   <data name="TotalFdmDeposit" xml:space="preserve">
-    <value>FDM 입금 총액($)</value>
+    <value>FTD 입금 총액($)</value>
   </data>
   <data name="ExtraComm" xml:space="preserve">
     <value>추가 커미션</value>
@@ -2069,13 +2069,13 @@
     <value>BDT</value>
   </data>
   <data name="FdmDeposit" xml:space="preserve">
-    <value>FDM 입금</value>
+    <value>FTD 입금</value>
   </data>
   <data name="TransactionInReport" xml:space="preserve">
     <value>거래</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
-    <value>새로운 FDM</value>
+  <data name="NewFTD" xml:space="preserve">
+    <value>새로운 FTD</value>
   </data>
   <data name="MonthlyTotal" xml:space="preserve">
     <value>월별 합계</value>
@@ -2090,13 +2090,13 @@
     <value>현재 월별 수입</value>
   </data>
   <data name="CurrentNewFdmCommBonus" xml:space="preserve">
-    <value>현재 신규 FDM 커미션 보너스</value>
+    <value>현재 신규 FTD 커미션 보너스</value>
   </data>
   <data name="NewFdmCommBonus" xml:space="preserve">
-    <value>새로운 FDM 커미션 보너스</value>
+    <value>새로운 FTD 커미션 보너스</value>
   </data>
   <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
-    <value>계산되지 않은 새 FDM 커미션 보너스</value>
+    <value>계산되지 않은 새 FTD 커미션 보너스</value>
   </data>
   <data name="UncalculatedMonth" xml:space="preserve">
     <value>계산되지 않은 월</value>
@@ -2105,7 +2105,7 @@
     <value>현재 월 통계</value>
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
-    <value>FDM 추가 커미션</value>
+    <value>FTD 추가 커미션</value>
   </data>
   <data name="Hindi" xml:space="preserve">
     <value>흰디어</value>
@@ -2234,7 +2234,7 @@
     <value>가입</value>
   </data>
   <data name="FdmEnglandCalling" xml:space="preserve">
-    <value>FDM</value>
+    <value>FTD</value>
   </data>
   <data name="WinlossInUSD" xml:space="preserve">
     <value>승리손실 ($)</value>
@@ -2348,7 +2348,7 @@
     <value>최소 필요 금액</value>
   </data>
   <data name="FdmDate" xml:space="preserve">
-    <value>FDM 날짜</value>
+    <value>FTD 날짜</value>
   </data>
   <data name="Rebate" xml:space="preserve">
     <value>리베이트</value>

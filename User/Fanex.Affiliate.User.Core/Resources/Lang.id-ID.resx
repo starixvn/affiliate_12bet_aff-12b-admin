@@ -537,7 +537,7 @@
   <data name="Faqs" xml:space="preserve">
     <value>FAQ</value>
   </data>
-  <data name="FDM" xml:space="preserve">
+  <data name="FTD" xml:space="preserve">
     <value>Member yang Deposit Pertama Kali</value>
   </data>
   <data name="February" xml:space="preserve">
@@ -2048,8 +2048,8 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   <data name="Flat50" xml:space="preserve">
     <value>Flat 50%</value>
   </data>
-  <data name="NewFDMs" xml:space="preserve">
-    <value>Deposit Member Baru (FDM)</value>
+  <data name="NewFTDs" xml:space="preserve">
+    <value>Deposit Member Baru (FTD)</value>
   </data>
   <data name="AboveOneThousand" xml:space="preserve">
     <value>15,000 &amp; Lebih</value>
@@ -2079,13 +2079,13 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>BDT</value>
   </data>
   <data name="FdmDeposit" xml:space="preserve">
-    <value>Member baru deposit (FDM)</value>
+    <value>Member baru deposit (FTD)</value>
   </data>
   <data name="TransactionInReport" xml:space="preserve">
     <value>Transaksi</value>
   </data>
-  <data name="NewFDM" xml:space="preserve">
-    <value>Member deposit baru (FDM)</value>
+  <data name="NewFTD" xml:space="preserve">
+    <value>Member deposit baru (FTD)</value>
   </data>
   <data name="MonthlyTotal" xml:space="preserve">
     <value>Total Bulanan</value>
@@ -2100,13 +2100,13 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Penghasilan Bulanan Saat Ini</value>
   </data>
   <data name="CurrentNewFdmCommBonus" xml:space="preserve">
-    <value>Bonus Komisi FDM Baru Saat Ini</value>
+    <value>Bonus Komisi FTD Baru Saat Ini</value>
   </data>
   <data name="NewFdmCommBonus" xml:space="preserve">
-    <value>Bonus Komisi FDM baru</value>
+    <value>Bonus Komisi FTD baru</value>
   </data>
   <data name="UncalculatedNewFdmCommBonus" xml:space="preserve">
-    <value>Bonus Komisi FDM Baru yang Belum Dihitung</value>
+    <value>Bonus Komisi FTD Baru yang Belum Dihitung</value>
   </data>
   <data name="UncalculatedMonth" xml:space="preserve">
     <value>Bulan yang Tidak Dihitung</value>
@@ -2115,7 +2115,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Statistik Bulan Ini</value>
   </data>
   <data name="FdmExtraComm" xml:space="preserve">
-    <value>Komisi Ekstra FDM</value>
+    <value>Komisi Ekstra FTD</value>
   </data>
   <data name="Hindi" xml:space="preserve">
     <value>Hindi</value>
@@ -2244,7 +2244,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>REGISTRASI</value>
   </data>
   <data name="FdmEnglandCalling" xml:space="preserve">
-    <value>NDP</value>
+    <value>FTD</value>
   </data>
   <data name="WinlossInUSD" xml:space="preserve">
     <value>WINLOSS ($)</value>
@@ -2337,7 +2337,7 @@ PEMBAYARAN KONSISTEN</value>
     <value>GGR</value>
   </data>
   <data name="FdmDate" xml:space="preserve">
-    <value>Tanggal FDM</value>
+    <value>Tanggal FTD</value>
   </data>
   <data name="TotalGGR" xml:space="preserve">
     <value>Total GGR</value>
