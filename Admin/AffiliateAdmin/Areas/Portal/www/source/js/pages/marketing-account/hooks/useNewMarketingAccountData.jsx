@@ -90,10 +90,9 @@ export default function useNewMarketingAccountData(
         if (modalBodyRef?.current) {
             modalBodyRef.current.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        return;
     }
 
-    const _handleSubmit = async (modalBodyRef) => {
+    const handleSubmit = async (modalBodyRef, successCallback = null) => {
         const rawData = {
             ...generalInfo,
             ...personalInfo,
@@ -121,13 +120,9 @@ export default function useNewMarketingAccountData(
             return;
         }
         notify('Successfully added a new marketing account', modalBodyRef, true);
-    };
-
-    const _handleCloseAlert = () => {
-        setResultInfo(prevState => ({
-            ...prevState,
-            isShowMessage: false
-        }));
+        if(successCallback) {
+            successCallback();
+        }
     };
 
     return {
@@ -149,6 +144,6 @@ export default function useNewMarketingAccountData(
         setWebsiteInfo,
         
         // Functions
-        handleSubmit: _handleSubmit,
+        handleSubmit,
     };
 }

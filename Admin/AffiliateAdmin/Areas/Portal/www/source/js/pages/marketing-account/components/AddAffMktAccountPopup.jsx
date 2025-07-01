@@ -10,12 +10,20 @@ import EmailFormat from './sections/EmailFormat';
 import Payment from './sections/Payment';
 import WebSite from './sections/WebSite';
 
-import { getMarketingAccountInfo, getPaymentMethod } from '../actions';
+import { getMarketingAccountInfo, getPaymentMethod, setIsShowAddAffMktAccountPopup, setParam } from '../actions';
 import { toggleLoader } from './../../../actions/loaderAction';
 import useNewMarketingAccountData from '../hooks/useNewMarketingAccountData';
 
-export const AddAffMktAccountPopup = (props) => {
+export const AddAffMktAccountPopup = ({ 
+    aff, 
+    isShowAddAffMktAccountPopup, 
+    toggle, 
+    toggleLoader, 
+    setIsShowAddAffMktAccountPopup,
+    params, setParam
+}) => {
     const modalBodyRef = useRef();
+    
     const {
         resultInfo,
         generalInfo, 
@@ -29,17 +37,36 @@ export const AddAffMktAccountPopup = (props) => {
         websiteInfo, 
         setWebsiteInfo,
         handleSubmit,
-        minimumPayment ,
+        minimumPayment,
         paymentMethods
-    } = useNewMarketingAccountData(props.aff.affId, props.toggleLoader);
+    } = useNewMarketingAccountData(aff.affId, toggleLoader);
 
     if(!generalInfo.hasData) {
         return null;
     }
 
+    const onSave = () => {
+        const onCloseModal = () => {
+            setTimeout(() => {
+                // reload grid data
+                setParam({
+                    ...params,
+                });
+                setIsShowAddAffMktAccountPopup(false);
+            }, 3000);
+        }
+        handleSubmit(modalBodyRef, onCloseModal);
+    }
+
     return (
-        <Modal isOpen={props.isOpen} toggle={props.toggle} size="lg" backdrop="static" innerRef={modalBodyRef}>
-            <ModalHeader toggle={props.toggle}>
+        <Modal 
+            isOpen={isShowAddAffMktAccountPopup} 
+            toggle={toggle} 
+            size="lg" 
+            backdrop="static" 
+            innerRef={modalBodyRef}
+        >
+            <ModalHeader toggle={toggle}>
                 <span className="iconpopup"></span> Add a new Marketing account
             </ModalHeader>
             <ModalBody>
@@ -62,7 +89,7 @@ export const AddAffMktAccountPopup = (props) => {
                         paymentMethods={paymentMethods}
                     />
                     <Form tag="div">
-                        <Button className="mb-3" color="success" onClick={() => handleSubmit(modalBodyRef)}>SAVE</Button>
+                        <Button className="mb-3" color="success" onClick={onSave}>SAVE</Button>
                     </Form>
                 </div>
             </ModalBody>
@@ -70,9 +97,11 @@ export const AddAffMktAccountPopup = (props) => {
     );
 };
 
-const mapStateToProps = ({ aff }) => {
+const mapStateToProps = ({ aff, isShowAddAffMktAccountPopup, params }) => {
     return {
-        aff
+        aff,
+        isShowAddAffMktAccountPopup,
+        params
     }
 }
 
@@ -80,7 +109,9 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         toggleLoader,
         getMarketingAccountInfo,
-        getPaymentMethod
+        getPaymentMethod,
+        setIsShowAddAffMktAccountPopup,
+        setParam
     }, dispatch);
 }
 

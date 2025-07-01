@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
                 
                 PreferredLanguage = PreferredLanguage,
                 QuestionId = QuestionId,
-                Answer = string.Empty,
+                Answer = Answer,
 
                 PreferredPayment = PreferredPayment,
                 Player_CustId = PlayerCustId,
