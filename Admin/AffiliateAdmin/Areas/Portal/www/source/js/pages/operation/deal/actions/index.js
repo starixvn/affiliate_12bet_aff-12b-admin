@@ -75,6 +75,8 @@ const _buildDealInfo = (dealInfo) => {
         Quota,
         ProductGroup,
         CPATierSetting,
+        DepositFeeSetting,
+        WithdrawalFeeSetting,
         ...rest
     } = dealInfo;
 
@@ -84,6 +86,18 @@ const _buildDealInfo = (dealInfo) => {
     const firstGroupProductId = ProductGroup?.[0]?.GroupProductId;
     const firstTier = CPATierSetting.find(t => t.GroupProductId === firstGroupProductId);
 
+    if (WithdrawalFeeSetting) {
+        WithdrawalFeeSetting.DeductedAmount = WithdrawalFeeSetting.IsDeductedPercent
+            ? ''
+            : WithdrawalFeeSetting.DeductedAmount;
+    }
+
+    if (DepositFeeSetting) {
+        DepositFeeSetting.DeductedAmount = DepositFeeSetting.IsDeductedPercent
+            ? ''
+            : DepositFeeSetting.DeductedAmount;
+    }
+
     return {
         ...rest,
         HoldingDays,
@@ -91,6 +105,8 @@ const _buildDealInfo = (dealInfo) => {
         Quota,
         ProductGroup,
         CPATierSetting,
+        DepositFeeSetting,
+        WithdrawalFeeSetting,
         IsActivePlayerHoldingPeriod: isActivePlayerHoldingPeriod,
         IsQuota: isQuota,
         CheckedMinFdm: firstTier?.MinFdm > 0 || false,

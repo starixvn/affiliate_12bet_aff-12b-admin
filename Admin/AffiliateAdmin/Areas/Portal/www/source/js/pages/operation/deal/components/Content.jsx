@@ -5,7 +5,6 @@ import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Pager } from '@9softstudio/react-fixed-table-header';
 
 import { setParam, setDealInfo, setPagingOption, fetchData, setIsEdit, setIsSubmitted } from '../actions';
-import { claimResource } from '../../../../modules/claim';
 
 import GridData from './deal-list/GridData';
 import AddDeal from './add-deal/AddDeal';
