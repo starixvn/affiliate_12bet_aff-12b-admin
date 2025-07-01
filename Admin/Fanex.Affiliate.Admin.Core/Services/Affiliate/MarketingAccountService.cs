@@ -1,12 +1,4 @@
-﻿using System;
-using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO.Api;
-using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Resources;
-using Fanex.Affiliate.Admin.Core.Services.UserPanel;
-
-namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
+﻿namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -20,6 +12,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
     using Fanex.Affiliate.Admin.Core.Utilities;
     using Fanex.Data.Repository;
     using Newtonsoft.Json;
+    using System;
+    using Fanex.Affiliate.Admin.Core.Configurations;
+    using Fanex.Affiliate.Admin.Core.Constants;
+    using Fanex.Affiliate.Admin.Core.DTO.Api;
+    using Fanex.Affiliate.Admin.Core.Resources;
+    using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 
     public class MarketingAccountService : BaseDynamicService, IMarketingAccountService
     {
@@ -102,8 +100,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 
         private static void PrepareModelForCreation(CreateMarketingAccountModel model, HttpServerUtilityBase server)
         {
-            AssignContactApps(model, server);
-            HtmlEncodeModelStringProperties(model, server, typeof(CreateMarketingAccountModel));
+            AssignContactApps(model);
+            HtmlEncodeModelStringProperties(model, server, typeof(CreateMarketingAccountModel), nameof(model.ContactApps));
         }
 
         private static ResultInfo ValidateCreateMarketingAccountModel(CreateMarketingAccountModel model)
@@ -172,11 +170,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
             await _thirdPartyLicenseeService.SendAffiliateInfo(affInfo);
         }
 
-        private static void HtmlEncodeModelStringProperties(object model, HttpServerUtilityBase server, Type type)
+        private static void HtmlEncodeModelStringProperties(object model, HttpServerUtilityBase server, Type type, params string[] ignoreProperties)
         {
             var stringProperties = type
                 .GetProperties()
-                .Where(p => p.PropertyType == typeof(string) && p.CanWrite);
+                .Where(p => p.PropertyType == typeof(string) && p.CanWrite && !ignoreProperties.Contains(p.Name));
 
             foreach (var property in stringProperties)
             {
@@ -204,14 +202,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
             }
         }
 
-        private static void AssignContactApps(CreateMarketingAccountModel model, HttpServerUtilityBase server)
+        private static void AssignContactApps(CreateMarketingAccountModel model)
         {
             var contactApps = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(model.ContactApps);
             model.ContactAppList = AppContactHelper.HandleContactApps(model.PreferredLanguage, contactApps);
             model.ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
             {
-                Name = server.HtmlDecode(p.Name),
-                Value = server.HtmlDecode(p.Value),
+                Name = p.Name,
+                Value = p.Value,
                 Order = p.Order
             }));
         }
