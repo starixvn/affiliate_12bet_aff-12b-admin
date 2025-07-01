@@ -199,6 +199,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {
+            if (param.IsMarketingAccount)
+            {
+                return PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
+            }
+
             var isPlayerUsername = (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment))
                                         && !string.IsNullOrEmpty(param.PlayerUsername);
             var isMoneybookersEmail = PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.MoneybookersEmail);

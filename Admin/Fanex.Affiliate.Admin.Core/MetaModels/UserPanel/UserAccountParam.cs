@@ -86,5 +86,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [SpParam(Ignored = true)]
         public bool HasHostAffPersonalInfoPermission { get; set; }
 
+        public bool IsMarketingAccount { get; set; }
+
     }
 }

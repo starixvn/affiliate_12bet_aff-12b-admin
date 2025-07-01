@@ -41,8 +41,8 @@ export class Additional extends PureComponent {
     render() {
         const { userAccountInfo } = this.props;
         const isShowSecurityQuestion = !!userAccountInfo.Question;
-        const isRequired = userAccountInfo.MarketingAccount === false;
-
+        const isRequired = !userAccountInfo.IsMarketingAccount;
+        
         return userAccountInfo && (
             <Form tag="div">
                 {renderInputForm('address', 'Address', userAccountInfo.Address, false, isRequired, this.handleChange)}
