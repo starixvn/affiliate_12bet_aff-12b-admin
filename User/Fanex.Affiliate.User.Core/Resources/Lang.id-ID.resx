@@ -2513,9 +2513,6 @@ PEMBAYARAN KONSISTEN</value>
   <data name="ClickHere" xml:space="preserve">
     <value>klik di sini.</value>
   </data>
-  <data name="RedirectOldLink" xml:space="preserve">
-    <value>klik &lt;a href="{0}"&gt;di sini&lt;/a&gt; untuk mengakses situs afiliasi lama</value>
-  </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>Saldo akun dibawa dari sistem sebelumnya.</value>
   </data>

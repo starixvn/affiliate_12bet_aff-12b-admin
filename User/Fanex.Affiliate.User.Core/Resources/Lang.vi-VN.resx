@@ -2522,9 +2522,6 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="Winloss" xml:space="preserve">
     <value>Thắng/ Thua</value>
   </data>
-  <data name="RedirectOldLink" xml:space="preserve">
-    <value>Nhấp &lt;a href="{0}"&gt;vào đây&lt;/a&gt; để truy cập trang web đại lý cũ.</value>
-  </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>Số dư trước đó sẽ được chuyển sang trang mới.</value>
   </data>

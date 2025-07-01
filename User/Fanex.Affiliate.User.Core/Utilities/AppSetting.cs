@@ -87,8 +87,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string SubAffTextLinkTemplate => GetValue("SubAffTextLinkTemplate");
 
-        public string RedirectToOldVersLink => GetValue("RedirectToOldVersLink");
-
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

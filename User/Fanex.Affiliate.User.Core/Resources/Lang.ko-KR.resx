@@ -2506,9 +2506,6 @@
   <data name="ClickHere" xml:space="preserve">
     <value>여기를 클릭하십시오.</value>
   </data>
-  <data name="RedirectOldLink" xml:space="preserve">
-    <value>&lt;a href="{0}"&gt;여기&lt;/a&gt;를 클릭하여 이전 제휴 사이트에 접속하세요.</value>
-  </data>
   <data name="PreviousSystemBalanceDescription" xml:space="preserve">
     <value>이전 시스템에서 이월된 계정 잔액.</value>
   </data>
