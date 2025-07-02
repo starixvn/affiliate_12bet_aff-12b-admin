@@ -76,7 +76,7 @@
                     return result;
                 }
 
-                await NotifyThirdPartyServices(model.AffId);
+                await NotifyThirdPartyServices(command.Username);
                 return result;
             }
             catch (InvalidOperationException ex)
@@ -163,10 +163,12 @@
             return await ExecuteReturnResultInfoAsync(command);
         }
 
-        private async Task NotifyThirdPartyServices(int affId)
+        private async Task NotifyThirdPartyServices(string affName)
         {
-            var affInfo = _affiliateService.GetAffiliateBasicInfo(affId);
+            var affInfo = _affiliateService.GetAffiliateBasicInfo(null, affName);
             affInfo.PlayerCustId = -1;
+            affInfo.PlayerUsername = string.IsNullOrEmpty(affInfo.PlayerUsername) ? string.Empty : affInfo.PlayerUsername;
+
             await _thirdPartyLicenseeService.SendAffiliateInfo(affInfo);
         }
 
