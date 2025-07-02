@@ -100,6 +100,14 @@ export default function useNewMarketingAccountData(
             ...paymentInfo,
             ...websiteInfo,
         };
+        
+        if(rawData.hasWebSite) {
+            rawData.noSiteDesc = "";
+        }
+        else {
+            rawData.siteUrl = "";
+            rawData.moreSiteUrls = "";
+        }
 
         if (!rawData.email) {
             notify('Email Address is required', modalBodyRef);
