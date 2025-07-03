@@ -34,33 +34,43 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string TargetCountryCode { get; set; }
 
         // Personal
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string FirstName { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string LastName { get; set; }
 
         public bool? Gender { get; set; }
         
         [Required]
         public string Email { get; set; }
-
+        
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Phone { get; set; }
 
         public string ContactApps { get; set; }
 
         // Additional Info
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Address { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string City { get; set; }
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
 
         public string State { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Postal { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Country { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public int QuestionId { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Answer { get; set; }
 
         // Site 

@@ -4,10 +4,9 @@ import RowField from './RowField';
 
 export const Personal = (props) => {
     const { personalInfo, setPersonalInfo } = props;
-    const isMale = personalInfo.gender || personalInfo.gender === 'true';
+    const isMale = personalInfo.gender === 'true' || personalInfo.gender === true;
     const onChange = (e) => {
         const { name, value } = e.target;
-
         setPersonalInfo({
             ...personalInfo,
             [name]: value
