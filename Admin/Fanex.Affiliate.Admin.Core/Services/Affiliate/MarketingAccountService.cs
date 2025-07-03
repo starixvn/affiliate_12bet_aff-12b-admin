@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
+﻿using Fanex.Affiliate.Admin.Core.Commands.Affiliate;
+
+namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -118,7 +120,7 @@
             return new ResultInfo(); // Default constructor should create a successful result
         }
 
-        private async Task ConfigurePlayerAccountIfNeeded(CreateMarketingAccountModel model, dynamic command)
+        private async Task ConfigurePlayerAccountIfNeeded(CreateMarketingAccountModel model, CreateMarketingAccountCommand command)
         {
             if (string.IsNullOrEmpty(command.Player_UserName))
             {
@@ -166,8 +168,11 @@
         private async Task NotifyThirdPartyServices(string affName)
         {
             var affInfo = _affiliateService.GetAffiliateBasicInfo(null, affName);
-            affInfo.PlayerCustId = -1;
-            affInfo.PlayerUsername = string.IsNullOrEmpty(affInfo.PlayerUsername) ? string.Empty : affInfo.PlayerUsername;
+            if (string.IsNullOrEmpty(affInfo.PlayerUsername))
+            {
+                affInfo.PlayerUsername = string.Empty;
+                affInfo.PlayerCustId = -1;
+            }
 
             await _thirdPartyLicenseeService.SendAffiliateInfo(affInfo);
         }
