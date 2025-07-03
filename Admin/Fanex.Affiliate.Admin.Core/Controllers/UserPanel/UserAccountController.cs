@@ -92,7 +92,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             if (ModelState.IsValid)
             {
                 var validateAppContacts = AppContactHelper.ValidateAppContactList(param.ContactAppList);
-                if (!validateAppContacts.IsSuccessful)
+                if (param.IsNormalAccount && !validateAppContacts.IsSuccessful)
                 {
                     return GenerateJsonNetResult(validateAppContacts);
                 }

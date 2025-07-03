@@ -8,43 +8,52 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class UserAccountParam : AffiliateBasicInfoParam
     {
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string FirstName { get; set; }
 
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string LastName { get; set; }
 
-        [Required]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public bool Gender { get; set; }
 
         [Required]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
+
         public string Phone { get; set; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string ContactApps { get; set; }
 
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string Address { get; set; }
-
-        [Required]
+        
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string City { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string State { get; set; }
 
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string Postcode { get; set; }
 
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string Country { get; set; }
-
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string SiteUrl { get; set; }
-
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string MoreSiteUrls { get; set; }
@@ -52,10 +61,12 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string NoSiteDescription { get; set; }
 
-        [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string PreferredPayment { get; set; }
 
-        [SpParam(Ignored = true)]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string PlayerUsername { get; set; }
 
         public string NetellerAccountId { get; set; }
@@ -87,6 +98,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public bool HasHostAffPersonalInfoPermission { get; set; }
 
         public bool IsMarketingAccount { get; set; }
+
+        public bool IsNormalAccount => !IsMarketingAccount;
 
     }
 }

@@ -227,7 +227,7 @@
     <Compile Include="Apis\ITokenApi.cs" />
     <Compile Include="Attributes\AllowByPassFunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\CensoredPermissionCheckAttribute.cs" />
-    <Compile Include="Attributes\ConditionalRequiredAttribute.cs" />
+    <Compile Include="Attributes\RequiredDependOnField.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\PermissionCheckAttribute.cs" />
