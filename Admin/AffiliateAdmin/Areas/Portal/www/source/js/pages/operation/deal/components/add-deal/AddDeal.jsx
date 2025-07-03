@@ -3,16 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { setDealInfo, toggleLoader, addDeal, setParam, getDealDetail } from '../../actions';
-import { buildDefaultDealInfo } from '../../libs/service';
-import { validateDealInfo } from '../../libs/service';
-
 import DealInfo from '../shared/DealInfo';
 import DealPanel from '../shared/DealPanel';
+
 import SubAffRateSetting from '../shared/sub-aff-rate';
 import { messages, DEAL_HYBRID, DEAL_HYBRID_CPA_SECTION, DEAL_HYBRID_REVENUE_SHARE_SECTION } from '../../libs/constants';
 import { dealPanelKey } from '../../libs/deal-panels';
-
+import { setDealInfo, toggleLoader, addDeal, setParam, getDealDetail } from '../../actions';
+import { buildDefaultDealInfo, validateDealInfo, _handleSaveParam } from '../../libs/service';
 
 export const AddDeal = (props) => {
 
@@ -82,23 +80,6 @@ export const AddDeal = (props) => {
         setIsShowMessage(true);
         setIsSuccess(isSuccess);
         setMessage(message);
-    }
-
-    const _handleSaveParam = (dealInfo) => {
-        const cloneDealInfo = { ...dealInfo };
-        const { IsActivePlayerHoldingPeriod, IsQuota, ActiveDays } = cloneDealInfo;
-
-        cloneDealInfo.ActiveDays = ActiveDays || 0;
-        cloneDealInfo.GroupId = 0;
-        if (!IsActivePlayerHoldingPeriod) {
-            cloneDealInfo.HoldingTickets = 0;
-            cloneDealInfo.HoldingDays = 0;
-        }
-        if (!IsQuota) {
-            cloneDealInfo.Quota = 0;
-        }
-
-        return cloneDealInfo;
     }
 
     return props.dealInfo && (

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Data.Repository;
     using Fanex.Affiliate.Admin.Core.Commands.Operation;
     using Fanex.Affiliate.Admin.Core.Criterias.Operation;
     using Fanex.Affiliate.Admin.Core.DTO;
@@ -10,10 +11,11 @@
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
     using Fanex.Affiliate.Admin.Core.Services.Common;
     using Fanex.Affiliate.Admin.Core.Utilities.Operation;
-    using Fanex.Data.Repository;
 
     public class OperationService : BaseDynamicService, IOperationService
     {
+        private const int OneHundred = 100;
+
         private readonly ISystemService _systemService;
 
         public OperationService(
@@ -25,8 +27,15 @@
 
         public IEnumerable<DealType> GetDealTypes()
         {
-            var data = FetchTData<DealType>("Aff_Admin_CommGroup_GroupTypeSel");
+            var data = FetchTData<DealType>("Aff_Admin_Deal_GroupType_Sel");
             return data.OrderBy(_ => _.GroupTypeName);
+        }
+
+        public IEnumerable<PaymentFrequency> GetPaymentFrequency()
+        {
+            const string spKey = "Aff_Admin_Deal_Schedule_Sel";
+
+            return FetchTData<PaymentFrequency>(spKey);
         }
 
         public EntityResult<DealInfo> GetDeals(DealParam param)
@@ -45,16 +54,16 @@
 
         public IEnumerable<DeductionItem> GetDeductionList()
         {
-            const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
+            const string spKey = "Aff_Admin_CommGroup_Deductions_Sel";
 
-            return FetchTData<DeductionItem>(SpKey);
+            return FetchTData<DeductionItem>(spKey);
         }
 
-        public DealSettingDetail GetDealSettingDetail(int groudId)
+        public DealSettingDetail GetDealSettingDetail(int groupId)
         {
             var criteria = new DealDetailCriteria
             {
-                GroupId = groudId
+                GroupId = groupId
             };
 
             var (dealSettingInfoList, revenueTierSettingList, revenueDeductionSettingList, cpaTierSettingList, cpaGroupProductList)
@@ -126,7 +135,9 @@
                     AssignCpaDeal(command, param);
                     if (isAdd)
                     {
-                        command.IsInstant = param.IsInstant;
+                        command.GroupId = 0;
+                        command.ScheduleId = param.ScheduleId;
+                        command.StartDate = param.StartDate;
                     }
                     break;
 
@@ -139,12 +150,13 @@
                     AssignRevenueShareDeal(command, param);
                     if (isAdd)
                     {
-                        command.IsInstant = param.IsInstant;
+                        command.GroupId = 0;
+                        command.ScheduleId = param.ScheduleId;
+                        command.StartDate = param.StartDate;
                     }
                     break;
             }
         }
-
 
         public ResultInfo DeleteDeal(DeleteDealParam param)
         {
@@ -215,6 +227,8 @@
             command.Quota = param.Quota;
             command.CpaTierList = DealInfoHelper.BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover);
             command.CpaProductList = DealInfoHelper.BuildCpaProductListXml(param.ProductGroup);
+            command.RedepositDays = param.RedepositDays;
+            command.RedepositRate = param.RedepositRate/OneHundred;
         }
 
         private static void AssignRevenueShareDeal(BaseDealCommand command, DealSettingParam param)

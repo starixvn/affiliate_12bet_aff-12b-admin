@@ -4,9 +4,11 @@ import { money } from "../../../../modules/constants";
 export const FIRST_ITEM_INDEX = 0;
 export const INFINITY_MONEY = money.AllowedMaxValue;
 export const INFINITY_NUMBER = 30000;
+export const PERCENTAGE_MAX_VALUE = 100;
 export const DEAL_REVENUE_SHARE = 1;
 export const DEAL_CPA = 3;
 export const DEAL_HYBRID = 4;
+export const MONTHLY_SCHEDULE_ID = 4;
 export const DEAL_HYBRID_CPA_SECTION = 'CPA:';
 export const DEAL_HYBRID_REVENUE_SHARE_SECTION = 'Revenue Share:';
 
@@ -68,7 +70,10 @@ export const messages = {
     requireIncreasing: 'The values in the {0} columns must increase sequentially.',
     requireAllTierSettingsMatchGroupProduct1: 'Product Group {0} has different Min FTD or Min Total Deposit values in some tiers compared to Product Group 1.',
     requireCheckBox: 'Please select at least one condition: Min FTD, Min Total Deposit, or Min Turnover.',
-    requireMinCpaAmount: 'CPA Amount cannot be negative.'
+    requireMinCpaAmount: 'CPA Amount cannot be negative.',
+    requireRedepositRate: `Redeposit Percentage must be between 1 and ${format(PERCENTAGE_MAX_VALUE)}.`,
+    requireRedepositPeriod: `Redeposit Period must be between 1 and ${format(INFINITY_NUMBER)}.`,
+    requirePaymentFrequency: 'Payment Frequency must be selected.'
 }
 
 export const cpaTierSettingDefault = {

@@ -10,9 +10,11 @@
     {
         IEnumerable<DealType> GetDealTypes();
 
+        IEnumerable<PaymentFrequency> GetPaymentFrequency();
+
         EntityResult<DealInfo> GetDeals(DealParam param);
 
-        DealSettingDetail GetDealSettingDetail(int groudId);
+        DealSettingDetail GetDealSettingDetail(int groupId);
 
         ResultInfo AddDeal(DealSettingParam param);
 

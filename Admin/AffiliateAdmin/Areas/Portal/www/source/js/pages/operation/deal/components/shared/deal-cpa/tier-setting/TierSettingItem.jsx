@@ -141,10 +141,10 @@ export const TierSettingItem = (props) => {
                         ? <Form inline>
                             <FormGroup check className="mx-sm-1">
                                 <Label check>
-                                    <Input type="checkbox" name="CheckedMinFdm" checked={dealInfo.CheckedMinFdm} onChange={_handleCheck} />
+                                    <Input type="checkbox" name="CheckedMinFdm" id="CheckedMinFdm" checked={dealInfo.CheckedMinFdm} onChange={_handleCheck} />
                                 </Label>
                             </FormGroup>
-                            {cpaTierSettingTitle.MinFdm}
+                            <Label htmlFor="CheckedMinFdm">{cpaTierSettingTitle.MinFdm}</Label>
                         </Form>
                         : cpaTierSettingTitle.MinFdm
                     }
@@ -155,11 +155,11 @@ export const TierSettingItem = (props) => {
                             {isFirstItem &&
                                 <FormGroup check className="mx-sm-1">
                                     <Label check>
-                                        <Input type="checkbox" name="CheckedMinTotalDeposit" checked={dealInfo.CheckedMinTotalDeposit} onChange={_handleCheck} />
+                                        <Input type="checkbox" name="CheckedMinTotalDeposit" id="CheckedMinTotalDeposit" checked={dealInfo.CheckedMinTotalDeposit} onChange={_handleCheck} />
                                     </Label>
                                 </FormGroup>
                             }
-                            {cpaTierSettingTitle.MinTotalDeposit}
+                            <Label htmlFor="CheckedMinTotalDeposit">{cpaTierSettingTitle.MinTotalDeposit}</Label>
                         </Form>
                         : cpaTierSettingTitle.MinTotalDeposit
                     }
@@ -170,11 +170,11 @@ export const TierSettingItem = (props) => {
                             {isFirstItem &&
                                 <FormGroup check className="mx-sm-1">
                                     <Label check>
-                                        <Input type="checkbox" disabled={dealInfo.IsInstant} name="CheckedMinTurnover" checked={dealInfo.CheckedMinTurnover} onChange={_handleCheckMinTurnover} />
+                                        <Input type="checkbox" disabled={dealInfo.IsInstant} name="CheckedMinTurnover" id="CheckedMinTurnover" checked={dealInfo.CheckedMinTurnover} onChange={_handleCheckMinTurnover} />
                                     </Label>
                                 </FormGroup>
                             }
-                            {cpaTierSettingTitle.MinTO}
+                            <Label htmlFor="CheckedMinTurnover">{cpaTierSettingTitle.MinTO}</Label>
                         </Form>
                         : cpaTierSettingTitle.MinTO
                     }

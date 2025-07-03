@@ -286,11 +286,12 @@
   </Function>
   <Function Name="Operation">
 	<Setting Key="Aff_Admin_Deal_Sel" SpName="Aff_Admin_Deal_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_CommGroup_GroupTypeSel" SpName="Aff_Admin_CommGroup_GroupTypeSel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_GroupType_Sel" SpName="Aff_Admin_Deal_GroupType_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Deal_Ins" SpName="Aff_Admin_Deal_Ins_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Deal_Del" SpName="Aff_Admin_Deal_Del_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Deal_Detail_Sel" SpName="Aff_Admin_Deal_Detail_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Deal_Upd" SpName="Aff_Admin_Deal_Upd_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_Schedule_Sel" SpName="Aff_Admin_Deal_Schedule_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
 </Functions>
 

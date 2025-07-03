@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Operation
 {
     using System.Web.Mvc;
+    using Extensions;
     using Fanex.Affiliate.Admin.Core.Attributes;
     using Fanex.Affiliate.Admin.Core.Constants;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
@@ -29,6 +30,7 @@
             var viewModel = new OperationViewModel
             {
                 DealTypes = _operationService.GetDealTypes(),
+                PaymentFrequencies = _operationService.GetPaymentFrequency(),
                 Deductions = _operationService.GetDeductionList(),
                 TargetCountries = _systemService.GetTargetCountryList(),
                 Products = _systemService.GetProductList()
@@ -107,6 +109,12 @@
             AssignUserInfoParam(param);
 
             return GenerateJsonNetResult(_operationService.DeleteDeal(param));
+        }
+
+        private void AssignUserInfoParam(DealSettingParam param)
+        {
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.GetClientIP();
         }
     }
 }

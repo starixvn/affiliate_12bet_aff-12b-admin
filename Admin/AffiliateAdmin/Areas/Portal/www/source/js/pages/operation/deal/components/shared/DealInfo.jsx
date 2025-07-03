@@ -37,12 +37,12 @@ export const DealInfo = (props) => {
     return (
         <div>
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="DealName" sm={2}>Deal Name <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
+                <Label htmlFor="DealNamePopup" sm={2}>Deal Name <span className="text-danger required" style={{ margin: 0 }}>*</span> </Label>
                 <Col sm={8}>
                     <Input type="text"
                         className={isSubmitted && !DealName?.trim() ? 'has-error' : ''}
                         name="DealName"
-                        id="DealName"
+                        id="DealNamePopup"
                         value={htmlDecode(DealName)}
                         onChange={_handleChangeText} />
                 </Col>
@@ -50,12 +50,12 @@ export const DealInfo = (props) => {
                 </Col>
             </FormGroup>
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="DealType" sm={2}>Deal Type</Label>
+                <Label htmlFor="DealTypePopup" sm={2}>Deal Type</Label>
                 <Col sm={8}>
                     <Input type="select"
                         className="mr-sm-2 search-box"
                         name="DealType"
-                        id="DealType"
+                        id="DealTypePopup"
                         disabled={!!GroupId && GroupId > 0 || isEdit}
                         value={DealType}
                         onChange={_handleChangeDealType}>

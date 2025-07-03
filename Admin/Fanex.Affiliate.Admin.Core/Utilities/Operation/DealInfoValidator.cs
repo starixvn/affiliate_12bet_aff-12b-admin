@@ -42,7 +42,12 @@
             ["requireIncreasing"] = "The values in the {0} columns must increase sequentially.",
             ["requireAllTierSettingsMatchGroupProduct1"] = "Product Group {0} has different Min FTD or Min Total Deposit values in some tiers compared to Product Group 1.",
             ["requireCheckBox"] = "Please select at least one condition: Min FTD, Min Total Deposit, or Min Turnover.",
-            ["requireMinCpaAmount"] = "CPA Amount cannot be negative."
+            ["requireMinCpaAmount"] = "CPA Amount cannot be negative.",
+            ["requireRedepositRate"] = "Redeposit Percentage must be between 1 and 100.",
+            ["requireRedepositPeriod"] = "Redeposit Period must be between 1 and 30,000.",
+            ["requirePaymentFrequency"] = "Payment Frequency must be selected.",
+            ["requireStartDate"] = "Start date must be later than today."
+
         };
 
         public static (bool isValid, List<string> messageList) ValidateGroupName(string groupName)
@@ -155,6 +160,17 @@
             {
                 AddIfInvalid(dealInfo.Quota < 1 || dealInfo.Quota > INFINITY_NUMBER, messages["requireQuota"]);
             }
+
+            if (dealInfo.IsRedeposit)
+            {
+                AddIfInvalid(dealInfo.RedepositRate < 1 || dealInfo.RedepositRate > 100, messages["requireRedepositRate"]);
+                AddIfInvalid(dealInfo.RedepositDays < 1 || dealInfo.RedepositDays > INFINITY_NUMBER, messages["requireRedepositPeriod"]);
+            }
+
+            AddIfInvalid(dealInfo.ScheduleId == 0, messages["requirePaymentFrequency"]);
+
+            var currentDay = DateTimeHelper.Gmt8Now.Date;
+            //AddIfInvalid(!DateTimeHelper.IsValidDateTime(currentDay, dealInfo.StartDate.Date), messages["requireStartDate"]);
 
             bool isValid = messageList.Count == 0;
 

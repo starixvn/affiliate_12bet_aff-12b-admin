@@ -13,6 +13,8 @@ const productList = createReducer([], []);
 const deductionList = createReducer([], []);
 const isModifiable = createReducer(false, {});
 const defaultCurrency = createReducer(null, {});
+const paymentFrequencyList = createReducer([], []);
+const today = createReducer(null, {});
 
 const param = createReducer(null, {
     [types.SET_PARAM]: (prevState, action) => {
@@ -58,5 +60,7 @@ export default combineReducers({
     isSubmitted,
     isEdit,
     isModifiable,
-    defaultCurrency
+    defaultCurrency,
+    paymentFrequencyList,
+    today
 });

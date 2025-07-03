@@ -286,10 +286,11 @@
   </Function>
   <Function Name="Operation">
 	<Setting Key="Aff_Admin_Deal_Sel" SpName="Aff_Admin_Deal_Sel" DbName="" />
-	<Setting Key="Aff_Admin_CommGroup_GroupTypeSel" SpName="Aff_Admin_CommGroup_GroupTypeSel" DbName="" />
+	<Setting Key="Aff_Admin_Deal_GroupType_Sel" SpName="Aff_Admin_Deal_GroupType_Sel" DbName="" />
 	<Setting Key="Aff_Admin_Deal_Ins" SpName="Aff_Admin_Deal_Ins" DbName="" />
 	<Setting Key="Aff_Admin_Deal_Del" SpName="Aff_Admin_Deal_Del" DbName="" />
 	<Setting Key="Aff_Admin_Deal_Detail_Sel" SpName="Aff_Admin_Deal_Detail_Sel" DbName="" />
 	<Setting Key="Aff_Admin_Deal_Upd" SpName="Aff_Admin_Deal_Upd" DbName="" />
+	<Setting Key="Aff_Admin_Deal_Schedule_Sel" SpName="Aff_Admin_Deal_Schedule_Sel" DbName="" />
   </Function>
 </Functions>

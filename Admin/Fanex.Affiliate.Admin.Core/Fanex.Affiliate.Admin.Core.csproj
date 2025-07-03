@@ -503,6 +503,7 @@
     <Compile Include="DTO\Operation\DealSettingDetail.cs" />
     <Compile Include="DTO\Operation\DealSettingInfo.cs" />
     <Compile Include="DTO\Operation\DealType.cs" />
+    <Compile Include="DTO\Operation\PaymentFrequency.cs" />
     <Compile Include="DTO\Operation\RevenueDeductionSetting.cs" />
     <Compile Include="DTO\Operation\RevenueTierSetting.cs" />
     <Compile Include="DTO\Report\PlayerGgrProductInfo.cs" />

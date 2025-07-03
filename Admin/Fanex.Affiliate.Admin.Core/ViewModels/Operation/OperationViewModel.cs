@@ -10,6 +10,8 @@
     {
         public IEnumerable<DealType> DealTypes { get; set; }
 
+        public IEnumerable<PaymentFrequency> PaymentFrequencies { get; set; }
+
         public IEnumerable<DeductionItem> Deductions { get; set; }
 
         public IEnumerable<TargetCountry> TargetCountries { get; set; }

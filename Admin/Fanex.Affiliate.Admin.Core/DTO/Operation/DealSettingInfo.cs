@@ -1,5 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.DTO.Operation
 {
+    using System;
+
     public class DealSettingInfo
     {
         public int GroupId { get; set; }
@@ -24,8 +26,16 @@
 
         public short Quota { get; set; }
 
-        public bool IsInstant { get; set; }
-
         public bool IsActivePlayerSum { get; set; }
+
+        public short RedepositDays { get; set; }
+
+        public decimal RedepositRate { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public string StartDateString => StartDate.ToString("MM/dd/yyyy");
+
+        public byte ScheduleId { get; set; }
     }
 }

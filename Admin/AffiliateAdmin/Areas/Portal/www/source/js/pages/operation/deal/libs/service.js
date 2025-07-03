@@ -1,10 +1,10 @@
 import {
-    INFINITY_MONEY,
-    INFINITY_NUMBER,
     messages,
     mappingFields,
     cpaTierSettingDefault,
     productGroupDefault,
+    INFINITY_MONEY,
+    INFINITY_NUMBER,
     DEAL_CPA,
     DEAL_REVENUE_SHARE,
     DEAL_HYBRID_CPA_SECTION,
@@ -26,7 +26,12 @@ const commonDealInfo = {
     HoldingDays: 0,
     IsQuota: false,
     IsInstant: false,
+    IsRedeposit: false,
+    RedepositRate: 0,
+    RedepositDays: 0,
+    StartDate: '',
     Quota: 0,
+    ScheduleId: 0,
     CheckedMinFdm: false,
     CheckedMinTotalDeposit: false,
     CheckedMinTurnover: false,
@@ -89,6 +94,31 @@ export const getAllTargetCountryCodes = (targetCountryList) => {
     return targetCountryList.map(c => c.TargetCountryCode).join(',');
 }
 
+export const _handleSaveParam = (dealInfo) => {
+    const cloneDealInfo = { ...dealInfo };
+    const { IsActivePlayerHoldingPeriod, IsQuota, ActiveDays, IsRedeposit, RedepositRate } = cloneDealInfo;
+
+    cloneDealInfo.ActiveDays = ActiveDays || 0;
+    cloneDealInfo.RedepositRate = Number(RedepositRate);
+
+    if (!IsActivePlayerHoldingPeriod) {
+        cloneDealInfo.HoldingTickets = 0;
+        cloneDealInfo.HoldingDays = 0;
+    }
+
+    if (!IsRedeposit) {
+        cloneDealInfo.RedepositRate = 0;
+        cloneDealInfo.RedepositDays = 0;
+    }
+
+    if (!IsQuota) {
+        cloneDealInfo.Quota = 0;
+    }
+
+    return cloneDealInfo;
+}
+
+// Start validate deal info
 export const validateDealInfo = (dealInfo) => {
     const { DealType, DealName } = dealInfo;
     let validateResult = { isValid: false, messageList: [] };
@@ -169,10 +199,15 @@ export const validateGeneralDealInfo = (dealInfo) => {
         IsActivePlayerHoldingPeriod,
         HoldingTickets,
         HoldingDays,
+        IsRedeposit,
+        RedepositRate,
+        RedepositDays,
+        ScheduleId,
+        StartDate,
         IsQuota,
         Quota
     } = dealInfo;
-
+    
     const messageList = [];
 
     const addIfInvalid = (condition, message) => {
@@ -190,6 +225,15 @@ export const validateGeneralDealInfo = (dealInfo) => {
             || (!HoldingDays || HoldingDays < 1 || HoldingDays > INFINITY_NUMBER),
             messages.requireHoldingTicketsAndHoldingDays);
     }
+
+    if (IsRedeposit) {
+        const depositRate = Number(RedepositRate);
+
+        addIfInvalid(Number.isNaN(depositRate) || depositRate < 1 || depositRate > 100, messages.requireRedepositRate);
+        addIfInvalid(!RedepositDays || RedepositDays < 1 || RedepositDays > INFINITY_NUMBER, messages.requireRedepositPeriod);
+    }
+
+    addIfInvalid(ScheduleId === 0, messages.requirePaymentFrequency);
 
     if (IsQuota) {
         addIfInvalid(!Quota || Quota < 1 || Quota > INFINITY_NUMBER, messages.requireQuota);
@@ -510,3 +554,4 @@ const groupTierSettingByGroupProductId = (tierSetting) => {
 
     return groupedTierSetting;
 }
+// End validate deal info

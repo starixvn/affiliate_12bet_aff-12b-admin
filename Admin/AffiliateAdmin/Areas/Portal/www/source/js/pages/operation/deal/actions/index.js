@@ -2,6 +2,8 @@ import * as types from './types';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
 import { post } from '../../../../modules/ajaxRequest';
+import { formatDecimal } from '../../../../modules/numberFormat';
+import { MONTHLY_SCHEDULE_ID } from '../libs/constants';
 
 export { toggleLoader, setPagingOption };
 
@@ -73,15 +75,22 @@ const _buildDealInfo = (dealInfo) => {
         HoldingDays,
         HoldingTickets,
         Quota,
+        RedepositRate,
+        RedepositDays,
         ProductGroup,
         CPATierSetting,
         DepositFeeSetting,
         WithdrawalFeeSetting,
+        ScheduleId,
+        StartDate,
+        StartDateString,
+        IsInstant,
         ...rest
     } = dealInfo;
 
     const isActivePlayerHoldingPeriod = HoldingDays > 0 && HoldingTickets > 0;
     const isQuota = Quota > 0;
+    const isRedeposit = RedepositRate > 0 && RedepositDays > 0;
 
     const firstGroupProductId = ProductGroup?.[0]?.GroupProductId;
     const firstTier = CPATierSetting.find(t => t.GroupProductId === firstGroupProductId);
@@ -100,18 +109,24 @@ const _buildDealInfo = (dealInfo) => {
 
     return {
         ...rest,
-        HoldingDays,
-        HoldingTickets,
-        Quota,
+        RedepositRate: formatDecimal(RedepositRate * 100) || 0,
+        RedepositDays: RedepositDays || 0,
+        HoldingDays: HoldingDays || 0,
+        HoldingTickets: HoldingTickets || 0,
+        Quota: Quota || 0,
         ProductGroup,
         CPATierSetting,
         DepositFeeSetting,
         WithdrawalFeeSetting,
         IsActivePlayerHoldingPeriod: isActivePlayerHoldingPeriod,
         IsQuota: isQuota,
+        IsRedeposit: isRedeposit,
         CheckedMinFdm: firstTier?.MinFdm > 0 || false,
         CheckedMinTotalDeposit: firstTier?.MinTotalDeposit > 0 || false,
-        CheckedMinTurnover: firstTier?.MinTO > 0 || false
+        CheckedMinTurnover: firstTier?.MinTO > 0 || false,
+        StartDate: StartDateString,
+        ScheduleId,
+        IsInstant: ScheduleId !== MONTHLY_SCHEDULE_ID && ScheduleId !== 0
     };
 };
 

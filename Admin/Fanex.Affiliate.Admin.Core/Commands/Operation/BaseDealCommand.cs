@@ -31,5 +31,9 @@
         public string TierList { get; set; }
 
         public string DeductionList { get; set; }
+
+        public short RedepositDays { get; set; }
+
+        public decimal RedepositRate { get; set; }
     }
 }

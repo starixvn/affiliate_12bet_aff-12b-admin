@@ -3,14 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Alert, FormGroup, Button, Col } from 'reactstrap';
 
-import { getDealDetail, toggleLoader, updateDeal, setParam } from '../../actions';
-import { validateDealInfo } from '../../libs/service';
-
 import DealInfo from '../shared/DealInfo';
 import SubAffRateSetting from '../shared/sub-aff-rate';
 import DealPanel from '../shared/DealPanel';
+
 import { messages, DEAL_HYBRID, DEAL_HYBRID_CPA_SECTION, DEAL_HYBRID_REVENUE_SHARE_SECTION } from '../../libs/constants';
 import { dealPanelKey } from '../../libs/deal-panels';
+import { getDealDetail, toggleLoader, updateDeal, setParam } from '../../actions';
+import { validateDealInfo, _handleSaveParam } from '../../libs/service';
 
 export const EditDeal = (props) => {
 
@@ -57,7 +57,11 @@ export const EditDeal = (props) => {
                 if (result.IsSuccessful) {
                     setTimeout(props.onClose, 3000);
                     const { pagingOption, param } = props;
-                    const gettingParam = Object.assign({}, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize }, param);
+                    const gettingParam = {
+                        ...param,
+                        PageIndex: pagingOption.PageIndex,
+                        PageSize: pagingOption.PageSize,
+                    };
                     props.setParam(gettingParam);
                 }
 
@@ -73,21 +77,6 @@ export const EditDeal = (props) => {
         setIsShowMessage(true);
         setIsSuccess(isSuccess);
         setMessage(message);
-    }
-
-    const _handleSaveParam = (dealInfo) => {
-        const cloneDealInfo = { ...dealInfo };
-        const { IsActivePlayerHoldingPeriod, IsQuota } = cloneDealInfo;
-
-        if (!IsActivePlayerHoldingPeriod) {
-            cloneDealInfo.HoldingTickets = 0;
-            cloneDealInfo.HoldingDays = 0;
-        }
-        if (!IsQuota) {
-            cloneDealInfo.Quota = 0;
-        }
-
-        return cloneDealInfo;
     }
 
     return props.dealInfo && (
