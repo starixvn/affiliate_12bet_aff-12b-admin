@@ -328,7 +328,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\GeneralInfo.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\Payment.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\Personal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\RowField.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\components\sections\WebSite.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\hooks\useFilterParams.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing-account\hooks\useNewMarketingAccountData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\libs\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\marketing-account\libs\validation.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\index.jsx" />

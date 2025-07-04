@@ -13,7 +13,7 @@ const languageCodeList = convertArrayToObjectProps(languageList, 'LanguageCode',
 const targetCountryCodeList = convertArrayToObjectProps(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
 const dealOptionsList = convertArrayToObjectProps(dealList, 'GroupId', 'GroupName');
 const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
-const canAddAffMktAccount = claimsPrincipal.hasWriteClaim(claimResource.CreateAffMktAccount);
+const canAddAffMktAccount = claimsPrincipal.hasWriteClaim(claimResource.CreateMarketingAccount);
 
 const store = configureStore({
     languageCodeList,

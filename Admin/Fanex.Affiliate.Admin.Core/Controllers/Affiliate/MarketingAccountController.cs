@@ -71,7 +71,7 @@
             };
         }
 
-        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.CreateMarketingAccount, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public async Task<ActionResult> CreateMarketingAccount(CreateMarketingAccountModel model)

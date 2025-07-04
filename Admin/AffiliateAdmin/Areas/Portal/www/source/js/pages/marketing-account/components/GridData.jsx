@@ -71,13 +71,15 @@ export const GridData = (props) => {
                 <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
                 <Cell header={true} colWidth={80} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.Action}>{headerText.Action}</Cell>
+                {
+                    props.canAddAffMktAccount && <Cell header={true} colWidth={40} title={headerText.Action}>{headerText.Action}</Cell>
+                }
             </Row>
         );
     }
 
     const _renderDataRow = (dataItem, index) => {
-        const { targetCountryCodeList, languageCodeList } = props;
+        const { targetCountryCodeList, languageCodeList, canAddAffMktAccount } = props;
 
         const language = languageCodeList[dataItem.Language];
         const targetCountry = targetCountryCodeList[dataItem.TargetCountryCode];
@@ -96,11 +98,14 @@ export const GridData = (props) => {
                 <Cell className="text-center" title={language}>{language}</Cell>
                 <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
                 <Cell className="text-center" title={dataItem.ApprovedBy}>{dataItem.ApprovedBy}</Cell>
-                <Cell className="text-center">
-                    <button title="Copy" className="btn btn-link" onClick={() => props.handleAddNewAccount(dataItem.AffId, dataItem.UserName)}>
-                        <span className={`oi icon-copy-link`}></span>
-                    </button>
-                </Cell>
+                {
+                    canAddAffMktAccount && (
+                        <Cell className="text-center">
+                            <button title="Copy" className="btn btn-link" onClick={() => props.handleAddNewAccount(dataItem.AffId, dataItem.UserName)}>
+                                <span className={`oi icon-copy-link`}></span>
+                            </button>
+                        </Cell>)
+                }
             </Row>
         );
     }
@@ -142,11 +147,12 @@ export const GridData = (props) => {
     )
 }
 
-const mapStateToProps = ({ params, languageCodeList, targetCountryCodeList, pagingOption }) => {
+const mapStateToProps = ({ params, languageCodeList, targetCountryCodeList, pagingOption, canAddAffMktAccount }) => {
     return {
         params,
         languageCodeList,
         targetCountryCodeList,
+        canAddAffMktAccount,
         pagingOption
     };
 };
