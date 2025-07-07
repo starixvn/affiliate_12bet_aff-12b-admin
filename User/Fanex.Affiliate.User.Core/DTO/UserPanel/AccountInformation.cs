@@ -69,5 +69,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public decimal TransferLimit { get; set; }
 
         public int PlayerCurrencyId { get; set; }
+
+        public int AffCategoryId { get; set; }
     }
 }

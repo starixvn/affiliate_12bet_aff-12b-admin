@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
@@ -68,6 +69,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             SessionService.AssignSessions(user);
             SessionService.UserSession.BaseCurrency = accountInfo.DefaultBaseCurrency;
+            SessionService.UserSession.IsMarketingAccount = accountInfo.AffCategoryId == AffCategory.Marketing;
             AuthService.SignIn(user.UserName, false);
         }
 

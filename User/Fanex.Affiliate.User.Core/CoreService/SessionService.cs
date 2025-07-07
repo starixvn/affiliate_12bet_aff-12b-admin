@@ -94,5 +94,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
             get { return HttpContext.Current.Session[VerificationSessionKey] as VerificationSession; }
             set { HttpContext.Current.Session[VerificationSessionKey] = value; }
         }
+
+        public bool IsUnauthorized => IsInternal || UserSession.IsMarketingAccount;
     }
 }

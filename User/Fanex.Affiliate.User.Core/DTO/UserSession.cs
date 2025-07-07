@@ -30,5 +30,7 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
         public bool DisabledTransfer { get; set; }
 
         public int OfferPageId { get; set; }
+
+        public bool IsMarketingAccount { get; set; }
     }
 }

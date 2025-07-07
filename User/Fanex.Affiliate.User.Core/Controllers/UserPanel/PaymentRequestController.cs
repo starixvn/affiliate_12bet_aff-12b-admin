@@ -57,7 +57,7 @@
         {
             var resultInfo = new ResultInfo { IsOk = true };
 
-            if (SessionService.IsInternal)
+            if (SessionService.IsUnauthorized)
             {
                 resultInfo.IsOk = false;
                 resultInfo.Message = Lang.ErrAuthorized;
@@ -96,7 +96,7 @@
         {
             var resultInfo = new ResultInfo { IsOk = false };
 
-            if (SessionService.IsInternal)
+            if (SessionService.IsUnauthorized)
             {
                 resultInfo.Message = Lang.ErrAuthorized;
             }

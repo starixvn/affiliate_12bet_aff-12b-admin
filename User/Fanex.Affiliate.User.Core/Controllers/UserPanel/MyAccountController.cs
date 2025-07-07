@@ -93,7 +93,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Index(AccountInformation model)
         {
-            if (SessionService.IsInternal)
+            if (SessionService.IsUnauthorized)
             {
                 return Json(new ResultInfo { IsOk = false, Message = Lang.ErrAuthorized });
             }

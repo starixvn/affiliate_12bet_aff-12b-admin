@@ -72,7 +72,7 @@
             var result = new ResultInfo { IsOk = false };
             var clientIP = Request.GetClientIP();
 
-            if (SessionService.IsInternal)
+            if (SessionService.IsUnauthorized)
             {
                 result.Message = Lang.ErrAuthorized;
             }
