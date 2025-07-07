@@ -76,21 +76,22 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             var isPlayerAccountPreferred = PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
             var isDifferentUsername = curUserAccInfo.PlayerUsername != param.PlayerUsername;
 
-            if (isPlayerAccountPreferred && isDifferentUsername)
+            if (!isPlayerAccountPreferred || !isDifferentUsername || param.IsMarketingAccount)
             {
-                var memberSiteId = _appSetting.MemberSiteId;
-                var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
+                return await UpdateUserAccount(param, curUserAccInfo);
+            }
 
-                var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
-                if (!validationResult.IsSuccessful)
-                {
-                    return validationResult;
-                }
+            var memberSiteId = _appSetting.MemberSiteId;
+            var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
+            var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
+            param.Player_CustId = memberSiteCust.CustId;
+            param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
+                ? TEST_CURRENCY_ID
+                : memberSiteCust.CurrencyId.GetValueOrDefault();
 
-                param.Player_CustId = memberSiteCust.CustId;
-                param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
-                    ? TEST_CURRENCY_ID
-                    : memberSiteCust.CurrencyId.GetValueOrDefault();
+            if (!validationResult.IsSuccessful)
+            {
+                return validationResult;
             }
 
             return await UpdateUserAccount(param, curUserAccInfo);
