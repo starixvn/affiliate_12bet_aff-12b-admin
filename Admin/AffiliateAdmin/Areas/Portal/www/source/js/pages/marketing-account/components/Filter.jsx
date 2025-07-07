@@ -24,18 +24,11 @@ export const Filter = (props) => {
 
     const _handleSearch = () => {
         const params = {
-            "ParentAffName": "",
             "Status": "",
-            "IsFromHome": false,
-            "GroupIds": "all",
-            "TargetCountryCode": "",
+            "SortType": 1,
+            "SortDirectionType": 1,
             "Language": "",
             "UserName": "",
-            "Email": "",
-            "SortBy": 1,
-            "SortDirectionType": false,
-            "AffCode": "",
-            "AffPlayer": "",
             "PageIndex": 1,
             "PageSize": 20
         }
