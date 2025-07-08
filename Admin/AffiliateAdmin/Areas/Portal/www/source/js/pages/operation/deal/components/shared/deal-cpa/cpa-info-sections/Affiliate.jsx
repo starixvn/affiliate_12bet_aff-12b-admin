@@ -10,22 +10,23 @@ import NotificationPopup from '../../../../../../common/components/NotificationP
 import { setDealInfo } from '../../../../actions';
 import { INFINITY_NUMBER, MONTHLY_SCHEDULE_ID } from '../../../../libs/constants';
 import { format } from '../../../../../../../modules/numberFormat';
+import { isValidNumber } from '../../../../../../../modules/utils';
 
 
-export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, today }) => {
+export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, tomorrow }) => {
 
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(false);
     const [scheduleId, setScheduleId] = useState(0);
 
-    const now = new Date(today);
-    const nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+    const tomorrowDate = new Date(tomorrow);
+    const tomorrowString = `${tomorrowDate.getMonth() + 1}/${tomorrowDate.getDate()}/${tomorrowDate.getFullYear()}`;
 
     useEffect(() => {
         if (!dealInfo.StartDate && !isEdit) {
-            setDealInfo({ StartDate: nowString });
+            setDealInfo({ StartDate: tomorrowString });
         }
-    }, []);
+    }, [dealInfo.DealType]);
 
     const _handleCloseNotificationPopup = (confirmResult) => {
         setMessage('');
@@ -65,16 +66,15 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
     const _handleChangePositiveInteger = (e) => {
         const { name, value } = e.target;
         const numericValue = Number(value.replace(/,/g, ''));
-        const oldValue = dealInfo[name];
-
-        let newValue;
+        let newValue = dealInfo[name];
 
         if (value === '') {
             newValue = '';
-        } else if (numericValue >= 0 && numericValue <= INFINITY_NUMBER) {
+        } else if (numericValue === 0) {
+            newValue = 0;
+        }
+        else if (numericValue > 0 && numericValue <= INFINITY_NUMBER && isValidNumber(numericValue)) {
             newValue = numericValue;
-        } else {
-            newValue = oldValue;
         }
 
         setDealInfo({ [name]: newValue });
@@ -96,14 +96,15 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
         }
 
         if (isOther && !dealInfo.CheckedMinTurnover) {
-            setScheduleId(value);
-            setMessage('Checking for Instant Payment will disable Min Turnover.</br>Do you want to proceed?');
-            setIsConfirmPopup(true);
+            if (dealInfo.ScheduleId === 0 || dealInfo.ScheduleId === MONTHLY_SCHEDULE_ID) {
+                setScheduleId(value);
+                setMessage('Selecting Instant Payment will automatically disable Min Turnover.</br>Do you want to proceed?');
+                setIsConfirmPopup(true);
+            } else {
+                setDealInfo({ ScheduleId: value });
+            }
             return;
         }
-
-        // value === 0
-        setDealInfo({ ScheduleId: 0, IsInstant: false });
     };
 
     const _handleCheckQuota = (e) => {
@@ -122,34 +123,35 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
 
     const _handleChangeRedepositRate = (event) => {
         let val = event.target.value;
-        let lastValidRedeposit = dealInfo.RedepositRate;
+        const lastValid = dealInfo.RedepositRate;
 
-        const leadingZeroRegex = /^0\d+/; // Remove leading zero(s) like "012" -> "12"
-        const nonLeadingDigitRegex = /^[^1-9]/; // Reset if value is empty or starts with a non-1-9 digit (e.g., ".", "a", "00")
-        const validRedepositRateRegex = /^(100(\.0{0,2})?|([1-9][0-9]?)(\.\d{0,2})?)$/; // 0-100 with up to 2 decimal places
+        const validRateRegex = /^(100(\.0{0,2})?|([1-9][0-9]?)(\.\d{0,2})?)$/;
 
-        if (leadingZeroRegex.test(val)) {
-            // Remove leading zero(s) like "012" -> "12"
+        if (/^0+$/.test(val)) {
+            val = '0';
+        } else {
             val = val.replace(/^0+/, '');
         }
 
-        const dotCount = (val.match(/\./g) || []).length;
-        const isValid = dotCount <= 1 && validRedepositRateRegex.test(val);
+        const hasSingleDot = (val.match(/\./g) || []).length <= 1;
+        const isValid = hasSingleDot && validRateRegex.test(val);
+
+        let newRate;
 
         if (isValid) {
-            setDealInfo({ RedepositRate: val });
+            newRate = val;
+        } else if (val === '') {
+            newRate = '';
+        } else if (Number(val) >= 0 && Number(val) < 1) {
+            newRate = 0;
         } else {
-            const mustReset = nonLeadingDigitRegex.test(val);
-
-            if (val === '') {
-                lastValidRedeposit = '';
-            } else if (mustReset) {
-                lastValidRedeposit = '0';
-            }
-
-            setDealInfo({ RedepositRate: lastValidRedeposit });
+            newRate = lastValid;
         }
+
+
+        setDealInfo({ RedepositRate: newRate });
     };
+
 
     const _handleChangeDate = (momentDate) => {
         if (!isEdit) {
@@ -165,7 +167,7 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
         return '';
     }
 
-    const isDisabledScheduleId = isEdit || dealInfo.CheckedMinTurnover && dealInfo.ScheduleId !== 0 && dealInfo.ScheduleId !== MONTHLY_SCHEDULE_ID;
+    const isDisabledScheduleId = isEdit || dealInfo.CheckedMinTurnover;
     const isRedepositRateError = isSubmitted && dealInfo.IsRedeposit && (Number.isNaN(dealInfo.RedepositRate) || dealInfo.RedepositRate < 1 || dealInfo.RedepositRate > 100);
 
     return (
@@ -173,7 +175,7 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
             <legend><h6 className="font-weight-bold">Affiliate</h6></legend>
 
             <FormGroup row className='align-items-center'>
-                <Label sm={4} className="d-flex" htmlFor='IsRedeposit'>
+                <Label sm={4} className="d-flex mr_15neg" htmlFor='IsRedeposit'>
                     <input
                         type="checkbox"
                         name="IsRedeposit"
@@ -207,7 +209,7 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
                 <Label className="text-content mb-0 ms-2">(days)</Label>
             </FormGroup>
             <FormGroup row className='align-items-center'>
-                <Label sm={4} className="d-flex" htmlFor='IsQuota'>
+                <Label sm={4} className="d-flex mr_15neg" htmlFor='IsQuota'>
                     <input
                         type="checkbox"
                         name="IsQuota"
@@ -231,9 +233,9 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="ScheduleId" sm={4} className="d-flex">
+                <Label htmlFor="ScheduleId" sm={4} className="d-flex mr_15neg">
                     Payment Frequency
-                    <span title="The player must complete all required actions within this time period to qualify. For example: within 30 days from registration." className="ml-1 oi icon-info"></span>
+                    <span title="Choose how often CPA is calculated and payments are made, starting from the ‘Start from’ date." className="ml-1 oi icon-info"></span>
 
                 </Label>
                 <Col sm={3}>
@@ -244,12 +246,12 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
                         value={dealInfo.ScheduleId}
                         onChange={_handleChangeScheduleId}
                         className={`mr-sm-2 search-box ${isSubmitted && dealInfo.ScheduleId === 0 ? 'has-error' : ''}`}>
-                        <option value={0}>Please Select</option>
+                        <option disabled hidden value={0}>Please Select</option>
                         {
                             paymentFrequencyList.map(pf =>
                                 <option key={pf.ScheduleId}
                                     value={pf.ScheduleId}
-                                    disabled={isDisabledScheduleId}>
+                                    disabled={isDisabledScheduleId && pf.ScheduleId !== 0 && pf.ScheduleId !== MONTHLY_SCHEDULE_ID}>
                                     {pf.ScheduleName}
                                 </option>)
                         }
@@ -259,8 +261,8 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
                 <Col sm={4}>
                     <DatePicker
                         isEnable={!isEdit}
-                        minDate={nowString}
-                        date={dealInfo.StartDate || nowString}
+                        minDate={tomorrowString}
+                        date={dealInfo.StartDate || tomorrowString}
                         iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                         onChange={_handleChangeDate}
                     />
@@ -277,13 +279,13 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
     );
 }
 
-const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, today }) => {
+const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, tomorrow }) => {
     return {
         dealInfo,
         paymentFrequencyList,
         isEdit,
         isSubmitted,
-        today
+        tomorrow
     };
 };
 

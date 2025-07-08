@@ -119,14 +119,14 @@ export const _handleSaveParam = (dealInfo) => {
 }
 
 // Start validate deal info
-export const validateDealInfo = (dealInfo) => {
+export const validateDealInfo = (dealInfo, isAdd = true, tomorrow) => {
     const { DealType, DealName } = dealInfo;
     let validateResult = { isValid: false, messageList: [] };
 
     const groupNameValidation = validateGroupName(DealName);
 
     if (DealType === DEAL_CPA) {
-        validateResult = validateCPAInfo(dealInfo);
+        validateResult = validateCPAInfo(dealInfo, isAdd, tomorrow);
     } else if (DealType === DEAL_REVENUE_SHARE) {
         validateResult = validateRevenueShareInfo(dealInfo);
     } else {
@@ -139,10 +139,10 @@ export const validateDealInfo = (dealInfo) => {
     return { isValid, messageList };
 }
 
-export const validateCPAInfo = (dealInfo) => {
+export const validateCPAInfo = (dealInfo, isAdd = true, tomorrow) => {
     const { CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover, ProductGroup } = dealInfo;
 
-    const generalDealInfoValidation = validateGeneralDealInfo(dealInfo);
+    const generalDealInfoValidation = validateGeneralDealInfo(dealInfo, isAdd, tomorrow);
     const checkBoxValidation = validateCheckBox(CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
     const productGroupValidation = validateProductGroup(ProductGroup, CheckedMinTurnover);
     const tierSettingValidation = validateTierSetting(CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
@@ -192,7 +192,7 @@ export const validateGroupName = (groupName) => {
     return { isValid, messageList };
 }
 
-export const validateGeneralDealInfo = (dealInfo) => {
+export const validateGeneralDealInfo = (dealInfo, isAdd, tomorrow) => {
     const {
         CountryCodes,
         ActiveDays,
@@ -233,11 +233,18 @@ export const validateGeneralDealInfo = (dealInfo) => {
         addIfInvalid(!RedepositDays || RedepositDays < 1 || RedepositDays > INFINITY_NUMBER, messages.requireRedepositPeriod);
     }
 
-    addIfInvalid(ScheduleId === 0, messages.requirePaymentFrequency);
-
     if (IsQuota) {
         addIfInvalid(!Quota || Quota < 1 || Quota > INFINITY_NUMBER, messages.requireQuota);
     }
+
+    addIfInvalid(ScheduleId === 0, messages.requirePaymentFrequency);
+
+    const startDate = new Date(StartDate);
+    const tomorrowDate = new Date(tomorrow);
+    startDate.setHours(0, 0, 0, 0);
+    tomorrowDate.setHours(0, 0, 0, 0);
+
+    addIfInvalid(isAdd && startDate < tomorrowDate, messages.requireStartDate);
 
     const isValid = messageList.length === 0;
 

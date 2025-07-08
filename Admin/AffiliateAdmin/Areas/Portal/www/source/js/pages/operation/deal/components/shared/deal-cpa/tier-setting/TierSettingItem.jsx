@@ -9,7 +9,7 @@ import NotificationPopup from '../../../../../../common/components/NotificationP
 
 import { setDealInfo } from '../../../../actions';
 import { deepClone } from '../../../../../../../modules/dataHandler';
-import { cpaTierSettingTitle } from '../../../../libs/constants';
+import { cpaTierSettingTitle, MONTHLY_SCHEDULE_ID } from '../../../../libs/constants';
 
 export const TierSettingItem = (props) => {
     const { tierSetting, isFirstItem, index, dealInfo } = props;
@@ -113,7 +113,7 @@ export const TierSettingItem = (props) => {
 
         const isChecked = !dealInfo.CheckedMinTurnover;
         if (isChecked) {
-            props.setDealInfo({ CheckedMinTurnover: true });
+            props.setDealInfo({ CheckedMinTurnover: true, ScheduleId: MONTHLY_SCHEDULE_ID });
             return;
         }
 

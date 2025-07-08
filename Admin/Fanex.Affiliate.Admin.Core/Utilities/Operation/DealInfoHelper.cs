@@ -82,8 +82,13 @@
             return result.ToString();
         }
 
-        public static string BuildCpaProductListXml(IEnumerable<CpaGroupProduct> cpaProductGroups)
+        public static string BuildCpaProductListXml(IEnumerable<CpaGroupProduct> cpaProductGroups, bool checkedMinTO)
         {
+            if (!checkedMinTO)
+            {
+                return null;
+            }
+
             var result = new StringBuilder(OPEN_ROOT);
             var groupProductId = 0;
 

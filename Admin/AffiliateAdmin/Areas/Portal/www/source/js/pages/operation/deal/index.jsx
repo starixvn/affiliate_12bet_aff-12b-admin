@@ -7,7 +7,7 @@ import { configureStore } from '../../../modules/store';
 import ClaimPrincipal, { claimResource } from '../../../modules/claim';
 
 const App = () => {
-    const { dealTypes, targetCountries, products, deductions, defaultCurrency, paymentFrequencies, today } = window.initialState;
+    const { dealTypes, targetCountries, products, deductions, defaultCurrency, paymentFrequencies, tomorrow } = window.initialState;
     const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
     const isModifiable = claimsPrincipal.hasWriteClaim(claimResource.Deal);
     const store = configureStore({
@@ -19,7 +19,7 @@ const App = () => {
         isModifiable,
         defaultCurrency,
         paymentFrequencyList: paymentFrequencies,
-        today
+        tomorrow
     }, reducer);
 
     return (

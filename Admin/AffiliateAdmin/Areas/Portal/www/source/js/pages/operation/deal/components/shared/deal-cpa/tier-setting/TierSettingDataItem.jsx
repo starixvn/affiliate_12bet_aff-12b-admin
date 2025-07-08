@@ -6,6 +6,7 @@ import { Input } from 'reactstrap';
 import { FIRST_ITEM_INDEX, INFINITY_MONEY } from '../../../../libs/constants';
 import { setDealInfo } from '../../../../actions';
 import { format } from '../../../../../../../modules/numberFormat';
+import { isValidNumber } from '../../../../../../../modules/utils';
 
 export const TierSettingDataItem = ({ tierSetting, isFirstItem, tier, index, dealInfo, setDealInfo, isSubmitted }) => {
     const isFirstTier = index === FIRST_ITEM_INDEX;
@@ -17,7 +18,7 @@ export const TierSettingDataItem = ({ tierSetting, isFirstItem, tier, index, dea
             return emptyFallback;
         }
 
-        if (numericValue >= 0 && numericValue < INFINITY_MONEY) {
+        if (numericValue >= 0 && numericValue < INFINITY_MONEY && isValidNumber(numericValue)) {
             return numericValue;
         }
 

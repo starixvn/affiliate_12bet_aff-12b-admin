@@ -63,11 +63,11 @@
             return (true, messageList);
         }
 
-        public static (bool isValid, List<string> messageList) ValidateHybridDeal(DealSettingParam dealInfo, IEnumerable<Product> products)
+        public static (bool isValid, List<string> messageList) ValidateHybridDeal(DealSettingParam dealInfo, IEnumerable<Product> products, bool isAdd)
         {
             var messageList = new List<string>();
 
-            var validateCPAInfoResult = ValidateCPAInfo(dealInfo);
+            var validateCPAInfoResult = ValidateCPAInfo(dealInfo, isAdd);
             var validateRevenueShareInfoResult = RevenueShareValidator.ValidateRevenueShare(dealInfo, products);
 
             void AddMessage(List<string> messageListInfo, string message)
@@ -103,11 +103,11 @@
         public static (bool isValid, List<string> messageList) ValidateRevenueShare(DealSettingParam dealInfo, IEnumerable<Product> products)
             => RevenueShareValidator.ValidateRevenueShare(dealInfo, products);
 
-        public static (bool isValid, List<string> messageList) ValidateCPAInfo(DealSettingParam dealInfo)
+        public static (bool isValid, List<string> messageList) ValidateCPAInfo(DealSettingParam dealInfo, bool isAdd)
         {
             var messageList = new List<string>();
 
-            var generalDealInfoValidation = ValidateGeneralDealInfo(dealInfo);
+            var generalDealInfoValidation = ValidateGeneralDealInfo(dealInfo, isAdd);
             if (!generalDealInfoValidation.isValid)
             {
                 messageList.AddRange(generalDealInfoValidation.messageList);
@@ -133,7 +133,7 @@
             return (isValid, messageList);
         }
 
-        public static (bool isValid, List<string> messageList) ValidateGeneralDealInfo(DealSettingParam dealInfo)
+        public static (bool isValid, List<string> messageList) ValidateGeneralDealInfo(DealSettingParam dealInfo, bool isAdd)
         {
             var messageList = new List<string>();
 
@@ -169,8 +169,8 @@
 
             AddIfInvalid(dealInfo.ScheduleId == 0, messages["requirePaymentFrequency"]);
 
-            var currentDay = DateTimeHelper.Gmt8Now.Date;
-            //AddIfInvalid(!DateTimeHelper.IsValidDateTime(currentDay, dealInfo.StartDate.Date), messages["requireStartDate"]);
+            var tomorrowDate = DateTimeHelper.Gmt8Now.AddDays(1).Date;
+            AddIfInvalid(isAdd && DateTime.Compare(dealInfo.StartDate.Date, tomorrowDate) < 0, messages["requireStartDate"]);
 
             bool isValid = messageList.Count == 0;
 

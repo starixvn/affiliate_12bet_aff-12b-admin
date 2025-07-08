@@ -73,7 +73,8 @@ export const messages = {
     requireMinCpaAmount: 'CPA Amount cannot be negative.',
     requireRedepositRate: `Redeposit Percentage must be between 1 and ${format(PERCENTAGE_MAX_VALUE)}.`,
     requireRedepositPeriod: `Redeposit Period must be between 1 and ${format(INFINITY_NUMBER)}.`,
-    requirePaymentFrequency: 'Payment Frequency must be selected.'
+    requirePaymentFrequency: 'Payment Frequency must be selected.',
+    requireStartDate: 'Start date must be later than today.'
 }
 
 export const cpaTierSettingDefault = {

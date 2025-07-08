@@ -4,6 +4,7 @@ import { setPagingOption } from '../../../../actions/pagingAction';
 import { post } from '../../../../modules/ajaxRequest';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { MONTHLY_SCHEDULE_ID } from '../libs/constants';
+import { productGroupDefault } from '../libs/constants';
 
 export { toggleLoader, setPagingOption };
 
@@ -91,8 +92,9 @@ const _buildDealInfo = (dealInfo) => {
     const isActivePlayerHoldingPeriod = HoldingDays > 0 && HoldingTickets > 0;
     const isQuota = Quota > 0;
     const isRedeposit = RedepositRate > 0 && RedepositDays > 0;
+    const productGroup = !ProductGroup || ProductGroup.length === 0 ? [productGroupDefault] : ProductGroup;
 
-    const firstGroupProductId = ProductGroup?.[0]?.GroupProductId;
+    const firstGroupProductId = productGroup?.[0]?.GroupProductId;
     const firstTier = CPATierSetting.find(t => t.GroupProductId === firstGroupProductId);
 
     if (WithdrawalFeeSetting) {
@@ -109,12 +111,12 @@ const _buildDealInfo = (dealInfo) => {
 
     return {
         ...rest,
-        RedepositRate: formatDecimal(RedepositRate * 100) || 0,
+        RedepositRate: RedepositRate === 0 ? 0 : formatDecimal(RedepositRate * 100) || 0,
         RedepositDays: RedepositDays || 0,
         HoldingDays: HoldingDays || 0,
         HoldingTickets: HoldingTickets || 0,
         Quota: Quota || 0,
-        ProductGroup,
+        ProductGroup: productGroup,
         CPATierSetting,
         DepositFeeSetting,
         WithdrawalFeeSetting,

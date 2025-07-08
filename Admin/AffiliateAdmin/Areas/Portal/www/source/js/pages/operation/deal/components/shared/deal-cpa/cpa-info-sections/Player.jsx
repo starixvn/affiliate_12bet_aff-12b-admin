@@ -10,6 +10,7 @@ import { setDealInfo } from '../../../../actions';
 import { INFINITY_NUMBER } from '../../../../libs/constants';
 import { format } from '../../../../../../../modules/numberFormat';
 import { convertTargetCountryList } from '../../../../libs/service';
+import { isValidNumber } from '../../../../../../../modules/utils';
 
 
 export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }) => {
@@ -21,16 +22,15 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
     const _handleChangePositiveInteger = (e) => {
         const { name, value } = e.target;
         const numericValue = Number(value.replace(/,/g, ''));
-        const oldValue = dealInfo[name];
-
-        let newValue;
+        let newValue = dealInfo[name];
 
         if (value === '') {
             newValue = '';
-        } else if (numericValue >= 0 && numericValue <= INFINITY_NUMBER) {
+        } else if (numericValue === 0) {
+            newValue = 0;
+        }
+        else if (numericValue > 0 && numericValue <= INFINITY_NUMBER && isValidNumber(numericValue)) {
             newValue = numericValue;
-        } else {
-            newValue = oldValue;
         }
 
         setDealInfo({ [name]: newValue });
@@ -67,7 +67,7 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
         <fieldset className="player-group">
             <legend><h6 className="font-weight-bold">Player</h6></legend>
             <FormGroup row inline className='align-items-center'>
-                <Label htmlFor="CountryCodes" sm={4}>Player Target Country{' '}
+                <Label htmlFor="CountryCodes" sm={4} className="mr_15neg">Player Target Country{' '}
                     <span className="text-danger required" style={{ margin: 0 }}>*</span>
                 </Label>
                 <Col id="CountryCodes" sm={3} className={`${isSubmitted && !dealInfo.CountryCodes ? 'is-invalid' : ''}`}>
@@ -85,7 +85,7 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="ActiveDays" sm={4} className="d-flex">
+                <Label htmlFor="ActiveDays" sm={4} className="d-flex mr_15neg">
                     Activity Period
                     <span className="text-danger required" style={{ marginLeft: 3 }}>*</span>
                     <span title="The player must complete all required actions within this time period to qualify. For example: within 30 days from registration." className="ml-1 oi icon-info"></span>
@@ -103,7 +103,7 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label sm={4} className="d-flex" htmlFor='IsActivePlayerHoldingPeriod'>
+                <Label sm={4} className="d-flex mr_15neg" htmlFor='IsActivePlayerHoldingPeriod'>
                     <input
                         type="checkbox"
                         name="IsActivePlayerHoldingPeriod"

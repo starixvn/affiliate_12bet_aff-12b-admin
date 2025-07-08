@@ -113,7 +113,7 @@
 
         public ResultInfo UpdateDeal(DealSettingParam param)
         {
-            var (isValid, message) = ValidateDeal(param);
+            var (isValid, message) = ValidateDeal(param, isAdd: false);
             if (!isValid)
             {
                 return ResultInfo.GenerateErr(message);
@@ -170,7 +170,7 @@
             return ExecuteReturnResultInfo(command);
         }
 
-        private (bool isValid, string message) ValidateDeal(DealSettingParam dealInfo)
+        private (bool isValid, string message) ValidateDeal(DealSettingParam dealInfo, bool isAdd = true)
         {
             var messageList = new List<string>();
             if (dealInfo == null)
@@ -186,7 +186,7 @@
 
             if (dealInfo.DealType == Constants.DealType.CPA)
             {
-                validateResult = DealInfoValidator.ValidateCPAInfo(dealInfo);
+                validateResult = DealInfoValidator.ValidateCPAInfo(dealInfo, isAdd);
             }
             else if (dealInfo.DealType == Constants.DealType.RevenueShare)
             {
@@ -194,7 +194,7 @@
             }
             else
             {
-                validateResult = DealInfoValidator.ValidateHybridDeal(dealInfo, _systemService.GetProductList());
+                validateResult = DealInfoValidator.ValidateHybridDeal(dealInfo, _systemService.GetProductList(), isAdd);
             }
 
             if (!validateResult.isValid)
@@ -226,7 +226,7 @@
             command.HoldingTickets = param.HoldingTickets;
             command.Quota = param.Quota;
             command.CpaTierList = DealInfoHelper.BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover);
-            command.CpaProductList = DealInfoHelper.BuildCpaProductListXml(param.ProductGroup);
+            command.CpaProductList = DealInfoHelper.BuildCpaProductListXml(param.ProductGroup, param.CheckedMinTurnover);
             command.RedepositDays = param.RedepositDays;
             command.RedepositRate = param.RedepositRate/OneHundred;
         }
