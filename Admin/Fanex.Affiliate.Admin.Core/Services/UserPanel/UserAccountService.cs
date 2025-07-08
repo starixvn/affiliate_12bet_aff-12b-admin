@@ -76,7 +76,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             var isPlayerAccountPreferred = PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
             var isDifferentUsername = curUserAccInfo.PlayerUsername != param.PlayerUsername;
 
-            if (!isPlayerAccountPreferred || !isDifferentUsername || param.IsMarketingAccount)
+            if (param.IsMarketingAccount && string.IsNullOrEmpty(param.PlayerUsername))
+            {
+                return await UpdateUserAccount(param, curUserAccInfo);
+            }
+
+            if (!isPlayerAccountPreferred || !isDifferentUsername)
             {
                 return await UpdateUserAccount(param, curUserAccInfo);
             }
