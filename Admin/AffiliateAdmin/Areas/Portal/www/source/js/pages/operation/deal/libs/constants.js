@@ -74,7 +74,14 @@ export const messages = {
     requireRedepositRate: `Redeposit Percentage must be between 1 and ${format(PERCENTAGE_MAX_VALUE)}.`,
     requireRedepositPeriod: `Redeposit Period must be between 1 and ${format(INFINITY_NUMBER)}.`,
     requirePaymentFrequency: 'Payment Frequency must be selected.',
-    requireStartDate: 'Start date must be later than today.'
+    requireStartDate: 'Start date must be later than today.',
+    choseAnotherDeal: 'Please choose another deal (not old deal)!',
+    confirmChangeDeal: 'Are you sure you want to change the Deal for affiliate: {0}',
+    assignDealSuccessfully: 'Assign affiliate to Deal successfully',
+}
+
+export const popupEventNames = {
+    assignDealSuccessfully: 'assignDealSuccessfully',
 }
 
 export const cpaTierSettingDefault = {

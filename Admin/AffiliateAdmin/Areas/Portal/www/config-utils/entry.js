@@ -24,6 +24,7 @@ module.exports = {
     [`${jsDist}/pages/administrator/department`]: clientRoot + "/js/pages/administrator/department/index.jsx",
     [`${jsDist}/pages/home`]: clientRoot + "/js/pages/home/index.jsx",
     [`${jsDist}/pages/operation/deal`]: clientRoot + "/js/pages/operation/index.jsx",
+    [`${jsDist}/pages/operation/assign-deal`]: clientRoot + "/js/pages/operation/assign-deal/index.jsx",
 
     //Media Gallery
     [`${jsDist}/pages/media-gallery/media-gallery`]: clientRoot + "/js/pages/media-gallery/index.jsx",

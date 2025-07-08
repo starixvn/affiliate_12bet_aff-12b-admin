@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import AppLayout from '../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
-import CommissionGroupPopup from '../../common/components/CommissionGroupPopup';
 import ChangePasswordForm from '../../common/components/ChangePasswordForm';
 import Loader from '../../../components/Loader';
 
@@ -23,13 +22,6 @@ export class AppContainer extends Component {
                 <Loader show={isShowLoader} />
                 <Filter />
                 <Content />
-                <CommissionGroupPopup
-                    showPopupCommGroup={showPopupCommGroup}
-                    isPrivateGroup={true}
-                    affId={affId}
-                    affName={commGroup}
-                    setShowPopupCommGroup={this.props.setShowPopupCommGroup}
-                />
                 <ChangePasswordForm
                     showPopupPassword={showPopupPassword}
                     selectedId={affId}

@@ -292,5 +292,7 @@
 	<Setting Key="Aff_Admin_Deal_Detail_Sel" SpName="Aff_Admin_Deal_Detail_Sel" DbName="" />
 	<Setting Key="Aff_Admin_Deal_Upd" SpName="Aff_Admin_Deal_Upd" DbName="" />
 	<Setting Key="Aff_Admin_Deal_Schedule_Sel" SpName="Aff_Admin_Deal_Schedule_Sel" DbName="" />
+	<Setting Key="Aff_Admin_Assign_Deal" SpName="Aff_Admin_Assign_Deal" DbName="" />
+	<Setting Key="Aff_Admin_Assign_Deal_Sel" SpName="Aff_Admin_Assign_Deal_Sel" DbName="" />
   </Function>
 </Functions>

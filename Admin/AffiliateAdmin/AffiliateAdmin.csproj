@@ -241,6 +241,9 @@
   <ItemGroup>
     <Compile Include="Areas\Portal\PortalAreaRegistration.cs" />
     <Content Include="Areas\Portal\www\dist\imgs\i_operation.png" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\assign-deal\AssignDeal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\assign-deal\AssignDealPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\assign-deal\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\add-deal\AddDeal.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\deal\components\add-deal\index.jsx" />
@@ -1488,6 +1491,7 @@
     <Content Include="Areas\Portal\www\source\style\pages\marketing-account\index.scss" />
     <Content Include="Areas\Portal\Views\Operation\Deal.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\operation\deal.scss" />
+    <Content Include="Areas\Portal\Views\Operation\AssignDeal.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

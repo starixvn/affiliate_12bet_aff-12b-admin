@@ -292,6 +292,8 @@
 	<Setting Key="Aff_Admin_Deal_Detail_Sel" SpName="Aff_Admin_Deal_Detail_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Deal_Upd" SpName="Aff_Admin_Deal_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Deal_Schedule_Sel" SpName="Aff_Admin_Deal_Schedule_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Assign_Deal" SpName="Aff_Admin_Assign_Deal" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Assign_Deal_Sel" SpName="Aff_Admin_Assign_Deal_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
 </Functions>
 

@@ -8,7 +8,7 @@ import { Row, Col, Button } from 'reactstrap';
 import { resource } from '../../libs/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../../modules/numberFormat';
 import { getAffiliateInfo } from '../../actions';
-import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
+import AssignDealPopup from '../../../../operation/assign-deal/AssignDealPopup';
 import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 export class CommissionPanel extends PureComponent {
@@ -16,22 +16,22 @@ export class CommissionPanel extends PureComponent {
         super(props);
 
         this.state = {
-            isChangingCommissionGroup: false
+            isChangingDeal: false
         }
     }
 
     toggleEditingCommissionPopup = (isChanging) => {
-        this.setState({ isChangingCommissionGroup: isChanging })
+        this.setState({ isChangingDeal: isChanging })
     }
 
     _renderCommGroup(affiliateInfo) {
         return <Button color="link" className="left-panel-btn-link align-baseline text-right" onClick={() => this.toggleEditingCommissionPopup(true)}>
-                {htmlDecode(affiliateInfo.CommGroupName)}
-            </Button>
+            {htmlDecode(affiliateInfo.CommGroupName)}
+        </Button>
     }
 
     render() {
-        const { isChangingCommissionGroup } = this.state;
+        const { isChangingDeal } = this.state;
         const { affiliateInfo } = this.props;
 
         return (
@@ -40,13 +40,13 @@ export class CommissionPanel extends PureComponent {
                     <Col sm={7}>{resource.CommGroup}</Col>
                     <Col sm={5} className='text-right text-break pl-0'>
                         {this._renderCommGroup(affiliateInfo)}
-                        <CommissionGroupPopup
-                            showPopupCommGroup={isChangingCommissionGroup}
-                            isPrivateGroup={affiliateInfo.IsUsingPrivateCommGroup}
+                        <AssignDealPopup
+                            showPopupAssignDeal={isChangingDeal}
+                            setShowPopupAssignDeal={this.toggleEditingCommissionPopup}
+                            getAffiliateInfo={this.props.getAffiliateInfo}
+                            isNewAffiliate={affiliateInfo.IsNewAffiliate}
                             affName={affiliateInfo.AffName}
                             affId={affiliateInfo.AffId}
-                            setShowPopupCommGroup={this.toggleEditingCommissionPopup}
-                            getAffiliateInfo={this.props.getAffiliateInfo}
                         />
                     </Col>
                 </Row>
