@@ -5,6 +5,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { MONTHLY_SCHEDULE_ID } from '../libs/constants';
 import { productGroupDefault } from '../libs/constants';
+import { isCheckedField } from '../libs/service';
 
 export { toggleLoader, setPagingOption };
 
@@ -95,7 +96,7 @@ const _buildDealInfo = (dealInfo) => {
     const productGroup = !ProductGroup || ProductGroup.length === 0 ? [productGroupDefault] : ProductGroup;
 
     const firstGroupProductId = productGroup?.[0]?.GroupProductId;
-    const firstTier = CPATierSetting.find(t => t.GroupProductId === firstGroupProductId);
+    const firstTier = CPATierSetting.filter(t => t.GroupProductId === firstGroupProductId);
 
     if (WithdrawalFeeSetting) {
         WithdrawalFeeSetting.DeductedAmount = WithdrawalFeeSetting.IsDeductedPercent
@@ -123,9 +124,9 @@ const _buildDealInfo = (dealInfo) => {
         IsActivePlayerHoldingPeriod: isActivePlayerHoldingPeriod,
         IsQuota: isQuota,
         IsRedeposit: isRedeposit,
-        CheckedMinFdm: firstTier?.MinFdm > 0 || false,
-        CheckedMinTotalDeposit: firstTier?.MinTotalDeposit > 0 || false,
-        CheckedMinTurnover: firstTier?.MinTO > 0 || false,
+        CheckedMinFdm: isCheckedField(firstTier, 'MinFdm'),
+        CheckedMinTotalDeposit: isCheckedField(firstTier, 'MinTotalDeposit'),
+        CheckedMinTurnover: isCheckedField(firstTier, 'MinTO'),
         StartDate: StartDateString,
         ScheduleId,
         IsInstant: ScheduleId !== MONTHLY_SCHEDULE_ID && ScheduleId !== 0

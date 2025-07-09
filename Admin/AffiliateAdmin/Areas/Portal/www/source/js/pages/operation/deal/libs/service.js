@@ -61,6 +61,10 @@ export const buildDefaultDealInfo = (targetCountryList, dealName = '', dealType 
     return newDealInfo;
 }
 
+export const isCheckedField = (list, field) => {
+    return list && list.some(item => item[field] !== 0);
+}
+
 const convertListWithChecked = (list, selectedIdsCSV, idKey, nameKey, checkedItems = []) => {
     const selectedIds = selectedIdsCSV.split(',').filter(Boolean);
     const isCheckAll = selectedIds.length === list.length;
@@ -207,7 +211,7 @@ export const validateGeneralDealInfo = (dealInfo, isAdd, tomorrow) => {
         IsQuota,
         Quota
     } = dealInfo;
-    
+
     const messageList = [];
 
     const addIfInvalid = (condition, message) => {
