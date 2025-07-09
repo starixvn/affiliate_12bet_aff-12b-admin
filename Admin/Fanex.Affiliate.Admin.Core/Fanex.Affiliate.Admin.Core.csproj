@@ -297,6 +297,7 @@
     <Compile Include="Configurations\LoggingConfig.cs" />
     <Compile Include="Configurations\SslConfig.cs" />
     <Compile Include="Configurations\UMConfig.cs" />
+    <Compile Include="Constants\AffAccountTypes.cs" />
     <Compile Include="Constants\AffStatus.cs" />
     <Compile Include="Constants\AffType.cs" />
     <Compile Include="Constants\Apis\CustomerStatus.cs" />
