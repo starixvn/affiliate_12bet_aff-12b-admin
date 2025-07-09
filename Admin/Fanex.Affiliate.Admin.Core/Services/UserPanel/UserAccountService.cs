@@ -173,6 +173,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
                     if (isUpdatedSensitiveInfo)
                     {
+                        affInfo.PlayerCustId = affInfo.PlayerCustId == 0 ? -1 : affInfo.PlayerCustId;
+                        affInfo.PlayerUsername = string.IsNullOrEmpty(affInfo.PlayerUsername) ? "" : affInfo.PlayerUsername;
                         await _thirdPartyLicenseeService.SendAffiliateInfo(affInfo);
                     }
                 }
