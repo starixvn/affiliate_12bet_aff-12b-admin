@@ -89,15 +89,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             var memberSiteId = _appSetting.MemberSiteId;
             var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
             var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
-            param.Player_CustId = memberSiteCust.CustId;
-            param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
-                ? TEST_CURRENCY_ID
-                : memberSiteCust.CurrencyId.GetValueOrDefault();
 
             if (!validationResult.IsSuccessful)
             {
                 return validationResult;
             }
+
+            param.Player_CustId = memberSiteCust.CustId;
+            param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
+                ? TEST_CURRENCY_ID
+                : memberSiteCust.CurrencyId.GetValueOrDefault();
+
+            
 
             return await UpdateUserAccount(param, curUserAccInfo);
         }
