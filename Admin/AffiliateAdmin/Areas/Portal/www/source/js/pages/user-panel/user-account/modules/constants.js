@@ -37,6 +37,7 @@ export const messageList = {
     SiteUrl: 'Website URL is required',
     NoSiteDescriptionOfBwing: `Please describe how you would like to promote Bwing if you don't have the URL is required`,
     NoSiteDescriptionOfGoal123: `Please describe how you would like to promote Goal123 if you don't have the URL is required`,
+    NoSiteDescription12Bet: `Please describe how you would like to promote 12Bet if you don't have the URL is required`,
     PlayerUsername: 'User Name is required',
     NetellerAccountId: 'Neteller Account ID is required',
     MoneybookersEmail: 'Moneybookers Email is required',

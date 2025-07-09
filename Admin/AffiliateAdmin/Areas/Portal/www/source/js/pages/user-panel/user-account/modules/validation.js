@@ -21,12 +21,12 @@ const getMessageIfEmpty = (fieldName, value) => {
 
 export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeName) => {
     let message = '';
-    const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDescription${licenseeName}`;
-    console.log('selectedField', selectedField);
+    const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDescription`;
     message += validateEmail(userAccountInfo);
     message += validateGender(userAccountInfo);
     message += validateCountry(userAccountInfo);
-    message += validateRequiredField(userAccountInfo, selectedField);
+    message += validateRequiredField(userAccountInfo, licenseeName);
+    message += validateWebsite(userAccountInfo, selectedField, licenseeName);
     message += validateAppContactList(userAccountInfo.ContactAppList, userAccountInfo.IsMarketingAccount);
     message += validatePaymentMethods(userAccountInfo);
     message += validateEmptyUrl(moreSiteUrlsList);
@@ -53,13 +53,26 @@ const validateCountry = (userAccountInfo) => {
     return getMessage('Country', country);
 }
 
-const validateRequiredField = (userAccountInfo, selectedField) => {
+const validateRequiredField = (userAccountInfo) => {
     if(userAccountInfo.IsMarketingAccount) {
         return ""
     }
 
-    const newRequiredFieldList = [...requiredFieldList, selectedField];
-    return newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessageIfEmpty(field, userAccountInfo[field]) }, '');
+    return requiredFieldList.reduce((accumulator, field) => { 
+        return accumulator + getMessageIfEmpty(field, userAccountInfo[field])
+     }, '');
+}
+
+const validateWebsite = (userAccountInfo, selectedField, licenseeName) => {
+    if(userAccountInfo.IsMarketingAccount) {
+        return ""
+    }
+    
+    if(!userAccountInfo[selectedField]){
+        return getMessageIfEmpty(selectedField + licenseeName, userAccountInfo[selectedField])
+    }
+
+    return ""
 }
 
 const validatePaymentMethods = (userAccountInfo) => {
