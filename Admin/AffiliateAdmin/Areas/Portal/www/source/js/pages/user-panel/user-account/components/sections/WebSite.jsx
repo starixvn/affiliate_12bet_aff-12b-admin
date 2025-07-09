@@ -99,7 +99,7 @@ export class WebSite extends PureComponent {
         const { messageNotification } = this.state;
         const { userAccountInfo, moreSiteUrlsList } = this.props;
         const hasWebSite = userAccountInfo.HasWebSite;
-        const isRequired = userAccountInfo.MarketingAccount === false;
+        const isRequired = !userAccountInfo.IsMarketingAccount;
 
         return (
             <React.Fragment>

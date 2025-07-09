@@ -41,7 +41,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public string City { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [RequiredDependOnField(nameof(IsNormalAccount))]
         public string State { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]

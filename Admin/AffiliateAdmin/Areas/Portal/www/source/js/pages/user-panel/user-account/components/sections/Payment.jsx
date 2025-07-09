@@ -27,7 +27,7 @@ export class Payment extends PureComponent {
     }
 
     _renderFormByMethod(userAccountInfo) {
-        const isRequired = userAccountInfo.MarketingAccount === false;
+        const isRequired = !userAccountInfo.IsMarketingAccount;
         return {
             [playerMethod]: this._renderPaymentForm('playerUsername', `${this.props.licenseeName} User Name`, userAccountInfo.PlayerUsername, isRequired, this.handleChange),
             [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, isRequired, this.handleChange),

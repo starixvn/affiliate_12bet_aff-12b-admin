@@ -29,13 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee
 
         public async Task SendAffiliateInfo(AffiliateBasicInfo affInfo)
         {
-            if (affInfo.AffType == AffAccountTypes.MarketingAccount)
-            {
-                affInfo.PlayerCustId = -1;
-                affInfo.PlayerUsername = string.IsNullOrEmpty(affInfo.PlayerUsername) ? "" : affInfo.PlayerUsername;
-            }
-
-            if (affInfo.PlayerCustId == 0 || string.IsNullOrEmpty(affInfo.AffCode))
+            if ((affInfo.AffType != AffAccountTypes.MarketingAccount && affInfo.PlayerCustId == 0) || string.IsNullOrEmpty(affInfo.AffCode))
             {
                 return;
             }

@@ -27,9 +27,13 @@ export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeN
     message += validateCountry(userAccountInfo);
     message += validateRequiredField(userAccountInfo, licenseeName);
     message += validateWebsite(userAccountInfo, selectedField, licenseeName);
+
+    if (userAccountInfo.HasWebSite) {
+        message += validateEmptyUrl(moreSiteUrlsList);
+    }
+
     message += validateAppContactList(userAccountInfo.ContactAppList, userAccountInfo.IsMarketingAccount);
     message += validatePaymentMethods(userAccountInfo);
-    message += validateEmptyUrl(moreSiteUrlsList);
 
     return {
         message: message,
@@ -69,7 +73,7 @@ const validateWebsite = (userAccountInfo, selectedField, licenseeName) => {
     }
     
     if(!userAccountInfo[selectedField]){
-        return getMessageIfEmpty(selectedField + licenseeName, userAccountInfo[selectedField])
+        return getMessageIfEmpty(userAccountInfo.HasWebSite ? selectedField : selectedField + licenseeName, userAccountInfo[selectedField])
     }
 
     return ""
@@ -99,6 +103,7 @@ const validatePaymentMethods = (userAccountInfo) => {
 
 const validateEmptyUrl = (moreSiteUrlsList) => {
     const isExistEmptyUrl = moreSiteUrlsList.some(siteUrl => siteUrl.trim() === '');
+    const emptySiteUrlIndex = moreSiteUrlsList.indexOf('');
 
     return isExistEmptyUrl ? `Website URL ${emptySiteUrlIndex + 2} is required<br />` : '';
 }

@@ -23,13 +23,13 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(true));
     const url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';
     const response = await post(url, { affId });
-    const NORMAL_ACCOUNT_TYPE = 'Normal AFF Account';
+    const MARKETING_ACCOUNT_TYPE = "Marketing AFF Account";
 
     const data = response && response.status === 200 ? response.data : null;
     const moreSiteUrls = data && data.MoreSiteUrls;
     const moreSiteUrlsList = !moreSiteUrls ? [] : moreSiteUrls.split(';');
     dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
-    dispatch(setUserAccountInfo({...data, IsMarketingAccount: data.AffCategoryDesc !== NORMAL_ACCOUNT_TYPE }));
+    dispatch(setUserAccountInfo({ ...data, IsMarketingAccount: data.AffCategoryDesc === MARKETING_ACCOUNT_TYPE }));
     dispatch(toggleLoaderUserPanel(false));
 }
 
