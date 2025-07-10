@@ -75,5 +75,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public bool HasWebSite => !string.IsNullOrEmpty(SiteUrl);
 
         public string AffCategoryDesc { get; set; }
+
+        [PermissionCheck(Function.ShouldBeIgnoredForClient)]
+        public int PlayerCustId { get; set; }
+
+        [PermissionCheck(Function.ShouldBeIgnoredForClient)]
+        public int PlayerCurrencyId { get; set; }
     }
 }

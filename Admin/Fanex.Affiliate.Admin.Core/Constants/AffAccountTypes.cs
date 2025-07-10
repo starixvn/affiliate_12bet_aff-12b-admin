@@ -2,8 +2,8 @@
 {
     public static class AffAccountTypes
     {
-        public static int NormalAccount = 1;
+        public const int NormalAccount = 1;
 
-        public static int MarketingAccount = 2;
+        public const int MarketingAccount = 2;
     }
 }

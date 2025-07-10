@@ -4,11 +4,11 @@
     using System.ComponentModel.DataAnnotations;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]
-    public sealed class RequiredDependOnField : ValidationAttribute
+    public sealed class RequiredDependOnFieldAttribute : ValidationAttribute
     {
         private readonly string _propertyName;
 
-        public RequiredDependOnField(string propertyName)
+        public RequiredDependOnFieldAttribute(string propertyName)
         {
             _propertyName = propertyName;
         }

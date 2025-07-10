@@ -71,23 +71,28 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             var isPlayerAccountPreferred = PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
             var isDifferentUsername = !curUserAccInfo.PlayerUsername.MatchWith(param.PlayerUsername);
 
-            if (isPlayerAccountPreferred && isDifferentUsername && !string.IsNullOrWhiteSpace(param.PlayerUsername))
+            if (isPlayerAccountPreferred && !string.IsNullOrWhiteSpace(param.PlayerUsername))
             {
-                var memberSiteId = _appSetting.MemberSiteId;
-                var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
-                var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
-
-                if (!validationResult.IsSuccessful)
+                if (isDifferentUsername)
                 {
-                    return validationResult;
+                    var memberSiteId = _appSetting.MemberSiteId;
+                    var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
+                    var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
+
+                    if (!validationResult.IsSuccessful)
+                    {
+                        return validationResult;
+                    }
+
+                    param.Player_CustId = memberSiteCust.CustId;
+                    param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
+                        ? TEST_CURRENCY_ID
+                        : memberSiteCust.CurrencyId.GetValueOrDefault();
+                } else
+                {
+                    param.Player_CustId = curUserAccInfo.PlayerCustId;
+                    param.Player_Currency = curUserAccInfo.PlayerCurrencyId;
                 }
-
-                param.Player_CustId = memberSiteCust.CustId;
-                param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
-                    ? TEST_CURRENCY_ID
-                    : memberSiteCust.CurrencyId.GetValueOrDefault();
-
-                return await UpdateUserAccount(param, curUserAccInfo);
             }
 
             return await UpdateUserAccount(param, curUserAccInfo);

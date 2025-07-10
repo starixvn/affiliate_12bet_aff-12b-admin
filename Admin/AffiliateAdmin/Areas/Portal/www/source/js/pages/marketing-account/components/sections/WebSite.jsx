@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, forwardRef, useEffect } from 'react';
 import { Form, FormGroup, Label, Col, Button, Input } from 'reactstrap';
 
 const description = `Please describe how you would like to promote 12Bet if you don't have the URL`;
@@ -18,12 +18,13 @@ const createMoreSiteUrl = (url) => ({
     ref: React.createRef()
 })
 
-const SiteFieldComponent = ({ label, name, value, onChange, onBlur, disabled, ref }) => {
+const SiteFieldComponent = forwardRef(({ label, name, value, onChange, onBlur, disabled }, ref) => {
     return (
         <React.Fragment>
             <Label sm={3} className="d-flex align-items-center">{label}</Label>
             <Col sm={6} className="input-item d-flex align-items-center">
-                <Input 
+                <Input
+                    ref={ref}
                     type="text" 
                     name={name} 
                     disabled={disabled} 
@@ -33,7 +34,7 @@ const SiteFieldComponent = ({ label, name, value, onChange, onBlur, disabled, re
             </Col>
         </React.Fragment>
     )
-}
+})
 
 const MoreSitesComponents = ({ moreSiteUrls, onChangeMoreSiteUrl, _handleDeleteUrl, disabled, websiteInfo }) => {
     return (
