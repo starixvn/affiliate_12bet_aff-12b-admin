@@ -95,9 +95,9 @@ export class Content extends PureComponent {
             <Row key={`dataRow-${index}`} className={status && status.toLowerCase()}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.TransId} className="text-center">
-                    <Button color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
+                    <a href="javascript:;" color="link" className="p-0" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                         {dataItem.TransId}
-                    </Button>
+                    </a>
                 </Cell>
                 <Cell title={dataItem.TransDateText} className="text-center">{dataItem.TransDateText}</Cell>
                 <Cell title={dataItem.AffName} className="text-center">{dataItem.AffName}</Cell>
