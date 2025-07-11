@@ -8,7 +8,7 @@ export const SortingCell = (props) => {
 
     return (
         <Cell header={true} colWidth={100} className="th">
-            <Button className="p-0 th-wrapper" color="link" onClick={() => props.handleClickHeader(columnName)}>
+            <Button className="p-0 th-wrapper btn btn-link" color="link" onClick={() => props.handleClickHeader(columnName)}>
                 <span>{title}</span>
                 <div className="icon-container">
                     <span className={`caret asc ${isSelectedColumn && isSortAsc ? "current" : ''}`}></span>

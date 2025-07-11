@@ -386,6 +386,7 @@
     <Compile Include="Controllers\Player\PlayerController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestController.cs" />
+    <Compile Include="Controllers\Report\AffiliateCpaReportController.cs" />
     <Compile Include="Controllers\Report\PlayerCpaReportController.cs" />
     <Compile Include="Controllers\Report\ReportController.cs" />
     <Compile Include="Controllers\Report\PlayerGgrReportController.cs" />
@@ -447,6 +448,7 @@
     <Compile Include="Criterias\BaseCriteria.cs" />
     <Compile Include="Criterias\PaymentRequest\PaymentRequestCriteria.cs" />
     <Compile Include="Criterias\PaymentRequest\PaymentRequestDetailCriteria.cs" />
+    <Compile Include="Criterias\Report\AffiliateCpaReportCriteria.cs" />
     <Compile Include="Criterias\Report\AffiliateReportCriteria.cs" />
     <Compile Include="Criterias\Report\AffiliateReportDetailCriteria.cs" />
     <Compile Include="Criterias\Report\BaseAffiliateReportCriteria.cs" />
@@ -530,6 +532,7 @@
     <Compile Include="DTO\Operation\PaymentFrequency.cs" />
     <Compile Include="DTO\Operation\RevenueDeductionSetting.cs" />
     <Compile Include="DTO\Operation\RevenueTierSetting.cs" />
+    <Compile Include="DTO\Report\AffiliateCpaReport.cs" />
     <Compile Include="DTO\Report\PlayerCpaReport.cs" />
     <Compile Include="DTO\Report\PlayerGgrProductInfo.cs" />
     <Compile Include="DTO\Report\PlayerGgrReport.cs" />
@@ -638,6 +641,7 @@
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParamFromHome.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportParam.cs" />
+    <Compile Include="MetaModels\Report\AffiliateCpaRequest.cs" />
     <Compile Include="MetaModels\Report\PlayerCpaReportRequest.cs" />
     <Compile Include="MetaModels\Report\PlayerGgrReportParam.cs" />
     <Compile Include="MetaModels\Report\TransferReportParam.cs" />
@@ -681,6 +685,8 @@
     <Compile Include="Services\Operation\ICommonDealService.cs" />
     <Compile Include="Services\Operation\IOperationService.cs" />
     <Compile Include="Services\Operation\OperationService.cs" />
+    <Compile Include="Services\Report\AffiliateCpaReportService.cs" />
+    <Compile Include="Services\Report\IAffiliateCpaReportService.cs" />
     <Compile Include="Services\Report\IPlayerCpaService.cs" />
     <Compile Include="Services\Report\PlayerCpaService.cs" />
     <Compile Include="Services\Tracker\IJobTrackerService.cs" />
