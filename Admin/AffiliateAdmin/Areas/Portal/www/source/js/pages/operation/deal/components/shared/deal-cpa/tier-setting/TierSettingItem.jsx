@@ -78,17 +78,25 @@ export const TierSettingItem = (props) => {
     }
 
     const _handleCheck = (e) => {
-        const { name } = e.target;
-        const isChecked = !dealInfo[name];
+        const { name, checked } = e.target;
 
-        if (!isChecked) {
-            _handleResetTierSettingData(name === 'CheckedMinFdm' ? 'MinFdm' : 'MinTotalDeposit');
+        const propMap = {
+            CheckedMinFdm: 'MinFdm',
+            CheckedMinTotalDeposit: 'MinTotalDeposit',
+        };
+
+        const tierField = propMap[name];
+        const newDealInfo = { [name]: checked };
+
+        if (!checked && tierField) {
+            newDealInfo.CPATierSetting = dealInfo.CPATierSetting.map(tier => ({
+                ...tier,
+                [tierField]: 0,
+            }));
         }
 
-        props.setDealInfo({
-            [name]: isChecked
-        });
-    }
+        props.setDealInfo(newDealInfo);
+    };
 
     const _handleSelect = (item, selectedItem) => {
         const isSelecting = !!item || (selectedItem !== '');
@@ -124,13 +132,6 @@ export const TierSettingItem = (props) => {
         setMessage(message);
         setIsConfirmPopup(true);
     };
-
-    const _handleResetTierSettingData = (propName, value = 0) => {
-        const newTierSetting = dealInfo.CPATierSetting.map(t => ({ ...t, [propName]: value }));
-        props.setDealInfo({
-            CPATierSetting: newTierSetting,
-        });
-    }
 
     const _buildHeader = () => {
         return (

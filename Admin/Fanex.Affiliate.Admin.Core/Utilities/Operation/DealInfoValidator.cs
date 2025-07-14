@@ -301,23 +301,23 @@
             {
                 var groupTiers = groupedValues[index];
 
+                var matchValidation = ValidateAllTierSettingsMatchGroupProduct1(index, groupTiers, groupedValues[0], checkedMinFdm, checkedMinTotalDeposit);
+                if (!matchValidation.isValid)
+                {
+                    messageList.AddRange(matchValidation.messageList);
+                }
+
                 var increasingValidation = ValidateIncreasingTiers(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
                 if (!increasingValidation.isValid)
                 {
                     messageList.AddRange(increasingValidation.messageList);
                 }
-            }
 
-            var matchValidation = ValidateAllTierSettingsMatchGroupProduct1(groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit);
-            if (!matchValidation.isValid)
-            {
-                messageList.AddRange(matchValidation.messageList);
-            }
-
-            var valueValidation = ValidateValueFieldOfTierSetting(groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
-            if (!valueValidation.isValid)
-            {
-                messageList.AddRange(valueValidation.messageList);
+                var valueValidation = ValidateValueFieldOfTierSetting(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+                if (!valueValidation.isValid)
+                {
+                    messageList.AddRange(valueValidation.messageList);
+                }
             }
 
             var isValid = messageList.Count == 0;
@@ -405,22 +405,17 @@
         }
 
         private static (bool isValid, List<string> messageList) ValidateAllTierSettingsMatchGroupProduct1(
-            Dictionary<int, List<CpaTierSetting>> grouped,
-            bool checkFdm, bool checkDeposit)
+            int index,
+            List<CpaTierSetting> groupTiers,
+            List<CpaTierSetting> firstGroupTiers,
+            bool checkFdm,
+            bool checkDeposit)
         {
             var messageList = new List<string>();
 
-            var firstGroup = grouped.First();
-            int index = 1;
-
-            foreach (var kvp in grouped)
+            if (index != 0 && !IsGroup2MatchGroup1(groupTiers, firstGroupTiers, checkFdm, checkDeposit))
             {
-                if (kvp.Key != firstGroup.Key
-                    && !IsGroup2MatchGroup1(kvp.Value, firstGroup.Value, checkFdm, checkDeposit))
-                {
-                    messageList.Add(messages["requireAllTierSettingsMatchGroupProduct1"].Replace("{0}", index.ToString()));
-                }
-                index++;
+                messageList.Add(messages["requireAllTierSettingsMatchGroupProduct1"].Replace("{0}", (index + 1).ToString()));
             }
 
             var isValid = messageList.Count == 0;
@@ -428,49 +423,75 @@
             return (isValid, messageList);
         }
 
-        private static bool IsGroup2MatchGroup1(List<CpaTierSetting> group2, List<CpaTierSetting> group1, bool checkFdm, bool checkDeposit)
+        private static bool IsGroup2MatchGroup1(
+            List<CpaTierSetting> group2,
+            List<CpaTierSetting> group1,
+            bool checkFdm,
+            bool checkDeposit
+        )
         {
-            return group2.TrueForAll(t1 => group1.Exists(t2 =>
-                (!checkFdm || t1.MinFdm == t2.MinFdm)
-                && (!checkDeposit || t1.MinTotalDeposit == t2.MinTotalDeposit)));
+            if (group2.Count > group1.Count)
+            {
+                return false;
+            }
+
+            int group1Index = 0;
+
+            foreach (var item2 in group2)
+            {
+                bool found = false;
+
+                while (group1Index < group1.Count)
+                {
+                    var item1 = group1[group1Index++];
+
+                    bool isMinFdmMatch = !checkFdm || item1.MinFdm == item2.MinFdm;
+                    bool isMinTotalDepositMatch = !checkDeposit || item1.MinTotalDeposit == item2.MinTotalDeposit;
+
+                    if (isMinFdmMatch && isMinTotalDepositMatch)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private static (bool isValid, List<string> messageList) ValidateValueFieldOfTierSetting(
-            Dictionary<int, List<CpaTierSetting>> groupedTierSetting,
+            int index,
+            List<CpaTierSetting> tierSettings,
             bool checkedMinFdm,
             bool checkedMinTotalDeposit,
             bool checkedMinTurnover)
         {
             var messageList = new List<string>();
 
-            var groupedValues = groupedTierSetting.Select(kvp => kvp.Value).ToList();
-
-            for (int index = 0; index < groupedValues.Count; index++)
+            var (minFields, maxFields) = ValidateValueField(index, tierSettings, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+            if (minFields.Count > 0)
             {
-                var groupTiers = groupedValues[index];
-
-                var (minFields, maxFields) = ValidateValueField(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
-
-                if (minFields.Count > 0)
+                var fieldNames = string.Join("/", minFields.Where(f => f != mappingFields[CPA_AMOUNT]));
+                if (!string.IsNullOrEmpty(fieldNames))
                 {
-                    var fieldNames = string.Join("/", minFields.Where(f => f != mappingFields[CPA_AMOUNT]));
-                    if (!string.IsNullOrEmpty(fieldNames))
-                    {
-                        messageList.Add($"Product Group {index + 1} - {string.Format(messages["requireMinValue"], fieldNames)}");
-                    }
-
-                    if (minFields.Contains(mappingFields[CPA_AMOUNT]))
-                    {
-                        messageList.Add($"Product Group {index + 1} - {messages["requireMinCpaAmount"]}");
-                    }
+                    messageList.Add($"Product Group {index + 1} - {string.Format(messages["requireMinValue"], fieldNames)}");
                 }
 
-                if (maxFields.Count > 0)
+                if (minFields.Contains(mappingFields[CPA_AMOUNT]))
                 {
-                    var fieldNames = string.Join("/", maxFields);
-                    messageList.Add($"Product Group {index + 1} - {string.Format(messages["requireMaxValue"], fieldNames)}");
+                    messageList.Add($"Product Group {index + 1} - {messages["requireMinCpaAmount"]}");
                 }
+            }
 
+            if (maxFields.Count > 0)
+            {
+                var fieldNames = string.Join("/", maxFields);
+                messageList.Add($"Product Group {index + 1} - {string.Format(messages["requireMaxValue"], fieldNames)}");
             }
 
             var isValid = messageList.Count == 0;

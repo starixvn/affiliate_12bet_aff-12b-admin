@@ -73,6 +73,10 @@ export const getDealDetail = (groupId) => async (dispatch) => {
 }
 
 const _buildDealInfo = (dealInfo) => {
+    if (!dealInfo) {
+        return null;
+    }
+
     const {
         HoldingDays,
         HoldingTickets,

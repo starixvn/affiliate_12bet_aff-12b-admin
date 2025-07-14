@@ -349,31 +349,34 @@ export const validateTierSetting = (tierSetting, checkedMinFdm, checkedMinTotalD
     }
 
     const groupedTierSetting = groupTierSettingByGroupProductId(tierSetting);
-
-    // Validate increasing by field
+    const firstGroupTiers = groupedTierSetting[1];
     Object.keys(groupedTierSetting).forEach((groupProductId, index) => {
         const groupTiers = groupedTierSetting[groupProductId];
+
+        // Validate that all tier settings of all product groups must match the tier settings of product group 1
+        const allTierSettingsMatchGroupProduct1Validation = validateAllTierSettingsMatchGroupProduct1(index, groupTiers, firstGroupTiers, checkedMinFdm, checkedMinTotalDeposit);
+
+        // Validate increasing by field
         const increasingTiersValidation = validateIncreasingTiers(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+
+        // Validate value field of tier setting
+        const valueFieldValidation = validateValueFieldOfTierSetting(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
+
+        if (!allTierSettingsMatchGroupProduct1Validation.isValid) {
+            isValid = false;
+            messageList.push(...allTierSettingsMatchGroupProduct1Validation.messageList);
+        }
 
         if (!increasingTiersValidation.isValid) {
             isValid = false;
             messageList.push(...increasingTiersValidation.messageList);
         }
+
+        if (!valueFieldValidation.isValid) {
+            isValid = false;
+            messageList.push(...valueFieldValidation.messageList);
+        }
     });
-
-    // Validate that all tier settings of all product groups must match the tier settings of product group 1
-    const allTierSettingsMatchGroupProduct1Validation = validateAllTierSettingsMatchGroupProduct1(groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit);
-    if (!allTierSettingsMatchGroupProduct1Validation.isValid) {
-        isValid = false;
-        messageList.push(...allTierSettingsMatchGroupProduct1Validation.messageList);
-    }
-
-    // Validate value field of tier setting
-    const valueFieldValidation = validateValueFieldOfTierSetting(groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
-    if (!valueFieldValidation.isValid) {
-        isValid = false;
-        messageList.push(...valueFieldValidation.messageList);
-    }
 
     return { isValid, messageList };
 }
@@ -442,62 +445,67 @@ const cpaAmountValidationIncreasing = (tiers, isChecked) => {
 // End validate increasing by field
 
 // Start validate all tier settings match group product 1
-const validateAllTierSettingsMatchGroupProduct1 = (groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit) => {
+const validateAllTierSettingsMatchGroupProduct1 = (index, groupTiers, firstGroupTiers, checkedMinFdm, checkedMinTotalDeposit) => {
     let isValid = true;
     const messageList = [];
 
-    const firstGroupProductId = Object.keys(groupedTierSetting)[0];
-    const firstGroupTiers = groupedTierSetting[firstGroupProductId];
-
-    let index = 1;
-    Object.keys(groupedTierSetting).forEach(groupProductId => {
-        if (groupProductId !== firstGroupProductId) {
-            const groupTiers = groupedTierSetting[groupProductId];
-            if (!isGroup2MatchGroup1(groupTiers, firstGroupTiers, checkedMinFdm, checkedMinTotalDeposit)) {
-                isValid = false;
-                messageList.push(messages.requireAllTierSettingsMatchGroupProduct1.replace('{0}', index));
-            }
-        }
-        index++;
-    });
+    if (index !== 0 && !isGroup2MatchGroup1(groupTiers, firstGroupTiers, checkedMinFdm, checkedMinTotalDeposit)) {
+        isValid = false;
+        messageList.push(messages.requireAllTierSettingsMatchGroupProduct1.replace('{0}', index + 1));
+    }
 
     return { isValid, messageList };
 }
 
 const isGroup2MatchGroup1 = (group2, group1, checkedMinFdm, checkedMinTotalDeposit) => {
-    return group2.every(item1 =>
-        group1.some(item2 =>
-            (!checkedMinFdm || item1.MinFdm === item2.MinFdm)
-            && (!checkedMinTotalDeposit || item1.MinTotalDeposit === item2.MinTotalDeposit)));
+    if (group2.length > group1.length) return false;
+
+    let group1Index = 0;
+
+    for (const item2 of group2) {
+        let found = false;
+
+        while (group1Index < group1.length) {
+            const item1 = group1[group1Index++];
+
+            const isFdmMatch = !checkedMinFdm || item1.MinFdm === item2.MinFdm;
+            const isDepositMatch = !checkedMinTotalDeposit || item1.MinTotalDeposit === item2.MinTotalDeposit;
+
+            if (isFdmMatch && isDepositMatch) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) return false;
+    }
+
+    return true;
 };
+
 // End validate all tier settings match group product 1
 
 // Start validate value field of tier setting
-const validateValueFieldOfTierSetting = (groupedTierSetting, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover) => {
+const validateValueFieldOfTierSetting = (index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover) => {
     const messageList = [];
+    const { minFields, maxFields } = validateValueField(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
 
-    Object.keys(groupedTierSetting).forEach((groupProductId, index) => {
-        const groupTiers = groupedTierSetting[groupProductId];
+    if (minFields.size > 0) {
+        const fieldNames = [...minFields].filter(field => field !== mappingFields.CpaAmount).join('/');
 
-        const { minFields, maxFields } = validateValueField(index, groupTiers, checkedMinFdm, checkedMinTotalDeposit, checkedMinTurnover);
-
-        if (minFields.size > 0) {
-            const fieldNames = [...minFields].filter(field => field !== mappingFields.CpaAmount).join('/');
-
-            if (fieldNames) {
-                messageList.push(`Product Group ${index + 1} - ${messages.requireMinValue.replace('{0}', fieldNames)}`);
-            }
-
-            if (minFields.has(mappingFields.CpaAmount)) {
-                messageList.push(`Product Group ${index + 1} - ${messages.requireMinCpaAmount}`);
-            }
+        if (fieldNames) {
+            messageList.push(`Product Group ${index + 1} - ${messages.requireMinValue.replace('{0}', fieldNames)}`);
         }
 
-        if (maxFields.size > 0) {
-            const fieldNames = [...maxFields].join('/');
-            messageList.push(`Product Group ${index + 1} - ${messages.requireMaxValue.replace('{0}', fieldNames)}`);
+        if (minFields.has(mappingFields.CpaAmount)) {
+            messageList.push(`Product Group ${index + 1} - ${messages.requireMinCpaAmount}`);
         }
-    });
+    }
+
+    if (maxFields.size > 0) {
+        const fieldNames = [...maxFields].join('/');
+        messageList.push(`Product Group ${index + 1} - ${messages.requireMaxValue.replace('{0}', fieldNames)}`);
+    }
 
     const isValid = messageList.length === 0;
 

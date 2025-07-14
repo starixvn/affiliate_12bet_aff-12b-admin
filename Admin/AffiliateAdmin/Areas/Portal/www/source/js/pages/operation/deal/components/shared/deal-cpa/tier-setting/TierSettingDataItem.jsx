@@ -51,7 +51,7 @@ export const TierSettingDataItem = ({ tierSetting, isFirstItem, tier, index, dea
                     const updatedTierSetting = dealInfo.CPATierSetting.filter(c => c.GroupProductId === t.GroupProductId);
                     const updateTierItemIndex = updatedTierSetting.findIndex(c => c.TierId === t.TierId);
 
-                    if (updateTierItemIndex !== -1 && updateTierItemIndex === currentTierIndex) {
+                    if (updateTierItemIndex !== -1 && updateTierItemIndex === currentTierIndex && updatedTierSetting[updateTierItemIndex][name] === tierSetting[currentTierIndex][name]) {
                         return { ...t, [name]: newValue };
                     }
                 }
@@ -90,55 +90,51 @@ export const TierSettingDataItem = ({ tierSetting, isFirstItem, tier, index, dea
     };
 
     const _handleAddTierItem = (groupProductId) => {
-        let newTierItem = null;
-
         const { CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover } = dealInfo;
 
+        const lastTier = tierSetting[tierSetting.length - 1];
+
+        let minFdm = 0;
+        let minTotalDeposit = 0;
+        let minTO = lastTier.MinTO + 1;
+
         if (isFirstItem) {
-            const lastTierItem = tierSetting[tierSetting.length - 1];
-            newTierItem = {
-                TierId: lastTierItem.TierId + 1,
-                GroupProductId: lastTierItem.GroupProductId,
-                MinFdm: CheckedMinFdm ? lastTierItem.MinFdm + 1 : 0,
-                MinTotalDeposit: CheckedMinTotalDeposit ? lastTierItem.MinTotalDeposit + 1 : 0,
-                MinTO: CheckedMinTurnover ? lastTierItem.MinTO + 1 : 0,
-                CpaAmount: lastTierItem.CpaAmount + 1
-            }
+            minFdm = CheckedMinFdm ? lastTier.MinFdm + 1 : 0;
+            minTotalDeposit = CheckedMinTotalDeposit ? lastTier.MinTotalDeposit + 1 : 0;
+            minTO = CheckedMinTurnover ? lastTier.MinTO + 1 : 0;
         } else {
             const firstGroupProductId = dealInfo.ProductGroup[0].GroupProductId;
-            const firstTier = dealInfo.CPATierSetting.filter(t => t.GroupProductId === firstGroupProductId);
+            const firstTierList = dealInfo.CPATierSetting.filter(
+                t => t.GroupProductId === firstGroupProductId
+            );
+            const nextTier = firstTierList[tierSetting.length];
 
-            const currentTier = dealInfo.CPATierSetting.filter(t => t.GroupProductId === groupProductId);
-            const lastCurrentTierItem = currentTier[currentTier.length - 1];
-            const nextCurrentTierItem = firstTier[currentTier.length];
+            minFdm = nextTier
+                ? nextTier.MinFdm
+                : CheckedMinFdm
+                    ? lastTier.MinFdm + 1
+                    : 0;
 
-            if (nextCurrentTierItem) {
-                newTierItem = {
-                    TierId: lastCurrentTierItem.TierId + 1,
-                    GroupProductId: groupProductId,
-                    MinFdm: nextCurrentTierItem.MinFdm,
-                    MinTotalDeposit: nextCurrentTierItem.MinTotalDeposit,
-                    MinTO: lastCurrentTierItem.MinTO + 1,
-                    CpaAmount: lastCurrentTierItem.CpaAmount + 1
-                }
-            } else {
-                newTierItem = {
-                    TierId: lastCurrentTierItem.TierId + 1,
-                    GroupProductId: groupProductId,
-                    MinFdm: CheckedMinFdm ? lastCurrentTierItem.MinFdm + 1 : 0,
-                    MinTotalDeposit: CheckedMinTotalDeposit ? lastCurrentTierItem.MinTotalDeposit + 1 : 0,
-                    MinTO: lastCurrentTierItem.MinTO + 1,
-                    CpaAmount: lastCurrentTierItem.CpaAmount + 1
-                }
-            }
+            minTotalDeposit = nextTier
+                ? nextTier.MinTotalDeposit
+                : CheckedMinTotalDeposit
+                    ? lastTier.MinTotalDeposit + 1
+                    : 0;
         }
 
-        if (newTierItem) {
-            setDealInfo({
-                CPATierSetting: [...dealInfo.CPATierSetting, newTierItem]
-            });
-        }
-    }
+        const newTierItem = {
+            TierId: lastTier.TierId + 1,
+            GroupProductId: isFirstItem ? lastTier.GroupProductId : groupProductId,
+            MinFdm: minFdm,
+            MinTotalDeposit: minTotalDeposit,
+            MinTO: minTO,
+            CpaAmount: lastTier.CpaAmount + 1
+        };
+
+        setDealInfo({
+            CPATierSetting: [...dealInfo.CPATierSetting, newTierItem]
+        });
+    };
 
     const _handleDeleteTierItem = (groupProductId, tierId) => {
         setDealInfo({
