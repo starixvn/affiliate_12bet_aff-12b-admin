@@ -89,7 +89,7 @@
         {
             var cust = await GetMemberSiteCustomer(userName);
             var result = CheckPlayerUserNameValid(cust);
-            if (cust?.Status == CustomerStatus.LOCKED && _appSetting.IsApiDataModifiable)
+            if (cust?.Status == CustomerStatus.LOCKED)
             {
                 var apiResult = await _licenseeApi.UnlockUser(new[] { cust.CustId });
                 result.IsOk = apiResult.IsSuccess;

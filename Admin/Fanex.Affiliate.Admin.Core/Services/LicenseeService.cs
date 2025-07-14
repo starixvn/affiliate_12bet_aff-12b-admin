@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Apis;
-using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants.Apis;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Api;
@@ -11,13 +10,10 @@ namespace Fanex.Affiliate.Admin.Core.Services
     public class LicenseeService : ILicenseeService
     {
         private readonly ILicenseeApi _licenseeApi;
-        private readonly IAppSetting _appSetting;
 
-        public LicenseeService(ILicenseeApi licenseeApi,
-            IAppSetting appSetting)
+        public LicenseeService(ILicenseeApi licenseeApi)
         {
             _licenseeApi = licenseeApi;
-            _appSetting = appSetting;
         }
 
         public async Task<ResultInfo> CheckCustomerIsValid(string userName, int siteId)
@@ -68,11 +64,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public async Task<ResultInfo> UnlockUser(int userId)
         {
-            if (!_appSetting.IsApiDataModifiable)
-            {
-                return ResultInfo.Success;
-            }
-            
             var result = await _licenseeApi.UnlockUser(new[] { userId });
             return new ResultInfo
             {
@@ -87,11 +78,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
             if (paymentRequest.Amount == 0)
             {
                 return result;
-            }
-
-            if (!_appSetting.IsApiDataModifiable)
-            {
-                return ResultInfo.Success;
             }
 
             var afterAmount = await _licenseeApi.UpdatePaymentRequestAsync(paymentRequest).ConfigureAwait(false);
