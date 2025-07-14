@@ -73,7 +73,7 @@
             void AddMessage(List<string> messageListInfo, string message)
             {
                 var style = "margin-left: 25px;";
-                if (message == "CPA:" && validateRevenueShareInfoResult.isValid)
+                if (message == "CPA:" && !validateRevenueShareInfoResult.isValid)
                 {
                     style += " margin-bottom: -18px;";
                 }
