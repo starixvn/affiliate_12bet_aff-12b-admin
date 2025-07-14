@@ -1,10 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
-using System;
-using System.ComponentModel.DataAnnotations;
-using Fanex.Affiliate.Admin.Core.Criterias.Report;
-
-namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
+﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 {
+    using Fanex.Affiliate.Admin.Core.Constants;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using Fanex.Affiliate.Admin.Core.Criterias.Report;
+
     public class AffiliateCpaRequest : PaginationRequest
     {
         [MaxLength(Validation.MaxLengthInputString, ErrorMessage = "Affiliate must shorter than 30 characters!")]

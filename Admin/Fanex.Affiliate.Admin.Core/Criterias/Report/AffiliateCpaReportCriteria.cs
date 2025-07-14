@@ -1,8 +1,7 @@
-﻿using System;
-using Fanex.Data;
-
-namespace Fanex.Affiliate.Admin.Core.Criterias.Report
+﻿namespace Fanex.Affiliate.Admin.Core.Criterias.Report
 {
+    using System;
+
     public class AffiliateCpaReportCriteria : PagingCriteria
     {
         public string Username { get; set; }

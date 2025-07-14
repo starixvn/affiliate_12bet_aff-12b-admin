@@ -1,20 +1,5 @@
 import { getFirstDayOfMonth, getLastDayOfThisMonth } from "../../../../modules/utils";
 
-export const totalText = 'Total';
-export const reportName = 'PLAYER GGR REPORT ';
-
-export const mappingColumns = {
-    AffName: 'AffName',
-    PlayerName: 'PlayerName',
-    RegistrationDateText: 'RegistrationDateText',
-    FdmDateText: 'FdmDateText',
-    AllSelectedProducts: 'AllSelectedProducts',
-    TotalTurnover: 'TotalTurnover',
-    TotalGgr: 'TotalGgr',
-    Turnover: 'Turnover',
-    Ggr: 'Ggr'
-}
-
 export const defaultParams = {
     username: '',
     dealName: '',
@@ -27,8 +12,6 @@ export const defaultParams = {
     pageSize: 20,
     isExportExcel: false
 }
-
-export const defaultGgrProductReport = { Turnover: 0, Ggr: 0 };
 
 export const viewByOptions = [
     {

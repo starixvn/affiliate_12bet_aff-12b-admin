@@ -5,37 +5,10 @@ import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 import { convertListToMutilpleSelected } from '../../../modules/utils';
 import AppContainer from "./components/AppContainer";
-/*export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-        const { productList } = window.initialState;
-
-        const newProductList = convertListToMutilpleSelected(productList, 'ProductId', 'ProductName')
-
-        this.store = configureStore({
-            ...window.initialState,
-            productList: newProductList
-        }, reducer);
-    }
-
-    render() {
-        return (
-            <Provider store={this.store}>
-                <AppContainer />
-            </Provider>
-        );
-    }
-}*/
 
 const App = () => {
-    const { productList } = window.initialState;
-
-    const newProductList = convertListToMutilpleSelected(productList, 'ProductId', 'ProductName')
-
     const store = configureStore({
         ...window.initialState,
-        productList: newProductList
     }, reducer);
 
 

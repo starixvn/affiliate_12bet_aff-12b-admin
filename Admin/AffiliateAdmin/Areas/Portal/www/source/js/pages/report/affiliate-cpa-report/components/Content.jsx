@@ -6,7 +6,6 @@ import GridData from './GridData';
 import ReportTitle from '../../../../components/ReportTitle';
 
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { fetchData } from '../actions';
 import { fetchAffiliateCpaData } from '../libs/services';
 import ExportExcel from "../libs/exportExcel";
 import { headers } from "../libs/constants";
@@ -52,7 +51,7 @@ function mapStateToProps({ reportTitle, params }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, fetchData }, dispatch);
+    return bindActionCreators({ toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -23,10 +23,3 @@ export const toggleSubmit = () => {
         type: types.TOGGLE_SUBMIT
     }
 }
-
-export const fetchData = (params) => async () => {
-    const url = 'Portal/PlayerGgrReport/GetPlayerGgrReportData';
-    const response = await post(url, params);
-
-    return response && response.status === 200 ? response.data : null;
-}
