@@ -1,4 +1,5 @@
 ﻿using System;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Criterias.Report
 {
@@ -17,6 +18,8 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Report
         public short SortType { get; set; }
 
         public bool SortDirectionType { get; set; }
+
+        public bool IsExportExcel { get; set; }
 
         public override string GetSettingKey() => "Aff_Admin_Report_AffiliateCPA";
 

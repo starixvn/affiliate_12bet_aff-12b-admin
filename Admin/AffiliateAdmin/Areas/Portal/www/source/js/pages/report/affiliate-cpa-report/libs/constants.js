@@ -1,4 +1,4 @@
-import { getFirstDayOfMonth, getLastDayOfThisMonth, getToDay } from "../../../../modules/utils";
+import { getFirstDayOfMonth, getLastDayOfThisMonth } from "../../../../modules/utils";
 
 export const totalText = 'Total';
 export const reportName = 'PLAYER GGR REPORT ';
@@ -15,19 +15,6 @@ export const mappingColumns = {
     Ggr: 'Ggr'
 }
 
-export const headerText = {
-    AffName: 'Affiliate',
-    PlayerName: 'Player',
-    RegistrationDateText: 'Registration Date',
-    FdmDateText: 'FTD Date',
-    AllSelectedProducts: 'All Selected Products',
-    TotalTurnover: 'Turnover',
-    TotalGgr: 'GGR',
-    Turnover: 'Turnover',
-    Ggr: 'GGR'
-}
-
-
 export const defaultParams = {
     username: '',
     dealName: '',
@@ -37,7 +24,8 @@ export const defaultParams = {
     sortType: 1,
     sortDirectionType: false,
     pageIndex: 1,
-    pageSize: 20
+    pageSize: 20,
+    isExportExcel: false
 }
 
 export const defaultGgrProductReport = { Turnover: 0, Ggr: 0 };
@@ -54,5 +42,90 @@ export const viewByOptions = [
     {
         label: 'Approval Date',
         value: 3
+    }
+]
+
+export const headerText = {
+    No: '#',
+    Month: 'Month',
+    Affiliate: 'Affiliate',
+    DealName: 'Deal Name',
+    DealType: 'Deal Type',
+    InstantPayment: 'Instant Payment',
+    Quota: 'Quota',
+    CpaAmount: 'CPA Amount',
+    EstimatedCpaAmount: 'Estimated CPA Amount',
+    ApprovedCpaAmount: 'Approved CPA Amount',
+};
+
+export const headers = [
+    {
+        title: headerText.No,
+        width: 10,
+        sortable: false,
+        field: 'index'
+    },
+    {
+        title: headerText.Month,
+        width: 100,
+        sortable: true,
+        sortType: 1,
+        field: 'month'
+    },
+    {
+        title: headerText.Affiliate,
+        width: 120,
+        sortable: true,
+        sortType: 2,
+        field: 'affiliate'
+    },
+    {
+        title: headerText.DealName,
+        width: 250,
+        sortable: true,
+        sortType: 3,
+        field: 'dealName'
+    },
+    {
+        title: headerText.DealType,
+        width: 150,
+        sortable: true,
+        sortType: 4,
+        field: 'dealType'
+    },
+    {
+        title: headerText.InstantPayment,
+        width: 120,
+        sortable: true,
+        sortType: 5,
+        field: 'instantPayment'
+    },
+    {
+        title: headerText.Quota,
+        width: 100,
+        sortable: true,
+        sortType: 6,
+        field: 'quota'
+    },
+    {
+        title: headerText.CpaAmount,
+        width: 120,
+        sortable: true,
+        sortType: 7,
+        field: 'cpaAmount'
+    },
+    {
+        title: headerText.EstimatedCpaAmount,
+        width: 180,
+        sortable: true,
+        sortType: 8,
+        field: 'estimatedCPAAmount'
+    },
+    {
+        title: headerText.ApprovedCpaAmount,
+        width: 180,
+        sortable: true,
+        sortType: 9,
+        field: 'approvedCPAAmount'
     }
 ]

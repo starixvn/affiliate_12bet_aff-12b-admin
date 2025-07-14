@@ -11,11 +11,11 @@ export const TableFooter = ({
 
     return (
         <tfoot>
-            <tr className="total-row" style={{ backgroundColor: '#fbe5d6' }}>
-                <td colSpan="7" className="text-right font-weight-bold">{"Total"}</td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.cpaAmount)}</td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.estimatedCPAAmount)}</td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.approvedCPAAmount)}</td>
+            <tr className="total-row freeze-row" style={{ backgroundColor: '#fbe5d6' }}>
+                <td colSpan="7" className="text-right font-weight-bold freeze-column-footer">{formatDecimal(total.cpaAmount)}</td>
+                <td className="text-right font-weight-bold freeze-column-footer">{formatDecimal(total.cpaAmount)}</td>
+                <td className="text-right font-weight-bold freeze-column-footer">{formatDecimal(total.estimatedCPAAmount)}</td>
+                <td className="text-right font-weight-bold freeze-column-footer">{formatDecimal(total.approvedCPAAmount)}</td>
             </tr>
         </tfoot>
     )

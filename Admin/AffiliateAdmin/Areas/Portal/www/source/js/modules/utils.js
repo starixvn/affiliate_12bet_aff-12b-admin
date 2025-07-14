@@ -203,7 +203,7 @@ function getFromDate(fromDate, selectedToDateString, fromDateString, maxRangeDat
 
 export const getFirstDayOfMonth = () => {
     const now = new Date();
-    return `${now.getMonth() + 1}/01/${now.getFullYear()}`;
+    return `${now.getMonth() - 5}/01/${now.getFullYear()}`;
 }
 
 export const getToDay = () => {
@@ -213,6 +213,5 @@ export const getToDay = () => {
 
 export const getLastDayOfThisMonth = () => {
     const today = moment()
-    console.log(today.endOf('month').format('MM/DD/YYYY'));
     return today.endOf('month').format('MM/DD/YYYY');
 }

@@ -15,7 +15,8 @@ const GridData = ({
     dispatch,
     isSubmit
 }) => {
-    const { mainData, total } = useAffiliateCpaData(isSubmit, params, pagingOption, dispatch);
+    const affiliateCpaData = useAffiliateCpaData(isSubmit, params, pagingOption, dispatch);
+    const { mainData, total } = affiliateCpaData || {};
 
     const handlePaging = (pageIndex, pageSize) => {
         dispatch(setParams({ ...params, pageIndex: pageIndex, pageSize: pageSize}));
@@ -32,7 +33,7 @@ const GridData = ({
     return (
         <Fragment>
             <div className="table-responsive" style={{ maxHeight }}>
-                <Table className="table-bordered table-hover">
+                <Table className="freeze-table table-bordered table-hover">
                     <TableHeader 
                         sortType={params.sortType} 
                         sortDirectionType={params.sortDirectionType} 

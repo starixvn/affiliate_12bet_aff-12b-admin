@@ -23,6 +23,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 
         public bool SortDirectionType { get; set; }
 
+        public bool IsExportExcel { get; set; }
+
         public AffiliateCpaReportCriteria CreateCriteria()
         {
             return new AffiliateCpaReportCriteria
@@ -35,7 +37,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
                 PageSize = PageSize,
                 SortType = SortType,
                 SortDirectionType = SortDirectionType,
-                ViewBy = ViewBy
+                ViewBy = ViewBy,
+                IsExportExcel = IsExportExcel
             };
         }
     }

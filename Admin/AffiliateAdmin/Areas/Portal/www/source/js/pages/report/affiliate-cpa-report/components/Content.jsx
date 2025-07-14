@@ -7,24 +7,39 @@ import ReportTitle from '../../../../components/ReportTitle';
 
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { fetchData } from '../actions';
+import { fetchAffiliateCpaData } from '../libs/services';
+import ExportExcel from "../libs/exportExcel";
+import { headers } from "../libs/constants";
 
-const Title = ({ reportTitle }) => {
+const isExportExcel = true;
+
+const Title = ({ reportTitle, params, toggleLoader}) => {
+
+    const handleExportExcel = async () => {
+        toggleLoader(true);
+        const data = await fetchAffiliateCpaData(params, isExportExcel);
+        if(!data || data.totalItem === 0) return;
+        const excel = new ExportExcel(data, reportTitle, headers);
+        excel.export();
+        toggleLoader(false);
+    }
+
     return (
         <div className="d-flex align-items-center">
             {reportTitle}
-            <button type="button" className="ml-auto btn btn-link btn-excel" onClick={() => console.log('export excel')} title="Export Excel">
+            <button type="button" className="ml-auto btn btn-link btn-excel" onClick={handleExportExcel} title="Export Excel">
                 <span className="oi icon-excel"></span>
             </button>
         </div>
     )
 }
 
-const Content = ({ reportTitle }) => {
+const Content = ({ reportTitle, params, toggleLoader }) => {
     return (
         <div className="data-content my-2 report-content-container">
             {
                 reportTitle && (
-                    <ReportTitle content={<Title reportTitle={reportTitle} />} />
+                    <ReportTitle content={<Title reportTitle={reportTitle} params={params} toggleLoader={toggleLoader} />} />
                 )
             }
             <GridData />

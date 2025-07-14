@@ -1,3 +1,8 @@
+$left0: 0px;
+$left1: 50.1px;
+$left2: 140.3px;
+$outline: 0.5px solid #cccccc;
+
 .th-wrapper {
     position: relative;
     text-decoration: none;
@@ -51,6 +56,83 @@
             > .glyphicon-info-sign {
                 cursor: pointer;
             }
+        }
+    }
+}
+
+.freeze-table {
+    border-collapse: separate;
+    border-spacing: 0;
+
+    thead {
+        .freeze-row {
+            th {
+                border: 1px solid #cccccc;
+                position: sticky;
+                top: 0px;
+            }
+
+            .freeze-column-header {
+                z-index: 9;
+
+                &-0 {
+                    left: $left0;
+                }
+
+                &-1 {
+                    left: $left1;
+                }
+
+                &-2 {
+                    left: $left2;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr td {
+            border-top: none;
+        }
+    }
+
+    tfoot {
+        .freeze-row {
+            .freeze-column-footer {
+                z-index: 9;
+                bottom: 0px;
+                position: sticky;
+                background-color: rgb(251, 229, 214);
+
+                &-0 {
+                    left: $left0;
+                }
+
+                &-1 {
+                    left: $left1;
+                }
+
+                &-2 {
+                    left: $left2;
+                }
+            }
+        }
+    }
+
+    .freeze-column-body {
+        position: sticky;
+        z-index: 8;
+
+        &-0 {
+            left: $left0;
+        }
+
+        &-1 {
+            left: $left1;
+        }
+
+        &-2 {
+            left: $left2;
         }
     }
 }

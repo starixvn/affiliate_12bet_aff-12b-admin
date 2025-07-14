@@ -7,8 +7,8 @@ const RowData = ({ data, rowNumber }) => {
         <tr key={`dataRow-${rowNumber}`}>
             <td className="text-center">{rowNumber}</td>
             <td className="text-center">{data.month}</td>
-            <td><a href={`/Portal/Customer?user=${data.affiliate}`}>{data.affiliate}</a></td>
-            <td>{data.dealName}</td>
+            <td><a target='_blank' href={`/Portal/Customer?user=${data.affiliate}`}>{data.affiliate}</a></td>
+            <td><a target='_blank' href={`/Portal/Customer?user=${data.affiliate}`}>{data.dealName}</a></td>
             <td className="text-center">{data.dealType}</td>
             <td className="text-center">{data.instantPayment ? 'Yes' : 'No'}</td>
             <td className="text-center">{`${data.quota}`}</td>
