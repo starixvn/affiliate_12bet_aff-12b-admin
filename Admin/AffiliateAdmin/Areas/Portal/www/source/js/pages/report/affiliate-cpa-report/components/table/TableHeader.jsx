@@ -22,7 +22,7 @@ export const TableHeader = ({ sortType, sortDirectionType, setParams, toggleSubm
             <tr className='freeze-row'>
                 {
                     headers.map((header) => (
-                        <Cell header={true} colWidth={header.width} className="th freeze-column-header">
+                        <Cell header={true} style={{'width': header.width}} className="th freeze-column-header">
                             <Button 
                                 className="p-0 th-wrapper" 
                                 color="link" 

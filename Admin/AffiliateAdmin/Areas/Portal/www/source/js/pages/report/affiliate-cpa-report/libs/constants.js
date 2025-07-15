@@ -1,5 +1,7 @@
 import { getFirstDayOfMonth, getLastDayOfThisMonth } from "../../../../modules/utils";
 
+export const reportName = 'AFFILIATE CPA REPORT';
+
 export const defaultParams = {
     username: '',
     dealName: '',
@@ -44,7 +46,7 @@ export const headerText = {
 export const headers = [
     {
         title: headerText.No,
-        width: 10,
+        width: 40,
         sortable: false,
         field: 'index'
     },
@@ -92,7 +94,7 @@ export const headers = [
     },
     {
         title: headerText.CpaAmount,
-        width: 120,
+        width: 180,
         sortable: true,
         sortType: 7,
         field: 'cpaAmount'

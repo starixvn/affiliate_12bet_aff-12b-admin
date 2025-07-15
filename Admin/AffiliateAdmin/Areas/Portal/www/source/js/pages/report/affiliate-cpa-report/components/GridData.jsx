@@ -16,7 +16,7 @@ const GridData = ({
     isSubmit
 }) => {
     const affiliateCpaData = useAffiliateCpaData(isSubmit, params, pagingOption, dispatch);
-    const { mainData, total } = affiliateCpaData || {};
+    const { mainData, total } = affiliateCpaData || { mainData: [], total: null };
 
     const handlePaging = (pageIndex, pageSize) => {
         dispatch(setParams({ ...params, pageIndex: pageIndex, pageSize: pageSize}));
@@ -29,6 +29,10 @@ const GridData = ({
     }
 
     const maxHeight = getMaxHeight();
+
+    if(!affiliateCpaData) {
+        return null;
+    }
 
     return (
         <Fragment>

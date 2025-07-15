@@ -9,6 +9,7 @@
     using Fanex.Affiliate.Admin.Core.Extensions;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+
     [FunctionAuthorize(FunctionName = Function.AffReport)]
     public class AffiliateCpaReportController : ReadOnlySessionBaseController
     {
@@ -24,7 +25,6 @@
         {
             _affiliateCpaReportService = affiliateCpaReportService;
         }
-
 
         [HttpGet]
         public ActionResult Index()

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption, setReportTitle, toggleSubmit } from '../actions';
-import { viewByOptions } from '../libs/constants';
+import { reportName, viewByOptions } from '../libs/constants';
 import moment from 'moment';
 import { fetchAffiliateCpaData } from '../libs/services';
 
 export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) => {
-    const [affiliateCpaData, setAffiliateCpaData] = useState({
-        mainData: null,
-        total: null
-    });
+    const [affiliateCpaData, setAffiliateCpaData] = useState(null);
 
     useEffect(() => {
         if (isSubmit) {
@@ -25,7 +22,7 @@ export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) =>
             setAffiliateCpaData(res);
             dispatch(setPagingOption({
                 ...pagingOption,
-                TotalItem: res.totalItem
+                TotalItem: res?.totalItem
             }));
             dispatch(setReportTitle(getTitle()));
 
@@ -36,7 +33,7 @@ export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) =>
     }
 
     const getTitle = () => {
-        let title = "AFFILIATE CPA REPORT";
+        let title = reportName;
         if(params.viewBy) {
             title += ` - View By ${viewByOptions[+params.viewBy - 1].label}`;
         }

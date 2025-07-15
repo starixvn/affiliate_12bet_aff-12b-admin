@@ -1,10 +1,12 @@
 import Excel from '../../../../modules/excel';
 import { titleCellStyle, headerCellStyle, bodyCellStyle, totalCellStyle } from '../../../../modules/excelStyleConstant';
 import { formatDateTime } from '../../../../modules/utils';
+import { reportName } from './constants';
 
 const resource = {
-    reportName: 'Affiliate CPA Report',
-    space: ' '
+    reportName,
+    space: ' ',
+    dash: ' - '
 };
 
 const reportKey = {
@@ -92,7 +94,7 @@ export default class ExportExcel {
             this._createTotalRow();
             this._createExcelConfig();
 
-            const fileName = resource.reportName + resource.space + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss');
+            const fileName = resource.reportName + resource.space + resource.dash + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss');
             Excel.export(this.worksheet, fileName);
         });
     }
