@@ -1,7 +1,7 @@
 import Excel from '../../../../modules/excel';
 import { titleCellStyle, headerCellStyle, bodyCellStyle, totalCellStyle } from '../../../../modules/excelStyleConstant';
 import { formatDateTime } from '../../../../modules/utils';
-import { reportName } from './constants';
+import { reportName, totalText } from './constants';
 
 const resource = {
     reportName,
@@ -164,26 +164,30 @@ export default class ExportExcel {
         const total = this.data.total;
         if(!total) return;
 
-        const renderCell = (colIndex, value) => {
+        const renderCell = (colIndex, value, style) => {
             const address = Excel.getCellAddress({ c: colIndex, r: this.currentRowIndex });
             this.worksheet[address] = {
                 t: Excel.getCellType(value),
                 v: value,
-                s: {...totalCellStyle.right, ...totalCellStyle.decimal }
+                s: {...style, ...totalCellStyle.decimal }
             };
             this._mergeCell(this.currentRowIndex, colIndex, this.currentRowIndex + 1, colIndex);
         }
 
         const totalCells = [
-            { colIndex: 0, value: "Total" }, 
-            { colIndex: 7, value: total.cpaAmount }, 
-            { colIndex: 8, value: total.estimatedCPAAmount }, 
-            { colIndex: 9, value: total.approvedCPAAmount }
+            { colIndex: 0, value: totalText, style: totalCellStyle.left }, 
+            { colIndex: 3, value: "", style: totalCellStyle.right }, 
+            { colIndex: 4, value: "", style: totalCellStyle.right }, 
+            { colIndex: 5, value: "", style: totalCellStyle.right }, 
+            { colIndex: 6, value: "", style: totalCellStyle.right }, 
+            { colIndex: 7, value: total.cpaAmount, style: totalCellStyle.right }, 
+            { colIndex: 8, value: total.estimatedCPAAmount, style: totalCellStyle.right }, 
+            { colIndex: 9, value: total.approvedCPAAmount, style: totalCellStyle.right }
         ];
         totalCells.forEach(cell => {
-            renderCell(cell.colIndex, cell.value);
+            renderCell(cell.colIndex, cell.value, cell.style);
         });
-        this._mergeCell(this.currentRowIndex, 0, this.currentRowIndex + 1, this.lastColumnIndex - 3);
+        this._mergeCell(this.currentRowIndex, 0, this.currentRowIndex + 1, 2);
     }
 
     _createExcelConfig() {

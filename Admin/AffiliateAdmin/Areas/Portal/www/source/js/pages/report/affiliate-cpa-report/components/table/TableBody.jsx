@@ -10,7 +10,7 @@ const RowData = ({ data, rowNumber }) => {
             <td><a target='_blank' href={`/Portal/Customer?user=${data.affiliate}`}>{data.affiliate}</a></td>
             <td><a target='_blank' href={`/Portal/Customer?user=${data.affiliate}`}>{data.dealName}</a></td>
             <td className="text-center">{data.dealType}</td>
-            <td className="text-center">{data.instantPayment ? 'Yes' : 'No'}</td>
+            <td className="text-center">{data.paymentFrequency}</td>
             <td className="text-center">{`${data.quota}`}</td>
             <td className="text-right">{formatDecimal(data.cpaAmount)}</td>
             <td className="text-right">{formatDecimal(data.estimatedCPAAmount)}</td>

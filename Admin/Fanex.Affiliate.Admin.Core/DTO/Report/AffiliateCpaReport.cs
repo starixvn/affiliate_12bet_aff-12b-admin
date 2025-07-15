@@ -10,7 +10,7 @@
 
         public string DealType { get; set; }
 
-        public bool InstantPayment { get; set; }
+        public string PaymentFrequency { get; set; }
 
         public string Quota { get; set; }
 

@@ -30,13 +30,15 @@ export const viewByOptions = [
     }
 ]
 
+export const totalText = 'Total(all pages)';
+
 export const headerText = {
     No: '#',
     Month: 'Month',
     Affiliate: 'Affiliate',
     DealName: 'Deal Name',
     DealType: 'Deal Type',
-    InstantPayment: 'Instant Payment',
+    PaymentFrequency: 'Payment Frequency',
     Quota: 'Quota',
     CpaAmount: 'CPA Amount',
     EstimatedCpaAmount: 'Estimated CPA Amount',
@@ -79,11 +81,11 @@ export const headers = [
         field: 'dealType'
     },
     {
-        title: headerText.InstantPayment,
+        title: headerText.PaymentFrequency,
         width: 120,
         sortable: true,
         sortType: 5,
-        field: 'instantPayment'
+        field: 'paymentFrequency'
     },
     {
         title: headerText.Quota,
