@@ -4,6 +4,8 @@
 
     public class AffiliateCpaReportCriteria : PagingCriteria
     {
+        private const int MAX_MONTH_DIFF = 6;
+
         public string Username { get; set; }
 
         public string DealName { get; set; }
@@ -22,7 +24,9 @@
 
         public override string GetSettingKey() => "Aff_Admin_Report_AffiliateCPA";
 
-        public override bool IsValid() => true;
-
+        public override bool IsValid()
+        {
+            return ToDate >= FromDate.AddMonths(MAX_MONTH_DIFF);
+        }
     }
 }

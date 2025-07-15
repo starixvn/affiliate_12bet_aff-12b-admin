@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { setReportTitle, setParams, toggleSubmit } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
-import { viewByOptions } from '../libs/constants';
+import { viewByOptions, MAX_MONTH_DIFF, DATE_FORMAT } from '../libs/constants';
 import { minMonthDate } from '../../affiliate-report/libs/constants';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import moment from 'moment';
 
+const getMonth = (date) => {
+    return moment(date).month() + 1;
+}
+
+const getYear = (date) => {
+    return moment(date).year();
+}
+
 const Filter = ({ setParams, params, toggleSubmit }) => {
+    const [maxToDate, setMaxToDate] = useState(moment(params.toDate));
+
     const onEnterPress = (event) => {
         if (event.charCode === 13) {
             event.preventDefault();
@@ -23,23 +33,25 @@ const Filter = ({ setParams, params, toggleSubmit }) => {
     }
 
     const onMonthChange = (month, year, field) => {
-        const firstDay = 1;
-        const lastDay = moment(`${year}-${month}-01`).endOf('month').date();
+        const selectedDate = moment({ year, month: month - 1 });
 
-        const day = field === 'fromDate' ? firstDay : lastDay;
-        const date = moment(`${year}-${month}-${day}`);
+        if (field === 'fromDate') {
+            const fromDate = selectedDate.clone().startOf('month');
+            setParams({
+                ...params,
+                fromDate: fromDate.format(DATE_FORMAT),
+                toDate: fromDate.format(DATE_FORMAT)
+            });
 
-        if(field === 'fromDate' && date.isAfter(moment(params.toDate))) {
-            setParams({ 
-                ...params, 
-                [field]: moment(`${year}-${month}-${firstDay}`).format('MM/DD/YYYY'),
-                toDate: moment(`${year}-${month}-${lastDay}`).format('MM/DD/YYYY')
+            const maxToDateAllowed = fromDate.clone().add(MAX_MONTH_DIFF, 'month').endOf('month');
+            console.log('maxToDateAllowed', moment.min(maxToDateAllowed, moment().endOf('month')).format(DATE_FORMAT));
+            setMaxToDate(moment.min(maxToDateAllowed, moment().endOf('month')));
+        } else {
+            setParams({
+                ...params,
+                toDate: selectedDate.endOf('month').format(DATE_FORMAT)
             });
         }
-        else {
-            setParams({ ...params, [field]: date.format('MM/DD/YYYY') });
-        }
-
     }
 
     const onSearch = () => {
@@ -50,13 +62,7 @@ const Filter = ({ setParams, params, toggleSubmit }) => {
         toggleSubmit();
     }
 
-    const getMonth = (date) => {
-        return moment(date).month() + 1;
-    }
 
-    const getYear = (date) => {
-        return moment(date).year();
-    }
 
     return (
         <div className="filter-container">
@@ -101,7 +107,9 @@ const Filter = ({ setParams, params, toggleSubmit }) => {
                     <FormGroup className="my-sm-1 mr-sm-5" 
                         key={`${params.fromDate}-${params.toDate}`}>
                         <Label className="mr-sm-2">{globalResource.To}</Label>
-                        <MonthPicker 
+                        <MonthPicker
+                            maxMonth={getMonth(maxToDate)} 
+                            maxYear={getYear(maxToDate)}
                             minMonth={getMonth(params.fromDate)} 
                             minYear={getYear(params.fromDate)}
                             selectedDropdownYear={getYear(params.toDate)}
