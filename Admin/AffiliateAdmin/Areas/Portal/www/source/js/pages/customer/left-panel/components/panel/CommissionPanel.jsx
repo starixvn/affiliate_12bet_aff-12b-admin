@@ -37,8 +37,14 @@ export class CommissionPanel extends PureComponent {
         return (
             <Panel heading={resource.Commission}>
                 <Row>
-                    <Col sm={7}>{resource.CommGroup}</Col>
-                    <Col sm={5} className='text-right text-break pl-0'>
+                    <Col sm={4}>{resource.CommType}</Col>
+                    <Col sm={8} className='text-right text-break pl-0'>
+                        {htmlDecode(affiliateInfo.DealTypeName)}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.CommGroup}</Col>
+                    <Col sm={7} className='text-right text-break pl-0'>
                         {this._renderCommGroup(affiliateInfo)}
                         <AssignDealPopup
                             showPopupAssignDeal={isChangingDeal}

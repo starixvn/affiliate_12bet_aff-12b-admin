@@ -73,5 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         public string PlayerCurrency { get; set; }
 
         public int GroupTypeId { get; set; }
+
+        public string DealTypeName { get; set; }
     }
 }

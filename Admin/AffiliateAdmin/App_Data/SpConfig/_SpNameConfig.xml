@@ -7,4 +7,5 @@
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Deal_Detail_Sel" Suffix="_xpre"></item>
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Deal_Upd" Suffix="_xpre"></item>
   <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Deal_Del" Suffix="_xpre"></item>
+  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_xpre"></item>
 </Root>
