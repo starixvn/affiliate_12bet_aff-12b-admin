@@ -63,6 +63,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> MarketingForCommGroups => GetValue("MarketingForCommGroups").Split(',');
 
+        public IEnumerable<string> MarketingForCPACommGroups => GetValue("MarketingForCPACommGroups").Split(',');
+
         public IEnumerable<string> MarketingPageCodeRegexPatterns => GetValue("MarketingPageCodeRegexPatterns").Split(',');
 
         public IEnumerable<string> MarketingAvailDomainMobilePatterns => GetValue("MarketingAvailDomainMobilePatterns").Split(',');

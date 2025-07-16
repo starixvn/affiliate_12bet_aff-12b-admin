@@ -128,6 +128,13 @@
         {
             if (isMember)
             {
+                var IsAffOfNoCommissionCPAGroup = StatisticsHelper.IsAffOfNoCommissionCPAGroup(_appSetting, param.CommGroupName);
+
+                if (IsAffOfNoCommissionCPAGroup)
+                {
+                    return SpecificDomain.SupportedDomainsForAffNoCommissionCPA;
+                }
+
                 var domainList = FetchTData<MappingDomainInfo>(new GetAffDomainListCriteria(param.AffId, param.TargetCountryCode, param.IsInternal));
 
                 return StatisticsHelper.GetCustomAvailableDomainList(_appSetting, domainList, param.AffId, param.CommGroupName);

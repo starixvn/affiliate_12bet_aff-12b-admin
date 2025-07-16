@@ -61,6 +61,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         IEnumerable<string> MarketingForCommGroups { get; }
 
+        IEnumerable<string> MarketingForCPACommGroups { get; }
+
         IEnumerable<string> MarketingPageCodeRegexPatterns { get; }
 
         IEnumerable<string> MarketingAvailDomainMobilePatterns { get; }

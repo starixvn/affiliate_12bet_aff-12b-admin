@@ -33,12 +33,17 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
             var customDomains = availDomains.Select((domain, index) => MapToDomain(domain, appSetting, affId + index));
 
-            if (!IsAffOfNoCommissionGroup(commGroup, appSetting))
+            if (!IsAffOfNoCommissionGroup(appSetting, commGroup))
             {
                 return customDomains.Where(d => !d.IsUsingForMobile);
             }
 
             return customDomains;
+        }
+
+        public static bool IsAffOfNoCommissionCPAGroup(IAppSetting appSetting, string commGroupName)
+        {
+            return appSetting.MarketingForCPACommGroups.Any(c => c.MatchWith(commGroupName));
         }
 
         private static Domain MapToDomain(MappingDomainInfo domain, IAppSetting appSetting, int customId)
@@ -66,7 +71,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 .Any(pattern => RegexHelper.IsMatch(domain.RedirectDomain ?? string.Empty, $"^{pattern}$", RegexOptions.IgnoreCase));
         }
 
-        private static bool IsAffOfNoCommissionGroup(string commGroupName, IAppSetting appSetting)
+        private static bool IsAffOfNoCommissionGroup(IAppSetting appSetting, string commGroupName)
         {
             return appSetting.MarketingForCommGroups.Any(c => c.MatchWith(commGroupName));
         }
