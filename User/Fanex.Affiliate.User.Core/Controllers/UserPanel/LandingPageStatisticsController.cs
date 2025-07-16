@@ -53,6 +53,7 @@
             var landingPageParam = new LandingPageParam
             {
                 CommGroupName = userSession.GroupName,
+                IsUsingInStatistics = true,
                 IsInternal = isInternal,
             };
 

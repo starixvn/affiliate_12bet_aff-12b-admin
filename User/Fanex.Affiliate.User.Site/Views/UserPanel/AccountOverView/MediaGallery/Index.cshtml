@@ -15,10 +15,10 @@
 
     var category = Model.CategoryList ?? new List<SelectListItem>();
 
-    var disabled = channels.Count > 1 ? "" : "disabled";
-
     var hasAnyDomain = availableDomains.Any();
     var hasAnyMemberSitePage = landingPages.Any();
+
+    var disabled = hasAnyDomain && hasAnyMemberSitePage && channels.Count > 1 ? "" : "disabled";
 }
 
 @Html.InlineStyles("~/www/build/styles/css/marketing.min.css")
@@ -70,7 +70,7 @@
                             <div class="form-group flex-sm-boostrap flex-center form-group-button">
                                 <label class="control-label none-label"></label>
                                 <div class="control-input">
-                                    <button @disabled type="button" class="btn btn-submit btn-gen" id="btnMarketingSearch">@Lang.SearchAndGenQR</button>
+                                    <button @disabled type="button" class="btn btn-submit btn-gen" id="btnMarketingSubmit">@Lang.SearchAndGenQR</button>
                                 </div>
                             </div>
                         </div>

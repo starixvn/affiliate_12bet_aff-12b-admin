@@ -11,5 +11,7 @@
         public AffiliateLinkType LinkType { get; set; } = AffiliateLinkType.AffiliateLink;
 
         public bool IsInternal { get; set; }
+
+        public string CommGroupName { get; set; }
     }
 }

@@ -6,6 +6,10 @@
     {
         public string CommGroupName { get; set; }
 
+        public bool IsSelectedMobileDomain { get; set; }
+
+        public bool IsUsingInStatistics { get; set; }
+
         public string TargetCountryCode  { get; set; }
 
         public bool IsInternal { get; set; }

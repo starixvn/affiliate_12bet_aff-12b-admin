@@ -68,6 +68,24 @@
 
         [HttpGet]
         [AjaxOnly]
+        public ActionResult GetLinkTo(LinkToParam param)
+        {
+            var selectedDomain = GetDomain(param.SelectedDomainId, param.TargetCountryCode, param.LinkType);
+
+            var pageList = MarketingService.GetLandingPageList(new LandingPageParam
+            {
+                CommGroupName = SessionService.UserSession.GroupName,
+                IsSelectedMobileDomain = selectedDomain?.IsUsingForMobile ?? false,
+                IsInternal = SessionService.IsInternal,
+                LinkType = param.LinkType,
+                TargetCountryCode = param.TargetCountryCode
+            });
+
+            return Json(SystemHelper.GetPageList(pageList), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
             var userSession = SessionService.UserSession;

@@ -1258,6 +1258,11 @@ var MarketingBase = (function ($) {
                 $("#btnMarketingSubmit").prop("disabled", false);
                 _me.handleChangeFilter(true);
             });
+
+            $("#Domain").off("change").change(function () {
+                $("#btnMarketingSubmit").prop("disabled", false);
+                _me.handleChangeLinkTo();
+            });
         },
 
         resiterQrcodeEvent: function () {
@@ -1444,6 +1449,37 @@ var MarketingBase = (function ($) {
 
             })
         },
+
+        handleChangeLinkTo: function () {
+            let param = {
+                selectedDomainId: $("#Domain").val(),
+                targetCountryCode: $('#TargetCountry').val(),
+                linkType: $("#AffLinkType").val(),
+            };
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                cache: false,
+                data: param,
+                url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetLinkTo"),
+                success: function (response) {
+                    if (response && response.length == 0) {
+                        $('#btnMarketingSubmit').prop('disabled', true);
+                        $("#Page").html(NO_INFO_OPTION);
+                    } else {
+                        _me.updateLinkToDropdown(response);
+                    }
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
         handleChangeFilter: function (isChangeAffTypeLink = false) {
             let isMediaGallery = !!$("#Size").length;
 
@@ -1618,7 +1654,7 @@ var AffiliateLink = (function ($) {
         },
 
         initEvent: function () {
-            $("#btnGenQRCode").click(function () {
+            $("#btnMarketingSubmit").click(function () {
                 Site.showLoader();
                 Promise.all([_me.renderQrCodePage(), _me.renderLinkChannelStatisticPage()])
                     .then(() => {

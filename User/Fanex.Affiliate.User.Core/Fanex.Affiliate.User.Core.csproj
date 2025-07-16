@@ -437,6 +437,7 @@
     <Compile Include="MetalModels\UserPanel\CommissionReportParam.cs" />
     <Compile Include="MetalModels\UserPanel\LandingPageParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGeneratingParam.cs" />
+    <Compile Include="MetalModels\UserPanel\LinkToParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingFilterParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingPageStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\MediaCategoryParam.cs" />
@@ -598,7 +599,6 @@
     <Compile Include="MetalModels\UserLoginParam.cs" />
     <Compile Include="MetalModels\UserPanel\LandingPageStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkBaseParam.cs" />
-    <Compile Include="MetalModels\UserPanel\LinkGenerationParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingBannerParam.cs" />
     <Compile Include="MetalModels\UserPanel\ReferrerStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsBySiteBaseParam.cs" />
