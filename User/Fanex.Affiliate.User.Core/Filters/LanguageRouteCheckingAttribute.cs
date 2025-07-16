@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Utilities;
 using System;
 using System.Text.RegularExpressions;
@@ -10,6 +11,8 @@ namespace Fanex.Affiliate.User.Core.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public sealed class LanguageRouteCheckingAttribute : ActionFilterAttribute
     {
+        private const string IndexAction = "Index";
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var preferedUrlLang = filterContext.RouteData.Values["lang"]?.ToString();
@@ -19,8 +22,13 @@ namespace Fanex.Affiliate.User.Core.Filters
                 var systemService = DependencyResolver.Current.GetService<ISystemService>();
                 var favoriteShortedLanguage = systemService.GetFavoriteShortedLanguage();
 
+                var controllerName = filterContext.RouteData.Values["controller"].ToString();
+                var action = filterContext.RouteData.Values["action"].ToString();
                 var queryString = filterContext.HttpContext.Request?.QueryString.ToString();
-                var path = $"~/{favoriteShortedLanguage}/{filterContext.RouteData.Values["controller"]}/{filterContext.RouteData.Values["action"]}";
+
+                var path = action.MatchWith(IndexAction) ?
+                            $"~/{favoriteShortedLanguage}/{controllerName}" :
+                            $"~/{favoriteShortedLanguage}/{controllerName}/{filterContext.RouteData.Values["action"]}";
 
                 if (!string.IsNullOrWhiteSpace(queryString))
                 {

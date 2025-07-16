@@ -78,6 +78,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public bool IsUseMemberSiteProxy => Convert.ToBoolean(GetValue("IsUseProxyToGetMemberSiteApi"));
 
+        public bool IsApiDataModifiable => Convert.ToBoolean(GetValue("IsApiDataModifiable"));
+
         public bool IsMarketingSpecificEmail(string email) => email.MatchWith(GetValue("MarketingSpecificEmail"));
     }
 }

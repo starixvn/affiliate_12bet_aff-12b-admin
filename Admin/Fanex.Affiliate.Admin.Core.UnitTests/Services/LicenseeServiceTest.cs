@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Apis;
+using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.DTO.Api;
 using Fanex.Affiliate.Admin.Core.Services;
 using Moq;
@@ -164,11 +165,12 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             Assert.True(result.IsSuccessful);
         }
 
-        private static LicenseeService CreateLicenseeService(ILicenseeApi licenseeApi = null)
+        private static LicenseeService CreateLicenseeService(ILicenseeApi licenseeApi = null, IAppSetting appSetting = null)
         {
             var fakeLicenseeApi = licenseeApi ?? Mock.Of<ILicenseeApi>();
+            var fakeIAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 
-            return new LicenseeService(fakeLicenseeApi);
+            return new LicenseeService(fakeLicenseeApi, fakeIAppSetting);
         }
     }
 }

@@ -3,7 +3,8 @@
 
 // Generated helper templates
 // Generated items
-// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.admin-12b.local.xml
-// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.admin-12b.production.xml
-// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.admin-12b.uat.xml
+// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.12b-admin.kldr.xml
+// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.12b-admin.local.xml
+// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.12b-admin.production.xml
+// D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.12b-admin.uat.xml
 // D:\Nexcel\affiliate-12bet\Admin\AffiliateAdmin\App_Data\SpConfig\SpName.xml

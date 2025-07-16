@@ -85,6 +85,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public bool IsUseMemberSiteProxy => Convert.ToBoolean(GetValue("IsUseProxyToGetMemberSiteApi"));
 
+        public bool IsApiDataModifiable => Convert.ToBoolean(GetValue("IsApiDataModifiable"));
+
         public string SubAffTextLinkTemplate => GetValue("SubAffTextLinkTemplate");
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];

@@ -10,7 +10,7 @@
 	var manager = TemplateFileManager.Create(this);
 
 	const string SpNameTemplate = "SpName=\"{0}\"";
-	var environments = new string[] { "dev", "local", "sit", "uat", "production" };
+	var environments = new string[] { "dev", "local", "uat", "production", "kldr", "klprod" };
 
 	var originalSpName = System.IO.File.ReadAllText(@"Fanex.Affiliate.User.Site\App_Data\SpConfig\_SpNameOriginal.xml");
 	var configXml = System.Xml.Linq.XDocument.Load(@"Fanex.Affiliate.User.Site\App_Data\SpConfig\_SpNameConfig.xml");
@@ -18,7 +18,7 @@
 
 	foreach(var env in environments)
 	{
-		var fileName = env == "dev" ? "SpName.xml" : string.Format("SpName.user-12b.{0}.xml", env);
+		var fileName = env == "dev" ? "SpName.xml" : string.Format("SpName.12b-user.{0}.xml", env);
 		var spContent = originalSpName;
 		manager.StartNewFile(fileName);
 
