@@ -40,11 +40,10 @@ const Filter = ({ setParams, params, toggleSubmit }) => {
             setParams({
                 ...params,
                 fromDate: fromDate.format(DATE_FORMAT),
-                toDate: fromDate.format(DATE_FORMAT)
+                toDate: fromDate.endOf('month').format(DATE_FORMAT)
             });
 
             const maxToDateAllowed = fromDate.clone().add(MAX_MONTH_DIFF, 'month').endOf('month');
-            console.log('maxToDateAllowed', moment.min(maxToDateAllowed, moment().endOf('month')).format(DATE_FORMAT));
             setMaxToDate(moment.min(maxToDateAllowed, moment().endOf('month')));
         } else {
             setParams({

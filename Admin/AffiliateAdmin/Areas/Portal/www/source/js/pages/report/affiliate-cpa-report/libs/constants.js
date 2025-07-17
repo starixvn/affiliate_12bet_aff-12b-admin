@@ -34,7 +34,7 @@ export const viewByOptions = [
     }
 ]
 
-export const totalText = 'Total(all pages)';
+export const totalText = 'Total (all pages)';
 
 export const headerText = {
     No: '#',
