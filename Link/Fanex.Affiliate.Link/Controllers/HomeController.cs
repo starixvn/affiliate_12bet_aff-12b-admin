@@ -185,7 +185,7 @@ namespace Fanex.Affiliate.Link.Controllers
                         mappingPageCode = pageCodeOnV2;
                     }
 
-                    var result = HandleRedirectUrl(redirectUrl, mappingPageCode, command.LanguageCode);
+                    var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, mappingPageCode);
 
                     return Redirect(result);
                 }
@@ -261,12 +261,14 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private static string GetSupportedPageCodeOnV2(string pageCode)
         {
-            if(LandingPage.SupportedPageCodeOnV1.TryGetValue(pageCode.ToLowerInvariant(), out string pageCodeOnV2))
+            var pageCodeLower = pageCode.ToLowerInvariant();
+
+            if (LandingPage.SupportedPageCodeOnV1.TryGetValue(pageCodeLower, out string pageCodeOnV2))
             {
                 return pageCodeOnV2;
             }
 
-            return pageCode;
+            return pageCodeLower;
         }
 
         private bool IsValidAffMarketing(string affCode)
@@ -316,7 +318,7 @@ namespace Fanex.Affiliate.Link.Controllers
             return languageCode;
         }
 
-        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode)
+        private static string HandleRedirectUrl(string redirectUrl, string pageCode, string languageCode, string mappingPageCode)
         {
             var customLanguageCode = GetSupportedLanguageCodeOnMemberSiteV2(languageCode);
             var redirectPattern = ConfigurationManager.AppSettings[$"Redirect_{pageCode.ToLowerInvariant()}_pattern"];
@@ -328,7 +330,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}{redirectUri.Query}";
             }
 
-            return redirectUrl.Replace($"/{languageCode}/", $"/{customLanguageCode}/");
+            return redirectUrl.Replace($"/{pageCode}", $"/{mappingPageCode}").Replace($"/{languageCode}/", $"/{customLanguageCode}/");
         }
 
         private static byte GetDeviceType()

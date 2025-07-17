@@ -128,9 +128,16 @@
         {
             if (isMember)
             {
+                var IsAffOfNoCommissionCPAGroup = StatisticsHelper.IsAffOfNoCommissionCPAGroup(_appSetting, param.CommGroupName);
+
+                if (IsAffOfNoCommissionCPAGroup)
+                {
+                    return SpecificDomain.SupportedDomainsForAffNoCommissionCPA;
+                }
+
                 var domainList = FetchTData<MappingDomainInfo>(new GetAffDomainListCriteria(param.AffId, param.TargetCountryCode, param.IsInternal));
 
-                return StatisticsHelper.GetCustomAvailableDomainList(_appSetting, domainList, param.AffId);
+                return StatisticsHelper.GetCustomAvailableDomainList(_appSetting, domainList, param.AffId, param.CommGroupName);
             }    
 
             return FetchTData<Domain>(new GetSubAffDomainListCriteria(param.IsInternal));
@@ -178,7 +185,7 @@
             var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(param.IsInternal, param.TargetCountryCode ?? string.Empty));
 
             return isTargetToMember
-                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, param.CommGroupName)
+                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, param.IsSelectedMobileDomain, param.IsUsingInStatistics)
                 : GetSubAffLandingPages();
         }
 

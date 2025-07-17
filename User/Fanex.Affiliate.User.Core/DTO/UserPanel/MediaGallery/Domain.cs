@@ -13,5 +13,7 @@
         public DateTime CreateDate { get; set; }
 
         public bool IsSsl { get; set; }
+
+        public bool IsUsingForMobile { get; set; }
     }
 }

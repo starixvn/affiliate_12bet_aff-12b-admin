@@ -74,7 +74,7 @@
                 _me.getSize();
             });
 
-            $("#btnMarketingSearch").on("click", function () {
+            $("#btnMarketingSubmit").on("click", function () {
                 _me.submitSearch();
                 _me.renderQrCodePage()
                     .then(function () {

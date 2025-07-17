@@ -22,7 +22,7 @@
         },
 
         initEvent: function () {
-            $("#btnGenQRCode").click(function () {
+            $("#btnMarketingSubmit").click(function () {
                 Site.showLoader();
                 Promise.all([_me.renderQrCodePage(), _me.renderLinkChannelStatisticPage()])
                     .then(() => {

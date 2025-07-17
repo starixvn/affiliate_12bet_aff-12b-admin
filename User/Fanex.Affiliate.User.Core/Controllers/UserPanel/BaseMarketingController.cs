@@ -89,17 +89,19 @@
             var languageCode = GetTargetLanguageCode(param.IsChangeAffTypeLink, param.Language, targetLanguages);
             param.Language = languageCode;
 
-            var pages = MarketingService.GetLandingPageList(new LandingPageParam
-            {
-                CommGroupName = userSession.GroupName,
-                IsInternal = isInternal,
-                LinkType = param.TargetId,
-                TargetCountryCode = param.TargetCountryCode
-            });
             var categoryList = GetCategoryList(param.IsChangeAffTypeLink, param.IsMediaGallery, param.TargetId, isInternal);
             var sizeList = GetSizeList(param, isInternal);
             var domains = GetDomainListByTargetCountry(param.TargetCountryCode, param.TargetId);
             var selectedDomain = domains.FirstOrDefault();
+            
+            var pages = MarketingService.GetLandingPageList(new LandingPageParam
+            {
+                CommGroupName = userSession.GroupName,
+                IsSelectedMobileDomain = selectedDomain?.IsUsingForMobile ?? false,
+                IsInternal = isInternal,
+                LinkType = param.TargetId,
+                TargetCountryCode = param.TargetCountryCode
+            });
 
             return new CommonSearchFormViewModel
             {
@@ -209,6 +211,7 @@
                 TargetCountryCode = targetCountryCode,
                 AffId = userSession.AffId,
                 LinkType = linkType,
+                CommGroupName = userSession.GroupName,
                 IsInternal = isInternal
             };
 
