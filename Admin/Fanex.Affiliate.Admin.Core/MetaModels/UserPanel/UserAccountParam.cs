@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public string MoreSiteUrls { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string NoSiteDescription { get; set; }
+        public string NoSiteDesc { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         [RequiredDependOnField(nameof(IsNormalAccount))]

@@ -7,6 +7,8 @@
 
     public class MyAccountViewModel
     {
+        public bool IsMarketingAccount { get; set; }
+
         public AccountInformation AccountInformation { get; set; }
 
         public IEnumerable<TargetCountry> TargetCountryList { get; set; }

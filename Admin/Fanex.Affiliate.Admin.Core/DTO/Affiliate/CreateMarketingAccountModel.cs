@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string State { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        public string Postal { get; set; }
+        public string Postcode { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string Country { get; set; }
@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
                 Address = Address,
                 City = City,
                 State = State,
-                Postal = Postal,
+                Postcode = Postcode,
                 Country = Country,
                 
                 SiteUrl = SiteUrl,

@@ -136,7 +136,7 @@ export class Filter extends Component {
     render() {
         const { selectedLanguage, selectedSortBy, selectedStatus, isSortAscending, userName, email, affCode, parentAffName, affPlayer, selectedTargetCountry, affCategoryIds } = this.state;
         const { commGroupList, languageList, columnList, targetCountryList } = this.props;
-        console.log('affCategoryIds', affCategoryIds);
+
         return (
             <div className="filter-container">
                 <Form inline tag="div">

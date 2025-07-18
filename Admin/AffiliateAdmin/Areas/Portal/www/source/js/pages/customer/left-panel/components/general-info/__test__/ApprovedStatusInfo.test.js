@@ -19,7 +19,7 @@ describe('left panel - components - general-info - ApprovedStatusInfo', () => {
         LastLoginIp: "10.18.200.125",
         LastName: "12BETAFF226",
         MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
-        NoSiteDescription: "",
+        NoSiteDesc: "",
         Phone: "abc",
         PreferredLanguage: "vi-VN",
         SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",

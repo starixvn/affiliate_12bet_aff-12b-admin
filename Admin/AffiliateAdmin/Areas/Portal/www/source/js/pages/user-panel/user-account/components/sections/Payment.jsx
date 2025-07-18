@@ -76,7 +76,6 @@ export class Payment extends PureComponent {
                     <span className="input-item">{minimumPaymentText + " " + formatDecimal(minimumPayment)}</span>
                 </FormGroup>
                 {renderFormByMethod[userAccountInfo.PreferredPayment]}
-                {/* <p className="text-danger offset-sm-3 offset-xl-2 pl-1">{`You can request for a withdrawal through Moneybookers, Wire Transfer or directly into your ${licenseeName}.com player account.`}</p> */}
             </Form>
         )
     }

@@ -49,7 +49,7 @@ export class Content extends PureComponent {
         }, {});
 
         if (newObject.HasWebSite) {
-            newObject.NoSiteDescription = '';
+            newObject.NoSiteDesc = '';
         } else {
             newObject.SiteUrl = '';
         }

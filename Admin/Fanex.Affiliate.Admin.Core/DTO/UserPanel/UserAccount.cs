@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string MoreSiteUrls { get; set; }
 
-        public string NoSiteDescription { get; set; }
+        public string NoSiteDesc { get; set; }
 
         public string PreferredPayment { get; set; }
 

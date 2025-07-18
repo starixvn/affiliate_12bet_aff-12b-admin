@@ -44,8 +44,8 @@ export const Additional = (props) => {
                 />
                 <RowField
                     label="Postcode/Zip"
-                    name="postal"
-                    value={additionalInfo.postal}
+                    name="postcode"
+                    value={additionalInfo.postcode}
                     onChange={onChange}
                 />
                 <RowField

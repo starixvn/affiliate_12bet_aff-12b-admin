@@ -67,7 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         //    var service = CreateUserAccountService(repository.Object, licenseeService.Object);
 
         //    // Action
-        //    var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Player", PlayerUsername = "123", NoSiteDescription = "abc" });
+        //    var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Player", PlayerUsername = "123", NoSiteDesc = "abc" });
 
         //    // Assert
         //    Assert.True(result.IsSuccessful);
@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         //    var service = CreateUserAccountService(repository.Object, licenseeService.Object, appSetting.Object);
 
         //    // Action
-        //    var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Player", PlayerUsername = "123", NoSiteDescription = "abc" });
+        //    var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Player", PlayerUsername = "123", NoSiteDesc = "abc" });
 
         //    // Assert
         //    repository.Verify(d => d.Execute(It.Is<UpdateUserAccountCommand>(c => !string.IsNullOrEmpty(c.GetSettingKey()) && c.IsValid()), It.IsAny<string>()), Times.Never);
@@ -96,7 +96,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         //}
 
         //[Fact]
-        //public async Task UpdateUserAccount_WhenCallWithInvalidNoSiteDescription_ReturnError()
+        //public async Task UpdateUserAccount_WhenCallWithInvalidNoSiteDesc_ReturnError()
         //{
         //    // Arrange
         //    var service = CreateUserAccountService();
@@ -130,7 +130,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         //    var service = CreateUserAccountService();
 
         //    // Action
-        //    var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Wire", NoSiteDescription = "abc" });
+        //    var result = await service.UpdateUserAccountAsync(new UserAccountParam { PreferredPayment = "Wire", NoSiteDesc = "abc" });
 
         //    // Assert
         //    Assert.False(result.IsSuccessful);
@@ -189,7 +189,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.Customer
         //        SiteUrl = "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
         //        PreferredPayment = "Wire",
         //        PlayerUsername = "bettingexp",
-        //        NoSiteDescription = "test",
+        //        NoSiteDesc = "test",
         //        NetellerAccountId = "1",
         //        MoneybookersEmail = "abc@gmail.com",
         //        BankName = "Test",

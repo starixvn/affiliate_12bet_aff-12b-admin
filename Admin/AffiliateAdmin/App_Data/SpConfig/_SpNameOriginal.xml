@@ -13,7 +13,6 @@
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="" >
       <Mapping DataField="Username" ObjectProperty="AffName" />
       <Mapping DataField="Postal" ObjectProperty="Postcode" />
-      <Mapping DataField="NoSiteDesc" ObjectProperty="NoSiteDescription" />
       <Mapping DataField="BankSwiftCode" ObjectProperty="BankCode" />
       <Mapping DataField="BankAccountNo" ObjectProperty="BankAccountNumber" />
       <Mapping DataField="IsPrivate" ObjectProperty="IsUsingPrivateCommGroup" />

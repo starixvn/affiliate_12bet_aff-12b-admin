@@ -24,7 +24,7 @@ describe('user account - components - Content', () => {
         Country: "Viet Nam",
         SiteUrl: "abc.com",
         MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
-        NoSiteDescription: "",
+        NoSiteDesc: "",
         PreferredPayment: "Player",
         PlayerUsername: "bettingexp",
         NetellerAccountId: "1",

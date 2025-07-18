@@ -143,6 +143,7 @@
                 BalBroughtForward = paymentParam.BalBroughtForward,
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
+                IsMarketingAccount = SessionService.UserSession.IsMarketingAccount,
                 PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Processing)),
                 IsValidDate = _paymentService.IsInDateRange() || _appSetting.IsLocal || _appSetting.IsDev,
             };

@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Commands.Affiliate
+﻿using Fanex.Data;
+
+namespace Fanex.Affiliate.Admin.Core.Commands.Affiliate
 {
     public class CreateMarketingAccountCommand : BaseNonQueryCommand
     {
@@ -28,7 +30,8 @@
 
         public string State { get; set; }
 
-        public string Postal { get; set; }
+        [SpParam(SqlParamName = "Postal")]
+        public string Postcode { get; set; }
 
         public string Country { get; set; }
 

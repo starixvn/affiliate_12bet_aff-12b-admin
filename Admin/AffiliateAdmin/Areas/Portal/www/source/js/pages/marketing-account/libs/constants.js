@@ -51,7 +51,7 @@ export const defaultAdditionalInfo = {
     address: '',
     city: '',
     state: '',
-    postal: '',
+    postcode: '',
     country: '',
     question: '',
     questionId: 0, 

@@ -128,9 +128,9 @@ export class WebSite extends PureComponent {
                             </Label>
                         </FormGroup>
                         <FormGroup row className="pt-1">
-                            <Label htmlFor="noSiteDescription" sm={3} xl={2} className={isRequired ? 'required' : ''}>{`Please describe how you would like to promote ${this.props.licenseeName} if you don't have the URL`}</Label>
+                            <Label htmlFor="noSiteDesc" sm={3} xl={2} className={isRequired ? 'required' : ''}>{`Please describe how you would like to promote ${this.props.licenseeName} if you don't have the URL`}</Label>
                             <Col sm={6} xl={7}>
-                                <Input type="textarea" disabled={hasWebSite} style={{ height: 70 }} id="noSiteDescription" name="noSiteDescription" value={userAccountInfo.NoSiteDescription} onChange={this.handleChange} />
+                                <Input type="textarea" disabled={hasWebSite} style={{ height: 70 }} id="noSiteDesc" name="noSiteDesc" value={userAccountInfo.NoSiteDesc} onChange={this.handleChange} />
                             </Col>
                         </FormGroup>
                     </FormGroup>

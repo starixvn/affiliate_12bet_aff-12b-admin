@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount
         public string MoreSiteUrls { get; set; }
 
         [SpParam(SqlParamName = "NoSiteDesc")]
-        public string NoSiteDescription { get; set; }
+        public string NoSiteDesc { get; set; }
 
         public string PreferredPayment { get; set; }
 

@@ -81,6 +81,7 @@
             {
                 IsInternal = SessionService.IsInternal,
                 AccountInformation = newAccountInfo,
+                IsMarketingAccount = SessionService.UserSession.IsMarketingAccount,
                 TargetCountryList = SystemService.GetSystemTargetCountries(),
                 BaseCurrencyList = CurrencyHelper.GetCurrencyList(baseCurrencyList, newAccountInfo.DefaultBaseCurrency)
             };

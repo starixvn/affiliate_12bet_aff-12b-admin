@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public string MoreSiteUrls { get; set; }
 
-        public string NoSiteDescription { get; set; }
+        public string NoSiteDesc { get; set; }
 
         public DateTime? LastLoginDate { get; set; }
 

@@ -93,12 +93,14 @@ export default function useNewMarketingAccountData(
     }
 
     const handleSubmit = async (modalBodyRef, successCallback = null) => {
+        const websiteInfoTrim = websiteInfo.hasWebSite ? { ...websiteInfo, noSiteDesc: '' } : { ...websiteInfo, siteUrl: '', moreSiteUrls: '' };
+
         const rawData = {
             ...generalInfo,
             ...personalInfo,
             ...additionalInfo,
             ...paymentInfo,
-            ...websiteInfo,
+            ...websiteInfoTrim,
         };
         
         if(rawData.hasWebSite) {

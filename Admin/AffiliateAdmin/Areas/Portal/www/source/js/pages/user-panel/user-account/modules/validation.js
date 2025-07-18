@@ -21,7 +21,7 @@ const getMessageIfEmpty = (fieldName, value) => {
 
 export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeName) => {
     let message = '';
-    const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDescription`;
+    const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDesc`;
     message += validateEmail(userAccountInfo);
     message += validateGender(userAccountInfo);
     message += validateCountry(userAccountInfo);

@@ -19,6 +19,8 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 
         public bool IsValidDate { get; set; }
 
+        public bool IsMarketingAccount { get; set; }
+
         public bool IsValidAmount => BalBroughtForward > 0 && BalBroughtForward >= MinAmount;
     }
 }
