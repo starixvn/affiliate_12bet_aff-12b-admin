@@ -4,7 +4,8 @@
 
     public class AffiliateCpaReportCriteria : PagingCriteria
     {
-        private const int MAX_MONTH_DIFF = 6;
+        private const int RangeMonth = 6;
+        private const int Twelve = 12;
 
         public string Username { get; set; }
 
@@ -26,7 +27,7 @@
 
         public override bool IsValid()
         {
-            return ToDate >= FromDate.AddMonths(MAX_MONTH_DIFF);
+            return (ToDate.Year - FromDate.Year) * Twelve + ToDate.Month- FromDate.Month <= RangeMonth;
         }
     }
 }
