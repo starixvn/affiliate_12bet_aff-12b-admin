@@ -210,6 +210,7 @@
             {
                 TargetCountryCode = targetCountryCode,
                 AffId = userSession.AffId,
+                AffUsername = userSession.UserName,
                 LinkType = linkType,
                 CommGroupName = userSession.GroupName,
                 IsInternal = isInternal
