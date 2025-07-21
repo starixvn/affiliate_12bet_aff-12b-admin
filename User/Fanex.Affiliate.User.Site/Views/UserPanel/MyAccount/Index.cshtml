@@ -173,7 +173,7 @@
                 else
                 {
                     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-                    @RazorHelper.RenderAppContact(sessionService.CurrentLanguage)
+                    @RazorHelper.RenderAppContact(sessionService.CurrentLanguage, "control-label")
                 }
             </div>
         </div>

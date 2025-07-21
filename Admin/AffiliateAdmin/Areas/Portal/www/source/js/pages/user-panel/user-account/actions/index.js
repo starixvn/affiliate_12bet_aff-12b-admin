@@ -23,7 +23,7 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     dispatch(toggleLoaderUserPanel(true));
     const url = 'Portal/UserPanel/UserAccount/GetUserAccountInfo';
     const response = await post(url, { affId });
-    const MARKETING_ACCOUNT_TYPE = "Marketing AFF Account";
+    const MARKETING_ACCOUNT_TYPE = "Marketing Affiliate Account";
 
     const data = response && response.status === 200 ? response.data : null;
     const moreSiteUrls = data && data.MoreSiteUrls;
