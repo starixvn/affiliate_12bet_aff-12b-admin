@@ -392,6 +392,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\operation\view-deal\ViewDealPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerConfigs.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerFake.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\__test__\index.test.js" />
@@ -1425,6 +1431,7 @@
     <Content Include="Areas\Portal\Views\Operation\Deal.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\operation\deal.scss" />
     <Content Include="Areas\Portal\Views\Operation\AssignDeal.cshtml" />
+    <Content Include="Areas\Portal\Views\Report\PlayerCpaReport.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

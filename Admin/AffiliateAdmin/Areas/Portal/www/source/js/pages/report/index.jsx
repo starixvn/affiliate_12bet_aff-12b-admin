@@ -18,6 +18,7 @@ export default class App extends React.PureComponent {
     render() {
         const imgSrc = 'Areas/Portal/www/dist/imgs/i_report.png';
         const renderMenus = this.getRenderMenuItems();
+        console.log(renderMenus)
         const firstMenu = renderMenus[0];
         return (
             <Router forceRefresh>
