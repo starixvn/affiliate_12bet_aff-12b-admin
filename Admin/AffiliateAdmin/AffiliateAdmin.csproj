@@ -259,16 +259,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpConfig\SpName.12b-admin.kldr.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
     <Content Include="App_Data\SpConfig\SpName.12b-admin.klprod.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\SpName.12b-admin.local.xml">
-      <DependentUpon>_SpName.tt</DependentUpon>
-    </Content>
-    <Content Include="App_Data\SpConfig\SpName.12b-admin.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
     <Content Include="App_Data\SpConfig\SpName.12b-admin.uat.xml">
@@ -1435,9 +1429,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Web.12b-admin.local.config" />
-    <Content Include="Web.12b-admin.production.config" />
     <Content Include="Web.12b-admin.uat.config" />
-    <Content Include="Web.12b-admin.kldr.config" />
     <Content Include="Web.12b-admin.klprod.config" />
   </ItemGroup>
   <ItemGroup>

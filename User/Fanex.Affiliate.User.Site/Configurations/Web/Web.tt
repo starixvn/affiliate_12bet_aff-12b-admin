@@ -5,7 +5,7 @@
 <#@ output extension=".txt" #>
 <#
 string projectPath = Host.ResolveAssemblyReference("$(SolutionDir)") + @"\User\Fanex.Affiliate.User.Site\";
-var environments = new string[] {"local", "uat", "production", "kldr", "klprod" };
+var environments = new string[] {"local", "uat", "klprod" };
 foreach(var environment in environments)
 {
 	var fileName = string.Format("{0}.config", environment);

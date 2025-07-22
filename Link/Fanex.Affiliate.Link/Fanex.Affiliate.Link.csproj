@@ -259,13 +259,7 @@
     <Content Include="Web.12b-go.uat.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Web.12b-go.kldr.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Web.12b-go.local.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.12b-go.production.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.config">

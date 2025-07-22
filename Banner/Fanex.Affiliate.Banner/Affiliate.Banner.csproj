@@ -123,13 +123,7 @@
   <ItemGroup>
     <Content Include="12monitor.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Web.12b-banner.kldr.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Web.12b-banner.local.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.12b-banner.production.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.12b-banner.uat.config">
@@ -189,7 +183,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2014/3/28" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2014/3/28" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateAssemblyVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
