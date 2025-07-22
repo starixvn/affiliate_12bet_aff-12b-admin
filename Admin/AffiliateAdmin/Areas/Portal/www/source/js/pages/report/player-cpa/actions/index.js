@@ -1,5 +1,4 @@
 ﻿import * as types from './types';
-import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
 
 export { setPagingOption };
@@ -24,9 +23,9 @@ export const toggleSubmit = () => {
     }
 }
 
-export const fetchData = (param) => async () => {
-    const url = 'Portal/PlayerCpaReport/GetPlayerCpaReportData';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
+export const setMemberCpaId = (data) => {
+    return {
+        type: types.SET_MEMBER_CPA_ID,
+        data
+    }
 }

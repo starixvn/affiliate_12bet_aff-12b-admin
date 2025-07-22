@@ -1,16 +1,23 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Fanex.Affiliate.Admin.Core.Constants;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.Report;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using Fanex.Affiliate.Admin.Core.Constants;
+
     public class PlayerCpaReportRequest : PaginationRequest
     {
-        [MaxLength(Validation.MaxLengthInputString, ErrorMessage = "Affiliate must shorter than 30 characters!")]
-        public string Username { get; set; }
+        [MaxLength(Validation.Hundred, ErrorMessage = "Affiliate must shorter than 100 characters!")]
+        public string UserName { get; set; }
 
         [MaxLength(Validation.Hundred, ErrorMessage = "Player must shorter than 100 characters!")]
+        public string CustName { get; set; }
+
+        [MaxLength(Validation.Hundred, ErrorMessage = "Deal Name must shorter than 100 characters!")]
         public string DealName { get; set; }
+        
+        public short StatusId { get; set; }
 
         public short ViewBy { get; set; }
 
@@ -18,9 +25,25 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 
         public DateTime ToDate { get; set; }
 
-        public short SortType { get; set; }
+        public string SortColumn { get; set; }
 
-        public bool SortDirectionType { get; set; }
+        public bool IsAscending { get; set; }
 
+        public bool IsExportExcel { get; set; }
+
+        public PlayerCpaReportCriteria CreateCriteria()
+        {
+            return new PlayerCpaReportCriteria
+            {
+                UserName = UserName,
+                CustName = CustName,
+                DealName = DealName,
+                StatusId = StatusId,
+                ViewBy = ViewBy,
+                FromDate = FromDate,
+                ToDate = ToDate,
+            };
+        }
+        
     }
 }

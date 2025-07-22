@@ -1,11 +1,11 @@
 export const statusOptions = [
-    { value: '1', label: 'All Statuses' },
+    { value: '-1', label: 'All Statuses' },
     { value: '2', label: 'Eligible' },
     { value: '3', label: 'Approved' },
-    { value: '4', label: 'Ineligible' },
-    { value: '5', label: 'Rejected' },
-    { value: '6', label: 'Quota Exceeded' },
-    { value: '7', label: 'Pending' },
+    { value: '1', label: 'Ineligible' },
+    { value: '4', label: 'Rejected' },
+    { value: '5', label: 'Quota Exceeded' },
+    { value: '0', label: 'Pending' },
 ]
 
 export const viewByOptions = [
@@ -23,14 +23,18 @@ const currentMonth = now.getMonth() + 1;
 const currentYear = now.getFullYear();
 
 export const defaultParams = {
-    affName: '',
-    playerName: "",
+    userName: '',
+    custName: "",
     dealName: "",
-    cpaStatus: '',
-    status: '1',
+    statusId: -1,
     viewBy: '1',
     fromDate: `${currentMonth}/01/${currentYear}`,
-    toDate: `${currentMonth}/${now.getDate()}/${currentYear}`
+    //toDate: `${currentMonth}/${now.getDate()}/${currentYear}`,
+    toDate: `12/31/2025`,
+    pageSize: 20,
+    pageIndex: 1,
+    sortColumn: 'AffUserName',
+    isAscending: true
 }
 
 export const defaultGeneralData = {
@@ -40,3 +44,5 @@ export const defaultGeneralData = {
     totalCpaStatus: 0,
     totalStatus: 0,
 }
+
+export const TotalText = "Total (all pages)"

@@ -9,7 +9,7 @@ import { defaultParams } from '../libs/constants';
 
 export const reportTitle = createReducer('', {
     [types.SET_REPORT_TITLE](prevState, action) {
-        return `PLAYER CPA REPORT - Deal Name contains '${dealName}' - View By ${viewBy} - FROM ${fromDate} TO ${toDate}`;
+        return action.data;
     }
 })
 
@@ -25,10 +25,17 @@ export const isSubmit = createReducer(false, {
     }
 })
 
+export const memberCpaId = createReducer(null, {
+    [types.SET_MEMBER_CPA_ID](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     params,
     reportTitle,
     isSubmit,
+    memberCpaId,
     isShowLoader,
     pagingOption,
 });

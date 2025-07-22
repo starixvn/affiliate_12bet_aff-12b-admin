@@ -21,9 +21,7 @@ const Filter = ({ params, setParams, toggleSubmit, toggleLoader }) => {
     }
 
     const onChangeDate = (date, key) => {
-        console.log('date', date        )
         const selectedDate = moment(date);
-        console.log('selectedDate', selectedDate)
         if (key === 'fromDate') {
             const fromDate = selectedDate.clone();
             setParams({
@@ -35,7 +33,6 @@ const Filter = ({ params, setParams, toggleSubmit, toggleLoader }) => {
             const currentLastMonth = moment().endOf('month');
             if(newMaxToDate < currentLastMonth) {
                 setMaxToDate(newMaxToDate);
-                console.log('todate', moment({ year: newMaxToDate.year(), month: newMaxToDate.month(), day: fromDate.date() }).format(DATE_FORMAT))
                 setParams({
                     ...params,
                     toDate: moment({ year: newMaxToDate.year(), month: newMaxToDate.month(), day: fromDate.date() }).format(DATE_FORMAT)
@@ -59,10 +56,10 @@ const Filter = ({ params, setParams, toggleSubmit, toggleLoader }) => {
     return (
         <div className="filter-container">
             <Form inline tag="div">
-                <Field name="affName" value={params.affName} onChange={handleChange} label="Affiliate"/>
-                <Field name="playerName" value={params.playerName} onChange={handleChange} label="Player"/>
+                <Field name="userName" value={params.userName} onChange={handleChange} label="Affiliate"/>
+                <Field name="custName" value={params.custName} onChange={handleChange} label="Player"/>
                 <Field name="dealName" value={params.dealName} onChange={handleChange} label="Deal Name"/>
-                <Field name="status" value={params.status} onChange={handleChange} label="Status" selectOptions={statusOptions} type='select'/>
+                <Field name="statusId" value={params.status} onChange={handleChange} label="Status" selectOptions={statusOptions} type='select'/>
                 <Field name="viewBy" value={params.viewBy} onChange={handleChange} label="View By" selectOptions={viewByOptions} type='select'/>
                 <FormGroup className="my-sm-1 mr-sm-2">
                     <Label className="mr-sm-2">{globalResource.From}</Label>

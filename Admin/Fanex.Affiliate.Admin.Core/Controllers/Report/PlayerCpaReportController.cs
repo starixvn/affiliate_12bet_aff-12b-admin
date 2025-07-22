@@ -1,28 +1,30 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Report;
-using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Services.Report;
-using System.Collections.Generic;
-using System.Web.Mvc;
-
-namespace Fanex.Affiliate.Admin.Core.Controllers.Report
+﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Report
 {
+    using Fanex.Affiliate.Admin.Core.Attributes;
+    using Fanex.Affiliate.Admin.Core.Constants;
+    using Fanex.Affiliate.Admin.Core.MetaModels.Report;
+    using Fanex.Affiliate.Admin.Core.Services.Common;
+    using Fanex.Affiliate.Admin.Core.Services.Report;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Fanex.Affiliate.Admin.Core.Extensions;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+
     [FunctionAuthorize(FunctionName = Function.AffReport)]
     public class PlayerCpaReportController : ReadOnlySessionBaseController
     {
-        private readonly ISystemService _systemService;
-        private readonly IPlayerGgrReportService _playerGgrReportService;
+        private readonly IPlayerCpaService _playerCpaService;
+        private readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
 
         public PlayerCpaReportController(
             ISessionService sessionService,
-            ISystemService systemService,
-            IPlayerGgrReportService playerGgrReportService) : base(sessionService)
+            IPlayerCpaService playerCpaService) : base(sessionService)
         {
-            _systemService = systemService;
-            _playerGgrReportService = playerGgrReportService;
+            _playerCpaService = playerCpaService;
         }
 
 
@@ -32,12 +34,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
             return View("~/Areas/Portal/Views/Report/PlayerCpaReport.cshtml");
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetData(PlayerGgrReportParam param)
+        public async Task<ActionResult> GetData(PlayerCpaReportRequest request)
         {
-            return GenerateJsonNetResult(ModelState.IsValid ? _playerGgrReportService.GetPlayerGgrReportData(param) : new EntityResult<PlayerGgrReport> { MainData = new List<PlayerGgrReport>() });
+            return new JsonNetResult
+            {
+                Data = await _playerCpaService.GetDataAsync(request),
+                SerializerSettings = _jsonSettings
+            };
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetTurnoverDetail(int memberCpaId)
+        {
+            return new JsonNetResult
+            {
+                Data = await _playerCpaService.GetTurnoverDetailAsync(memberCpaId),
+                SerializerSettings = _jsonSettings
+            };
         }
     }
 }

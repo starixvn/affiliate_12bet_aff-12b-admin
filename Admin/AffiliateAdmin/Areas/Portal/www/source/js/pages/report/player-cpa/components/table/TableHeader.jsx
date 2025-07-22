@@ -26,147 +26,205 @@ const headerText = {
     ApprovalDate: 'Approval Date'
 };
 
-const headers = [
+const row1 = [
     {
         title: headerText.No,
-        width: 40,
-        sortable: false
+        width: 60,
+        sortable: false,
+        rowSpan: 2
     },
     {
         title: headerText.Affiliate,
-        width: 100,
+        width: 150,
         sortable: true,
-        sortType: 1
+        sortColumn: "AffUserName",
+        rowSpan: 2
     },
     {
         title: headerText.Player,
-        width: 100,
+        width: 150,
         sortable: true,
-        sortType: 2
+        sortColumn: "CustUserName",
+        rowSpan: 2
     },
     {
         title: headerText.RegistrationDate,
-        width: 120,
+        width: 150,
         sortable: true,
-        sortType: 3
+        sortColumn: "RegisteredDate",
+        rowSpan: 2
     },
     {
         title: headerText.DealName,
         width: 150,
         sortable: true,
-        sortType: 4
+        sortColumn: "DealName",
+        rowSpan: 2
     },
     {
         title: headerText.PaymentFrequency,
         width: 120,
         sortable: true,
-        sortType: 5
+        sortColumn: "ScheduleName",
+        rowSpan: 2
     },
     {
-        title: headerText.FTD,
-        width: 80,
-        sortable: true,
-        sortType: 6
+        title: "Active Period",
+        sortable: false,
+        columnSpan: 5,
+        width: 150 * 5
     },
     {
-        title: headerText.TotalDeposit,
-        width: 100,
-        sortable: true,
-        sortType: 7
+        title: "Holding Period",
+        sortable: false,
+        columnSpan: 4,
+        width: 150 * 4
     },
     {
-        title: headerText.Turnover,
-        width: 100,
-        sortable: true,
-        sortType: 8
-    },
-    {
-        title: headerText.ActiveQualifiedDate,
-        width: 120,
-        sortable: true,
-        sortType: 9
-    },
-    {
-        title: headerText.CPAAmount,
-        width: 100,
-        sortable: true,
-        sortType: 10
-    },
-    {
-        title: headerText.BetTicket,
-        width: 80,
-        sortable: true,
-        sortType: 11
-    },
-    {
-        title: headerText.HoldingQualifiedDate,
-        width: 120,
-        sortable: true,
-        sortType: 12
-    },
-    {
-        title: headerText.HoldingExpiredDate,
-        width: 120,
-        sortable: true,
-        sortType: 13
-    },
-    {
-        title: headerText.EstimatedCPAAmount,
-        width: 120,
-        sortable: true,
-        sortType: 14
-    },
-    {
-        title: headerText.ApprovedCPAAmount,
-        width: 120,
-        sortable: true,
-        sortType: 15
-    },
-    {
-        title: headerText.CPAStatus,
-        width: 100,
-        sortable: true,
-        sortType: 16
-    },
-    {
-        title: headerText.ApprovalDate,
-        width: 120,
-        sortable: true,
-        sortType: 17
+        title: "Approval Period",
+        sortable: false,
+        columnSpan: 3,
+        width: 150 * 3
     }
 ];
 
-export const TableHeader = ({ sortType, sortDirectionType, setParams, toggleSubmit }) => {
-    const handleClickHeader = (sortTypeSelected) => {
-        if (!sortTypeSelected) return;
+const row2 =[
+    {
+        title: headerText.FTD,
+        width: 100,
+        sortable: true,
+        sortColumn: "FTD"
+    },
+    {
+        title: headerText.TotalDeposit,
+        width: 150,
+        sortable: true,
+        sortColumn: "TotalDeposit"
+    },
+    {
+        title: headerText.Turnover,
+        width: 150,
+        sortable: true,
+        sortColumn: "IsTO"
+    },
+    {
+        title: headerText.ActiveQualifiedDate,
+        width: 150,
+        sortable: true,
+        sortColumn: "AQD"
+    },
+    {
+        title: headerText.CPAAmount,
+        width: 150,
+        sortable: true,
+        sortColumn: "CPAAmount"
+    },
+    {
+        title: headerText.BetTicket,
+        width: 150,
+        sortable: true,
+        sortColumn: "HoldingBetTickets"
+    },
+    {
+        title: headerText.HoldingQualifiedDate,
+        width: 150,
+        sortable: true,
+        sortColumn: "HQD"
+    },
+    {
+        title: headerText.HoldingExpiredDate,
+        width: 150,
+        sortable: true,
+        sortColumn: "HED"
+    },
+    {
+        title: headerText.EstimatedCPAAmount,
+        width: 150,
+        sortable: true,
+        sortColumn: "EstimatedCPAAmount"
+    },
+    {
+        title: headerText.ApprovedCPAAmount,
+        width: 150,
+        sortable: true,
+        sortColumn: "ApprovedCPAAmount"
+    },
+    {
+        title: headerText.CPAStatus,
+        width: 150,
+        sortable: true,
+        sortColumn: "CPAStatus"
+    },
+    {
+        title: headerText.ApprovalDate,
+        width: 150,
+        sortable: true,
+        sortColumn: "CPADate"
+    }
+]
+
+const headerRows = [row1, row2]
+
+const RowHeader = ({ index, row, sortColumn, isAscending, handleClickHeader }) => {
+    return (
+        <tr className={`freeze-row-h${index}`}>
+            {
+            row.map((cell, index) => {
+            return (
+                <Cell 
+                    key={index} 
+                    header={true} 
+                    style={{ width: cell.width, maxWidth: cell.width }}
+                    className={`freeze-column-${index}`} 
+                    rowSpan={cell.rowSpan} 
+                    colSpan={cell.columnSpan}>
+                    <Button 
+                        className="p-0 th-wrapper" 
+                        color="link" 
+                        onClick={() => handleClickHeader(cell.sortColumn)}>
+                        <span>{cell.title}</span>
+                        {cell.sortable && (
+                            <div className="icon-container">
+                                <span className={`caret asc ${sortColumn === cell.sortColumn && isAscending ? "current" : ''}`}></span>
+                                <span className={`caret desc ${sortColumn === cell.sortColumn && !isAscending ? "current" : ''}`}></span>
+                            </div>
+                        )}
+                    </Button>
+                </Cell>
+                )
+            })
+            }
+        </tr>
+    )
+}
+
+export const TableHeader = ({ sortColumn, isAscending, setParams, toggleSubmit }) => {
+    const handleClickHeader = (sortColumnSelected) => {
+        if (!sortColumnSelected) return;
         
         setParams({
-            sortType: sortTypeSelected,
-            sortDirectionType: sortTypeSelected === sortType ? !sortDirectionType : false
+            sortColumn: sortColumnSelected,
+            isAscending: sortColumnSelected === sortColumn ? !isAscending : false
         });
         toggleSubmit();
     }
 
     return (
         <thead>
-            <tr>
-                {headers.map((header, index) => (
-                    <Cell key={index} header={true} colWidth={header.width} className="th">
-                        <Button 
-                            className="p-0 th-wrapper" 
-                            color="link" 
-                            onClick={() => handleClickHeader(header.sortType)}>
-                            <span>{header.title}</span>
-                            {header.sortable && (
-                                <div className="icon-container">
-                                    <span className={`caret asc ${sortType === header.sortType && sortDirectionType ? "current" : ''}`}></span>
-                                    <span className={`caret desc ${sortType === header.sortType && !sortDirectionType ? "current" : ''}`}></span>
-                                </div>
-                            )}
-                        </Button>
-                    </Cell>
-                ))}
-            </tr>
+            {
+            headerRows.map((row, index) => {
+                return (
+                    <RowHeader 
+                        key={index} 
+                        index={index + 1}
+                        row={row} 
+                        handleClickHeader={handleClickHeader} 
+                        sortColumn={sortColumn} 
+                        isAscending={isAscending} />
+                )
+            })
+            }
+            
         </thead>
     )
 }

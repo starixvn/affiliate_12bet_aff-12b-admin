@@ -18,6 +18,7 @@ namespace AffiliateAdmin
 
             IoCConfig.Register();
             LoggingConfig.RegisterSentry();
+            RedisConfig.RegisterRedis();
 
             SslConfig.RegisterHttpSecurityProtocol();
 

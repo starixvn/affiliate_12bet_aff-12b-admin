@@ -65,6 +65,8 @@
       <Mapping DataField="Currency" ObjectProperty="PlayerCurrency" />
     </Setting>
     <Setting Key="Task_Aff_GetSetting" SpName="Task_Aff_GetSetting" DbName="" />
+    <Setting Key="Aff_Admin_Report_PlayerCPA" SpName="Aff_Admin_Report_PlayerCPA" DbName="" />
+    <Setting Key="Aff_Admin_Report_PlayerCPA_TO_Detail" SpName="Aff_Admin_Report_PlayerCPA_TO_Detail" DbName="" />
   </Function>
   <Function Name="Info">
     <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="" >
