@@ -14,6 +14,7 @@
     using DTO.UserPanel.MediaGallery;
     using Enum;
     using Extensions;
+    using Fanex.Affiliate.User.Core.Criterias.Marketing;
     using MetalModels;
     using MetalModels.UserPanel;
     using Resources;
@@ -132,7 +133,9 @@
 
                 if (IsAffOfNoCommissionCPAGroup)
                 {
-                    return SpecificDomain.SupportedDomainsForAffNoCommissionCPA;
+                    var specificDomainList = FetchTData<MappingDomainInfo>(new GetAvailableSpecificDomainCriteria(param.AffUsername, param.IsInternal));
+
+                    return StatisticsHelper.GetCustomAvailableDomainList(_appSetting, specificDomainList, param.AffId, param.CommGroupName);
                 }
 
                 var domainList = FetchTData<MappingDomainInfo>(new GetAffDomainListCriteria(param.AffId, param.TargetCountryCode, param.IsInternal));

@@ -123,6 +123,12 @@
 		<Setting Key="Aff_User_LandingPage_Sel" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_Admin_Text_Sel" SpName="Aff_Admin_Text_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_Admin_Banner_Sel" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_Admin_SpecificDomainControl_Sel" SpName="Aff_Admin_SpecificDomainControl_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
+			<Mapping DataField="SpecificDomainControlId" ObjectProperty="DomainId" />
+			<Mapping DataField="AffDomain" ObjectProperty="DomainName" />
+			<Mapping DataField="AffDomainIsSSL" ObjectProperty="IsSsl" />
+			<Mapping DataField="CreatedDate" ObjectProperty="CreateDate" />
+		</Setting>
 		<Setting Key="Aff_User_Overview_SubAffiliate_Sel" SpName="Aff_User_Overview_SubAffiliate_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 
 		<Setting Key="Aff_Admin_MediaCategory_Sel_view" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
@@ -139,6 +145,12 @@
 		<Setting Key="Aff_User_LandingPage_Sel_view" SpName="Aff_User_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_Admin_Text_Sel_view" SpName="Aff_Admin_Text_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 		<Setting Key="Aff_Admin_Banner_Sel_view" SpName="Aff_Admin_Banner_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
+		<Setting Key="Aff_Admin_SpecificDomainControl_Sel_view" SpName="Aff_Admin_SpecificDomainControl_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet">
+			<Mapping DataField="SpecificDomainControlId" ObjectProperty="DomainId" />
+			<Mapping DataField="AffDomain" ObjectProperty="DomainName" />
+			<Mapping DataField="AffDomainIsSSL" ObjectProperty="IsSsl" />
+			<Mapping DataField="CreatedDate" ObjectProperty="CreateDate" />
+		</Setting>
 
 		<Setting Key="Aff_User_AffMediaChannel_Sel" SpName="Aff_User_AffMediaChannel_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_User_AffMediaChannel_Ins" SpName="Aff_User_AffMediaChannel_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />

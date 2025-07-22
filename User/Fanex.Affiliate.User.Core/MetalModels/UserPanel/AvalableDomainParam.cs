@@ -6,6 +6,8 @@
     {
         public int AffId { get; set; }
 
+        public string AffUsername { get; set; }
+
         public string TargetCountryCode { get; set; }
 
         public AffiliateLinkType LinkType { get; set; } = AffiliateLinkType.AffiliateLink;
