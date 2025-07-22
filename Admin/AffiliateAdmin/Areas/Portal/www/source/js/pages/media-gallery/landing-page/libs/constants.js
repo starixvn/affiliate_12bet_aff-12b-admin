@@ -2,11 +2,18 @@
 
 export { globalResource };
 
+export const filterDealMode = {
+    'Exclude': 1,
+    'Include': 0
+}
+
 export const headerText = {
     Index: '#',
     BlockTargetCountry: 'Block Target Country',
     LandingPageName: 'Landing Page Name (Shown in dropdown)',
-    LandingPageCode: 'Landing Page Code (Contained in links)'
+    LandingPageCode: 'Landing Page Code (Contained in links)',
+    Deal: 'Deal',
+    MobileOnly: 'Mobile Only',
 }
 
 export const defaultState = {

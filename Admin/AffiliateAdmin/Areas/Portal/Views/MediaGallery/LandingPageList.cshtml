@@ -1,9 +1,18 @@
-﻿@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.Common.TargetCountry>
+﻿@using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.Common.TargetCountry>
+@{
+    var dealList = ViewBag.DealList as IEnumerable<NormalCommGroup>;
+}
 
 @section pagecss{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/landing-page.css")" rel="stylesheet" />
 }
 
 @section pagejs{
+    <script type="text/javascript">
+         window.initialState = {
+             dealList:  @Html.Raw(Json.Encode(dealList))
+         }
+    </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/media-gallery.js")"></script>
 }

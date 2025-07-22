@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
     public class LandingPageService : BaseDynamicService, ILandingPageService
     {
         private const string RestrictedCharacterPattern = "[;/\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
-        private const string RestricedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
+        private const string RestrictedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
 
         public LandingPageService(
             IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
@@ -49,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
         {
             if (HasRestrictedCharacter(param.PageCode))
             {
-                return ResultInfo.GenerateErr(RestricedCharacterErrorMessage);
+                return ResultInfo.GenerateErr(RestrictedCharacterErrorMessage);
             }
 
             return isInsert ? InsertLandingPage(param) : UpdateLandingPage(param);
@@ -84,6 +84,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             command.PageCode = param.PageCode;
             command.PageName = param.PageName;
             command.BlockTargetCountry = param.BlockTargetCountry;
+            command.IsMobile = param.IsMobile;
+            command.IsExcluded = param.IsExcluded;
+            command.DealIds = param.DealIds;
             command.UserId = param.UserId;
             command.Ip = param.Ip;
         }

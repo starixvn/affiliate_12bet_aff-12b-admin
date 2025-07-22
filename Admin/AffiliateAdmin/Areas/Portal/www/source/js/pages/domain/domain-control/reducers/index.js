@@ -5,6 +5,7 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
 const targetCountryList = createReducer(null, {})
+const dealList = createReducer(null, {})
 
 export const shouldResetScrollPosition = createReducer(true, {
     [types.SHOULD_RESET_SCROLL_POSITION](prevState, action) {
@@ -57,5 +58,6 @@ export default combineReducers({
     affDomainList,
     affSubDomainList,
     redirectDomainList,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    dealList
 });

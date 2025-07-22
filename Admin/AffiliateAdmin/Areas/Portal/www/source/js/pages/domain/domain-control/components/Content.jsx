@@ -71,8 +71,10 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={100} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.AffDomain}>{headerText.AffDomain}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.RedirectDomain}>{headerText.RedirectDomain}</Cell>
+                <Cell header={true} colWidth={130} title={headerText.Deal}>{headerText.Deal}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.MobileOnly}>{headerText.MobileOnly}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Delete}>{headerText.Delete}</Cell>
@@ -103,14 +105,20 @@ export class Content extends PureComponent {
         const redirectDomain = htmlDecode(dataItem.RedirectDomain);
         const creator = htmlDecode(dataItem.Creator);
 
+        const { dealStr, deal } = this._formatDealText(dataItem.DealIds, dataItem.IsExcluded);
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center" title={dataItem.TargetCountryName}>{dataItem.TargetCountryName}</Cell>
                 <Cell className="text-center" title={affDomain}>{affDomain}</Cell>
                 <Cell className="text-center" title={redirectDomain}>{redirectDomain}</Cell>
+                <Cell className="text-center" title={dealStr} dangerouslySetInnerHTML={{ __html: deal }}></Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" disabled checked={dataItem.IsMobile} />
+                </Cell>
                 <Cell className="text-center">
                     <input type="checkbox" disabled checked={dataItem.IsUsed} />
                 </Cell>
@@ -126,6 +134,30 @@ export class Content extends PureComponent {
                 </Cell>
             </Row>
         )
+    }
+
+    _formatDealText = (deal, isExcludeDeal) => {
+        const { dealList } = this.props;
+
+        if ((isExcludeDeal && deal === '') || deal === '0') {
+            return { dealStr: 'All', deal: 'All' };
+        }
+
+        if (!isExcludeDeal && !deal) {
+            return { dealStr: '', deal: '' };
+        }
+
+        const dealNames = deal.split(',')
+            .map(id => dealList.find(item => item.key === Number(id))?.name || '')
+            .filter(Boolean);
+
+        const dealCount = dealNames.length;
+        const dealStr = dealNames.join(', ');
+        const text = dealCount > 5
+            ? (isExcludeDeal ? `<strong style="color: royalblue;">Exclude: ${dealCount}</strong>` : `<strong style="color: royalblue;">${dealCount}</strong>`)
+            : (isExcludeDeal ? `Exclude: ${dealStr}` : dealStr);
+
+        return { dealStr, deal: text };
     }
 
     render() {
@@ -160,8 +192,8 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList, dealList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList, dealList });
 }
 
 function mapDispatchToProps(dispatch) {

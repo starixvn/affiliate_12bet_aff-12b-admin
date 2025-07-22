@@ -21,10 +21,12 @@ export const Content = (props) => {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={25}></Cell>
-                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
-                <Cell header={true} colWidth={350} title={headerText.BlockTargetCountry}>{headerText.BlockTargetCountry}</Cell>
+                <Cell header={true} colWidth={350} title={headerText.Deal}>{headerText.Deal}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.MobileOnly}>{headerText.MobileOnly}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.BlockTargetCountry}>{headerText.BlockTargetCountry}</Cell>
                 <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
@@ -51,6 +53,7 @@ export const Content = (props) => {
     function _buildDataRow(dataItem, index) {
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
+        const { dealStr, deal } = _formatDealText(dataItem.DealIds, dataItem.IsExcluded);
         const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
 
         return (
@@ -62,6 +65,10 @@ export const Content = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
+                <Cell className="text-center" title={dealStr}>{deal}</Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" disabled checked={dataItem.IsMobile} />
+                </Cell>
                 <Cell className="text-left" title={blockTargetCountry}>{blockTargetCountry}</Cell>
                 <Cell className="text-center" title="Edit Landing Page">
                     <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>
@@ -70,6 +77,30 @@ export const Content = (props) => {
                 </Cell>
             </Row>
         )
+    }
+
+    function _formatDealText(deal, isExcludeDeal) {
+        const { dealList } = props;
+
+        if ((isExcludeDeal && deal === '') || deal === '0') {
+            return { dealStr: 'All', deal: 'All' };
+        }
+
+        if (!isExcludeDeal && !deal) {
+            return { dealStr: '', deal: '' };
+        }
+
+        const dealNames = deal.split(',')
+            .map(id => dealList.find(item => item.key === Number(id))?.name || '')
+            .filter(Boolean);
+
+        const dealCount = dealNames.length;
+        const dealStr = dealNames.join(', ');
+        const text = dealCount > 5
+            ? (isExcludeDeal ? `<strong style="color: royalblue;">Exclude: ${dealCount}</strong>` : `<strong style="color: royalblue;">${dealCount}</strong>`)
+            : (isExcludeDeal ? `Exclude: ${dealStr}` : dealStr);
+
+        return { dealStr, deal: text };
     }
 
     return props.gridData && (
@@ -89,8 +120,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData });
+function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData, dealList }) {
+    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData, dealList });
 }
 
 function mapDispatchToProps(dispatch) {

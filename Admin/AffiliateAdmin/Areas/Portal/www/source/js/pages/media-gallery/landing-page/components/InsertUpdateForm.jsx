@@ -1,14 +1,17 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import BlockTargetCountryFormGroup from '../../../common/components/BlockTargetCountryFormGroup';
-
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback } from 'reactstrap';
+
+import BlockTargetCountryFormGroup from '../../../common/components/BlockTargetCountryFormGroup';
+import MultipleSelect from '../../../../components/multiple-select';
+
 import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryListByLandingPage } from '../actions/index';
-import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
+import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength, filterDealMode } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
 import { getBlockTargetCountryList, checkBlockAllTargetCountries } from '../../../common/modules/utils/targetcountry';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
 export class InsertUpdateForm extends PureComponent {
     constructor(props) {
@@ -40,35 +43,71 @@ export class InsertUpdateForm extends PureComponent {
         if (pageId === 0) {
             const visibleTargetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
-            this.setState({ isInsert: true, selectedLandingPage: { pageName: '', pageCode: '', blockTargetCountry: '' }, targetCountryList: visibleTargetCountryList });
+            this.setState({
+                isInsert: true,
+                selectedLandingPage:
+                {
+                    pageName: '',
+                    pageCode: '',
+                    blockTargetCountry: '',
+                    isMobile: false,
+                    isExcluded: filterDealMode.Exclude,
+                    dealIds: ''
+                },
+                dealList: this.props.dealList,
+                targetCountryList: visibleTargetCountryList
+            });
         } else {
             const landingPage = await this.props.getLandingPageDetail(pageId);
 
             if (landingPage) {
                 const pageName = htmlDecode(landingPage.PageName);
                 const pageCode = htmlDecode(landingPage.PageCode);
+                const dealIds = htmlDecode(landingPage.DealIds);
+                const isMobile = landingPage.IsMobile;
+                const isExcluded = landingPage.IsExcluded;
 
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
+                const newDealList = handleChangeMultipleSelected(this.props.dealList, dealIds);
 
-                if (targetCountryList && targetCountryList.length) {
+                const selectedLandingPage = {
+                    pageName,
+                    pageCode,
+                    isMobile,
+                    isExcluded,
+                    dealIds,
+                    blockTargetCountry: ''
+                };
+
+                const newState = {
+                    isInsert: false,
+                    selectedLandingPage,
+                    dealList: newDealList
+                };
+
+                if (targetCountryList?.length) {
                     const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
                     const isBlockAllTargetCountries = checkBlockAllTargetCountries(targetCountryList, blockTargetCountryList);
 
-                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: blockTargetCountryList.join(',') }, targetCountryList, isBlockAllTargetCountries });
-                } else {
-                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: '' } });
+                    newState.selectedLandingPage.blockTargetCountry = blockTargetCountryList.join(',');
+                    newState.targetCountryList = targetCountryList;
+                    newState.isBlockAllTargetCountries = isBlockAllTargetCountries;
                 }
+
+                this.setState(newState);
             }
+
         }
 
         this.props.toggleLoader(false);
     }
 
     _handleChange = (event) => {
-        const { name, value } = event.target;
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
 
         const { selectedLandingPage } = this.state;
-        const newPage = Object.assign({}, selectedLandingPage, { [name]: value });
+        const newPage = Object.assign({}, selectedLandingPage, { [target.name]: value });
 
         this.setState({ selectedLandingPage: newPage });
     }
@@ -78,6 +117,27 @@ export class InsertUpdateForm extends PureComponent {
         const newPage = Object.assign({}, selectedLandingPage, { blockTargetCountry });
 
         this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList, isBlockAllTargetCountries });
+    }
+
+    _handleChangeFilterDealMode = (event) => {
+        const { value } = event.target;
+        this.setState({
+            selectedLandingPage: {
+                ...this.state.selectedLandingPage,
+                isExcluded: Number(value),
+                dealIds: ''
+            },
+            dealList: handleChangeMultipleSelected(this.state.dealList, '')
+        });
+    }
+
+    _handleChangeDeals = (item, selectedDeals) => {
+        const isAllDeals = selectedDeals.split(',').length === this.props.dealList.length;
+
+        this.setState({
+            selectedLandingPage: { ...this.state.selectedLandingPage, dealIds: isAllDeals ? '0' : selectedDeals },
+            dealList: handleChangeMultipleSelected(this.state.dealList, selectedDeals)
+        });
     }
 
     _validatePageCode() {
@@ -123,16 +183,33 @@ export class InsertUpdateForm extends PureComponent {
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
             const landingPageInfo = Object.assign({}, { pageId: selectedLandingPageId, ...selectedLandingPage });
 
-            const result = isInsert ? await this.props.insertLandingPage(landingPageInfo) : await this.props.updateLandingPage(landingPageInfo);
-
-            if (result) {
-                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+            const validateMessage = this._validateSelectedDealsByMode(selectedLandingPage.isExcluded, selectedLandingPage.dealIds);
+            if (validateMessage) {
+                this._handleShowAlert(false, validateMessage);
             } else {
-                this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+                const result = isInsert ? await this.props.insertLandingPage(landingPageInfo) : await this.props.updateLandingPage(landingPageInfo);
+
+                if (result) {
+                    this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+                } else {
+                    this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
+                }
             }
         }
 
         this.props.toggleLoader(false);
+    }
+
+    _validateSelectedDealsByMode = (isExcludeDeal, selectedDeals) => {
+        if (isExcludeDeal === filterDealMode.Exclude && selectedDeals === '0') {
+            return 'Selecting all options is not allowed. Please unselect at least one.';
+        }
+
+        if (isExcludeDeal === filterDealMode.Include && selectedDeals === '') {
+            return 'Please select at least one deal.';
+        }
+
+        return '';
     }
 
     _handleKeyPress = (event, isValid) => {
@@ -168,14 +245,14 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isBlockAllTargetCountries } = this.state;
+        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isBlockAllTargetCountries, dealList } = this.state;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
         const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
         const isShowPopup = this.props.selectedLandingPageId !== null;
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
 
-        return (
+        return targetCountryList && dealList && (
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 550 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
@@ -203,6 +280,38 @@ export class InsertUpdateForm extends PureComponent {
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Label sm={4}>Deal</Label>
+                                    <Col sm={3}>
+                                        <Input type="select" name="isExcluded" className='mt-1' value={Number(selectedLandingPage.isExcluded)} onChange={this._handleChangeFilterDealMode}>
+                                            {
+                                                Object.keys(filterDealMode).map(key => {
+                                                    return (<option key={`isExcluded-${filterDealMode[key]}`} value={filterDealMode[key]}>{key}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                    <Col sm={5} >
+                                        <div className='mt-1'>
+                                            <MultipleSelect
+                                                dataSource={dealList}
+                                                keyField="key"
+                                                valueField="name"
+                                                statusField="checked"
+                                                noneSelectedLabel="None"
+                                                selectedAllLabel="All Deals"
+                                                hasInputOption={true}
+                                                onChange={this._handleChangeDeals} />
+                                        </div>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Col sm={4}></Col>
+                                    <Label sm={4} className="d-flex mt-1">
+                                        <input type="checkbox" name="isMobile" checked={selectedLandingPage.isMobile} onChange={this._handleChange} />
+                                        <span className='ml-2'>Is Mobile Only</span>
+                                    </Label>
+                                </FormGroup>
                                 {
                                     targetCountryList && <BlockTargetCountryFormGroup
                                         sm={4}
@@ -223,8 +332,8 @@ export class InsertUpdateForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedLandingPageId }) {
-    return Object.assign({}, { selectedLandingPageId });
+function mapStateToProps({ selectedLandingPageId, dealList }) {
+    return Object.assign({}, { selectedLandingPageId, dealList });
 }
 
 function mapDispatchToProps(dispatch) {

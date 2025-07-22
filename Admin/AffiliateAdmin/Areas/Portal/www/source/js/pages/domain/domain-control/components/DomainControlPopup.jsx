@@ -1,11 +1,14 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainControlById, getTargetCountryListByDomains } from '../actions/index';
+
 import Select from '../../../../components/select';
-import { defaultState } from '../libs/constants';
+import MultipleSelect from '../../../../components/multiple-select';
+
+import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainControlById, getTargetCountryListByDomains } from '../actions/index';
+import { defaultState, filterDealMode } from '../libs/constants';
+import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
 export class DomainControlPopup extends PureComponent {
     constructor(props) {
@@ -23,7 +26,7 @@ export class DomainControlPopup extends PureComponent {
 
     _handleUpdateState = async (selectedDomainId) => {
         if (selectedDomainId === 0) {
-            const { affDomainList, redirectDomainList } = this.props;
+            const { affDomainList, redirectDomainList, dealList } = this.props;
 
             if ((affDomainList && affDomainList.length) && (redirectDomainList && redirectDomainList.length)) {
                 const affDomainId = affDomainList[0].DomainId;
@@ -32,19 +35,47 @@ export class DomainControlPopup extends PureComponent {
                 const targetCountryListByDomains = await this.props.getTargetCountryListByDomains({ affDomainId, redirectDomainId });
                 const targetCountryCode = targetCountryListByDomains ? targetCountryListByDomains[0].TargetCountryCode : "";
 
-                this.setState({ isInsert: true, selectedDomain: { domainControlId: selectedDomainId, affDomainId, redirectDomainId, targetCountryCode, isUsed: true }, targetCountryListByDomains });
+                this.setState({
+                    isInsert: true,
+                    selectedDomain: {
+                        domainControlId: selectedDomainId,
+                        affDomainId,
+                        redirectDomainId,
+                        targetCountryCode,
+                        isUsed: true,
+                        isExcluded: filterDealMode.Exclude,
+                        dealIds: '',
+                        isMobile: false
+                    },
+                    targetCountryListByDomains,
+                    dealList
+                });
             }
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getDomainControlById(selectedDomainId);
 
             if (domain) {
-                const { AffDomainId, RedirectDomainId, TargetCountryCode, IsUsed } = domain;
+                const { AffDomainId, RedirectDomainId, TargetCountryCode, IsUsed, IsExcluded, DealIds, IsMobile } = domain;
                 const domainIds = { affDomainId: AffDomainId, redirectDomainId: RedirectDomainId };
                 const targetCountryListByDomains = await this.props.getTargetCountryListByDomains(domainIds);
                 const targetCountryCode = this._handleGetAvailableCountryCode(TargetCountryCode, targetCountryListByDomains);
+                const newDealList = handleChangeMultipleSelected(this.props.dealList, DealIds);
 
-                this.setState({ isInsert: false, selectedDomain: { domainControlId: selectedDomainId, ...domainIds, targetCountryCode, isUsed: IsUsed }, targetCountryListByDomains });
+                this.setState({
+                    isInsert: false,
+                    selectedDomain: {
+                        domainControlId: selectedDomainId,
+                        ...domainIds,
+                        targetCountryCode,
+                        isUsed: IsUsed,
+                        isExcluded: IsExcluded,
+                        dealIds: DealIds,
+                        isMobile: IsMobile
+                    },
+                    targetCountryListByDomains,
+                    dealList: newDealList
+                });
             } else {
                 this.props.setSelectedDomainId(null);
             }
@@ -94,22 +125,60 @@ export class DomainControlPopup extends PureComponent {
         this.props.toggleLoader(false);
     }
 
+    _handleChangeFilterDealMode = (event) => {
+        const { value } = event.target;
+        this.setState({
+            selectedDomain: {
+                ...this.state.selectedDomain,
+                isExcluded: Number(value),
+                dealIds: ''
+            },
+            dealList: handleChangeMultipleSelected(this.state.dealList, '')
+        });
+    }
+
+    _handleChangeDeals = (item, selectedDeals) => {
+        const isAllDeals = selectedDeals.split(',').length === this.props.dealList.length;
+        this.setState({
+            selectedDomain: { ...this.state.selectedDomain, dealIds: isAllDeals ? '0' : selectedDeals },
+            dealList: handleChangeMultipleSelected(this.state.dealList, selectedDeals)
+        });
+    }
+
     _handleSubmit = async () => {
         this.props.toggleLoader(true);
 
         const { isInsert, selectedDomain } = this.state;
-        const message = isInsert ? "Add Successfully!" : "Update Successfully!";
 
-        const result = isInsert ? await this.props.insertDomain(selectedDomain) : await this.props.updateDomain(selectedDomain);
-
-        if (result) {
-            this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+        const validateMessage = this._validateSelectedDealsByMode(selectedDomain.isExcluded, selectedDomain.dealIds);
+        if (validateMessage) {
+            this._handleShowAlert(false, validateMessage);
         } else {
-            this._handleShowAlert(false, isInsert ? "Add Domain is failed!" : "Update Domain is failed!");
-        }
+            const message = isInsert ? "Add Successfully!" : "Update Successfully!";
 
+            const result = isInsert ? await this.props.insertDomain(selectedDomain) : await this.props.updateDomain(selectedDomain);
+
+            if (result) {
+                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+            } else {
+                this._handleShowAlert(false, isInsert ? "Add Domain is failed!" : "Update Domain is failed!");
+            }
+        }
         this.props.toggleLoader(false);
     }
+
+    _validateSelectedDealsByMode = (isExcluded, selectedDeals) => {
+        if (isExcluded === filterDealMode.Exclude && selectedDeals === '0') {
+            return 'Selecting all options is not allowed. Please unselect at least one.';
+        }
+
+        if (isExcluded === filterDealMode.Include && selectedDeals === '') {
+            return 'Please select at least one deal.';
+        }
+
+        return '';
+    }
+
 
     _handleShowAlert = (isSuccess, message) => {
         this.setState({
@@ -137,7 +206,7 @@ export class DomainControlPopup extends PureComponent {
 
     render() {
         const { selectedDomainId, affDomainList, redirectDomainList } = this.props;
-        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, targetCountryListByDomains } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, targetCountryListByDomains, dealList } = this.state;
         const isShowPopup = selectedDomainId !== null;
         const isDisabled = targetCountryListByDomains == null;
         const title = isInsert ? "Add New Domain Control" : "Edit Domain Control";
@@ -200,10 +269,40 @@ export class DomainControlPopup extends PureComponent {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="align-items-center mb-2">
-                                    <Label sm={4}>Status</Label>
-                                    <Col sm={8}>
-                                        <input type="checkbox" name="isUsed" checked={selectedDomain.isUsed} onChange={this._handleChange} />
+                                    <Label sm={4}>Deal</Label>
+                                    <Col sm={3}>
+                                        <Input type="select" name="isExcluded" className='mt-1' value={Number(selectedDomain.isExcluded)} onChange={this._handleChangeFilterDealMode}>
+                                            {
+                                                Object.keys(filterDealMode).map(key => {
+                                                    return (<option key={`isExcluded-${filterDealMode[key]}`} value={filterDealMode[key]}>{key}</option>)
+                                                })
+                                            }
+                                        </Input>
                                     </Col>
+                                    <Col sm={5} >
+                                        <div className='mt-1'>
+                                            <MultipleSelect
+                                                dataSource={dealList}
+                                                keyField="key"
+                                                valueField="name"
+                                                statusField="checked"
+                                                noneSelectedLabel="None"
+                                                selectedAllLabel="All Deals"
+                                                hasInputOption={true}
+                                                onChange={this._handleChangeDeals} />
+                                        </div>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Col sm={4}></Col>
+                                    <Label sm={3} className="d-flex mt-1">
+                                        <input type="checkbox" name="isUsed" checked={selectedDomain.isUsed} onChange={this._handleChange} />
+                                        <span className='ml-2'>Is Active</span>
+                                    </Label>
+                                    <Label sm={4} className="d-flex mt-1">
+                                        <input type="checkbox" name="isMobile" checked={selectedDomain.isMobile} onChange={this._handleChange} />
+                                        <span className='ml-2'>Is Mobile Only</span>
+                                    </Label>
                                 </FormGroup>
                             </Form>
 
@@ -217,8 +316,8 @@ export class DomainControlPopup extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedDomainId, selectedTargetCountry, targetCountryList, affDomainList, redirectDomainList, affSubDomainList }) {
-    return Object.assign({}, { selectedDomainId, selectedTargetCountry, targetCountryList, affDomainList, redirectDomainList, affSubDomainList });
+function mapStateToProps({ selectedDomainId, selectedTargetCountry, targetCountryList, affDomainList, redirectDomainList, affSubDomainList, dealList }) {
+    return Object.assign({}, { selectedDomainId, selectedTargetCountry, targetCountryList, affDomainList, redirectDomainList, affSubDomainList, dealList });
 }
 
 function mapDispatchToProps(dispatch) {
