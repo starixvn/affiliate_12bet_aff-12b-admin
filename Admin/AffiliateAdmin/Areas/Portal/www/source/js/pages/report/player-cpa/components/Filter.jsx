@@ -8,11 +8,10 @@ import Field from '../../../../components/Field';
 import { globalResource } from '../../../../modules/globalResource';
 import { minDate } from '../../../../modules/constants';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { toggleLoader } from '../../../../actions/loaderAction';
 import { statusOptions, viewByOptions, MAX_MONTH_DIFF, DATE_FORMAT, defaultParams } from '../libs/constants';
 import moment from 'moment';
 
-const Filter = ({ params, setParams, toggleSubmit, toggleLoader }) => {
+const Filter = ({ params, setParams, toggleSubmit }) => {
     const [maxToDate, setMaxToDate] = useState(defaultParams.toDate);
     const handleChange = (e) => {
         setParams({
@@ -24,22 +23,23 @@ const Filter = ({ params, setParams, toggleSubmit, toggleLoader }) => {
         const selectedDate = moment(date);
         if (key === 'fromDate') {
             const fromDate = selectedDate.clone();
-            setParams({
-                ...params,
-                fromDate: fromDate.format(DATE_FORMAT),
-            });
-
             const newMaxToDate = fromDate.clone().add(MAX_MONTH_DIFF, 'month').endOf('month');
             const currentLastMonth = moment().endOf('month');
+
             if(newMaxToDate < currentLastMonth) {
                 setMaxToDate(newMaxToDate);
                 setParams({
                     ...params,
-                    toDate: moment({ year: newMaxToDate.year(), month: newMaxToDate.month(), day: fromDate.date() }).format(DATE_FORMAT)
+                    toDate: moment({ year: newMaxToDate.year(), month: newMaxToDate.month(), day: fromDate.date() }).format(DATE_FORMAT),
+                    fromDate: fromDate.format(DATE_FORMAT),
                 })
             }
             else {
                 setMaxToDate(currentLastMonth);
+                setParams({
+                    ...params,
+                    fromDate: fromDate.format(DATE_FORMAT),
+                });
             }
         } else {
             setParams({
@@ -94,7 +94,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParams, toggleSubmit, toggleLoader }, dispatch);
+    return bindActionCreators({ setReportTitle, setParams, toggleSubmit }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
