@@ -14,7 +14,6 @@
     using DTO.UserPanel.MediaGallery;
     using Enum;
     using Extensions;
-    using Fanex.Affiliate.User.Core.Criterias.Marketing;
     using MetalModels;
     using MetalModels.UserPanel;
     using Resources;
@@ -129,18 +128,9 @@
         {
             if (isMember)
             {
-                var IsAffOfNoCommissionCPAGroup = StatisticsHelper.IsAffOfNoCommissionCPAGroup(_appSetting, param.CommGroupName);
-
-                if (IsAffOfNoCommissionCPAGroup)
-                {
-                    var specificDomainList = FetchTData<MappingDomainInfo>(new GetAvailableSpecificDomainCriteria(param.AffUsername, param.IsInternal));
-
-                    return StatisticsHelper.GetCustomAvailableDomainList(_appSetting, specificDomainList, param.AffId, param.CommGroupName);
-                }
-
                 var domainList = FetchTData<MappingDomainInfo>(new GetAffDomainListCriteria(param.AffId, param.TargetCountryCode, param.IsInternal));
 
-                return StatisticsHelper.GetCustomAvailableDomainList(_appSetting, domainList, param.AffId, param.CommGroupName);
+                return StatisticsHelper.GetCustomAvailableDomainList(domainList, param.AffId);
             }    
 
             return FetchTData<Domain>(new GetSubAffDomainListCriteria(param.IsInternal));
@@ -185,10 +175,10 @@
         public IEnumerable<LandingPage> GetLandingPageList(LandingPageParam param)
         {
             var isTargetToMember = param.LinkType == AffiliateLinkType.AffiliateLink;
-            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(param.IsInternal, param.TargetCountryCode ?? string.Empty));
+            var landingPages = FetchTData<LandingPage>(new GetLandingPageListCriteria(param.IsInternal, param.TargetCountryCode ?? string.Empty, param.IsMobile, param.AffId));
 
             return isTargetToMember
-                ? StatisticsHelper.GetFilteredLandingPageList(_appSetting, landingPages, param.IsSelectedMobileDomain, param.IsUsingInStatistics)
+                ? landingPages
                 : GetSubAffLandingPages();
         }
 

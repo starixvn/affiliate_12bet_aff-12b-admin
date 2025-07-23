@@ -70,8 +70,8 @@
             MarketingFilterParam param,
             bool isDefaultLoading = false)
         {
-            var userSession = SessionService.UserSession;
             var isInternal = SessionService.IsInternal;
+            var affId = SessionService.UserSession.AffId;
 
             var targetCountries = isDefaultLoading
                 ? SystemService.GetSystemTargetCountries()
@@ -96,8 +96,8 @@
             
             var pages = MarketingService.GetLandingPageList(new LandingPageParam
             {
-                CommGroupName = userSession.GroupName,
-                IsSelectedMobileDomain = selectedDomain?.IsUsingForMobile ?? false,
+                AffId = affId,
+                IsMobile = selectedDomain?.IsMobile ?? false,
                 IsInternal = isInternal,
                 LinkType = param.TargetId,
                 TargetCountryCode = param.TargetCountryCode
@@ -212,7 +212,6 @@
                 AffId = userSession.AffId,
                 AffUsername = userSession.UserName,
                 LinkType = linkType,
-                CommGroupName = userSession.GroupName,
                 IsInternal = isInternal
             };
 

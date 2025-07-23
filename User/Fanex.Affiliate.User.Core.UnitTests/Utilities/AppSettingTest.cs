@@ -273,30 +273,6 @@
         }
 
         [Fact]
-        public void MarketingForCommGroups_ShouldReturnCorrectValues()
-        {
-            SetUpAppSettings(new Dictionary<string, string>
-            {
-                { "MarketingForCommGroups", "Group1,Group2" }
-            });
-            var result = _appSetting.MarketingForCommGroups;
-            Assert.Contains("Group1", result);
-            Assert.Contains("Group2", result);
-        }
-
-        [Fact]
-        public void MarketingPageCodeRegexPatterns_ShouldReturnCorrectValues()
-        {
-            SetUpAppSettings(new Dictionary<string, string>
-            {
-                { "MarketingPageCodeRegexPatterns", "Page1,Page2" }
-            });
-            var result = _appSetting.MarketingPageCodeRegexPatterns;
-            Assert.Contains("Page1", result);
-            Assert.Contains("Page2", result);
-        }
-
-        [Fact]
         public void MemberSiteApiUrl_ShouldReturnCorrectValue()
         {
             SetUpAppSettings(new Dictionary<string, string>
