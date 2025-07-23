@@ -14,7 +14,7 @@
 
         public string CustUserName { get; set; }
 
-        public DateTime RegisteredDate { get; set; }
+        public DateTime? RegisteredDate { get; set; }
 
         public int GroupId { get; set; }
 
@@ -24,7 +24,7 @@
 
         public string ScheduleName { get; set; }
 
-        public int? FTD { get; set; }
+        public decimal? FTD { get; set; }
 
         public decimal TotalDeposit { get; set; }
 
@@ -40,21 +40,23 @@
 
         public int HoldingTickets { get; set; }
 
-        public DateTime HQD { get; set; }
+        public DateTime? HQD { get; set; }
 
-        public DateTime HED { get; set; }
+        public DateTime? HED { get; set; }
 
-        public decimal EstimatedCPAAmount { get; set; }
+        public decimal? EstimatedCPAAmount { get; set; }
 
-        public decimal ApprovedCPAAmount { get; set; }
+        public decimal? ApprovedCPAAmount { get; set; }
 
         public string CPAStatus { get; set; }
 
-        public DateTime CPADate { get; set; }
+        public DateTime? CPADate { get; set; }
 
         public bool IsAbnormal { get; set; }
 
         public string Description { get; set; }
+
+        public string BetTicket => $"{HoldingBetTickets}/{HoldingTickets}";
 
     }
 }

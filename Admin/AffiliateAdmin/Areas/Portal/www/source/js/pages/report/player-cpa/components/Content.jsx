@@ -5,10 +5,25 @@ import { toggleSubmit } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import ReportTitle from '../../../../components/ReportTitle';
 import GridData from './GridData';
+import ExportExcel from '../libs/exportExcel';
+import { getPlayerCpaData } from '../libs/service';
+import { headerRows } from '../libs/constants';
 
 const Title = ({ reportTitle, params, toggleLoader}) => {
 
     const handleExportExcel = async () => {
+        toggleLoader(true);
+        try{
+            const data = await getPlayerCpaData(params, true);
+            const exportExcel = new ExportExcel(data, reportTitle, headerRows);
+            exportExcel.export();
+        }
+        catch(err){
+            console.log('err', err);
+        }
+        finally{
+            toggleLoader(false);
+        }
     }
 
     return (

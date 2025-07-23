@@ -5,10 +5,11 @@ import moment from 'moment';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setMemberCpaId } from '../../actions';
+import { DATE_FORMAT, InvalidDate } from '../../libs/constants';
 
 const RowData = ({ data, rowNumber, setMemberCpaId }) => {
     const showDate = (date) => {
-        return moment(date).format('MM/DD/YYYY');
+        return moment(date).format(DATE_FORMAT)
     }
 
     const showNumber = (number) => {
@@ -31,7 +32,7 @@ const RowData = ({ data, rowNumber, setMemberCpaId }) => {
                 {data.custUserName}
             </td>
             <td className="text-center">
-                {showDate(data.registeredDate)}
+                {data.registeredDate}
             </td>
             <td className="text-left">
                 <a target='_blank' href='#'>{data.dealName}</a>
@@ -43,7 +44,7 @@ const RowData = ({ data, rowNumber, setMemberCpaId }) => {
                 {data.ftd}
             </td>
             <td className="text-right">
-                {showNumber(data.totalDeposit)}
+                {data.totalDeposit}
             </td>
             <td className="text-center">
                 {
@@ -57,7 +58,7 @@ const RowData = ({ data, rowNumber, setMemberCpaId }) => {
                 }
             </td>
             <td className="text-center">
-                {showDate(data.aqd)}
+                {data.aqd}
             </td>
             <td className="text-right">
                 {
@@ -66,24 +67,24 @@ const RowData = ({ data, rowNumber, setMemberCpaId }) => {
                             className="p-0" 
                             color="link" 
                             onClick={handleClickTO}>
-                            <span>{showNumber(data.cpaAmount)}</span>
-                        </Button> : showNumber(data.cpaAmount)
+                            <span>{data.cpaAmount}</span>
+                        </Button> : data.cpaAmount
                 }
             </td>
             <td className="text-center">
-                {data.holdingTickets}/{data.holdingBetTickets}
+                {data.betTicket}
             </td>
             <td className="text-center">
-                {showDate(data.hqd)}
+                {data.hqd}
             </td>
             <td className="text-center">
-                {showDate(data.hed)}
+                {data.hed}
             </td>
             <td className="text-right">
-                {showNumber(data.estimatedCPAAmount)}
+                {data.estimatedCPAAmount}
             </td>
             <td className="text-right">
-                {showNumber(data.approvedCPAAmount)}
+                {data.approvedCPAAmount}
             </td>
             <td className="text-center">
                 {data.cpaStatus}
@@ -92,7 +93,7 @@ const RowData = ({ data, rowNumber, setMemberCpaId }) => {
                 }
             </td>
             <td className="text-center">
-                {showDate(data.approvalDate)}
+                {data.cpaDate}
             </td>
         </tr>
     )

@@ -11,6 +11,7 @@ const reportName = 'PLAYER CPA REPORT'
 export default function usePlayerCpaData(isSubmit, params, pagingOption, memberCpaId, dispatch) {
     const [playerCpaData, setPlayerCpaData] = useState(null)
     const [turnoverDetail, setTurnoverDetail] = useState(null)
+    
     useEffect(() => {
         if (isSubmit) {
             dispatch(toggleLoader(true))
@@ -48,12 +49,11 @@ export default function usePlayerCpaData(isSubmit, params, pagingOption, memberC
 
     const getTitle = () => {
         let title = reportName;
-        if(params.status){
-            title += ` - Status ${statusOptions[params.status].label}`;
-        }
-        if(params.viewBy) {
-            title += ` - View By ${viewByOptions[+params.viewBy - 1].label}`;
-        }
+            
+        title += ` - Status ${statusOptions.find(option => option.value == params.statusId)?.label}`;
+
+        title += ` - View By ${viewByOptions[+params.viewBy - 1].label}`;
+
         title += ` - From ${moment(params.fromDate).format(DATE_FORMAT)} - To ${moment(params.toDate).format(DATE_FORMAT)}`;
         
         return title;
