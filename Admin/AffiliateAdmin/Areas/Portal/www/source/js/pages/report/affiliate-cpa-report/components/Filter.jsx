@@ -37,14 +37,25 @@ const Filter = ({ setParams, params, toggleSubmit }) => {
 
         if (field === 'fromDate') {
             const fromDate = selectedDate.clone().startOf('month');
-            setParams({
-                ...params,
-                fromDate: fromDate.format(DATE_FORMAT),
-                toDate: fromDate.endOf('month').format(DATE_FORMAT)
-            });
-
             const maxToDateAllowed = fromDate.clone().add(MAX_MONTH_DIFF, 'month').endOf('month');
-            setMaxToDate(moment.min(maxToDateAllowed, moment().endOf('month')));
+            const currentLastMonth = moment().endOf('month');
+            
+            if(maxToDateAllowed < currentLastMonth) {
+                setMaxToDate(maxToDateAllowed);
+                setParams({
+                    ...params,
+                    fromDate: fromDate.format(DATE_FORMAT),
+                    toDate: fromDate.endOf('month').format(DATE_FORMAT)
+                });
+            }
+            else {
+                setMaxToDate(currentLastMonth);
+                setParams({
+                    ...params,
+                    fromDate: fromDate.format(DATE_FORMAT),
+                });
+    
+            }
         } else {
             setParams({
                 ...params,

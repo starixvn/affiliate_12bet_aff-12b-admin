@@ -2,7 +2,7 @@ import { getFirstDayOfMonth, getLastDayOfThisMonth } from "../../../../modules/u
 
 export const reportName = 'AFFILIATE CPA REPORT';
 
-export const MAX_MONTH_DIFF = 6;
+export const MAX_MONTH_DIFF = 5;
 
 export const DATE_FORMAT = 'MM/DD/YYYY';
 

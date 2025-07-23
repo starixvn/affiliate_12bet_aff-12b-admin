@@ -27,7 +27,7 @@
 
         public override bool IsValid()
         {
-            return (ToDate.Year - FromDate.Year) * Twelve + ToDate.Month- FromDate.Month <= RangeMonth;
+            return (ToDate.Year - FromDate.Year) * Twelve + ToDate.Month - FromDate.Month <= RangeMonth;
         }
     }
 }

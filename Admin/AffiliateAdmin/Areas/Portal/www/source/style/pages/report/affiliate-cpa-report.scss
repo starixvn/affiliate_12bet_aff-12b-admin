@@ -103,8 +103,9 @@ $outline: 0.5px solid #cccccc;
                 z-index: 9;
                 bottom: 0px;
                 position: sticky;
-                background-color: rgb(251, 229, 214);
-
+                background-color: #ffc4a8;
+                padding: 5px;
+            
                 &-0 {
                     left: $left0;
                 }
