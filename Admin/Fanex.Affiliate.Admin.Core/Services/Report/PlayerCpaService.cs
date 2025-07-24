@@ -97,10 +97,14 @@
                 return result;
             }
 
+            var sortColumns = request.SortColumn
+                .Split(',')
+                .ToDictionary(item => item, (e) => request.IsAscending);
+
             return new EntityResult<PlayerCpaReport>
             {
                 MainData = result.MainData
-                    .SortBy(request.SortColumn, request.IsAscending)
+                    .SortBy(sortColumns)
                     .Paging(request.PageIndex, request.PageSize),
                 Total = result.Total,
                 TotalItem = result.TotalItem

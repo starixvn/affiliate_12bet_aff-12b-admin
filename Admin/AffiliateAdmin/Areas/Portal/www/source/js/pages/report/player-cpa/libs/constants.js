@@ -199,7 +199,7 @@ export const row2 =[
         title: headerText.BetTicket,
         width: 150,
         sortable: true,
-        sortColumn: "HoldingBetTickets",
+        sortColumn: "HoldingTickets,HoldingBetTickets",
         field: dataKey.BetTicket
     },
     {
