@@ -16,7 +16,7 @@ export const viewByOptions = [
     { value: '3', label: 'Approval Date' },
 ]
 
-export const MAX_MONTH_DIFF = 5;
+export const MAX_MONTH_DIFF = 6;
 
 export const DATE_FORMAT = 'MM/DD/YYYY';
 

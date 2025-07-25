@@ -12,7 +12,7 @@ import { statusOptions, viewByOptions, MAX_MONTH_DIFF, DATE_FORMAT, defaultParam
 import moment from 'moment';
 
 const Filter = ({ params, setParams, toggleSubmit }) => {
-    const [maxToDate, setMaxToDate] = useState(defaultParams.toDate);
+    const [maxToDate, setMaxToDate] = useState(moment(defaultParams.toDate));
     const handleChange = (e) => {
         setParams({
             [e.target.name]: e.target.value
@@ -23,24 +23,25 @@ const Filter = ({ params, setParams, toggleSubmit }) => {
         const selectedDate = moment(date);
         if (key === 'fromDate') {
             const fromDate = selectedDate.clone();
-            const newMaxToDate = fromDate.clone().add(MAX_MONTH_DIFF, 'month').endOf('month');
-            const currentLastMonth = moment().endOf('month');
+            const maxRange = fromDate.clone().add(MAX_MONTH_DIFF, 'month');
+            const currentToDate = moment(params.toDate);
 
-            if(newMaxToDate < currentLastMonth) {
-                setMaxToDate(newMaxToDate);
+            if(currentToDate.isAfter(fromDate) && currentToDate.isBefore(maxRange)) {
                 setParams({
                     ...params,
-                    toDate: moment({ year: newMaxToDate.year(), month: newMaxToDate.month(), day: fromDate.date() }).format(DATE_FORMAT),
                     fromDate: fromDate.format(DATE_FORMAT),
                 })
+    
             }
             else {
-                setMaxToDate(currentLastMonth);
                 setParams({
                     ...params,
                     fromDate: fromDate.format(DATE_FORMAT),
-                });
+                    toDate: fromDate.add(MAX_MONTH_DIFF, 'month').format(DATE_FORMAT),
+                })
             }
+
+            setMaxToDate(maxRange.endOf('month'));
         } else {
             setParams({
                 ...params,
@@ -74,7 +75,7 @@ const Filter = ({ params, setParams, toggleSubmit }) => {
                     <Label className="mr-sm-2">{globalResource.To}</Label>
                     <DatePicker 
                         minDate={params.fromDate} 
-                        maxDate={maxToDate} 
+                        maxDate={maxToDate.format(DATE_FORMAT)} 
                         date={params.toDate}
                         iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                         onChange={(date) => onChangeDate(date, 'toDate')} />
