@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Caching" Version="2.2.8" />
+    <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.5" />
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.6" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.7" />

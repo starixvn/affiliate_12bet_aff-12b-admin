@@ -1,4 +1,8 @@
+using System.Configuration;
+using System.Xml.Serialization;
+using Fanex.Caching.Redis;
 using Fanex.Data;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +19,17 @@ builder.Services.AddScoped<Fanex.Affiliate.Link.Services.Interface.IAffInfoServi
 builder.Services.AddScoped<Fanex.Affiliate.Link.Services.Interface.IMemoryCacheService, Fanex.Affiliate.Link.Services.Impl.MemoryCacheService>();
 builder.Services.AddScoped<Fanex.Affiliate.Link.Services.Interface.IUnderMaintenanceService, Fanex.Affiliate.Link.Services.Impl.UnderMaintenanceService>();
 
+
 // Configure configuration
 builder.Configuration
     .SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables();
+
+//var redis = ConnectionMultiplexer.Connect(
+//                builder.Configuration.GetSection("fanex.caching.redis:ConnectionOptions:EndPoints").Value);
+
+builder.Services.AddRedisCache(builder.Configuration.GetSection("fanex.caching.redis"));
 
 var app = builder.Build();
 
@@ -77,6 +87,8 @@ DbSettingProviderManager
     .StartNewSession()
     .Register(builder.Configuration)
     .Run();
+
+
 
 // Register Sentry logging
 Fanex.Affiliate.Link.LoggingConfig.RegisterSentry();

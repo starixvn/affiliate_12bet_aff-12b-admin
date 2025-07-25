@@ -2,7 +2,6 @@
 using Fanex.Caching;
 using Fanex.Caching.Memory;
 using Newtonsoft.Json;
-using System;
 
 namespace Fanex.Affiliate.Link.Services.Impl
 {
