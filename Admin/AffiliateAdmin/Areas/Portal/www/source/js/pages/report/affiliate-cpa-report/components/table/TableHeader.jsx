@@ -31,8 +31,8 @@ export const TableHeader = ({ sortType, sortDirectionType, setParams, toggleSubm
                                 {
                                     header.sortable && (
                                         <div className="icon-container">
-                                            <span className={`caret asc ${sortType === header.sortType && sortDirectionType ? "current" : ''}`}></span>
-                                            <span className={`caret desc ${sortType === header.sortType && !sortDirectionType ? "current" : ''}`}></span>
+                                            <span className={`caret asc ${sortType === header.sortType && !sortDirectionType ? "current" : ''}`}></span>
+                                            <span className={`caret desc ${sortType === header.sortType && sortDirectionType ? "current" : ''}`}></span>
                                         </div>
                                     )
                                 }
