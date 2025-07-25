@@ -38,4 +38,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.LOCAL.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
