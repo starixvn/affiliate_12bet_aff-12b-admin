@@ -3,7 +3,7 @@ using Fanex.Affiliate.Link.Helpers;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Fanex.Affiliate.Link.Extensions
 {
@@ -13,22 +13,17 @@ namespace Fanex.Affiliate.Link.Extensions
 
         public static string GetClientIP(this HttpRequest request)
         {
-            return GetClientIP(new HttpRequestWrapper(request));
-        }
-
-        public static string GetClientIP(this HttpRequestBase requestBase)
-        {
-            var xActualIP = requestBase.ServerVariables[HeaderKey.HTTP_X_ACTUAL_IP];
-            var xForwardedFor = !string.IsNullOrWhiteSpace(xActualIP) ? xActualIP : requestBase.ServerVariables[HeaderKey.HTTP_X_FORWARDED_FOR];
+            var xActualIP = request.Headers[HeaderKey.HTTP_X_ACTUAL_IP].ToString();
+            var xForwardedFor = !string.IsNullOrWhiteSpace(xActualIP) ? xActualIP : request.Headers[HeaderKey.HTTP_X_FORWARDED_FOR].ToString();
 
             var clientValidIP = GetValidIPAddress(xForwardedFor);
 
             if (string.IsNullOrWhiteSpace(clientValidIP))
             {
-                clientValidIP = requestBase.UserHostAddress;
+                clientValidIP = request.HttpContext.Connection.RemoteIpAddress?.ToString();
             }
 
-            return clientValidIP.Equals("::1") ? "127.0.0.1" : clientValidIP;
+            return clientValidIP?.Equals("::1") == true ? "127.0.0.1" : clientValidIP;
         }
 
         private static string GetValidIPAddress(string ips)

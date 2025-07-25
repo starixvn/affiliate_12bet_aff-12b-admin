@@ -3,7 +3,7 @@ using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Fanex.Affiliate.Link
 {
@@ -11,11 +11,17 @@ namespace Fanex.Affiliate.Link
     {
         public static void RegisterSentry()
         {
-            var appSetting = ConfigurationManager.AppSettings;
-            var env = appSetting.Get("Environment");
-            var backEndDsn = appSetting.Get("SentryBackEndDsn");
-            var category = appSetting.Get("LoggingCategory");
-            var isRegisterSentry = string.Equals(appSetting.Get("IsRegisterSentry"), "true", StringComparison.CurrentCultureIgnoreCase);
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .Build();
+
+            var env = configuration["AppSettings:Environment"];
+            var backEndDsn = configuration["AppSettings:SentryBackEndDsn"];
+            var category = configuration["AppSettings:LoggingCategory"];
+            var isRegisterSentry = string.Equals(configuration["AppSettings:IsRegisterSentry"], "true", StringComparison.CurrentCultureIgnoreCase);
 
             if (isRegisterSentry && !string.IsNullOrEmpty(backEndDsn))
             {

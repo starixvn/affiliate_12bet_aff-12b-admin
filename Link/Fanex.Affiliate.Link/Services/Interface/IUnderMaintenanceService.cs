@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Interface
 {
-    using ONEbook.UM.Models;
+    using Fanex.Affiliate.Link.Models;
 
     public interface IUnderMaintenanceService
     {

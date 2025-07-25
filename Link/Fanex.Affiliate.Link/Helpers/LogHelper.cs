@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace Fanex.Affiliate.Link.Helpers
 {
@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.Link.Helpers
     {
         private const int LimitedLevelOfInnerException = 3;
 
-        public static void WriteError(Exception exception, string additionalMessage = null)
+        public static void WriteError(Exception exception, string? additionalMessage = null)
         {
             var content = BuildMessage(exception);
             if (!string.IsNullOrWhiteSpace(additionalMessage))
@@ -28,19 +28,8 @@ namespace Fanex.Affiliate.Link.Helpers
 
         private static StringBuilder BuildMessage(Exception exception)
         {
-            var request = HttpContext.Current.Request;
             var builder = new StringBuilder().AppendLine($"Error Message: {exception.Message}").AppendLine();
             builder.AppendLine("REQUEST INFO")
-                   .AppendLine("Domain: " + request.Headers["Host"])
-                   .AppendLine("Form: " + string.Join("~", request.Form))
-                   .AppendLine("Url: " + request.RawUrl)
-                   .AppendLine("Referrer: " + request.UrlReferrer)
-                   .AppendLine("Query String: " + string.Join("~", request.QueryString))
-                   .AppendLine("Browser: " + request.Browser.Type)
-                   .AppendLine("BrowserVer: " + request.Browser.Version)
-                   .AppendLine("Agent: " + request.UserAgent)
-                   .AppendLine("IP Address: " + request.UserHostAddress)
-                   .AppendLine("Actual IP Address: " + request.GetClientIP())
                    .AppendLine($"Source:{exception.Source}")
                    .AppendLine($"TargetSite:{exception.TargetSite}");
 

@@ -1,6 +1,5 @@
-﻿using Fanex.Affiliate.Link.Services.Impl;
-using Fanex.Affiliate.Link.Services.Interface;
-using System.Web.Mvc;
+﻿using Fanex.Affiliate.Link.Services.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fanex.Affiliate.Link.Controllers
 {
@@ -11,9 +10,9 @@ namespace Fanex.Affiliate.Link.Controllers
 
         private readonly IUnderMaintenanceService _underMaintenanceService;
 
-        public UnderMaintenanceController()
+        public UnderMaintenanceController(IUnderMaintenanceService underMaintenanceService)
         {
-            _underMaintenanceService = new UnderMaintenanceService();
+            _underMaintenanceService = underMaintenanceService;
         }
 
         [HttpGet]
@@ -21,12 +20,14 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             var maintenanceInfo = _underMaintenanceService.GetUnderMaintenanceTime();
 
-            if (!maintenanceInfo.IsUnderMaintenanceTime)
+            if (!maintenanceInfo.IsUnderMaintenance)
             {
                 return RedirectToAction("PageNotFound", "Home");
             }
 
-            ViewBag.Result = string.Format(MsgFormat, maintenanceInfo.From, maintenanceInfo.To);
+            var fromTime = maintenanceInfo.StartTime?.ToString("yyyy-MM-dd HH:mm:ss") ?? "Unknown";
+            var toTime = maintenanceInfo.EndTime?.ToString("yyyy-MM-dd HH:mm:ss") ?? "Unknown";
+            ViewBag.Result = string.Format(MsgFormat, fromTime, toTime);
 
             return View();
         }
