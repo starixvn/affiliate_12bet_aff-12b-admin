@@ -1,9 +1,9 @@
 ﻿using Fanex.Logging;
-using Fanex.Logging.Sentry.RavenClient;
-using SharpRaven;
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using Fanex.Logging.Sentry;
+using Sentry;
 
 namespace Fanex.Affiliate.Link
 {
@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Link
                 {
                     new SentryLogging(new SentryEngineOptions
                     {
-                        Dsn = new Dsn(backEndDsn),
+                        Dsn = backEndDsn,
                         Environment = env
                     })
                 });

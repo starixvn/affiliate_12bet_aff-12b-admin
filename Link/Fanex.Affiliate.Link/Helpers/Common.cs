@@ -1,17 +1,11 @@
 ﻿namespace Fanex.Affiliate.Link.Helpers
 {
-    using Fanex.Affiliate.Link.Constants;
-    using Fanex.Affiliate.Link.DTOs;
-    using Newtonsoft.Json;
-    using SharpRaven.Data;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Web;
 
     /// <summary>
     /// Common class.
