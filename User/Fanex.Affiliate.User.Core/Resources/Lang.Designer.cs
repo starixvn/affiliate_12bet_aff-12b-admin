@@ -1385,6 +1385,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Channel Statistics.
+        /// </summary>
+        public static string ChannelStatistics {
+            get {
+                return ResourceManager.GetString("ChannelStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chile .
         /// </summary>
         public static string Chile {
@@ -2790,6 +2799,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generated Links.
+        /// </summary>
+        public static string GeneratedLinks {
+            get {
+                return ResourceManager.GetString("GeneratedLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate Link.
         /// </summary>
         public static string GenerateLink {
@@ -3641,24 +3659,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string March {
             get {
                 return ResourceManager.GetString("March", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Marketing Page.
-        /// </summary>
-        public static string MarketingPage {
-            get {
-                return ResourceManager.GetString("MarketingPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Marketing Page Statistics.
-        /// </summary>
-        public static string MarketLinkStatistics {
-            get {
-                return ResourceManager.GetString("MarketLinkStatistics", resourceCulture);
             }
         }
         

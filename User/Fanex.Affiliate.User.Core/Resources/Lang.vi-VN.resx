@@ -2432,8 +2432,8 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="UserNameClosed" xml:space="preserve">
     <value>Tài khoản thanh toán này đã bị đóng. Vui lòng kiểm tra lại.</value>
   </data>
-  <data name="MarketLinkStatistics" xml:space="preserve">
-    <value>Thống Kê Marketing</value>
+  <data name="ChannelStatistics" xml:space="preserve">
+    <value>Thống kê kênh</value>
   </data>
   <data name="PageName" xml:space="preserve">
     <value>Tên trang</value>
@@ -2465,8 +2465,8 @@ THANH TOÁN ỔN ĐỊNH</value>
   <data name="TrackingAndQrCode" xml:space="preserve">
     <value>Theo dõi đường dẫn &amp; mã QR</value>
   </data>
-  <data name="MarketingPage" xml:space="preserve">
-    <value>Trang tiếp thị</value>
+  <data name="GeneratedLinks" xml:space="preserve">
+    <value>Liên kết đã tạo</value>
   </data>
   <data name="EnterChannel" xml:space="preserve">
     <value>Vui lòng điền tên kênh:</value>

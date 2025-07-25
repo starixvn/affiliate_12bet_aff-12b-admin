@@ -2450,8 +2450,8 @@ PEMBAYARAN KONSISTEN</value>
   <data name="UserNameClosed" xml:space="preserve">
     <value>Akun pembayaran yang Anda masukkan telah ditutup. Harap periksa kembali.</value>
   </data>
-  <data name="MarketLinkStatistics" xml:space="preserve">
-    <value>Statistik Halaman Pemasaran</value>
+  <data name="ChannelStatistics" xml:space="preserve">
+    <value>Statistik Saluran</value>
   </data>
   <data name="PageName" xml:space="preserve">
     <value>Nama Halaman</value>
@@ -2474,8 +2474,8 @@ PEMBAYARAN KONSISTEN</value>
   <data name="TrackingAndQrCode" xml:space="preserve">
     <value>Tautan Pelacakan &amp; Kode QR</value>
   </data>
-  <data name="MarketingPage" xml:space="preserve">
-    <value>Halaman Pemasaran</value>
+  <data name="GeneratedLinks" xml:space="preserve">
+    <value>Tautan Tersedia</value>
   </data>
   <data name="EnterChannel" xml:space="preserve">
     <value>Harap masukkan Nama Saluran:</value>

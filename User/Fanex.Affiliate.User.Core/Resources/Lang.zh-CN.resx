@@ -2477,8 +2477,8 @@
   <data name="UserNameClosed" xml:space="preserve">
     <value>您输入的付款账户已关闭，请检查后再试一次。</value>
   </data>
-  <data name="MarketLinkStatistics" xml:space="preserve">
-    <value>营销页面统计</value>
+  <data name="ChannelStatistics" xml:space="preserve">
+    <value>渠道数据统计</value>
   </data>
   <data name="PageName" xml:space="preserve">
     <value>页面名称</value>
@@ -2501,8 +2501,8 @@
   <data name="TrackingAndQrCode" xml:space="preserve">
     <value>跟踪链接及二维码</value>
   </data>
-  <data name="MarketingPage" xml:space="preserve">
-    <value>营销页面</value>
+  <data name="GeneratedLinks" xml:space="preserve">
+    <value>生成的链接</value>
   </data>
   <data name="EnterChannel" xml:space="preserve">
     <value>请输入渠道名称：</value>
