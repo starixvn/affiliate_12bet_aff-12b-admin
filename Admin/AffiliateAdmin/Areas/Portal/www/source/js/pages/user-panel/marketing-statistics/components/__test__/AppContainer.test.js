@@ -24,7 +24,7 @@ describe('marketing statistics - components - AppContainer', () => {
 
         expect(subMenu).toHaveLength(1);
         expect(subMenu.props().subMenuList).toHaveLength(3);
-        expect(subMenu.props().subMenuList[2].title).toBe('Marketing Page');
+        expect(subMenu.props().subMenuList[2].title).toBe('Channels');
         expect(subMenu.props().subMenuList[2].isActive).toBe(true);
     });
 
