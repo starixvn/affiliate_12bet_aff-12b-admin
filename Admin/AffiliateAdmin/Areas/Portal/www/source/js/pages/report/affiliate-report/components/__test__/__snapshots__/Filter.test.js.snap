@@ -449,16 +449,16 @@ exports[`affiliate report - Filter  should render correctly when currentMainView
             Signup
           </option>
           <option
-            key="sortBy-FDM"
+            key="sortBy-FTD"
             value={6}
           >
-            FDM
+            FTD
           </option>
           <option
-            key="sortBy-FDM Amt"
+            key="sortBy-FTD Amt"
             value={7}
           >
-            FDM Amt
+            FTD Amt
           </option>
           <option
             key="sortBy-Active players"

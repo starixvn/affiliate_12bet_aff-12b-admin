@@ -7,10 +7,7 @@ describe('marketing statistics - components - Filter', () => {
     const defaultProps = {
         today: '2024-01-31',
         affId: 123,
-        languageCodeList: {
-            en: 'English',
-            vi: 'Vietnamese'
-        },
+        languageList: { 'en-US': 'English', 'zh-CN': 'Chinese' },
         setParam: jest.fn()
     };
 

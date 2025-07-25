@@ -6,9 +6,13 @@ import RowField from './RowField';
 
 export const Payment = (props) => {
     const { paymentInfo, setPaymentInfo, paymentMethods } = props;
+
+    const safePaymentInfo = paymentInfo || {};
+    const safePaymentMethods = paymentMethods || [];
+    
     const onChange = (e) => {
         setPaymentInfo({
-            ...paymentInfo,
+            ...safePaymentInfo,
             [e.target.name]: e.target.value
         });
     }
@@ -25,10 +29,10 @@ export const Payment = (props) => {
                             id="preferredPayment" 
                             name="preferredPayment" 
                             onChange={onChange} 
-                            value={paymentInfo.preferredPayment}
-                            disabled={!paymentMethods.length}
+                            value={safePaymentInfo.preferredPayment}
+                            disabled={!safePaymentMethods.length}
                         >
-                            {paymentMethods && paymentMethods.map(item => {
+                            {safePaymentMethods.map(item => {
                                 return (<option key={item.Key} value={item.Key}>{item.Value}</option>)
                             })}
                         </Input>
@@ -39,7 +43,7 @@ export const Payment = (props) => {
                     label="12Bet UserName"
                     labelProps={{ sm: 3 }}
                     name="playerUsername"
-                    value={paymentInfo.playerUsername} 
+                    value={safePaymentInfo.playerUsername} 
                     onChange={onChange}
                 />
             </Form>

@@ -29,7 +29,7 @@ export const getUserAccountInfo = (affId) => async (dispatch) => {
     const moreSiteUrls = data && data.MoreSiteUrls;
     const moreSiteUrlsList = !moreSiteUrls ? [] : moreSiteUrls.split(';');
     dispatch(setMoreSiteUrlsList(moreSiteUrlsList));
-    dispatch(setUserAccountInfo({ ...data, IsMarketingAccount: data.AffCategoryDesc === MARKETING_ACCOUNT_TYPE }));
+    dispatch(setUserAccountInfo({ ...data, IsMarketingAccount: data && data.AffCategoryDesc === MARKETING_ACCOUNT_TYPE }));
     dispatch(toggleLoaderUserPanel(false));
 }
 

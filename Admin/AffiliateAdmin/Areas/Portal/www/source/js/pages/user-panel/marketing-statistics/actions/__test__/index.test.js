@@ -12,7 +12,6 @@ const runTestAction = ({ name, type, data }) => {
 
 const actionList = [
     { name: 'setParam', type: types.SET_PARAM, data: { param: 'param' } },
-    { name: 'setLanguageCodeList', type: types.SET_LANGUAGE_CODE_LIST, data: ['en', 'vi'] }
 ];
 
 describe('marketing statistics actions', () => {

@@ -93,70 +93,28 @@ exports[`landing page statistics - components - Filter render correctly 1`] = `
           All
         </option>
         <option
-          key="language-ch"
-          value="ch"
+          key="language-0"
+          value="0"
         >
-          Chinese Traditional
+          <Component />
         </option>
         <option
-          key="language-cs"
-          value="cs"
+          key="language-1"
+          value="1"
         >
-          Chinese Simplified
+          <Component />
         </option>
         <option
-          key="language-en"
-          value="en"
+          key="language-2"
+          value="2"
         >
-          English
+          <Component />
         </option>
         <option
-          key="language-eneuro"
-          value="eneuro"
+          key="language-3"
+          value="3"
         >
-          English (Europe)
-        </option>
-        <option
-          key="language-es"
-          value="es"
-        >
-          Spanish
-        </option>
-        <option
-          key="language-hien"
-          value="hien"
-        >
-          English (India)
-        </option>
-        <option
-          key="language-id"
-          value="id"
-        >
-          Indonesian
-        </option>
-        <option
-          key="language-jp"
-          value="jp"
-        >
-          Japanese
-        </option>
-        <option
-          key="language-ko"
-          value="ko"
-        >
-          Korean
-        </option>
-        <option
-          key="language-th"
-          value="th"
-        >
-          Thai
-        </option>
-        <option
-          key="language-vn"
-          value="vn"
-        >
-          Vietnamese
+          <Component />
         </option>
       </Input>
     </FormGroup>

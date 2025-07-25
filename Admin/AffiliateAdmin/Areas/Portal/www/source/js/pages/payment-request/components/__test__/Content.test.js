@@ -120,7 +120,7 @@ describe('payment request - components - Content ', () => {
 
         const dataRow = shallow(<div>{wrapper.instance()._renderDataSection(gridData)}</div>);
 
-        dataRow.find('Button').at(0).simulate('click');
+        dataRow.find('a').at(0).simulate('click');
 
         expect(wrapper.instance().handleSetTransactionId).toHaveBeenCalledWith(1262276211);
     });

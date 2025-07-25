@@ -75,17 +75,17 @@ exports[`affiliate report - Content  12BET - should render correctly when curren
           SingleHeaderColumn {
             "key": "Fdm",
             "showable": true,
-            "text": "FDM",
+            "text": "FTD",
           },
           SingleHeaderColumn {
             "key": "Fdm_Amount",
             "showable": true,
-            "text": "FDM Amt",
+            "text": "FTD Amt",
           },
           SingleHeaderColumn {
             "key": "FDM_TotalDeposit",
             "showable": true,
-            "text": "FDM's Total Deposit",
+            "text": "FTD's Total Deposit",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -305,17 +305,17 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
           SingleHeaderColumn {
             "key": "Fdm",
             "showable": true,
-            "text": "FDM",
+            "text": "FTD",
           },
           SingleHeaderColumn {
             "key": "Fdm_Amount",
             "showable": true,
-            "text": "FDM Amt",
+            "text": "FTD Amt",
           },
           SingleHeaderColumn {
             "key": "FDM_TotalDeposit",
             "showable": true,
-            "text": "FDM's Total Deposit",
+            "text": "FTD's Total Deposit",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",
@@ -543,17 +543,17 @@ exports[`affiliate report - Content  should render correctly when currentViewLev
           SingleHeaderColumn {
             "key": "Fdm",
             "showable": true,
-            "text": "FDM",
+            "text": "FTD",
           },
           SingleHeaderColumn {
             "key": "Fdm_Amount",
             "showable": true,
-            "text": "FDM Amt",
+            "text": "FTD Amt",
           },
           SingleHeaderColumn {
             "key": "FDM_TotalDeposit",
             "showable": true,
-            "text": "FDM's Total Deposit",
+            "text": "FTD's Total Deposit",
           },
           SingleHeaderColumn {
             "key": "ActivePlayer",

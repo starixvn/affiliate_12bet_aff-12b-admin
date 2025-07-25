@@ -129,7 +129,7 @@ describe('affiliate info - Filter ', () => {
         const wrapper = shallow(<Filter {...defaultProps} />);
         wrapper.setState({ isSortAscending: true });
 
-        wrapper.find('Input[type="checkbox"]').simulate('change');
+        wrapper.find('Input[type="checkbox"]').at(0).simulate('change');
 
         expect(wrapper.state('isSortAscending')).toEqual(false);
     });
@@ -144,17 +144,18 @@ describe('affiliate info - Filter ', () => {
 
         const reportTitle = 'AFFILIATE REPORT - ALL REVENUE GROUPS - ALL TARGET COUNTRIES - ALL LANGUAGES - ALL STATUSES';
         const param = {
+            AffCategoryIds: '1',
             AffCode: '',
             AffPlayer: '',
+            Email: '',
             GroupIds: 'all',
             Language: '',
-            TargetCountryCode: '',
-            Status: '',
-            UserName: '',
-            Email: '',
-            SortBy: 1,
-            SortDirectionType: false,
-            ParentAffName: ''
+            "ParentAffName": "",
+            "SortBy": 1,
+            "SortDirectionType": false,
+            "Status": "",
+            "TargetCountryCode": "",
+            "UserName": "",
         }
         expect(props.setReportTitle).toHaveBeenCalledWith(reportTitle);
         expect(props.setParam).toHaveBeenCalledWith(param);

@@ -37,9 +37,15 @@ describe('customer - mainpage reducer', () => {
         isShowLoaderUserPanel: false,
         landingPageStatistics: {
             pageList: [],
-            pagingOption: defaultPagingOption,
+            selectedPage: null,
+            pagingOption: {
+                PageIndex: 1,
+                PageList: [10, 20, 50, 100, 200, 500],
+                PageSize: 20,
+                TotalItem: 0
+            },
             param: {},
-            selectedPage: null
+            shortCodeLanguageList: {}
         },
         languageList: null,
         leftPanel: {

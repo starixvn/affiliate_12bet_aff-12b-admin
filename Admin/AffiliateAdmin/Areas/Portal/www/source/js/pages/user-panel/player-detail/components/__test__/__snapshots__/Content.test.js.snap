@@ -310,14 +310,14 @@ exports[`players detail - components - Content render correctly 1`] = `
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
-          title="FDM Date"
+          title="FTD Date"
         />
         <UNDEFINED
           columnName="FirstDepositAmount"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
-          title="FDM Amt"
+          title="FTD Amt"
         />
         <UNDEFINED
           columnName="Turnover"
@@ -452,14 +452,14 @@ exports[`players detail - components - Content render correctly with have data i
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
-          title="FDM Date"
+          title="FTD Date"
         />
         <UNDEFINED
           columnName="FirstDepositAmount"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
-          title="FDM Amt"
+          title="FTD Amt"
         />
         <UNDEFINED
           columnName="Turnover"
@@ -883,14 +883,14 @@ exports[`players detail - components - Content render correctly with not selecte
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
-          title="FDM Date"
+          title="FTD Date"
         />
         <UNDEFINED
           columnName="FirstDepositAmount"
           handleClickHeader={[Function]}
           isSortAsc={false}
           sortingColumn="Turnover"
-          title="FDM Amt"
+          title="FTD Amt"
         />
         <UNDEFINED
           columnName="Turnover"

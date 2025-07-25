@@ -1,10 +1,11 @@
 ﻿import React from 'react';
 import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
-import useNewMarketingAccountData from '../../hooks/useNewMarketingAccountData';
 
 export const EmailFormat = (props) => {
 
     const { generalInfo, setGeneralInfo } = props;
+
+    const safeGeneralInfo = generalInfo || {};
 
     const _handleChange = (isTextFormat) => {
         setGeneralInfo(prevState => ({
@@ -21,12 +22,12 @@ export const EmailFormat = (props) => {
                     <Col sm={5}>
                         <FormGroup check className="d-inline-block mr-3">
                             <Label check>
-                                <Input name='mailOption' type="radio" checked={generalInfo.mailOption} onChange={() => _handleChange(true)} />{' '} Plain Text Format
+                                <Input name='mailOption' type="radio" checked={!!safeGeneralInfo.mailOption} onChange={() => _handleChange(true)} />{' '} Plain Text Format
                             </Label>
                         </FormGroup>
                         <FormGroup check className="d-inline-block">
                             <Label check>
-                                <Input name='mailOption' type="radio" checked={!generalInfo.mailOption} onChange={() => _handleChange(false)} />{' '} Html Format
+                                <Input name='mailOption' type="radio" checked={!safeGeneralInfo.mailOption} onChange={() => _handleChange(false)} />{' '} Html Format
                             </Label>
                         </FormGroup>
                     </Col>

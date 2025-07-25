@@ -4,11 +4,14 @@ import RowField from './RowField';
 
 export const Personal = (props) => {
     const { personalInfo, setPersonalInfo } = props;
-    const isMale = personalInfo.gender === 'true' || personalInfo.gender === true;
+
+    const safePersonalInfo = personalInfo || {};
+    
+    const isMale = safePersonalInfo.gender === 'true' || safePersonalInfo.gender === true;
     const onChange = (e) => {
         const { name, value } = e.target;
         setPersonalInfo({
-            ...personalInfo,
+            ...safePersonalInfo,
             [name]: value
         });
     }
@@ -41,27 +44,27 @@ export const Personal = (props) => {
                 <RowField
                     label="First Name"
                     name="firstName"
-                    value={personalInfo.firstName}
+                    value={safePersonalInfo.firstName}
                     onChange={onChange}
                 />
                 <RowField
                     label="Last Name"
                     name="lastName"
-                    value={personalInfo.lastName}
+                    value={safePersonalInfo.lastName}
                     onChange={onChange}
                 />
                 {_renderGenderForm()}
                 <RowField
                     label="Email Address"
                     name="email"
-                    value={personalInfo.email}
+                    value={safePersonalInfo.email}
                     onChange={onChange}
                     labelProps={{ className: 'required' }}
                 />
                 <RowField
                     label="Contact Number"
                     name="phone"
-                    value={personalInfo.phone}
+                    value={safePersonalInfo.phone}
                     onChange={onChange}
                 />
             </Form>

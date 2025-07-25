@@ -6,30 +6,37 @@ import RowField from './RowField';
 
 export const GeneralInfo = (props) => {
     const { generalInfo, setGeneralInfo, aff } = props;
+
+    const safeGeneralInfo = generalInfo || {};
+    const safeAff = aff || {};
+    const safeTargetCountryCodeList = props.targetCountryCodeList || {};
+    const safeLanguageCodeList = props.languageCodeList || {};
+    const safeDealOptionsList = props.dealOptionsList || {};
+
     const onChange = (e) => {
         setGeneralInfo({
-            ...generalInfo,
+            ...safeGeneralInfo,
             [e.target.name]: e.target.value
         });
     }
 
-    const targetCountryCodeList = Object.keys(props.targetCountryCodeList).map(key => {
+    const targetCountryCodeList = Object.keys(safeTargetCountryCodeList).map(key => {
         return {
-            label: props.targetCountryCodeList[key],
+            label: safeTargetCountryCodeList[key],
             value: key
         }
     })
 
-    const languageCodeList = Object.keys(props.languageCodeList).map(key => {
+    const languageCodeList = Object.keys(safeLanguageCodeList).map(key => {
         return {
-            label: props.languageCodeList[key],
+            label: safeLanguageCodeList[key],
             value: key
         }
     })
 
-    const dealOptions = Object.keys(props.dealOptionsList).map(key => {
+    const dealOptions = Object.keys(safeDealOptionsList).map(key => {
         return {
-            label: props.dealOptionsList[key],
+            label: safeDealOptionsList[key],
             value: key
         }
     })
@@ -39,7 +46,7 @@ export const GeneralInfo = (props) => {
             <RowField
                 label="Copy from Marketing account"
                 name="marketingAccount"
-                value={aff.affName}
+                value={safeAff.affName}
                 onChange={e => props.setAff(e.target.value)}
                 disabled={true}
                 labelProps={{ style: { paddingRight: '0px' } }}
@@ -47,21 +54,21 @@ export const GeneralInfo = (props) => {
             <RowField
                 label="Target Country"
                 name="targetCountryCode"
-                value={generalInfo.targetCountryCode}
+                value={safeGeneralInfo.targetCountryCode}
                 onChange={onChange}
                 selectOptions={targetCountryCodeList}
             />
             <RowField
                 label="Language"
                 name="preferredLanguage"
-                value={generalInfo.preferredLanguage}
+                value={safeGeneralInfo.preferredLanguage}
                 onChange={onChange}
                 selectOptions={languageCodeList}
             />
             <RowField
                 label="Deal Name"
                 name="groupId"
-                value={generalInfo.groupId}
+                value={safeGeneralInfo.groupId}
                 onChange={onChange}
                 selectOptions={dealOptions}
             />

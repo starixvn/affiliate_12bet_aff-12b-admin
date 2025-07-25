@@ -68,11 +68,14 @@ const MoreSitesComponents = ({ moreSiteUrls, onChangeMoreSiteUrl, _handleDeleteU
 
 export const WebSite = (props) => {
     const { websiteInfo, setWebsiteInfo } = props;
-    const [ moreSiteUrls, setMoreSiteUrls ] = useState(getMoreSiteUrls(websiteInfo.moreSiteUrls));
+
+    const safeWebsiteInfo = websiteInfo || {};
+    
+    const [ moreSiteUrls, setMoreSiteUrls ] = useState(getMoreSiteUrls(safeWebsiteInfo.moreSiteUrls));
 
     useEffect(() => {
         setWebsiteInfo({
-            ...websiteInfo,
+            ...safeWebsiteInfo,
             moreSiteUrls: moreSiteUrls.map((siteUrl) => siteUrl.url).join(';')
         });
     }, [moreSiteUrls]);
@@ -87,7 +90,7 @@ export const WebSite = (props) => {
 
     const _handleChangeHasWebSite = (hasWebSite) => {
         setWebsiteInfo({
-            ...websiteInfo,
+            ...safeWebsiteInfo,
             hasWebSite: hasWebSite
         });
     }
@@ -105,7 +108,7 @@ export const WebSite = (props) => {
     const onChange = (e) => {
         const { name, value } = e.target;
         setWebsiteInfo({
-            ...websiteInfo,
+            ...safeWebsiteInfo,
             [name]: value
         });
     }
@@ -120,7 +123,7 @@ export const WebSite = (props) => {
                             <Input 
                                 type="radio"
                                 name='hasWebSite'
-                                checked={websiteInfo.hasWebSite} 
+                                checked={safeWebsiteInfo.hasWebSite} 
                                 onChange={onChange}
                                 />I have my own website
                         </Label>
@@ -129,14 +132,14 @@ export const WebSite = (props) => {
                         <SiteFieldComponent 
                             label="Website URL" 
                             name="siteUrl" 
-                            value={websiteInfo.siteUrl} 
+                            value={safeWebsiteInfo.siteUrl} 
                             onChange={onChange} 
                             onBlur={onChange} 
-                            disabled={!websiteInfo.hasWebSite} />
+                            disabled={!safeWebsiteInfo.hasWebSite} />
                         <Button 
                             outline 
                             color="secondary" 
-                            disabled={!websiteInfo.hasWebSite || !websiteInfo.siteUrl.trim()} 
+                            disabled={!safeWebsiteInfo.hasWebSite || !safeWebsiteInfo.siteUrl || !safeWebsiteInfo.siteUrl.trim()} 
                             className="my-1" 
                             onClick={_handleAddUrl}>
                             Add Url
@@ -147,14 +150,14 @@ export const WebSite = (props) => {
                     moreSiteUrls={moreSiteUrls} 
                     onChangeMoreSiteUrl={onChangeMoreSiteUrl} 
                     _handleDeleteUrl={_handleDeleteUrl} 
-                    disabled={websiteInfo.hasWebSite} 
-                    websiteInfo={websiteInfo} />
+                    disabled={safeWebsiteInfo.hasWebSite} 
+                    websiteInfo={safeWebsiteInfo} />
                 <FormGroup className="pt-3">
                     <FormGroup check>
                         <Label check>
                             <Input 
                                 type="radio" 
-                                checked={!websiteInfo.hasWebSite} 
+                                checked={!safeWebsiteInfo.hasWebSite} 
                                 onChange={() => _handleChangeHasWebSite(false)}/>I don't have a website
                         </Label>
                     </FormGroup>
@@ -162,13 +165,13 @@ export const WebSite = (props) => {
                         <Label htmlFor="noSiteDesc" sm={3}>{description}</Label>
                         <Col sm={9}>
                             <Input
-                                key={`noSiteDesc${websiteInfo.hasWebSite}`}
+                                key={`noSiteDesc${safeWebsiteInfo.hasWebSite}`}
                                 type="textarea" 
-                                disabled={websiteInfo.hasWebSite} 
+                                disabled={safeWebsiteInfo.hasWebSite} 
                                 style={{ height: 70 }} 
                                 id="noSiteDesc" 
                                 name="noSiteDesc" 
-                                value={websiteInfo.noSiteDesc} onChange={onChange} onBlur={onChange} />
+                                value={safeWebsiteInfo.noSiteDesc} onChange={onChange} onBlur={onChange} />
                         </Col>
                     </FormGroup>
                 </FormGroup>

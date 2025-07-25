@@ -165,12 +165,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services
             Assert.True(result.IsSuccessful);
         }
 
-        private static LicenseeService CreateLicenseeService(ILicenseeApi licenseeApi = null, IAppSetting appSetting = null)
+        private static LicenseeService CreateLicenseeService(ILicenseeApi licenseeApi = null)
         {
             var fakeLicenseeApi = licenseeApi ?? Mock.Of<ILicenseeApi>();
-            var fakeIAppSetting = appSetting ?? Mock.Of<IAppSetting>();
 
-            return new LicenseeService(fakeLicenseeApi, fakeIAppSetting);
+            return new LicenseeService(fakeLicenseeApi);
         }
     }
 }

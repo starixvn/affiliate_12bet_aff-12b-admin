@@ -7,9 +7,7 @@ exports[`left panel - components - general-info - Language render correctly with
     color="link"
     onClick={[Function]}
     tag="button"
-  >
-    Vietnamese
-  </Button>
+  />
 </Fragment>
 `;
 
@@ -21,16 +19,16 @@ exports[`left panel - components - general-info - Language render correctly with
     value="vi-VN"
   >
     <option
-      key="affinfo-lang-en-US"
-      value="en-US"
+      key="affinfo-lang-0"
+      value="0"
     >
-      English
+      <Component />
     </option>
     <option
-      key="affinfo-lang-vi-VN"
-      value="vi-VN"
+      key="affinfo-lang-1"
+      value="1"
     >
-      Vietnamese
+      <Component />
     </option>
   </select>
 </Fragment>

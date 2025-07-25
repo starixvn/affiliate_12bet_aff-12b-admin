@@ -3,7 +3,7 @@ import { Content } from '../Content';
 import { shallow } from 'enzyme';
 
 describe('landing page statistics - components - Content', () => {
-    const shortCodeLanguageList = {
+    const languageList = {
         ch: "Chinese Traditional",
         cs: "Chinese Simplified",
         en: "English",
@@ -17,7 +17,7 @@ describe('landing page statistics - components - Content', () => {
         vn: "Vietnamese"
     };
     const defaultProps = {
-        shortCodeLanguageList,
+        languageList,
         param: {
             affId: 1271808,
             deviceType: 0,

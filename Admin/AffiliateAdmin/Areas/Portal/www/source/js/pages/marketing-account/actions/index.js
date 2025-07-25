@@ -34,6 +34,10 @@ export const fetchMarketingAccounts = (param) => async () => {
 }
 
 const getInfos = (original, data) => {
+    if (!data) {
+        return original;
+    }
+
     for (var attrname in original) {
         original[attrname] = data[attrname];
     }
@@ -45,6 +49,7 @@ export const getMarketingAccountInfo = async (affId) => {
     const url = 'Portal/MarketingAccount/GetUserAccountInfo';
 
     const response = await post(url, { affId });
+
     const data = response && response.status === 200 ? response.data : null;
 
     return {

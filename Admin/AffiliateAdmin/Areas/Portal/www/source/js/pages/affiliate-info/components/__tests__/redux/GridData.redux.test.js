@@ -34,7 +34,7 @@ describe('affiliate info - GridData - connect', () => {
 			pagingOption: { PageIndex: 1 },
 			param: { abc: 123 },
 			columnList: [1, 2, 3],
-			claimsPrincipal: { hasWriteClaim: jest.fn(() => true) },
+			claimsPrincipal: { hasWriteClaim: jest.fn(() => true), hasReadClaim: jest.fn(() => true) },
 			anotherProp: "Not included"
 		};
 

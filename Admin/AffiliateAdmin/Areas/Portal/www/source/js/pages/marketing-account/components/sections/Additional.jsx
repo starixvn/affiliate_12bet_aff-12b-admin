@@ -6,6 +6,8 @@ import RowField from './RowField';
 export const Additional = (props) => {
     const { additionalInfo, setAdditionalInfo } = props;
 
+    const safeAdditionalInfo = additionalInfo || {};
+
     const contriesOption = Object.keys(countriesList).map((key) => {
         return {
             label: countriesList[key],
@@ -15,7 +17,7 @@ export const Additional = (props) => {
 
     const onChange = (e) => {
         setAdditionalInfo({
-            ...additionalInfo,
+            ...safeAdditionalInfo,
             [e.target.name]: e.target.value
         });
     }
@@ -27,50 +29,50 @@ export const Additional = (props) => {
                 <RowField
                     label="Address"
                     name="address"
-                    value={additionalInfo.address}
+                    value={safeAdditionalInfo.address}
                     onChange={onChange}
                 />
                 <RowField
                     label="City"
                     name="city"
-                    value={additionalInfo.city}
+                    value={safeAdditionalInfo.city}
                     onChange={onChange}
                 />
                 <RowField
                     label="State"
                     name="state"
-                    value={additionalInfo.state}
+                    value={safeAdditionalInfo.state}
                     onChange={onChange}
                 />
                 <RowField
                     label="Postcode/Zip"
                     name="postcode"
-                    value={additionalInfo.postcode}
+                    value={safeAdditionalInfo.postcode}
                     onChange={onChange}
                 />
                 <RowField
                     label="Country"
                     name="country"
-                    value={additionalInfo.country}
+                    value={safeAdditionalInfo.country}
                     onChange={onChange}
                     selectOptions={contriesOption}
                 />
                 <RowField
                     label="Security Question"
                     name="question"
-                    value={additionalInfo.question}
+                    value={safeAdditionalInfo.question}
                     onChange={onChange}
                     colComponent={
-                        <p className="form-control-plaintext" style={{ fontSize: '0.7rem' }}>{additionalInfo.question}</p>
+                        <p className="form-control-plaintext" style={{ fontSize: '0.7rem' }}>{safeAdditionalInfo.question}</p>
                     }
                 />
                 <RowField
                     label="Answer"
                     name="answer"
-                    value={additionalInfo.answer}
+                    value={safeAdditionalInfo.answer}
                     onChange={onChange}
                     colComponent={
-                        <p className="form-control-plaintext" style={{ fontSize: '0.7rem' }}>{additionalInfo.answer}</p>
+                        <p className="form-control-plaintext" style={{ fontSize: '0.7rem' }}>{safeAdditionalInfo.answer}</p>
                     }
                 />
                 

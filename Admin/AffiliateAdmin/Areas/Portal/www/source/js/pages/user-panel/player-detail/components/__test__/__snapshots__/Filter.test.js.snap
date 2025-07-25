@@ -169,6 +169,34 @@ exports[`players detail - components - Filter render correctly 1`] = `
         selectedMonth={12}
       />
     </FormGroup>
+    <FormGroup
+      className="mr-sm-3"
+      tag="div"
+    >
+      <Label
+        checked={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Include removed Players
+        <Input
+          checked={false}
+          className="ml-2 mt-1"
+          id="isIncludeRemovedPlayer"
+          name="isIncludeRemovedPlayer"
+          onChange={[Function]}
+          type="checkbox"
+        />
+      </Label>
+    </FormGroup>
     <Button
       color="primary"
       onClick={[Function]}
@@ -278,6 +306,34 @@ exports[`players detail - components - Filter render correctly with empty 1`] = 
         selectedDropdownYear={2019}
         selectedMonth={12}
       />
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-3"
+      tag="div"
+    >
+      <Label
+        checked={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Include removed Players
+        <Input
+          checked={false}
+          className="ml-2 mt-1"
+          id="isIncludeRemovedPlayer"
+          name="isIncludeRemovedPlayer"
+          onChange={[Function]}
+          type="checkbox"
+        />
+      </Label>
     </FormGroup>
     <Button
       color="primary"

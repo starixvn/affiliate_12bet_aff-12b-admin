@@ -21,13 +21,11 @@ describe('langing page statistics - Filter - connect', () => {
         const expectedResult = {
             today: '09/252019',
             languageList: { 'en-US': 'English' },
-            shortCodeLanguageList: {},
             affId: 1271808
         };
         const state = {
             today: '09/252019',
             languageList: { 'en-US': 'English' },
-            landingPageStatistics: { shortCodeLanguageList: {} },
             affCommonInfo: {
                 affId: 1271808
             },

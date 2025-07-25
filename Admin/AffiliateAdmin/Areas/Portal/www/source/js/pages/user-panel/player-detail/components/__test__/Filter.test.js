@@ -123,7 +123,7 @@ describe('players detail - components - Filter', () => {
 
         wrapper.find('Button').at(0).simulate('click');
 
-        expect(defaultProps.setParam).toHaveBeenCalledWith({ baseCurrencyId: 20, currencyIds: '20', "monthDate": "12/1/2019", "productId": 0 });
+        expect(defaultProps.setParam).toHaveBeenCalledWith({ baseCurrencyId: 20, currencyIds: '20', "monthDate": "12/1/2019", "productId": 0, "isIncludeRemovedPlayer": false });
     });
 
     it('handleExportExcel - should call exportExcel', async () => {
@@ -132,7 +132,7 @@ describe('players detail - components - Filter', () => {
 
         await wrapper.instance().handleExportExcel();
 
-        expect(props.fetchData).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, baseCurrencyId: 20, currencyIds: '20', "isSortAsc": false, "monthDate": "12/1/2019", "productId": 0, "sortById": 5 });
+        expect(props.fetchData).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, baseCurrencyId: 20, currencyIds: '20', "isSortAsc": false, "monthDate": "12/1/2019", "productId": 0, "sortById": 5, "isIncludeRemovedPlayer": false });
     });
 
     it('handleExportExcel - should call exportExcel, _getReportTitle and ReportExcel', async () => {
@@ -144,7 +144,7 @@ describe('players detail - components - Filter', () => {
 
         await instance.handleExportExcel();
 
-        expect(props.fetchData).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, baseCurrencyId: 20, currencyIds: '20', "isSortAsc": false, "monthDate": "12/1/2019", "productId": 0, "sortById": 5 });
+        expect(props.fetchData).toHaveBeenCalledWith({ "IsExportExcel": true, "affId": 1271808, baseCurrencyId: 20, currencyIds: '20', "isSortAsc": false, "monthDate": "12/1/2019", "productId": 0, "sortById": 5, "isIncludeRemovedPlayer": false });
         expect(ReportExcel).toHaveBeenCalledWith(expectedResponse.data, "ABC", true, true);
     });
 
