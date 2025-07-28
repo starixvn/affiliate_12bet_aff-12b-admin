@@ -22,6 +22,7 @@ export class Filter extends Component {
             selectedCommGroupList: groupId || allCommGroups,
             selectedStatus: props.param.Status || '',
             parentAffName: this.props.param.ParentAffName || '',
+            affCategoryIds: "1"
         }
     }
 
@@ -51,6 +52,11 @@ export class Filter extends Component {
         this.setState((prevState) => ({ isSortAscending: !prevState.isSortAscending }));
     }
 
+    handleChangeExcludeMarketingAccount = (e) => {
+        const isExcludeMarketingAccount = e.target.checked;
+        this.setState((prevState) => ({ affCategoryIds: isExcludeMarketingAccount ? "1" : "all" }));
+    }
+
     handleChangeCommGroup = (item, selectedCommGroupList) => {
         this.setState({ selectedCommGroupList });
 
@@ -67,7 +73,7 @@ export class Filter extends Component {
 
     handleClickSearch = (parentAffName) => {
 
-        const { selectedCommGroupList, selectedTargetCountry, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending, affCode, affPlayer } = this.state;
+        const { selectedCommGroupList, selectedTargetCountry, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending, affCode, affPlayer, affCategoryIds } = this.state;
 
         const affCodeInput = affCode.trim();
         const isSelectAllCommGroup = this.props.commGroupList.every(c => c.checked);
@@ -84,7 +90,8 @@ export class Filter extends Component {
             SortBy: selectedSortBy,
             SortDirectionType: !isSortAscending,
             AffCode: affCodeInput,
-            AffPlayer: affPlayer
+            AffPlayer: affPlayer,
+            AffCategoryIds: affCategoryIds
         }
         this.props.setParam(param);
     }
@@ -127,7 +134,7 @@ export class Filter extends Component {
     }
 
     render() {
-        const { selectedLanguage, selectedSortBy, selectedStatus, isSortAscending, userName, email, affCode, parentAffName, affPlayer, selectedTargetCountry } = this.state;
+        const { selectedLanguage, selectedSortBy, selectedStatus, isSortAscending, userName, email, affCode, parentAffName, affPlayer, selectedTargetCountry, affCategoryIds } = this.state;
         const { commGroupList, languageList, columnList, targetCountryList } = this.props;
 
         return (
@@ -245,7 +252,12 @@ export class Filter extends Component {
                             selectedAllLabel="All"
                             onChange={this.handleChangeColumn} />
                     </FormGroup>
-
+                    <FormGroup className="my-2 mr-sm-2">
+                        <Label check>
+                            {resource.ExcludeMarketingAccount}
+                            <Input className="ml-1" type="checkbox" checked={affCategoryIds === "1"} onChange={(e) => this.handleChangeExcludeMarketingAccount(e)} />
+                        </Label>
+                    </FormGroup>
                     <Button className="my-2" outline color="primary" type="button" onClick={() => this.handleClickSearch(parentAffName)} >
                         <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>

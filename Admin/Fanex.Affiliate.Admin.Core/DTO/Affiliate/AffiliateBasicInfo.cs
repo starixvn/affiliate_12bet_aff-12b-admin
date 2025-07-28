@@ -37,5 +37,7 @@
         public int PlayerCustId { get; set; }
 
         public bool IsUsingPrivateCommGroup { get; set; }
+
+        public int AffCategoryId { get; set; }
     }
 }

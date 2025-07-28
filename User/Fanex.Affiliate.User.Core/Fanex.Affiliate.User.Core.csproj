@@ -285,6 +285,7 @@
     <Compile Include="Commands\Payment\CreatePaymentRequestCommand.cs" />
     <Compile Include="Commands\Verification\InsertUserDeviceInfoCommand.cs" />
     <Compile Include="Commands\Verification\UpdateVerificationInfoCommand.cs" />
+    <Compile Include="Constants\AffCategory.cs" />
     <Compile Include="CoreService\BaseDynamicService.cs" />
     <Compile Include="Criterias\AccountOverview\GetLastLoginInfoCriteria.cs" />
     <Compile Include="Criterias\AccountOverview\GetPlayerDetailListCriteria.cs" />

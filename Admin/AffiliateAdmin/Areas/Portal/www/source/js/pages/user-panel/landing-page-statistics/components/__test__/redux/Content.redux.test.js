@@ -20,13 +20,13 @@ describe('landing page statistics - Content - connect', () => {
     it('props should be mapped correctly', () => {
         const expectedResult = {
             param: { abc: 123 },
-            shortCodeLanguageList: { 'en-US': 'en' }
+            languageList: { 'en-US': 'en' }
         };
         const state = {
             landingPageStatistics: {
-                param: { abc: 123 },
-                shortCodeLanguageList: { 'en-US': 'en' }
+                param: { abc: 123 }
             },
+            languageList: { 'en-US': 'en' },
             anotherProp: "Not included"
         };
 

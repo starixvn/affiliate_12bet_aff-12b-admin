@@ -152,7 +152,7 @@
     </li>
 }
 
-@helper RenderAppContact(string language)
+@helper RenderAppContact(string language, string classLabel = "custom-lable")
 {
     var firsAppContactList = Fanex.Affiliate.User.Core.Constants.AppContact.FirsAppContactList;
     var secondAppContactList = Fanex.Affiliate.User.Core.Constants.AppContact.SecondAppContactList;
@@ -165,7 +165,7 @@
     var hasThirdContactApp = thirdAppContactList.ContainsKey(language);
 
     <div class="form-group validate-group">
-        <label for="ContactAppList[0].Value" class="col-sm-3 custom-label">@(firstAppNameTraslation) <span class="red-warn">*</span></label>
+        <label for="ContactAppList[0].Value" class="col-sm-3 @classLabel">@(firstAppNameTraslation) <span class="red-warn">*</span></label>
         <input type="text" placeholder="@firstAppPlaceHolder" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-input" value=""
                data-val="true"
                data-val-required="@(firstAppNameTraslation)@Fanex.Affiliate.User.Core.Resources.Error.IsRequired"
@@ -189,7 +189,7 @@
         var secondAppRegex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(secondAppName, language);
 
         <div class="form-group validate-group">
-            <label for="ContactAppList[1].Value" class="col-sm-3 custom-label">@(secondAppNameTraslation)</label>
+            <label for="ContactAppList[1].Value" class="col-sm-3 @classLabel">@(secondAppNameTraslation)</label>
             <input type="text" placeholder="@secondAppPlaceHolder" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-input" value=""
                 data-val="true"
                 data-val-length="@(secondAppNameTraslation)@Fanex.Affiliate.User.Core.Resources.Error.InvalidLength"
@@ -212,7 +212,7 @@
             var thirdAppRegex = Fanex.Affiliate.User.Core.Constants.AppContact.GetRegexByAppAndLanguage(thirdAppName, language);
 
             <div class="form-group validate-group">
-                <label for="ContactAppList[2].Value" class="col-sm-3 custom-label">@(thirdAppNameTraslation)</label>
+                <label for="ContactAppList[2].Value" class="col-sm-3 @classLabel">@(thirdAppNameTraslation)</label>
                 <input type="text" placeholder="@thirdAppPlaceHolder" name="ContactAppList[2].Value" id="ContactAppList[2].Value" class="form-input" value=""
                     data-val="true"
                     data-val-length="@(thirdAppNameTraslation)@Fanex.Affiliate.User.Core.Resources.Error.InvalidLength"

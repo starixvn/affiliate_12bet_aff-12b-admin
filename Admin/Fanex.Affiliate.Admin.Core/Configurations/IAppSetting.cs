@@ -70,6 +70,10 @@
 
         int MemberSiteApiTokenCacheTimeOut { get; }
 
+        int MarketingSpecificAffId { get; }
+
+        string MarketingSpecificAffName { get; }
+
         bool IsUseMemberSiteProxy { get; }
 
         bool IsApiDataModifiable { get; }

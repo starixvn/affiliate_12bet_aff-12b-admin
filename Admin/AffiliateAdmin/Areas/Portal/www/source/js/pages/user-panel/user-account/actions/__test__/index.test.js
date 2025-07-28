@@ -29,44 +29,49 @@ describe('user account actions', () => {
     it('should create action to getUserAccountInfo with correct parameter', () => {
         const expectedResponse = {
             data: {
-                Address: "123, SMS",
-                AffId: 1271808,
-                AffName: "12BETAFF226",
-                Answer: "What?",
-                BankAccountName: "qwe",
-                BankAccountNumber: "qwe",
-                BankAddress: "qwe",
-                BankCode: "",
-                BankName: "qwe",
-                City: "V",
-                ContactApps: '[{"Name":"MSN/YM/QQ","Value":"@123","Order":0}]',
-                Country: "V",
-                Email: "hubert.duong@nexcel.vn",
-                FirstName: "bb",
-                Gender: false,
-                LastName: "12BETAFF226",
-                MailOption: false,
-                MoneybookersEmail: "",
-                MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
-                NetellerAccountId: "1",
-                NoSiteDescription: "",
-                Phone: "abc",
-                PlayerUsername: "bettingexp",
-                Postcode: "X",
-                PreferredPayment: "Player",
-                Question: "What?",
-                SiteUrl: "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
-                State: "A"
+                "Address": "123, SMS",
+                "AffId": 1271808,
+                "AffName": "12BETAFF226",
+                "Answer": "What?",
+                "BankAccountName": "qwe",
+                "BankAccountNumber": "qwe",
+                "BankAddress": "qwe",
+                "BankCode": "",
+                "BankName": "qwe",
+                "City": "V",
+                "ContactApps": "[{\"Name\":\"MSN/YM/QQ\",\"Value\":\"@123\",\"Order\":0}]",
+                "Country": "V",
+                "Email": "hubert.duong@nexcel.vn",
+                "FirstName": "bb",
+                "Gender": false,
+                "LastName": "12BETAFF226",
+                "MailOption": false,
+                "MoneybookersEmail": "",
+                "MoreSiteUrls": "www.sportsbookie.com;www.gzyyy.com;www.123.com",
+                "NetellerAccountId": "1",
+                "NoSiteDesc": "",
+                "Phone": "abc",
+                "PlayerUsername": "bettingexp",
+                "Postcode": "X",
+                "PreferredPayment": "Player",
+                "Question": "What?",
+                "SiteUrl": "https://aff-12b.nexdev.net/UserAsian/UserPanel/Main/#MyAccount",
+                "State": "A"
             },
             status: 200
         };
         ajaxRequest.post = jest.fn(() => Promise.resolve(expectedResponse));
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
-            { type: types.SET_MORE_SITE_URLS_LIST, data: ["www.sportsbookie.com", "www.gzyyy.com", "www.123.com"] },
-            { type: types.SET_USER_ACCOUNT_INFO, data: expectedResponse.data },
-            { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
+            { type: "TOGGLE_LOADER_USER_PANEL", data: true },
+            { type: types.SET_MORE_SITE_URLS_LIST, data: ['www.sportsbookie.com', 'www.gzyyy.com', 'www.123.com'] },
+            {
+                type: types.SET_USER_ACCOUNT_INFO, data: {
+                    ...expectedResponse.data,
+                    "IsMarketingAccount": false
+                }
+            },
+            { type: "TOGGLE_LOADER_USER_PANEL", data: false }
         ];
 
         const store = mockStore({ todos: [] });
@@ -80,10 +85,10 @@ describe('user account actions', () => {
         ajaxRequest.post = jest.fn();
 
         const expectedAction = [
-            { type: 'TOGGLE_LOADER_USER_PANEL', data: true },
+            { type: "TOGGLE_LOADER_USER_PANEL", data: true },
             { type: types.SET_MORE_SITE_URLS_LIST, data: [] },
-            { type: types.SET_USER_ACCOUNT_INFO, data: null },
-            { type: 'TOGGLE_LOADER_USER_PANEL', data: false },
+            { type: types.SET_USER_ACCOUNT_INFO, data: { IsMarketingAccount: null } },
+            { type: "TOGGLE_LOADER_USER_PANEL", data: false }
         ];
 
         const store = mockStore({ todos: [] });
@@ -117,7 +122,7 @@ describe('user account actions', () => {
             MoneybookersEmail: "",
             MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
             NetellerAccountId: "1",
-            NoSiteDescription: "",
+            NoSiteDesc: "",
             Phone: "abc",
             PlayerUsername: "bettingexp",
             Postcode: "X",
@@ -157,7 +162,7 @@ describe('user account actions', () => {
             MoneybookersEmail: "",
             MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
             NetellerAccountId: "1",
-            NoSiteDescription: "",
+            NoSiteDesc: "",
             Phone: "abc",
             PlayerUsername: "bettingexp",
             Postcode: "X",

@@ -107,16 +107,16 @@ exports[`marketing statistics - components - Filter render correctly 1`] = `
           All
         </option>
         <option
-          key="language-en"
-          value="en"
+          key="language-en-US"
+          value="en-US"
         >
           English
         </option>
         <option
-          key="language-vi"
-          value="vi"
+          key="language-zh-CN"
+          value="zh-CN"
         >
-          Vietnamese
+          Chinese
         </option>
       </Input>
     </FormGroup>

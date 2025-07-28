@@ -120,7 +120,7 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, affCommonInfo, languageList, landingPageStatistics }) {
+function mapStateToProps({ today, affCommonInfo, languageList }) {
     const { affId } = affCommonInfo;
 
     return Object.assign({}, {

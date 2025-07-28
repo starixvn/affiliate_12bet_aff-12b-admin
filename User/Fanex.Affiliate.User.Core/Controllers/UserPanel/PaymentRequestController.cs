@@ -57,7 +57,7 @@
         {
             var resultInfo = new ResultInfo { IsOk = true };
 
-            if (SessionService.IsInternal)
+            if (SessionService.IsUnauthorized)
             {
                 resultInfo.IsOk = false;
                 resultInfo.Message = Lang.ErrAuthorized;
@@ -96,7 +96,7 @@
         {
             var resultInfo = new ResultInfo { IsOk = false };
 
-            if (SessionService.IsInternal)
+            if (SessionService.IsUnauthorized)
             {
                 resultInfo.Message = Lang.ErrAuthorized;
             }
@@ -143,6 +143,7 @@
                 BalBroughtForward = paymentParam.BalBroughtForward,
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
+                IsMarketingAccount = SessionService.UserSession.IsMarketingAccount,
                 PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Processing)),
                 IsValidDate = _paymentService.IsInDateRange() || _appSetting.IsLocal || _appSetting.IsDev,
             };

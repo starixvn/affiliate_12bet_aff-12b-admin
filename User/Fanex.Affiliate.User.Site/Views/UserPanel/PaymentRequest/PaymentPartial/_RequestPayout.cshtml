@@ -4,7 +4,7 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 @{
-    var canRequest = Model.IsValidAmount && Model.IsValidDate && Model.PendingPayment == null;
+    var canRequest = !Model.IsMarketingAccount && Model.IsValidAmount && Model.IsValidDate && Model.PendingPayment == null;
 
     var messageResult = GetErrorMessage();
 

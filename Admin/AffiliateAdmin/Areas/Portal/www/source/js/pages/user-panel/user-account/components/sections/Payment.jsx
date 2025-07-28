@@ -27,10 +27,11 @@ export class Payment extends PureComponent {
     }
 
     _renderFormByMethod(userAccountInfo) {
+        const isRequired = !userAccountInfo.IsMarketingAccount;
         return {
-            [playerMethod]: this._renderPaymentForm('playerUsername', `${this.props.licenseeName} User Name`, userAccountInfo.PlayerUsername, true, this.handleChange),
-            [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, true, this.handleChange),
-            [wireMethod]: this._renderWireForm(userAccountInfo)
+            [playerMethod]: this._renderPaymentForm('playerUsername', `${this.props.licenseeName} User Name`, userAccountInfo.PlayerUsername, isRequired, this.handleChange),
+            [moneybookersMethod]: this._renderPaymentForm('moneybookersEmail', 'Moneybookers Email', userAccountInfo.MoneybookersEmail, isRequired, this.handleChange),
+            [wireMethod]: this._renderWireForm(userAccountInfo, isRequired)
         }
     }
 
@@ -45,20 +46,20 @@ export class Payment extends PureComponent {
         )
     }
 
-    _renderWireForm(userAccountInfo) {
+    _renderWireForm(userAccountInfo, isRequired) {
         return (
             <React.Fragment>
-                {this._renderPaymentForm('bankName', 'Wire Name', userAccountInfo.BankName, true, this.handleChange)}
-                {this._renderPaymentForm('bankAddress', 'Wire Address', userAccountInfo.BankAddress, true, this.handleChange)}
+                {this._renderPaymentForm('bankName', 'Wire Name', userAccountInfo.BankName, isRequired, this.handleChange)}
+                {this._renderPaymentForm('bankAddress', 'Wire Address', userAccountInfo.BankAddress, isRequired, this.handleChange)}
                 {this._renderPaymentForm('bankCode', 'Wire ABA/Swift/Sort Code', userAccountInfo.BankCode, false, this.handleChange)}
-                {this._renderPaymentForm('bankAccountName', 'Wire Account Name', userAccountInfo.BankAccountName, true, this.handleChange)}
-                {this._renderPaymentForm('bankAccountNumber', 'Wire Account Number', userAccountInfo.BankAccountNumber, true, this.handleChange)}
+                {this._renderPaymentForm('bankAccountName', 'Wire Account Name', userAccountInfo.BankAccountName, isRequired, this.handleChange)}
+                {this._renderPaymentForm('bankAccountNumber', 'Wire Account Number', userAccountInfo.BankAccountNumber, isRequired, this.handleChange)}
             </React.Fragment>
         )
     }
 
     render() {
-        const { userAccountInfo, paymentMethodList, minimumPayment, licenseeName } = this.props;
+        const { userAccountInfo, paymentMethodList, minimumPayment } = this.props;
         const renderFormByMethod = userAccountInfo && this._renderFormByMethod(userAccountInfo);
 
         return userAccountInfo && (
@@ -75,7 +76,6 @@ export class Payment extends PureComponent {
                     <span className="input-item">{minimumPaymentText + " " + formatDecimal(minimumPayment)}</span>
                 </FormGroup>
                 {renderFormByMethod[userAccountInfo.PreferredPayment]}
-                {/* <p className="text-danger offset-sm-3 offset-xl-2 pl-1">{`You can request for a withdrawal through Moneybookers, Wire Transfer or directly into your ${licenseeName}.com player account.`}</p> */}
             </Form>
         )
     }

@@ -34,5 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.Affiliate
         public bool SortDirectionType { get; set; }
 
         public bool IsExportExcel { get; set; }
+
+        public string AffCategoryIds { get; set; }
     }
 }

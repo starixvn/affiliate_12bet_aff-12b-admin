@@ -58,6 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
                 IsExportExcel = param.IsExportExcel,
                 PageIndex = param.PageIndex,
                 PageSize = param.PageSize,
+                AffCategoryIds = param.AffCategoryIds
             };
 
             return FetchEntityResult<AffiliateInfo>(criteria);

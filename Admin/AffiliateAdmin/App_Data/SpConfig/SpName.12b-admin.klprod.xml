@@ -13,7 +13,6 @@
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="Username" ObjectProperty="AffName" />
       <Mapping DataField="Postal" ObjectProperty="Postcode" />
-      <Mapping DataField="NoSiteDesc" ObjectProperty="NoSiteDescription" />
       <Mapping DataField="BankSwiftCode" ObjectProperty="BankCode" />
       <Mapping DataField="BankAccountNo" ObjectProperty="BankAccountNumber" />
       <Mapping DataField="IsPrivate" ObjectProperty="IsUsingPrivateCommGroup" />
@@ -26,6 +25,7 @@
     <Setting Key="Aff_AffiliateUsername_SearchEx" SpName="Aff_AffiliateUsername_SearchEx" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Statistics_Sel" SpName="Aff_Admin_Statistics_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateOnlineList_Sel" SpName="Aff_Admin_AffiliateOnlineList_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_MarketingAccount_Affiliate_Ins" SpName="Aff_Admin_MarketingAccount_Affiliate_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />

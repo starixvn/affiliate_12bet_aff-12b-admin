@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
-  <item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Test" Suffix="_xtest"></item>
-  
+	<item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Test" Suffix="_xtest"></item>
+	<item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_MarketingAccount_Affiliate_Ins" Suffix="_UAT1"></item>
+	<item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_UAT1"></item>
+	<item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_Affiliate_Sel" Suffix="_UAT1"></item>
+	<item LicenseeName="12b" Environment="DEV,LOCAL,UAT" SpName="Aff_Admin_AffiliateInfo_Upd" Suffix="_UAT1"></item>
 </Root>

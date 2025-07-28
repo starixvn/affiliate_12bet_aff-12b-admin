@@ -350,6 +350,32 @@ exports[`affiliate info - Filter  should render correctly 1`] = `
         valueField="columnName"
       />
     </FormGroup>
+    <FormGroup
+      className="my-2 mr-sm-2"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Exclude Marketing Account
+        <Input
+          checked={true}
+          className="ml-1"
+          onChange={[Function]}
+          type="checkbox"
+        />
+      </Label>
+    </FormGroup>
     <Button
       className="my-2"
       color="primary"

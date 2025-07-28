@@ -15,73 +15,97 @@ const getMessage = (fieldName, value) => {
     return value === '' ? messageList[fieldName] + "<br />" : '';
 }
 
-const validateMoreSiteUrls = (moreSiteUrlsList) => {
-    const moreSiteUrls = moreSiteUrlsList.map(siteUrl => siteUrl.trim());
-    const emptySiteUrlIndex = moreSiteUrls.indexOf('');
-    const hasEmptySiteUrl = emptySiteUrlIndex !== -1;
-    const message = hasEmptySiteUrl ? `Website URL ${emptySiteUrlIndex + 2} is required<br />` : '';
-
-    return {
-        message,
-        isValid: !hasEmptySiteUrl
-    }
-}
-
-const validatePaymentMethod = (userAccountInfo) => {
-    let message = '';
-    let isValid = true;
-
-    switch (userAccountInfo.PreferredPayment) {
-        case playerMethod:
-            message = getMessage('PlayerUsername', userAccountInfo.PlayerUsername);
-            isValid = userAccountInfo.PlayerUsername !== '';
-            break;
-        case moneybookersMethod:
-            message = getMessage('MoneybookersEmail', userAccountInfo.MoneybookersEmail);
-            isValid = userAccountInfo.MoneybookersEmail !== '';
-            break;
-        case wireMethod:
-            message = requiredBankTranferList.reduce((accumulator, field) => accumulator + getMessage(field, userAccountInfo[field]), '');
-            isValid = userAccountInfo.BankName !== '' && userAccountInfo.BankAddress !== '' &&
-                userAccountInfo.BankAccountName !== '' && userAccountInfo.BankAccountNumber !== '';
-            break;
-    }
-
-    return {
-        message,
-        isValid
-    };
+const getMessageIfEmpty = (fieldName, value) => {
+    return !value ? messageList[fieldName] + "<br />" : '';
 }
 
 export const validateUserAccount = (userAccountInfo, moreSiteUrlsList, licenseeName) => {
     let message = '';
-    const checkEmail = new RegExp(regexEmail);
-    const isValidGender = userAccountInfo.Gender != null;
-    const isValidEmail = !userAccountInfo.HasHostAffPersonalInfoPermission || checkEmail.test(userAccountInfo.Email);
-    const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
-    const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDescription${licenseeName}`;
+    const selectedField = userAccountInfo.HasWebSite ? 'SiteUrl' : `NoSiteDesc`;
+    message += validateEmail(userAccountInfo);
+    message += validateGender(userAccountInfo);
+    message += validateCountry(userAccountInfo);
+    message += validateRequiredField(userAccountInfo, licenseeName);
+    message += validateWebsite(userAccountInfo, selectedField, licenseeName);
 
-    const newRequiredFieldList = [...requiredFieldList, selectedField];
-    message = isValidGender ? message : message + messageList.Gender + "<br />";
-    message = isValidEmail ? message : message + messageList.Email + "<br />";
-    message += getMessage('Country', country);
+    if (userAccountInfo.HasWebSite) {
+        message += validateEmptyUrl(moreSiteUrlsList);
+    }
 
-    const resultValidateContactApps = validateAppContactList(userAccountInfo.ContactAppList);
-    message += resultValidateContactApps.isValid ? '' : resultValidateContactApps.message;
-
-    message += newRequiredFieldList.reduce((accumulator, field) => { return accumulator + getMessage(field, userAccountInfo[field]) }, '');
-
-    let isValid = isValidGender && isValidEmail && userAccountInfo.FirstName !== '' && userAccountInfo.LastName !== '' &&
-        userAccountInfo.Phone !== '' && userAccountInfo.Address !== '' && userAccountInfo.City !== '' &&
-        userAccountInfo.Postcode !== '' && userAccountInfo.Country !== '' && userAccountInfo[selectedField] !== '';
-
-    const resultValidateMoreSiteUrls = (userAccountInfo.HasWebSite && moreSiteUrlsList) ? validateMoreSiteUrls(moreSiteUrlsList) : ({ message: '', isValid: true });
-    const resultValidatePaymentMethod = validatePaymentMethod(userAccountInfo);
+    message += validateAppContactList(userAccountInfo.ContactAppList, userAccountInfo.IsMarketingAccount);
+    message += validatePaymentMethods(userAccountInfo);
 
     return {
-        message: message + resultValidateMoreSiteUrls.message + resultValidatePaymentMethod.message,
-        isValid: isValid && resultValidateMoreSiteUrls.isValid && resultValidatePaymentMethod.isValid && resultValidateContactApps.isValid
+        message: message,
+        isValid: message === ''
     };
+}
+
+const validateEmail = (userAccountInfo) => {
+    const checkEmail = new RegExp(regexEmail);
+    const isValidEmail = !userAccountInfo.HasHostAffPersonalInfoPermission || checkEmail.test(userAccountInfo.Email);
+    return isValidEmail ? "" : messageList.Email + "<br />";
+}
+
+const validateGender = (userAccountInfo) => {
+    const isValidGender = userAccountInfo.Gender != null;
+    return isValidGender ? "" : messageList.Gender + "<br />";
+}
+
+const validateCountry = (userAccountInfo) => {
+    const country = countriesList[userAccountInfo.Country] === undefined ? "" : userAccountInfo.Country;
+    return getMessage('Country', country);
+}
+
+const validateRequiredField = (userAccountInfo) => {
+    if(userAccountInfo.IsMarketingAccount) {
+        return ""
+    }
+
+    return requiredFieldList.reduce((accumulator, field) => { 
+        return accumulator + getMessageIfEmpty(field, userAccountInfo[field])
+     }, '');
+}
+
+const validateWebsite = (userAccountInfo, selectedField, licenseeName) => {
+    if(userAccountInfo.IsMarketingAccount) {
+        return ""
+    }
+    
+    if(!userAccountInfo[selectedField]){
+        return getMessageIfEmpty(userAccountInfo.HasWebSite ? selectedField : selectedField + licenseeName, userAccountInfo[selectedField])
+    }
+
+    return ""
+}
+
+const validatePaymentMethods = (userAccountInfo) => {
+    let message = '';
+
+    if(userAccountInfo.IsMarketingAccount) {
+        return ""
+    }
+
+    switch (userAccountInfo.PreferredPayment) {
+        case playerMethod:
+            message = getMessageIfEmpty('PlayerUsername', userAccountInfo.PlayerUsername);
+            break;
+        case moneybookersMethod:
+            message = getMessageIfEmpty('MoneybookersEmail', userAccountInfo.MoneybookersEmail);
+            break;
+        case wireMethod:
+            message = requiredBankTranferList.reduce((accumulator, field) => accumulator + getMessageIfEmpty(field, userAccountInfo[field]), '');
+            break;
+    }
+
+    return message;
+}
+
+const validateEmptyUrl = (moreSiteUrlsList) => {
+    const isExistEmptyUrl = moreSiteUrlsList.some(siteUrl => siteUrl.trim() === '');
+    const emptySiteUrlIndex = moreSiteUrlsList.indexOf('');
+
+    return isExistEmptyUrl ? `Website URL ${emptySiteUrlIndex + 2} is required<br />` : '';
 }
 
 const getAppMessage = (appName, suffixMsg) => {
@@ -89,6 +113,7 @@ const getAppMessage = (appName, suffixMsg) => {
 
     return `${name} ${suffixMsg}`;
 }
+
 
 const validateContactValue = (contactApp) => {
     const MAX_LENGTH = 50;
@@ -114,41 +139,36 @@ const validateContactValue = (contactApp) => {
     };
 }
 
-export const validateAppContactList = (contactAppList) => {
+export const validateAppContactList = (contactAppList, isMarketingAccount) => {
     let message = '';
-    let isValid = true;
+
+    if(isMarketingAccount) {
+        return ""
+    }
 
     if (!contactAppList || contactAppList.length === 0) {
         message = 'At least one IM account is required<br />';
-        isValid = false;
     }
 
     const firstItem = contactAppList[0];
     if (!firstItem.Value) {
         message = getAppMessage(firstItem.Name, "is required<br />");
-        isValid = false;
     } else {
         const firstItemValidation = validateContactValue(firstItem);
         if (!firstItemValidation.isValid) {
             message += firstItemValidation.message;
-            isValid = false;
         }
     }
 
-    // Validate remaining contacts
     for (let i = 1; i < contactAppList.length; i++) {
         const contactApp = contactAppList[i];
         if (contactApp.Value) {
             const validationResult = validateContactValue(contactApp);
             if (!validationResult.isValid) {
                 message += validationResult.message;
-                isValid = false;
             }
         }
     }
 
-    return {
-        message,
-        isValid
-    };
+    return message
 }

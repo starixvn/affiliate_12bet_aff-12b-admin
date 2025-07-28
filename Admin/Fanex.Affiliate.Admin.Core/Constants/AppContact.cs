@@ -1,13 +1,45 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Affiliate.Admin.Core.Constants
+﻿namespace Fanex.Affiliate.Admin.Core.Constants
 {
+    using System.Collections.Generic;
+
     public static class AppContact
     {
         public const string Telegram = "Telegram";
         public const string WhatsApp = "WhatsApp";
         public const string Line = "Line";
+        public const string Facebook = "Facebook";
+        public const string QQ = "QQ";
         private const string DefaultRegexValue = "^.*$";
+
+        public static readonly IReadOnlyDictionary<string, string> FirsAppContactList = new Dictionary<string, string>
+        {
+            [SystemLanguage.EnglishLanguageCode] = Telegram,
+            [SystemLanguage.BangladeshLanguageCode] = WhatsApp,
+            [SystemLanguage.IndiaLanguageCode] = WhatsApp,
+            [SystemLanguage.IndonesiaLanguageCode] = WhatsApp,
+            [SystemLanguage.JapanLanguageCode] = Telegram,
+            [SystemLanguage.CambodianLanguageCode] = Telegram,
+            [SystemLanguage.KoreaLanguageCode] = Telegram,
+            [SystemLanguage.ThailandLanguageCode] = Line,
+            [SystemLanguage.VietNamLanguageCode] = Telegram,
+            [SystemLanguage.ChineseLanguageCode] = Telegram,
+            [SystemLanguage.TaiwanLanguageCode] = Telegram,
+        };
+
+        public static readonly IReadOnlyDictionary<string, string> SecondAppContactList = new Dictionary<string, string>
+        {
+            [SystemLanguage.EnglishLanguageCode] = Facebook,
+            [SystemLanguage.BangladeshLanguageCode] = Telegram,
+            [SystemLanguage.IndiaLanguageCode] = Telegram,
+            [SystemLanguage.JapanLanguageCode] = Facebook,
+            [SystemLanguage.CambodianLanguageCode] = Facebook,
+            [SystemLanguage.ChineseLanguageCode] = QQ,
+            [SystemLanguage.TaiwanLanguageCode] = QQ,
+        };
+
+        public static readonly IReadOnlyDictionary<string, string> ThirdAppContactList = new Dictionary<string, string>
+        {
+        };
 
         private static readonly IReadOnlyDictionary<string, string> RegexValidations = new Dictionary<string, string>
         {

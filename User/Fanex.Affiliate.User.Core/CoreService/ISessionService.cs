@@ -13,6 +13,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         bool IsInternal { get; set; }
 
+        bool IsUnauthorized { get; }
+
         string SignUpCaptchaCode { get; set; }
 
         string PrivateKey { get; set; }

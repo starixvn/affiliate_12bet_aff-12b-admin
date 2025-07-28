@@ -50,6 +50,49 @@ exports[`user account - components - sections - Personal render correctly 1`] = 
     </Col>
   </FormGroup>
   <FormGroup
+    key="affCategoryDesc"
+    row={true}
+    tag="div"
+  >
+    <Label
+      className=""
+      for="affCategoryDesc"
+      sm={3}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xl={2}
+    >
+      Account Type
+    </Label>
+    <Col
+      className="input-item"
+      sm={9}
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xl={10}
+    >
+      <p
+        className="form-control-plaintext"
+      />
+    </Col>
+  </FormGroup>
+  <FormGroup
     key="firstName"
     row={true}
     tag="div"

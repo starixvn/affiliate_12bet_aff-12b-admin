@@ -44,6 +44,10 @@
 
         public const string AffPersonalInfo = "[AffPersonalInfo]";
 
+        public const string AddMarketingAccount = "[AddMarketingAccount]";
+
         public const string DisabledFunction = "[AffDisabledFunction]";
+
+        public const string ShouldBeIgnoredForClient = "[ShouldBeIgnoredForClient]";
     }
 }

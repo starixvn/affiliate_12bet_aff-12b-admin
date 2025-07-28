@@ -50,10 +50,10 @@ exports[`player ggr report - GridData  should render correctly 1`] = `
           </th>
           <th
             rowSpan="2"
-            title="FDM Date"
+            title="FTD Date"
             width={120}
           >
-            FDM Date
+            FTD Date
           </th>
           <th
             colSpan="2"
@@ -275,10 +275,10 @@ exports[`player ggr report - GridData  should render correctly with empty data 1
           </th>
           <th
             rowSpan="2"
-            title="FDM Date"
+            title="FTD Date"
             width={120}
           >
-            FDM Date
+            FTD Date
           </th>
           <th
             colSpan="2"

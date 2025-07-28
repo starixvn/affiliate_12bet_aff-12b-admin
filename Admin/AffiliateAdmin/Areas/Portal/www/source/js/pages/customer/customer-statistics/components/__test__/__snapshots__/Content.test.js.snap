@@ -56,12 +56,12 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
     </thead>
     <tbody>
       <tr
-        key="New Signups/FDM"
+        key="New Signups/FTD"
       >
         <td
           className="font-weight-bold"
         >
-          New Signups/FDM
+          New Signups/FTD
         </td>
         <td
           className="text-right"
@@ -124,12 +124,12 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         />
       </tr>
       <tr
-        key="Total Deposits/FDM's Deposit"
+        key="Total Deposits/FTD's Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposits/FDM's Deposit
+          Total Deposits/FTD's Deposit
         </td>
         <td
           className="text-right"
@@ -143,12 +143,12 @@ exports[`customer statistics - components - Content Should render correctly 1`] 
         </td>
       </tr>
       <tr
-        key="FDM's Total Deposit"
+        key="FTD's Total Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          FDM's Total Deposit
+          FTD's Total Deposit
         </td>
         <td
           className="text-right"
@@ -308,12 +308,12 @@ exports[`customer statistics - components - Content Should render correctly with
     </thead>
     <tbody>
       <tr
-        key="New Signups/FDM"
+        key="New Signups/FTD"
       >
         <td
           className="font-weight-bold"
         >
-          New Signups/FDM
+          New Signups/FTD
         </td>
         <td
           className="text-right"
@@ -378,12 +378,12 @@ exports[`customer statistics - components - Content Should render correctly with
         />
       </tr>
       <tr
-        key="Total Deposits/FDM's Deposit"
+        key="Total Deposits/FTD's Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposits/FDM's Deposit
+          Total Deposits/FTD's Deposit
         </td>
         <td
           className="text-right"
@@ -397,12 +397,12 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="FDM's Total Deposit"
+        key="FTD's Total Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          FDM's Total Deposit
+          FTD's Total Deposit
         </td>
         <td
           className="text-right"
@@ -566,12 +566,12 @@ exports[`customer statistics - components - Content Should render correctly with
     </thead>
     <tbody>
       <tr
-        key="New Signups/FDM"
+        key="New Signups/FTD"
       >
         <td
           className="font-weight-bold"
         >
-          New Signups/FDM
+          New Signups/FTD
         </td>
         <td
           className="text-right"
@@ -636,12 +636,12 @@ exports[`customer statistics - components - Content Should render correctly with
         />
       </tr>
       <tr
-        key="Total Deposits/FDM's Deposit"
+        key="Total Deposits/FTD's Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          Total Deposits/FDM's Deposit
+          Total Deposits/FTD's Deposit
         </td>
         <td
           className="text-right"
@@ -655,12 +655,12 @@ exports[`customer statistics - components - Content Should render correctly with
         </td>
       </tr>
       <tr
-        key="FDM's Total Deposit"
+        key="FTD's Total Deposit"
       >
         <td
           className="font-weight-bold"
         >
-          FDM's Total Deposit
+          FTD's Total Deposit
         </td>
         <td
           className="text-right"

@@ -1,4 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Fanex.Affiliate.Admin.Core.Commands.UserPanel.UserAccount;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Criterias.Affiliate;
@@ -13,9 +16,6 @@ using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.ThirdPartyLicensee;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
@@ -55,42 +55,47 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public async Task<ResultInfo> UpdateUserAccountAsync(UserAccountParam param)
         {
-            var validateWebSite = ValidateWebSite(param);
-            if (!validateWebSite.IsSuccessful)
+            var validateResult = ValidateWebSite(param);
+            if (!validateResult.IsSuccessful)
             {
-                return validateWebSite;
+                return validateResult;
             }
 
             var isValidPaymentMethod = ValidatePaymentMethod(param);
-
-            var curUserAccInfo = GetUserAccountInfo(param.AffId);
-
-            if (isValidPaymentMethod)
+            if (!isValidPaymentMethod)
             {
-                if (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment) && curUserAccInfo.PlayerUsername != param.PlayerUsername)
-                {
-                    var memberSiteId = _appSetting.MemberSiteId;
-                    var memberSiteCust = await _licenseeService
-                        .GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
-
-                    var result = _licenseeService.CheckCustomerIsValid(memberSiteCust);
-
-                    if (!result.IsSuccessful)
-                    {
-                        return result;
-                    }
-                    param.Player_CustId = memberSiteCust.CustId;
-                    param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault() ? TEST_CURRENCY_ID : memberSiteCust.CurrencyId.GetValueOrDefault();
-                }
-
-                return await UpdateUserAccount(param, curUserAccInfo);
+                return ResultInfo.GenerateErr("The Preferred Payment Method is invalid!");
             }
 
-            return new ResultInfo
+            var curUserAccInfo = GetUserAccountInfo(param.AffId);
+            var isPlayerAccountPreferred = PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
+            var isDifferentUsername = !curUserAccInfo.PlayerUsername.MatchWith(param.PlayerUsername);
+
+            if (isPlayerAccountPreferred && !string.IsNullOrWhiteSpace(param.PlayerUsername))
             {
-                Code = ErrCode.GeneralErrorCode,
-                Message = Lang.UpdateIsFailed
-            };
+                if (isDifferentUsername)
+                {
+                    var memberSiteId = _appSetting.MemberSiteId;
+                    var memberSiteCust = await _licenseeService.GetMemberSiteCustomerInfo(param.PlayerUsername, memberSiteId);
+                    var validationResult = _licenseeService.CheckCustomerIsValid(memberSiteCust);
+
+                    if (!validationResult.IsSuccessful)
+                    {
+                        return validationResult;
+                    }
+
+                    param.Player_CustId = memberSiteCust.CustId;
+                    param.Player_Currency = memberSiteCust.IsTest.GetValueOrDefault()
+                        ? TEST_CURRENCY_ID
+                        : memberSiteCust.CurrencyId.GetValueOrDefault();
+                } else
+                {
+                    param.Player_CustId = curUserAccInfo.PlayerCustId;
+                    param.Player_Currency = curUserAccInfo.PlayerCurrencyId;
+                }
+            }
+
+            return await UpdateUserAccount(param, curUserAccInfo);
         }
 
         private async Task<ResultInfo> UpdateUserAccount(UserAccountParam param, UserAccount curUserAccInfo)
@@ -114,7 +119,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 MailOption = param.MailOption,
                 SiteUrl = param.SiteUrl,
                 MoreSiteUrls = param.MoreSiteUrls,
-                NoSiteDescription = param.NoSiteDescription,
+                NoSiteDesc = param.NoSiteDesc,
                 PreferredPayment = param.PreferredPayment,
                 PlayerUsername = param.PlayerUsername,
                 NetellerAccountId = param.NetellerAccountId,
@@ -173,6 +178,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private ResultInfo ValidateWebSite(UserAccountParam param)
         {
+            if (param.IsMarketingAccount)
+            {
+                return new ResultInfo();
+            }
+
             if (param.HasWebSite && string.IsNullOrEmpty(param.SiteUrl))
             {
                 return new ResultInfo
@@ -182,7 +192,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 };
             }
 
-            if (!param.HasWebSite && string.IsNullOrEmpty(param.NoSiteDescription))
+            if (!param.HasWebSite && string.IsNullOrEmpty(param.NoSiteDesc))
             {
                 return new ResultInfo
                 {
@@ -196,6 +206,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         private static bool ValidatePaymentMethod(UserAccountParam param)
         {
+            if (param.IsMarketingAccount)
+            {
+                return PaymentMethod.PlayerAccount.Equals(param.PreferredPayment);
+            }
+
             var isPlayerUsername = (PaymentMethod.PlayerAccount.Equals(param.PreferredPayment))
                                         && !string.IsNullOrEmpty(param.PlayerUsername);
             var isMoneybookersEmail = PaymentMethod.Moneybookers.Equals(param.PreferredPayment) && !string.IsNullOrEmpty(param.MoneybookersEmail);

@@ -24,7 +24,7 @@ describe('user account - components - Content', () => {
         Country: "Viet Nam",
         SiteUrl: "abc.com",
         MoreSiteUrls: "www.sportsbookie.com;www.gzyyy.com;www.123.com",
-        NoSiteDescription: "",
+        NoSiteDesc: "",
         PreferredPayment: "Player",
         PlayerUsername: "bettingexp",
         NetellerAccountId: "1",
@@ -58,7 +58,7 @@ describe('user account - components - Content', () => {
         getUserAccountInfo: jest.fn(() => userAccountInfo),
         claimsPrincipal: { hasReadClaim: jest.fn(() => true), hasWriteClaim: jest.fn(() => true), hasClaim: jest.fn(() => true) },
         getPaymentMethod: jest.fn(() => paymentMethod, () => paymentMethod),
-        licenseeName: 'Bwing'
+        licenseeName: '12Bet'
     }
 
     it('render correctly', () => {
@@ -212,7 +212,7 @@ describe('user account - components - Content', () => {
         await instance.handleSubmit();
 
         expect(instance.setState).toHaveBeenCalledTimes(2);
-        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: 'Moneybookers Email is required<br />' });
+        expect(instance.setState.mock.calls[0][0]).toEqual({ isShowMessage: true, isSuccess: false, message: "Please describe how you would like to promote 12Bet if you don't have the URL is required<br />Moneybookers Email is required<br />" });
         expect(instance.setState.mock.calls[0][1]).toEqual(expect.any(Function));
 
         expect(props.updateUserAccount).not.toHaveBeenCalled();

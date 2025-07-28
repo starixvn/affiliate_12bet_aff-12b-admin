@@ -38,14 +38,14 @@ exports[`payment request - components - Content  render correctly with have grid
               sorting={false}
               title={1262276211}
             >
-              <Button
+              <a
                 className="p-0"
                 color="link"
+                href="javascript:;"
                 onClick={[Function]}
-                tag="button"
               >
                 1262276211
-              </Button>
+              </a>
             </t>
             <t
               asc={true}
@@ -137,14 +137,14 @@ exports[`payment request - components - Content  render correctly with have grid
               sorting={false}
               title={1262276209}
             >
-              <Button
+              <a
                 className="p-0"
                 color="link"
+                href="javascript:;"
                 onClick={[Function]}
-                tag="button"
               >
                 1262276209
-              </Button>
+              </a>
             </t>
             <t
               asc={true}

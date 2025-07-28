@@ -81,6 +81,7 @@
             {
                 IsInternal = SessionService.IsInternal,
                 AccountInformation = newAccountInfo,
+                IsMarketingAccount = SessionService.UserSession.IsMarketingAccount,
                 TargetCountryList = SystemService.GetSystemTargetCountries(),
                 BaseCurrencyList = CurrencyHelper.GetCurrencyList(baseCurrencyList, newAccountInfo.DefaultBaseCurrency)
             };
@@ -93,7 +94,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult Index(AccountInformation model)
         {
-            if (SessionService.IsInternal)
+            if (SessionService.IsUnauthorized)
             {
                 return Json(new ResultInfo { IsOk = false, Message = Lang.ErrAuthorized });
             }

@@ -30,15 +30,6 @@ const testCaseList = [
             fromDate: "2024-01-01"
         }
     },
-    {
-        name: 'languageCodeList',
-        value: { en: 'En1' },
-        action: {
-            type: types.SET_LANGUAGE_CODE_LIST,
-            data: { en: 'En', vi: 'VI' }
-        },
-        expectedResult: { en: 'En', vi: 'VI' }
-    }
 ];
 
 describe('marketing statistics reducers', () => {

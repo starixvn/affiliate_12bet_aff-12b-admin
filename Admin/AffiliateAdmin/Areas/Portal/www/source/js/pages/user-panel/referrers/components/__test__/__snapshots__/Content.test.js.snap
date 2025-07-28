@@ -244,9 +244,9 @@ exports[`referrers - components - Content render correctly with have data 1`] = 
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="FDM"
+          title="FTD"
         >
-          FDM
+          FTD
         </t>
       </t>
     }
@@ -338,9 +338,9 @@ exports[`referrers - components - Content render correctly with have data is emp
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="FDM"
+          title="FTD"
         >
-          FDM
+          FTD
         </t>
       </t>
     }

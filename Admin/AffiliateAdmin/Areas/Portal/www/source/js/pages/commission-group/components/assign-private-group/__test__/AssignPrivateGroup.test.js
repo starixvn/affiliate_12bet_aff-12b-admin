@@ -5,22 +5,41 @@ import * as ajaxRequest from '../../../../../modules/ajaxRequest';
 
 describe('commission group - assign private group', () => {
     const expectParam = {
-        DepositFee: { DeductedPercentage: 0.02, DeductionId: 13, ProductIds: 0, IsDeductedPercent: true, DeductedAmount: "" },
-        WithdrawalFee: { DeductedPercentage: 0.02, DeductionId: 14, ProductIds: 0, IsDeductedPercent: true, DeductedAmount: "" },
-        Description: "",
-        GroupId: 0,
-        GroupName: "",
-        SubAffCommRate: 0,
-        QmTurnover: 100,
-        IsActivePlayerSum: true,
-        PlatformFeeList: [{ DeductedPercentage: 0.17, DeductionId: 10, ProductIds: "1,2,3,4,5", GroupProductId: 0, IsDeductedPercent: true, DeductedAmount: "" }],
-        TierSettingList: [{
-            GroupId: 0,
-            TierId: 1,
-            GroupProductId: 0,
-            MinAmount: 0,
-            MinQm: 5,
-            Commission: 0,
+        "Description": "",
+        "GroupId": 0,
+        "GroupName": "",
+        "IsActivePlayerSum": true,
+        "QmTurnover": 100,
+        "SubAffCommRate": 0.05,
+        "DepositFee": {
+            "DeductedAmount": "",
+            "DeductedPercentage": 0.02,
+            "DeductionId": 13,
+            "IsDeductedPercent": true,
+            "ProductIds": 0
+        },
+        "WithdrawalFee": {
+            "DeductedAmount": "",
+            "DeductedPercentage": 0.02,
+            "DeductionId": 14,
+            "IsDeductedPercent": true,
+            "ProductIds": 0
+        },
+        "PlatformFeeList": [{
+            "DeductedAmount": "",
+            "DeductedPercentage": 0.17,
+            "DeductionId": 10,
+            "GroupProductId": 0,
+            "IsDeductedPercent": true,
+            "ProductIds": "1,2,3,4,5"
+        }],
+        "TierSettingList": [{
+            "Commission": 0,
+            "GroupId": 0,
+            "GroupProductId": 0,
+            "MinAmount": 0,
+            "MinQm": 5,
+            "TierId": 1
         }]
     };
 

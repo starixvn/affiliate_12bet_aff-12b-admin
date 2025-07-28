@@ -369,9 +369,9 @@ exports[`landing page statistics - components - Content render correctly with ha
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="FDM"
+          title="FTD"
         >
-          FDM
+          FTD
         </t>
       </t>
     }
@@ -474,9 +474,9 @@ exports[`landing page statistics - components - Content render correctly with ha
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="FDM"
+          title="FTD"
         >
-          FDM
+          FTD
         </t>
       </t>
     }

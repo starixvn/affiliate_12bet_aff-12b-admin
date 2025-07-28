@@ -14,6 +14,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
     >
       <Label
         className="mr-2"
+        for="affName"
         tag="label"
         widths={
           Array [
@@ -28,6 +29,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
         Affiliate
       </Label>
       <Input
+        id="affName"
         name="affName"
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -41,6 +43,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
     >
       <Label
         className="mr-2"
+        for="userName"
         tag="label"
         widths={
           Array [
@@ -55,6 +58,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
         User Name
       </Label>
       <Input
+        id="userName"
         name="userName"
         onChange={[Function]}
         onKeyPress={[Function]}
@@ -68,6 +72,7 @@ exports[`member list - components - Filter  render correctly 1`] = `
     >
       <Label
         className="mr-2"
+        for="ibcUserName"
         tag="label"
         widths={
           Array [
@@ -82,12 +87,41 @@ exports[`member list - components - Filter  render correctly 1`] = `
         System Name
       </Label>
       <Input
+        id="ibcUserName"
         name="ibcUserName"
         onChange={[Function]}
         onKeyPress={[Function]}
         type="text"
         value=""
       />
+    </FormGroup>
+    <FormGroup
+      className="mr-sm-3"
+      tag="div"
+    >
+      <Label
+        checked={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Include removed Players
+        <Input
+          checked={false}
+          className="ml-2 mt-1"
+          id="isIncludeRemovedPlayer"
+          name="isIncludeRemovedPlayer"
+          onChange={[Function]}
+          type="checkbox"
+        />
+      </Label>
     </FormGroup>
     <Button
       color="primary"

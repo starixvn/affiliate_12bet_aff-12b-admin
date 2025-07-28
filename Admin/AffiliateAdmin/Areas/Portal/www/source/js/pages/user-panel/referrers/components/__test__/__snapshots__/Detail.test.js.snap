@@ -80,9 +80,9 @@ exports[`referrers - components - Detail render correctly 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="FDM"
+          title="FTD"
         >
-          FDM
+          FTD
         </t>
       </t>
     }
@@ -290,9 +290,9 @@ exports[`referrers - components - Detail render correctly with have data 1`] = `
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="FDM"
+          title="FTD"
         >
-          FDM
+          FTD
         </t>
       </t>
     }
@@ -401,9 +401,9 @@ exports[`referrers - components - Detail render correctly with have data is empt
           onClick={[Function]}
           sortable={false}
           sorting={false}
-          title="FDM"
+          title="FTD"
         >
-          FDM
+          FTD
         </t>
       </t>
     }

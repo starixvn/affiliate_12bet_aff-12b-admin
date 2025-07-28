@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string MoreSiteUrls { get; set; }
 
-        public string NoSiteDescription { get; set; }
+        public string NoSiteDesc { get; set; }
 
         public string PreferredPayment { get; set; }
 
@@ -73,5 +73,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
         public IEnumerable<ContactApp> ContactAppList { get; set; }
 
         public bool HasWebSite => !string.IsNullOrEmpty(SiteUrl);
+
+        public string AffCategoryDesc { get; set; }
+
+        [PermissionCheck(Function.ShouldBeIgnoredForClient)]
+        public int PlayerCustId { get; set; }
+
+        [PermissionCheck(Function.ShouldBeIgnoredForClient)]
+        public int PlayerCurrencyId { get; set; }
     }
 }
