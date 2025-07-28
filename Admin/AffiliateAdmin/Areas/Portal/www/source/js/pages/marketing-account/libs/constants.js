@@ -20,6 +20,7 @@ export const headerText = {
     Status: 'Status',
     TargetCountryCode: 'Target Country',
     Language: 'Language',
+    DealName: 'Deal Name',
     RegistrationDateText: 'Registration Date',
     CreatedBy: 'Created By',
     Action: 'Action'
