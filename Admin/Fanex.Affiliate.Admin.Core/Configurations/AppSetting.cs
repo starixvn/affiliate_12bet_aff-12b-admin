@@ -76,6 +76,10 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public int MemberSiteApiTokenCacheTimeOut => Convert.ToInt32(GetValue("MemberSiteApiTokenCacheTimeOut"));
 
+        public int MarketingSpecificAffId => Convert.ToInt32(GetValue("MarketingSpecificAffId"));
+
+        public string MarketingSpecificAffName => GetValue("MarketingSpecificAffName");
+
         public bool IsUseMemberSiteProxy => Convert.ToBoolean(GetValue("IsUseProxyToGetMemberSiteApi"));
 
         public bool IsApiDataModifiable => Convert.ToBoolean(GetValue("IsApiDataModifiable"));

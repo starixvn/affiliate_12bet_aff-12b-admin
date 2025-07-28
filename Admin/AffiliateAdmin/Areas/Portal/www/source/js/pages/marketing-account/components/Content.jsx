@@ -7,7 +7,7 @@ import { setIsShowAddAffMktAccountPopup, setAff } from '../actions';
 import GridData from './GridData';
 
 export const Content = (props) => {
-    const { params, canAddAffMktAccount } = props;
+    const { params, canAddAffMktAccount, defaultMktAffInfo } = props;
     const isShowCreateAffMktAccBtn = params && canAddAffMktAccount;
 
     const _handleAddNewAccount = (affId, affName) => {
@@ -18,7 +18,7 @@ export const Content = (props) => {
     return (
         <div className="data-content my-2">
             {isShowCreateAffMktAccBtn && <div className="my-2">
-                <Button outline type="button" onClick={() => _handleAddNewAccount(927841, '12BETAFF001')}>
+                <Button outline type="button" onClick={() => _handleAddNewAccount(defaultMktAffInfo.affId, defaultMktAffInfo.affName)}>
                     Add New Account
                     <span className="oi oi-plus ml-2"></span>
                 </Button>
@@ -28,11 +28,12 @@ export const Content = (props) => {
     )
 }
 
-const mapStateToProps = ({ params, languageCodeList, targetCountryCodeList, canAddAffMktAccount }) => {
+const mapStateToProps = ({ params, languageCodeList, targetCountryCodeList, canAddAffMktAccount, defaultMktAffInfo }) => {
     return {
         params,
         languageCodeList,
         targetCountryCodeList,
+        defaultMktAffInfo,
         canAddAffMktAccount
     };
 };
