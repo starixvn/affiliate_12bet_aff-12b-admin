@@ -94,7 +94,7 @@ exports[`marketing-account - components - AddAffMktAccountPopup should render co
           }
         />
       </Alert>
-      <Component
+      <GeneralInfo
         generalInfo={
           Object {
             "affType": 0,
@@ -106,7 +106,7 @@ exports[`marketing-account - components - AddAffMktAccountPopup should render co
         }
         setGeneralInfo={[MockFunction]}
       />
-      <Component
+      <Personal
         personalInfo={
           Object {
             "email": "john@example.com",
@@ -116,7 +116,7 @@ exports[`marketing-account - components - AddAffMktAccountPopup should render co
         }
         setPersonalInfo={[MockFunction]}
       />
-      <Component
+      <Additional
         additionalInfo={
           Object {
             "address": "123 Main St",
@@ -125,7 +125,7 @@ exports[`marketing-account - components - AddAffMktAccountPopup should render co
         }
         setAdditionalInfo={[MockFunction]}
       />
-      <Component
+      <EmailFormat
         generalInfo={
           Object {
             "affType": 0,
@@ -137,7 +137,7 @@ exports[`marketing-account - components - AddAffMktAccountPopup should render co
         }
         setGeneralInfo={[MockFunction]}
       />
-      <Component
+      <WebSite
         setWebsiteInfo={[MockFunction]}
         websiteInfo={
           Object {
@@ -146,7 +146,7 @@ exports[`marketing-account - components - AddAffMktAccountPopup should render co
           }
         }
       />
-      <Component
+      <Payment
         minimumPayment={100}
         paymentInfo={
           Object {
