@@ -10,8 +10,10 @@ export const filterDealMode = {
 export const headerText = {
     Index: '#',
     BlockTargetCountry: 'Block Target Country',
-    LandingPageName: 'Landing Page Name (Shown in dropdown)',
-    LandingPageCode: 'Landing Page Code (Contained in links)',
+    LandingPageName: 'Landing Page Name',
+    ShowInDropdown: 'Show in dropdown',
+    LandingPageCode: 'Landing Page Code',
+    ContainInLinks: 'Contained in links',
     Deal: 'Deal',
     MobileOnly: 'Mobile Only',
 }

@@ -1,15 +1,16 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import BlockTargetCountryFormGroup from '../../../common/components/BlockTargetCountryFormGroup';
 import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getTargetCountryListByDomain } from '../actions/index';
 import { defaultState } from '../libs/constants';
-import { getBlockTargetCountryList, checkBlockAllTargetCountries } from '../../../common/modules/utils/targetcountry';
+import { getBlockTargetCountryList } from '../../../common/modules/utils/targetcountry';
 import { targetCountryStatus } from '../../../../modules/constants';
 import { deepClone } from '../../../../modules/dataHandler';
+import { convertListToMutilpleSelected, handleChangeMultipleSelected } from '../../../../modules/utils';
+import MultipleSelect from '../../../../components/multiple-select';
 
 export class DomainPopup extends PureComponent {
     constructor(props) {
@@ -27,9 +28,10 @@ export class DomainPopup extends PureComponent {
 
     _handleUpdateState = async (selectedDomainId, isAffDomain) => {
         if (selectedDomainId === 0) {
-            const targetCountryList = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
+            const initialTargetCountryList = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
+            const convertTargetCountryList = convertListToMutilpleSelected(initialTargetCountryList, 'TargetCountryCode', 'TargetCountryName', false);
 
-            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockTargetCountry: '', isSSL: true }, targetCountryList });
+            this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockTargetCountry: '', isSSL: true }, targetCountryList: convertTargetCountryList, initialTargetCountryList });
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getDomainById(selectedDomainId, isAffDomain);
@@ -37,12 +39,17 @@ export class DomainPopup extends PureComponent {
             if (domain) {
                 const { DomainName, IsSSL } = domain;
                 const domainIdParam = isAffDomain ? "affDomainId" : "redirectDomainId";
-                const targetCountryList = await this.props.getTargetCountryListByDomain({ [domainIdParam]: selectedDomainId });
-                if (targetCountryList && targetCountryList.length) {
-                    const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
-                    const isBlockAllTargetCountries = checkBlockAllTargetCountries(targetCountryList, blockTargetCountryList);
+                const initialTargetCountryList = await this.props.getTargetCountryListByDomain({ [domainIdParam]: selectedDomainId });
+                if (initialTargetCountryList && initialTargetCountryList.length) {
+                    const cloneTargetCountryList = deepClone(initialTargetCountryList);
+                    const blockTargetCountryList = getBlockTargetCountryList(cloneTargetCountryList);
+                    const blockTargetCountry = blockTargetCountryList.join(',');
 
-                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountry: blockTargetCountryList.join(','), isSSL: IsSSL }, targetCountryList, isBlockAllTargetCountries, initialTargetCountryList: deepClone(targetCountryList) });
+                    // use for multiple select
+                    const convertTargetCountryList = convertListToMutilpleSelected(cloneTargetCountryList, 'TargetCountryCode', 'TargetCountryName', false);
+                    const targetCountryList = handleChangeMultipleSelected(convertTargetCountryList, blockTargetCountry);
+
+                    this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountry, isSSL: IsSSL }, targetCountryList, initialTargetCountryList });
                 } else {
                     this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountry: '', isSSL: IsSSL } });
                 }
@@ -61,11 +68,12 @@ export class DomainPopup extends PureComponent {
         this.setState({ selectedDomain: newDomain });
     }
 
-    handleChangeTargetCountry = (isBlockAllTargetCountries, blockTargetCountry, newTargetCountryList) => {
-        const { selectedDomain } = this.state;
-        const newDomain = Object.assign({}, selectedDomain, { blockTargetCountry });
+    handleChangeTargetCountry = (item, selectedTargetCountry) => {
+        const { selectedDomain, targetCountryList } = this.state;
+        const newDomain = Object.assign({}, selectedDomain, { blockTargetCountry: selectedTargetCountry });
+        const newTargetCountryList = handleChangeMultipleSelected(targetCountryList, selectedTargetCountry);
 
-        this.setState({ selectedDomain: newDomain, targetCountryList: newTargetCountryList, isBlockAllTargetCountries });
+        this.setState({ selectedDomain: newDomain, targetCountryList: newTargetCountryList });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -78,30 +86,31 @@ export class DomainPopup extends PureComponent {
     }
 
     _handleSubmit = async () => {
-        const { selectedDomain, isInsert, targetCountryList, initialTargetCountryList } = this.state;
+        const { selectedDomain, isInsert, initialTargetCountryList } = this.state;
 
         if (!selectedDomain.domainName) {
             this._handleShowAlert(false, "Please input domain name!");
             return;
         }
 
-        const initialUsedCountryOnControlDomains = initialTargetCountryList && initialTargetCountryList.filter(targetCountry =>
+        const initialUsedCountryOnControlDomains = initialTargetCountryList?.filter(targetCountry =>
             targetCountry.IsUsedDomainControl
-        ).map(t => t.TargetCountryCode).join(",");
+        ).map(t => t.TargetCountryCode).join(',');
 
         if (isInsert || !initialUsedCountryOnControlDomains) {
             this._submitData(selectedDomain);
             return;
         }
 
-        const initialBlockedControlDomains = initialTargetCountryList.filter(targetCountry =>
-            targetCountry.IsUsedDomainControl &&
-            targetCountry.Status === targetCountryStatus.Blocked
-        ).map(t => t.TargetCountryCode).join(",");
+        const selectedBlockedCodes = selectedDomain.blockTargetCountry;
 
-        const blockedControlDomains = targetCountryList.filter(targetCountry => 
-            targetCountry.IsUsedDomainControl && 
-            targetCountry.Status === targetCountryStatus.Blocked &&
+        const initialBlockedControlDomains = initialTargetCountryList.filter(targetCountry =>
+            targetCountry.Status === targetCountryStatus.Blocked
+        ).map(t => t.TargetCountryCode);
+
+        const blockedControlDomains = initialTargetCountryList.filter(targetCountry =>
+            targetCountry.IsUsedDomainControl &&
+            selectedBlockedCodes.includes(targetCountry.TargetCountryCode) &&
             !initialBlockedControlDomains.includes(targetCountry.TargetCountryCode)
         );
 
@@ -112,9 +121,9 @@ export class DomainPopup extends PureComponent {
             return;
         }
 
-        const unblockedControlDomains = targetCountryList.filter(targetCountry =>
+        const unblockedControlDomains = initialTargetCountryList.filter(targetCountry =>
             targetCountry.IsUsedDomainControl &&
-            targetCountry.Status === targetCountryStatus.Normal &&
+            !selectedBlockedCodes.includes(targetCountry.TargetCountryCode) &&
             initialBlockedControlDomains.includes(targetCountry.TargetCountryCode)
         );
 
@@ -134,14 +143,14 @@ export class DomainPopup extends PureComponent {
 
             const { isAffDomain } = this.props;
             const { isInsert } = this.state;
-            
+
             const domainInfo = {
                 ...selectedDomain,
                 isAffDomain
             };
 
-            const result = isInsert 
-                ? await this.props.insertDomain(domainInfo) 
+            const result = isInsert
+                ? await this.props.insertDomain(domainInfo)
                 : await this.props.updateDomain(domainInfo);
 
             const successMessage = isInsert ? "Add Successfully!" : "Update Successfully!";
@@ -149,7 +158,7 @@ export class DomainPopup extends PureComponent {
 
             if (result) {
                 this._handleShowAlert(
-                    result.IsSuccessful, 
+                    result.IsSuccessful,
                     result.IsSuccessful ? successMessage : result.Message
                 );
             } else {
@@ -194,7 +203,7 @@ export class DomainPopup extends PureComponent {
     }
 
     render() {
-        const { isInsert, isSuccess, isShowMessage, message, isConfirmPopup, messageConfirm, selectedDomain, targetCountryList, isBlockAllTargetCountries } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, isConfirmPopup, messageConfirm, selectedDomain, targetCountryList } = this.state;
         const isShowPopup = selectedDomain !== null;
         const title = isInsert ? "Add Domain" : "Edit Domain";
         const buttonLabel = isInsert ? "Add" : "Submit";
@@ -217,20 +226,28 @@ export class DomainPopup extends PureComponent {
                                                 value={selectedDomain.domainName} onChange={this._handleChange} onKeyPress={this._handleKeyPress} />
                                         </Col>
                                     </FormGroup>
+                                    {
+                                        targetCountryList && <FormGroup row className="align-items-center mb-2">
+                                            <Label sm={4}>Block Target Country</Label>
+                                            <Col sm={8}>
+                                                <MultipleSelect
+                                                    dataSource={targetCountryList}
+                                                    keyField="key"
+                                                    valueField="name"
+                                                    statusField="checked"
+                                                    noneSelectedLabel="None"
+                                                    selectedAllLabel="All Target Countries"
+                                                    hasInputOption={false}
+                                                    onChange={this.handleChangeTargetCountry} />
+                                            </Col>
+                                        </FormGroup>
+                                    }
                                     <FormGroup row className="align-items-center mb-2">
                                         <Label for="isSSL" sm={4}>SSL</Label>
                                         <Col sm={8}>
                                             <input type="checkbox" name="isSSL" id="isSSL" checked={selectedDomain.isSSL} onChange={this._handleChange} />
                                         </Col>
                                     </FormGroup>
-                                    {
-                                        targetCountryList && <BlockTargetCountryFormGroup
-                                            sm={4}
-                                            targetCountryList={targetCountryList}
-                                            isBlockAllTargetCountries={isBlockAllTargetCountries}
-                                            changeTargetCountry={this.handleChangeTargetCountry}
-                                            />
-                                    }
                                 </Form>
 
                                 <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
