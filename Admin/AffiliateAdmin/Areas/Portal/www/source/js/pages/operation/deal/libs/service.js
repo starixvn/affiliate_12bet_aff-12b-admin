@@ -123,18 +123,18 @@ export const _handleSaveParam = (dealInfo) => {
 }
 
 // Start validate deal info
-export const validateDealInfo = (dealInfo, isAdd = true, tomorrow) => {
+export const validateDealInfo = (dealInfo, tomorrow, isAdd = true) => {
     const { DealType, DealName } = dealInfo;
     let validateResult = { isValid: false, messageList: [] };
 
     const groupNameValidation = validateGroupName(DealName);
 
     if (DealType === DEAL_CPA) {
-        validateResult = validateCPAInfo(dealInfo, isAdd, tomorrow);
+        validateResult = validateCPAInfo(dealInfo, tomorrow, isAdd);
     } else if (DealType === DEAL_REVENUE_SHARE) {
         validateResult = validateRevenueShareInfo(dealInfo);
     } else {
-        validateResult = validateHybridInfo(dealInfo);
+        validateResult = validateHybridInfo(dealInfo, tomorrow, isAdd);
     }
 
     const isValid = groupNameValidation.isValid && validateResult.isValid;
@@ -143,10 +143,10 @@ export const validateDealInfo = (dealInfo, isAdd = true, tomorrow) => {
     return { isValid, messageList };
 }
 
-export const validateCPAInfo = (dealInfo, isAdd = true, tomorrow) => {
+export const validateCPAInfo = (dealInfo, tomorrow, isAdd = true) => {
     const { CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover, ProductGroup } = dealInfo;
 
-    const generalDealInfoValidation = validateGeneralDealInfo(dealInfo, isAdd, tomorrow);
+    const generalDealInfoValidation = validateGeneralDealInfo(dealInfo, tomorrow, isAdd);
     const checkBoxValidation = validateCheckBox(CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
     const productGroupValidation = validateProductGroup(ProductGroup, CheckedMinTurnover);
     const tierSettingValidation = validateTierSetting(CPATierSetting, CheckedMinFdm, CheckedMinTotalDeposit, CheckedMinTurnover);
@@ -157,8 +157,8 @@ export const validateCPAInfo = (dealInfo, isAdd = true, tomorrow) => {
     return { isValid, messageList };
 }
 
-export const validateHybridInfo = (dealInfo) => {
-    const validateCPAInfoResult = validateCPAInfo(dealInfo);
+export const validateHybridInfo = (dealInfo, tomorrow, isAdd = true) => {
+    const validateCPAInfoResult = validateCPAInfo(dealInfo, tomorrow, isAdd);
     const validateRevenueShareInfoResult = validateRevenueShareInfo(dealInfo);
 
     const isValid = validateCPAInfoResult.isValid && validateRevenueShareInfoResult.isValid;
@@ -196,7 +196,7 @@ export const validateGroupName = (groupName) => {
     return { isValid, messageList };
 }
 
-export const validateGeneralDealInfo = (dealInfo, isAdd, tomorrow) => {
+export const validateGeneralDealInfo = (dealInfo, tomorrow, isAdd = true) => {
     const {
         CountryCodes,
         ActiveDays,
@@ -248,7 +248,7 @@ export const validateGeneralDealInfo = (dealInfo, isAdd, tomorrow) => {
     startDate.setHours(0, 0, 0, 0);
     tomorrowDate.setHours(0, 0, 0, 0);
 
-    addIfInvalid(isAdd && startDate < tomorrowDate, messages.requireStartDate);
+    addIfInvalid(isAdd && ((!startDate instanceof Date || isNaN(startDate.getTime())) || startDate < tomorrowDate), messages.requireStartDate);
 
     const isValid = messageList.length === 0;
 

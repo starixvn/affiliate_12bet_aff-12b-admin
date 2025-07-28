@@ -32,7 +32,7 @@ export const AddDeal = (props) => {
     const _handleSave = async () => {
         const { dealInfo } = props;
 
-        const { isValid, messageList } = validateDealInfo(dealInfo, props.tomorrow);
+        const { isValid, messageList } = validateDealInfo(dealInfo, props.tomorrow, true);
         if (!isValid) {
             if (dealInfo.DealType === DEAL_HYBRID) {
                 const hasInvalidCPA = messageList.some(m => m.includes(DEAL_HYBRID_CPA_SECTION));

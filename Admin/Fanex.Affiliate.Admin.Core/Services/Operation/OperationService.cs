@@ -137,7 +137,7 @@
                     {
                         command.GroupId = 0;
                         command.ScheduleId = param.ScheduleId;
-                        command.StartDate = param.StartDate;
+                        command.StartDate = param.StartDate.GetValueOrDefault();
                     }
                     break;
 
@@ -152,7 +152,7 @@
                     {
                         command.GroupId = 0;
                         command.ScheduleId = param.ScheduleId;
-                        command.StartDate = param.StartDate;
+                        command.StartDate = param.StartDate.GetValueOrDefault();
                     }
                     break;
             }

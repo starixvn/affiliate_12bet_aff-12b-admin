@@ -32,9 +32,9 @@
 
         public decimal RedepositRate { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public string StartDateString => StartDate.ToString("MM/dd/yyyy");
+        public string StartDateString => StartDate.HasValue ? StartDate.Value.ToString("MM/dd/yyyy") : string.Empty;
 
         public byte ScheduleId { get; set; }
     }

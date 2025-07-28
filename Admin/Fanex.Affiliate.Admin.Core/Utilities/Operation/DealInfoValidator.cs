@@ -145,7 +145,7 @@
                 }
             }
 
-            AddIfInvalid(string.IsNullOrWhiteSpace(dealInfo.DealName), messages["requireCountryCodes"]);
+            AddIfInvalid(string.IsNullOrWhiteSpace(dealInfo.CountryCodes), messages["requireCountryCodes"]);
 
             AddIfInvalid(dealInfo.ActiveDays < 1 || dealInfo.ActiveDays > INFINITY_NUMBER, messages["requireActiveDays"]);
 
@@ -170,7 +170,7 @@
             AddIfInvalid(dealInfo.ScheduleId == 0, messages["requirePaymentFrequency"]);
 
             var tomorrowDate = DateTimeHelper.Gmt8Now.AddDays(1).Date;
-            AddIfInvalid(isAdd && DateTime.Compare(dealInfo.StartDate.Date, tomorrowDate) < 0, messages["requireStartDate"]);
+            AddIfInvalid(isAdd && (dealInfo.StartDate == null || DateTime.Compare(dealInfo.StartDate.Value.Date, tomorrowDate) < 0), messages["requireStartDate"]);
 
             bool isValid = messageList.Count == 0;
 

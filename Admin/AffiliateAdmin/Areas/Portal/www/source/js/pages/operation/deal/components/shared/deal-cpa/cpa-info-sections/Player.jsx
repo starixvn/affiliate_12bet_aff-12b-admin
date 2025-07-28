@@ -85,7 +85,7 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
             </FormGroup>
 
             <FormGroup row className='align-items-center'>
-                <Label htmlFor="ActiveDays" sm={4} className="d-flex mr_15neg">
+                <Label htmlFor="ActiveDays" sm={4} className="mr_15neg">
                     Activity Period
                     <span className="text-danger required" style={{ marginLeft: 3 }}>*</span>
                     <span title="The player must complete all required actions within this time period to qualify. For example: within 30 days from registration." className="ml-1 oi icon-info"></span>
