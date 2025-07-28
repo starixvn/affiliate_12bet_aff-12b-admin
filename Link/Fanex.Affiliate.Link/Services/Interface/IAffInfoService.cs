@@ -9,5 +9,7 @@ namespace Fanex.Affiliate.Link.Services.Interface
         AffiliateInfo GetAffInfoByAffCode(string affCode);
 
         CommGroup GetCommGroupByAffCode(string affCode);
+
+        Task<IList<MasterInfoValidation>> GetMasterDataForValidateClicked();
     }
 }

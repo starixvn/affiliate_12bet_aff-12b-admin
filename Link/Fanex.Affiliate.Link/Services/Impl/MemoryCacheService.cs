@@ -28,6 +28,15 @@ namespace Fanex.Affiliate.Link.Services.Impl
                 MemoryCacheInstance.Set(key, DeepClone(value), cachePolicy);
             }
         }
+        public void SetWithSilingExpire<T>(string key, T value, int seconds = TIMEOUT)
+        {
+            if (!Equals(value, default(T)))
+            {
+                var cachePolicy = new CacheItemOptions();
+                cachePolicy.SetSlidingExpiration(TimeSpan.FromSeconds(seconds));
+                MemoryCacheInstance.Set(key, DeepClone(value), cachePolicy);
+            }
+        }
 
         private static T DeepClone<T>(T source)
         {

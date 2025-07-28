@@ -12,6 +12,7 @@ namespace Fanex.Affiliate.Link.Controllers
     using System.Text;
     using System.Text.RegularExpressions;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -87,10 +88,12 @@ namespace Fanex.Affiliate.Link.Controllers
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        public IActionResult Link(string pageCode, string affCode, string? lang = null, string? channel = null)
+        public async Task<IActionResult> Link(string pageCode, string affCode, string? lang = null, string? channel = null)
         {
             try
             {
+                var ma = await _affInfoService.GetMasterDataForValidateClicked();
+
                 var affInfo = _affInfoService.GetAffInfoByAffCode(affCode);
 
                 if (affInfo.AffId == 0 || string.IsNullOrEmpty(lang))
@@ -112,9 +115,9 @@ namespace Fanex.Affiliate.Link.Controllers
             }
         }
 
-        public IActionResult SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string? lang = null, string? channel = null)
+        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string? lang = null, string? channel = null)
         {
-            return Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
+            return await Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
         }
 
         private IActionResult InsertAffiliate(

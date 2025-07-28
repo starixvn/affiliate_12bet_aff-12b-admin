@@ -1,8 +1,9 @@
-using System.Configuration;
-using System.Xml.Serialization;
+using Fanex.Affiliate.Link.Services.Impl;
+using Fanex.Affiliate.Link.Services.Interface;
+using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Data;
-using StackExchange.Redis;
+using Fanex.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,12 @@ builder.Logging.AddConsole();
 builder.Logging.AddDebug();
 
 // Register custom services
-builder.Services.AddScoped<Fanex.Affiliate.Link.Services.Interface.ITrackingSystemService, Fanex.Affiliate.Link.Services.Impl.TrackingSystemService>();
-builder.Services.AddScoped<Fanex.Affiliate.Link.Services.Interface.IAffInfoService, Fanex.Affiliate.Link.Services.Impl.AffInfoService>();
-builder.Services.AddScoped<Fanex.Affiliate.Link.Services.Interface.IMemoryCacheService, Fanex.Affiliate.Link.Services.Impl.MemoryCacheService>();
-builder.Services.AddScoped<Fanex.Affiliate.Link.Services.Interface.IUnderMaintenanceService, Fanex.Affiliate.Link.Services.Impl.UnderMaintenanceService>();
+builder.Services.AddScoped<ITrackingSystemService, TrackingSystemService>();
+builder.Services.AddScoped<IAffInfoService, AffInfoService>();
+builder.Services.AddScoped<IMemoryCacheService, MemoryCacheService>();
+builder.Services.AddScoped<IUnderMaintenanceService, UnderMaintenanceService>();
+builder.Services.AddSingleton<ICacheService, CacheService>();
+builder.Services.AddSingleton<IDynamicRepository, DynamicRepository>();
 
 
 // Configure configuration
@@ -30,6 +33,7 @@ builder.Configuration
 //                builder.Configuration.GetSection("fanex.caching.redis:ConnectionOptions:EndPoints").Value);
 
 builder.Services.AddRedisCache(builder.Configuration.GetSection("fanex.caching.redis"));
+
 
 var app = builder.Build();
 
