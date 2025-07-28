@@ -16,6 +16,7 @@
     using Fanex.Affiliate.Admin.Core.Services.Affiliate;
     using Fanex.Affiliate.Admin.Core.Services.CommGroup;
     using Newtonsoft.Json.Serialization;
+    using System.Linq;
 
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class MarketingAccountController : ReadOnlySessionBaseController
@@ -54,7 +55,7 @@
             var viewModel = new MarketingAccountViewModel
             {
                 LanguageList = _systemService.GetLanguageList(),
-                DealList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
+                DealList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()).Where(c => c.GroupName.Contains("NoCommission-")),
                 TargetCountryList = _systemService.GetTargetCountryList(),
                 SubMenuList = subMenu
             };

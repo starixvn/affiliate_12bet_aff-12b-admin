@@ -18,7 +18,7 @@ exports[`landing page statistics - components - AppContainer render correctly 1`
         Object {
           "handleClick": [Function],
           "isActive": false,
-          "title": "Marketing Page",
+          "title": "Channels",
         },
       ]
     }

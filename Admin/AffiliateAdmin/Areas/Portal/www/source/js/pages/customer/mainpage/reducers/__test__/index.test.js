@@ -45,7 +45,6 @@ describe('customer - mainpage reducer', () => {
                 TotalItem: 0
             },
             param: {},
-            shortCodeLanguageList: {}
         },
         languageList: null,
         leftPanel: {
@@ -56,7 +55,6 @@ describe('customer - mainpage reducer', () => {
             isValidUserName: true,
         },
         marketingStatistics: {
-            languageCodeList: {},
             pagingOption: defaultPagingOption,
             param: null,
         },

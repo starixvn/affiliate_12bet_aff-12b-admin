@@ -18,7 +18,7 @@ exports[`marketing statistics - components - AppContainer render correctly 1`] =
         Object {
           "handleClick": [Function],
           "isActive": true,
-          "title": "Marketing Page",
+          "title": "Channels",
         },
       ]
     }

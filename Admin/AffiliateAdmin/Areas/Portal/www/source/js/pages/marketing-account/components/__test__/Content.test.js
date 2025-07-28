@@ -20,6 +20,7 @@ describe('marketing-account - components - Content', () => {
         targetCountryCodeList: {
             'US': 'United States'
         },
+        defaultMktAffInfo: { affId: 927841, affName: "12BETAFF001"},
         canAddAffMktAccount: true,
         setIsShowAddAffMktAccountPopup: jest.fn(),
         setAff: jest.fn()
