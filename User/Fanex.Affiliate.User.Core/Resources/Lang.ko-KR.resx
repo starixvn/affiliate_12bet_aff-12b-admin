@@ -2434,8 +2434,8 @@
   <data name="UserNameClosed" xml:space="preserve">
     <value>입력한 결제 계좌가 폐쇄 상태입니다. 다시 확인해 주세요.</value>
   </data>
-  <data name="MarketLinkStatistics" xml:space="preserve">
-    <value>마케팅 페이지 통계</value>
+  <data name="ChannelStatistics" xml:space="preserve">
+    <value>채널 통계</value>
   </data>
   <data name="PageName" xml:space="preserve">
     <value>페이지 이름</value>
@@ -2461,8 +2461,8 @@
   <data name="TrackingAndQrCode" xml:space="preserve">
     <value>트래킹 링크 및 QR 코드</value>
   </data>
-  <data name="MarketingPage" xml:space="preserve">
-    <value>마케팅 페이지</value>
+  <data name="GeneratedLinks" xml:space="preserve">
+    <value>생성된 링크</value>
   </data>
   <data name="EnterChannel" xml:space="preserve">
     <value>채널 이름을 입력하세요:</value>

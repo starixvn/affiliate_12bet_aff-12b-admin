@@ -2481,8 +2481,8 @@
   <data name="UserNameClosed" xml:space="preserve">
     <value>บัญชีการชําระเงินที่คุณป้อนนั้นถูกปิดแล้ว โปรดตรวจสอบอีกครั้ง</value>
   </data>
-  <data name="MarketLinkStatistics" xml:space="preserve">
-    <value>สถิติหน้าการตลาด</value>
+  <data name="ChannelStatistics" xml:space="preserve">
+    <value>สถิติเกี่ยวกับช่อง</value>
   </data>
   <data name="PageName" xml:space="preserve">
     <value>ชื่อหน้า</value>
@@ -2505,8 +2505,8 @@
   <data name="TrackingAndQrCode" xml:space="preserve">
     <value>ลิงค์ติดตามและรหัส QR</value>
   </data>
-  <data name="MarketingPage" xml:space="preserve">
-    <value>หน้าการตลาด</value>
+  <data name="GeneratedLinks" xml:space="preserve">
+    <value>ลิงก์ที่สร้างโดยอัตโนมัติ</value>
   </data>
   <data name="EnterChannel" xml:space="preserve">
     <value>โปรดระบุชื่อช่อง:</value>

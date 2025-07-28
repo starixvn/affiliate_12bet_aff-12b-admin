@@ -12,7 +12,7 @@ export const AppContainer = (props) => {
     const subMenuList = [
         { isActive: false, handleClick: () => props.setSelectedUserPanel('clickStatistics'), title: 'Referrers' },
         { isActive: false, handleClick: () => props.setSelectedUserPanel('landingPageStatistics'), title: 'Landing Pages' },
-        { isActive: true, handleClick: () => props.setSelectedUserPanel('marketingStatistics'), title: 'Marketing Page' }
+        { isActive: true, handleClick: () => props.setSelectedUserPanel('marketingStatistics'), title: 'Channels' }
     ];
 
     return (
