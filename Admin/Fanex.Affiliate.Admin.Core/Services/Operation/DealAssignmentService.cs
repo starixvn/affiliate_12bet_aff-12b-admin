@@ -1,13 +1,10 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.Operation
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Commands.Operation;
-    using Criterias.Operation;
     using Data.Repository;
-    using DTO.Operation;
     using Extensions;
     using Fanex.Affiliate.Admin.Core.Constants;
     using Fanex.Affiliate.Admin.Core.DTO;
@@ -39,20 +36,6 @@
             _emailService = emailService;
             _thirdPartyLicenseeService = thirdPartyLicenseeService;
             _authService = authService;
-        }
-
-        public IEnumerable<NormalDeal> GetDealList(GetDealListParam param)
-        {
-            var criteria = new GetAssignDealCriteria
-            {
-                AffId = param.AffId,
-                GroupTypeId = param.GroupTypeId
-            };
-
-            var normalDeals = FetchTData<NormalDeal>(criteria);
-            param.GroupId = criteria.GroupId;
-
-            return normalDeals;
         }
 
         public async Task<ResultInfo> AssignDeal(AssignDealParam param, AffInfoParam affInfo, AffInformationEmail emailParam)

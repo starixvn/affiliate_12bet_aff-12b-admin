@@ -2,7 +2,7 @@
 {
     using Fanex.Affiliate.Admin.Core.Constants;
 
-    public class GetDealListParam
+    public class GetNormalDealParam
     {
         public int AffId { get; set; } = DefaultValue.AllId;
 

@@ -1,12 +1,12 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.Operation;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.ViewModels.Report;
-using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Report
 {
@@ -17,19 +17,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
 
         private readonly IAffiliateReportService _affiliateReportService;
 
-        private readonly ICommGroupCommonService _commGroupCommonService;
+        private readonly ICommonDealService _commonDealService;
 
         public ReportController(
             ISessionService sessionService,
             ISystemService systemService,
             IAffiliateReportService affiliateReportService,
-            ICommGroupCommonService commGroupCommonService) : base(sessionService)
+            ICommonDealService commonDealService) : base(sessionService)
         {
             _systemService = systemService;
             _affiliateReportService = affiliateReportService;
-            _commGroupCommonService = commGroupCommonService;
+            _commonDealService = commonDealService;
         }
-
 
         [HttpGet]
         [AllowByPassFunctionAuthorize]
@@ -43,12 +42,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Report
                 CurrencyList = _systemService.GetCurrencies(),
                 BaseCurrencyList = _systemService.GetBaseCurrencies(),
                 PaymentCurrencyList = _systemService.GetPaymentCurrencies(),
-                CommGroupList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
+                CommGroupList = _commonDealService.GetNormalDealList(new GetNormalDealParam()),
             };
 
             return View(viewModel);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryHeader]

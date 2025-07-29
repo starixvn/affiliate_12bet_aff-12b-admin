@@ -4,10 +4,7 @@
     using System.Linq;
     using Data.Repository;
     using Fanex.Affiliate.Admin.Core.Commands.Operation;
-    using Fanex.Affiliate.Admin.Core.Criterias.Operation;
     using Fanex.Affiliate.Admin.Core.DTO;
-    using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-    using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
     using Fanex.Affiliate.Admin.Core.Services.Common;
     using Fanex.Affiliate.Admin.Core.Utilities.Operation;
@@ -23,75 +20,6 @@
             ISystemService systemService) : base(dynamicRepository)
         {
             _systemService = systemService;
-        }
-
-        public IEnumerable<DealType> GetDealTypes()
-        {
-            var data = FetchTData<DealType>("Aff_Admin_Deal_GroupType_Sel");
-            return data.OrderBy(_ => _.GroupTypeName);
-        }
-
-        public IEnumerable<PaymentFrequency> GetPaymentFrequency()
-        {
-            const string spKey = "Aff_Admin_Deal_Schedule_Sel";
-
-            return FetchTData<PaymentFrequency>(spKey);
-        }
-
-        public EntityResult<DealInfo> GetDeals(DealParam param)
-        {
-            var criteria = new DealCriteria
-            {
-                GroupId = param.GroupId,
-                GroupName = param.GroupName,
-                GroupTypeId = param.GroupTypeId,
-                PageIndex = param.PageIndex,
-                PageSize = param.PageSize
-            };
-
-            return FetchEntityResult<DealInfo>(criteria);
-        }
-
-        public IEnumerable<DeductionItem> GetDeductionList()
-        {
-            const string spKey = "Aff_Admin_CommGroup_Deductions_Sel";
-
-            return FetchTData<DeductionItem>(spKey);
-        }
-
-        public DealSettingDetail GetDealSettingDetail(int groupId)
-        {
-            var criteria = new DealDetailCriteria
-            {
-                GroupId = groupId
-            };
-
-            var (dealSettingInfoList, revenueTierSettingList, revenueDeductionSettingList, cpaTierSettingList, cpaGroupProductList)
-                = DynamicRepository.FetchMultiple<DealSettingDetail, RevenueTierSetting, RevenueDeductionSetting, CpaTierSetting, CpaGroupProduct>(criteria);
-
-            var dealSettingInfo = dealSettingInfoList.FirstOrDefault();
-            if (dealSettingInfo == null)
-            {
-                return null;
-            }
-
-            dealSettingInfo.CPATierSetting = cpaTierSettingList;
-            dealSettingInfo.ProductGroup = cpaGroupProductList;
-            dealSettingInfo.RevenueTierSetting = revenueTierSettingList;
-
-            if (dealSettingInfo.DealType != Constants.DealType.CPA && revenueDeductionSettingList != null)
-            {
-                dealSettingInfo.PlatformFeeSetting = revenueDeductionSettingList.Where(p =>
-                    p.DeductionId == Constants.Deduction.PlatformFeeId);
-
-                dealSettingInfo.DepositFeeSetting = revenueDeductionSettingList.FirstOrDefault(p =>
-                    p.DeductionId == Constants.Deduction.DepositFeeId);
-
-                dealSettingInfo.WithdrawalFeeSetting = revenueDeductionSettingList.FirstOrDefault(p =>
-                    p.DeductionId == Constants.Deduction.WithdrawalFeeId);
-            }
-
-            return dealSettingInfo;
         }
 
         public ResultInfo AddDeal(DealSettingParam param)
@@ -228,7 +156,7 @@
             command.CpaTierList = DealInfoHelper.BuildCpaTierListXml(param.CPATierSetting, param.CheckedMinFdm, param.CheckedMinTotalDeposit, param.CheckedMinTurnover);
             command.CpaProductList = DealInfoHelper.BuildCpaProductListXml(param.ProductGroup, param.CheckedMinTurnover);
             command.RedepositDays = param.RedepositDays;
-            command.RedepositRate = param.RedepositRate/OneHundred;
+            command.RedepositRate = param.RedepositRate / OneHundred;
         }
 
         private static void AssignRevenueShareDeal(BaseDealCommand command, DealSettingParam param)

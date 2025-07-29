@@ -1,10 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-
-namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
+﻿namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
 {
     using System.Collections.Generic;
     using DTO;
     using DTO.Common;
+    using DTO.Operation;
 
     public class MarketingAccountViewModel
     {
@@ -14,6 +13,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.Affiliate
 
         public IEnumerable<SubMenu> SubMenuList { get; set; }
 
-        public IEnumerable<NormalCommGroup> DealList { get; set; }
+        public IEnumerable<NormalDeal> DealList { get; set; }
     }
 }

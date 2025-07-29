@@ -18,18 +18,18 @@
     public class DealAssignmentController : ReadOnlySessionBaseController
     {
         private readonly IAffiliateService _affiliateService;
+        private readonly ICommonDealService _commonDealService;
         private readonly IDealAssignmentService _dealAssignmentService;
-        private readonly IOperationService _operationService;
 
         public DealAssignmentController(
             ISessionService sessionService,
             IAffiliateService affiliateService,
-            IDealAssignmentService dealAssignmentService,
-            IOperationService operationService) : base(sessionService)
+            ICommonDealService commonDealService,
+            IDealAssignmentService dealAssignmentService) : base(sessionService)
         {
             _affiliateService = affiliateService;
+            _commonDealService = commonDealService;
             _dealAssignmentService = dealAssignmentService;
-            _operationService = operationService;
         }
 
         [HttpGet]
@@ -39,9 +39,9 @@
 
             if (affId >= Validation.MinId)
             {
-                var dealTypeList = _operationService.GetDealTypes();
-                var param = new GetDealListParam { AffId = affId };
-                var dealList = _dealAssignmentService.GetDealList(param);
+                var dealTypeList = _commonDealService.GetDealTypes();
+                var param = new GetNormalDealParam { AffId = affId };
+                var dealList = _commonDealService.GetNormalDealList(param);
 
                 viewModel = new AssignDealViewModel
                 {

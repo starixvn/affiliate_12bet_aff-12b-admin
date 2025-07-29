@@ -12,14 +12,17 @@
     [FunctionAuthorize(FunctionName = Function.Deal)]
     public class OperationController : ReadOnlySessionBaseController
     {
+        private readonly ICommonDealService _commonDealService;
         private readonly IOperationService _operationService;
         private readonly ISystemService _systemService;
 
         public OperationController(
             ISessionService sessionService,
+            ICommonDealService commonDealService,
             IOperationService operationService,
             ISystemService systemService) : base(sessionService)
         {
+            _commonDealService = commonDealService;
             _operationService = operationService;
             _systemService = systemService;
         }
@@ -29,9 +32,9 @@
         {
             var viewModel = new OperationViewModel
             {
-                DealTypes = _operationService.GetDealTypes(),
-                PaymentFrequencies = _operationService.GetPaymentFrequency(),
-                Deductions = _operationService.GetDeductionList(),
+                DealTypes = _commonDealService.GetDealTypes(),
+                PaymentFrequencies = _commonDealService.GetPaymentFrequency(),
+                Deductions = _commonDealService.GetDeductionList(),
                 TargetCountries = _systemService.GetTargetCountryList(),
                 Products = _systemService.GetProductList()
             };
@@ -45,7 +48,7 @@
         {
             if (ModelState.IsValid)
             {
-                return GenerateJsonNetResult(_operationService.GetDeals(param));
+                return GenerateJsonNetResult(_commonDealService.GetDeals(param));
             }
 
             return GenerateModelStateErrResult();
@@ -57,7 +60,7 @@
         {
             if (ModelState.IsValid)
             {
-                return GenerateJsonNetResult(_operationService.GetDealSettingDetail(groupId));
+                return GenerateJsonNetResult(_commonDealService.GetDealSettingDetail(groupId));
             }
 
             return GenerateModelStateErrResult();

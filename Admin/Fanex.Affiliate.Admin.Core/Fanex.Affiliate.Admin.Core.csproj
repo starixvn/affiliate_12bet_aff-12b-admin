@@ -616,7 +616,7 @@
     <Compile Include="MetaModels\Operation\DealParam.cs" />
     <Compile Include="MetaModels\Operation\DealSettingParam.cs" />
     <Compile Include="MetaModels\Operation\DeleteDealParam.cs" />
-    <Compile Include="MetaModels\Operation\GetDealListParam.cs" />
+    <Compile Include="MetaModels\Operation\GetNormalDealParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
@@ -658,8 +658,10 @@
     <Compile Include="Services\Domain\SpecificDomainControlService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
+    <Compile Include="Services\Operation\CommonDealService.cs" />
     <Compile Include="Services\Operation\DealAssignmentService.cs" />
     <Compile Include="Services\Operation\IDealAssignmentService.cs" />
+    <Compile Include="Services\Operation\ICommonDealService.cs" />
     <Compile Include="Services\Operation\IOperationService.cs" />
     <Compile Include="Services\Operation\OperationService.cs" />
     <Compile Include="Services\Tracker\IJobTrackerService.cs" />
