@@ -34,7 +34,6 @@ builder.Configuration
 
 builder.Services.AddRedisCache(builder.Configuration.GetSection("fanex.caching.redis"));
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline

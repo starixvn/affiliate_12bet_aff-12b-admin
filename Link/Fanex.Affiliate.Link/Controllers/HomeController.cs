@@ -13,6 +13,10 @@ namespace Fanex.Affiliate.Link.Controllers
     using System.Text.RegularExpressions;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
+    using Fanex.Affiliate.Link.DTOs;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Fanex.Affiliate.Link.Models;
+    using static System.Net.WebRequestMethods;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -92,26 +96,110 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             try
             {
-                var ma = await _affInfoService.GetMasterDataForValidateClicked();
-
-                var affInfo = _affInfoService.GetAffInfoByAffCode(affCode);
-
-                if (affInfo.AffId == 0 || string.IsNullOrEmpty(lang))
+                var masterInfoValidations = await _affInfoService.GetMasterDataForValidateClicked();
+                var validateResult = IsValidLink(masterInfoValidations, pageCode, affCode, lang, channel);
+                if (validateResult.IsValid)
                 {
-                    ViewBag.Result = LinkIsInvalidMessage;
-                    return View("Link");
+                    // increase clickId
+                    var clickId = _affInfoService.GetClickId();
+                    var redirectLink = $"{validateResult.RedirectView}&clickId={clickId}";
+
+                    //insert into queue
+
+
+                    return Redirect(redirectLink);
+                }
+                else
+                {
+                    return View(validateResult.RedirectView);
                 }
 
-                var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
-                var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, pageCode);
 
-                return InsertAffiliate(affCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, channel);
+                //var affInfo = _affInfoService.GetAffInfoByAffCode(affCode);
+
+                //if (affInfo.AffId == 0 || string.IsNullOrEmpty(lang))
+                //{
+                //    ViewBag.Result = LinkIsInvalidMessage;
+                //    return View("Link");
+                //}
+
+                //var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
+                //var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, pageCode);
+
+                //return InsertAffiliate(affCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, channel);
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
                 ViewBag.Result = LinkIsIncorrectMessage;
                 return View("Link");
+            }
+        }
+
+     
+
+        private ValidateResult IsValidLink(IEnumerable<MasterInfoValidation> masterInfoValidations, string pageCode, string affCode, string? lang = null, string? channel = null)
+        {
+            if (string.IsNullOrEmpty(affCode) || string.IsNullOrEmpty(lang))
+            {
+                ViewBag.Result = LinkIsInvalidMessage;
+                return new ValidateResult { 
+                    IsValid = false,
+                    RedirectView = "Link"
+                };
+            }
+
+            //var redirectDomain1 = masterInfoValidations.Where(m => m.AffCode == affCode).ToList();
+
+            var masterInfoValidation = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode);
+            
+            if (masterInfoValidation == null)
+            {
+                ViewBag.Result = LinkIsInvalidMessage;
+                return new ValidateResult
+                {
+                    IsValid = false,
+                    RedirectView = "Link"
+                };
+            }
+
+            var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
+            var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, pageCode);
+
+            var redirectSpecialDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode && m.IsSpecific && m.AffDomain == affDomain);
+
+            if (redirectSpecialDomain == null)
+            {
+                var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode 
+                    && !m.IsSpecific && m.AffDomain == affDomain && m.LanguageCode == lang);
+                if (redirectDomain == null)
+                {
+                    ViewBag.Result = "This link does not exists. Please contact administrator!";
+                    return new ValidateResult
+                    {
+                        IsValid = false,
+                        RedirectView = "Link"
+                    };
+                }
+                else
+                {
+                    //licensee domain
+                    var licenseeDomain = $"{(redirectDomain.IsSSL ? "https" : "http")}://{redirectDomain.RedirectDomain}/{redirectDomain.LanguageLink}/{pageCode}?affCode={redirectDomain.AffCode}&affMediaLinkId={redirectDomain.AffMediaLinkId}";
+                    return new ValidateResult
+                    {
+                        IsValid = true,
+                        RedirectView = licenseeDomain
+                    };
+                }
+            }
+            else
+            {
+                var specialDomain = $"{(redirectSpecialDomain.IsSSL ? "https" : "http")}://{redirectSpecialDomain.RedirectDomain}/{redirectSpecialDomain.LanguageLink}/{pageCode}?affCode={redirectSpecialDomain.AffCode}&affMediaLinkId={redirectSpecialDomain.AffMediaLinkId}";
+                return new ValidateResult
+                {
+                    IsValid = true,
+                    RedirectView = specialDomain
+                };
             }
         }
 

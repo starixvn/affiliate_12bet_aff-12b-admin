@@ -18,5 +18,7 @@ public class MasterInfoValidation
 
     public string RedirectDomain{ get; set; }
 
-    public bool IsSpecificOnly { get; set; }
+    public bool IsSpecific { get; set; }
+
+    public bool IsSSL { get; set; }
 }

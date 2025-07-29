@@ -11,5 +11,7 @@ namespace Fanex.Affiliate.Link.Services.Interface
         CommGroup GetCommGroupByAffCode(string affCode);
 
         Task<IList<MasterInfoValidation>> GetMasterDataForValidateClicked();
+
+        Task<long> GetClickId();
     }
 }
