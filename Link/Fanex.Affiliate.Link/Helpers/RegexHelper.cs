@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Fanex.Affiliate.Link.Helpers
 {
@@ -10,6 +9,11 @@ namespace Fanex.Affiliate.Link.Helpers
         public static bool IsMatch(string input, string pattern, RegexOptions regexOptions)
         {
             return Regex.IsMatch(input, pattern, regexOptions, TimeSpan.FromSeconds(TimeOutSecond));
+        }
+
+        public static Match Match(string input, string pattern)
+        {
+            return Regex.Match(input, pattern);
         }
     }
 }

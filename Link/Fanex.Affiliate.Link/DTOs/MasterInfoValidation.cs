@@ -16,7 +16,7 @@ public class MasterInfoValidation
 
     public int AffMediaLinkId { get; set; }
 
-    public string RedirectDomain{ get; set; }
+    public string RedirectDomain { get; set; }
 
     public bool IsSpecific { get; set; }
 

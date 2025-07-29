@@ -1,22 +1,19 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace Fanex.Affiliate.Link.Controllers
+﻿namespace Fanex.Affiliate.Link.Controllers
 {
     using Commands;
     using Fanex.Affiliate.Link.Constants;
+    using Fanex.Affiliate.Link.DTOs;
     using Fanex.Affiliate.Link.Extensions;
+    using Fanex.Affiliate.Link.Filters;
+    using Fanex.Affiliate.Link.Models;
     using Fanex.Logging;
     using Helpers;
+    using Microsoft.AspNetCore.Mvc;
     using Services.Interface;
     using System;
     using System.Text;
     using System.Text.RegularExpressions;
-    using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
-    using Fanex.Affiliate.Link.DTOs;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Fanex.Affiliate.Link.Models;
-    using static System.Net.WebRequestMethods;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -58,7 +55,39 @@ namespace Fanex.Affiliate.Link.Controllers
         [HttpGet]
         public IActionResult PageNotFound() => View();
 
-        public IActionResult OldLink(int affId, string pageCode, string? lang = null)
+        /// <summary>
+        /// Handles affiliate link errors with custom error messages.
+        /// This provides a fallback mechanism and allows direct testing of error handling.
+        /// </summary>
+        [HttpGet]
+        public IActionResult AffiliateError(string error = null, string originalPath = null)
+        {
+            // Handle direct calls to this action (for testing or fallback scenarios)
+            if (!string.IsNullOrEmpty(error))
+            {
+                ViewBag.Result = error;
+                ViewBag.OriginalPath = originalPath;
+                return View("Link");
+            }
+
+            // Handle calls from middleware (legacy support)
+            var middlewareError = HttpContext.Items["CustomErrorMessage"]?.ToString();
+            var middlewarePath = HttpContext.Items["OriginalPath"]?.ToString();
+
+            if (!string.IsNullOrEmpty(middlewareError))
+            {
+                ViewBag.Result = middlewareError;
+                ViewBag.OriginalPath = middlewarePath;
+                return View("Link");
+            }
+
+            // No error information available - show generic message
+            ViewBag.Result = "An affiliate link error occurred. Please contact the administrator!";
+            return View("Link");
+        }
+
+        //[ServiceFilter(typeof(AffiliateValidationFilter))]
+        public IActionResult OldLink(int affId, string pageCode, string lang = null)
         {
             try
             {
@@ -87,12 +116,14 @@ namespace Fanex.Affiliate.Link.Controllers
             }
         }
 
-        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string? lang = null)
+        //[ServiceFilter(typeof(AffiliateValidationFilter))]
+        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
         {
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        public async Task<IActionResult> Link(string pageCode, string affCode, string? lang = null, string? channel = null)
+        //[ServiceFilter(typeof(AffiliateValidationFilter))]
+        public async Task<IActionResult> Link(string pageCode, string affCode, string lang = null, string channel = null)
         {
             try
             {
@@ -136,14 +167,15 @@ namespace Fanex.Affiliate.Link.Controllers
             }
         }
 
-     
 
-        private ValidateResult IsValidLink(IEnumerable<MasterInfoValidation> masterInfoValidations, string pageCode, string affCode, string? lang = null, string? channel = null)
+
+        private ValidateResult IsValidLink(IEnumerable<MasterInfoValidation> masterInfoValidations, string pageCode, string affCode, string lang = null, string channel = null)
         {
             if (string.IsNullOrEmpty(affCode) || string.IsNullOrEmpty(lang))
             {
                 ViewBag.Result = LinkIsInvalidMessage;
-                return new ValidateResult { 
+                return new ValidateResult
+                {
                     IsValid = false,
                     RedirectView = "Link"
                 };
@@ -152,7 +184,7 @@ namespace Fanex.Affiliate.Link.Controllers
             //var redirectDomain1 = masterInfoValidations.Where(m => m.AffCode == affCode).ToList();
 
             var masterInfoValidation = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode);
-            
+
             if (masterInfoValidation == null)
             {
                 ViewBag.Result = LinkIsInvalidMessage;
@@ -170,7 +202,7 @@ namespace Fanex.Affiliate.Link.Controllers
 
             if (redirectSpecialDomain == null)
             {
-                var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode 
+                var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode
                     && !m.IsSpecific && m.AffDomain == affDomain && m.LanguageCode == lang);
                 if (redirectDomain == null)
                 {
@@ -203,7 +235,8 @@ namespace Fanex.Affiliate.Link.Controllers
             }
         }
 
-        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string? lang = null, string? channel = null)
+        [ServiceFilter(typeof(AffiliateValidationFilter))]
+        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
         {
             return await Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
         }
@@ -214,7 +247,7 @@ namespace Fanex.Affiliate.Link.Controllers
             string lang,
             string affDomain,
             string affMediaLinkWithoutProtocol,
-            string? channel = null)
+            string channel = null)
         {
             string urlReferrer = Request.Headers["Referer"].ToString();
             string domainReferrer = !string.IsNullOrEmpty(urlReferrer) ? new Uri(urlReferrer).Host : string.Empty;
@@ -399,7 +432,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 return string.Empty;
             }
 
-            return Language.SupportedLanguageCodeOnV1.TryGetValue(languageCode.ToLowerInvariant(), out string languageCodeOnV2)
+            return Language.SupportedLanguageCodes.TryGetValue(languageCode.ToLowerInvariant(), out string languageCodeOnV2)
                 ? languageCodeOnV2
                 : languageCode;
         }

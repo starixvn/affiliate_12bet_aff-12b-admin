@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
-    using System.Threading.Tasks;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.DTOs;
@@ -8,7 +7,7 @@
     using Fanex.Caching;
     using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
-    using StackExchange.Redis;
+    using System.Threading.Tasks;
 
     public class AffInfoService(IDynamicRepository dynamicRepository,
             IMemoryCacheService memoryCacheService,
@@ -82,23 +81,23 @@
 
             //if (masterInfoValidations is null)
             //{
-                var criteria = new GetMasterDataForValidateClickedCriteria();
-                try
+            var criteria = new GetMasterDataForValidateClickedCriteria();
+            try
+            {
+                masterInfoValidations = (await dynamicRepository.FetchAsync<MasterInfoValidation>(criteria)).ToList();
+                await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
                 {
-                    masterInfoValidations = (await dynamicRepository.FetchAsync<MasterInfoValidation>(criteria)).ToList();
-                    await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
-                    });
-                }
-                catch (Exception ex)
+                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
+                });
+            }
+            catch (Exception ex)
+            {
+                masterInfoValidations = new List<MasterInfoValidation>();
+                await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
                 {
-                    masterInfoValidations = new List<MasterInfoValidation>();
-                    await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(60)
-                    });
-                }
+                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(60)
+                });
+            }
 
 
             //}
@@ -115,7 +114,7 @@
                 var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
                 await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
             }
-            
+
             var result = await redisCache.StringIncrementAsync(CacheKey.ClickId);
             return result;
         }

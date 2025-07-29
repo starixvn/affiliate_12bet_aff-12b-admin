@@ -1,9 +1,5 @@
 ﻿using Fanex.Logging;
-using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 using Fanex.Logging.Sentry;
-using Sentry;
 
 namespace Fanex.Affiliate.Link
 {

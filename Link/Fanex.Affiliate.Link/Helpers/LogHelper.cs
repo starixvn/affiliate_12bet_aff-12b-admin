@@ -1,10 +1,6 @@
-﻿using Fanex.Affiliate.Link.Extensions;
-using Fanex.Logging;
-using System;
-using System.Collections.Generic;
+﻿using Fanex.Logging;
 using System.Data.SqlClient;
 using System.Text;
-using Microsoft.AspNetCore.Http;
 
 namespace Fanex.Affiliate.Link.Helpers
 {
@@ -12,7 +8,7 @@ namespace Fanex.Affiliate.Link.Helpers
     {
         private const int LimitedLevelOfInnerException = 3;
 
-        public static void WriteError(Exception exception, string? additionalMessage = null)
+        public static void WriteError(Exception exception, string additionalMessage = null)
         {
             var content = BuildMessage(exception);
             if (!string.IsNullOrWhiteSpace(additionalMessage))

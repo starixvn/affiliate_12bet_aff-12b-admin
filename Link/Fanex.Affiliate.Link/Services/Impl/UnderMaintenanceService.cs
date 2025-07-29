@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
-    using Fanex.Affiliate.Link.Services.Interface;
     using Fanex.Affiliate.Link.Models;
+    using Fanex.Affiliate.Link.Services.Interface;
 
     public class UnderMaintenanceService : IUnderMaintenanceService
     {

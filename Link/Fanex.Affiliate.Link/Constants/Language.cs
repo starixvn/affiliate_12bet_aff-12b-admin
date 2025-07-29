@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Affiliate.Link.Constants
+﻿namespace Fanex.Affiliate.Link.Constants
 {
     public static class Language
     {
@@ -9,10 +7,10 @@ namespace Fanex.Affiliate.Link.Constants
         private const string INDIA_SHORTED_CODE = "te";
         private const string CHINA_SHORTED_CODE = "cs";
 
-        public static readonly IReadOnlyDictionary<string, string> SupportedLanguageCodeOnV1 = new Dictionary<string, string>
+        public static readonly IReadOnlyDictionary<string, string> SupportedLanguageCodes = new Dictionary<string, string>
         {
             ["en"] = ENGLISH_SHORTED_CODE,
-            ["bn"] = BENGALI_SHORTED_CODE,
+            ["bd"] = BENGALI_SHORTED_CODE,
             ["hien"] = ENGLISH_SHORTED_CODE,
             ["hitg"] = INDIA_SHORTED_CODE,
             ["id"] = "id",

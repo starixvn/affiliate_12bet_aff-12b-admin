@@ -1,15 +1,13 @@
 ﻿using Fanex.Affiliate.Link.Constants;
 using Fanex.Affiliate.Link.Helpers;
-using System;
-using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Http;
 
 namespace Fanex.Affiliate.Link.Extensions
 {
     public static class HttpRequestExtensions
     {
         private const string IPv4Regex = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
+        private static readonly char[] separator = [','];
 
         public static string GetClientIP(this HttpRequest request)
         {
@@ -33,7 +31,7 @@ namespace Fanex.Affiliate.Link.Extensions
                 return null;
             }
 
-            var ipList = ips.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(i => i.Trim())
+            var ipList = ips.Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(i => i.Trim())
                         .Where(i => RegexHelper.IsMatch(i, IPv4Regex, RegexOptions.None));
 
             return ipList.FirstOrDefault();

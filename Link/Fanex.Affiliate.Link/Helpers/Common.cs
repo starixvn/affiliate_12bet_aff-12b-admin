@@ -224,31 +224,31 @@
             userAgent = userAgent.ToLowerInvariant();
 
             // Edge (Chromium-based and Legacy)
-            var edgeMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"edg/([\d\.]+)");
+            var edgeMatch = RegexHelper.Match(userAgent, @"edg/([\d\.]+)");
             if (edgeMatch.Success)
             {
                 return edgeMatch.Groups[1].Value;
             }
-            edgeMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"edge/([\d\.]+)");
+            edgeMatch = RegexHelper.Match(userAgent, @"edge/([\d\.]+)");
             if (edgeMatch.Success)
             {
                 return edgeMatch.Groups[1].Value;
             }
 
             // Opera
-            var operaMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"opr/([\d\.]+)");
+            var operaMatch = RegexHelper.Match(userAgent, @"opr/([\d\.]+)");
             if (operaMatch.Success)
             {
                 return operaMatch.Groups[1].Value;
             }
-            operaMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"opera/([\d\.]+)");
+            operaMatch = RegexHelper.Match(userAgent, @"opera/([\d\.]+)");
             if (operaMatch.Success)
             {
                 return operaMatch.Groups[1].Value;
             }
 
             // Chrome
-            var chromeMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"chrome/([\d\.]+)");
+            var chromeMatch = RegexHelper.Match(userAgent, @"chrome/([\d\.]+)");
             if (chromeMatch.Success && !userAgent.Contains("edg/") && !userAgent.Contains("opr/"))
             {
                 return chromeMatch.Groups[1].Value;
@@ -257,7 +257,7 @@
             // Safari (but not Chrome)
             if (userAgent.Contains("safari") && !userAgent.Contains("chrome"))
             {
-                var safariMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"version/([\d\.]+)");
+                var safariMatch = RegexHelper.Match(userAgent, @"version/([\d\.]+)");
                 if (safariMatch.Success)
                 {
                     return safariMatch.Groups[1].Value;
@@ -265,19 +265,19 @@
             }
 
             // Firefox
-            var firefoxMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"firefox/([\d\.]+)");
+            var firefoxMatch = RegexHelper.Match(userAgent, @"firefox/([\d\.]+)");
             if (firefoxMatch.Success)
             {
                 return firefoxMatch.Groups[1].Value;
             }
 
             // Internet Explorer
-            var ieMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"msie ([\d\.]+)");
+            var ieMatch = RegexHelper.Match(userAgent, @"msie ([\d\.]+)");
             if (ieMatch.Success)
             {
                 return ieMatch.Groups[1].Value;
             }
-            ieMatch = System.Text.RegularExpressions.Regex.Match(userAgent, @"rv:([\d\.]+)");
+            ieMatch = RegexHelper.Match(userAgent, @"rv:([\d\.]+)");
             if (ieMatch.Success && userAgent.Contains("trident"))
             {
                 return ieMatch.Groups[1].Value;
