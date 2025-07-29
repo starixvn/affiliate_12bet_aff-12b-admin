@@ -330,6 +330,11 @@ namespace Fanex.Affiliate.Link.Controllers
                 return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}{redirectUri.Query}";
             }
 
+            if (IsMatching(languageCode, Language.BENGALI_SHORTED_CODE))
+            {
+                return redirectUrl.Replace($"/{pageCode}", $"/{mappingPageCode}").Replace($"/bn/", $"/bd/");
+            }    
+
             return redirectUrl.Replace($"/{pageCode}", $"/{mappingPageCode}").Replace($"/{languageCode}/", $"/{customLanguageCode}/");
         }
 
