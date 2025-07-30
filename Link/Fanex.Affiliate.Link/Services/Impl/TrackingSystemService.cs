@@ -88,5 +88,11 @@
 
             return marketInfo ?? new MarketInfo();
         }
+
+        public async Task<string> GetRedirectLink(GetRedirectPageBySettingCriteria criteria)
+        {
+            await _dynamicRepository.GetAsync<string>(criteria);
+            return criteria.RedirectPage;
+        }
     }
 }

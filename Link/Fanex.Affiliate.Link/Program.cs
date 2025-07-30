@@ -1,25 +1,20 @@
-using Fanex.Affiliate.Link.Extensions;
-using Fanex.Affiliate.Link.Filters;
-using Fanex.Affiliate.Link.Middleware;
+using System.Configuration;
+using EasyNetQ;
+using Fanex.Affiliate.Link.Core.Services;
+using Fanex.Affiliate.Link.Core.Services.Interfaces;
 using Fanex.Affiliate.Link.Services.Impl;
 using Fanex.Affiliate.Link.Services.Interface;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Data;
 using Fanex.Data.Repository;
+using ONEbook.UM.DependencyInjection;
+using ONEbook.UM.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
-
-// Configure route options for better performance
-builder.Services.Configure<RouteOptions>(options =>
-{
-    options.LowercaseUrls = true;
-    options.LowercaseQueryStrings = true;
-    options.AppendTrailingSlash = false;
-});
 
 // Configure logging
 builder.Logging.AddConsole();
@@ -29,12 +24,9 @@ builder.Logging.AddDebug();
 builder.Services.AddScoped<ITrackingSystemService, TrackingSystemService>();
 builder.Services.AddScoped<IAffInfoService, AffInfoService>();
 builder.Services.AddScoped<IMemoryCacheService, MemoryCacheService>();
-builder.Services.AddScoped<IUnderMaintenanceService, UnderMaintenanceService>();
+builder.Services.AddScoped<IMaintenanceService, MaintenanceService>();
 builder.Services.AddSingleton<ICacheService, CacheService>();
 builder.Services.AddSingleton<IDynamicRepository, DynamicRepository>();
-
-// Register action filters for the Hybrid Approach
-builder.Services.AddScoped<AffiliateValidationFilter>();
 
 
 // Configure configuration
@@ -47,6 +39,19 @@ builder.Configuration
 //                builder.Configuration.GetSection("fanex.caching.redis:ConnectionOptions:EndPoints").Value);
 
 builder.Services.AddRedisCache(builder.Configuration.GetSection("fanex.caching.redis"));
+var rabbitMqConnectionString = builder.Configuration.GetValue<string>("RabbitMQConnectionString");
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton(RabbitHutch.CreateBus(rabbitMqConnectionString));
+builder.Services.AddSingleton<Fanex.Logging.ILogger, Fanex.Logging.Logger>();
+builder.Services.AddSingleton<ILogService, LogService>();
+builder.Services.AddSingleton<IMessageQueueService, MessageQueueService>();
+
+builder.Services.AddOneBookUmForService(builder.Configuration);
+
+
+const short workerThreads = 300;
+const short completionPortThreads = 300;
+_ = ThreadPool.SetMinThreads(workerThreads, completionPortThreads);
 
 var app = builder.Build();
 
@@ -64,16 +69,40 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Custom middleware for handling affiliate link 404 errors with detailed messages
-app.UseMiddleware<AffiliateErrorMiddleware>();
-
-// Default route for standard MVC actions
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Configure affiliate link routes using centralized extension method
-app.MapAffiliateRoutes();
+// Register legacy routes
+app.MapControllerRoute(
+    name: "OldLink",
+    pattern: "{affId}/{pageCode}/{lang}/index.html",
+    defaults: new { controller = "Home", action = "OldLink" },
+    constraints: new { affId = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
+
+app.MapControllerRoute(
+    name: "SpecialPageCodeOldLink",
+    pattern: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/index.html",
+    defaults: new { controller = "Home", action = "SpecialPageCodeOldLink" },
+    constraints: new { affId = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
+
+app.MapControllerRoute(
+    name: "ChannelLink",
+    pattern: "{pageCode}/{affCode}/{lang}/{channel}/index.html",
+    defaults: new { controller = "Home", action = "Link" },
+    constraints: new { affCode = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
+
+app.MapControllerRoute(
+    name: "SpecialPageCodeChannelLink",
+    pattern: "{pageCodePart1}/{pageCodePart2}/{affCode}/{lang}/{channel}/index.html",
+    defaults: new { controller = "Home", action = "SpecialPageCodeLink" },
+    constraints: new { affCode = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
+
+app.MapControllerRoute(
+    name: "LinkWithoutChannel",
+    pattern: "{pageCode}/{affCode}/{lang}/index.html",
+    defaults: new { controller = "Home", action = "Link" },
+    constraints: new { affCode = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
 
 // Initialize Fanex Data
 DbSettingProviderManager
@@ -82,8 +111,7 @@ DbSettingProviderManager
     .Run();
 
 
-
 // Register Sentry logging
 Fanex.Affiliate.Link.LoggingConfig.RegisterSentry();
 
-app.Run();
+app.Run(); 

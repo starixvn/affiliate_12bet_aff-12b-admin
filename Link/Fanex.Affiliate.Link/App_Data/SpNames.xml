@@ -9,5 +9,6 @@
     <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
 	  <Setting Key="Aff_ClickStatistics_BulkCache" SpName="Aff_ClickStatistics_BulkCache_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	  <Setting Key="Aff_ClickStatistics_MaxClickId_Sel" SpName="Aff_ClickStatistics_MaxClickId_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	  <Setting Key="Aff_ClickStatistics_RedirectPage_Sel" SpName="Aff_ClickStatistics_RedirectPage_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
 </Functions>

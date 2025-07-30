@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <PackageReference Include="Fanex.Caching.Redis" Version="2.2.8.1-beta02" />
-    <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.6" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.7" />
@@ -21,6 +20,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.7" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="ONEbook.UM" Version="3.2.6" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.7" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     <PackageReference Include="VaultSharp" Version="1.17.5.1" />
@@ -32,6 +32,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fanex.Affiliate.Link.Core\Fanex.Affiliate.Link.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

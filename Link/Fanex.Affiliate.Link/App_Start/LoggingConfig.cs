@@ -1,35 +1,30 @@
 ﻿using Fanex.Logging;
 using Fanex.Logging.Sentry;
 
-namespace Fanex.Affiliate.Link
+namespace Fanex.Affiliate.Link;
+
+public static class LoggingConfig
 {
-    public static class LoggingConfig
+    public static void RegisterSentry()
     {
-        public static void RegisterSentry()
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
+
+        var env = configuration["Sentry:Environment"];
+        var backEndDsn = configuration["Sentry:Dsn"];
+        var category = configuration["Sentry:LogCategory"];
+
+        LogManager.SetDefaultLogCategory(category).Use(new List<ILogEngine>
         {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .Build();
-
-            var env = configuration["AppSettings:Environment"];
-            var backEndDsn = configuration["AppSettings:SentryBackEndDsn"];
-            var category = configuration["AppSettings:LoggingCategory"];
-            var isRegisterSentry = string.Equals(configuration["AppSettings:IsRegisterSentry"], "true", StringComparison.CurrentCultureIgnoreCase);
-
-            if (isRegisterSentry && !string.IsNullOrEmpty(backEndDsn))
+            new SentryLogging(new SentryEngineOptions
             {
-                LogManager.SetDefaultLogCategory(category).Use(new List<ILogEngine>
-                {
-                    new SentryLogging(new SentryEngineOptions
-                    {
-                        Dsn = backEndDsn,
-                        Environment = env
-                    })
-                });
-            }
-        }
+                Dsn = backEndDsn,
+                Environment = env
+            })
+        });
     }
 }

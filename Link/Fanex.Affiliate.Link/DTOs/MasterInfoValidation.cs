@@ -10,13 +10,7 @@ public class MasterInfoValidation
 
     public string LanguageLink { get; set; }
 
-    public string ChannelCode { get; set; }
-
-    public string AffMediaLink { get; set; }
-
-    public int AffMediaLinkId { get; set; }
-
-    public string RedirectDomain { get; set; }
+    public string RedirectDomain{ get; set; }
 
     public bool IsSpecific { get; set; }
 

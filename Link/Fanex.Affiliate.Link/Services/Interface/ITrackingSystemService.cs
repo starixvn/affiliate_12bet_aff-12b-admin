@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Interface
 {
     using Fanex.Affiliate.Link.Commands;
+    using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.DTOs;
     using System.Collections.Generic;
 
@@ -23,5 +24,7 @@
         IEnumerable<MarketInfo> GetMarkets();
 
         MarketInfo GetMarketInfo(string lang);
+
+        Task<string> GetRedirectLink(GetRedirectPageBySettingCriteria criteria);
     }
 }

@@ -1,19 +1,22 @@
 ﻿namespace Fanex.Affiliate.Link.Controllers
 {
-    using Commands;
-    using Fanex.Affiliate.Link.Constants;
-    using Fanex.Affiliate.Link.DTOs;
-    using Fanex.Affiliate.Link.Extensions;
-    using Fanex.Affiliate.Link.Filters;
-    using Fanex.Affiliate.Link.Models;
-    using Fanex.Logging;
-    using Helpers;
-    using Microsoft.AspNetCore.Mvc;
-    using Services.Interface;
     using System;
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using Commands;
+    using Fanex.Affiliate.Link.Constants;
+    using Fanex.Affiliate.Link.Core.Models;
+    using Fanex.Affiliate.Link.Core.Services.Interfaces;
+    using Fanex.Affiliate.Link.Criterias;
+    using Fanex.Affiliate.Link.DTOs;
+    using Fanex.Affiliate.Link.Extensions;
+    using Fanex.Affiliate.Link.Models;
+    using Fanex.Logging;
+    using Helpers;
+    using Microsoft.AspNetCore.Mvc;
+    using ONEbook.UM.Services;
+    using Services.Interface;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -24,9 +27,11 @@
         private readonly string[] _marketingPageCodeRegexPatterns;
         private readonly bool _isRemovePortFromUrl;
 
-        private readonly ITrackingSystemService _trackingSystemService;
-        private readonly IAffInfoService _affInfoService;
-        private readonly IConfiguration _configuration;
+        private readonly ITrackingSystemService trackingSystemService;
+        private readonly IAffInfoService affInfoService;
+        private readonly IConfiguration configuration;
+        private readonly IMessageQueueService messageQueueService;
+        private readonly IMaintenanceService maintenanceService;
 
         private const string LinkIsInvalidMessage = "This link does not exist. Please contact administrator!";
         private const string LinkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
@@ -34,17 +39,21 @@
         public HomeController(
             ITrackingSystemService trackingSystemService,
             IAffInfoService affInfoService,
+            IMessageQueueService messageQueueService,
+            IMaintenanceService maintenanceService,
             IConfiguration configuration)
         {
-            _trackingSystemService = trackingSystemService ?? throw new ArgumentNullException(nameof(trackingSystemService));
-            _affInfoService = affInfoService ?? throw new ArgumentNullException(nameof(affInfoService));
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this.trackingSystemService = trackingSystemService ?? throw new ArgumentNullException(nameof(trackingSystemService));
+            this.affInfoService = affInfoService ?? throw new ArgumentNullException(nameof(affInfoService));
+            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            this.messageQueueService = messageQueueService;
+            this.maintenanceService = maintenanceService;
 
-            _marketingForCommGroups = (_configuration["AppSettings:MarketingForCommGroups"] ?? string.Empty)
+            _marketingForCommGroups = (this.configuration["AppSettings:MarketingForCommGroups"] ?? string.Empty)
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
-            _marketingPageCodeRegexPatterns = (_configuration["AppSettings:MarketingPageCodeRegexPatterns"] ?? string.Empty)
+            _marketingPageCodeRegexPatterns = (this.configuration["AppSettings:MarketingPageCodeRegexPatterns"] ?? string.Empty)
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
-            _isRemovePortFromUrl = IsMatching(_configuration["AppSettings:RemovePortFromUrl"] ?? "0", "1");
+            _isRemovePortFromUrl = IsMatching(this.configuration["AppSettings:RemovePortFromUrl"] ?? "0", "1");
         }
 
         public IActionResult Index() => View();
@@ -55,43 +64,11 @@
         [HttpGet]
         public IActionResult PageNotFound() => View();
 
-        /// <summary>
-        /// Handles affiliate link errors with custom error messages.
-        /// This provides a fallback mechanism and allows direct testing of error handling.
-        /// </summary>
-        [HttpGet]
-        public IActionResult AffiliateError(string error = null, string originalPath = null)
-        {
-            // Handle direct calls to this action (for testing or fallback scenarios)
-            if (!string.IsNullOrEmpty(error))
-            {
-                ViewBag.Result = error;
-                ViewBag.OriginalPath = originalPath;
-                return View("Link");
-            }
-
-            // Handle calls from middleware (legacy support)
-            var middlewareError = HttpContext.Items["CustomErrorMessage"]?.ToString();
-            var middlewarePath = HttpContext.Items["OriginalPath"]?.ToString();
-
-            if (!string.IsNullOrEmpty(middlewareError))
-            {
-                ViewBag.Result = middlewareError;
-                ViewBag.OriginalPath = middlewarePath;
-                return View("Link");
-            }
-
-            // No error information available - show generic message
-            ViewBag.Result = "An affiliate link error occurred. Please contact the administrator!";
-            return View("Link");
-        }
-
-        //[ServiceFilter(typeof(AffiliateValidationFilter))]
-        public IActionResult OldLink(int affId, string pageCode, string lang = null)
+        public IActionResult OldLink(int affId, string pageCode, string? lang = null)
         {
             try
             {
-                var affInfo = _affInfoService.GetAffInfoByAffId(affId);
+                var affInfo = affInfoService.GetAffInfoByAffId(affId);
 
                 if (!string.IsNullOrEmpty(affInfo.AffCode) && !string.IsNullOrEmpty(lang))
                 {
@@ -116,34 +93,68 @@
             }
         }
 
-        //[ServiceFilter(typeof(AffiliateValidationFilter))]
-        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
+        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string? lang = null)
         {
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        //[ServiceFilter(typeof(AffiliateValidationFilter))]
-        public async Task<IActionResult> Link(string pageCode, string affCode, string lang = null, string channel = null)
+        public async Task<IActionResult> Link(string pageCode, string affCode, string? lang = null, string? channel = null)
         {
             try
             {
-                var masterInfoValidations = await _affInfoService.GetMasterDataForValidateClicked();
-                var validateResult = IsValidLink(masterInfoValidations, pageCode, affCode, lang, channel);
-                if (validateResult.IsValid)
+                
+                
+                var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
+                var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, pageCode);
+
+                if (IsUnderMaintenance())
                 {
-                    // increase clickId
-                    var clickId = _affInfoService.GetClickId();
-                    var redirectLink = $"{validateResult.RedirectView}&clickId={clickId}";
+                    var masterInfoValidations = await affInfoService.GetMasterDataForValidateClicked();
+                    var validateResult = IsValidLink(masterInfoValidations, pageCode, affCode, lang, channel, affDomain, affMediaLinkWithoutProtocol);
+                    if (validateResult.IsValid)
+                    {
+                        // increase clickId
+                        var clickId = await affInfoService.GetClickId();
+                        var redirectLink = $"{validateResult.RedirectView}&clickId={clickId}";
 
-                    //insert into queue
+                        //insert into queue
+                        await InsertAffiliateToQueue(clickId, affCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, channel, redirectLink);
 
-
-                    return Redirect(redirectLink);
+                        return Redirect(redirectLink);
+                    }
+                    else
+                    {
+                        return View(validateResult.RedirectView);
+                    }
                 }
                 else
                 {
-                    return View(validateResult.RedirectView);
+                    var criteria = new GetRedirectPageBySettingCriteria
+                    {
+                        AffCode = affCode,
+                        AffDomain = affDomain,
+                        PageCode = pageCode,
+                        LanguageCode = lang
+                    };
+                    await trackingSystemService.GetRedirectLink(criteria);
+
+                    if (criteria.ErrCode == 0)
+                    {
+                        // increase clickId
+                        var clickId = await affInfoService.GetClickId();
+                        var redirectLink = $"{criteria.RedirectPage}&clickId={clickId}";
+
+                        //insert into queue
+                        await InsertAffiliateToQueue(clickId, affCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, channel, redirectLink);
+
+                        return Redirect(redirectLink);
+                    }
+                    else
+                    {
+                        return View("Link");
+                    }
                 }
+                
 
 
                 //var affInfo = _affInfoService.GetAffInfoByAffCode(affCode);
@@ -167,24 +178,28 @@
             }
         }
 
+       
 
+        private bool IsUnderMaintenance()
+        {
+            var maintanceTime = maintenanceService.GetUnderMaintenanceTime();
+            return maintanceTime.IsUnderMaintenanceTime;
+        }
 
-        private ValidateResult IsValidLink(IEnumerable<MasterInfoValidation> masterInfoValidations, string pageCode, string affCode, string lang = null, string channel = null)
+        private ValidateResult IsValidLink(IEnumerable<MasterInfoValidation> masterInfoValidations, string pageCode, string affCode, string lang, string channel, string affDomain, string affMediaLinkWithoutProtocol)
         {
             if (string.IsNullOrEmpty(affCode) || string.IsNullOrEmpty(lang))
             {
                 ViewBag.Result = LinkIsInvalidMessage;
-                return new ValidateResult
-                {
+                return new ValidateResult { 
                     IsValid = false,
                     RedirectView = "Link"
                 };
             }
 
             //var redirectDomain1 = masterInfoValidations.Where(m => m.AffCode == affCode).ToList();
-
             var masterInfoValidation = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode);
-
+            
             if (masterInfoValidation == null)
             {
                 ViewBag.Result = LinkIsInvalidMessage;
@@ -195,14 +210,12 @@
                 };
             }
 
-            var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
-            var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, pageCode);
 
             var redirectSpecialDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode && m.IsSpecific && m.AffDomain == affDomain);
 
             if (redirectSpecialDomain == null)
             {
-                var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode
+                var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode 
                     && !m.IsSpecific && m.AffDomain == affDomain && m.LanguageCode == lang);
                 if (redirectDomain == null)
                 {
@@ -216,7 +229,7 @@
                 else
                 {
                     //licensee domain
-                    var licenseeDomain = $"{(redirectDomain.IsSSL ? "https" : "http")}://{redirectDomain.RedirectDomain}/{redirectDomain.LanguageLink}/{pageCode}?affCode={redirectDomain.AffCode}&affMediaLinkId={redirectDomain.AffMediaLinkId}";
+                    var licenseeDomain = $"{(redirectDomain.IsSSL ? "https" : "http")}://{redirectDomain.RedirectDomain}/{redirectDomain.LanguageLink}/{pageCode}?affCode={redirectDomain.AffCode}";
                     return new ValidateResult
                     {
                         IsValid = true,
@@ -226,7 +239,7 @@
             }
             else
             {
-                var specialDomain = $"{(redirectSpecialDomain.IsSSL ? "https" : "http")}://{redirectSpecialDomain.RedirectDomain}/{redirectSpecialDomain.LanguageLink}/{pageCode}?affCode={redirectSpecialDomain.AffCode}&affMediaLinkId={redirectSpecialDomain.AffMediaLinkId}";
+                var specialDomain = $"{(redirectSpecialDomain.IsSSL ? "https" : "http")}://{redirectSpecialDomain.RedirectDomain}/{redirectSpecialDomain.LanguageLink}/{pageCode}?affCode={redirectSpecialDomain.AffCode}";
                 return new ValidateResult
                 {
                     IsValid = true,
@@ -235,10 +248,61 @@
             }
         }
 
-        [ServiceFilter(typeof(AffiliateValidationFilter))]
-        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
+        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string? lang = null, string? channel = null)
         {
             return await Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
+        }
+
+        private async Task InsertAffiliateToQueue(
+            long clickId,
+            string affCode,
+            string pageCode,
+            string lang,
+            string affDomain,
+            string affMediaLinkWithoutProtocol,
+            string channel,
+            string redirectLink)
+        {
+            string urlReferrer = Request.Headers["Referer"].ToString();
+            string domainReferrer = !string.IsNullOrEmpty(urlReferrer) ? new Uri(urlReferrer).Host : string.Empty;
+
+            if (string.IsNullOrEmpty(urlReferrer) && !string.IsNullOrEmpty(Request.Query["ref"].ToString()))
+            {
+                urlReferrer = Request.Query["ref"].ToString();
+                domainReferrer = Common.GetDomainReferrer(urlReferrer) ?? string.Empty;
+            }
+
+            string pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
+            string mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
+            string userAgent = Request.Headers["User-Agent"].ToString();
+            string acceptLanguage = Request.Headers["Accept-Language"].ToString();
+
+            var trackingSystem = new TrackingSystem
+            {
+                ClickId = clickId,
+                AffCode = affCode,
+                IP = Request.GetClientIP(),
+                Browser = Common.GetBrowserName(userAgent),
+                URLReferrer = urlReferrer,
+                DomainReferrer = domainReferrer,
+                OS = Common.GetOsName(userAgent),
+                Device = Common.GetDeviceName(userAgent),
+                BrowserVersion = Common.GetBrowserVersion(userAgent),
+                //// BrowserResolution = Request.Query["res"].ToString(), 
+                BrowserLanguage = acceptLanguage,
+                UserAgent = userAgent,
+                Country = Common.GetCountry(),
+                LanguageCode = mappingRemovedLanguage,
+                PageCode = pageCodeOnV2,
+                RedirectURL = redirectLink,
+                DeviceType = GetDeviceType(),
+                AffDomain = affDomain,
+                AffMediaLink = affMediaLinkWithoutProtocol,
+                ChannelCode = channel ?? string.Empty,
+                UpdatedTime = DateTime.Now,
+            };
+
+            await messageQueueService.PublishAsync(trackingSystem);
         }
 
         private IActionResult InsertAffiliate(
@@ -247,7 +311,7 @@
             string lang,
             string affDomain,
             string affMediaLinkWithoutProtocol,
-            string channel = null)
+            string? channel = null)
         {
             string urlReferrer = Request.Headers["Referer"].ToString();
             string domainReferrer = !string.IsNullOrEmpty(urlReferrer) ? new Uri(urlReferrer).Host : string.Empty;
@@ -282,10 +346,10 @@
                 BrowserLanguage = acceptLanguage,
                 UserAgent = userAgent,
                 Country = Common.GetCountry(),
-                AffMediaLink = affMediaLinkWithoutProtocol
+                AffMediaLink = affMediaLinkWithoutProtocol,
             };
 
-            string redirectUrl = _trackingSystemService.InsertStatistic(command);
+            string redirectUrl = trackingSystemService.InsertStatistic(command);
 
             if (!string.IsNullOrEmpty(redirectUrl))
             {
@@ -342,7 +406,7 @@
             string affMediaLinkWithoutProtocol)
         {
             string mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
-            var mappingMarketInfo = _trackingSystemService.GetMarketInfo(mappingRemovedLanguage);
+            var mappingMarketInfo = trackingSystemService.GetMarketInfo(mappingRemovedLanguage);
 
             if (string.IsNullOrEmpty(mappingMarketInfo.MarketId))
             {
@@ -357,7 +421,7 @@
                 AffMediaLink = affMediaLinkWithoutProtocol
             };
 
-            var checkMarketingLinkResult = _trackingSystemService.GetTrackingMarketingLinkInfo(checkingCommand);
+            var checkMarketingLinkResult = trackingSystemService.GetTrackingMarketingLinkInfo(checkingCommand);
 
             if (checkMarketingLinkResult.IsValidDomain && !checkMarketingLinkResult.IsExistedTracking)
             {
@@ -368,7 +432,7 @@
                     AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
                 };
 
-                _trackingSystemService.ToggleMarketingLink(insertCommand);
+                trackingSystemService.ToggleMarketingLink(insertCommand);
             }
 
             return checkMarketingLinkResult.IsValidDomain;
@@ -390,7 +454,7 @@
 
         private bool IsValidAffMarketing(string affCode)
         {
-            var commGroup = _affInfoService.GetCommGroupByAffCode(affCode);
+            var commGroup = affInfoService.GetCommGroupByAffCode(affCode);
             return Array.Exists(_marketingForCommGroups, c => IsMatching(c, commGroup.GroupName));
         }
 
@@ -457,7 +521,7 @@
             }
 
             string customLanguageCode = GetSupportedLanguageCodeOnMemberSiteV2(languageCode);
-            string redirectPattern = _configuration[$"AppSettings:Redirect_{pageCode.ToLowerInvariant()}_pattern"];
+            string redirectPattern = configuration[$"AppSettings:Redirect_{pageCode.ToLowerInvariant()}_pattern"];
 
             if (!string.IsNullOrEmpty(redirectPattern))
             {
