@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.Operation
 {
     public class DeductionItem
     {

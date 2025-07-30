@@ -8,9 +8,9 @@
 
         public int GroupId { get; set; }
 
-        public int GroupTypeId { get; set; }
+        // public int GroupTypeId { get; set; }
 
-        public override string GetSettingKey() => "Aff_Admin_Assign_Deal_Sel";
+        public override string GetSettingKey() => "Aff_Admin_CommGroupNormal_Sel"; // "Aff_Admin_Assign_Deal_Sel";
 
         public override bool IsValid() => true;
     }

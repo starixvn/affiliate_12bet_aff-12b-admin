@@ -4,7 +4,6 @@
     using System.Linq;
     using Fanex.Affiliate.Admin.Core.Criterias.Operation;
     using Fanex.Affiliate.Admin.Core.DTO;
-    using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
     using Fanex.Data.Repository;
@@ -89,7 +88,7 @@
             var criteria = new GetAssignDealCriteria
             {
                 AffId = param.AffId,
-                GroupTypeId = param.GroupTypeId
+                //GroupTypeId = param.GroupTypeId
             };
 
             var normalDeals = FetchTData<NormalDeal>(criteria);

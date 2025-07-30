@@ -4,25 +4,26 @@ import { Col, FormGroup, Label, Button, Alert } from 'reactstrap';
 import { messages, popupEventNames } from '../deal/libs/constants';
 import { htmlDecode } from '../../../modules/htmlHelper';
 import Loader from '../../../components/Loader';
+import { deepClone } from '../../../modules/dataHandler';
 
 export default class AssignDeal extends PureComponent {
     constructor(props) {
         super(props);
 
-        let { dealTypeList, dealList, affInfo } = window.initialState;
+        let { dealList, affInfo } = window.initialState;
 
         let selectedDeal = affInfo.GroupId;
-        let selectedDealType = affInfo.GroupTypeId;
-        if (selectedDealType === 0) {
-            selectedDealType = dealTypeList && dealTypeList.length ? dealTypeList[0].GroupTypeId : 0;
-        }
+        // let selectedDealType = affInfo.GroupTypeId;
+        // if (selectedDealType === 0) {
+        //     selectedDealType = dealTypeList && dealTypeList.length ? dealTypeList[0].GroupTypeId : 0;
+        // }
 
-        const dealByType = dealList.filter(item => item.GroupTypeId === selectedDealType);
+        const dealByType = deepClone(dealList);
         if (selectedDeal === 0) {
             selectedDeal = dealByType && dealByType.length ? dealByType[0].GroupId : 0;
         }
 
-        this.state = Object.assign({}, { dealTypeList, dealList, dealByType, selectedDeal, selectedDealType, affInfo }, {
+        this.state = Object.assign({}, { dealList, dealByType, selectedDeal, affInfo }, {
             isShowLoader: false,
             isShowMessage: false,
             isSuccess: true,
@@ -30,20 +31,20 @@ export default class AssignDeal extends PureComponent {
         });
     }
 
-    handleChangeDealType = (event) => {
-        const { value } = event.target;
+    // handleChangeDealType = (event) => {
+    //     const { value } = event.target;
 
-        const { dealList, affInfo } = this.state;
+    //     const { dealList, affInfo } = this.state;
 
-        const newDealByType = dealList.filter(item => item.GroupTypeId === Number(value));
-        const newSelectedDeal = newDealByType && newDealByType.length ? newDealByType.find(d => d.GroupId === affInfo.GroupId) : 0;
+    //     const newDealByType = dealList.filter(item => item.GroupTypeId === Number(value));
+    //     const newSelectedDeal = newDealByType && newDealByType.length ? newDealByType.find(d => d.GroupId === affInfo.GroupId) : 0;
 
-        this.setState({
-            selectedDealType: Number(value),
-            selectedDeal: newSelectedDeal ? affInfo.GroupId : newDealByType[0].GroupId,
-            dealByType: newDealByType
-        });
-    }
+    //     this.setState({
+    //         selectedDealType: Number(value),
+    //         selectedDeal: newSelectedDeal ? affInfo.GroupId : newDealByType[0].GroupId,
+    //         dealByType: newDealByType
+    //     });
+    // }
 
     handleChangeDeal = (event) => {
         const { value } = event.target;
@@ -95,7 +96,7 @@ export default class AssignDeal extends PureComponent {
     }
 
     render() {
-        const { dealTypeList, dealByType, selectedDeal, selectedDealType, affInfo, isShowLoader, isShowMessage, isSuccess, message } = this.state;
+        const { dealByType, selectedDeal, affInfo, isShowLoader, isShowMessage, isSuccess, message } = this.state;
         return affInfo && (
             <div className="assign-normal-group" style={{ padding: 10 }}>
                 <Loader show={isShowLoader} />
@@ -108,7 +109,7 @@ export default class AssignDeal extends PureComponent {
                 </fieldset>
                 <fieldset>
                     <legend><h6 className="font-weight-bold">Deal</h6></legend>
-                    <FormGroup row>
+                    {/* <FormGroup row>
                         <Label xs="4" className="font-weight-bold">Deal Type </Label>
                         <Col xs="5" className="select-comm">
                             <select name="selectedDealType" className="form-control" onChange={this.handleChangeDealType} value={selectedDealType}>
@@ -119,7 +120,7 @@ export default class AssignDeal extends PureComponent {
                                 }
                             </select>
                         </Col>
-                    </FormGroup>
+                    </FormGroup> */}
                     <FormGroup row>
                         <Label xs="4" className="font-weight-bold">Deal Name </Label>
                         <Col xs="5" className="select-comm">
@@ -133,7 +134,7 @@ export default class AssignDeal extends PureComponent {
                         </Col>
                     </FormGroup>
                 </fieldset>
-                <p className="text-danger">Note: Change will take effect on current month.</p>
+                <p className="text-danger">Note: Change will take effect on current month (GMT-4).</p>
                 <Button type="button" className="my-2 btn btn-success" onClick={this.handleSave}>SAVE</Button>
             </div>
         );
