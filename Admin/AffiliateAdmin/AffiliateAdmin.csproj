@@ -285,6 +285,7 @@
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
     <Content Include="Areas\Portal\www\source\js\modules\claim.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\BlockTargetCountryFormGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\modules\utils\dealInfoFormat.js" />
     <Content Include="Areas\Portal\www\source\js\pages\common\modules\utils\targetCountry.js" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\domain\libs\constants.js" />

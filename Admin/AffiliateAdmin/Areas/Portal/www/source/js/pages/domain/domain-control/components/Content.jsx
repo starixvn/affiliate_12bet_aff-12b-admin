@@ -7,7 +7,8 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
+import { deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
+import { _formatDealText } from '../../../common/modules/utils/dealInfoFormat';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -18,12 +19,6 @@ export class Content extends PureComponent {
             message: '',
             isConfirmPopup: true
         }
-    }
-
-    componentDidMount() {
-        const { affDomainList, redirectDomainList } = this.props;
-
-        (!affDomainList || !redirectDomainList) && this.props.fetchDomain();
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -105,7 +100,7 @@ export class Content extends PureComponent {
         const redirectDomain = htmlDecode(dataItem.RedirectDomain);
         const creator = htmlDecode(dataItem.Creator);
 
-        const { dealStr, deal } = this._formatDealText(dataItem.DealIds, dataItem.IsExcluded);
+        const { dealStr, deal } = _formatDealText(dataItem.DealIds, dataItem.IsExcluded, this.props.dealList);
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -134,30 +129,6 @@ export class Content extends PureComponent {
                 </Cell>
             </Row>
         )
-    }
-
-    _formatDealText = (deal, isExcludeDeal) => {
-        const { dealList } = this.props;
-
-        if ((isExcludeDeal && deal === '') || deal === '0') {
-            return { dealStr: 'All', deal: 'All' };
-        }
-
-        if (!isExcludeDeal && !deal) {
-            return { dealStr: '', deal: '' };
-        }
-
-        const dealNames = deal.split(',')
-            .map(id => dealList.find(item => item.key === Number(id))?.name || '')
-            .filter(Boolean);
-
-        const dealCount = dealNames.length;
-        const dealStr = dealNames.join(', ');
-        const text = dealCount > 5
-            ? (isExcludeDeal ? `<strong style="color: royalblue;">Exclude: ${dealCount}</strong>` : `<strong style="color: royalblue;">${dealCount}</strong>`)
-            : (isExcludeDeal ? `Exclude: ${dealStr}` : dealStr);
-
-        return { dealStr, deal: text };
     }
 
     render() {
@@ -192,12 +163,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList, dealList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList, dealList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountry, affSubDomainList, dealList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountry, affSubDomainList, dealList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

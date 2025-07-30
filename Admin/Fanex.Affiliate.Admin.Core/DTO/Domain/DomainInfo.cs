@@ -14,6 +14,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
 
         public string BlockTargetCountry { get; set; }
 
+        public string BlockTargetCountryCode { get; set; }
+
         public DateTime? CreateDate { get; set; }
     }
 }

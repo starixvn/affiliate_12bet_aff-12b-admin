@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { setSelectedLandingPageId, setCheckedLandingPages, setShouldResetScrollPosition } from '../actions';
+import { _formatDealText } from '../../../common/modules/utils/dealInfoFormat';
 
 export const Content = (props) => {
 
@@ -53,7 +54,7 @@ export const Content = (props) => {
     function _buildDataRow(dataItem, index) {
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
-        const { dealStr, deal } = _formatDealText(dataItem.DealIds, dataItem.IsExcluded);
+        const { dealStr, deal } = _formatDealText(dataItem.DealIds, dataItem.IsExcluded, props.dealList);
         const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
 
         return (
@@ -65,7 +66,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
-                <Cell className="text-center" title={dealStr}>{deal}</Cell>
+                <Cell className="text-center" title={dealStr} dangerouslySetInnerHTML={{ __html: deal }}></Cell>
                 <Cell className="text-center">
                     <input type="checkbox" disabled checked={dataItem.IsMobile} />
                 </Cell>
@@ -77,30 +78,6 @@ export const Content = (props) => {
                 </Cell>
             </Row>
         )
-    }
-
-    function _formatDealText(deal, isExcludeDeal) {
-        const { dealList } = props;
-
-        if ((isExcludeDeal && deal === '') || deal === '0') {
-            return { dealStr: 'All', deal: 'All' };
-        }
-
-        if (!isExcludeDeal && !deal) {
-            return { dealStr: '', deal: '' };
-        }
-
-        const dealNames = deal.split(',')
-            .map(id => dealList.find(item => item.key === Number(id))?.name || '')
-            .filter(Boolean);
-
-        const dealCount = dealNames.length;
-        const dealStr = dealNames.join(', ');
-        const text = dealCount > 5
-            ? (isExcludeDeal ? `<strong style="color: royalblue;">Exclude: ${dealCount}</strong>` : `<strong style="color: royalblue;">${dealCount}</strong>`)
-            : (isExcludeDeal ? `Exclude: ${dealStr}` : dealStr);
-
-        return { dealStr, deal: text };
     }
 
     return props.gridData && (

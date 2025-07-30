@@ -5,7 +5,6 @@ import AppContainer from './components/AppContainer';
 
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
-import { convertListToMutilpleSelected } from '../../../modules/utils';
 
 export default class App extends React.PureComponent {
     constructor(props) {
@@ -21,9 +20,7 @@ export default class App extends React.PureComponent {
             }
         });
 
-        const newDealList = convertListToMutilpleSelected(dealList, 'GroupId', 'GroupName', false);
-
-        this.store = configureStore({ targetCountryList, affSubDomainList: newAffSubDomainList, dealList: newDealList }, reducer);
+        this.store = configureStore({ targetCountryList, affSubDomainList: newAffSubDomainList, dealList }, reducer);
     }
 
     render() {

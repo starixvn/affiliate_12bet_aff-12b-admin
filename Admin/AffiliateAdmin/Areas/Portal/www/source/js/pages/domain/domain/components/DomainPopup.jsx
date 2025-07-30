@@ -6,10 +6,9 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import { insertDomain, updateDomain, toggleLoader, fetchData, setSelectedDomainId, getDomainById, getTargetCountryListByDomain } from '../actions/index';
 import { defaultState } from '../libs/constants';
-import { getBlockTargetCountryList } from '../../../common/modules/utils/targetcountry';
+import { getBlockTargetCountryList, _handleInitialTargetCountryList } from '../../../common/modules/utils/targetCountry';
 import { targetCountryStatus } from '../../../../modules/constants';
-import { deepClone } from '../../../../modules/dataHandler';
-import { convertListToMutilpleSelected, handleChangeMultipleSelected } from '../../../../modules/utils';
+import { handleChangeMultipleSelected } from '../../../../modules/utils';
 import MultipleSelect from '../../../../components/multiple-select';
 
 export class DomainPopup extends PureComponent {
@@ -29,7 +28,7 @@ export class DomainPopup extends PureComponent {
     _handleUpdateState = async (selectedDomainId, isAffDomain) => {
         if (selectedDomainId === 0) {
             const initialTargetCountryList = await this.props.getTargetCountryListByDomain({ affDomainId: 0, redirectDomainId: 0 });
-            const convertTargetCountryList = convertListToMutilpleSelected(initialTargetCountryList, 'TargetCountryCode', 'TargetCountryName', false);
+            const convertTargetCountryList = _handleInitialTargetCountryList(initialTargetCountryList, '');
 
             this.setState({ isInsert: true, selectedDomain: { domainId: selectedDomainId, domainName: '', blockTargetCountry: '', isSSL: true }, targetCountryList: convertTargetCountryList, initialTargetCountryList });
         } else {
@@ -41,13 +40,10 @@ export class DomainPopup extends PureComponent {
                 const domainIdParam = isAffDomain ? "affDomainId" : "redirectDomainId";
                 const initialTargetCountryList = await this.props.getTargetCountryListByDomain({ [domainIdParam]: selectedDomainId });
                 if (initialTargetCountryList && initialTargetCountryList.length) {
-                    const cloneTargetCountryList = deepClone(initialTargetCountryList);
-                    const blockTargetCountryList = getBlockTargetCountryList(cloneTargetCountryList);
+                    const blockTargetCountryList = getBlockTargetCountryList(initialTargetCountryList);
                     const blockTargetCountry = blockTargetCountryList.join(',');
 
-                    // use for multiple select
-                    const convertTargetCountryList = convertListToMutilpleSelected(cloneTargetCountryList, 'TargetCountryCode', 'TargetCountryName', false);
-                    const targetCountryList = handleChangeMultipleSelected(convertTargetCountryList, blockTargetCountry);
+                    const targetCountryList = _handleInitialTargetCountryList(initialTargetCountryList, blockTargetCountry);
 
                     this.setState({ isInsert: false, selectedDomain: { domainId: selectedDomainId, domainName: DomainName, blockTargetCountry, isSSL: IsSSL }, targetCountryList, initialTargetCountryList });
                 } else {

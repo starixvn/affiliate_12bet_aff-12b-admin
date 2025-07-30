@@ -8,9 +8,10 @@ import MultipleSelect from '../../../../components/multiple-select';
 import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryListByLandingPage } from '../actions/index';
 import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength, filterDealMode } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
-import { getBlockTargetCountryList } from '../../../common/modules/utils/targetcountry';
+import { getBlockTargetCountryList, _handleInitialTargetCountryList } from '../../../common/modules/utils/targetCountry';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { handleChangeMultipleSelected, convertListToMutilpleSelected } from '../../../../modules/utils';
+import { handleChangeMultipleSelected } from '../../../../modules/utils';
+import { _handleInitialDealList, _validateSelectedDealsByMode } from '../../../common/modules/utils/dealInfoFormat';
 
 export class InsertUpdateForm extends PureComponent {
     constructor(props) {
@@ -39,9 +40,10 @@ export class InsertUpdateForm extends PureComponent {
     _handleUpdateState = async (pageId) => {
         this.props.toggleLoader(true);
 
+        const { dealList } = this.props;
+
         if (pageId === 0) {
             const visibleTargetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
-            const convertTargetCountryList = convertListToMutilpleSelected(visibleTargetCountryList, 'TargetCountryCode', 'TargetCountryName', false);
 
             this.setState({
                 isInsert: true,
@@ -54,8 +56,8 @@ export class InsertUpdateForm extends PureComponent {
                     isExcluded: filterDealMode.Exclude,
                     dealIds: ''
                 },
-                dealList: this.props.dealList,
-                targetCountryList: convertTargetCountryList
+                dealListMultipleSelected: _handleInitialDealList(dealList, ''),
+                targetCountryList: _handleInitialTargetCountryList(visibleTargetCountryList, '')
             });
         } else {
             const landingPage = await this.props.getLandingPageDetail(pageId);
@@ -68,7 +70,8 @@ export class InsertUpdateForm extends PureComponent {
                 const isExcluded = landingPage.IsExcluded;
 
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
-                const newDealList = handleChangeMultipleSelected(this.props.dealList, dealIds);
+
+                const newDealList = _handleInitialDealList(dealList, dealIds);
 
                 const selectedLandingPage = {
                     pageName,
@@ -82,15 +85,14 @@ export class InsertUpdateForm extends PureComponent {
                 const newState = {
                     isInsert: false,
                     selectedLandingPage,
-                    dealList: newDealList
+                    dealListMultipleSelected: newDealList
                 };
 
                 if (targetCountryList?.length) {
                     const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
                     const blockTargetCountry = blockTargetCountryList.join(',');
 
-                    const convertTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName', false);
-                    const newTargetCountryList = handleChangeMultipleSelected(convertTargetCountryList, blockTargetCountry);
+                    const newTargetCountryList = _handleInitialTargetCountryList(targetCountryList, blockTargetCountry);
 
                     newState.selectedLandingPage.blockTargetCountry = blockTargetCountry;
                     newState.targetCountryList = newTargetCountryList;
@@ -98,7 +100,6 @@ export class InsertUpdateForm extends PureComponent {
 
                 this.setState(newState);
             }
-
         }
 
         this.props.toggleLoader(false);
@@ -130,7 +131,7 @@ export class InsertUpdateForm extends PureComponent {
                 isExcluded: Number(value),
                 dealIds: ''
             },
-            dealList: handleChangeMultipleSelected(this.state.dealList, '')
+            dealListMultipleSelected: handleChangeMultipleSelected(this.state.dealListMultipleSelected, '')
         });
     }
 
@@ -139,7 +140,7 @@ export class InsertUpdateForm extends PureComponent {
 
         this.setState({
             selectedLandingPage: { ...this.state.selectedLandingPage, dealIds: isAllDeals ? '0' : selectedDeals },
-            dealList: handleChangeMultipleSelected(this.state.dealList, selectedDeals)
+            dealListMultipleSelected: handleChangeMultipleSelected(this.state.dealListMultipleSelected, selectedDeals)
         });
     }
 
@@ -186,7 +187,7 @@ export class InsertUpdateForm extends PureComponent {
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
             const landingPageInfo = Object.assign({}, { pageId: selectedLandingPageId, ...selectedLandingPage });
 
-            const validateMessage = this._validateSelectedDealsByMode(selectedLandingPage.isExcluded, selectedLandingPage.dealIds);
+            const validateMessage = _validateSelectedDealsByMode(selectedLandingPage.isExcluded, selectedLandingPage.dealIds, filterDealMode);
             if (validateMessage) {
                 this._handleShowAlert(false, validateMessage);
             } else {
@@ -201,18 +202,6 @@ export class InsertUpdateForm extends PureComponent {
         }
 
         this.props.toggleLoader(false);
-    }
-
-    _validateSelectedDealsByMode = (isExcludeDeal, selectedDeals) => {
-        if (isExcludeDeal === filterDealMode.Exclude && selectedDeals === '0') {
-            return 'Selecting all options is not allowed. Please unselect at least one.';
-        }
-
-        if (isExcludeDeal === filterDealMode.Include && selectedDeals === '') {
-            return 'Please select at least one deal.';
-        }
-
-        return '';
     }
 
     _handleKeyPress = (event, isValid) => {
@@ -248,14 +237,14 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, dealList } = this.state;
+        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, dealListMultipleSelected } = this.state;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
         const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
         const isShowPopup = this.props.selectedLandingPageId !== null;
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
 
-        return targetCountryList && dealList && (
+        return selectedLandingPage && targetCountryList && dealListMultipleSelected && (
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 550 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
@@ -293,19 +282,19 @@ export class InsertUpdateForm extends PureComponent {
                                 </FormGroup>
                                 <FormGroup row className="align-items-center mb-2">
                                     <Label sm={4}>Deal</Label>
-                                    <Col sm={3}>
+                                    <Col sm={8}>
                                         <Input type="select" name="isExcluded" className='mt-2' value={Number(selectedLandingPage.isExcluded)} onChange={this._handleChangeFilterDealMode}>
-                                            {
-                                                Object.keys(filterDealMode).map(key => {
-                                                    return (<option key={`isExcluded-${filterDealMode[key]}`} value={filterDealMode[key]}>{key}</option>)
-                                                })
-                                            }
+                                            <option key="isExcluded-0" value={filterDealMode.Include}>Applied To</option>
+                                            <option key="isExcluded-1" value={filterDealMode.Exclude}>Applied To All Deals Except</option>
                                         </Input>
                                     </Col>
-                                    <Col sm={5} >
+                                </FormGroup>
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Col sm={4}></Col>
+                                    <Col sm={8} >
                                         <div className='mt-2'>
                                             <MultipleSelect
-                                                dataSource={dealList}
+                                                dataSource={dealListMultipleSelected}
                                                 keyField="key"
                                                 valueField="name"
                                                 statusField="checked"
