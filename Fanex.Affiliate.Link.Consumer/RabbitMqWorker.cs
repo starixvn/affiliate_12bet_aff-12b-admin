@@ -19,7 +19,8 @@ public sealed class RabbitMqWorker(
     private IDisposable? consumerHandle;
     private bool isUnderMaintenance;
     private readonly object maintenanceLock = new();
-    private const int MaxRetryCount = 5;
+    private const int maxRetryCount = 5;
+    private const int timeToReQueue = 30000;
 
     private Exchange mainExchange;
     private Exchange retryExchange;
@@ -89,6 +90,7 @@ public sealed class RabbitMqWorker(
             {
                 logService.LogFileMessage("Maintenance mode active – message retained in queue.");
                 await Task.FromResult(AckStrategies.NackWithRequeue);
+                return;
             }
 
             try
@@ -107,20 +109,19 @@ public sealed class RabbitMqWorker(
 
                 retry++;
 
-                if (retry > MaxRetryCount)
+                if (retry > maxRetryCount)
                 {
                     await logService.SentryErrorAsync($"Moving message to dead-letter queue after {retry} retries.", ex);
                     var errorMsg = new Message<ClickTrackingEvent>(message.Body);
                     errorMsg.Properties.Headers["x-retry"] = retry;
-                    bus.Advanced.Publish(errorExchange, routingKey, false, errorMsg);
+                    await bus.Advanced.PublishAsync(errorExchange, routingKey, false, errorMsg);
                 }
                 else
                 {
                     await logService.SentryErrorAsync($"Retrying message. Attempt {retry}.", ex);
                     var retryMsg = new Message<ClickTrackingEvent>(message.Body);
                     retryMsg.Properties.Headers["x-retry"] = retry;
-
-                    bus.Advanced.Publish(retryExchange, routingKey, false, retryMsg);
+                    await bus.Advanced.PublishAsync(retryExchange, routingKey, false, retryMsg);
                 }
 
                 await Task.FromResult(AckStrategies.Ack);
@@ -150,7 +151,7 @@ public sealed class RabbitMqWorker(
             .AsAutoDelete(false)
             .WithArgument("x-queue-type", "quorum")
             .WithArgument("x-dead-letter-exchange", mainExchangeName)
-            .WithArgument("x-message-ttl", 30000)
+            .WithArgument("x-message-ttl", timeToReQueue)
         );
 
         errorQueue = await bus.Advanced.QueueDeclareAsync(errorQueueName, c => c

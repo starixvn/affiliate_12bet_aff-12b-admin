@@ -1,4 +1,3 @@
-using System.Configuration;
 using EasyNetQ;
 using Fanex.Affiliate.Link.Core.Services;
 using Fanex.Affiliate.Link.Core.Services.Interfaces;
@@ -47,8 +46,6 @@ builder.Services.AddSingleton<ILogService, LogService>();
 builder.Services.AddSingleton<IMessageQueueService, MessageQueueService>();
 
 builder.Services.AddOneBookUmForService(builder.Configuration);
-
-
 const short workerThreads = 300;
 const short completionPortThreads = 300;
 _ = ThreadPool.SetMinThreads(workerThreads, completionPortThreads);
