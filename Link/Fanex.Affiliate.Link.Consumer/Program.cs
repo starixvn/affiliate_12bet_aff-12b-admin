@@ -5,10 +5,12 @@ using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.Logging;
 using Fanex.Logging.Sentry;
+using Microsoft.AspNetCore.Builder;
 using ONEbook.UM.DependencyInjection;
 using ONEbook.UM.Services;
 
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddHostedService<RabbitMqWorker>();
 var rabbitMqConnectionString = builder.Configuration.GetValue<string>("RabbitMQConnectionString");
 builder.Services.AddHttpClient();
@@ -38,4 +40,5 @@ DbSettingProviderManager
     .Run();
 
 var host = builder.Build();
+host.MapGet("/", () => "Affiliate.Link.Consumer running!");
 host.Run();
