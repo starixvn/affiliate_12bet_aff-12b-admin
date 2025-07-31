@@ -1,8 +1,6 @@
-﻿using Fanex.Affiliate.Link.Commands;
+﻿namespace Fanex.Affiliate.Link.Commands;
 
-namespace Fanex.Affiliate.Link.Criterias;
-
-public class GetRedirectPageBySettingCriteria : BaseNonQueryCommand
+public class ValidateLinkCommand : BaseNonQueryCommand
 {
     public string AffCode { get; set; }
 

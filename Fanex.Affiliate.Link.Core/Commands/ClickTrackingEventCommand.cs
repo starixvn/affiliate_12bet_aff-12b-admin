@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Link.Commands;
 
-public class TrackingSystemCommand : BaseNonQueryCommand
+public class ClickTrackingEventCommand : BaseNonQueryCommand
 {
     public string AffCode { get; set; }
 

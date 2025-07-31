@@ -83,7 +83,7 @@ public sealed class RabbitMqWorker(
 
     private void StartConsumer()
     {
-        consumerHandle = bus.Advanced.Consume<TrackingSystem>(mainQueue, async (message, _) =>
+        consumerHandle = bus.Advanced.Consume<ClickTrackingEvent>(mainQueue, async (message, _) =>
         {
             if (IsCurrentlyUnderMaintenance())
             {
@@ -110,14 +110,14 @@ public sealed class RabbitMqWorker(
                 if (retry > MaxRetryCount)
                 {
                     await logService.SentryErrorAsync($"Moving message to dead-letter queue after {retry} retries.", ex);
-                    var errorMsg = new Message<TrackingSystem>(message.Body);
+                    var errorMsg = new Message<ClickTrackingEvent>(message.Body);
                     errorMsg.Properties.Headers["x-retry"] = retry;
                     bus.Advanced.Publish(errorExchange, routingKey, false, errorMsg);
                 }
                 else
                 {
                     await logService.SentryErrorAsync($"Retrying message. Attempt {retry}.", ex);
-                    var retryMsg = new Message<TrackingSystem>(message.Body);
+                    var retryMsg = new Message<ClickTrackingEvent>(message.Body);
                     retryMsg.Properties.Headers["x-retry"] = retry;
 
                     bus.Advanced.Publish(retryExchange, routingKey, false, retryMsg);
@@ -182,36 +182,36 @@ public sealed class RabbitMqWorker(
         return base.StopAsync(cancellationToken);
     }
 
-    private async Task InsertClickInfo(TrackingSystem trackingSystem)
+    private async Task InsertClickInfo(ClickTrackingEvent clickTrackingEvent)
     {
-        if (trackingSystem is null)
+        if (clickTrackingEvent is null)
         {
-            logService.LogFileMessage("TrackingSystem is null. Skipping insert.");
+            logService.LogFileMessage("ClickTrackingEvent is null. Skipping insert.");
             return;
         }
 
-        var command = new TrackingSystemCommand
+        var command = new ClickTrackingEventCommand
         {
-            ClickId = trackingSystem.ClickId,
-            AffCode = trackingSystem.AffCode,
-            UpdatedTime = trackingSystem.UpdatedTime,
-            IP = trackingSystem.IP,
-            Browser = trackingSystem.Browser,
-            URLReferrer = trackingSystem.URLReferrer,
-            DomainReferrer = trackingSystem.DomainReferrer,
-            OS = trackingSystem.OS,
-            Device = trackingSystem.Device,
-            BrowserVersion = trackingSystem.BrowserVersion,
-            BrowserResolution = trackingSystem.BrowserResolution,
-            BrowserLanguage = trackingSystem.BrowserLanguage,
-            UserAgent = trackingSystem.UserAgent,
-            Country = trackingSystem.Country,
-            LanguageCode = trackingSystem.LanguageCode,
-            PageCode = trackingSystem.PageCode,
-            RedirectURL = trackingSystem.RedirectURL,
-            DeviceType = trackingSystem.DeviceType,
-            AffMediaLink = trackingSystem.AffMediaLink,
-            ChannelCode = trackingSystem.ChannelCode
+            ClickId = clickTrackingEvent.ClickId,
+            AffCode = clickTrackingEvent.AffCode,
+            UpdatedTime = clickTrackingEvent.UpdatedTime,
+            IP = clickTrackingEvent.IP,
+            Browser = clickTrackingEvent.Browser,
+            URLReferrer = clickTrackingEvent.UrlReferrer,
+            DomainReferrer = clickTrackingEvent.DomainReferrer,
+            OS = clickTrackingEvent.OS,
+            Device = clickTrackingEvent.Device,
+            BrowserVersion = clickTrackingEvent.BrowserVersion,
+            BrowserResolution = clickTrackingEvent.BrowserResolution,
+            BrowserLanguage = clickTrackingEvent.BrowserLanguage,
+            UserAgent = clickTrackingEvent.UserAgent,
+            Country = clickTrackingEvent.Country,
+            LanguageCode = clickTrackingEvent.LanguageCode,
+            PageCode = clickTrackingEvent.PageCode,
+            RedirectURL = clickTrackingEvent.RedirectPage,
+            DeviceType = clickTrackingEvent.DeviceType,
+            AffMediaLink = clickTrackingEvent.AffMediaLink,
+            ChannelCode = clickTrackingEvent.ChannelCode
         };
 
         await dynamicRepository.ExecuteAsync(command);

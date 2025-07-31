@@ -3,6 +3,7 @@
     using System;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading.Channels;
     using System.Threading.Tasks;
     using Commands;
     using Fanex.Affiliate.Link.Constants;
@@ -13,8 +14,11 @@
     using Fanex.Affiliate.Link.Extensions;
     using Fanex.Affiliate.Link.Models;
     using Fanex.Logging;
+    using Fanex.Logging.Extensions.AspNetCore.UserAgent;
     using Helpers;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.IdentityModel.Tokens;
     using ONEbook.UM.Services;
     using Services.Interface;
 
@@ -27,7 +31,7 @@
         private readonly string[] _marketingPageCodeRegexPatterns;
         private readonly bool _isRemovePortFromUrl;
 
-        private readonly ITrackingSystemService trackingSystemService;
+        private readonly IClickTrackingEventService trackingSystemService;
         private readonly IAffInfoService affInfoService;
         private readonly IConfiguration configuration;
         private readonly IMessageQueueService messageQueueService;
@@ -37,7 +41,7 @@
         private const string LinkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
 
         public HomeController(
-            ITrackingSystemService trackingSystemService,
+            IClickTrackingEventService trackingSystemService,
             IAffInfoService affInfoService,
             IMessageQueueService messageQueueService,
             IMaintenanceService maintenanceService,
@@ -98,64 +102,21 @@
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
-        public async Task<IActionResult> Link(string pageCode, string affCode, string? lang = null, string? channel = null)
+        public async Task<IActionResult> Link(LinkParams linkParams)
         {
             try
             {
-                
-                
-                var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
-                var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, pageCode);
-
-                if (IsUnderMaintenance())
+                var clickTrackingEvent = InitClickTrackingEvent(linkParams);
+                var validateResult = await ValidateLink(clickTrackingEvent);
+                if (validateResult.IsValid)
                 {
-                    var masterInfoValidations = await affInfoService.GetMasterDataForValidateClicked();
-                    var validateResult = IsValidLink(masterInfoValidations, pageCode, affCode, lang, channel, affDomain, affMediaLinkWithoutProtocol);
-                    if (validateResult.IsValid)
-                    {
-                        // increase clickId
-                        var clickId = await affInfoService.GetClickId();
-                        var redirectLink = $"{validateResult.RedirectView}&clickId={clickId}";
-
-                        //insert into queue
-                        await InsertAffiliateToQueue(clickId, affCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, channel, redirectLink);
-
-                        return Redirect(redirectLink);
-                    }
-                    else
-                    {
-                        return View(validateResult.RedirectView);
-                    }
+                    return await ProcessLink(clickTrackingEvent);
                 }
                 else
                 {
-                    var criteria = new GetRedirectPageBySettingCriteria
-                    {
-                        AffCode = affCode,
-                        AffDomain = affDomain,
-                        PageCode = pageCode,
-                        LanguageCode = lang
-                    };
-                    await trackingSystemService.GetRedirectLink(criteria);
-
-                    if (criteria.ErrCode == 0)
-                    {
-                        // increase clickId
-                        var clickId = await affInfoService.GetClickId();
-                        var redirectLink = $"{criteria.RedirectPage}&clickId={clickId}";
-
-                        //insert into queue
-                        await InsertAffiliateToQueue(clickId, affCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol, channel, redirectLink);
-
-                        return Redirect(redirectLink);
-                    }
-                    else
-                    {
-                        return View("Link");
-                    }
+                    ViewBag.Result = validateResult.ErrorMessage;
+                    return View("Link");
                 }
-                
-
 
                 //var affInfo = _affInfoService.GetAffInfoByAffCode(affCode);
 
@@ -178,91 +139,11 @@
             }
         }
 
-       
-
-        private bool IsUnderMaintenance()
+        private ClickTrackingEvent InitClickTrackingEvent(LinkParams linkParams)
         {
-            var maintanceTime = maintenanceService.GetUnderMaintenanceTime();
-            return maintanceTime.IsUnderMaintenanceTime;
-        }
+            var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
+            var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, linkParams.PageCode);
 
-        private ValidateResult IsValidLink(IEnumerable<MasterInfoValidation> masterInfoValidations, string pageCode, string affCode, string lang, string channel, string affDomain, string affMediaLinkWithoutProtocol)
-        {
-            if (string.IsNullOrEmpty(affCode) || string.IsNullOrEmpty(lang))
-            {
-                ViewBag.Result = LinkIsInvalidMessage;
-                return new ValidateResult { 
-                    IsValid = false,
-                    RedirectView = "Link"
-                };
-            }
-
-            //var redirectDomain1 = masterInfoValidations.Where(m => m.AffCode == affCode).ToList();
-            var masterInfoValidation = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode);
-            
-            if (masterInfoValidation == null)
-            {
-                ViewBag.Result = LinkIsInvalidMessage;
-                return new ValidateResult
-                {
-                    IsValid = false,
-                    RedirectView = "Link"
-                };
-            }
-
-
-            var redirectSpecialDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode && m.IsSpecific && m.AffDomain == affDomain);
-
-            if (redirectSpecialDomain == null)
-            {
-                var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == affCode 
-                    && !m.IsSpecific && m.AffDomain == affDomain && m.LanguageCode == lang);
-                if (redirectDomain == null)
-                {
-                    ViewBag.Result = "This link does not exists. Please contact administrator!";
-                    return new ValidateResult
-                    {
-                        IsValid = false,
-                        RedirectView = "Link"
-                    };
-                }
-                else
-                {
-                    //licensee domain
-                    var licenseeDomain = $"{(redirectDomain.IsSSL ? "https" : "http")}://{redirectDomain.RedirectDomain}/{redirectDomain.LanguageLink}/{pageCode}?affCode={redirectDomain.AffCode}";
-                    return new ValidateResult
-                    {
-                        IsValid = true,
-                        RedirectView = licenseeDomain
-                    };
-                }
-            }
-            else
-            {
-                var specialDomain = $"{(redirectSpecialDomain.IsSSL ? "https" : "http")}://{redirectSpecialDomain.RedirectDomain}/{redirectSpecialDomain.LanguageLink}/{pageCode}?affCode={redirectSpecialDomain.AffCode}";
-                return new ValidateResult
-                {
-                    IsValid = true,
-                    RedirectView = specialDomain
-                };
-            }
-        }
-
-        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string? lang = null, string? channel = null)
-        {
-            return await Link($"{pageCodePart1}/{pageCodePart2}", affCode, lang, channel);
-        }
-
-        private async Task InsertAffiliateToQueue(
-            long clickId,
-            string affCode,
-            string pageCode,
-            string lang,
-            string affDomain,
-            string affMediaLinkWithoutProtocol,
-            string channel,
-            string redirectLink)
-        {
             string urlReferrer = Request.Headers["Referer"].ToString();
             string domainReferrer = !string.IsNullOrEmpty(urlReferrer) ? new Uri(urlReferrer).Host : string.Empty;
 
@@ -272,18 +153,22 @@
                 domainReferrer = Common.GetDomainReferrer(urlReferrer) ?? string.Empty;
             }
 
-            string pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
-            string mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
+            string pageCodeOnV2 = GetSupportedPageCodeOnV2(linkParams.PageCode);
+            string mappingRemovedLanguage = GetMappingRemovedLanguageCode(linkParams.Lang);
             string userAgent = Request.Headers["User-Agent"].ToString();
             string acceptLanguage = Request.Headers["Accept-Language"].ToString();
 
-            var trackingSystem = new TrackingSystem
+            var clickTrackingEvent = new ClickTrackingEvent
             {
-                ClickId = clickId,
-                AffCode = affCode,
+                PageCode = linkParams.PageCode,
+                AffCode = linkParams.AffCode,
+                LanguageCode = linkParams.Lang,
+                ChannelCode = linkParams.Channel,
+                AffDomain = affDomain,
+                AffMediaLink = affMediaLinkWithoutProtocol,
                 IP = Request.GetClientIP(),
                 Browser = Common.GetBrowserName(userAgent),
-                URLReferrer = urlReferrer,
+                UrlReferrer = urlReferrer,
                 DomainReferrer = domainReferrer,
                 OS = Common.GetOsName(userAgent),
                 Device = Common.GetDeviceName(userAgent),
@@ -292,17 +177,96 @@
                 BrowserLanguage = acceptLanguage,
                 UserAgent = userAgent,
                 Country = Common.GetCountry(),
-                LanguageCode = mappingRemovedLanguage,
-                PageCode = pageCodeOnV2,
-                RedirectURL = redirectLink,
                 DeviceType = GetDeviceType(),
-                AffDomain = affDomain,
-                AffMediaLink = affMediaLinkWithoutProtocol,
-                ChannelCode = channel ?? string.Empty,
-                UpdatedTime = DateTime.Now,
+                UpdatedTime = DateTime.Now
             };
 
-            await messageQueueService.PublishAsync(trackingSystem);
+            return clickTrackingEvent;
+        }
+
+        private async Task<IActionResult> ProcessLink(ClickTrackingEvent clickTrackingEvent)
+        {
+            var clickId = await affInfoService.GetClickId();
+            clickTrackingEvent.ClickId = clickId;
+            clickTrackingEvent.RedirectPage = $"{clickTrackingEvent.RedirectPage}&clickId={clickId}";
+
+            await messageQueueService.PublishAsync(clickTrackingEvent);
+
+            return Redirect(clickTrackingEvent.RedirectPage);
+        }
+
+
+        private bool IsUnderMaintenance()
+        {
+            var maintanceTime = maintenanceService.GetUnderMaintenanceTime();
+            return maintanceTime.IsUnderMaintenanceTime;
+        }
+
+        private async Task<ValidateResult> ValidateLink(ClickTrackingEvent clickTrackingEvent)
+        {
+            ValidateResult validateResult = null;
+            if (IsUnderMaintenance())
+            {
+                validateResult = await ValidateLinkFromCache(clickTrackingEvent);
+            }
+            else
+            {
+                validateResult = await trackingSystemService.ValidateLinkFromDatabase(clickTrackingEvent);
+            }
+
+            return validateResult;
+        }
+
+        private async Task<ValidateResult> ValidateLinkFromCache(ClickTrackingEvent clickTrackingEvent)
+        {
+            var masterInfoValidations = await affInfoService.GetMasterDataForValidateClicked();
+
+            if (string.IsNullOrEmpty(clickTrackingEvent.AffCode) || string.IsNullOrEmpty(clickTrackingEvent.LanguageCode))
+            {
+                return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
+            }
+
+            var masterInfoValidation = masterInfoValidations.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode);
+            if (masterInfoValidation == null)
+            {
+                return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
+            }
+
+            var redirectSpecialDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode 
+                && m.IsSpecific && m.AffDomain == clickTrackingEvent.AffDomain);
+            if (redirectSpecialDomain == null)
+            {
+                var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode
+                    && !m.IsSpecific && m.AffDomain == clickTrackingEvent.AffDomain 
+                    && m.LanguageCode == clickTrackingEvent.LanguageCode);
+                if (redirectDomain == null)
+                {
+                    return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
+                }
+                else
+                {
+                    var licenseeDomain = $"{(redirectDomain.IsSSL ? "https" : "http")}://{redirectDomain.RedirectDomain}/{redirectDomain.LanguageLink}/{clickTrackingEvent.PageCode}?affCode={redirectDomain.AffCode}";
+                    return new ValidateResult { IsValid = true, RedirectView = licenseeDomain };
+                }
+            }
+            else
+            {
+                var specialDomain = $"{(redirectSpecialDomain.IsSSL ? "https" : "http")}://{redirectSpecialDomain.RedirectDomain}/{redirectSpecialDomain.LanguageLink}/{clickTrackingEvent.PageCode}?affCode={redirectSpecialDomain.AffCode}";
+                return new ValidateResult { IsValid = true, RedirectView = specialDomain };
+            }
+        }
+
+        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string? lang = null, string? channel = null)
+        {
+            var linkParams = new LinkParams
+            { 
+                PageCode = $"{pageCodePart1}/{pageCodePart2}",
+                AffCode = affCode,
+                Lang = lang,
+                Channel = channel
+            };
+
+            return await Link(linkParams);
         }
 
         private IActionResult InsertAffiliate(

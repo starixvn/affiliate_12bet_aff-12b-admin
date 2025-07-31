@@ -21,7 +21,7 @@ builder.Logging.AddConsole();
 builder.Logging.AddDebug();
 
 // Register custom services
-builder.Services.AddScoped<ITrackingSystemService, TrackingSystemService>();
+builder.Services.AddScoped<IClickTrackingEventService, ClickTrackingEventService>();
 builder.Services.AddScoped<IAffInfoService, AffInfoService>();
 builder.Services.AddScoped<IMemoryCacheService, MemoryCacheService>();
 builder.Services.AddScoped<IMaintenanceService, MaintenanceService>();

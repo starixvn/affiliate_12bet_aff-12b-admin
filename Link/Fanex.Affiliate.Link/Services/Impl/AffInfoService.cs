@@ -83,24 +83,11 @@
             if (masterInfoValidations is null)
             {
                 var criteria = new GetMasterDataForValidateClickedCriteria();
-                try
+                masterInfoValidations = (await dynamicRepository.FetchAsync<MasterInfoValidation>(criteria)).ToList();
+                await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
                 {
-                    masterInfoValidations = (await dynamicRepository.FetchAsync<MasterInfoValidation>(criteria)).ToList();
-                    await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
-                    });
-                }
-                catch (Exception ex)
-                {
-                    masterInfoValidations = new List<MasterInfoValidation>();
-                    await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(60)
-                    });
-                }
-
-
+                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
+                });
             }
 
             return masterInfoValidations ?? new List<MasterInfoValidation>();

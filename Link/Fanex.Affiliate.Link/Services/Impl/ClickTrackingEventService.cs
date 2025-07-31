@@ -2,25 +2,28 @@
 {
     using Fanex.Affiliate.Link.Commands;
     using Fanex.Affiliate.Link.Constants;
+    using Fanex.Affiliate.Link.Core.Models;
     using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.DTOs;
+    using Fanex.Affiliate.Link.Models;
     using Fanex.Affiliate.Link.Services.Interface;
     using Fanex.Data.Repository;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TrackingSystemService : ITrackingSystemService
+    public class ClickTrackingEventService : IClickTrackingEventService
     {
         private readonly IDynamicRepository _dynamicRepository;
         private readonly IMemoryCacheService _memoryCacheService;
 
-        public TrackingSystemService()
+        public ClickTrackingEventService()
             : this(null, null)
         {
         }
 
-        private TrackingSystemService(IDynamicRepository dynamicRepository,
+        private ClickTrackingEventService(IDynamicRepository dynamicRepository,
             IMemoryCacheService memoryCacheService)
         {
             _dynamicRepository = dynamicRepository ?? new DynamicRepository();
@@ -89,10 +92,24 @@
             return marketInfo ?? new MarketInfo();
         }
 
-        public async Task<string> GetRedirectLink(GetRedirectPageBySettingCriteria criteria)
+        public async Task<ValidateResult> ValidateLinkFromDatabase(ClickTrackingEvent clickTrackingEvent)
         {
-            await _dynamicRepository.GetAsync<string>(criteria);
-            return criteria.RedirectPage;
+            var command = new ValidateLinkCommand
+            {
+                AffCode = clickTrackingEvent.AffCode,
+                AffDomain = clickTrackingEvent.AffDomain,
+                PageCode = clickTrackingEvent.PageCode,
+                LanguageCode = clickTrackingEvent.LanguageCode
+            };
+            await _dynamicRepository.ExecuteAsync(command);
+
+            var validateResult = new ValidateResult
+            {
+                IsValid = command.ErrCode == 0,
+                ErrorMessage = command.ErrMsg,
+                RedirectView = command.RedirectPage,
+            };
+            return validateResult;
         }
     }
 }

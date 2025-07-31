@@ -1,14 +1,15 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Interface
 {
     using Fanex.Affiliate.Link.Commands;
-    using Fanex.Affiliate.Link.Criterias;
+    using Fanex.Affiliate.Link.Core.Models;
     using Fanex.Affiliate.Link.DTOs;
+    using Fanex.Affiliate.Link.Models;
     using System.Collections.Generic;
 
     /// <summary>
     /// Tracking system statistics.
     /// </summary>
-    public interface ITrackingSystemService
+    public interface IClickTrackingEventService
     {
         /// <summary>
         /// Insert statistics into database.
@@ -25,6 +26,6 @@
 
         MarketInfo GetMarketInfo(string lang);
 
-        Task<string> GetRedirectLink(GetRedirectPageBySettingCriteria criteria);
+        Task<ValidateResult> ValidateLinkFromDatabase(ClickTrackingEvent clickTrackingEvent);
     }
 }
