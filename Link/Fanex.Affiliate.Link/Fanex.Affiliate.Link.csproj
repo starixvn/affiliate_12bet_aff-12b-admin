@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Fanex.Affiliate.Link.Core\Fanex.Affiliate.Link.Core.csproj" />
+    <ProjectReference Include="..\Fanex.Affiliate.Link.Core\Fanex.Affiliate.Link.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

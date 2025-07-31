@@ -3,18 +3,18 @@ WORKDIR /src
 
 COPY *.sln .
 COPY Link/Fanex.Affiliate.Link/Fanex.Affiliate.Link.csproj ./Fanex.Affiliate.Link/
+COPY Link/Fanex.Affiliate.Link.Core/Fanex.Affiliate.Link.Core.csproj ./Fanex.Affiliate.Link.Core/
 
 RUN dotnet nuget add source https://nuget.nexdev.net/api/v2
 
-RUN --mount=type=cache,target=/root/.nuget/packages \
-	dotnet restore -v n ./Fanex.Affiliate.Link/Fanex.Affiliate.Link.csproj
+RUN dotnet restore -v n ./Fanex.Affiliate.Link/Fanex.Affiliate.Link.csproj
 
 COPY Link/Fanex.Affiliate.Link/. ./Fanex.Affiliate.Link/
+COPY Link/Fanex.Affiliate.Link.Core/. ./Fanex.Affiliate.Link.Core/
 
 WORKDIR /src/Fanex.Affiliate.Link
 
-RUN --mount=type=cache,target=/root/.nuget/packages \
-  dotnet publish -v n -r linux-x64 --self-contained false -o /app
+RUN dotnet publish -v n -r linux-x64 --self-contained false -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:9.0-alpine AS base
 
@@ -27,7 +27,6 @@ USER dotnetuser
 ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 ENV ASPNETCORE_URLS=http://+:5000
 EXPOSE 5000
-
 
 WORKDIR /app
 COPY --from=builder /app .
