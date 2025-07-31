@@ -22,9 +22,8 @@ public class ClickTrackingEvent
     public string UserAgent { get; set; }
     public string Country { get; set; }
     public byte DeviceType { get; set; }
-    public string RedirectPage { get; set; }
+    public string RedirectLink { get; set; }
     public long ClickId { get; set; }
     public DateTime UpdatedTime { get; set; }
-    public string RedirectUrl { get; set; }
     public string AffMediaLink { get; set; }
 }

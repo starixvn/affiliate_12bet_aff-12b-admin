@@ -3,22 +3,16 @@
     using System;
     using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Channels;
     using System.Threading.Tasks;
     using Commands;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Core.Models;
     using Fanex.Affiliate.Link.Core.Services.Interfaces;
-    using Fanex.Affiliate.Link.Criterias;
-    using Fanex.Affiliate.Link.DTOs;
     using Fanex.Affiliate.Link.Extensions;
     using Fanex.Affiliate.Link.Models;
     using Fanex.Logging;
-    using Fanex.Logging.Extensions.AspNetCore.UserAgent;
     using Helpers;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.IdentityModel.Tokens;
     using ONEbook.UM.Services;
     using Services.Interface;
 
@@ -110,6 +104,7 @@
                 var validateResult = await ValidateLink(clickTrackingEvent);
                 if (validateResult.IsValid)
                 {
+                    clickTrackingEvent.RedirectLink = validateResult.RedirectView;
                     return await ProcessLink(clickTrackingEvent);
                 }
                 else
@@ -188,13 +183,12 @@
         {
             var clickId = await affInfoService.GetClickId();
             clickTrackingEvent.ClickId = clickId;
-            clickTrackingEvent.RedirectPage = $"{clickTrackingEvent.RedirectPage}&clickId={clickId}";
+            clickTrackingEvent.RedirectLink = $"{clickTrackingEvent.RedirectLink}&clickId={clickId}";
 
             await messageQueueService.PublishAsync(clickTrackingEvent);
 
-            return Redirect(clickTrackingEvent.RedirectPage);
+            return Redirect(clickTrackingEvent.RedirectLink);
         }
-
 
         private bool IsUnderMaintenance()
         {

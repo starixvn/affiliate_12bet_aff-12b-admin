@@ -16,6 +16,7 @@ builder.Services.AddSingleton(RabbitHutch.CreateBus(rabbitMqConnectionString));
 builder.Services.AddOneBookUmForService(builder.Configuration);
 builder.Services.AddSingleton<IMaintenanceService, MaintenanceService>();
 builder.Services.AddSingleton<IDynamicRepository, DynamicRepository>();
+builder.Services.AddSingleton<Fanex.Logging.ILogger, Fanex.Logging.Logger>();
 builder.Services.AddSingleton<ILogService, Fanex.Affiliate.Link.Core.Services.LogService>();
 
 var env = builder.Configuration["Sentry:Environment"];

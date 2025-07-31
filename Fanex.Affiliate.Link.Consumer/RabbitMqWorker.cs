@@ -208,7 +208,7 @@ public sealed class RabbitMqWorker(
             Country = clickTrackingEvent.Country,
             LanguageCode = clickTrackingEvent.LanguageCode,
             PageCode = clickTrackingEvent.PageCode,
-            RedirectURL = clickTrackingEvent.RedirectPage,
+            RedirectURL = clickTrackingEvent.RedirectLink,
             DeviceType = clickTrackingEvent.DeviceType,
             AffMediaLink = clickTrackingEvent.AffMediaLink,
             ChannelCode = clickTrackingEvent.ChannelCode
