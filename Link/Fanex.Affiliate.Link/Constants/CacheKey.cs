@@ -11,5 +11,6 @@ namespace Fanex.Affiliate.Link.Constants
         public const string MARKET_INFO_CACHE_KEY = "Aff.12B.Go.Maket.Info";
         public const string MASTER_DATA = "Aff.12B.Go.MasterData";
         public const string ClickId = "Aff.12B.Go.ClickId";
+        public const string FlagClickId = "Aff.12B.Go.ClickId.Flag";
     }
 }

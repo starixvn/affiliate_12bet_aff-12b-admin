@@ -16,16 +16,20 @@
         /// </summary>
         /// <param name="command">Input command.</param>
         /// <returns>Success or fail.</returns>
-        string InsertStatistic(TrackingSystemCommand command);
+        Task<string> InsertStatistic(TrackingSystemCommand command);
 
-        bool ToggleMarketingLink(ToggleMarketingLinkCommand command);
+        Task<CheckMarketingLinkResult> GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command);
 
-        CheckMarketingLinkResult GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command);
+        Task<bool> ToggleMarketingLink(ToggleMarketingLinkCommand command);
 
-        IEnumerable<MarketInfo> GetMarkets();
+        Task<IEnumerable<MarketInfo>> GetMarkets();
 
-        MarketInfo GetMarketInfo(string lang);
+        Task<MarketInfo> GetMarketInfo(string lang);
 
         Task<ValidateResult> ValidateLinkFromDatabase(ClickTrackingEvent clickTrackingEvent);
+
+        Task<IList<MasterInfoValidation>> GetMasterDataForValidateClicked();
+
+        Task<long> GetClickId();
     }
 }

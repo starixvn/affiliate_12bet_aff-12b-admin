@@ -1,5 +1,9 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Fanex.Affiliate.Link.Commands;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Core.Models;
@@ -7,86 +11,74 @@
     using Fanex.Affiliate.Link.DTOs;
     using Fanex.Affiliate.Link.Models;
     using Fanex.Affiliate.Link.Services.Interface;
+    using Fanex.Caching;
+    using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    public class ClickTrackingEventService : IClickTrackingEventService
+    public class ClickTrackingEventService(IDynamicRepository dynamicRepository, 
+        IMemoryCacheService memoryCacheService,
+        ICacheService cacheService) : IClickTrackingEventService
     {
-        private readonly IDynamicRepository _dynamicRepository;
-        private readonly IMemoryCacheService _memoryCacheService;
+        private const int CacheDurationInSeconds = 86400;
+        private const int CacheDurationForRecheckClickId = 3600;
 
-        public ClickTrackingEventService()
-            : this(null, null)
+        public async Task<string> InsertStatistic(TrackingSystemCommand command)
         {
-        }
-
-        private ClickTrackingEventService(IDynamicRepository dynamicRepository,
-            IMemoryCacheService memoryCacheService)
-        {
-            _dynamicRepository = dynamicRepository ?? new DynamicRepository();
-            _memoryCacheService = memoryCacheService ?? new MemoryCacheService();
-        }
-
-        public string InsertStatistic(TrackingSystemCommand command)
-        {
-            _dynamicRepository.Execute(command);
+            await dynamicRepository.ExecuteAsync(command);
 
             return command.RedirectPage;
         }
 
-        public CheckMarketingLinkResult GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command)
+        public async Task<CheckMarketingLinkResult> GetTrackingMarketingLinkInfo(CheckMarketingLinkCommand command)
         {
             var cacheKey = $"{CacheKey.MEDIA_LINK_CACHE_KEY}_{command.AffMediaLink}";
-            var checkMarketingLinkInfo = _memoryCacheService.Get<CheckMarketingLinkResult>(cacheKey);
+            var checkMarketingLinkInfo = memoryCacheService.Get<CheckMarketingLinkResult>(cacheKey);
             if (checkMarketingLinkInfo is null || (checkMarketingLinkInfo.IsValidDomain && !checkMarketingLinkInfo.IsExistedTracking))
             {
-                _dynamicRepository.Execute(command);
+                await dynamicRepository.ExecuteAsync(command);
                 checkMarketingLinkInfo = new CheckMarketingLinkResult
                 {
                     IsValidDomain = command.IsValidDomain,
                     IsExistedTracking = command.IsExistedTracking,
                 };
 
-                _memoryCacheService.Set(cacheKey, checkMarketingLinkInfo);
+                memoryCacheService.Set(cacheKey, checkMarketingLinkInfo);
             }
 
             return checkMarketingLinkInfo;
         }
 
-        public bool ToggleMarketingLink(ToggleMarketingLinkCommand command)
+        public async Task<bool> ToggleMarketingLink(ToggleMarketingLinkCommand command)
         {
-            _dynamicRepository.Execute(command);
+            await dynamicRepository.ExecuteAsync(command);
 
             return command.ErrCode == 0;
         }
 
-        public IEnumerable<MarketInfo> GetMarkets()
+        public async Task<IEnumerable<MarketInfo>> GetMarkets()
         {
-            var markets = _memoryCacheService.Get<IEnumerable<MarketInfo>>(CacheKey.SUPPORTED_MARKET_CACHE_KEY);
+            var markets = memoryCacheService.Get<IEnumerable<MarketInfo>>(CacheKey.SUPPORTED_MARKET_CACHE_KEY);
             if (markets is null)
             {
                 var criteria = new BaseCriteria("Aff_Market_Sel");
-                markets = _dynamicRepository.Fetch<MarketInfo>(criteria);
+                markets = await dynamicRepository.FetchAsync<MarketInfo>(criteria);
 
-                _memoryCacheService.Set(CacheKey.SUPPORTED_MARKET_CACHE_KEY, markets);
+                memoryCacheService.Set(CacheKey.SUPPORTED_MARKET_CACHE_KEY, markets);
             }
 
             return markets ?? new List<MarketInfo>();
         }
 
-        public MarketInfo GetMarketInfo(string lang)
+        public async Task<MarketInfo> GetMarketInfo(string lang)
         {
             var cacheKey = $"{CacheKey.MARKET_INFO_CACHE_KEY}_{lang}";
-            var marketInfo = _memoryCacheService.Get<MarketInfo>(cacheKey);
+            var marketInfo = memoryCacheService.Get<MarketInfo>(cacheKey);
             if (marketInfo is null)
             {
-                var markets = GetMarkets();
+                var markets = await GetMarkets();
                 marketInfo = markets.FirstOrDefault(m => string.Equals(lang, m.ShortedCode, StringComparison.OrdinalIgnoreCase));
 
-                _memoryCacheService.Set(cacheKey, marketInfo);
+                memoryCacheService.Set(cacheKey, marketInfo);
             }
 
             return marketInfo ?? new MarketInfo();
@@ -101,7 +93,7 @@
                 PageCode = clickTrackingEvent.PageCode,
                 LanguageCode = clickTrackingEvent.LanguageCode
             };
-            await _dynamicRepository.ExecuteAsync(command);
+            await dynamicRepository.ExecuteAsync(command);
 
             var validateResult = new ValidateResult
             {
@@ -110,6 +102,69 @@
                 RedirectView = command.RedirectPage,
             };
             return validateResult;
+        }
+
+        public async Task<IList<MasterInfoValidation>> GetMasterDataForValidateClicked()
+        {
+            var cacheKey = CacheKey.MASTER_DATA;
+            var masterInfoValidations = await cacheService.GetAsync<IList<MasterInfoValidation>>(cacheKey);
+
+            if (masterInfoValidations is null)
+            {
+                var criteria = new GetMasterDataForValidateClickedCriteria();
+                masterInfoValidations = (await dynamicRepository.FetchAsync<MasterInfoValidation>(criteria)).ToList();
+                await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
+                });
+            }
+
+            return masterInfoValidations ?? new List<MasterInfoValidation>();
+        }
+
+        public async Task<long> GetClickId()
+        {
+            
+            var redisCache = (RedisCache)cacheService.CacheStorage;
+            var clickIdFromCache = await redisCache.StringGetAsync(CacheKey.ClickId);
+            
+            if (clickIdFromCache is null)
+            {
+                var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
+                await cacheService.SetAsync(CacheKey.FlagClickId, true, new CacheItemOptions
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationForRecheckClickId)
+                });
+
+                await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
+            }
+            else
+            {
+                var isNotExpired = await cacheService.ContainAsync(CacheKey.FlagClickId);
+                if (!isNotExpired)
+                {
+                    var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
+                    await cacheService.SetAsync(CacheKey.FlagClickId, true, new CacheItemOptions
+                    {
+                        AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationForRecheckClickId)
+                    });
+
+                    if (clickIdFromDatabase > long.Parse(clickIdFromCache))
+                    {
+                        await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
+                    }
+                }
+            }
+
+            var result = await redisCache.StringIncrementAsync(CacheKey.ClickId);
+            return result;
+        }
+
+        private async Task<long> GetMaxClickIdFromDatabase()
+        {
+            var criteria = new GetMaxClickIdCriteria();
+            var clickId = await dynamicRepository.GetAsync<long>(criteria);
+            return clickId;
         }
     }
 }

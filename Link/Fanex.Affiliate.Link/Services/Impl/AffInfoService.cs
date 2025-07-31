@@ -1,18 +1,13 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
-    using System.Threading.Tasks;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.DTOs;
     using Fanex.Affiliate.Link.Services.Interface;
-    using Fanex.Caching;
-    using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
-    using StackExchange.Redis;
 
     public class AffInfoService(IDynamicRepository dynamicRepository,
-            IMemoryCacheService memoryCacheService,
-            ICacheService cacheService) : IAffInfoService
+            IMemoryCacheService memoryCacheService) : IAffInfoService
     {
 
         private const int CacheDurationInSeconds = 86400;
@@ -72,46 +67,6 @@
             }
 
             return commGroup ?? new CommGroup();
-        }
-
-        public async Task<IList<MasterInfoValidation>> GetMasterDataForValidateClicked()
-        {
-            var cacheKey = CacheKey.MASTER_DATA;
-            var masterInfoValidations = await cacheService.GetAsync<IList<MasterInfoValidation>>(cacheKey);
-            var redisCache = (RedisCache)cacheService.CacheStorage;
-
-            if (masterInfoValidations is null)
-            {
-                var criteria = new GetMasterDataForValidateClickedCriteria();
-                masterInfoValidations = (await dynamicRepository.FetchAsync<MasterInfoValidation>(criteria)).ToList();
-                await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
-                {
-                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
-                });
-            }
-
-            return masterInfoValidations ?? new List<MasterInfoValidation>();
-        }
-
-        public async Task<long> GetClickId()
-        {
-            var redisCache = (RedisCache)cacheService.CacheStorage;
-            var clickIdFromCache = await redisCache.StringGetAsync(CacheKey.ClickId);
-            if (clickIdFromCache is null)
-            {
-                var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
-                await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
-            }
-            
-            var result = await redisCache.StringIncrementAsync(CacheKey.ClickId);
-            return result;
-        }
-
-        private async Task<long> GetMaxClickIdFromDatabase()
-        {
-            var criteria = new GetMaxClickIdCriteria();
-            var clickId = await dynamicRepository.GetAsync<long>(criteria);
-            return clickId;
         }
     }
 }

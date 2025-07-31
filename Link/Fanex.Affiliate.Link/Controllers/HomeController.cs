@@ -13,6 +13,7 @@
     using Fanex.Logging;
     using Helpers;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
     using ONEbook.UM.Services;
     using Services.Interface;
 
@@ -62,7 +63,7 @@
         [HttpGet]
         public IActionResult PageNotFound() => View();
 
-        public IActionResult OldLink(int affId, string pageCode, string? lang = null)
+        public async Task<IActionResult> OldLink(int affId, string pageCode, string lang = null)
         {
             try
             {
@@ -72,11 +73,11 @@
                 {
                     var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
                     var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, affId.ToString());
-                    var isValidDomain = ValidateTrackingV1MediaLink(affId, affDomain, lang, affMediaLinkWithoutProtocol);
+                    var isValidDomain = await ValidateTrackingV1MediaLink(affId, affDomain, lang, affMediaLinkWithoutProtocol);
 
                     if (isValidDomain)
                     {
-                        return InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol);
+                        return await InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol);
                     }
                 }
 
@@ -91,9 +92,9 @@
             }
         }
 
-        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string? lang = null)
+        public async Task<IActionResult> SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
         {
-            return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
+            return await OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
         public async Task<IActionResult> Link(LinkParams linkParams)
@@ -181,13 +182,29 @@
 
         private async Task<IActionResult> ProcessLink(ClickTrackingEvent clickTrackingEvent)
         {
-            var clickId = await affInfoService.GetClickId();
+            var clickId = await trackingSystemService.GetClickId();
             clickTrackingEvent.ClickId = clickId;
             clickTrackingEvent.RedirectLink = $"{clickTrackingEvent.RedirectLink}&clickId={clickId}";
 
             await messageQueueService.PublishAsync(clickTrackingEvent);
 
-            return Redirect(clickTrackingEvent.RedirectLink);
+            var redirectLink = GetRedirectLink(clickTrackingEvent);
+            return Redirect(redirectLink);
+        }
+
+        private string GetRedirectLink(ClickTrackingEvent clickTrackingEvent)
+        {
+            bool isMarketingLandingPage = Array.Exists(
+            _marketingPageCodeRegexPatterns,
+                   reg => RegexHelper.IsMatch(clickTrackingEvent.PageCode, reg, RegexOptions.IgnoreCase));
+
+            string mappingPageCode = isMarketingLandingPage
+                ? (IsValidAffMarketing(clickTrackingEvent.AffCode) ? clickTrackingEvent.PageCode : LandingPage.JOIN_PAGE_CODE)
+                : clickTrackingEvent.PageCode;
+
+            string result = HandleRedirectUrl(clickTrackingEvent.RedirectLink, clickTrackingEvent.PageCode, clickTrackingEvent.LanguageCode, mappingPageCode);
+
+            return result;
         }
 
         private bool IsUnderMaintenance()
@@ -213,7 +230,7 @@
 
         private async Task<ValidateResult> ValidateLinkFromCache(ClickTrackingEvent clickTrackingEvent)
         {
-            var masterInfoValidations = await affInfoService.GetMasterDataForValidateClicked();
+            var masterInfoValidations = await trackingSystemService.GetMasterDataForValidateClicked();
 
             if (string.IsNullOrEmpty(clickTrackingEvent.AffCode) || string.IsNullOrEmpty(clickTrackingEvent.LanguageCode))
             {
@@ -250,7 +267,7 @@
             }
         }
 
-        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string? lang = null, string? channel = null)
+        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
         {
             var linkParams = new LinkParams
             { 
@@ -263,13 +280,13 @@
             return await Link(linkParams);
         }
 
-        private IActionResult InsertAffiliate(
+        private async Task<IActionResult> InsertAffiliate(
             string affCode,
             string pageCode,
             string lang,
             string affDomain,
             string affMediaLinkWithoutProtocol,
-            string? channel = null)
+            string channel = null)
         {
             string urlReferrer = Request.Headers["Referer"].ToString();
             string domainReferrer = !string.IsNullOrEmpty(urlReferrer) ? new Uri(urlReferrer).Host : string.Empty;
@@ -307,7 +324,7 @@
                 AffMediaLink = affMediaLinkWithoutProtocol,
             };
 
-            string redirectUrl = trackingSystemService.InsertStatistic(command);
+            string redirectUrl = await trackingSystemService.InsertStatistic(command);
 
             if (!string.IsNullOrEmpty(redirectUrl))
             {
@@ -357,14 +374,14 @@
             }
         }
 
-        private bool ValidateTrackingV1MediaLink(
+        private async Task<bool> ValidateTrackingV1MediaLink(
             int affId,
             string affDomain,
             string lang,
             string affMediaLinkWithoutProtocol)
         {
             string mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
-            var mappingMarketInfo = trackingSystemService.GetMarketInfo(mappingRemovedLanguage);
+            var mappingMarketInfo = await trackingSystemService.GetMarketInfo(mappingRemovedLanguage);
 
             if (string.IsNullOrEmpty(mappingMarketInfo.MarketId))
             {
@@ -379,7 +396,7 @@
                 AffMediaLink = affMediaLinkWithoutProtocol
             };
 
-            var checkMarketingLinkResult = trackingSystemService.GetTrackingMarketingLinkInfo(checkingCommand);
+            var checkMarketingLinkResult = await trackingSystemService.GetTrackingMarketingLinkInfo(checkingCommand);
 
             if (checkMarketingLinkResult.IsValidDomain && !checkMarketingLinkResult.IsExistedTracking)
             {
@@ -390,7 +407,7 @@
                     AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
                 };
 
-                trackingSystemService.ToggleMarketingLink(insertCommand);
+                await trackingSystemService.ToggleMarketingLink(insertCommand);
             }
 
             return checkMarketingLinkResult.IsValidDomain;
