@@ -215,6 +215,8 @@
     <Compile Include="Controllers\Customer\MarketingNoteControllerTest.cs" />
     <Compile Include="Controllers\Customer\MarketingStatisticsControllerTest.cs" />
     <Compile Include="Controllers\Domain\MemberDomainControllerTest.cs" />
+    <Compile Include="Controllers\Operation\DealAssignmentControllerTest.cs" />
+    <Compile Include="Controllers\Operation\OperationControllerTest.cs" />
     <Compile Include="Services\Customer\MarketingStatisticsServiceTest.cs" />
     <Compile Include="Controllers\Domain\SpecificDomainControlControllerTest.cs" />
     <Compile Include="Services\Domain\SpecificDomainControlServiceTest.cs" />
@@ -229,8 +231,6 @@
     <Compile Include="Controllers\Administrator\AdministratorControllerTest.cs" />
     <Compile Include="Controllers\Administrator\DepartmentControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\AffiliateControllerTest.cs" />
-    <Compile Include="Controllers\Affiliate\RevenueShareGroupControllerTest.cs" />
-    <Compile Include="Controllers\Affiliate\CommGroupAssignmentControllerTest.cs" />
     <Compile Include="Controllers\Affiliate\PaymentRequestControllerTest.cs" />
     <Compile Include="Controllers\AuthControllerTest.cs" />
     <Compile Include="Controllers\ChangeAdminPasswordControllerTest.cs" />
@@ -271,9 +271,6 @@
     <Compile Include="Services\Administrator\AdministratorServiceTest.cs" />
     <Compile Include="Services\Administrator\DepartmentServiceTest.cs" />
     <Compile Include="Services\ChangeAdminPassword\ChangeAdminPasswordServiceTest.cs" />
-    <Compile Include="Services\CommGroup\CommGroupAssignmentServiceTest.cs" />
-    <Compile Include="Services\CommGroup\CommGroupCommonServiceTest.cs" />
-    <Compile Include="Services\CommissionGroupServiceTest.cs" />
     <Compile Include="Services\Common\SessionServiceTest.cs" />
     <Compile Include="Services\Customer\AdjustmentServiceTest.cs" />
     <Compile Include="Services\Customer\CustomerLeftPanelServiceTest.cs" />
@@ -308,6 +305,7 @@
     <Compile Include="TestHelper\SimpleLifetimeScopeProvider.cs" />
     <Compile Include="Utilities\BannerHelperTest.cs" />
     <Compile Include="Utilities\CommGroupValidationTest.cs" />
+    <Compile Include="Utilities\DealInfoValidatorTest.cs" />
     <Compile Include="Utilities\LogHelperTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +330,7 @@
     <Analyzer Include="..\..\packages\xunit.analyzers.1.17.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
     <Analyzer Include="..\..\packages\xunit.analyzers.1.17.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\OpenCover.4.7.1221\build\OpenCover.targets" Condition="Exists('..\..\packages\OpenCover.4.7.1221\build\OpenCover.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

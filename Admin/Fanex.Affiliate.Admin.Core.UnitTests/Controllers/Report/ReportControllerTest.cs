@@ -1,20 +1,20 @@
-﻿using Fanex.Affiliate.Admin.Core.Controllers.Report;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Report;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Services.Report;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.Admin.Core.ViewModels.Report;
-using Moq;
-using System.Collections.Generic;
-using System.Web.Mvc;
-using Xunit;
-
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
+﻿namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc;
+    using Core.Controllers.Report;
+    using Core.Extensions;
+    using Core.Services.Common;
+    using Core.Services.Operation;
+    using Core.Services.Report;
+    using DTO;
+    using DTO.Report;
+    using MetaModels.Report;
+    using Moq;
+    using TestHelper;
+    using ViewModels.Report;
+    using Xunit;
+
     public class ReportControllerTest
     {
         [Fact]
@@ -80,13 +80,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Report
             ISessionService sessionService = null,
             ISystemService systemService = null,
             IAffiliateReportService affiliateReportService = null,
-            ICommGroupCommonService commissionGroupRepository = null
+            ICommonDealService commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakesystemService = systemService ?? Mock.Of<ISystemService>();
             var fakeAffiliateReportService = affiliateReportService ?? Mock.Of<IAffiliateReportService>();
-            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommGroupCommonService>();
+            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommonDealService>();
 
             return new ReportController(fakeSessionService, fakesystemService, fakeAffiliateReportService, fakeCommissionGroupRepository);
         }
