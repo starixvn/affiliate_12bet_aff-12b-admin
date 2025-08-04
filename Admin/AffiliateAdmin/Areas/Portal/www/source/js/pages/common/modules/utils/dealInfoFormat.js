@@ -14,7 +14,7 @@ export const _formatDealText = (deal, isExcludeDeal, dealList) => {
 
     const dealCount = dealNames.length;
     const dealStr = dealNames.join(', ');
-    const text = dealCount > 5
+    const text = dealCount > 3
         ? (isExcludeDeal ? `<strong style="color: royalblue;">Applied To All Deals Except: ${dealCount}</strong>` : `<strong style="color: royalblue;">Applied To: ${dealCount}</strong>`)
         : (isExcludeDeal ? `Applied To All Deals Except: ${dealStr}` : `Applied To: ${dealStr}`);
 
