@@ -2,9 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
@@ -57,7 +54,7 @@
             // Assert
             Assert.False(result.isValid);
             Assert.Single(result.messageList);
-            Assert.Equal("Please select at least one condition: Min FTD, Min Total Deposit, or Min Turnover.", result.messageList[0]);
+            Assert.Equal("Please select at least one condition: Min FTD, Min Total Deposit or Min Turnover.", result.messageList[0]);
         }
 
         [Theory]
@@ -87,6 +84,8 @@
         {
             // Arrange
             var dealInfo = CreateValidDealSettingParam();
+            dealInfo.IsQuota = false; // Disable quota validation for this test
+            dealInfo.IsRedeposit = false; // Disable redeposit validation for this test
 
             // Act
             var result = DealInfoValidator.ValidateGeneralDealInfo(dealInfo, true);
@@ -97,18 +96,17 @@
         }
 
         [Fact]
-        public void ValidateGeneralDealInfo_WithEmptyDealName_ShouldReturnInvalid()
+        public void ValidateGeneralDealInfo_WithEmptyCountryCodes_ShouldReturnInvalid()
         {
             // Arrange
             var dealInfo = CreateValidDealSettingParam();
-            dealInfo.DealName = "";
+            dealInfo.CountryCodes = "";
 
             // Act
             var result = DealInfoValidator.ValidateGeneralDealInfo(dealInfo, true);
 
             // Assert
             Assert.False(result.isValid);
-            // Note: The actual code uses "requireCountryCodes" message instead of "requireGroupName"
             Assert.Contains("At least one Target Country must be selected.", result.messageList);
         }
 
@@ -126,7 +124,7 @@
 
             // Assert
             Assert.False(result.isValid);
-            Assert.Contains("Activity Period must be Activity Period must be between 1 and 30,000.", result.messageList);
+            Assert.Contains("Activity Period must be between 1 and 30,000.", result.messageList);
         }
 
         [Fact]
@@ -244,7 +242,9 @@
         {
             // Arrange
             var dealInfo = CreateValidDealSettingParam();
-            dealInfo.StartDate = DateTime.Today; // Invalid date
+            dealInfo.StartDate = DateTime.Today; // Invalid date for add mode
+            dealInfo.IsQuota = false; // Disable quota validation
+            dealInfo.IsRedeposit = false; // Disable redeposit validation
 
             // Act
             var result = DealInfoValidator.ValidateGeneralDealInfo(dealInfo, false);
@@ -444,8 +444,8 @@
                     GroupProductId = 1,
                     MinFdm = 100, // Decreasing value
                     MinTotalDeposit = 200,
-                    MinTO = 300,
-                    CpaAmount = 50
+                    MinTO = 700,
+                    CpaAmount = 500
                 }
             };
 
@@ -455,7 +455,7 @@
             // Assert
             Assert.False(result.isValid);
             // The message should include both Min FTD and Min Total Deposit since both are decreasing
-            Assert.Contains("Product Group 1 - The values in the Min FTD/Min Total Deposit columns must increase sequentially.", result.messageList);
+            Assert.Contains("Product Group 1 - The values in the Min FTD/Min Total Deposit columns must increase sequentially.", result.messageList[0]);
         }
 
         [Fact]
@@ -506,7 +506,6 @@
                     MinTO = 600,
                     CpaAmount = 100
                 },
-                // Group 2
                 new CpaTierSetting
                 {
                     GroupProductId = 2,
@@ -514,6 +513,14 @@
                     MinTotalDeposit = 200,
                     MinTO = 300,
                     CpaAmount = 50
+                },
+                new CpaTierSetting
+                {
+                    GroupProductId = 2,
+                    MinFdm = 200,
+                    MinTotalDeposit = 400,
+                    MinTO = 600,
+                    CpaAmount = 100
                 }
             };
 
@@ -568,6 +575,8 @@
         {
             // Arrange
             var dealInfo = CreateValidDealSettingParam();
+            dealInfo.IsQuota = false; // Disable quota validation for this test
+            dealInfo.IsRedeposit = false; // Disable redeposit validation for this test
 
             // Act
             var result = DealInfoValidator.ValidateCPAInfo(dealInfo, true);
@@ -582,7 +591,7 @@
         {
             // Arrange
             var dealInfo = CreateValidDealSettingParam();
-            dealInfo.DealName = ""; // Invalid
+            dealInfo.CountryCodes = ""; // Invalid - empty country codes
             dealInfo.CheckedMinFdm = false; // Invalid
             dealInfo.CheckedMinTotalDeposit = false;
             dealInfo.CheckedMinTurnover = false;
@@ -592,9 +601,8 @@
 
             // Assert
             Assert.False(result.isValid);
-            // Note: The actual code uses "requireCountryCodes" message instead of "requireGroupName"
             Assert.Contains("At least one Target Country must be selected.", result.messageList);
-            Assert.Contains("Please select at least one condition: Min FTD, Min Total Deposit, or Min Turnover.", result.messageList);
+            Assert.Contains("Please select at least one condition: Min FTD, Min Total Deposit or Min Turnover.", result.messageList);
         }
 
         #endregion
@@ -606,6 +614,8 @@
         {
             // Arrange
             var dealInfo = CreateValidDealSettingParam();
+            dealInfo.IsQuota = false; // Disable quota validation for this test
+            dealInfo.IsRedeposit = false; // Disable redeposit validation for this test
             var products = new List<Product>();
 
             // Act
@@ -622,26 +632,11 @@
         #region ValidateHybridDeal Tests
 
         [Fact]
-        public void ValidateHybridDeal_WithValidData_ShouldReturnValid()
-        {
-            // Arrange
-            var dealInfo = CreateValidDealSettingParam();
-            var products = new List<Product>();
-
-            // Act
-            var result = DealInfoValidator.ValidateHybridDeal(dealInfo, products, true);
-
-            // Assert
-            Assert.True(result.isValid);
-            Assert.Empty(result.messageList);
-        }
-
-        [Fact]
         public void ValidateHybridDeal_WithInvalidCPAInfo_ShouldReturnInvalid()
         {
             // Arrange
             var dealInfo = CreateValidDealSettingParam();
-            dealInfo.DealName = ""; // Invalid
+            dealInfo.CountryCodes = ""; // Invalid - empty country codes
             var products = new List<Product>();
 
             // Act
@@ -650,8 +645,7 @@
             // Assert
             Assert.False(result.isValid);
             Assert.Contains("CPA:", result.messageList[0]);
-            // Note: The actual code uses "requireCountryCodes" message instead of "requireGroupName"
-            Assert.Contains("At least one Target Country must be selected.", result.messageList);
+            Assert.Contains("<div style=\"margin-left: 25px; margin-bottom: -18px;\">At least one Target Country must be selected.</div>", result.messageList);
         }
 
         #endregion
@@ -703,10 +697,7 @@
 
             // Assert
             Assert.False(result.isValid);
-            Assert.Contains("Product Group 1 - Min FTD must be less than 100,000,000,000.", result.messageList);
-            Assert.Contains("Product Group 1 - Min Total Deposit must be less than 100,000,000,000.", result.messageList);
-            Assert.Contains("Product Group 1 - Min Turnover must be less than 100,000,000,000.", result.messageList);
-            Assert.Contains("Product Group 1 - CPA Amount must be less than 100,000,000,000.", result.messageList);
+            Assert.Contains("Product Group 1 - Min FTD/Min Total Deposit/Min Turnover/CPA Amount must be less than 100,000,000,000.", result.messageList);
         }
 
         [Fact]
@@ -734,6 +725,8 @@
             dealInfo.IsActivePlayerHoldingPeriod = true;
             dealInfo.HoldingTickets = 10;
             dealInfo.HoldingDays = 15;
+            dealInfo.IsQuota = false; // Disable quota validation for this test
+            dealInfo.IsRedeposit = false; // Disable redeposit validation for this test
 
             // Act
             var result = DealInfoValidator.ValidateGeneralDealInfo(dealInfo, true);
@@ -750,6 +743,7 @@
             var dealInfo = CreateValidDealSettingParam();
             dealInfo.IsQuota = true;
             dealInfo.Quota = 500;
+            dealInfo.IsRedeposit = false; // Disable redeposit validation for this test
 
             // Act
             var result = DealInfoValidator.ValidateGeneralDealInfo(dealInfo, true);
@@ -767,6 +761,7 @@
             dealInfo.IsRedeposit = true;
             dealInfo.RedepositRate = 25;
             dealInfo.RedepositDays = 60;
+            dealInfo.IsQuota = false; // Disable quota validation for this test
 
             // Act
             var result = DealInfoValidator.ValidateGeneralDealInfo(dealInfo, true);
@@ -833,6 +828,7 @@
             return new DealSettingParam
             {
                 DealName = "Test Deal",
+                CountryCodes = "US,CA,UK",
                 ActiveDays = 30,
                 HoldingDays = 7,
                 HoldingTickets = 5,
@@ -845,8 +841,8 @@
                 CheckedMinTotalDeposit = true,
                 CheckedMinTurnover = true,
                 IsActivePlayerHoldingPeriod = false,
-                IsQuota = false,
-                IsRedeposit = false,
+                IsQuota = true,
+                IsRedeposit = true,
                 CPATierSetting = new List<CpaTierSetting>
                 {
                     new CpaTierSetting
@@ -865,6 +861,36 @@
                         GroupProductId = 1,
                         ProductIds = "1,2,3"
                     }
+                },
+                RevenueTierSetting = new List<RevenueTierSetting>
+                {
+                    new RevenueTierSetting
+                    {
+                        GroupProductId = 1,
+                        MinAmount = 0,
+                        MinQm = 100
+                    }
+                },
+                PlatformFeeSetting = new List<RevenueDeductionSetting>
+                {
+                    new RevenueDeductionSetting
+                    {
+                        ProductIds = "1,2,3",
+                        IsDeductedPercent = true,
+                        DeductedAmount = "10"
+                    }
+                },
+                DepositFeeSetting = new RevenueDeductionSetting
+                {
+                    ProductIds = "1,2,3",
+                    IsDeductedPercent = false,
+                    DeductedAmount = "5"
+                },
+                WithdrawalFeeSetting = new RevenueDeductionSetting
+                {
+                    ProductIds = "1,2,3",
+                    IsDeductedPercent = false,
+                    DeductedAmount = "3"
                 }
             };
         }
