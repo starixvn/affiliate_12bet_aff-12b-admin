@@ -69,7 +69,7 @@ export const messages = {
     requireDuplicateProductsInGroups: 'You\'ve selected the same Product in more than one Product Group. Please correct it.',
     requireIncreasing: 'The values in the {0} columns must increase sequentially.',
     requireAllTierSettingsMatchGroupProduct1: 'Product Group {0} has different Min FTD or Min Total Deposit values in some tiers compared to Product Group 1.',
-    requireCheckBox: 'Please select at least one condition: Min FTD, Min Total Deposit, or Min Turnover.',
+    requireCheckBox: 'Please select at least one condition: Min FTD, Min Total Deposit or Min Turnover.',
     requireMinCpaAmount: 'CPA Amount cannot be negative.',
     requireRedepositRate: `Redeposit Percentage must be between 1 and ${format(PERCENTAGE_MAX_VALUE)}.`,
     requireRedepositPeriod: `Redeposit Period must be between 1 and ${format(INFINITY_NUMBER)}.`,
