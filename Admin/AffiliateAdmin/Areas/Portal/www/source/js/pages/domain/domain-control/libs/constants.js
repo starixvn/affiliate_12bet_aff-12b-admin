@@ -27,7 +27,18 @@ export const defaultState = {
     isShowMessage: false,
     isSuccess: true,
     message: '',
-    selectedDomain: null,
-    targetCountryListByDomains: null,
-    dealList: []
+    selectedDomain: {
+        domainControlId: 0,
+        affDomainId: 0,
+        redirectDomainId: 0,
+        targetCountryCode: '',
+        isUsed: true,
+        isExcluded: 0,
+        dealIds: '',
+        isMobile: false
+    },
+    isClickedSubmit: false,
+    affDomainList: [],
+    redirectDomainList: [],
+    dealListMultipleSelected: [],
 }

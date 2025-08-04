@@ -19,9 +19,16 @@ export const headerText = {
 }
 
 export const defaultState = {
-    isBlockAllTargetCountries: false,
-    selectedLandingPage: { pageName: '', pageCode: '', blockTargetCountry: '' },
-    targetCountryList: null,
+    selectedLandingPage: {
+        pageName: '',
+        pageCode: '',
+        blockTargetCountry: '',
+        isExcluded: 0,
+        isMobile: false,
+        dealIds: ''
+    },
+    targetCountryList: [],
+    dealListMultipleSelected: [],
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,

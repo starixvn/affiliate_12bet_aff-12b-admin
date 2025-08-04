@@ -186,18 +186,12 @@ export class InsertUpdateForm extends PureComponent {
             const { selectedLandingPageId } = this.props;
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
             const landingPageInfo = Object.assign({}, { pageId: selectedLandingPageId, ...selectedLandingPage });
+            const result = isInsert ? await this.props.insertLandingPage(landingPageInfo) : await this.props.updateLandingPage(landingPageInfo);
 
-            const validateMessage = _validateSelectedDealsByMode(selectedLandingPage.isExcluded, selectedLandingPage.dealIds, filterDealMode);
-            if (validateMessage) {
-                this._handleShowAlert(false, validateMessage);
+            if (result) {
+                this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
             } else {
-                const result = isInsert ? await this.props.insertLandingPage(landingPageInfo) : await this.props.updateLandingPage(landingPageInfo);
-
-                if (result) {
-                    this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
-                } else {
-                    this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
-                }
+                this._handleShowAlert(false, isInsert ? "Add Failed!" : "Update Failed!");
             }
         }
 
@@ -240,11 +234,12 @@ export class InsertUpdateForm extends PureComponent {
         const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, dealListMultipleSelected } = this.state;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
-        const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
+        const dealValidation = _validateSelectedDealsByMode(selectedLandingPage.isExcluded, selectedLandingPage.dealIds, filterDealMode);
+        const isValid = pageNameValidation.isValid && pageCodeValidation.isValid && dealValidation === '';
         const isShowPopup = this.props.selectedLandingPageId !== null;
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
 
-        return selectedLandingPage && targetCountryList && dealListMultipleSelected && (
+        return (
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop="static" style={{ maxWidth: 550 }}>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
@@ -292,7 +287,7 @@ export class InsertUpdateForm extends PureComponent {
                                 <FormGroup row className="align-items-center mb-2">
                                     <Col sm={4}></Col>
                                     <Col sm={8} >
-                                        <div className='mt-2'>
+                                        <div className={`mt-2 ${dealValidation && isClickedSubmit ? 'is-invalid' : ''}`}>
                                             <MultipleSelect
                                                 dataSource={dealListMultipleSelected}
                                                 keyField="key"
@@ -303,6 +298,7 @@ export class InsertUpdateForm extends PureComponent {
                                                 hasInputOption={true}
                                                 onChange={this._handleChangeDeals} />
                                         </div>
+                                        {dealValidation && isClickedSubmit && <span className="text-danger">{dealValidation}</span>}
                                     </Col>
                                 </FormGroup>
                                 {

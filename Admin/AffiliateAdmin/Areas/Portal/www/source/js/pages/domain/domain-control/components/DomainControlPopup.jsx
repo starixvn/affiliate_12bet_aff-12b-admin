@@ -154,19 +154,15 @@ export class DomainControlPopup extends PureComponent {
         }));
     }
 
-    _handleSubmit = async () => {
+    _handleSubmit = async (isValid) => {
         this.props.toggleLoader(true);
+        this.setState({ isClickedSubmit: true });
 
-        const { isInsert, selectedDomain } = this.state;
-
-        const validateMessage = _validateSelectedDealsByMode(selectedDomain.isExcluded, selectedDomain.dealIds, filterDealMode);
-        if (validateMessage) {
-            this._handleShowAlert(false, validateMessage);
-        } else {
+        if (isValid) {
+            const { isInsert, selectedDomain } = this.state;
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
 
             const result = isInsert ? await this.props.insertDomain(selectedDomain) : await this.props.updateDomain(selectedDomain);
-
             if (result) {
                 this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
             } else {
@@ -202,14 +198,16 @@ export class DomainControlPopup extends PureComponent {
 
     render() {
         const { selectedDomainId, targetCountryList } = this.props;
-        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, affDomainList, redirectDomainList, dealListMultipleSelected } = this.state;
+        const { isInsert, isSuccess, isShowMessage, message, selectedDomain, affDomainList, redirectDomainList, dealListMultipleSelected, isClickedSubmit } = this.state;
 
         const isShowPopup = selectedDomainId !== null;
         const isDisabled = targetCountryList == null;
+        const dealValidation = _validateSelectedDealsByMode(selectedDomain.isExcluded, selectedDomain.dealIds, filterDealMode);
+        const isValid = dealValidation === '';
         const title = isInsert ? "Add New Domain Control" : "Edit Domain Control";
         const buttonLabel = isInsert ? "Add" : "Submit";
 
-        return selectedDomain && (
+        return (
             <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static'>
                 <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
@@ -279,7 +277,7 @@ export class DomainControlPopup extends PureComponent {
                                 <FormGroup row className="align-items-center mb-2">
                                     <Col sm={4}></Col>
                                     <Col sm={8} >
-                                        <div className='mt-1'>
+                                        <div className={`mt-1 ${dealValidation && isClickedSubmit ? 'is-invalid' : ''}`}>
                                             <MultipleSelect
                                                 dataSource={dealListMultipleSelected}
                                                 keyField="key"
@@ -290,6 +288,7 @@ export class DomainControlPopup extends PureComponent {
                                                 hasInputOption={true}
                                                 onChange={this._handleChangeDeals} />
                                         </div>
+                                        {dealValidation && isClickedSubmit && <span className="text-danger">{dealValidation}</span>}
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="align-items-center mb-2">
@@ -305,7 +304,7 @@ export class DomainControlPopup extends PureComponent {
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" onClick={this._handleSubmit}>{buttonLabel}</Button>
+                            <Button type="button" color="success" className="mr-3" onClick={() => this._handleSubmit(isValid)} disabled={isClickedSubmit ? !isValid : false}>{buttonLabel}</Button>
                             <Button type="button" color="info" onClick={this._handleClosePopup}>Cancel</Button>
                         </div>
                     </div>

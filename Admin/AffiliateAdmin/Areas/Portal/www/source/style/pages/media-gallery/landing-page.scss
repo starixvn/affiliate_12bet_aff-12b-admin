@@ -1,3 +1,15 @@
 ﻿@import "../../components/modal";
 @import "../../components/multiple-select";
 @import "../common/block-target-country-form-group";
+
+.landing-page-form-container{
+    .is-invalid {
+        .multiple-select-label {
+            border-color: #dc3545;
+        }
+    }
+
+    .text-danger {
+        font-size: 80%;
+    }
+}
