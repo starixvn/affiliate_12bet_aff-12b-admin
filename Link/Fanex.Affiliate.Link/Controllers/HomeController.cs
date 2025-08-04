@@ -52,7 +52,7 @@
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
             _marketingPageCodeRegexPatterns = (this.configuration["AppSettings:MarketingPageCodeRegexPatterns"] ?? string.Empty)
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
-            _isRemovePortFromUrl = IsMatching(this.configuration["AppSettings:RemovePortFromUrl"] ?? "0", "1");
+            _isRemovePortFromUrl = this.configuration["AppSettings:RemovePortFromUrl"].MatchWith("1");
         }
 
         public IActionResult Index() => View();
@@ -202,9 +202,10 @@
                 ? (IsValidAffMarketing(clickTrackingEvent.AffCode) ? clickTrackingEvent.PageCode : LandingPage.JOIN_PAGE_CODE)
                 : clickTrackingEvent.PageCode;
 
-            string result = HandleRedirectUrl(clickTrackingEvent.RedirectLink, clickTrackingEvent.PageCode, clickTrackingEvent.LanguageCode, mappingPageCode);
+            string redirectUrlFinal = HandleRedirectUrl(clickTrackingEvent.RedirectLink, clickTrackingEvent.PageCode, clickTrackingEvent.LanguageCode, mappingPageCode);
+            var forwardQueryString = Request.QueryString.Value.ReplaceStr("?", "&");
 
-            return result;
+            return $"{redirectUrlFinal}{forwardQueryString}";
         }
 
         private bool IsUnderMaintenance()
@@ -338,9 +339,10 @@
                     ? (IsValidAffMarketing(affCode) ? pageCodeOnV2 : LandingPage.JOIN_PAGE_CODE)
                     : pageCodeOnV2;
 
-                string result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, mappingPageCode);
+                var redirectUrlFinal = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, mappingPageCode);
+                var forwardQueryString = Request.QueryString.Value.ReplaceStr("?", "&");
 
-                return Redirect(result);
+                return Redirect($"{redirectUrlFinal}{forwardQueryString}");
             }
 
             ViewBag.Result = LinkIsInvalidMessage;
@@ -430,7 +432,7 @@
         private bool IsValidAffMarketing(string affCode)
         {
             var commGroup = affInfoService.GetCommGroupByAffCode(affCode);
-            return Array.Exists(_marketingForCommGroups, c => IsMatching(c, commGroup.GroupName));
+            return Array.Exists(_marketingForCommGroups, c => c.MatchWith(commGroup.GroupName));
         }
 
         private string GetFullAffDomain(string urlWithoutProtocol, string endPointOfAffDomain)
@@ -445,7 +447,7 @@
             {
                 if (Uri.TryCreate($"https://{urlWithoutProtocol}", UriKind.Absolute, out var uri))
                 {
-                    resultUrl = urlWithoutProtocol.Replace($":{uri.Port}", string.Empty, StringComparison.Ordinal);
+                    resultUrl = urlWithoutProtocol.ReplaceStr($":{uri.Port}", string.Empty, StringComparison.Ordinal);
                 }
             }
 
@@ -502,24 +504,24 @@
             {
                 if (Uri.TryCreate(redirectUrl, UriKind.Absolute, out var redirectUri))
                 {
-                    string pathAndQueryString = redirectPattern.Replace("#language#", customLanguageCode, StringComparison.OrdinalIgnoreCase);
+                    string pathAndQueryString = redirectPattern.ReplaceStr("#language#", customLanguageCode);
                     return $"{redirectUri.Scheme}://{redirectUri.Host}{pathAndQueryString}{redirectUri.Query}";
                 }
             }
 
+            if (languageCode.MatchWith(Language.BENGALI_SHORTED_CODE))
+            {
+                return redirectUrl.ReplaceStr($"/{pageCode}", $"/{mappingPageCode}").ReplaceStr($"/bn/", $"/bd/");
+            }
+
             return redirectUrl
-                .Replace($"/{pageCode}", $"/{mappingPageCode}", StringComparison.OrdinalIgnoreCase)
-                .Replace($"/{languageCode}/", $"/{customLanguageCode}/", StringComparison.OrdinalIgnoreCase);
+                .ReplaceStr($"/{pageCode}", $"/{mappingPageCode}")
+                .ReplaceStr($"/{languageCode}/", $"/{customLanguageCode}/");
         }
 
         private static byte GetDeviceType()
         {
             return Common.IsMobile() ? (byte)1 : (byte)0;
-        }
-
-        private static bool IsMatching(string value, string strToMatch)
-        {
-            return string.Equals(value, strToMatch, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

@@ -1,6 +1,8 @@
 using EasyNetQ;
 using Fanex.Affiliate.Link.Core.Services;
 using Fanex.Affiliate.Link.Core.Services.Interfaces;
+using Fanex.Affiliate.Link.Extensions;
+using Fanex.Affiliate.Link.Middleware;
 using Fanex.Affiliate.Link.Services.Impl;
 using Fanex.Affiliate.Link.Services.Interface;
 using Fanex.Caching;
@@ -66,40 +68,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Custom middleware for handling affiliate link 404 errors with detailed messages
+app.UseMiddleware<AffiliateErrorMiddleware>();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Register legacy routes
-app.MapControllerRoute(
-    name: "OldLink",
-    pattern: "{affId}/{pageCode}/{lang}/index.html",
-    defaults: new { controller = "Home", action = "OldLink" },
-    constraints: new { affId = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
-
-app.MapControllerRoute(
-    name: "SpecialPageCodeOldLink",
-    pattern: "{affId}/{pageCodePart1}/{pageCodePart2}/{lang}/index.html",
-    defaults: new { controller = "Home", action = "SpecialPageCodeOldLink" },
-    constraints: new { affId = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
-
-app.MapControllerRoute(
-    name: "ChannelLink",
-    pattern: "{pageCode}/{affCode}/{lang}/{channel}/index.html",
-    defaults: new { controller = "Home", action = "Link" },
-    constraints: new { affCode = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
-
-app.MapControllerRoute(
-    name: "SpecialPageCodeChannelLink",
-    pattern: "{pageCodePart1}/{pageCodePart2}/{affCode}/{lang}/{channel}/index.html",
-    defaults: new { controller = "Home", action = "SpecialPageCodeLink" },
-    constraints: new { affCode = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
-
-app.MapControllerRoute(
-    name: "LinkWithoutChannel",
-    pattern: "{pageCode}/{affCode}/{lang}/index.html",
-    defaults: new { controller = "Home", action = "Link" },
-    constraints: new { affCode = @"\d+", lang = @"(\w{2}|hien|hitg|eneuro|csmy|mycs)" });
+// Configure affiliate link routes using centralized extension method
+app.MapAffiliateRoutes();
 
 // Initialize Fanex Data
 DbSettingProviderManager
