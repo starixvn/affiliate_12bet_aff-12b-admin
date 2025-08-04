@@ -185,9 +185,10 @@ namespace Fanex.Affiliate.Link.Controllers
                         mappingPageCode = pageCodeOnV2;
                     }
 
-                    var result = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, mappingPageCode);
+                    var redirectUrlFinal = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, mappingPageCode);
+                    var forwardQueryString = Request.Url.Query.Replace("?", "&");
 
-                    return Redirect(result);
+                    return Redirect($"{redirectUrlFinal}{forwardQueryString}");
                 }
 
                 ViewBag.Result = LinkIsInvalidMessage;
