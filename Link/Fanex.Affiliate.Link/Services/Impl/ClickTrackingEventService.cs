@@ -147,23 +147,6 @@
 
                 await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
             }
-            else
-            {
-                var isNotExpired = await cacheService.ContainAsync(CacheKey.FlagClickId);
-                if (!isNotExpired)
-                {
-                    var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
-                    await cacheService.SetAsync(CacheKey.FlagClickId, true, new CacheItemOptions
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationForRecheckClickId)
-                    });
-
-                    if (clickIdFromDatabase > long.Parse(clickIdFromCache))
-                    {
-                        await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
-                    }
-                }
-            }
 
             var result = await redisCache.StringIncrementAsync(CacheKey.ClickId);
             return result;
