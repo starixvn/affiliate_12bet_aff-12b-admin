@@ -31,7 +31,6 @@
         private readonly IConfiguration configuration;
         private readonly IMessageQueueService messageQueueService;
         private readonly IMaintenanceService maintenanceService;
-
         private const string LinkIsInvalidMessage = "This link does not exist. Please contact administrator!";
         private const string LinkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
 
@@ -47,7 +46,6 @@
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             this.messageQueueService = messageQueueService;
             this.maintenanceService = maintenanceService;
-
             _marketingForCommGroups = (this.configuration["AppSettings:MarketingForCommGroups"] ?? string.Empty)
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
             _marketingPageCodeRegexPatterns = (this.configuration["AppSettings:MarketingPageCodeRegexPatterns"] ?? string.Empty)
