@@ -274,7 +274,7 @@
             else
             {
                 var languageLink = masterInfoValidation.LanguageReferences.FirstOrDefault(m => m.LanguageCode == clickTrackingEvent.LanguageCode);
-                var specialDomain = $"{(domain.IsSSL ? "https" : "http")}://{domain.RedirectDomain}/{languageLink}/{clickTrackingEvent.PageCode}?affCode={domain.AffCode}";
+                var specialDomain = $"{(domain.IsSSL ? "https" : "http")}://{domain.RedirectDomain}/{languageLink.LanguageLink}/{clickTrackingEvent.PageCode}?affCode={domain.AffCode}";
                 return new ValidateResult { IsValid = true, RedirectView = specialDomain };
             }
         }
