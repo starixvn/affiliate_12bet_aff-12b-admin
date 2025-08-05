@@ -10,7 +10,7 @@ public class MasterInfoValidation
 
     public string LanguageLink { get; set; }
 
-    public string RedirectDomain{ get; set; }
+    public string RedirectDomain { get; set; }
 
     public bool IsSpecific { get; set; }
 

@@ -3,6 +3,8 @@ using Fanex.Affiliate.Link.Core.Services;
 using Fanex.Affiliate.Link.Core.Services.Interfaces;
 using Fanex.Affiliate.Link.Extensions;
 using Fanex.Affiliate.Link.Middleware;
+using Fanex.Affiliate.Link.Models.HealthCheck;
+using Fanex.Affiliate.Link.Services.HealthCheck;
 using Fanex.Affiliate.Link.Services.Impl;
 using Fanex.Affiliate.Link.Services.Interface;
 using Fanex.Caching;
@@ -17,6 +19,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container
 builder.Services.AddControllersWithViews();
 
+// Add HTTP context accessor
+builder.Services.AddHttpContextAccessor();
+
 // Configure logging
 builder.Logging.AddConsole();
 builder.Logging.AddDebug();
@@ -28,6 +33,16 @@ builder.Services.AddScoped<IMemoryCacheService, MemoryCacheService>();
 builder.Services.AddScoped<IMaintenanceService, MaintenanceService>();
 builder.Services.AddSingleton<ICacheService, CacheService>();
 builder.Services.AddSingleton<IDynamicRepository, DynamicRepository>();
+
+// Register health check services
+builder.Services.AddScoped<IHealthCheckService, HealthCheckService>();
+builder.Services.AddScoped<IHealthCheckConfigurationService, HealthCheckConfigurationService>();
+builder.Services.AddScoped<IHealthCheckHistoryService, HealthCheckHistoryService>();
+builder.Services.AddScoped<IHealthCheckServerInfoService, HealthCheckServerInfoService>();
+
+// Configure health check settings
+builder.Services.Configure<HealthCheckConfig>(
+    builder.Configuration.GetSection("HealthCheck"));
 
 
 // Configure configuration
@@ -88,4 +103,4 @@ DbSettingProviderManager
 // Register Sentry logging
 Fanex.Affiliate.Link.LoggingConfig.RegisterSentry();
 
-app.Run(); 
+app.Run();

@@ -23,17 +23,10 @@ namespace Fanex.Affiliate.Link.Constants
         public static partial Regex PageCode();
 
         /// <summary>
-        /// Generated regex for channel validation.
-        /// Pattern: ^[a-zA-Z0-9_-]+$
-        /// </summary>
-        [GeneratedRegex(RouteConstraints.ChannelRegexPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-        public static partial Regex Channel();
-
-        /// <summary>
         /// Language regex pattern (dynamically generated from supported languages).
         /// Cannot use GeneratedRegex since the pattern is built at runtime.
         /// </summary>
-        public static readonly Regex Language = new($"^{RouteConstraints.LanguagePattern}$",
+        public static readonly Regex Language = new($"^{RouteConstraints.LanguageRegexPattern}$",
             RegexOptions.Compiled | RegexOptions.IgnoreCase);
     }
 }

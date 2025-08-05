@@ -22,10 +22,10 @@ namespace Fanex.Affiliate.Link.Extensions
                 defaults: new { controller = "Home", action = "SpecialPageCodeLink" },
                 constraints: new
                 {
-                    affCode = RouteConstraints.AffiliateCodePattern,
-                    lang = RouteConstraints.LanguagePattern,
-                    pageCodePart1 = RouteConstraints.PageCodePattern,
-                    pageCodePart2 = RouteConstraints.PageCodePattern
+                    affCode = RouteConstraints.NumericRegexPattern,
+                    lang = RouteConstraints.LanguageRegexPattern,
+                    pageCodePart1 = RouteConstraints.PageCodeRegexPattern,
+                    pageCodePart2 = RouteConstraints.PageCodeRegexPattern
                 });
 
             // 2. Special page code for legacy routes (e.g., "123/12sports/cricket/en/index.html")
@@ -35,10 +35,10 @@ namespace Fanex.Affiliate.Link.Extensions
                 defaults: new { controller = "Home", action = "SpecialPageCodeOldLink" },
                 constraints: new
                 {
-                    affId = RouteConstraints.AffiliateIdPattern,
-                    lang = RouteConstraints.LanguagePattern,
-                    pageCodePart1 = RouteConstraints.PageCodePattern,
-                    pageCodePart2 = RouteConstraints.PageCodePattern
+                    affId = RouteConstraints.NumericRegexPattern,
+                    lang = RouteConstraints.LanguageRegexPattern,
+                    pageCodePart1 = RouteConstraints.PageCodeRegexPattern,
+                    pageCodePart2 = RouteConstraints.PageCodeRegexPattern
                 });
 
             // 3. Channel link with single page code (e.g., "home/123/en/mobile/index.html")
@@ -58,9 +58,9 @@ namespace Fanex.Affiliate.Link.Extensions
                 defaults: new { controller = "Home", action = "OldLink" },
                 constraints: new
                 {
-                    affId = RouteConstraints.AffiliateIdPattern,
-                    lang = RouteConstraints.LanguagePattern,
-                    pageCode = RouteConstraints.PageCodePattern
+                    affId = RouteConstraints.NumericRegexPattern,
+                    lang = RouteConstraints.LanguageRegexPattern,
+                    pageCode = RouteConstraints.PageCodeRegexPattern
                 });
         }
 
@@ -87,9 +87,9 @@ namespace Fanex.Affiliate.Link.Extensions
                 defaults: new { controller, action },
                 constraints: new
                 {
-                    affCode = RouteConstraints.AffiliateCodePattern,
-                    pageCode = RouteConstraints.PageCodePattern,
-                    lang = RouteConstraints.LanguagePattern
+                    affCode = RouteConstraints.NumericRegexPattern,
+                    pageCode = RouteConstraints.PageCodeRegexPattern,
+                    lang = RouteConstraints.LanguageRegexPattern
                 });
         }
     }

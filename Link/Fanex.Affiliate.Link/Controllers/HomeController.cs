@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Affiliate.Link.Controllers
 {
-    using System;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using Commands;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Core.Models;
@@ -13,9 +9,12 @@
     using Fanex.Logging;
     using Helpers;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
     using ONEbook.UM.Services;
     using Services.Interface;
+    using System;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -63,6 +62,11 @@
         [HttpGet]
         public IActionResult PageNotFound() => View();
 
+        public async Task<IActionResult> SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
+        {
+            return await OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
+        }
+
         public async Task<IActionResult> OldLink(int affId, string pageCode, string lang = null)
         {
             try
@@ -92,9 +96,17 @@
             }
         }
 
-        public async Task<IActionResult> SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
+        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
         {
-            return await OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
+            var linkParams = new LinkParams
+            {
+                PageCode = $"{pageCodePart1}/{pageCodePart2}",
+                AffCode = affCode,
+                Lang = lang,
+                Channel = channel
+            };
+
+            return await Link(linkParams);
         }
 
         public async Task<IActionResult> Link(LinkParams linkParams)
@@ -244,12 +256,12 @@
                 return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
             }
 
-            var redirectSpecialDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode 
+            var redirectSpecialDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode
                 && m.IsSpecific && m.AffDomain == clickTrackingEvent.AffDomain);
             if (redirectSpecialDomain == null)
             {
                 var redirectDomain = masterInfoValidations.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode
-                    && !m.IsSpecific && m.AffDomain == clickTrackingEvent.AffDomain 
+                    && !m.IsSpecific && m.AffDomain == clickTrackingEvent.AffDomain
                     && m.LanguageCode == clickTrackingEvent.LanguageCode);
                 if (redirectDomain == null)
                 {
@@ -266,19 +278,6 @@
                 var specialDomain = $"{(redirectSpecialDomain.IsSSL ? "https" : "http")}://{redirectSpecialDomain.RedirectDomain}/{redirectSpecialDomain.LanguageLink}/{clickTrackingEvent.PageCode}?affCode={redirectSpecialDomain.AffCode}";
                 return new ValidateResult { IsValid = true, RedirectView = specialDomain };
             }
-        }
-
-        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
-        {
-            var linkParams = new LinkParams
-            { 
-                PageCode = $"{pageCodePart1}/{pageCodePart2}",
-                AffCode = affCode,
-                Lang = lang,
-                Channel = channel
-            };
-
-            return await Link(linkParams);
         }
 
         private async Task<IActionResult> InsertAffiliate(
