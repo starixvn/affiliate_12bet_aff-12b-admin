@@ -22,17 +22,17 @@
     /// </summary>
     public class HomeController : Controller
     {
-        private readonly string[] _marketingForCommGroups;
-        private readonly string[] _marketingPageCodeRegexPatterns;
-        private readonly bool _isRemovePortFromUrl;
+        private readonly string[] marketingForCommGroups;
+        private readonly string[] marketingPageCodeRegexPatterns;
+        private readonly bool isRemovePortFromUrl;
 
         private readonly IClickTrackingEventService trackingSystemService;
         private readonly IAffInfoService affInfoService;
         private readonly IConfiguration configuration;
         private readonly IMessageQueueService messageQueueService;
         private readonly IMaintenanceService maintenanceService;
-        private const string LinkIsInvalidMessage = "This link does not exist. Please contact administrator!";
-        private const string LinkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
+        private const string linkIsInvalidMessage = "This link does not exist. Please contact administrator!";
+        private const string linkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
 
         public HomeController(
             IClickTrackingEventService trackingSystemService,
@@ -46,11 +46,11 @@
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             this.messageQueueService = messageQueueService;
             this.maintenanceService = maintenanceService;
-            _marketingForCommGroups = (this.configuration["AppSettings:MarketingForCommGroups"] ?? string.Empty)
+            marketingForCommGroups = (this.configuration["AppSettings:MarketingForCommGroups"] ?? string.Empty)
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
-            _marketingPageCodeRegexPatterns = (this.configuration["AppSettings:MarketingPageCodeRegexPatterns"] ?? string.Empty)
+            marketingPageCodeRegexPatterns = (this.configuration["AppSettings:MarketingPageCodeRegexPatterns"] ?? string.Empty)
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
-            _isRemovePortFromUrl = this.configuration["AppSettings:RemovePortFromUrl"].MatchWith("1");
+            isRemovePortFromUrl = this.configuration["AppSettings:RemovePortFromUrl"].MatchWith("1");
         }
 
         public IActionResult Index() => View();
@@ -79,13 +79,13 @@
                     }
                 }
 
-                ViewBag.Result = LinkIsInvalidMessage;
+                ViewBag.Result = linkIsInvalidMessage;
                 return View("Link");
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-                ViewBag.Result = LinkIsIncorrectMessage;
+                ViewBag.Result = linkIsIncorrectMessage;
                 return View("Link");
             }
         }
@@ -96,6 +96,7 @@
         }
 
         public async Task<IActionResult> Link(LinkParams linkParams)
+        
         {
             try
             {
@@ -115,7 +116,7 @@
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-                ViewBag.Result = LinkIsIncorrectMessage;
+                ViewBag.Result = linkIsIncorrectMessage;
                 return View("Link");
             }
         }
@@ -203,7 +204,7 @@
             if (validateResult.IsValid)
             {
                 bool isMarketingLandingPage = Array.Exists(
-                 _marketingPageCodeRegexPatterns,
+                 marketingPageCodeRegexPatterns,
                    reg => RegexHelper.IsMatch(clickTrackingEvent.PageCode, reg, RegexOptions.IgnoreCase));
 
                 string mappingPageCode = isMarketingLandingPage
@@ -221,7 +222,7 @@
             var masterInfoValidation = await trackingSystemService.GetMasterDataForValidateClicked();
             if (string.IsNullOrEmpty(clickTrackingEvent.AffCode) || string.IsNullOrEmpty(clickTrackingEvent.LanguageCode))
             {
-                return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
+                return new ValidateResult { IsValid = false, ErrorMessage = linkIsInvalidMessage };
             }
 
             var validateResult = ValidateLinkSpecialDomain(clickTrackingEvent, masterInfoValidation);
@@ -233,7 +234,7 @@
             if (validateResult.IsValid)
             {
                 var commGroup = masterInfoValidation.AffCommGroups.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode);
-                validateResult.IsAffMarketing = Array.Exists(_marketingForCommGroups, c => c.MatchWith(commGroup.GroupName));
+                validateResult.IsAffMarketing = Array.Exists(marketingForCommGroups, c => c.MatchWith(commGroup.GroupName));
             }
 
             return validateResult;
@@ -244,7 +245,7 @@
             var affCommGroup = masterInfoValidation.AffCommGroups.FirstOrDefault(m => m.AffCode == clickTrackingEvent.AffCode);
             if (affCommGroup == null)
             {
-                return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
+                return new ValidateResult { IsValid = false, ErrorMessage = linkIsInvalidMessage };
             }
             else
             {
@@ -252,7 +253,7 @@
                                         && m.LanguageCode == clickTrackingEvent.LanguageCode);
                 if (domain == null)
                 {
-                    return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
+                    return new ValidateResult { IsValid = false, ErrorMessage = linkIsInvalidMessage };
                 }
                 else
                 {
@@ -268,7 +269,7 @@
                 && m.AffDomain == clickTrackingEvent.AffDomain);
             if (domain == null)
             {
-                return new ValidateResult { IsValid = false, ErrorMessage = LinkIsInvalidMessage };
+                return new ValidateResult { IsValid = false, ErrorMessage = linkIsInvalidMessage };
             }
             else
             {
@@ -342,7 +343,7 @@
                 WriteLogInfo(command);
 
                 bool isMarketingLandingPage = Array.Exists(
-                    _marketingPageCodeRegexPatterns,
+                    marketingPageCodeRegexPatterns,
                     reg => RegexHelper.IsMatch(pageCode, reg, RegexOptions.IgnoreCase));
 
                 string mappingPageCode = isMarketingLandingPage
@@ -355,7 +356,7 @@
                 return Redirect($"{redirectUrlFinal}{forwardQueryString}");
             }
 
-            ViewBag.Result = LinkIsInvalidMessage;
+            ViewBag.Result = linkIsInvalidMessage;
             return View("Link");
         }
 
@@ -442,7 +443,7 @@
         private bool IsValidAffMarketing(string affCode)
         {
             var commGroup = affInfoService.GetCommGroupByAffCode(affCode);
-            return Array.Exists(_marketingForCommGroups, c => c.MatchWith(commGroup.GroupName));
+            return Array.Exists(marketingForCommGroups, c => c.MatchWith(commGroup.GroupName));
         }
 
         private string GetFullAffDomain(string urlWithoutProtocol, string endPointOfAffDomain)
@@ -453,7 +454,7 @@
             }
 
             string resultUrl = urlWithoutProtocol;
-            if (_isRemovePortFromUrl)
+            if (isRemovePortFromUrl)
             {
                 if (Uri.TryCreate($"https://{urlWithoutProtocol}", UriKind.Absolute, out var uri))
                 {
