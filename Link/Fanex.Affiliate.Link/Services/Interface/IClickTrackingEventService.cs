@@ -28,7 +28,7 @@
 
         Task<ValidateResult> ValidateLinkFromDatabase(ClickTrackingEvent clickTrackingEvent);
 
-        Task<IList<MasterInfoValidation>> GetMasterDataForValidateClicked();
+        Task<MasterInfoValidation> GetMasterDataForValidateClicked();
 
         Task<long> GetClickId();
     }

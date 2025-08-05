@@ -2,17 +2,11 @@
 
 public class MasterInfoValidation
 {
-    public string AffCode { get; set; }
+    public IEnumerable<SpecialDomainMapping> SpecialDomainMappings { get; set; }
 
-    public string AffDomain { get; set; }
+    public IEnumerable<DomainMapping> DomainMappings { get; set; }
 
-    public string LanguageCode { get; set; }
+    public IEnumerable<LanguageReference> LanguageReferences { get; set; }
 
-    public string LanguageLink { get; set; }
-
-    public string RedirectDomain { get; set; }
-
-    public bool IsSpecific { get; set; }
-
-    public bool IsSSL { get; set; }
+    public IEnumerable<AffiliateCommGroup> AffCommGroups { get; set; }
 }

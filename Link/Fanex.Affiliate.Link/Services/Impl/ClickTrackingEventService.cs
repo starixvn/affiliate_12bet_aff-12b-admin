@@ -104,22 +104,31 @@
             return validateResult;
         }
 
-        public async Task<IList<MasterInfoValidation>> GetMasterDataForValidateClicked()
+        public async Task<MasterInfoValidation> GetMasterDataForValidateClicked()
         {
             var cacheKey = CacheKey.MASTER_DATA;
-            var masterInfoValidations = await cacheService.GetAsync<IList<MasterInfoValidation>>(cacheKey);
+            var masterInfoValidation = await cacheService.GetAsync<MasterInfoValidation>(cacheKey);
 
-            if (masterInfoValidations is null)
+            if (masterInfoValidation is null)
             {
                 var criteria = new GetMasterDataForValidateClickedCriteria();
-                masterInfoValidations = (await dynamicRepository.FetchAsync<MasterInfoValidation>(criteria)).ToList();
-                await cacheService.SetAsync(cacheKey, masterInfoValidations, new CacheItemOptions
+                var results = await dynamicRepository.FetchMultipleAsync<SpecialDomainMapping, DomainMapping, LanguageReference, AffiliateCommGroup>(criteria);
+
+                masterInfoValidation = new MasterInfoValidation
+                {
+                    SpecialDomainMappings = results.Item1,
+                    DomainMappings = results.Item2,
+                    LanguageReferences = results.Item3,
+                    AffCommGroups = results.Item4,
+                };
+
+                await cacheService.SetAsync(cacheKey, masterInfoValidation, new CacheItemOptions
                 {
                     AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
                 });
             }
 
-            return masterInfoValidations ?? new List<MasterInfoValidation>();
+            return masterInfoValidation;
         }
 
         public async Task<long> GetClickId()
