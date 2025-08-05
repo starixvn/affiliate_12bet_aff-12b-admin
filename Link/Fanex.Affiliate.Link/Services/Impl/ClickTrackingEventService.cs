@@ -124,7 +124,7 @@
 
                 await cacheService.SetAsync(cacheKey, masterInfoValidation, new CacheItemOptions
                 {
-                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationInSeconds)
+                    SlidingExpiration = TimeSpan.FromDays(1)
                 });
             }
 

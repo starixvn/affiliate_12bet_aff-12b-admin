@@ -96,7 +96,6 @@
         }
 
         public async Task<IActionResult> Link(LinkParams linkParams)
-        
         {
             try
             {
@@ -142,9 +141,9 @@
 
             var clickTrackingEvent = new ClickTrackingEvent
             {
-                PageCode = linkParams.PageCode,
+                PageCode = pageCodeOnV2,
                 AffCode = linkParams.AffCode,
-                LanguageCode = linkParams.Lang,
+                LanguageCode = mappingRemovedLanguage,
                 ChannelCode = linkParams.Channel,
                 AffDomain = affDomain,
                 AffMediaLink = affMediaLinkWithoutProtocol,
