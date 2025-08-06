@@ -1,19 +1,16 @@
 ﻿namespace Fanex.Affiliate.Link.Controllers
 {
-    using Commands;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Core.Models;
     using Fanex.Affiliate.Link.Core.Services.Interfaces;
     using Fanex.Affiliate.Link.DTOs;
     using Fanex.Affiliate.Link.Extensions;
     using Fanex.Affiliate.Link.Models;
-    using Fanex.Logging;
     using Helpers;
     using Microsoft.AspNetCore.Mvc;
     using ONEbook.UM.Services;
     using Services.Interface;
     using System;
-    using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
@@ -65,6 +62,11 @@
         [HttpGet]
         public IActionResult PageNotFound() => View();
 
+        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
+        {
+            return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         public IActionResult OldLink(int affId, string pageCode, string lang = null)
         {
@@ -72,9 +74,17 @@
             return View("Link");
         }
 
-        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
+        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
         {
-            return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
+            var linkParams = new LinkParams
+            {
+                PageCode = $"{pageCodePart1}/{pageCodePart2}",
+                AffCode = affCode,
+                Lang = lang,
+                Channel = channel
+            };
+
+            return await Link(linkParams);
         }
 
         public async Task<IActionResult> Link(LinkParams linkParams)
@@ -128,7 +138,7 @@
                 LanguageCode = mappingRemovedLanguage,
                 ChannelCode = linkParams.Channel,
                 AffDomain = affDomain,
-                AffMediaLink = affMediaLinkWithoutProtocol,
+                AffMediaLink = $"{httpContextService.GetOriginalProtocol()}://{affMediaLinkWithoutProtocol}",
                 IP = Request.GetClientIP(),
                 Browser = Common.GetBrowserName(userAgent),
                 UrlReferrer = urlReferrer,
@@ -258,153 +268,6 @@
                 var specialDomain = $"{(domain.IsSSL ? "https" : "http")}://{domain.RedirectDomain}/{languageLink.LanguageLink}/{clickTrackingEvent.PageCode}?affCode={domain.AffCode}";
                 return new ValidateResult { IsValid = true, RedirectView = specialDomain };
             }
-        }
-
-        public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
-        {
-            var linkParams = new LinkParams
-            {
-                PageCode = $"{pageCodePart1}/{pageCodePart2}",
-                AffCode = affCode,
-                Lang = lang,
-                Channel = channel
-            };
-
-            return await Link(linkParams);
-        }
-
-        private async Task<IActionResult> InsertAffiliate(
-            string affCode,
-            string pageCode,
-            string lang,
-            string affDomain,
-            string affMediaLinkWithoutProtocol,
-            string channel = null)
-        {
-            string urlReferrer = Request.Headers["Referer"].ToString();
-            string domainReferrer = !string.IsNullOrEmpty(urlReferrer) ? new Uri(urlReferrer).Host : string.Empty;
-
-            if (string.IsNullOrEmpty(urlReferrer) && !string.IsNullOrEmpty(Request.Query["ref"].ToString()))
-            {
-                urlReferrer = Request.Query["ref"].ToString();
-                domainReferrer = Common.GetDomainReferrer(urlReferrer) ?? string.Empty;
-            }
-
-            string pageCodeOnV2 = GetSupportedPageCodeOnV2(pageCode);
-            string mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
-            string userAgent = Request.Headers["User-Agent"].ToString();
-            string acceptLanguage = Request.Headers["Accept-Language"].ToString();
-
-            var command = new TrackingSystemCommand
-            {
-                AffDomain = affDomain,
-                AffCode = affCode,
-                PageCode = pageCodeOnV2,
-                ChannelCode = channel ?? string.Empty,
-                LanguageCode = mappingRemovedLanguage,
-                DeviceType = GetDeviceType(),
-                IP = Request.GetClientIP(),
-                Browser = Common.GetBrowserName(userAgent),
-                URLReferrer = urlReferrer,
-                DomainReferrer = domainReferrer,
-                OS = Common.GetOsName(userAgent),
-                Device = httpContextService.GetDeviceName(userAgent),
-                BrowserVersion = Common.GetBrowserVersion(userAgent),
-                //// BrowserResolution = Request.Query["res"].ToString(), 
-                BrowserLanguage = acceptLanguage,
-                UserAgent = userAgent,
-                Country = httpContextService.GetCountry(),
-                AffMediaLink = affMediaLinkWithoutProtocol,
-            };
-
-            string redirectUrl = await trackingSystemService.InsertStatistic(command);
-
-            if (!string.IsNullOrEmpty(redirectUrl))
-            {
-                WriteLogInfo(command);
-
-                bool isMarketingLandingPage = Array.Exists(
-                    marketingPageCodeRegexPatterns,
-                    reg => RegexHelper.IsMatch(pageCode, reg, RegexOptions.IgnoreCase));
-
-                string mappingPageCode = isMarketingLandingPage
-                    ? (IsValidAffMarketing(affCode) ? pageCodeOnV2 : LandingPage.JOIN_PAGE_CODE)
-                    : pageCodeOnV2;
-
-                var redirectUrlFinal = HandleRedirectUrl(redirectUrl, pageCodeOnV2, command.LanguageCode, mappingPageCode);
-
-                var forwardQueryString = Request.QueryString.Value.ReplaceStr("?", "&");
-                return Redirect($"{redirectUrlFinal}{forwardQueryString}");
-            }
-
-            ViewBag.Result = linkIsInvalidMessage;
-            return View("Link");
-        }
-
-        private static void WriteLogInfo(TrackingSystemCommand command)
-        {
-            if (!command.RedirectPage.Contains(command.AffCode, StringComparison.OrdinalIgnoreCase)
-                || command.RedirectPage.Contains("affMediaLinkId=&", StringComparison.OrdinalIgnoreCase)
-                || string.IsNullOrEmpty(command.ChannelCode))
-            {
-                var builder = new StringBuilder()
-                    .AppendLine($"Link Go Info: http://{command.AffMediaLink}")
-                    .AppendLine()
-                    .AppendLine("REQUEST INFO")
-                    .AppendLine($"RedirectPage: {command.RedirectPage}")
-                    .AppendLine($"AffDomain: {command.AffDomain}")
-                    .AppendLine($"AffCode: {command.AffCode}")
-                    .AppendLine($"PageCode: {command.PageCode}")
-                    .AppendLine($"ChannelCode: {command.ChannelCode}")
-                    .AppendLine($"LanguageCode: {command.LanguageCode}")
-                    .AppendLine($"DeviceType: {command.DeviceType}")
-                    .AppendLine($"IP: {command.IP}")
-                    .AppendLine($"Browser: {command.Browser}")
-                    .AppendLine($"Country: {command.Country}")
-                    .AppendLine($"Referrer: {command.URLReferrer}")
-                    .AppendLine($"DomainReferrer: {command.DomainReferrer}");
-
-                LogService.Info(builder.ToString());
-            }
-        }
-
-        private async Task<bool> ValidateTrackingV1MediaLink(
-            int affId,
-            string affDomain,
-            string lang,
-            string affMediaLinkWithoutProtocol)
-        {
-            string mappingRemovedLanguage = GetMappingRemovedLanguageCode(lang);
-            var mappingMarketInfo = await trackingSystemService.GetMarketInfo(mappingRemovedLanguage);
-
-            if (string.IsNullOrEmpty(mappingMarketInfo.MarketId))
-            {
-                return false;
-            }
-
-            var checkingCommand = new CheckMarketingLinkCommand
-            {
-                AffId = affId,
-                AffDomain = affDomain,
-                LanguageCode = mappingMarketInfo.MarketId,
-                AffMediaLink = affMediaLinkWithoutProtocol
-            };
-
-            var checkMarketingLinkResult = await trackingSystemService.GetTrackingMarketingLinkInfo(checkingCommand);
-
-            if (checkMarketingLinkResult.IsValidDomain && !checkMarketingLinkResult.IsExistedTracking)
-            {
-                var insertCommand = new ToggleMarketingLinkCommand
-                {
-                    AffId = affId,
-                    LanguageCode = mappingMarketInfo.MarketId,
-                    AffMediaLink = $"https://{affMediaLinkWithoutProtocol}"
-                };
-
-                await trackingSystemService.ToggleMarketingLink(insertCommand);
-            }
-
-            return checkMarketingLinkResult.IsValidDomain;
         }
 
         private static string GetSupportedPageCodeOnV2(string pageCode)
