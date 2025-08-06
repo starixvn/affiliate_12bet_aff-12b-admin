@@ -31,8 +31,9 @@
         private readonly IConfiguration configuration;
         private readonly IMessageQueueService messageQueueService;
         private readonly IMaintenanceService maintenanceService;
-        private const string linkIsInvalidMessage = "This link does not exist. Please contact administrator!";
-        private const string linkIsIncorrectMessage = "This link is in an incorrect format. Please contact administrator!";
+        private const string linkIsInvalidMessage = "Oops! This link does not exist. Please reach out to the administrator if you need help.";
+        private const string linkIsIncorrectMessage = "Oops! This link is in an incorrect format. Please reach out to the administrator for assistance.";
+        private const string linkIsOutdatedMessage = "Oops! This link is using an outdated format. Please contact the administrator to get it updated.";
 
         public HomeController(
             IClickTrackingEventService trackingSystemService,
@@ -61,38 +62,16 @@
         [HttpGet]
         public IActionResult PageNotFound() => View();
 
-        public async Task<IActionResult> OldLink(int affId, string pageCode, string lang = null)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+        public IActionResult OldLink(int affId, string pageCode, string lang = null)
         {
-            try
-            {
-                var affInfo = affInfoService.GetAffInfoByAffId(affId);
-
-                if (!string.IsNullOrEmpty(affInfo.AffCode) && !string.IsNullOrEmpty(lang))
-                {
-                    var affMediaLinkWithoutProtocol = GetAffMediaLinkWithoutProtocol();
-                    var affDomain = GetFullAffDomain(affMediaLinkWithoutProtocol, affId.ToString());
-                    var isValidDomain = await ValidateTrackingV1MediaLink(affId, affDomain, lang, affMediaLinkWithoutProtocol);
-
-                    if (isValidDomain)
-                    {
-                        return await InsertAffiliate(affInfo.AffCode, pageCode, lang, affDomain, affMediaLinkWithoutProtocol);
-                    }
-                }
-
-                ViewBag.Result = linkIsInvalidMessage;
-                return View("Link");
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteError(ex);
-                ViewBag.Result = linkIsIncorrectMessage;
-                return View("Link");
-            }
+            ViewBag.Result = linkIsOutdatedMessage;
+            return View("Link");
         }
 
-        public async Task<IActionResult> SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
+        public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
         {
-            return await OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
+            return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);
         }
 
         public async Task<IActionResult> Link(LinkParams linkParams)
