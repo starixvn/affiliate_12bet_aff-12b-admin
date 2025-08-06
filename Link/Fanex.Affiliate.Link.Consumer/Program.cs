@@ -5,9 +5,12 @@ using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.Logging;
 using Fanex.Logging.Sentry;
+using Fanex.Logging.Sentry.RavenClient;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using ONEbook.UM.DependencyInjection;
 using ONEbook.UM.Services;
+using SharpRaven;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +32,7 @@ LogManager.SetDefaultLogCategory(category).Use(new List<ILogEngine>
         {
             new SentryLogging(new SentryEngineOptions
             {
-                Dsn = backEndDsn,
+                Dsn = new Dsn(backEndDsn),
                 Environment = env
             })
         });

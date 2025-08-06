@@ -132,7 +132,6 @@ public sealed class RabbitMqWorker(
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await Task.Delay(10, stoppingToken).ConfigureAwait(false);
-
         // Setup exchanges and queues
         mainExchange = await bus.Advanced.ExchangeDeclareAsync(mainExchangeName, ExchangeType.Direct);
         retryExchange = await bus.Advanced.ExchangeDeclareAsync(retryExchangeName, ExchangeType.Direct);

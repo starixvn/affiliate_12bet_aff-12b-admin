@@ -1,5 +1,6 @@
 ﻿using Fanex.Logging;
-using Fanex.Logging.Sentry;
+using Fanex.Logging.Sentry.RavenClient;
+using SharpRaven;
 
 namespace Fanex.Affiliate.Link;
 
@@ -22,7 +23,7 @@ public static class LoggingConfig
         {
             new SentryLogging(new SentryEngineOptions
             {
-                Dsn = backEndDsn,
+                Dsn = new Dsn(backEndDsn),
                 Environment = env
             })
         });
