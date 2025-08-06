@@ -387,6 +387,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\operation\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\libs\menus.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\view-deal\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\view-deal\ViewDeal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\operation\view-deal\ViewDealPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerConfigs.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-report\libs\headerFake.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\index.js" />

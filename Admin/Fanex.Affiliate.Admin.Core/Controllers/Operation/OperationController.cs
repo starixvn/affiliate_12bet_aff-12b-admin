@@ -30,15 +30,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var viewModel = new OperationViewModel
-            {
-                DealTypes = _commonDealService.GetDealTypes(),
-                PaymentFrequencies = _commonDealService.GetPaymentFrequency(),
-                Deductions = _commonDealService.GetDeductionList(),
-                TargetCountries = _commonDealService.GetPlayerTargetCountry(),
-                Products = _systemService.GetProductList()
-            };
-
+            var viewModel = GetOperationViewModel();
             return View("~/Areas/Portal/Views/Operation/Deal.cshtml", viewModel);
         }
 
@@ -112,6 +104,26 @@
             AssignUserInfoParam(param);
 
             return GenerateJsonNetResult(_operationService.DeleteDeal(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDealCommonInfo()
+        {
+            var viewModel = GetOperationViewModel();
+            return GenerateJsonNetResult(viewModel);
+        }
+
+        private OperationViewModel GetOperationViewModel()
+        {
+            return new OperationViewModel
+            {
+                DealTypes = _commonDealService.GetDealTypes(),
+                PaymentFrequencies = _commonDealService.GetPaymentFrequency(),
+                Deductions = _commonDealService.GetDeductionList(),
+                TargetCountries = _systemService.GetTargetCountryList(),
+                Products = _systemService.GetProductList()
+            };
         }
 
         private void AssignUserInfoParam(DealSettingParam param)
