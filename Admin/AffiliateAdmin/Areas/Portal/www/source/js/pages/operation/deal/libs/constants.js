@@ -8,7 +8,7 @@ export const PERCENTAGE_MAX_VALUE = 100;
 export const DEAL_REVENUE_SHARE = 1;
 export const DEAL_CPA = 3;
 export const DEAL_HYBRID = 4;
-export const MONTHLY_SCHEDULE_ID = 4;
+export const MONTHLY_SCHEDULE_ID = 5;
 export const DEAL_HYBRID_CPA_SECTION = 'CPA:';
 export const DEAL_HYBRID_REVENUE_SHARE_SECTION = 'Revenue Share:';
 
