@@ -31,6 +31,7 @@ builder.Services.AddScoped<IClickTrackingEventService, ClickTrackingEventService
 builder.Services.AddScoped<IAffInfoService, AffInfoService>();
 builder.Services.AddScoped<IMemoryCacheService, MemoryCacheService>();
 builder.Services.AddScoped<IMaintenanceService, MaintenanceService>();
+builder.Services.AddScoped<IHttpContextService, HttpContextService>();
 builder.Services.AddSingleton<ICacheService, CacheService>();
 builder.Services.AddSingleton<IDynamicRepository, DynamicRepository>();
 

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
@@ -35,105 +34,6 @@
         };
 
         /// <summary>
-        /// Contains all device mapping.
-        /// </summary>
-        private static readonly IReadOnlyDictionary<string, string> _deviceMapping = new Dictionary<string, string>
-        {
-                { "iphone", "iPhone" },
-                { "ipad", "iPad" },
-                { "ipod", "iPod" },
-                { "blackberry", "BlackBerry" },
-                { "htc", "HTC" },
-                { "motorola", "Motorola" },
-                { "nokia", "Nokia" }
-        };
-
-        /// <summary>
-        /// Get Country.
-        /// </summary>
-        /// <returns>Country English Name.</returns>
-        public static string GetCountry()
-        {
-            try
-            {
-                var regionInfo = ResolveCountry();
-                if (regionInfo != null)
-                {
-                    return regionInfo.EnglishName;
-                }
-            }
-            catch
-            {
-                // ignore and fallback
-            }
-
-            try
-            {
-                return new RegionInfo(CultureInfo.CurrentCulture.Name).EnglishName;
-            }
-            catch
-            {
-                return "Unknown";
-            }
-        }
-
-        /// <summary>
-        /// Get region info.
-        /// </summary>
-        /// <returns>Region info.</returns>
-        private static RegionInfo ResolveCountry()
-        {
-            var culture = ResolveCulture();
-
-            //solving a culture issue
-            if (culture != null && culture.LCID != 0x7F)
-            {
-                return new RegionInfo(culture.Name);
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Get culture info.
-        /// </summary>
-        /// <returns>Culture info.</returns>
-        private static CultureInfo ResolveCulture()
-        {
-            return CultureInfo.InvariantCulture;
-        }
-
-        /// <summary>
-        /// Get original protocol.
-        /// </summary>
-        /// <returns>protocol</returns>
-        public static string GetOriginalProtocol()
-        {
-            return "https";
-        }
-
-        /// <summary>
-        /// Get device info.
-        /// </summary>
-        /// <param name="userAgent">User's info.</param>
-        /// <returns>Device info.</returns>
-        public static string GetDeviceName(string userAgent)
-        {
-            if (string.IsNullOrEmpty(userAgent))
-            {
-                return @"Computer/Laptop";
-            }
-
-            var deviceKey = _deviceMapping.Keys.FirstOrDefault(key => userAgent.ToLower().Contains(key));
-
-            if (string.IsNullOrEmpty(deviceKey))
-            {
-                return IsMobile() ? "Mobile" : @"Computer/Laptop";
-            }
-
-            return _deviceMapping[deviceKey];
-        }
-
-        /// <summary>
         /// Get OS info.
         /// </summary>
         /// <param name="userAgent">User's info.</param>
@@ -161,11 +61,6 @@
             var hashData = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
 
             return BitConverter.ToString(hashData).Replace("-", string.Empty).ToLower();
-        }
-
-        public static bool IsMobile()
-        {
-            return false; // Simplified for .NET Core - can be enhanced later
         }
 
         public static string GetDomainReferrer(string urlReferrer)

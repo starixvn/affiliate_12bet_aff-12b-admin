@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Link.Constants
     {
         /// <summary>
         /// Generated regex for numeric validation (affiliate IDs and codes).
-        /// Pattern: ^\d+$
+        /// Pattern: ^[0-9]+
         /// </summary>
         [GeneratedRegex(RouteConstraints.NumericRegexPattern, RegexOptions.Compiled)]
         public static partial Regex Numeric();

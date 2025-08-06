@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Affiliate.Link.Controllers
 {
-    using System;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using Commands;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Core.Models;
@@ -16,6 +12,10 @@
     using Microsoft.AspNetCore.Mvc;
     using ONEbook.UM.Services;
     using Services.Interface;
+    using System;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -31,6 +31,7 @@
         private readonly IConfiguration configuration;
         private readonly IMessageQueueService messageQueueService;
         private readonly IMaintenanceService maintenanceService;
+        private readonly IHttpContextService httpContextService;
         private const string linkIsInvalidMessage = "Oops! This link does not exist. Please reach out to the administrator if you need help.";
         private const string linkIsIncorrectMessage = "Oops! This link is in an incorrect format. Please reach out to the administrator for assistance.";
         private const string linkIsOutdatedMessage = "Oops! This link is using an outdated format. Please contact the administrator to get it updated.";
@@ -40,13 +41,15 @@
             IAffInfoService affInfoService,
             IMessageQueueService messageQueueService,
             IMaintenanceService maintenanceService,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IHttpContextService httpContextService)
         {
             this.trackingSystemService = trackingSystemService ?? throw new ArgumentNullException(nameof(trackingSystemService));
             this.affInfoService = affInfoService ?? throw new ArgumentNullException(nameof(affInfoService));
             this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             this.messageQueueService = messageQueueService;
             this.maintenanceService = maintenanceService;
+            this.httpContextService = httpContextService ?? throw new ArgumentNullException(nameof(httpContextService));
             marketingForCommGroups = (this.configuration["AppSettings:MarketingForCommGroups"] ?? string.Empty)
                 .Split(',', StringSplitOptions.RemoveEmptyEntries);
             marketingPageCodeRegexPatterns = (this.configuration["AppSettings:MarketingPageCodeRegexPatterns"] ?? string.Empty)
@@ -131,14 +134,13 @@
                 UrlReferrer = urlReferrer,
                 DomainReferrer = domainReferrer,
                 OS = Common.GetOsName(userAgent),
-                Device = Common.GetDeviceName(userAgent),
+                Device = httpContextService.GetDeviceName(userAgent),
                 BrowserVersion = Common.GetBrowserVersion(userAgent),
                 //// BrowserResolution = Request.Query["res"].ToString(), 
                 BrowserLanguage = acceptLanguage,
                 UserAgent = userAgent,
-                Country = Common.GetCountry(),
-                DeviceType = GetDeviceType(),
-                UpdatedTime = DateTime.Now
+                Country = httpContextService.GetCountry(),
+                DeviceType = GetDeviceType()
             };
 
             return clickTrackingEvent;
@@ -148,8 +150,9 @@
         {
             var clickId = await trackingSystemService.GetClickId();
             clickTrackingEvent.ClickId = clickId;
+            clickTrackingEvent.UpdatedTime = DateTimeOffset.Now.DateTime;
             clickTrackingEvent.RedirectLink = $"{clickTrackingEvent.RedirectLink}&clickId={clickId}";
-            
+
             await messageQueueService.PublishAsync(clickTrackingEvent);
 
             var forwardQueryString = Request.QueryString.Value.ReplaceStr("?", "&");
@@ -260,7 +263,7 @@
         public async Task<IActionResult> SpecialPageCodeLink(string pageCodePart1, string pageCodePart2, string affCode, string lang = null, string channel = null)
         {
             var linkParams = new LinkParams
-            { 
+            {
                 PageCode = $"{pageCodePart1}/{pageCodePart2}",
                 AffCode = affCode,
                 Lang = lang,
@@ -305,12 +308,12 @@
                 URLReferrer = urlReferrer,
                 DomainReferrer = domainReferrer,
                 OS = Common.GetOsName(userAgent),
-                Device = Common.GetDeviceName(userAgent),
+                Device = httpContextService.GetDeviceName(userAgent),
                 BrowserVersion = Common.GetBrowserVersion(userAgent),
                 //// BrowserResolution = Request.Query["res"].ToString(), 
                 BrowserLanguage = acceptLanguage,
                 UserAgent = userAgent,
-                Country = Common.GetCountry(),
+                Country = httpContextService.GetCountry(),
                 AffMediaLink = affMediaLinkWithoutProtocol,
             };
 
@@ -508,9 +511,9 @@
                 .ReplaceStr($"/{languageCode}/", $"/{customLanguageCode}/");
         }
 
-        private static byte GetDeviceType()
+        private byte GetDeviceType()
         {
-            return Common.IsMobile() ? (byte)1 : (byte)0;
+            return httpContextService.IsMobile() ? (byte)1 : (byte)0;
         }
     }
 }

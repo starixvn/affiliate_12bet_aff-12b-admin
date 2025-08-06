@@ -18,10 +18,10 @@ namespace Fanex.Affiliate.Link.Constants
                 ) + ")";
 
         /// <summary>
-        /// Complete numeric regex pattern with anchors for exact matching.
+        /// Numeric regex pattern that matches a range of numbers (one or more digits).
         /// Used for both affiliate IDs and affiliate codes since they have the same pattern.
         /// </summary>
-        public const string NumericRegexPattern = @"\d+";
+        public const string NumericRegexPattern = @"^[0-9]+$";
 
         /// <summary>
         /// Complete page code regex pattern with anchors for exact matching.
