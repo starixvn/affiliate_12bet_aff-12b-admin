@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Fragment } from 'react';
-import { Modal, Table } from 'reactstrap';
+import { Table } from 'reactstrap';
 import TableHeader from './table/TableHeader';
 import usePlayerCpaData from '../hooks/usePlayerCpaData';
 import { Pager } from '@9softstudio/react-fixed-table-header';

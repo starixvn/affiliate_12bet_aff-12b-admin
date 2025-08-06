@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Loader from '../../../../components/Loader';
 import Content from './Content';
+import ViewDealWrapper from '../../../operation/view-deal';
+
+import { toggleDealPopup } from '../actions';
 
 export const AppContainer = (props) => {
     return (
@@ -12,12 +15,19 @@ export const AppContainer = (props) => {
             <Loader show={props.isShowLoader} />
             <Filter />
             <Content />
+            {props.isShowDealPopup && <ViewDealWrapper dealId={props.dealId} toggle={props.toggleDealPopup} />}
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+function mapStateToProps({ isShowLoader, isShowDealPopup, dealId }) {
+    return Object.assign({}, { isShowLoader, isShowDealPopup, dealId });
 }
 
-export default connect(mapStateToProps)(React.memo(AppContainer));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleDealPopup: () => dispatch(toggleDealPopup())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

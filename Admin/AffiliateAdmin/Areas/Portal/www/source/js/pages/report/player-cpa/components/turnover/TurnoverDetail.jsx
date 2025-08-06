@@ -14,17 +14,17 @@ export const TurnoverDetail = ({ turnoverDetail, memberCpaId, setMemberCpaId }) 
     const closeModal = () => {
         setMemberCpaId(null)
     }
-   
+
     return (
-        <Modal 
-            className="deal-popup-container" 
-            isOpen={!!memberCpaId} 
-            toggle={closeModal} 
+        <Modal
+            className="deal-popup-container"
+            isOpen={!!memberCpaId}
+            toggle={closeModal}
             backdrop="static"
             size="md"
         >
-            <ModalHeader 
-                toggle={closeModal} 
+            <ModalHeader
+                toggle={closeModal}
                 className="modal-header"
             >
                 <h5 className="modal-title">
@@ -36,7 +36,7 @@ export const TurnoverDetail = ({ turnoverDetail, memberCpaId, setMemberCpaId }) 
                 <div className="modal-body-wrapper">
                     <Table bordered responsive className="mb-0">
                         <TableHeader />
-                        <TableBody groups={turnoverDetail.groups}/>
+                        <TableBody groups={turnoverDetail.groups} />
                         <TableFooter total={turnoverDetail.total} />
                     </Table>
                 </div>

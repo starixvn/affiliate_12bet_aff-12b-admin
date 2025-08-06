@@ -1,5 +1,5 @@
 import React from 'react'
-import { formatDecimal } from '../../../../../modules/numberFormat';    
+import { formatDecimal } from '../../../../../modules/numberFormat';
 
 const ProductGroup = ({ group, index }) => {
     return (
@@ -21,13 +21,13 @@ const ProductGroup = ({ group, index }) => {
 }
 
 export default function TableBody({ groups }) {
-  return (
-    <tbody>
-        {
-            groups.map((group, index) => (
-                <ProductGroup key={index} group={group} index={index} />
-            ))  
-        }   
-    </tbody>
-  )
+    return (
+        <tbody>
+            {
+                groups.map((group, index) => (
+                    <ProductGroup key={index} group={group} index={index} />
+                ))
+            }
+        </tbody>
+    )
 }

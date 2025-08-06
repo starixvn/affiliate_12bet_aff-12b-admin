@@ -1,6 +1,7 @@
 ﻿@using Fanex.Affiliate.Admin.Core.Utilities
 @section pagecss{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/report.css?v="+ DateTime.Now.Ticks)" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/report.css?v="+DateTimeHelper.UtcNow.Ticks)" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/operation/deal.css?v="+DateTimeHelper.UtcNow.Ticks)" rel="stylesheet" />
 }
 
 @section pagejs{
@@ -10,5 +11,5 @@
             isProduction: '@(AppSetting.Instance.Environment)'.toLowerCase() === 'production',
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report.js?v="+DateTime.Now.Ticks)"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report.js?v="+DateTimeHelper.UtcNow.Ticks)"></script>
 }

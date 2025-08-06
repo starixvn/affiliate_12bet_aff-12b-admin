@@ -57,11 +57,11 @@ const Filter = ({ params, setParams, toggleSubmit }) => {
     return (
         <div className="filter-container">
             <Form inline tag="div">
-                <Field name="userName" value={params.userName} onChange={handleChange} label="Affiliate"/>
-                <Field name="custName" value={params.custName} onChange={handleChange} label="Player"/>
-                <Field name="dealName" value={params.dealName} onChange={handleChange} label="Deal Name"/>
-                <Field name="statusId" value={params.status} onChange={handleChange} label="Status" selectOptions={statusOptions} type='select'/>
-                <Field name="viewBy" value={params.viewBy} onChange={handleChange} label="View By" selectOptions={viewByOptions} type='select'/>
+                <Field className="my-sm-1 mr-sm-2" name="userName" value={params.userName} onChange={handleChange} label="Affiliate"/>
+                <Field className="my-sm-1 mr-sm-2" name="custName" value={params.custName} onChange={handleChange} label="Player"/>
+                <Field className="my-sm-1 mr-sm-2" name="dealName" value={params.dealName} onChange={handleChange} label="Deal Name"/>
+                <Field className="my-sm-1 mr-sm-2" name="statusId" value={params.status} onChange={handleChange} label="Status" selectOptions={statusOptions} type='select'/>
+                <Field className="my-sm-1 mr-sm-2" name="viewBy" value={params.viewBy} onChange={handleChange} label="View By" selectOptions={viewByOptions} type='select'/>
                 <FormGroup className="my-sm-1 mr-sm-2">
                     <Label className="mr-sm-2">{globalResource.From}</Label>
                     <DatePicker 

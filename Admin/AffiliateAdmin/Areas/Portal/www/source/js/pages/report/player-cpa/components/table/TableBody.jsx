@@ -1,23 +1,18 @@
 import React from 'react'
 import { globalResource } from '../../../../../modules/globalResource';
-import { formatDecimal } from '../../../../../modules/numberFormat';
-import moment from 'moment';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import { setMemberCpaId } from '../../actions';
-import { DATE_FORMAT, InvalidDate } from '../../libs/constants';
+import { setMemberCpaId, setDealId, toggleDealPopup } from '../../actions';
 
-const RowData = ({ data, rowNumber, setMemberCpaId }) => {
-    const showDate = (date) => {
-        return moment(date).format(DATE_FORMAT)
-    }
-
-    const showNumber = (number) => {
-        return formatDecimal(number);
-    }
+const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup }) => {
 
     const handleClickTO = () => {
         setMemberCpaId(data.memberCPAId)
+    }
+
+    const handleClickDeal = () => {
+        setDealId(data.groupId)
+        toggleDealPopup()
     }
 
     return (
@@ -35,7 +30,7 @@ const RowData = ({ data, rowNumber, setMemberCpaId }) => {
                 {data.registeredDate}
             </td>
             <td className="text-left">
-                <a target='_blank' href='#'>{data.dealName}</a>
+                <button className="btn btn-link" onClick={handleClickDeal}>{data.dealName}</button>
             </td>
             <td className="text-center">
                 {data.scheduleName}
@@ -102,7 +97,9 @@ const RowData = ({ data, rowNumber, setMemberCpaId }) => {
 export function TableBody({
     data,
     pagingOption,
-    setMemberCpaId
+    setMemberCpaId,
+    setDealId,
+    toggleDealPopup
 }) {
     if(!data || data.length === 0){
         return (
@@ -122,7 +119,7 @@ export function TableBody({
         <tbody>
             {
                 data && data.map((item, index) => (
-                    <RowData key={index} data={item} rowNumber={getRowNumber(index)} setMemberCpaId={setMemberCpaId} />
+                    <RowData key={index} data={item} rowNumber={getRowNumber(index)} setMemberCpaId={setMemberCpaId} setDealId={setDealId} toggleDealPopup={toggleDealPopup} />
                 ))
             }
         </tbody>
@@ -131,7 +128,9 @@ export function TableBody({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setMemberCpaId: (data) => dispatch(setMemberCpaId(data))
+        setMemberCpaId: (data) => dispatch(setMemberCpaId(data)),
+        setDealId: (data) => dispatch(setDealId(data)),
+        toggleDealPopup: () => dispatch(toggleDealPopup())
     }
 }
 

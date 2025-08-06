@@ -29,3 +29,16 @@ export const setMemberCpaId = (data) => {
         data
     }
 }
+
+export const setDealId = (data) => {
+    return {
+        type: types.SET_DEAL_ID,
+        data
+    }
+}
+
+export const toggleDealPopup = () => {
+    return {
+        type: types.TOGGLE_DEAL_POPUP,
+    }
+}

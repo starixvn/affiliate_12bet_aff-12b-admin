@@ -31,6 +31,19 @@ export const memberCpaId = createReducer(null, {
     }
 })
 
+export const dealId = createReducer(0, {
+    [types.SET_DEAL_ID](prevState, action) {
+        return action.data;
+    }
+})
+
+
+export const isShowDealPopup = createReducer(false, {
+    [types.TOGGLE_DEAL_POPUP](prevState, action) {
+        return !prevState;
+    }
+})
+
 export default combineReducers({
     params,
     reportTitle,
@@ -38,4 +51,6 @@ export default combineReducers({
     memberCpaId,
     isShowLoader,
     pagingOption,
+    dealId,
+    isShowDealPopup
 });
