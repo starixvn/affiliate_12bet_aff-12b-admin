@@ -31,5 +31,7 @@
         Task<MasterInfoValidation> GetMasterDataForValidateClicked();
 
         Task<long> GetClickId();
+
+        Task<long> SyncMaxClickId(bool isSync = true);
     }
 }

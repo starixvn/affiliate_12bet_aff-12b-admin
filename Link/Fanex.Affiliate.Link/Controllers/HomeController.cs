@@ -62,6 +62,12 @@
         [HttpGet]
         public IActionResult PageNotFound() => View();
 
+        public async Task<IActionResult> SyncMaxClickId(bool isSync = true)
+        {
+            var result = await trackingSystemService.SyncMaxClickId(isSync);
+            return Ok(result);
+        }
+
         public IActionResult SpecialPageCodeOldLink(int affId, string pageCodePart1, string pageCodePart2, string lang = null)
         {
             return OldLink(affId, $"{pageCodePart1}/{pageCodePart2}", lang);

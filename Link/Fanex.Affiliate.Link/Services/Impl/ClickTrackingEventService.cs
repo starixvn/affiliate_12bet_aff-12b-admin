@@ -1,27 +1,25 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Fanex.Affiliate.Link.Commands;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Core.Models;
     using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.DTOs;
-    using Fanex.Affiliate.Link.Helpers;
     using Fanex.Affiliate.Link.Models;
     using Fanex.Affiliate.Link.Services.Interface;
     using Fanex.Caching;
     using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class ClickTrackingEventService(IDynamicRepository dynamicRepository,
         IMemoryCacheService memoryCacheService,
         ICacheService cacheService) : IClickTrackingEventService
     {
         private const int CacheDurationInSeconds = 86400;
-        private const int CacheDurationForRecheckClickId = 3600;
 
         public async Task<string> InsertStatistic(TrackingSystemCommand command)
         {
@@ -125,7 +123,7 @@
 
                 await cacheService.SetAsync(cacheKey, masterInfoValidation, new CacheItemOptions
                 {
-                    SlidingExpiration = TimeSpan.FromDays(1)
+                    SlidingExpiration = TimeSpan.FromSeconds(CacheDurationInSeconds)
                 });
             }
 
@@ -134,23 +132,28 @@
 
         public async Task<long> GetClickId()
         {
-
             var redisCache = (RedisCache)cacheService.CacheStorage;
             var clickIdFromCache = await redisCache.StringGetAsync(CacheKey.ClickId);
-
             if (clickIdFromCache is null)
             {
-                var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
-                await cacheService.SetAsync(CacheKey.FlagClickId, true, new CacheItemOptions
-                {
-                    AbsoluteExpiration = DateTimeHelper.ServerTime.AddSeconds(CacheDurationForRecheckClickId)
-                });
-
-                await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
+                await SyncMaxClickId(true);
             }
 
             var result = await redisCache.StringIncrementAsync(CacheKey.ClickId);
             return result;
+        }
+
+        public async Task<long> SyncMaxClickId(bool isSync = true)
+        {
+            var redisCache = (RedisCache)cacheService.CacheStorage;
+            var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
+            clickIdFromDatabase += 100;
+            if (isSync)
+            {
+                await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
+            }
+            
+            return clickIdFromDatabase;
         }
 
         private async Task<long> GetMaxClickIdFromDatabase()
