@@ -1,6 +1,7 @@
 namespace Fanex.Affiliate.Link.Controllers
 {
     using Attributes;
+    using Fanex.Affiliate.Link.Helpers;
     using Microsoft.AspNetCore.Mvc;
     using Models.HealthCheck;
     using Services.HealthCheck;
@@ -43,7 +44,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 var result = new Dictionary<string, object>
                 {
                     ["Status"] = "Healthy",
-                    ["Timestamp"] = DateTimeOffset.UtcNow,
+                    ["Timestamp"] = DateTimeHelper.ServerTime,
                     ["Monitors"] = new Dictionary<string, object>(serverInfo)
                 };
 
@@ -62,7 +63,7 @@ namespace Fanex.Affiliate.Link.Controllers
                 var fallbackResult = new Dictionary<string, object>(basicInfo)
                 {
                     ["Status"] = "Healthy",
-                    ["Timestamp"] = DateTimeOffset.UtcNow,
+                    ["Timestamp"] = DateTimeHelper.ServerTime,
                     ["Error"] = "Unable to retrieve detailed server info"
                 };
 

@@ -1,3 +1,5 @@
+using Fanex.Affiliate.Link.Helpers;
+
 namespace Fanex.Affiliate.Link.Models.HealthCheck
 {
     /// <summary>
@@ -9,7 +11,7 @@ namespace Fanex.Affiliate.Link.Models.HealthCheck
         public string Status { get; set; } = "Unknown";
         public string Description { get; set; }
         public TimeSpan ResponseTime { get; set; }
-        public DateTime LastChecked { get; set; } = DateTimeOffset.UtcNow.DateTime;
+        public DateTime LastChecked { get; set; } = DateTimeHelper.ServerTime;
         public Dictionary<string, object> Data { get; set; } = new();
         public List<string> Tags { get; set; } = new();
         public string ErrorMessage { get; set; }

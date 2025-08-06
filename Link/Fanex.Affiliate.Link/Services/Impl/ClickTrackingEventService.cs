@@ -5,6 +5,7 @@
     using Fanex.Affiliate.Link.Core.Models;
     using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.DTOs;
+    using Fanex.Affiliate.Link.Helpers;
     using Fanex.Affiliate.Link.Models;
     using Fanex.Affiliate.Link.Services.Interface;
     using Fanex.Caching;
@@ -142,7 +143,7 @@
                 var clickIdFromDatabase = await GetMaxClickIdFromDatabase();
                 await cacheService.SetAsync(CacheKey.FlagClickId, true, new CacheItemOptions
                 {
-                    AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(CacheDurationForRecheckClickId)
+                    AbsoluteExpiration = DateTimeHelper.ServerTime.AddSeconds(CacheDurationForRecheckClickId)
                 });
 
                 await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());

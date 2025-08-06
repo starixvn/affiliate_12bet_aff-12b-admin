@@ -1,6 +1,7 @@
 namespace Fanex.Affiliate.Link.Services.HealthCheck
 {
     using Constants;
+    using Fanex.Affiliate.Link.Helpers;
     using Models.HealthCheck;
     using Services.Interface;
 
@@ -165,7 +166,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
 
                 // Group by hour for trending
                 var hourlyGroups = componentHistory
-                    .GroupBy(c => new DateTime(startTime.Year, startTime.Month, startTime.Day, startTime.Hour, 0, 0))
+                    .GroupBy(c => DateTimeHelper.CreateDateTime(startTime.Year, startTime.Month, startTime.Day, startTime.Hour, 0, 0))
                     .ToList();
 
                 return hourlyGroups.Select(group => new ComponentSummary
@@ -190,7 +191,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
             try
             {
                 var history = GetHistoryFromCache() ?? new List<HealthCheckHistory>();
-                var cutoffTime = DateTimeOffset.UtcNow - retentionPeriod;
+                var cutoffTime = DateTimeHelper.ServerTime - retentionPeriod;
 
                 var filteredHistory = history.Where(h => h.Timestamp >= cutoffTime).ToList();
 
@@ -213,8 +214,8 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
         {
             try
             {
-                var last24Hours = DateTimeOffset.UtcNow.AddHours(-24);
-                var summary = await GetSummaryAsync(last24Hours.DateTime, DateTimeOffset.UtcNow.DateTime);
+                var last24Hours = DateTimeHelper.ServerTimeOffset.AddHours(-24);
+                var summary = await GetSummaryAsync(last24Hours.DateTime, DateTimeHelper.ServerTime);
 
                 return new Dictionary<string, object>
                 {
@@ -224,7 +225,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
                     ["warningChecks24h"] = summary.WarningChecks,
                     ["unhealthyChecks24h"] = summary.UnhealthyChecks,
                     ["componentSummaries"] = summary.ComponentSummaries,
-                    ["lastUpdated"] = DateTimeOffset.UtcNow.DateTime
+                    ["lastUpdated"] = DateTimeHelper.ServerTime
                 };
             }
             catch (Exception ex)

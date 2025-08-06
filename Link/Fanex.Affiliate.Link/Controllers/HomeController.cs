@@ -150,7 +150,7 @@
         {
             var clickId = await trackingSystemService.GetClickId();
             clickTrackingEvent.ClickId = clickId;
-            clickTrackingEvent.UpdatedTime = DateTimeOffset.Now.DateTime;
+            clickTrackingEvent.UpdatedTime = DateTimeHelper.GmtMinus4Now;
             clickTrackingEvent.RedirectLink = $"{clickTrackingEvent.RedirectLink}&clickId={clickId}";
 
             await messageQueueService.PublishAsync(clickTrackingEvent);

@@ -1,6 +1,7 @@
 namespace Fanex.Affiliate.Link.Services.HealthCheck
 {
     using Extensions;
+    using Fanex.Affiliate.Link.Helpers;
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Net;
@@ -53,7 +54,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
                 var result = new Dictionary<string, object>
                 {
                     { "Env", _env.EnvironmentName },
-                    { "Server Time", DateTimeOffset.UtcNow.DateTime }
+                    { "Server Time", DateTimeHelper.ServerTime }
                 };
 
                 // Try to add assembly info
@@ -74,7 +75,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
                 return new ReadOnlyDictionary<string, object>(new Dictionary<string, object>
                 {
                     { "Env", "Unknown" },
-                    { "Server Time", DateTimeOffset.UtcNow.DateTime }
+                    { "Server Time", DateTimeHelper.ServerTime }
                 });
             }
         }
@@ -123,13 +124,13 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
                     result.Add("Schema", context.Request.Scheme);
                 }
 
-                result.Add("Server Time", DateTimeOffset.UtcNow.DateTime);
+                result.Add("Server Time", DateTimeHelper.ServerTime);
                 result.Add("Last Updated", File.GetCreationTime(typeof(HealthCheckServerInfoService).Assembly.Location).ToString(CultureInfo.InvariantCulture));
             }
             catch (Exception ex)
             {
                 _logger.LogDebug(ex, "Failed to retrieve extra server information");
-                result.Add("Server Time", DateTimeOffset.UtcNow.DateTime);
+                result.Add("Server Time", DateTimeHelper.ServerTime);
             }
         }
     }

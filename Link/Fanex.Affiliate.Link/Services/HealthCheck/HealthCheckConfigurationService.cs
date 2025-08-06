@@ -1,5 +1,6 @@
 namespace Fanex.Affiliate.Link.Services.HealthCheck
 {
+    using Fanex.Affiliate.Link.Helpers;
     using Microsoft.Extensions.Options;
     using Models.HealthCheck;
 
@@ -57,7 +58,7 @@ Health Check Alert
 Component: {componentName}
 Severity: {severity}
 Message: {message}
-Timestamp: {DateTimeOffset.UtcNow:yyyy-MM-dd HH:mm:ss} UTC
+Timestamp: {DateTimeHelper.ServerTime:yyyy-MM-dd HH:mm:ss} Server Time
 Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Unknown"}
 Server: {Environment.MachineName}
 

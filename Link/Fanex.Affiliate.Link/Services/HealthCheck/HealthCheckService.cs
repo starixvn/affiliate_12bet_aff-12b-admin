@@ -2,6 +2,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
 {
     using Constants;
     using EasyNetQ;
+    using Fanex.Affiliate.Link.Helpers;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models.HealthCheck;
@@ -42,7 +43,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
             _historyService = historyService ?? throw new ArgumentNullException(nameof(historyService));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _startTime = DateTimeOffset.UtcNow.DateTime;
+            _startTime = DateTimeHelper.ServerTime;
         }
 
         public async Task<HealthStatus> GetHealthStatusAsync()
@@ -133,7 +134,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
             try
             {
                 var testKey = $"health_check_{Guid.NewGuid()}";
-                var testValue = $"test_{DateTimeOffset.UtcNow:yyyyMMddHHmmss}";
+                var testValue = $"test_{DateTimeHelper.ServerTime:yyyyMMddHHmmss}";
 
                 // Test Redis connectivity with timeout
                 var cacheOptions = new Fanex.Caching.CacheItemOptions()
@@ -294,7 +295,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
                 {
                     MemoryUsedBytes = process.WorkingSet64,
                     ActiveThreads = process.Threads.Count,
-                    Uptime = DateTimeOffset.UtcNow - _startTime,
+                    Uptime = DateTimeHelper.ServerTime - _startTime,
                     Version = assembly.GetName().Version?.ToString() ?? "Unknown",
                     Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Unknown",
                     AdditionalMetrics = new Dictionary<string, object>

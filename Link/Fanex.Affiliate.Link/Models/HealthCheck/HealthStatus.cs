@@ -1,3 +1,5 @@
+using Fanex.Affiliate.Link.Helpers;
+
 namespace Fanex.Affiliate.Link.Models.HealthCheck
 {
     /// <summary>
@@ -6,7 +8,7 @@ namespace Fanex.Affiliate.Link.Models.HealthCheck
     public class HealthStatus
     {
         public string Status { get; set; } = "Unknown";
-        public DateTime Timestamp { get; set; } = DateTimeOffset.UtcNow.DateTime;
+        public DateTime Timestamp { get; set; } = DateTimeHelper.ServerTime;
         public TimeSpan TotalDuration { get; set; }
         public Dictionary<string, ComponentHealth> Components { get; set; } = new();
         public SystemMetrics Metrics { get; set; } = new();
