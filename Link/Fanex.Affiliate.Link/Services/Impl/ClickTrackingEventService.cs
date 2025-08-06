@@ -1,9 +1,5 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Fanex.Affiliate.Link.Commands;
     using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Core.Models;
@@ -14,6 +10,10 @@
     using Fanex.Caching;
     using Fanex.Caching.Redis;
     using Fanex.Data.Repository;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class ClickTrackingEventService(IDynamicRepository dynamicRepository,
         IMemoryCacheService memoryCacheService,
@@ -152,7 +152,7 @@
             {
                 await redisCache.StringSetAsync(CacheKey.ClickId, clickIdFromDatabase.ToString());
             }
-            
+
             return clickIdFromDatabase;
         }
 

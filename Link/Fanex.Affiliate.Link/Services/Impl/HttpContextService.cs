@@ -86,10 +86,10 @@ namespace Fanex.Affiliate.Link.Services.Impl
             var request = httpContextAccessor.HttpContext?.Request;
             if (request == null)
             {
-                return "http";
+                return "https";
             }
 
-            // Try to get Cloudflare's original protocol from the CF-Visitor header (JSON format)
+            // 1. Check Cloudflare's CF-Visitor header (JSON format: {"scheme":"https"}) first
             var cfVisitor = request.Headers[HeaderKey.HTTP_CF_VISITOR].FirstOrDefault();
             if (!string.IsNullOrEmpty(cfVisitor))
             {
@@ -98,7 +98,11 @@ namespace Fanex.Affiliate.Link.Services.Impl
                     var cfVisitorInfo = JsonConvert.DeserializeObject<CfVisitorInfo>(cfVisitor);
                     if (!string.IsNullOrEmpty(cfVisitorInfo?.Scheme))
                     {
-                        return cfVisitorInfo.Scheme;
+                        var scheme = cfVisitorInfo.Scheme.ToLowerInvariant();
+                        if (scheme == "http" || scheme == "https")
+                        {
+                            return scheme;
+                        }
                     }
                 }
                 catch
@@ -107,18 +111,19 @@ namespace Fanex.Affiliate.Link.Services.Impl
                 }
             }
 
-            // Try to get protocol from X-Forwarded-Proto header (may be comma-separated)
+            // 2. Check X-Forwarded-Proto header (may be comma-separated)
             var xForwardedProto = request.Headers[HeaderKey.HTTP_X_FORWARDED_PROTO].FirstOrDefault();
             if (!string.IsNullOrEmpty(xForwardedProto))
             {
                 var protos = xForwardedProto.Split(',');
-                if (protos.Length > 0 && !string.IsNullOrWhiteSpace(protos[0]))
+                var proto = protos[0].Trim().ToLowerInvariant();
+                if (proto == "http" || proto == "https")
                 {
-                    return protos[0].Trim();
+                    return proto;
                 }
             }
 
-            // Fallback: use the request's scheme (e.g., "http" or "https")
+            // 3. Fallback: use the request's scheme (e.g., "http" or "https")
             return request.Scheme;
         }
 
