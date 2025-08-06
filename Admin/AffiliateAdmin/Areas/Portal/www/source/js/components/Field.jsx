@@ -10,38 +10,24 @@ export default function Field({
     placeholder,
     maxLength,
     selectOptions,
+    className
 }) {
-  return (
-<<<<<<< HEAD
-    <>
-        <Label htmlFor={label} className="mr-sm-2">{label}</Label>
-        <Input 
-            type={type} 
-            name={name} 
-            id={label} 
-            maxLength={maxLength}
-            onChange={onChange}
-            value={value}
-            placeholder={placeholder}
-        >
-            {selectOptions && selectOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-            ))}
-        </Input>
-    </>
-=======
-    <FormGroup className="my-sm-1 mr-sm-2">
-        <Label htmlFor={label} className="mr-sm-2">{label}</Label>
-        <Input type={type} name={name} id={label} maxLength={maxLength}
-            onChange={onChange}
-            value={value}
-            placeholder={placeholder}
+    return (
+        <FormGroup className={className}>
+            <Label htmlFor={label} className="mr-sm-2">{label}</Label>
+            <Input
+                type={type}
+                name={name}
+                id={label}
+                maxLength={maxLength}
+                onChange={onChange}
+                value={value}
+                placeholder={placeholder}
             >
                 {selectOptions && selectOptions.map((option) => (
                     <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
             </Input>
-    </FormGroup>
->>>>>>> 72e9e9483 (refactor code)
-  )
+        </FormGroup>
+    )
 }
