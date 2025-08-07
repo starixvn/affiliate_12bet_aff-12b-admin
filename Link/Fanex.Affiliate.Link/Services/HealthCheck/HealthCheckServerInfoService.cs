@@ -1,6 +1,8 @@
 namespace Fanex.Affiliate.Link.Services.HealthCheck
 {
+    using Azure.Core;
     using Extensions;
+    using Fanex.Affiliate.Link.Constants;
     using Fanex.Affiliate.Link.Helpers;
     using System.Collections.ObjectModel;
     using System.Globalization;
@@ -116,16 +118,22 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
                 var context = _httpContextAccessor.HttpContext;
                 if (context != null)
                 {
+                    result.Add("Server Time", DateTimeHelper.ServerTime);
+                    result.Add("Last Updated", File.GetCreationTime(typeof(HealthCheckServerInfoService).Assembly.Location).ToString(CultureInfo.InvariantCulture));
                     result.Add("Local Ip", context.Connection.LocalIpAddress?.ToString() ?? "Unknown");
                     result.Add("Local Port", context.Connection.LocalPort);
                     result.Add("Client Ip", context.Connection.RemoteIpAddress?.ToString() ?? "Unknown");
                     result.Add("Actual Client Ip", context.Request.GetClientIP());
                     result.Add("Host", context.Request.Host.ToString());
                     result.Add("Schema", context.Request.Scheme);
-                }
+                    result.Add("Headers:", "---------------------------------");
 
-                result.Add("Server Time", DateTimeHelper.ServerTime);
-                result.Add("Last Updated", File.GetCreationTime(typeof(HealthCheckServerInfoService).Assembly.Location).ToString(CultureInfo.InvariantCulture));
+                    foreach (var item in context.Request.Headers.Where(i => i.Key.Contains(HeaderKey.X, StringComparison.OrdinalIgnoreCase)
+                        || i.Key.Contains(HeaderKey.CF, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        result.Add($" - {item.Key}", item.Value.ToString());
+                    }
+                }
             }
             catch (Exception ex)
             {

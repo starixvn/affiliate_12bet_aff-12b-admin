@@ -11,8 +11,8 @@ namespace Fanex.Affiliate.Link.Extensions
 
         public static string GetClientIP(this HttpRequest request)
         {
-            var xActualIP = request.Headers[HeaderKey.HTTP_X_ACTUAL_IP].ToString();
-            var xForwardedFor = !string.IsNullOrWhiteSpace(xActualIP) ? xActualIP : request.Headers[HeaderKey.HTTP_X_FORWARDED_FOR].ToString();
+            var xActualIP = request.Headers[HeaderKey.X_ACTUAL_IP].ToString();
+            var xForwardedFor = !string.IsNullOrWhiteSpace(xActualIP) ? xActualIP : request.Headers[HeaderKey.X_FORWARDED_FOR].ToString();
 
             var clientValidIP = GetValidIPAddress(xForwardedFor);
 

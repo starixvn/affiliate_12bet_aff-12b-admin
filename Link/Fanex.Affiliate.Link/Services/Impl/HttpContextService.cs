@@ -86,11 +86,11 @@ namespace Fanex.Affiliate.Link.Services.Impl
             var request = httpContextAccessor.HttpContext?.Request;
             if (request == null)
             {
-                return "https";
+                return "http";
             }
 
             // 1. Check Cloudflare's CF-Visitor header (JSON format: {"scheme":"https"}) first
-            var cfVisitor = request.Headers[HeaderKey.HTTP_CF_VISITOR].FirstOrDefault();
+            var cfVisitor = request.Headers[HeaderKey.CF_VISITOR].FirstOrDefault();
             if (!string.IsNullOrEmpty(cfVisitor))
             {
                 try
@@ -112,7 +112,7 @@ namespace Fanex.Affiliate.Link.Services.Impl
             }
 
             // 2. Check X-Forwarded-Proto header (may be comma-separated)
-            var xForwardedProto = request.Headers[HeaderKey.HTTP_X_FORWARDED_PROTO].FirstOrDefault();
+            var xForwardedProto = request.Headers[HeaderKey.X_FORWARDED_PROTO].FirstOrDefault();
             if (!string.IsNullOrEmpty(xForwardedProto))
             {
                 var protos = xForwardedProto.Split(',');

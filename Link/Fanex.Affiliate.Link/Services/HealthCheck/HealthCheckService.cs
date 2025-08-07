@@ -2,6 +2,7 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
 {
     using Constants;
     using EasyNetQ;
+    using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.Helpers;
     using Fanex.Caching;
     using Fanex.Data.Repository;
@@ -106,14 +107,14 @@ namespace Fanex.Affiliate.Link.Services.HealthCheck
             // Test connect Database by the dynamic repository (external API service)
             try
             {
-                var testCriteria = new Criterias.BaseCriteria("Aff_Market_Sel");
-                var result = await _dynamicRepository.FetchAsync<dynamic>(testCriteria);
+                var criteria = new GetMaxClickIdCriteria();
+                var result = await _dynamicRepository.GetAsync<long>(criteria);
 
                 stopwatch.Stop();
 
-                if (result != null)
+                if (result != 0)
                 {
-                    return ComponentHealth.Healthy("Database",
+                    return ComponentHealth.Healthy($"Database  - ClickId - {result}",
                         "Database connection via DynamicRepository successful", stopwatch.Elapsed);
                 }
 
