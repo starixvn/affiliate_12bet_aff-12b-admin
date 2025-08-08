@@ -1,32 +1,32 @@
-﻿using Fanex.Affiliate.Admin.Core.Controllers.Affiliate;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Extensions;
-using Fanex.Affiliate.Admin.Core.MetaModels;
-using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
-using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Services.Affiliate;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
-using Moq;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.Mvc;
-using Xunit;
-
-namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
+﻿namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
 {
+    using System.Collections.Generic;
+    using System.Web;
+    using System.Web.Mvc;
+    using Core.Controllers.Affiliate;
+    using Core.Extensions;
+    using Core.Services.Affiliate;
+    using Core.Services.Common;
+    using Core.Services.Operation;
+    using DTO;
+    using DTO.Affiliate;
+    using DTO.Operation;
+    using TestHelper;
+    using MetaModels;
+    using MetaModels.Affiliate;
+    using MetaModels.Operation;
+    using Moq;
+    using ViewModels.Affiliate;
+    using Xunit;
+
     public class AffiliateControllerTest
     {
         [Fact]
         public void Index_WhenCall_ReturnView()
         {
             // Arrange
-            var commissionGroupRepository = new Mock<ICommGroupCommonService>();
-            commissionGroupRepository.Setup(c => c.GetNormalCommGroupList(It.IsAny<GetGroupListParam>())).Returns(new List<NormalCommGroup> { new NormalCommGroup() });
+            var commissionGroupRepository = new Mock<ICommonDealService>();
+            commissionGroupRepository.Setup(c => c.GetNormalDealList(It.IsAny<GetNormalDealParam>())).Returns(new List<NormalDeal> { new NormalDeal() });
             var languageService = new Mock<ISystemService>();
             languageService.Setup(l => l.GetLanguageList()).Returns(new List<Language> { new Language() });
 
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
         }
 
         [Fact]
-        public void GetAffiliateList_WhenCallWithValidParam_ExcuteWithCorrectData()
+        public void GetAffiliateList_WhenCallWithValidParam_ExecuteWithCorrectData()
         {
             // Arrange
             var param = new AffiliateInfoParam();
@@ -156,13 +156,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Affiliate
             ISessionService sessionService = null,
             ISystemService languageService = null,
             IAffiliateService affiliateService = null,
-            ICommGroupCommonService commissionGroupRepository = null
+            ICommonDealService commissionGroupRepository = null
             )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLanguageService = languageService ?? Mock.Of<ISystemService>();
             var fakeAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
-            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommGroupCommonService>();
+            var fakeCommissionGroupRepository = commissionGroupRepository ?? Mock.Of<ICommonDealService>();
 
             var controller = new AffiliateController(fakeSessionService, fakeAffiliateService, fakeCommissionGroupRepository, fakeLanguageService);
 

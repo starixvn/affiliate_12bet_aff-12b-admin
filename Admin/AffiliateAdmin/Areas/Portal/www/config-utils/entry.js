@@ -6,9 +6,6 @@ const styleDist = projectPath.relativeOutputPath + "/style";
 const clientRoot = projectPath.clientInputPath;
 
 module.exports = {
-    [`${jsDist}/pages/commission/commission-group`]: clientRoot + "/js/pages/commission-group/index.jsx",
-    [`${jsDist}/pages/commission/assign-group`]: clientRoot + "/js/pages/commission-group/components/assign-group/index.jsx",
-    [`${jsDist}/pages/commission/assign-private-group`]: clientRoot + "/js/pages/commission-group/components/assign-private-group/index.jsx",
     [`${jsDist}/pages/report`]: clientRoot + "/js/pages/report/index.jsx",
     [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
     [`${jsDist}/pages/affiliate/marketing-account`]: clientRoot + "/js/pages/marketing-account/index.jsx",
@@ -23,6 +20,8 @@ module.exports = {
     [`${jsDist}/pages/administrator/administrator`]: clientRoot + "/js/pages/administrator/administrator/index.jsx",
     [`${jsDist}/pages/administrator/department`]: clientRoot + "/js/pages/administrator/department/index.jsx",
     [`${jsDist}/pages/home`]: clientRoot + "/js/pages/home/index.jsx",
+    [`${jsDist}/pages/operation/deal`]: clientRoot + "/js/pages/operation/index.jsx",
+    [`${jsDist}/pages/operation/assign-deal`]: clientRoot + "/js/pages/operation/assign-deal/index.jsx",
 
     //Media Gallery
     [`${jsDist}/pages/media-gallery/media-gallery`]: clientRoot + "/js/pages/media-gallery/index.jsx",
@@ -37,7 +36,6 @@ module.exports = {
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",
     [`${styleDist}/user-panel-layout`]: clientRoot + "/style/layout/user-panel-layout.scss",
-    [`${styleDist}/pages/commission-group`]: clientRoot + "/style/pages/commission-group.scss",
     [`${styleDist}/pages/report`]: clientRoot + "/style/pages/report/index.scss",
     [`${styleDist}/pages/affiliate-info`]: clientRoot + "/style/pages/affiliate-info.scss",
     [`${styleDist}/pages/email-history`]: clientRoot + "/style/pages/email-history.scss",
@@ -53,4 +51,5 @@ module.exports = {
     [`${styleDist}/home`]: clientRoot + "/style/pages/home.scss",
     [`${styleDist}/12bet`]: clientRoot + "/style/themes/12bet.scss",
     [`${styleDist}/pages/marketing-account`]: clientRoot + "/style/pages/marketing-account/index.scss",
+    [`${styleDist}/pages/operation/deal`]: clientRoot + "/style/pages/operation/deal.scss",
 };

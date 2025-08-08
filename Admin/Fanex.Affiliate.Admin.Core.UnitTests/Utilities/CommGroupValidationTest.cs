@@ -1,14 +1,8 @@
-﻿using Fanex.Affiliate.Admin.Core.Constants;
+﻿using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Services.Affiliate;
-using Fanex.Affiliate.Admin.Core.Services.Auth;
-using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.Utilities.CommGroup;
-using Moq;
-using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.DTO.Operation;
+using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
+using Fanex.Affiliate.Admin.Core.Utilities.Operation;
 using Xunit;
 
 namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
@@ -16,53 +10,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
     public class CommGroupValidationTest
     {
         [Fact]
-        public void HasPermissionAssignOnAff_WhenCallWithApprovedAff_ExcuteSucceed()
-        {
-            // Arrange
-            var affiliateService = new Mock<IAffiliateService>();
-            affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), It.IsAny<string>())).Returns(new AffiliateBasicInfo { AffCode = "123456" });
-
-            var helper = CreateCommGroupValidationHelper(affiliateService: affiliateService.Object);
-
-            // Action
-            var result = helper.HasPermissionAssignOnAff(123, 234);
-
-            // Assert
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void HasPermissionAssignOnAff_WhenCallWithPendingOrDisapprovedAff_ExcuteSucceed()
-        {
-            // Arrange
-            var affiliateService = new Mock<IAffiliateService>();
-            affiliateService.Setup(a => a.GetAffiliateBasicInfo(It.IsAny<int?>(), It.IsAny<string>())).Returns(new AffiliateBasicInfo());
-
-            var authService = new Mock<IAuthService>();
-            authService.Setup(a => a.GetPermissionList(It.IsAny<int>())).Returns(new List<UserPermission> { new UserPermission { FunctionName = Function.EditAffStatus, IsHost = true } });
-
-            var helper = CreateCommGroupValidationHelper(authService.Object, affiliateService.Object);
-
-            // Action
-            var result = helper.HasPermissionAssignOnAff(123, 234);
-
-            // Assert
-            Assert.True(result);
-        }
-
-        [Fact]
-        public void ValidateCommGroup_WhenCall_ExcuteSucceed()
+        public void ValidateCommGroup_WhenCall_ExecuteSucceed()
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
-
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            Assert.True(result.isValid);
         }
 
         [Fact]
@@ -70,15 +28,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
-            param.PlatformFeeList = new List<TierDeductionSettingParam>();
+            param.PlatformFeeSetting = new List<RevenueDeductionSetting>();
 
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
 
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.False(result.isValid);
         }
 
         [Fact]
@@ -86,9 +44,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
-            param.PlatformFeeList = new List<TierDeductionSettingParam>
+            param.PlatformFeeSetting = new List<RevenueDeductionSetting>
             {
-                new TierDeductionSettingParam
+                new RevenueDeductionSetting
                 {
                     DeductedPercentage = 0.17m,
                     DeductionId = 10,
@@ -97,14 +55,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                     DeductedAmount = ""
                 }
             };
-
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
 
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.False(result.isValid);
         }
 
         [Theory]
@@ -115,7 +72,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
             // Arrange
             var param = CreateValidCommGroupSettingParam();
 
-            param.WithdrawalFee = new TierDeductionSettingParam
+            param.WithdrawalFeeSetting = new RevenueDeductionSetting
             {
                 DeductedPercentage = 0.07m,
                 DeductionId = 14,
@@ -124,13 +81,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 DeductedAmount = deductedAmount
             };
 
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
 
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.False(result.isValid);
         }
 
         [Fact]
@@ -138,7 +95,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
-            param.DepositFee = new TierDeductionSettingParam
+            param.DepositFeeSetting = new RevenueDeductionSetting
             {
                 DeductedPercentage = 0.07m,
                 DeductionId = 13,
@@ -147,13 +104,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 DeductedAmount = "abc"
             };
 
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
 
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.False(result.isValid);
         }
 
         [Fact]
@@ -161,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
-            param.DepositFee = new TierDeductionSettingParam
+            param.DepositFeeSetting = new RevenueDeductionSetting
             {
                 DeductedPercentage = 0.07m,
                 DeductionId = 13,
@@ -169,15 +126,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                 IsDeductedPercent = false,
                 DeductedAmount = "100"
             };
-            param.TierSettingList = new List<TierSettingParam>();
+            param.RevenueTierSetting = new List<RevenueTierSetting>();
 
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
 
             // Assert
-            Assert.True(result.IsSuccessful);
+            Assert.True(result.isValid);
         }
 
         [Fact]
@@ -185,16 +142,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
-            param.TierSettingList = new List<TierSettingParam>
+            param.RevenueTierSetting = new List<RevenueTierSetting>
             {
-                new TierSettingParam
+                new RevenueTierSetting
                 {
                     Commission = 0.01m,
                     MinAmount = 101,
                     MinQm = 0,
                     TierId = 1
                 },
-                new TierSettingParam
+                new RevenueTierSetting
                 {
                     Commission = 0.10m,
                     MinAmount = 100_000_000_001,
@@ -202,14 +159,13 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                     TierId = 2
                 }
             };
-
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
-
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
+            
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.False(result.isValid);
         }
 
         [Fact]
@@ -217,16 +173,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
         {
             // Arrange
             var param = CreateValidCommGroupSettingParam();
-            param.TierSettingList = new List<TierSettingParam>
+            param.RevenueTierSetting = new List<RevenueTierSetting>
             {
-                new TierSettingParam
+                new RevenueTierSetting
                 {
                     Commission = 0.01m,
                     MinAmount = 0,
                     MinQm = 101,
                     TierId = 1
                 },
-                new TierSettingParam
+                new RevenueTierSetting
                 {
                     Commission = 0.10m,
                     MinAmount = 101,
@@ -234,36 +190,30 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                     TierId = 2
                 }
             };
-
-            var helper = CreateCommGroupValidationHelper();
+            var products = CreateProductList();
 
             // Action
-            var result = helper.ValidateCommGroup(param);
+            var result = RevenueShareValidator.ValidateRevenueShare(param, products);
 
             // Assert
-            Assert.False(result.IsSuccessful);
+            Assert.False(result.isValid);
         }
 
-        private static CommGroupValidation CreateCommGroupValidationHelper(IAuthService authService = null, IAffiliateService affiliateService = null)
+        private static IEnumerable<Product> CreateProductList()
         {
-            var fakeIauthService = authService ?? Mock.Of<IAuthService>();
-            var fakeIAffiliateService = affiliateService ?? Mock.Of<IAffiliateService>();
-            var systemService = new Mock<ISystemService>();
-
-            systemService.Setup(p => p.GetProductList()).Returns(new List<Product>
+            return new List<Product>
             {
                 new Product { ProductId = 1 },
                 new Product { ProductId = 2 },
                 new Product { ProductId = 3 }
-            });
-
-            return new CommGroupValidation(fakeIauthService, fakeIAffiliateService, systemService.Object);
+            };
         }
-        private static CommGroupSettingParam CreateValidCommGroupSettingParam()
+
+        private static DealSettingParam CreateValidCommGroupSettingParam()
         {
-            return new CommGroupSettingParam
+            return new DealSettingParam
             {
-                DepositFee = new TierDeductionSettingParam
+                DepositFeeSetting = new RevenueDeductionSetting
                 {
                     DeductedPercentage = 0.02m,
                     DeductionId = 13,
@@ -271,7 +221,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                     IsDeductedPercent = true,
                     DeductedAmount = ""
                 },
-                WithdrawalFee = new TierDeductionSettingParam
+                WithdrawalFeeSetting = new RevenueDeductionSetting
                 {
                     DeductedPercentage = 0.02m,
                     DeductionId = 14,
@@ -279,9 +229,9 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                     IsDeductedPercent = true,
                     DeductedAmount = ""
                 },
-                PlatformFeeList = new List<TierDeductionSettingParam>
+                PlatformFeeSetting = new List<RevenueDeductionSetting>
                 {
-                    new TierDeductionSettingParam
+                    new RevenueDeductionSetting
                     {
                         DeductedPercentage = 0.17m,
                         DeductionId = 10,
@@ -290,16 +240,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Utilities
                         DeductedAmount = ""
                     }
                 },
-                TierSettingList = new List<TierSettingParam>
+                RevenueTierSetting = new List<RevenueTierSetting>
                 {
-                    new TierSettingParam
+                    new RevenueTierSetting
                     {
                         Commission = 0.01m,
                         MinAmount = 0,
                         MinQm = 0,
                         TierId = 1
                     },
-                    new TierSettingParam
+                    new RevenueTierSetting
                     {
                         Commission = 0.10m,
                         MinAmount = 101,

@@ -1,29 +1,29 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
+    using System.Linq;
     using System.Threading.Tasks;
+    using System.Web.Mvc;
     using Attributes;
     using Constants;
     using DTO;
-    using Newtonsoft.Json;
-    using Resources;
-    using Services.Common;
-    using ViewModels.Affiliate;
     using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
     using Fanex.Affiliate.Admin.Core.Extensions;
-    using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
     using Fanex.Affiliate.Admin.Core.Services.Affiliate;
-    using Fanex.Affiliate.Admin.Core.Services.CommGroup;
+    using MetaModels.Operation;
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-    using System.Linq;
+    using Resources;
+    using Services.Common;
+    using Services.Operation;
+    using ViewModels.Affiliate;
 
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class MarketingAccountController : ReadOnlySessionBaseController
     {
         private readonly ISystemService _systemService;
         private readonly IMarketingAccountService _marketingAccountService;
-        private readonly ICommGroupCommonService _commGroupCommonService;
+        private readonly ICommonDealService _commonDealService;
 
         private readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
         {
@@ -34,11 +34,11 @@
             ISessionService sessionService,
             ISystemService systemService,
             IMarketingAccountService marketingAccountService,
-            ICommGroupCommonService commService) : base(sessionService)
+            ICommonDealService commonDealService) : base(sessionService)
         {
             _systemService = systemService;
             _marketingAccountService = marketingAccountService;
-            _commGroupCommonService = commService;
+            _commonDealService = commonDealService;
         }
 
         public ActionResult Index()
@@ -47,7 +47,6 @@
             {
                 new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), FunctionName = Function.Affiliate },
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest"), FunctionName = Function.Payment },
-                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup },
                 new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory"), FunctionName = Function.EmailHistory },
                 new SubMenu { Name = Lang.MarketingAccount, Url = Url.Content("~/Portal/MarketingAccount"), FunctionName = Function.Affiliate, IsActive = true }
             };
@@ -55,7 +54,7 @@
             var viewModel = new MarketingAccountViewModel
             {
                 LanguageList = _systemService.GetLanguageList(),
-                DealList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()).Where(c => c.GroupName.Contains("NoCommission-")),
+                DealList = _commonDealService.GetNormalDealList(new GetNormalDealParam()).Where(c => c.GroupName.Contains("NoCommission-")),
                 TargetCountryList = _systemService.GetTargetCountryList(),
                 SubMenuList = subMenu
             };

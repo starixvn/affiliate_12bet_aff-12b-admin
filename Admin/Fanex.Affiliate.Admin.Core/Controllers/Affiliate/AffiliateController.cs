@@ -1,18 +1,18 @@
-﻿using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
-using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Affiliate;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.Operation;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
-using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
 {
@@ -21,18 +21,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
     {
         private readonly IAffiliateService _affiliateService;
 
-        private readonly ICommGroupCommonService _commGroupCommonService;
+        private readonly ICommonDealService _commonDealService;
 
         private readonly ISystemService _systemService;
 
         public AffiliateController(
             ISessionService sessionService,
             IAffiliateService affiliateService,
-            ICommGroupCommonService commGroupCommonService,
+            ICommonDealService commonDealService,
             ISystemService systemService) : base(sessionService)
         {
-            _commGroupCommonService = commGroupCommonService;
             _affiliateService = affiliateService;
+            _commonDealService = commonDealService;
             _systemService = systemService;
         }
 
@@ -43,14 +43,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.Affiliate
             {
                 new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/Affiliate"), FunctionName = Function.Affiliate, IsActive = true },
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Portal/PaymentRequest"), FunctionName = Function.Payment },
-                new SubMenu { Name = Lang.RevenueGroup, Url = Url.Content("~/Portal/RevenueGroup"), FunctionName = Function.RevenueGroup },
                 new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Portal/EmailHistory"), FunctionName = Function.EmailHistory },
                 new SubMenu { Name = Lang.MarketingAccount, Url = Url.Content("~/Portal/MarketingAccount"), FunctionName = Function.Affiliate }
             };
 
             var viewModel = new AffiliateInfoViewModel
             {
-                CommGroupList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam()),
+                CommGroupList = _commonDealService.GetNormalDealList(new GetNormalDealParam()),
                 LanguageList = _systemService.GetLanguageList(),
                 TargetCountryList = _systemService.GetTargetCountryList(),
                 SelectedGroupId = groupId,

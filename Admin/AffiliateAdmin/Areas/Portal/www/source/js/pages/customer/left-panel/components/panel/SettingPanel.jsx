@@ -7,7 +7,7 @@ import { Row, Col, Button } from 'reactstrap';
 
 import { resource, status, messages, statusForSuspend } from '../../libs/constants';
 import { updateAffType, updateStatus, getAffiliateInfo, getTransferLimitSetting } from '../../actions';
-import CommissionGroupPopup from '../../../../common/components/CommissionGroupPopup';
+import AssignDealPopup from '../../../../operation/assign-deal/AssignDealPopup';
 import NotificationPopup from '../../../../common/components/NotificationPopup';
 import TransferBalanceForPlayerSettingPopup from './TransferBalanceForPlayerSettingPopup';
 import ClaimPrincipal, { claimResource } from '../../../../../modules/claim';
@@ -171,13 +171,12 @@ export class SettingPanel extends PureComponent {
                                 {affiliateInfo.Status}
                             </Button>
                         </div>
-                        <CommissionGroupPopup
-                            showPopupCommGroup={isAssignCommissionGroup}
-                            isPrivateGroup={false}
+                        <AssignDealPopup
+                            showPopupAssignDeal={isAssignCommissionGroup}
                             isNewAffiliate={true}
                             affName={affiliateInfo.AffName}
                             affId={affiliateInfo.AffId}
-                            setShowPopupCommGroup={this.toggleAssignCommissionPopup}
+                            setShowPopupAssignDeal={this.toggleAssignCommissionPopup}
                             getAffiliateInfo={this.props.getAffiliateInfo}
                         />
                     </Col>

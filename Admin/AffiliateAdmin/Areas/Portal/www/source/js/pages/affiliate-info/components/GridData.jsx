@@ -144,7 +144,7 @@ export class GridData extends Component {
         const { languageList, targetCountryList, isShowMemberLink } = this.props;
         const status = dataItem.Status && htmlDecode(dataItem.Status).toLowerCase();
         const isApproved = status == "approved";
-        const commissionGroupName = htmlDecode(dataItem.CommissionGroup);
+        const commissionGroup = htmlDecode(dataItem.CommissionGroup);
         const firstName = htmlDecode(dataItem.FirstName);
         const lastName = htmlDecode(dataItem.LastName);
         const phone = htmlDecode(dataItem.Phone);
@@ -167,11 +167,6 @@ export class GridData extends Component {
             </Button>);
         const targetCountry = targetCountryList[dataItem.TargetCountryCode];
         const language = languageList[dataItem.Language];
-        const commissionGroup = dataItem.IsUsingPrivateCommGroup ? (
-            <Button color="link"
-                onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
-                {commissionGroupName}
-            </Button>) : commissionGroupName;
 
         const isFavorite = dataItem.IsFavorite
         const checkFavorite = isFavorite ? "favor-check" : "favor-uncheck";
@@ -206,7 +201,7 @@ export class GridData extends Component {
                 {selectedColumnList['RegistrationDateText'] && <td title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</td>}
                 {selectedColumnList['ApprovalDateText'] && <td title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</td>}
                 {selectedColumnList['ApprovedByText'] && <td title={approvedBy}>{approvedBy}</td>}
-                {selectedColumnList['CommissionGroup'] && <td title={typeof commissionGroup === 'string' ? commissionGroup : commissionGroupName}>{commissionGroup}</td>}
+                {selectedColumnList['CommissionGroup'] && <td title={commissionGroup}>{commissionGroup}</td>}
                 {selectedColumnList['BalanceBf'] && <td className="text-right" title={balanceBf}>{balanceBf}</td>}
                 {selectedColumnList['Currency'] && <td title={dataItem.Currency}>{dataItem.Currency}</td>}
                 {selectedColumnList['PlayerUserName'] && <td title={playerUserName}>{playerUserName}</td>}
@@ -255,12 +250,6 @@ export class GridData extends Component {
     handleChangePassword = (affId) => {
         this.props.setShowPopupPassword(true);
         this.props.setAffId(affId);
-    }
-
-    handleEditCommGroup = (affId, commGroup) => {
-        this.props.setShowPopupCommGroup(true);
-        this.props.setAffId(affId);
-        this.props.setCommGroup(commGroup);
     }
 
     handlePaging = (index, size) => {

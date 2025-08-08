@@ -39,5 +39,7 @@
         public bool IsUsingPrivateCommGroup { get; set; }
 
         public int AffCategoryId { get; set; }
+
+        public int GroupTypeId { get; set; }
     }
 }
