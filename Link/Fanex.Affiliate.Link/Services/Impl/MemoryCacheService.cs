@@ -2,7 +2,6 @@
 using Fanex.Caching;
 using Fanex.Caching.Memory;
 using Newtonsoft.Json;
-using System;
 
 namespace Fanex.Affiliate.Link.Services.Impl
 {
@@ -12,7 +11,7 @@ namespace Fanex.Affiliate.Link.Services.Impl
 
         private static readonly ICache MemoryCacheInstance = new MemoryCache(new MemoryCacheOptions());
 
-        public MemoryCacheService() {}
+        public MemoryCacheService() { }
 
         public T Get<T>(string key)
         {
@@ -26,6 +25,15 @@ namespace Fanex.Affiliate.Link.Services.Impl
             if (!Equals(value, default(T)))
             {
                 var cachePolicy = new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(seconds));
+                MemoryCacheInstance.Set(key, DeepClone(value), cachePolicy);
+            }
+        }
+        public void SetWithSilingExpire<T>(string key, T value, int seconds = TIMEOUT)
+        {
+            if (!Equals(value, default(T)))
+            {
+                var cachePolicy = new CacheItemOptions();
+                cachePolicy.SetSlidingExpiration(TimeSpan.FromSeconds(seconds));
                 MemoryCacheInstance.Set(key, DeepClone(value), cachePolicy);
             }
         }

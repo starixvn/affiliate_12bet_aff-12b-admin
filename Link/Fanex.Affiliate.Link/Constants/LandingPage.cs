@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Fanex.Affiliate.Link.Constants
+﻿namespace Fanex.Affiliate.Link.Constants
 {
     public static class LandingPage
     {

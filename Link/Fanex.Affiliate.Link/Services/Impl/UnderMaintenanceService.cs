@@ -1,30 +1,25 @@
 ﻿namespace Fanex.Affiliate.Link.Services.Impl
 {
+    using Fanex.Affiliate.Link.Models;
     using Fanex.Affiliate.Link.Services.Interface;
-    using ONEbook.UM;
-    using ONEbook.UM.Models;
-    using ONEbook.UM.Services;
 
     public class UnderMaintenanceService : IUnderMaintenanceService
     {
-        private readonly IMaintenanceService _maintenanceService;
-        public UnderMaintenanceService()
-        {
-            _maintenanceService = new MaintenanceService(
-                                  UMClientManager.RestClient,
-                                  UMClientManager.CacheService,
-                                  UMClientManager.UMClientConfigs,
-                                  UMClientManager.HttpContext);
-        }
-
         public UnderMaintenanceTime GetUnderMaintenanceTime()
         {
-            return _maintenanceService.GetUnderMaintenanceTime();
+            // Simplified implementation - always return not under maintenance
+            return new UnderMaintenanceTime
+            {
+                IsUnderMaintenance = false,
+                Message = "System is operational",
+                StartTime = null,
+                EndTime = null
+            };
         }
 
         public bool IsUnderMaintenance()
         {
-            return _maintenanceService.IsUnderMaintenance();
+            return false; // Simplified - always return false
         }
     }
 }

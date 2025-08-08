@@ -1,33 +1,31 @@
 ﻿using Fanex.Logging;
 using Fanex.Logging.Sentry.RavenClient;
 using SharpRaven;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
 
-namespace Fanex.Affiliate.Link
+namespace Fanex.Affiliate.Link;
+
+public static class LoggingConfig
 {
-    public static class LoggingConfig
+    public static void RegisterSentry()
     {
-        public static void RegisterSentry()
-        {
-            var appSetting = ConfigurationManager.AppSettings;
-            var env = appSetting.Get("Environment");
-            var backEndDsn = appSetting.Get("SentryBackEndDsn");
-            var category = appSetting.Get("LoggingCategory");
-            var isRegisterSentry = string.Equals(appSetting.Get("IsRegisterSentry"), "true", StringComparison.CurrentCultureIgnoreCase);
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
 
-            if (isRegisterSentry && !string.IsNullOrEmpty(backEndDsn))
+        var env = configuration["Sentry:Environment"];
+        var backEndDsn = configuration["Sentry:Dsn"];
+        var category = configuration["Sentry:LogCategory"];
+
+        LogManager.SetDefaultLogCategory(category).Use(new List<ILogEngine>
+        {
+            new SentryLogging(new SentryEngineOptions
             {
-                LogManager.SetDefaultLogCategory(category).Use(new List<ILogEngine>
-                {
-                    new SentryLogging(new SentryEngineOptions
-                    {
-                        Dsn = new Dsn(backEndDsn),
-                        Environment = env
-                    })
-                });
-            }
-        }
+                Dsn = new Dsn(backEndDsn),
+                Environment = env
+            })
+        });
     }
 }
