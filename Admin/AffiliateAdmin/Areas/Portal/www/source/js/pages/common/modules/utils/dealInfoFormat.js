@@ -14,7 +14,7 @@ export const _formatDealText = (deal, isExcludeDeal, dealList) => {
 
     const dealCount = dealNames.length;
     const dealStr = dealNames.join(', ');
-    const text = dealCount > 3
+    const text = dealCount > 2
         ? (isExcludeDeal ? `<strong style="color: royalblue;">Applied To All Deals Except: ${dealCount}</strong>` : `<strong style="color: royalblue;">Applied To: ${dealCount}</strong>`)
         : (isExcludeDeal ? `Applied To All Deals Except: ${dealStr}` : `Applied To: ${dealStr}`);
 
@@ -24,11 +24,11 @@ export const _formatDealText = (deal, isExcludeDeal, dealList) => {
 export const _validateSelectedDealsByMode = (isExcluded, selectedDeals, filterDealMode) => {
     const isExcludeDeal = Number(isExcluded) === filterDealMode.Exclude;
     if (isExcludeDeal && selectedDeals === '0') {
-        return 'Selecting all options is not allowed. Please unselect at least one.';
+        return 'Please deselect at least a deal.';
     }
 
     if (!isExcludeDeal && selectedDeals === '') {
-        return 'Please select at least one deal.';
+        return 'Please select at least a deal.';
     }
 
     return '';
