@@ -18,11 +18,14 @@ export const headerText = {
     UserName: 'Username',
     AffCode: 'Affiliate Code',
     Status: 'Status',
+    FirstName: 'First Name',
+    LastName: 'Last Name',
+    Phone: 'Mobile Phone',
     TargetCountryCode: 'Target Country',
     Language: 'Language',
-    DealName: 'Deal Name',
+    CommissionGroup: 'Deal Name',
     RegistrationDateText: 'Registration Date',
-    CreatedBy: 'Created By',
+    ApprovedByText: 'Created By',
     Action: 'Action'
 }
 
@@ -72,6 +75,18 @@ export const defaultPaymentInfo = {
     playerUsername: '',
     playerCurrency: '',
     playerCurrencyId: 0
+}
+
+export const resource = {
+    Search: globalResource.Search,
+    Space: ' - ',
+    ReportName: 'MARKETING ACCOUNT REPORT',
+    AllStatuses: 'All Statuses',
+    AllTargetCountry: 'All TARGET COUNTRIES',
+    AllLanguages: 'All Languages',
+    UsernameContains: 'USERNAME CONTAINS ',
+    Apostrophe: "'",
+    NA: 'N/A'
 }
 
 export const defaultFilterParams = {

@@ -27,6 +27,13 @@ export const setAff = (data) => {
     }
 }
 
+export const setReportTitle = (data) => {
+    return {
+        type: types.SET_REPORT_TITLE,
+        data
+    }
+}
+
 export const fetchMarketingAccounts = (param) => async () => {
     const response = await post('Portal/Affiliate/GetAffiliateList', param);
 
