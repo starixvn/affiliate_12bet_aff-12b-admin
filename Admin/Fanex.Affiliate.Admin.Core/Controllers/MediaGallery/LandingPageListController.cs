@@ -1,12 +1,12 @@
-﻿using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Services.CommGroup;
+using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Services.Operation;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
 {
@@ -15,13 +15,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     {
         private readonly ILandingPageService _landingPageService;
         private readonly ISystemService _systemService;
-        private readonly ICommGroupCommonService _commGroupCommonService;
+        private readonly ICommonDealService _commGroupCommonService;
 
         public LandingPageListController(
             ISessionService sessionService,
             ILandingPageService landingPageService,
             ISystemService systemService,
-            ICommGroupCommonService commGroupCommonService) : base(sessionService)
+            ICommonDealService commGroupCommonService) : base(sessionService)
         {
             _landingPageService = landingPageService;
             _systemService = systemService;
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.DealList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam());
+            ViewBag.DealList = _commGroupCommonService.GetNormalDealList(new GetNormalDealParam());
             return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
         }
 

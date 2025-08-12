@@ -10,21 +10,21 @@
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
-    using MetaModels.CommissionGroup;
-    using Services.CommGroup;
+    using MetaModels.Operation;
     using Services.Common;
+    using Services.Operation;
     using Utilities;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
-        private readonly ICommGroupCommonService _commGroupCommonService;
+        private readonly ICommonDealService _commGroupCommonService;
 
         public DomainControlController(
             ISessionService sessionService,
             IDomainControlService domainControlService,
-            ICommGroupCommonService commGroupCommonService) : base(sessionService)
+            ICommonDealService commGroupCommonService) : base(sessionService)
         {
             _domainControlService = domainControlService;
             _commGroupCommonService = commGroupCommonService;
@@ -36,7 +36,7 @@
             {
                 AffSubDomainList = _domainControlService.GetSubAffDomainControlList(),
                 TargetCountryList = GetVisibleTargetCountries(),
-                DealList = _commGroupCommonService.GetNormalCommGroupList(new GetGroupListParam())
+                DealList = _commGroupCommonService.GetNormalDealList(new GetNormalDealParam())
             };
 
             return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);
