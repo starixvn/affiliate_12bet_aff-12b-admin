@@ -6,7 +6,7 @@
 @using Fanex.Affiliate.User.Core.Constants
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var userSession = sessionService.UserSession;
+    var currentLanguage = sessionService.CurrentLanguage;
 }
 
 @model string
@@ -25,13 +25,20 @@
     </script>
 
     <link href="~/www/build/styles/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
-    @if (sessionService.CurrentLanguage == SystemLanguage.VietNamLanguageCode)
+    @if (currentLanguage == SystemLanguage.VietNamLanguageCode)
     {
-        <link href="@Url.RenderLink("~/www/build/styles/fonts/tahoma/font.css")" rel="stylesheet" />
+        <link href="~/www/build/styles/fonts/tahoma/font.css" rel="stylesheet" />
     }
     else
     {
-        <link href="@Url.RenderLink("~/www/build/styles/fonts/montserrat/font.css")" rel="stylesheet" />
+        if (currentLanguage == SystemLanguage.ChineseLanguageCode)
+        {
+            <link href="~/www/build/styles/fonts/noto-sans-sc/font.min.css" rel="stylesheet" />
+        }
+        else
+        {
+            <link href="~/www/build/styles/fonts/montserrat/font.min.css" rel="stylesheet" />
+        }
     }
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     <link href="@Url.RenderLink("~/www/build/styles/css/terms-and-coditions.css")" rel="stylesheet" />
