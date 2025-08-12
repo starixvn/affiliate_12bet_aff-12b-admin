@@ -386,6 +386,8 @@ export default class ReportExcel {
             value = this.languageList[value] || '';
         }
 
+        item.PaymentCurrency = item.PaymentCurrency || '';
+
         return {
             t: Excel.getCellType(value),
             v: value,

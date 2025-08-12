@@ -40,7 +40,7 @@ export class Filter extends Component {
             isExcludeNegvCurrentBBF: false,
             selectedBaseCurrency: baseCurrencyList.length && baseCurrencyList[0].ExchangeId || defaultBaseCurrency,
             selectedCurrencyList: currencyList.filter(item => item.checked).map(item => item.key).join(',') || '',
-            selectedPaymentCurrencyList: paymentCurrencyList.filter(item => item.checked).map(item => item.key).join(',') || '',
+            selectedPaymentCurrencyList: 'all',
             isCheckedDatePicker: false,
             fromDate: `${currentMonthString}/01/${currentYear}`,
             toDate: this.nowString,
@@ -217,6 +217,7 @@ export class Filter extends Component {
         const { pagingOption } = this.props;
 
         const isSelectAllCommGroup = this.props.commGroupList.every(c => c.checked);
+        const isSelectAllPaymentCurrency = this.props.paymentCurrencyList.every(c => c.checked);
 
         const param = {
             UserName: userName,
@@ -227,7 +228,7 @@ export class Filter extends Component {
             BaseCurrencyId: Number(selectedBaseCurrency),
             GroupIds: isSelectAllCommGroup ? 'all' : selectedCommGroupList,
             CurrencyIds: selectedCurrencyList,
-            PaymentCurrencyIds: selectedPaymentCurrencyList,
+            PaymentCurrencyIds: isSelectAllPaymentCurrency ? 'all' : selectedPaymentCurrencyList,
             ProductIds: selectedProductList,
             SortType: Number(sortBy),
             SortDirectionType: isSortAscending ? sortDirectionType.ascending : sortDirectionType.descending,
