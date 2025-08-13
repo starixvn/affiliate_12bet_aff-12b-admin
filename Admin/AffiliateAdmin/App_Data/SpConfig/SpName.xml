@@ -10,7 +10,7 @@
   </Function>
   <Function Name="AffiliateInformation">
     <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="Username" ObjectProperty="AffName" />
       <Mapping DataField="Postal" ObjectProperty="Postcode" />
       <Mapping DataField="BankSwiftCode" ObjectProperty="BankCode" />
@@ -145,9 +145,9 @@
 	</Setting>
   </Function>
   <Function Name="MediaGallery">
-    <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_LandingPage_Ins" SpName="Aff_Admin_LandingPage_Ins_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_LandingPage_Upd" SpName="Aff_Admin_LandingPage_Upd_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_LandingPage_Ins" SpName="Aff_Admin_LandingPage_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_LandingPage_Upd" SpName="Aff_Admin_LandingPage_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LandingPage_Del" SpName="Aff_Admin_LandingPage_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_ExcludedTargetCountry_Sel" SpName="Aff_LandingPage_ExcludedTargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_MediaCategory_Sel" SpName="Aff_Admin_MediaCategory_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
@@ -215,22 +215,22 @@
     <Setting Key="Aff_Admin_ChangePassword" SpName="Aff_Admin_ChangePassword" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Domain">
-    <Setting Key="Aff_Admin_AffiliateDomain_Sel" SpName="Aff_Admin_AffiliateDomain_Sel_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_AffiliateDomain_Sel" SpName="Aff_Admin_AffiliateDomain_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateDomain_Ins" SpName="Aff_Admin_AffiliateDomain_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateDomain_Upd" SpName="Aff_Admin_AffiliateDomain_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateDomain_Del" SpName="Aff_Admin_AffiliateDomain_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_LicenseeDomain_Sel" SpName="Aff_Admin_LicenseeDomain_Sel_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_LicenseeDomain_Sel" SpName="Aff_Admin_LicenseeDomain_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LicenseeDomain_Ins" SpName="Aff_Admin_LicenseeDomain_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LicenseeDomain_Upd" SpName="Aff_Admin_LicenseeDomain_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_LicenseeDomain_Del" SpName="Aff_Admin_LicenseeDomain_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+    <Setting Key="Aff_Admin_DomainControl_Sel" SpName="Aff_Admin_DomainControl_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="DomainControlId" ObjectProperty="DomainId" />
       <Mapping DataField="MarketName" ObjectProperty="Market" />
       <Mapping DataField="Status" ObjectProperty="IsUsed" />
     </Setting>
-    <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del_UAT3" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_DomainControl_Ins" SpName="Aff_Admin_DomainControl_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_DomainControl_Upd" SpName="Aff_Admin_DomainControl_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_DomainControl_Del" SpName="Aff_Admin_DomainControl_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_SubAffiliateDomain_Sel" SpName="Aff_Admin_SubAffiliateDomain_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_SubAffiliateDomain_Ins" SpName="Aff_Admin_SubAffiliateDomain_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_SubAffiliateDomain_Upd" SpName="Aff_Admin_SubAffiliateDomain_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
@@ -285,15 +285,15 @@
     <Setting Key="Task_API_PushDataTracker_Upd" SpName="Task_API_PushDataTracker_Upd" DbName="DB12B.bodb_12B.wsv_lap" />
   </Function>
   <Function Name="Operation">
-	<Setting Key="Aff_Admin_Deal_Sel" SpName="Aff_Admin_Deal_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Deal_GroupType_Sel" SpName="Aff_Admin_Deal_GroupType_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Deal_Ins" SpName="Aff_Admin_Deal_Ins_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Deal_Del" SpName="Aff_Admin_Deal_Del_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Deal_Detail_Sel" SpName="Aff_Admin_Deal_Detail_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Deal_Upd" SpName="Aff_Admin_Deal_Upd_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Deal_Schedule_Sel" SpName="Aff_Admin_Deal_Schedule_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Assign_Deal" SpName="Aff_Admin_Assign_Deal_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Assign_Deal_Sel" SpName="Aff_Admin_Assign_Deal_Sel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_Sel" SpName="Aff_Admin_Deal_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_GroupType_Sel" SpName="Aff_Admin_Deal_GroupType_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_Ins" SpName="Aff_Admin_Deal_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_Del" SpName="Aff_Admin_Deal_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_Detail_Sel" SpName="Aff_Admin_Deal_Detail_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_Upd" SpName="Aff_Admin_Deal_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_Schedule_Sel" SpName="Aff_Admin_Deal_Schedule_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Assign_Deal" SpName="Aff_Admin_Assign_Deal" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Assign_Deal_Sel" SpName="Aff_Admin_Assign_Deal_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
 </Functions>
 
