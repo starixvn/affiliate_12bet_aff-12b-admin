@@ -15,5 +15,7 @@
         public bool IsMobile { get; set; }
 
         public string BlockTargetCountry { get; set; }
+
+        public bool IsDefault { get; set; }
     }
 }

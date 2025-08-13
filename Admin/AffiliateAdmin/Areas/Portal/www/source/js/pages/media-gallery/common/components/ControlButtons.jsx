@@ -38,10 +38,10 @@ export const ControlButtons = (props) => {
                         />
                     </React.Fragment>
                 ) : (
-                        <div className="my-2">
-                            <Button outline type="button" onClick={_handleAddItem}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
-                        </div>
-                    )
+                    <div className="my-2">
+                        <Button outline type="button" onClick={_handleAddItem}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                    </div>
+                )
             }
         </React.Fragment>
     );

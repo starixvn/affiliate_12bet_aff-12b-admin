@@ -56,12 +56,19 @@ export const Content = (props) => {
         const landingPageCode = htmlDecode(dataItem.PageCode);
         const { dealStr, deal } = _formatDealText(dataItem.DealIds, dataItem.IsExcluded, props.dealList);
         const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
+        const isDefault = dataItem.IsDefault;
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedLandingPages[dataItem.PageId] || false}
-                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.PageId)} />
+                    {
+                        isDefault ? (
+                            <input type="checkbox" disabled checked={false} />
+                        ) : (
+                            <input type="checkbox" checked={props.checkedLandingPages[dataItem.PageId] || false}
+                                onChange={(e) => _onCheckItem(e.target.checked, dataItem.PageId)} />
+                        )
+                    }
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>

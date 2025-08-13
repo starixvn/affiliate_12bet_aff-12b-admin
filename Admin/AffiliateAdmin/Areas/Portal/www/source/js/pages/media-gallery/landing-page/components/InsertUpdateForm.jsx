@@ -54,7 +54,8 @@ export class InsertUpdateForm extends PureComponent {
                     blockTargetCountry: '',
                     isMobile: false,
                     isExcluded: filterDealMode.Exclude,
-                    dealIds: ''
+                    dealIds: '',
+                    isDefault: false
                 },
                 dealListMultipleSelected: _handleInitialDealList(dealList, ''),
                 targetCountryList: _handleInitialTargetCountryList(visibleTargetCountryList, '')
@@ -68,6 +69,7 @@ export class InsertUpdateForm extends PureComponent {
                 const dealIds = htmlDecode(landingPage.DealIds);
                 const isMobile = landingPage.IsMobile;
                 const isExcluded = landingPage.IsExcluded;
+                const isDefault = landingPage.IsDefault;
 
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
@@ -79,7 +81,8 @@ export class InsertUpdateForm extends PureComponent {
                     isMobile,
                     isExcluded,
                     dealIds,
-                    blockTargetCountry: ''
+                    blockTargetCountry: '',
+                    isDefault
                 };
 
                 const newState = {
@@ -232,9 +235,10 @@ export class InsertUpdateForm extends PureComponent {
 
     render() {
         const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, dealListMultipleSelected } = this.state;
+        const { pageCode, pageName, isDefault, isMobile, isExcluded, dealIds } = selectedLandingPage;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
-        const dealValidation = _validateSelectedDealsByMode(selectedLandingPage.isExcluded, selectedLandingPage.dealIds, filterDealMode);
+        const dealValidation = _validateSelectedDealsByMode(isExcluded, dealIds, filterDealMode);
         const isValid = pageNameValidation.isValid && pageCodeValidation.isValid && dealValidation === '';
         const isShowPopup = this.props.selectedLandingPageId !== null;
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
@@ -256,7 +260,7 @@ export class InsertUpdateForm extends PureComponent {
                                         <span title={headerText.ShowInDropdown} className="oi icon-info ml-1"></span>
                                     </Label>
                                     <Col sm={8}>
-                                        <Input type="text" name="pageName" className="input-required mt-2" value={selectedLandingPage.pageName} onChange={this._handleChange}
+                                        <Input type="text" name="pageName" className="input-required mt-2" value={pageName} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageNameValidation.isValid} />
                                         {pageNameValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageNameValidation.message }} /></FormFeedback>}
@@ -269,7 +273,7 @@ export class InsertUpdateForm extends PureComponent {
                                         <span title={headerText.ContainInLinks} className="oi icon-info ml-1"></span>
                                     </Label>
                                     <Col sm={8}>
-                                        <Input type="text" name="pageCode" className="input-required mt-2" value={selectedLandingPage.pageCode} onChange={this._handleChange}
+                                        <Input type="text" name="pageCode" className="input-required mt-2" value={pageCode} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageCodeValidation.isValid} />
                                         {pageCodeValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
@@ -278,7 +282,7 @@ export class InsertUpdateForm extends PureComponent {
                                 <FormGroup row className="align-items-center mb-2">
                                     <Label sm={4}>Deal</Label>
                                     <Col sm={8}>
-                                        <Input type="select" name="isExcluded" className='mt-2' value={Number(selectedLandingPage.isExcluded)} onChange={this._handleChangeFilterDealMode}>
+                                        <Input disabled={isDefault} type="select" name="isExcluded" className='mt-2' value={Number(isExcluded)} onChange={isDefault ? null : this._handleChangeFilterDealMode}>
                                             <option key="isExcluded-0" value={filterDealMode.Include}>Applied To</option>
                                             <option key="isExcluded-1" value={filterDealMode.Exclude}>Applied To All Deals Except</option>
                                         </Input>
@@ -296,7 +300,8 @@ export class InsertUpdateForm extends PureComponent {
                                                 noneSelectedLabel="None"
                                                 selectedAllLabel="All Deals"
                                                 hasInputOption={true}
-                                                onChange={this._handleChangeDeals} />
+                                                isDisable={isDefault}
+                                                onChange={isDefault ? null : this._handleChangeDeals} />
                                         </div>
                                         {dealValidation && isClickedSubmit && <span className="text-danger">{dealValidation}</span>}
                                     </Col>
@@ -314,7 +319,8 @@ export class InsertUpdateForm extends PureComponent {
                                                     noneSelectedLabel="None"
                                                     selectedAllLabel="All Target Countries"
                                                     hasInputOption={false}
-                                                    onChange={this._handleChangeTargetCountry} />
+                                                    isDisable={isDefault}
+                                                    onChange={isDefault ? null : this._handleChangeTargetCountry} />
                                             </div>
                                         </Col>
                                     </FormGroup>
@@ -322,7 +328,7 @@ export class InsertUpdateForm extends PureComponent {
                                 <FormGroup row className="align-items-center mb-2">
                                     <Col sm={4}></Col>
                                     <Label sm={4} className="d-flex mt-1">
-                                        <input type="checkbox" name="isMobile" checked={selectedLandingPage.isMobile} onChange={this._handleChange} />
+                                        <input type="checkbox" name="isMobile" disabled={isDefault} checked={isMobile} onChange={isDefault ? null : this._handleChange} />
                                         <span className='ml-2'>Is Mobile Only</span>
                                     </Label>
                                 </FormGroup>
