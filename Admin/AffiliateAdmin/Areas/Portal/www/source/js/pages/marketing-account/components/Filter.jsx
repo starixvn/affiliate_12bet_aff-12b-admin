@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Form, FormGroup, Input, Button } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 
-import { setParam, setIsShowAddAffMktAccountPopup } from '../actions';
-import { allStatuses, globalResource, statusList } from '../libs/constants';
+import { setParam, setIsShowAddAffMktAccountPopup, setReportTitle } from '../actions';
+import { allStatuses, globalResource, statusList, resource } from '../libs/constants';
 
 export const Filter = (props) => {
     const { languageCodeList, targetCountryCodeList } = props;
@@ -22,6 +22,18 @@ export const Filter = (props) => {
         }
     }
 
+    const _buildReportTitle = (selectedTargetCountry, selectedLanguage, selectedStatus, userName) => {
+        const space = resource.Space;
+        const apostrophe = resource.Apostrophe;
+        const targetCountryTitle = targetCountryCodeList[selectedTargetCountry] || resource.AllTargetCountry;
+        const languageTitle = languageCodeList[selectedLanguage] || resource.AllLanguages;
+        const statusTitle = statusList[selectedStatus] || resource.AllStatuses;
+
+        const userNameTitle = userName && space + resource.UsernameContains + apostrophe + userName + apostrophe;
+
+        return `${resource.ReportName}${space}${targetCountryTitle.toUpperCase()}${space}${languageTitle.toUpperCase()}${space}${statusTitle.toUpperCase()}${userNameTitle || ''}`;
+    };
+
     const _handleSearch = () => {
         const params = {
             "Status": "",
@@ -33,7 +45,9 @@ export const Filter = (props) => {
             "PageSize": 20
         }
 
-        props.setParam({...params, TargetCountryCode: targetCountryCode, Language: languageCode, Status: status === allStatuses ? '' : status, UserName: userName});
+        const finalStatus = status === allStatuses ? '' : status;
+        props.setReportTitle(_buildReportTitle(targetCountryCode, languageCode, finalStatus, userName));
+        props.setParam({ ...params, TargetCountryCode: targetCountryCode, Language: languageCode, Status: finalStatus, UserName: userName});
     };
 
     return (
@@ -99,6 +113,7 @@ const mapStateToProps = ({ languageCodeList, targetCountryCodeList }) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setParam,
+        setReportTitle,
         setIsShowAddAffMktAccountPopup,
     }, dispatch);
 };

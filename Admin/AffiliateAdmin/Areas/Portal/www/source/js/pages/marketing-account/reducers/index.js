@@ -5,7 +5,7 @@ import * as types from '../actions/types';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
-import { defaultFilterParams } from '../libs/constants';
+import { defaultFilterParams, resource } from '../libs/constants';
 
 const languageCodeList = createReducer({}, {});
 const targetCountryCodeList = createReducer({}, {});
@@ -35,6 +35,12 @@ export const aff = createReducer(defaultAff, {
     }
 });
 
+export const reportTitle = createReducer(resource.ReportName, {
+    [types.SET_REPORT_TITLE](prevState, action) {
+        return action.data;
+    }
+});
+
 export default combineReducers({
     params,
     pagingOption,
@@ -45,5 +51,6 @@ export default combineReducers({
     defaultMktAffInfo,
     isShowAddAffMktAccountPopup,
     aff,
+    reportTitle,
     dealOptionsList
 });

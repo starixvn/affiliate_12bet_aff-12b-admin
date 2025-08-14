@@ -53,7 +53,7 @@ export const GridData = (props) => {
         }
         else {
             dataRows.push(<Row>
-                <Cell className="text-center" colSpan={9}>{globalResource.NoInfo}</Cell>
+                <Cell className="text-left" colSpan={9}>{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -66,14 +66,17 @@ export const GridData = (props) => {
                 <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={40} title={headerText.AffCode}>{headerText.AffCode}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.TargetCountryCode}>{headerText.TargetCountryCode}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.DealName}>{headerText.DealName}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.FirstName}>{headerText.FirstName}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.LastName}>{headerText.LastName}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Phone}>{headerText.Phone}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.Status}>{headerText.Status}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.TargetCountryCode}>{headerText.TargetCountryCode}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Language}>{headerText.Language}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.CommissionGroup}>{headerText.CommissionGroup}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.ApprovedByText}>{headerText.ApprovedByText}</Cell>
                 {
-                    props.canAddAffMktAccount && <Cell header={true} colWidth={40} title={headerText.Action}>{headerText.Action}</Cell>
+                    props.canAddAffMktAccount && <Cell header={true} colWidth={30} title={headerText.Action}>{headerText.Action}</Cell>
                 }
             </Row>
         );
@@ -88,18 +91,21 @@ export const GridData = (props) => {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center" title={dataItem.UserName}>
+                <Cell className="text-left" title={dataItem.UserName}>
                     <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="_top">
                         {dataItem.UserName}
                     </a>
                 </Cell>
-                <Cell className="text-center" title={dataItem.AffCode}>{dataItem.AffCode}</Cell>
-                <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>
-                <Cell className="text-center" title={targetCountry}>{targetCountry}</Cell>
-                <Cell className="text-center" title={language}>{language}</Cell>
-                <Cell className="text-center" title={dataItem.CommissionGroup}>{dataItem.CommissionGroup}</Cell>
-                <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
-                <Cell className="text-center" title={dataItem.ApprovedBy}>{dataItem.ApprovedBy}</Cell>
+                <Cell className="text-left" title={dataItem.AffCode}>{dataItem.AffCode}</Cell>
+                <Cell className="text-left" title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
+                <Cell className="text-left" title={dataItem.LastName}>{dataItem.LastName}</Cell>
+                <Cell className="text-left" title={dataItem.Phone}>{dataItem.Phone}</Cell>
+                <Cell className="text-left" title={dataItem.Status}>{dataItem.Status}</Cell>
+                <Cell className="text-left" title={targetCountry}>{targetCountry}</Cell>
+                <Cell className="text-left" title={language}>{language}</Cell>
+                <Cell className="text-left" title={dataItem.CommissionGroup}>{dataItem.CommissionGroup}</Cell>
+                <Cell className="text-left" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
+                <Cell className="text-left" title={dataItem.ApprovedByText}>{dataItem.ApprovedByText}</Cell>
                 {
                     canAddAffMktAccount && (
                         <Cell className="text-center">

@@ -173,6 +173,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Affiliate
 
         private static void HtmlEncodeModelStringProperties(object model, HttpServerUtilityBase server, Type type, params string[] ignoreProperties)
         {
+            if (model is null)
+            {
+                return;
+            }
+
             var stringProperties = type
                 .GetProperties()
                 .Where(p => p.PropertyType == typeof(string) && p.CanWrite && !ignoreProperties.Contains(p.Name));
