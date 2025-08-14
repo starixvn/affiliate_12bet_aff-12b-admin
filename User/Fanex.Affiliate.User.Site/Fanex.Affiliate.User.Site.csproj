@@ -442,6 +442,10 @@
     <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\fonts\noto-sans-sc\font.css" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\font.min.css">
+      <DependentUpon>font.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\Images\404-illus.png" />
     <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
     <Content Include="www\build\styles\Images\account-overview\qr-disabled.png" />
@@ -731,6 +735,7 @@
     <Content Include="www\source\js\pages\products.js" />
     <Content Include="www\source\js\pages\statistics\marketing-statistics.js" />
     <Content Include="www\source\js\pages\sub-affiliate-earning.js" />
+    <Content Include="www\source\styles\fonts\noto-sans-sc\font.css" />
     <Content Include="www\source\styles\scss\vendors\swiper.css" />
     <None Include="Configurations\AppSetting\AppSetting.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1354,6 +1359,15 @@
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.bn-BD.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\mobile.en-PH.webp" />
     <Content Include="www\build\styles\Images\commission\top-banner\item\desktop.en-PH.webp" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-Black.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-Bold.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-ExtraBold.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-ExtraLight.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-Light.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-Medium.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-Regular.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-SemiBold.ttf" />
+    <Content Include="www\build\styles\fonts\noto-sans-sc\NotoSansSC-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
