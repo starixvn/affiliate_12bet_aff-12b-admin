@@ -6,8 +6,7 @@ import {
     bodyCellStyle
 } from '../../../modules/excelStyleConstant';
 import {
-    headerText,
-    resource
+    headerText
 } from './constants';
 
 const REPORT_TITLE_ROW_INDEX = 0;
@@ -122,8 +121,6 @@ export default class ReportExcel {
             value = this.targetCountryList[value] || '';
         } else if (fieldName === fields.Language) {
             value = this.languageList[value] || '';
-        } else if (!value) {
-            value = resource.NA;
         }
 
         return value;
