@@ -98,7 +98,7 @@ export const defaultFilterParams = {
     "Language": "",
     "UserName": "",
     "Email": "",
-    "SortBy": 1,
+    "SortBy": 2,
     "SortDirectionType": false,
     "AffCode": "",
     "AffPlayer": "",
