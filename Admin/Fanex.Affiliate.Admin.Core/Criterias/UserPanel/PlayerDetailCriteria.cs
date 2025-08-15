@@ -1,9 +1,8 @@
 ﻿using Fanex.Data;
-using System;
 
 namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel
 {
-    public class PlayerDetailCriteria : AffPagingCriteria
+    public class PlayerDetailCriteria : AffPagingByDateCriteria
     {
         const string SP_NAME = "Aff_Admin_PlayersDetail_Sel";
 
@@ -12,8 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.UserPanel
         public override bool IsValid() => AffId > 0;
 
         public int ProductId { get; set; }
-
-        public DateTime MonthDate { get; set; }
 
         public bool IsSortAsc { get; set; }
 
