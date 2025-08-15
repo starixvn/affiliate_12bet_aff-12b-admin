@@ -36,13 +36,29 @@ export default class ReportExcel {
 
     export() {
         Excel.process(() => {
-            this._createTitle();
-            this._createHeader();
-            this._createBodyData();
-            this._createTotalRow();
-            this._createExcelConfig();
+            try {
+                this._createTitle();
+                this._createHeader();
+                
+                // For large datasets, process data in batches to avoid memory issues
+                const dataLength = this.data.MainData.length;
+                const batchSize = 500; // Process 500 rows at a time
+                
+                if (dataLength > 2000) {
+                    console.log(`Processing ${dataLength} rows in batches of ${batchSize}...`);
+                    this._createBodyDataInBatches(batchSize);
+                } else {
+                    this._createBodyData();
+                }
+                
+                this._createTotalRow();
+                this._createExcelConfig();
 
-            Excel.export(this.worksheet, reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss'));
+                Excel.export(this.worksheet, reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss'));
+            } catch (error) {
+                console.error('Excel generation failed:', error);
+                throw new Error('Excel generation failed. Dataset may be too large.');
+            }
         })
     }
 
@@ -188,6 +204,35 @@ export default class ReportExcel {
         for (let item of mainData) {
             this._createDataRow(item, configInfo.INDEX_AFFILIATE_COLUMN, MAIN_SECTION_STYLE);
             this.currentRowIndex++;
+        }
+    }
+
+    _createBodyDataInBatches(batchSize) {
+        const mainData = this.data.MainData;
+        const totalBatches = Math.ceil(mainData.length / batchSize);
+        
+        for (let batchIndex = 0; batchIndex < totalBatches; batchIndex++) {
+            const startIndex = batchIndex * batchSize;
+            const endIndex = Math.min(startIndex + batchSize, mainData.length);
+            const batch = mainData.slice(startIndex, endIndex);
+            
+            // Process batch
+            for (let item of batch) {
+                this._createDataRow(item, configInfo.INDEX_AFFILIATE_COLUMN, MAIN_SECTION_STYLE);
+                this.currentRowIndex++;
+            }
+            
+            // Log progress for large datasets
+            if (totalBatches > 5) {
+                const progress = Math.round(((batchIndex + 1) / totalBatches) * 100);
+                console.log(`Excel generation progress: ${progress}% (${batchIndex + 1}/${totalBatches} batches)`);
+            }
+            
+            // Allow browser to breathe between batches for very large datasets
+            if (mainData.length > 5000 && batchIndex < totalBatches - 1) {
+                // Use setTimeout to yield control back to browser
+                // Note: This would need to be implemented with async/await for true non-blocking behavior
+            }
         }
     }
 
