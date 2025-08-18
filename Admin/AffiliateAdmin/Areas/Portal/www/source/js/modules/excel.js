@@ -37,6 +37,42 @@ export default class Excel {
         this.download(workbookOutput, fileName);
     }
 
+    static exportMultiSheet(workbookData, fileName) {
+        try {
+            console.log('Creating multi-sheet Excel file...', { 
+                fileName, 
+                sheetCount: Object.keys(workbookData).length 
+            });
+
+            const option = { bookType: EXCEL_TYPE, bookSST: false, type: 'binary' };
+            const workbook = { 
+                SheetNames: Object.keys(workbookData), 
+                Sheets: {}, 
+                Props: {} 
+            };
+
+            // Add each sheet to the workbook
+            Object.keys(workbookData).forEach(sheetName => {
+                const sheetData = workbookData[sheetName];
+                workbook.Sheets[sheetName] = sheetData.worksheet;
+                
+                console.log(`Added sheet: ${sheetName}`, {
+                    cellCount: Object.keys(sheetData.worksheet).length,
+                    mergeCount: sheetData.mergeConfig ? sheetData.mergeConfig.length : 0
+                });
+            });
+
+            console.log('Writing multi-sheet workbook...');
+            var workbookOutput = _XLSX.write(workbook, option);
+            
+            console.log('Multi-sheet workbook created successfully');
+            this.download(workbookOutput, fileName);
+        } catch (error) {
+            console.error('Error creating multi-sheet Excel file:', error);
+            throw error;
+        }
+    }
+
     static getCellType(value) {
         return MapExcelType[typeof value];
     }

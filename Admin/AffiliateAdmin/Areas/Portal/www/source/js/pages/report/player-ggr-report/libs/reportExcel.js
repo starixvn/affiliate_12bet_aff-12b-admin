@@ -1,6 +1,6 @@
 ﻿import Excel from '../../../../modules/excel';
 import { titleCellStyle, headerCellStyle, bodyCellStyle, totalCellStyle, mergedHeaderCellByRowspanStyle } from '../../../../modules/excelStyleConstant';
-import { headerText, totalText, reportName, defaultGgrProductReport, mappingColumns as fields, maxPageSize } from './constants';
+import { headerText, totalText, reportName, defaultGgrProductReport, mappingColumns as fields, maxPageSize, EXCEL_MAX_ROWS, EXCEL_MAX_CELLS } from './constants';
 import { formatDateTime } from '../../../../modules/utils';
 
 const TITLE_ROW_INDEX = 0;
@@ -52,49 +52,39 @@ export default class ReportExcel {
     }
 
     async export() {
+        const dataLength = this.data.MainData.length;
+        const estimatedCells = dataLength * this.TotalColumn;
+        
+        console.log(`Export analysis:`, {
+            dataLength,
+            totalColumns: this.TotalColumn,
+            estimatedCells,
+            maxRows: EXCEL_MAX_ROWS,
+            maxCells: EXCEL_MAX_CELLS,
+            willUseMultipleSheets: dataLength > EXCEL_MAX_ROWS || estimatedCells > EXCEL_MAX_CELLS
+        });
+        
+        // Check if dataset is too large for a single Excel sheet
+        if (dataLength > EXCEL_MAX_ROWS || estimatedCells > EXCEL_MAX_CELLS) {
+            console.log(`Dataset too large for single Excel sheet. Using multi-sheet approach...`);
+            return this._exportMultipleFiles();
+        } else {
+            console.log(`Dataset size acceptable for single sheet export`);
+            return this._exportSingleFile();
+        }
+    }
+
+    async _exportSingleFile() {
         return new Promise((resolve, reject) => {
             Excel.process(() => {
                 try {
-                    console.log('Starting Excel generation...', {
+                    console.log('Starting single Excel file generation...', {
                         dataLength: this.data.MainData.length,
                         productCount: this.selectedProductList.length,
                         hasTotal: !!this.data.Total
                     });
 
-                    console.log('Step 1: Creating title...');
-                    this._createTitle();
-                    
-                    console.log('Step 2: Creating header...');
-                    this._createHeader();
-                    
-                    const dataLength = this.data.MainData.length;
-                    
-                    console.log('Step 3: Creating body data...');
-                    if (dataLength > maxPageSize) {
-                        console.log(`Processing ${dataLength} rows in batches of ${maxPageSize}...`);
-                        this._createBodyDataInBatches();
-                    } else {
-                        this._createBodyData();
-                    }
-                    
-                    console.log('Step 4: Creating total row...');
-                    this._createTotalRow();
-                    
-                    console.log('Step 5: Creating Excel config...');
-                    this._createExcelConfig();
-
-                    const worksheetSize = Object.keys(this.worksheet).length;
-                    console.log('Worksheet statistics:', {
-                        cellCount: worksheetSize,
-                        mergeCount: this.mergeConfig.length,
-                        totalColumns: this.TotalColumn,
-                        currentRowIndex: this.currentRowIndex,
-                        memoryUsage: performance.memory ? {
-                            used: Math.round(performance.memory.usedJSHeapSize / 1024 / 1024) + 'MB',
-                            total: Math.round(performance.memory.totalJSHeapSize / 1024 / 1024) + 'MB',
-                            limit: Math.round(performance.memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
-                        } : 'Not available'
-                    });
+                    this._generateWorksheet();
 
                     const fileName = reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss');
                     console.log('Step 6: Attempting to export Excel file:', fileName);
@@ -116,6 +106,138 @@ export default class ReportExcel {
                 console.error('Excel.process failed:', error);
                 reject(new Error(`Excel library loading failed: ${error.message}`));
             });
+        });
+    }
+
+    async _exportMultipleFiles() {
+        const dataLength = this.data.MainData.length;
+        // Use more conservative calculation to avoid array limits
+        const maxRowsPerSheet = Math.min(EXCEL_MAX_ROWS, Math.floor(EXCEL_MAX_CELLS / this.TotalColumn), 5000);
+        const totalSheets = Math.ceil(dataLength / maxRowsPerSheet);
+        
+        console.log(`Multi-sheet export configuration:`, {
+            totalRecords: dataLength,
+            totalColumns: this.TotalColumn,
+            maxRowsPerSheet,
+            totalSheets,
+            estimatedCellsPerSheet: maxRowsPerSheet * this.TotalColumn
+        });
+        
+        return new Promise((resolve, reject) => {
+            Excel.process(() => {
+                try {
+                    const workbook = {};
+                    
+                    for (let sheetIndex = 0; sheetIndex < totalSheets; sheetIndex++) {
+                        const startRow = sheetIndex * maxRowsPerSheet;
+                        const endRow = Math.min(startRow + maxRowsPerSheet, dataLength);
+                        const sheetData = {
+                            ...this.data,
+                            MainData: this.data.MainData.slice(startRow, endRow),
+                            Total: sheetIndex === totalSheets - 1 ? this.data.Total : null // Only include total in last sheet
+                        };
+                        
+                        console.log(`Generating sheet ${sheetIndex + 1}/${totalSheets}...`, {
+                            dataLength: sheetData.MainData.length,
+                            recordRange: `${startRow + 1}-${endRow}`,
+                            estimatedCells: sheetData.MainData.length * this.TotalColumn
+                        });
+                        
+                        // Create worksheet for this sheet with memory cleanup
+                        const tempData = this.data;
+                        this.data = sheetData;
+                        this.worksheet = {};
+                        this.currentRowIndex = DATA_ROW_INDEX;
+                        this.mergeConfig = [];
+                        
+                        try {
+                            this._generateWorksheet();
+                            
+                            // Add worksheet to workbook with sheet name
+                            const sheetName = totalSheets > 1 ? `Sheet ${sheetIndex + 1}` : 'Sheet1';
+                            workbook[sheetName] = {
+                                worksheet: { ...this.worksheet },
+                                mergeConfig: [...this.mergeConfig]
+                            };
+                            
+                            console.log(`Sheet ${sheetIndex + 1}/${totalSheets} generated successfully`, {
+                                cellCount: Object.keys(this.worksheet).length
+                            });
+                            
+                            // Clear worksheet to free memory
+                            this.worksheet = {};
+                            this.mergeConfig = [];
+                            
+                        } catch (sheetError) {
+                            console.error(`Error generating sheet ${sheetIndex + 1}:`, sheetError);
+                            throw new Error(`Sheet ${sheetIndex + 1} generation failed: ${sheetError.message}`);
+                        }
+                        
+                        // Restore original data for next iteration
+                        this.data = tempData;
+                    }
+                    
+                    const fileName = reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss');
+                    console.log('Attempting to export multi-sheet Excel file:', fileName, {
+                        totalSheets: Object.keys(workbook).length
+                    });
+                    
+                    Excel.exportMultiSheet(workbook, fileName);
+                    
+                    console.log('Multi-sheet Excel export completed successfully');
+                    resolve();
+                } catch (error) {
+                    console.error('Multi-sheet Excel generation failed:', error);
+                    console.error('Error details:', {
+                        message: error.message,
+                        stack: error.stack,
+                        name: error.name
+                    });
+                    reject(new Error(`Multi-sheet Excel generation failed: ${error.message}`));
+                }
+            }).catch(error => {
+                console.error('Excel.process failed for multi-sheet:', error);
+                reject(new Error(`Excel library loading failed for multi-sheet: ${error.message}`));
+            });
+        });
+    }
+
+
+
+    _generateWorksheet() {
+        console.log('Step 1: Creating title...');
+        this._createTitle();
+        
+        console.log('Step 2: Creating header...');
+        this._createHeader();
+        
+        const dataLength = this.data.MainData.length;
+        
+        console.log('Step 3: Creating body data...');
+        if (dataLength > maxPageSize) {
+            console.log(`Processing ${dataLength} rows in batches of ${maxPageSize}...`);
+            this._createBodyDataInBatches();
+        } else {
+            this._createBodyData();
+        }
+        
+        console.log('Step 4: Creating total row...');
+        this._createTotalRow();
+        
+        console.log('Step 5: Creating Excel config...');
+        this._createExcelConfig();
+
+        const worksheetSize = Object.keys(this.worksheet).length;
+        console.log('Worksheet statistics:', {
+            cellCount: worksheetSize,
+            mergeCount: this.mergeConfig.length,
+            totalColumns: this.TotalColumn,
+            currentRowIndex: this.currentRowIndex,
+            memoryUsage: performance.memory ? {
+                used: Math.round(performance.memory.usedJSHeapSize / 1024 / 1024) + 'MB',
+                total: Math.round(performance.memory.totalJSHeapSize / 1024 / 1024) + 'MB',
+                limit: Math.round(performance.memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
+            } : 'Not available'
         });
     }
 

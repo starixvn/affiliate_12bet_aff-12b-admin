@@ -132,8 +132,25 @@ export class Content extends Component {
         
         try {
             const reportExcel = new ReportExcel(combinedData, reportTitle, selectedProducts);
+            
+            // Check if this will be a multi-sheet export
+            const estimatedCells = allData.length * (6 + selectedProducts.length * 2); // Rough calculation
+            const willBeMultiFile = allData.length > 8000 || estimatedCells > 1500000;
+            
+            if (willBeMultiFile) {
+                this.setState({ 
+                    exportStatus: 'Large dataset detected. Generating Excel file with multiple sheets...' 
+                });
+            }
+            
             await reportExcel.export();
-            console.log('Excel export completed successfully');
+            
+            if (willBeMultiFile) {
+                console.log('Multi-sheet Excel export completed successfully');
+                alert('Export completed! Excel file with multiple sheets has been downloaded due to the large dataset size.');
+            } else {
+                console.log('Excel export completed successfully');
+            }
         } catch (excelError) {
             console.error('Excel generation error:', excelError);
             throw new Error(`Excel generation failed: ${excelError.message}`);
