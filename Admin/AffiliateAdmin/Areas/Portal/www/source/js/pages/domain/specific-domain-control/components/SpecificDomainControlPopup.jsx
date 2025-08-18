@@ -22,13 +22,24 @@ export class SpecificDomainControlPopup extends PureComponent {
 
     _handleUpdateState = async (selectedDomainId) => {
         if (selectedDomainId === 0) {
-            this.setState({ isInsert: true, selectedDomain: { specificDomainControlId: selectedDomainId, affDomain: '', redirectDomain: '', affDomainIsSSL: true, redirectDomainIsSSL: true, status: true } });
+            this.setState({
+                isInsert: true,
+                selectedDomain: {
+                    specificDomainControlId: selectedDomainId,
+                    affDomain: '',
+                    redirectDomain: '',
+                    affDomainIsSSL: true,
+                    redirectDomainIsSSL: true,
+                    status: true,
+                    isMobile: false
+                }
+            });
         } else {
             this.props.toggleLoader(true);
             const domain = await this.props.getSpecificDomainById(selectedDomainId);
 
             if (domain) {
-                const { AffUsername, AffDomain, RedirectDomain, AffDomainIsSSL, RedirectDomainIsSSL, Status } = domain;
+                const { AffUsername, AffDomain, RedirectDomain, AffDomainIsSSL, RedirectDomainIsSSL, Status, IsMobile } = domain;
 
                 this.setState({
                     isInsert: false, selectedDomain: {
@@ -38,7 +49,8 @@ export class SpecificDomainControlPopup extends PureComponent {
                         affDomainIsSSL: AffDomainIsSSL,
                         redirectDomain: RedirectDomain,
                         redirectDomainIsSSL: RedirectDomainIsSSL,
-                        status: Status
+                        status: Status,
+                        isMobile: IsMobile
                     }
                 });
             } else {
@@ -93,7 +105,7 @@ export class SpecificDomainControlPopup extends PureComponent {
         }
 
         const affiliates = affUsernames.split(',');
-        
+
         if (affiliates.length > affsCondition.maximumNumber) {
             this._handleShowAlert(false, 'The function can only create assignment for up to 500 affiliates per request!');
             return false;
@@ -126,16 +138,16 @@ export class SpecificDomainControlPopup extends PureComponent {
             }
 
             const result = await this.props.insertSpecificDomain({
-                ...selectedDomain, 
-                affUsername: affUsernames 
+                ...selectedDomain,
+                affUsername: affUsernames
             });
 
             if (!result) {
                 throw new Error("Failed to add specific domain");
             }
 
-            const message = result.IsSuccessful 
-                ? "Add Specific Domain Successfully!" 
+            const message = result.IsSuccessful
+                ? "Add Specific Domain Successfully!"
                 : result.Message;
 
             this._handleShowAlert(result.IsSuccessful, message);
@@ -206,10 +218,10 @@ export class SpecificDomainControlPopup extends PureComponent {
         }
 
         return (
-            <Modal 
-                isOpen={isShowPopup} 
-                toggle={this._handleClosePopup} 
-                backdrop='static' 
+            <Modal
+                isOpen={isShowPopup}
+                toggle={this._handleClosePopup}
+                backdrop='static'
                 style={{ maxWidth: isInsert ? 550 : 500 }}
             >
                 <ModalHeader toggle={this._handleClosePopup}>
@@ -219,8 +231,8 @@ export class SpecificDomainControlPopup extends PureComponent {
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="domain-form-container">
-                            <Alert 
-                                color={isSuccess ? 'success' : 'danger'} 
+                            <Alert
+                                color={isSuccess ? 'success' : 'danger'}
                                 isOpen={isShowMessage}
                             >
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
@@ -233,28 +245,28 @@ export class SpecificDomainControlPopup extends PureComponent {
                                     <Col sm={9}>
                                         {isInsert ? (
                                             <>
-                                                <Input 
-                                                    type="textarea" 
-                                                    rows="6" 
-                                                    id="affUsernames" 
-                                                    name="affUsernames" 
+                                                <Input
+                                                    type="textarea"
+                                                    rows="6"
+                                                    id="affUsernames"
+                                                    name="affUsernames"
                                                     className="input-required"
-                                                    value={affUsernames} 
-                                                    onChange={this._handleChangeAffUsernames} 
-                                                    onBlur={this._handleBlurAffUsernames} 
+                                                    value={affUsernames}
+                                                    onChange={this._handleChangeAffUsernames}
+                                                    onBlur={this._handleBlurAffUsernames}
                                                 />
                                                 <div>
                                                     <Label>Enter up to 500 affiliates, separated by commas, tabs or new lines.</Label>
                                                 </div>
                                             </>
                                         ) : (
-                                            <Input 
-                                                type="text" 
-                                                disabled 
-                                                className="input-required" 
-                                                id="affUsernames" 
-                                                name="affUsernames" 
-                                                value={selectedDomain.affUsername} 
+                                            <Input
+                                                type="text"
+                                                disabled
+                                                className="input-required"
+                                                id="affUsernames"
+                                                name="affUsernames"
+                                                value={selectedDomain.affUsername}
                                             />
                                         )}
                                     </Col>
@@ -265,25 +277,25 @@ export class SpecificDomainControlPopup extends PureComponent {
                                         {headerText.AffDomain}
                                     </Label>
                                     <Col sm={7}>
-                                        <Input 
-                                            type="text" 
-                                            className="input-required" 
-                                            id="affDomain" 
+                                        <Input
+                                            type="text"
+                                            className="input-required"
+                                            id="affDomain"
                                             name="affDomain"
-                                            value={selectedDomain.affDomain} 
-                                            onChange={this._handleChange} 
-                                            onKeyPress={this._handleKeyPress} 
+                                            value={selectedDomain.affDomain}
+                                            onChange={this._handleChange}
+                                            onKeyPress={this._handleKeyPress}
                                         />
                                     </Col>
                                     <Col sm={2}>
                                         <FormGroup check>
                                             <Label check>
-                                                <Input 
-                                                    type="checkbox" 
-                                                    checked={selectedDomain.affDomainIsSSL} 
+                                                <Input
+                                                    type="checkbox"
+                                                    checked={selectedDomain.affDomainIsSSL}
                                                     name="affDomainIsSSL"
-                                                    onChange={this._handleChange} 
-                                                /> 
+                                                    onChange={this._handleChange}
+                                                />
                                                 {headerText.SSL}
                                             </Label>
                                         </FormGroup>
@@ -295,25 +307,25 @@ export class SpecificDomainControlPopup extends PureComponent {
                                         {headerText.RedirectDomain}
                                     </Label>
                                     <Col sm={7}>
-                                        <Input 
-                                            type="text" 
-                                            className="input-required" 
-                                            id="redirectDomain" 
+                                        <Input
+                                            type="text"
+                                            className="input-required"
+                                            id="redirectDomain"
                                             name="redirectDomain"
-                                            value={selectedDomain.redirectDomain} 
-                                            onChange={this._handleChange} 
-                                            onKeyPress={this._handleKeyPress} 
+                                            value={selectedDomain.redirectDomain}
+                                            onChange={this._handleChange}
+                                            onKeyPress={this._handleKeyPress}
                                         />
                                     </Col>
                                     <Col sm={2}>
                                         <FormGroup check>
                                             <Label check>
-                                                <Input 
-                                                    type="checkbox" 
-                                                    checked={selectedDomain.redirectDomainIsSSL} 
+                                                <Input
+                                                    type="checkbox"
+                                                    checked={selectedDomain.redirectDomainIsSSL}
                                                     name="redirectDomainIsSSL"
-                                                    onChange={this._handleChange} 
-                                                /> 
+                                                    onChange={this._handleChange}
+                                                />
                                                 {headerText.SSL}
                                             </Label>
                                         </FormGroup>
@@ -321,29 +333,29 @@ export class SpecificDomainControlPopup extends PureComponent {
                                 </FormGroup>
 
                                 <FormGroup row className="align-items-center">
-                                    <Label sm={3}>{headerText.Status}</Label>
-                                    <Col sm={9}>
-                                        <input
-                                            type="checkbox" 
-                                            name="status"
-                                            checked={selectedDomain.status}
-                                            onChange={this._handleChange} 
-                                        />
-                                    </Col>
+                                    <Col sm={3}></Col>
+                                    <Label sm={3} className="d-flex mt-1">
+                                        <input type="checkbox" name="status" checked={selectedDomain.status} onChange={this._handleChange} />
+                                        <span className='ml-2'>Is Active</span>
+                                    </Label>
+                                    <Label sm={4} className="d-flex mt-1">
+                                        <input type="checkbox" name="isMobile" checked={selectedDomain.isMobile} onChange={this._handleChange} />
+                                        <span className='ml-2'>Is Mobile Only</span>
+                                    </Label>
                                 </FormGroup>
                             </Form>
 
-                            <Button 
-                                type="button" 
-                                color="success" 
-                                className="mr-3" 
+                            <Button
+                                type="button"
+                                color="success"
+                                className="mr-3"
                                 onClick={this._handleSubmit}
                             >
                                 {buttonLabel}
                             </Button>
-                            <Button 
-                                type="button" 
-                                color="info" 
+                            <Button
+                                type="button"
+                                color="info"
                                 onClick={this._handleClosePopup}
                             >
                                 Cancel
