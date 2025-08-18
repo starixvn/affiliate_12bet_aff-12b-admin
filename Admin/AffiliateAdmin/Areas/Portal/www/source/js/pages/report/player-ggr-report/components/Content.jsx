@@ -51,7 +51,6 @@ export class Content extends Component {
             
             await this.handlePaginatedExport(param, reportTitle, selectedProducts, totalRecords);
         } catch (error) {
-            console.error('Export failed:', error);
             alert('Export failed. Please try again or contact support.');
         } finally {
             this.setState({ 
@@ -75,6 +74,7 @@ export class Content extends Component {
         
         for (let i = 0; i < chunks; i++) {
             const chunkParam = Object.assign({}, param, {
+                IsExportExcel: true,
                 PageIndex: i + 1,
                 PageSize: maxPageSize
             });
@@ -114,14 +114,6 @@ export class Content extends Component {
             TotalItem: totalRecords
         };
         
-        console.log('Export Debug Info:', {
-            totalRecords,
-            actualDataCount: allData.length,
-            selectedProductsCount: selectedProducts.length,
-            hasTotalData: !!totalData,
-            reportTitle
-        });
-        
         if (!allData || allData.length === 0) {
             throw new Error('No data available for export');
         }
@@ -135,7 +127,7 @@ export class Content extends Component {
             
             // Check if this will be a multi-sheet export
             const estimatedCells = allData.length * (6 + selectedProducts.length * 2); // Rough calculation
-            const willBeMultiFile = allData.length > 8000 || estimatedCells > 1500000;
+            const willBeMultiFile = allData.length > 10000 || estimatedCells > 1500000;
             
             if (willBeMultiFile) {
                 this.setState({ 
@@ -146,13 +138,9 @@ export class Content extends Component {
             await reportExcel.export();
             
             if (willBeMultiFile) {
-                console.log('Multi-sheet Excel export completed successfully');
                 alert('Export completed! Excel file with multiple sheets has been downloaded due to the large dataset size.');
-            } else {
-                console.log('Excel export completed successfully');
             }
         } catch (excelError) {
-            console.error('Excel generation error:', excelError);
             throw new Error(`Excel generation failed: ${excelError.message}`);
         }
         

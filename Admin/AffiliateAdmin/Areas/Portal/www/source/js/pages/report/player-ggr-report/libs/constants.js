@@ -2,10 +2,8 @@ export const totalText = 'Total';
 export const reportName = 'PLAYER GGR REPORT ';
 export const maxPageSize = 2000;
 
-// Excel generation limits to prevent browser crashes
-// Conservative limits to avoid JavaScript array size limitations
-export const EXCEL_MAX_ROWS = 8000; // Maximum rows per Excel sheet (safe limit)
-export const EXCEL_MAX_CELLS = 1500000; // Maximum cells per Excel sheet (1.5M cells - safe limit)
+export const EXCEL_MAX_ROWS = 10000;
+export const EXCEL_MAX_CELLS = 3000000;
 
 export const mappingColumns = {
     AffName: 'AffName',

@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
 
                     var selectedProductIdList = param.ProductIds.Split(',');
 
-                    if (IsLargeDatasetRequest(criteria, selectedProductIdList.Length))
+                    if (param.IsExportExcel && IsLargeDatasetRequest(criteria, selectedProductIdList.Length))
                     {
                         LogHelper.WriteInfo($"Processing large dataset: {criteria.TotalItem} records, {selectedProductIdList.Length} products, PageSize: {criteria.PageSize}");
                     }

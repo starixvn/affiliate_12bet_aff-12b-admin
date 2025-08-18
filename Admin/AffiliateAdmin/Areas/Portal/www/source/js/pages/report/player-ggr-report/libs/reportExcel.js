@@ -33,13 +33,6 @@ export default class ReportExcel {
             throw new Error('Report title is required for Excel export');
         }
 
-        console.log('ReportExcel constructor:', {
-            dataCount: data.MainData.length,
-            productCount: selectedProductList.length,
-            hasTotal: !!data.Total,
-            title
-        });
-
         this.worksheet = {};
         this.title = title;
         this.data = data;
@@ -54,22 +47,11 @@ export default class ReportExcel {
     async export() {
         const dataLength = this.data.MainData.length;
         const estimatedCells = dataLength * this.TotalColumn;
-        
-        console.log(`Export analysis:`, {
-            dataLength,
-            totalColumns: this.TotalColumn,
-            estimatedCells,
-            maxRows: EXCEL_MAX_ROWS,
-            maxCells: EXCEL_MAX_CELLS,
-            willUseMultipleSheets: dataLength > EXCEL_MAX_ROWS || estimatedCells > EXCEL_MAX_CELLS
-        });
-        
+
         // Check if dataset is too large for a single Excel sheet
         if (dataLength > EXCEL_MAX_ROWS || estimatedCells > EXCEL_MAX_CELLS) {
-            console.log(`Dataset too large for single Excel sheet. Using multi-sheet approach...`);
             return this._exportMultipleFiles();
         } else {
-            console.log(`Dataset size acceptable for single sheet export`);
             return this._exportSingleFile();
         }
     }
@@ -78,32 +60,15 @@ export default class ReportExcel {
         return new Promise((resolve, reject) => {
             Excel.process(() => {
                 try {
-                    console.log('Starting single Excel file generation...', {
-                        dataLength: this.data.MainData.length,
-                        productCount: this.selectedProductList.length,
-                        hasTotal: !!this.data.Total
-                    });
-
                     this._generateWorksheet();
 
                     const fileName = reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss');
-                    console.log('Step 6: Attempting to export Excel file:', fileName);
-                    
                     Excel.export(this.worksheet, fileName);
-                    
-                    console.log('Excel export process completed');
                     resolve();
                 } catch (error) {
-                    console.error('Excel generation failed at step:', error);
-                    console.error('Error details:', {
-                        message: error.message,
-                        stack: error.stack,
-                        name: error.name
-                    });
                     reject(new Error(`Excel generation failed: ${error.message}`));
                 }
             }).catch(error => {
-                console.error('Excel.process failed:', error);
                 reject(new Error(`Excel library loading failed: ${error.message}`));
             });
         });
@@ -111,18 +76,11 @@ export default class ReportExcel {
 
     async _exportMultipleFiles() {
         const dataLength = this.data.MainData.length;
+
         // Use more conservative calculation to avoid array limits
-        const maxRowsPerSheet = Math.min(EXCEL_MAX_ROWS, Math.floor(EXCEL_MAX_CELLS / this.TotalColumn), 5000);
+        const maxRowsPerSheet = Math.min(EXCEL_MAX_ROWS, Math.floor(EXCEL_MAX_CELLS / this.TotalColumn), 10000);
         const totalSheets = Math.ceil(dataLength / maxRowsPerSheet);
-        
-        console.log(`Multi-sheet export configuration:`, {
-            totalRecords: dataLength,
-            totalColumns: this.TotalColumn,
-            maxRowsPerSheet,
-            totalSheets,
-            estimatedCellsPerSheet: maxRowsPerSheet * this.TotalColumn
-        });
-        
+
         return new Promise((resolve, reject) => {
             Excel.process(() => {
                 try {
@@ -137,13 +95,6 @@ export default class ReportExcel {
                             Total: sheetIndex === totalSheets - 1 ? this.data.Total : null // Only include total in last sheet
                         };
                         
-                        console.log(`Generating sheet ${sheetIndex + 1}/${totalSheets}...`, {
-                            dataLength: sheetData.MainData.length,
-                            recordRange: `${startRow + 1}-${endRow}`,
-                            estimatedCells: sheetData.MainData.length * this.TotalColumn
-                        });
-                        
-                        // Create worksheet for this sheet with memory cleanup
                         const tempData = this.data;
                         this.data = sheetData;
                         this.worksheet = {};
@@ -160,16 +111,11 @@ export default class ReportExcel {
                                 mergeConfig: [...this.mergeConfig]
                             };
                             
-                            console.log(`Sheet ${sheetIndex + 1}/${totalSheets} generated successfully`, {
-                                cellCount: Object.keys(this.worksheet).length
-                            });
-                            
                             // Clear worksheet to free memory
                             this.worksheet = {};
                             this.mergeConfig = [];
                             
                         } catch (sheetError) {
-                            console.error(`Error generating sheet ${sheetIndex + 1}:`, sheetError);
                             throw new Error(`Sheet ${sheetIndex + 1} generation failed: ${sheetError.message}`);
                         }
                         
@@ -178,25 +124,13 @@ export default class ReportExcel {
                     }
                     
                     const fileName = reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss');
-                    console.log('Attempting to export multi-sheet Excel file:', fileName, {
-                        totalSheets: Object.keys(workbook).length
-                    });
-                    
+
                     Excel.exportMultiSheet(workbook, fileName);
-                    
-                    console.log('Multi-sheet Excel export completed successfully');
                     resolve();
                 } catch (error) {
-                    console.error('Multi-sheet Excel generation failed:', error);
-                    console.error('Error details:', {
-                        message: error.message,
-                        stack: error.stack,
-                        name: error.name
-                    });
                     reject(new Error(`Multi-sheet Excel generation failed: ${error.message}`));
                 }
             }).catch(error => {
-                console.error('Excel.process failed for multi-sheet:', error);
                 reject(new Error(`Excel library loading failed for multi-sheet: ${error.message}`));
             });
         });
@@ -205,40 +139,19 @@ export default class ReportExcel {
 
 
     _generateWorksheet() {
-        console.log('Step 1: Creating title...');
         this._createTitle();
-        
-        console.log('Step 2: Creating header...');
         this._createHeader();
         
         const dataLength = this.data.MainData.length;
-        
-        console.log('Step 3: Creating body data...');
+
         if (dataLength > maxPageSize) {
-            console.log(`Processing ${dataLength} rows in batches of ${maxPageSize}...`);
             this._createBodyDataInBatches();
         } else {
             this._createBodyData();
         }
         
-        console.log('Step 4: Creating total row...');
         this._createTotalRow();
-        
-        console.log('Step 5: Creating Excel config...');
         this._createExcelConfig();
-
-        const worksheetSize = Object.keys(this.worksheet).length;
-        console.log('Worksheet statistics:', {
-            cellCount: worksheetSize,
-            mergeCount: this.mergeConfig.length,
-            totalColumns: this.TotalColumn,
-            currentRowIndex: this.currentRowIndex,
-            memoryUsage: performance.memory ? {
-                used: Math.round(performance.memory.usedJSHeapSize / 1024 / 1024) + 'MB',
-                total: Math.round(performance.memory.totalJSHeapSize / 1024 / 1024) + 'MB',
-                limit: Math.round(performance.memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
-            } : 'Not available'
-        });
     }
 
     _createTitle() {
@@ -380,15 +293,10 @@ export default class ReportExcel {
                         indexDynamicColumn++;
                     }
                 } catch (productError) {
-                    console.error(`Error processing product ${productIndex} (${product.key}):`, productError);
-                    console.error('Product data:', product);
-                    console.error('Item ProductReportList:', item.ProductReportList);
                     throw productError;
                 }
             });
         } catch (error) {
-            console.error('Error in _createDataRow:', error);
-            console.error('Item data:', item);
             throw error;
         }
     }
@@ -406,8 +314,6 @@ export default class ReportExcel {
         const mainData = this.data.MainData;
         const totalBatches = Math.ceil(mainData.length / maxPageSize);
         
-        console.log(`Processing ${mainData.length} rows in ${totalBatches} batches of ${maxPageSize}...`);
-        
         try {
             for (let batchIndex = 0; batchIndex < totalBatches; batchIndex++) {
                 const startIndex = batchIndex * maxPageSize;
@@ -420,20 +326,11 @@ export default class ReportExcel {
                         this._createDataRow(item, configInfo.INDEX_AFFILIATE_COLUMN, MAIN_SECTION_STYLE);
                         this.currentRowIndex++;
                     } catch (rowError) {
-                        console.error(`Error processing row ${startIndex + itemIndex}:`, rowError);
-                        console.error('Row data:', item);
                         throw rowError;
                     }
                 }
-                
-                if (totalBatches > 5) {
-                    const progress = Math.round(((batchIndex + 1) / totalBatches) * 100);
-                    console.log(`Excel generation progress: ${progress}% (${batchIndex + 1}/${totalBatches} batches)`);
-                }
             }
-            console.log(`Completed processing all ${mainData.length} rows in ${totalBatches} batches`);
         } catch (error) {
-            console.error('Error in _createBodyDataInBatches:', error);
             throw error;
         }
     }
@@ -492,25 +389,25 @@ export default class ReportExcel {
         this.worksheet["!ref"] = `${cellStart}:${cellEnd}`;
 
         const cols = [{
-            wpx: 100
+            wpx: 125
         }, {
-            wpx: 100
-        }, {
-            wpx: 150
+            wpx: 125
         }, {
             wpx: 150
         }, {
-            wpx: 100
+            wpx: 150
         }, {
-            wpx: 100
+            wpx: 125
+        }, {
+            wpx: 125
         }];
 
         this.selectedProductList.map(item => {
             cols.push(
                 {
-                    wpx: 100
+                    wpx: 125
                 }, {
-                    wpx: 100
+                    wpx: 125
                 }
             )
         })
