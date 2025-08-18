@@ -9,10 +9,21 @@ const MapExcelType = {
 let _XLSX = null;
 export default class Excel {
     static async process(callback) {
-        _XLSX = await import( /* webpackChunkName: "xlsx-style" */ 'xlsx-style-sparta');
-
-        if (_XLSX) {
-            callback && callback();
+        try {
+            console.log('Loading XLSX library...');
+            _XLSX = await import( /* webpackChunkName: "xlsx-style" */ 'xlsx-style-sparta');
+            
+            if (_XLSX) {
+                console.log('XLSX library loaded successfully');
+                if (callback) {
+                    callback();
+                }
+            } else {
+                throw new Error('XLSX library failed to load');
+            }
+        } catch (error) {
+            console.error('Error loading XLSX library:', error);
+            throw error;
         }
     }
 
@@ -35,26 +46,52 @@ export default class Excel {
     }
 
     static download(workbookOut, fileName) {
-        const blob = new Blob([this.sheetToArrayBuffer(workbookOut)], {
-            type: "application/octet-stream"
-        });
-
-        this.downloadFromBolb(blob, fileName);
+        try {
+            console.log('Creating blob for download...', { fileName, workbookSize: workbookOut.length });
+            const arrayBuffer = this.sheetToArrayBuffer(workbookOut);
+            const blob = new Blob([arrayBuffer], {
+                type: "application/octet-stream"
+            });
+            
+            console.log('Blob created successfully:', { blobSize: blob.size, blobType: blob.type });
+            this.downloadFromBolb(blob, fileName);
+        } catch (error) {
+            console.error('Error creating Excel blob:', error);
+            throw error;
+        }
     }
 
     static downloadFromBolb(blob, fileName) {
         const fileNameDownload = `${fileName}.${EXCEL_TYPE}`;
+        
+        console.log('Starting file download...', { fileNameDownload, blobSize: blob.size });
 
-        // IE 10+
-        if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
-            navigator.msSaveOrOpenBlob(blob, fileNameDownload);
-        } else {
-            const element = window.document.createElement('a');
-            element.href = window.URL.createObjectURL(blob);
-            element.download = fileNameDownload;
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
+        try {
+            // IE 10+
+            if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
+                console.log('Using IE download method');
+                navigator.msSaveOrOpenBlob(blob, fileNameDownload);
+            } else {
+                console.log('Using standard download method');
+                const element = window.document.createElement('a');
+                const objectUrl = window.URL.createObjectURL(blob);
+                
+                element.href = objectUrl;
+                element.download = fileNameDownload;
+                element.style.display = 'none'; // Hide the element
+                
+                document.body.appendChild(element);
+                element.click();
+                
+                // Clean up
+                document.body.removeChild(element);
+                window.URL.revokeObjectURL(objectUrl);
+                
+                console.log('Download initiated successfully');
+            }
+        } catch (error) {
+            console.error('Error during file download:', error);
+            throw error;
         }
     }
 

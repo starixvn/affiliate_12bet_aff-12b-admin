@@ -1,6 +1,6 @@
 ﻿import Excel from '../../../../modules/excel';
 import { titleCellStyle, headerCellStyle, bodyCellStyle, totalCellStyle, mergedHeaderCellByRowspanStyle } from '../../../../modules/excelStyleConstant';
-import { headerText, totalText, reportName, defaultGgrProductReport, mappingColumns as fields } from './constants';
+import { headerText, totalText, reportName, defaultGgrProductReport, mappingColumns as fields, maxPageSize } from './constants';
 import { formatDateTime } from '../../../../modules/utils';
 
 const TITLE_ROW_INDEX = 0;
@@ -23,6 +23,23 @@ const TOTAL_SECTION_STYLE = 'totalSectionStyle';
 
 export default class ReportExcel {
     constructor(data, title, selectedProductList) {
+        if (!data || !data.MainData) {
+            throw new Error('Invalid data provided to ReportExcel constructor');
+        }
+        if (!selectedProductList || selectedProductList.length === 0) {
+            throw new Error('No products selected for Excel export');
+        }
+        if (!title) {
+            throw new Error('Report title is required for Excel export');
+        }
+
+        console.log('ReportExcel constructor:', {
+            dataCount: data.MainData.length,
+            productCount: selectedProductList.length,
+            hasTotal: !!data.Total,
+            title
+        });
+
         this.worksheet = {};
         this.title = title;
         this.data = data;
@@ -34,32 +51,72 @@ export default class ReportExcel {
         this.TotalColumn = configInfo.TOTAL_STATIC_COLUMN + (selectedProductList.length * configInfo.COLSPAN_OF_ONE_PRODUCT);
     }
 
-    export() {
-        Excel.process(() => {
-            try {
-                this._createTitle();
-                this._createHeader();
-                
-                // For large datasets, process data in batches to avoid memory issues
-                const dataLength = this.data.MainData.length;
-                const batchSize = 500; // Process 500 rows at a time
-                
-                if (dataLength > 2000) {
-                    console.log(`Processing ${dataLength} rows in batches of ${batchSize}...`);
-                    this._createBodyDataInBatches(batchSize);
-                } else {
-                    this._createBodyData();
-                }
-                
-                this._createTotalRow();
-                this._createExcelConfig();
+    async export() {
+        return new Promise((resolve, reject) => {
+            Excel.process(() => {
+                try {
+                    console.log('Starting Excel generation...', {
+                        dataLength: this.data.MainData.length,
+                        productCount: this.selectedProductList.length,
+                        hasTotal: !!this.data.Total
+                    });
 
-                Excel.export(this.worksheet, reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss'));
-            } catch (error) {
-                console.error('Excel generation failed:', error);
-                throw new Error('Excel generation failed. Dataset may be too large.');
-            }
-        })
+                    console.log('Step 1: Creating title...');
+                    this._createTitle();
+                    
+                    console.log('Step 2: Creating header...');
+                    this._createHeader();
+                    
+                    const dataLength = this.data.MainData.length;
+                    
+                    console.log('Step 3: Creating body data...');
+                    if (dataLength > maxPageSize) {
+                        console.log(`Processing ${dataLength} rows in batches of ${maxPageSize}...`);
+                        this._createBodyDataInBatches();
+                    } else {
+                        this._createBodyData();
+                    }
+                    
+                    console.log('Step 4: Creating total row...');
+                    this._createTotalRow();
+                    
+                    console.log('Step 5: Creating Excel config...');
+                    this._createExcelConfig();
+
+                    const worksheetSize = Object.keys(this.worksheet).length;
+                    console.log('Worksheet statistics:', {
+                        cellCount: worksheetSize,
+                        mergeCount: this.mergeConfig.length,
+                        totalColumns: this.TotalColumn,
+                        currentRowIndex: this.currentRowIndex,
+                        memoryUsage: performance.memory ? {
+                            used: Math.round(performance.memory.usedJSHeapSize / 1024 / 1024) + 'MB',
+                            total: Math.round(performance.memory.totalJSHeapSize / 1024 / 1024) + 'MB',
+                            limit: Math.round(performance.memory.jsHeapSizeLimit / 1024 / 1024) + 'MB'
+                        } : 'Not available'
+                    });
+
+                    const fileName = reportName + ' - ' + formatDateTime(new Date(), 'MM.dd.yyyy hh.mm.ss');
+                    console.log('Step 6: Attempting to export Excel file:', fileName);
+                    
+                    Excel.export(this.worksheet, fileName);
+                    
+                    console.log('Excel export process completed');
+                    resolve();
+                } catch (error) {
+                    console.error('Excel generation failed at step:', error);
+                    console.error('Error details:', {
+                        message: error.message,
+                        stack: error.stack,
+                        name: error.name
+                    });
+                    reject(new Error(`Excel generation failed: ${error.message}`));
+                }
+            }).catch(error => {
+                console.error('Excel.process failed:', error);
+                reject(new Error(`Excel library loading failed: ${error.message}`));
+            });
+        });
     }
 
     _createTitle() {
@@ -169,33 +226,49 @@ export default class ReportExcel {
     }
 
     _createDataRow = (item, colIndexStart, style) => {
-        const totalStaticColumn = configInfo.TOTAL_STATIC_COLUMN;
-        for (let j = colIndexStart; j < totalStaticColumn; j++) {
-            const address = Excel.getCellAddress({
-                c: j,
-                r: this.currentRowIndex
-            });
-
-            this.worksheet[address] = this._buildDataColumn(item, style, j);
-        }
-
-        let indexDynamicColumn = 0;
-        this.selectedProductList.map((product) => {
-            const productInfo = item.ProductReportList[product.key] || defaultGgrProductReport;
-
-            for (let j = 0; j < configInfo.COLSPAN_OF_ONE_PRODUCT; j++) {
-                const colIndex = totalStaticColumn + indexDynamicColumn;
-
+        try {
+            const totalStaticColumn = configInfo.TOTAL_STATIC_COLUMN;
+            
+            for (let j = colIndexStart; j < totalStaticColumn; j++) {
                 const address = Excel.getCellAddress({
-                    c: colIndex,
+                    c: j,
                     r: this.currentRowIndex
                 });
 
-                this.worksheet[address] = this._buildDataColumn(productInfo, style, colIndex);
-
-                indexDynamicColumn++;
+                this.worksheet[address] = this._buildDataColumn(item, style, j);
             }
-        })
+
+            let indexDynamicColumn = 0;
+            this.selectedProductList.forEach((product, productIndex) => {
+                try {
+                    const productInfo = item.ProductReportList && item.ProductReportList[product.key] 
+                        ? item.ProductReportList[product.key] 
+                        : defaultGgrProductReport;
+
+                    for (let j = 0; j < configInfo.COLSPAN_OF_ONE_PRODUCT; j++) {
+                        const colIndex = totalStaticColumn + indexDynamicColumn;
+
+                        const address = Excel.getCellAddress({
+                            c: colIndex,
+                            r: this.currentRowIndex
+                        });
+
+                        this.worksheet[address] = this._buildDataColumn(productInfo, style, colIndex);
+
+                        indexDynamicColumn++;
+                    }
+                } catch (productError) {
+                    console.error(`Error processing product ${productIndex} (${product.key}):`, productError);
+                    console.error('Product data:', product);
+                    console.error('Item ProductReportList:', item.ProductReportList);
+                    throw productError;
+                }
+            });
+        } catch (error) {
+            console.error('Error in _createDataRow:', error);
+            console.error('Item data:', item);
+            throw error;
+        }
     }
 
     _createBodyData() {
@@ -207,32 +280,39 @@ export default class ReportExcel {
         }
     }
 
-    _createBodyDataInBatches(batchSize) {
+    _createBodyDataInBatches() {
         const mainData = this.data.MainData;
-        const totalBatches = Math.ceil(mainData.length / batchSize);
+        const totalBatches = Math.ceil(mainData.length / maxPageSize);
         
-        for (let batchIndex = 0; batchIndex < totalBatches; batchIndex++) {
-            const startIndex = batchIndex * batchSize;
-            const endIndex = Math.min(startIndex + batchSize, mainData.length);
-            const batch = mainData.slice(startIndex, endIndex);
-            
-            // Process batch
-            for (let item of batch) {
-                this._createDataRow(item, configInfo.INDEX_AFFILIATE_COLUMN, MAIN_SECTION_STYLE);
-                this.currentRowIndex++;
+        console.log(`Processing ${mainData.length} rows in ${totalBatches} batches of ${maxPageSize}...`);
+        
+        try {
+            for (let batchIndex = 0; batchIndex < totalBatches; batchIndex++) {
+                const startIndex = batchIndex * maxPageSize;
+                const endIndex = Math.min(startIndex + maxPageSize, mainData.length);
+                const batch = mainData.slice(startIndex, endIndex);
+                
+                for (let itemIndex = 0; itemIndex < batch.length; itemIndex++) {
+                    const item = batch[itemIndex];
+                    try {
+                        this._createDataRow(item, configInfo.INDEX_AFFILIATE_COLUMN, MAIN_SECTION_STYLE);
+                        this.currentRowIndex++;
+                    } catch (rowError) {
+                        console.error(`Error processing row ${startIndex + itemIndex}:`, rowError);
+                        console.error('Row data:', item);
+                        throw rowError;
+                    }
+                }
+                
+                if (totalBatches > 5) {
+                    const progress = Math.round(((batchIndex + 1) / totalBatches) * 100);
+                    console.log(`Excel generation progress: ${progress}% (${batchIndex + 1}/${totalBatches} batches)`);
+                }
             }
-            
-            // Log progress for large datasets
-            if (totalBatches > 5) {
-                const progress = Math.round(((batchIndex + 1) / totalBatches) * 100);
-                console.log(`Excel generation progress: ${progress}% (${batchIndex + 1}/${totalBatches} batches)`);
-            }
-            
-            // Allow browser to breathe between batches for very large datasets
-            if (mainData.length > 5000 && batchIndex < totalBatches - 1) {
-                // Use setTimeout to yield control back to browser
-                // Note: This would need to be implemented with async/await for true non-blocking behavior
-            }
+            console.log(`Completed processing all ${mainData.length} rows in ${totalBatches} batches`);
+        } catch (error) {
+            console.error('Error in _createBodyDataInBatches:', error);
+            throw error;
         }
     }
 

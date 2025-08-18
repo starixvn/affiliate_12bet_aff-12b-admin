@@ -1,5 +1,6 @@
 export const totalText = 'Total';
 export const reportName = 'PLAYER GGR REPORT ';
+export const maxPageSize = 2000;
 
 export const mappingColumns = {
     AffName: 'AffName',

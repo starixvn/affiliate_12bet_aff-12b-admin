@@ -8,6 +8,7 @@ import ReportTitle from '../../../../components/ReportTitle';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import ReportExcel from '../libs/reportExcel';
 import { fetchData } from '../actions';
+import { maxPageSize } from '../libs/constants';
 
 export class Content extends Component {
     constructor(props) {
@@ -30,7 +31,6 @@ export class Content extends Component {
     }
 
     handleExportExcel = async () => {
-        // Prevent multiple simultaneous exports
         if (this.state.isExporting) {
             alert('Export is already in progress. Please wait...');
             return;
@@ -38,30 +38,18 @@ export class Content extends Component {
 
         this.setState({ isExporting: true });
         this.props.toggleLoader(true);
-        const { param, reportTitle, productList } = this.props;
+        const { param, reportTitle, productList, pagingOption } = this.props;
         const selectedProducts = productList.filter(p => p.checked);
         
-        try {
-            // First, get total count to determine if we need chunked processing
-            const countParam = Object.assign({}, param, { IsExportExcel: true, PageSize: 1 });
-            const countData = await this.props.fetchData(countParam);
-            
-            if (!countData || !countData.TotalItem) {
+        try {            
+            if (!pagingOption.TotalItem) {
                 alert('No data to export');
                 return;
             }
 
-            const totalRecords = countData.TotalItem;
-            const maxChunkSize = 1000; // Process 1000 records at a time
-            const totalProducts = selectedProducts.length;
+            const totalRecords = pagingOption.TotalItem;
             
-            // For large datasets (>5000 records OR >100 products), use chunked processing
-            if (totalRecords > 5000 || totalProducts > 100) {
-                await this.handleLargeDatasetExport(param, reportTitle, selectedProducts, totalRecords, maxChunkSize);
-            } else {
-                // Use existing approach for smaller datasets
-                await this.handleStandardExport(param, reportTitle, selectedProducts);
-            }
+            await this.handlePaginatedExport(param, reportTitle, selectedProducts, totalRecords);
         } catch (error) {
             console.error('Export failed:', error);
             alert('Export failed. Please try again or contact support.');
@@ -75,38 +63,24 @@ export class Content extends Component {
         }
     }
 
-    handleStandardExport = async (param, reportTitle, selectedProducts) => {
-        const newParam = Object.assign({}, param, { IsExportExcel: true });
-        const data = await this.props.fetchData(newParam);
-
-        if (data) {
-            const reportExcel = new ReportExcel(data, reportTitle, selectedProducts);
-            reportExcel.export();
-        }
-    }
-
-    handleLargeDatasetExport = async (param, reportTitle, selectedProducts, totalRecords, chunkSize) => {
-        const chunks = Math.ceil(totalRecords / chunkSize);
+    handlePaginatedExport = async (param, reportTitle, selectedProducts, totalRecords) => {
+        const chunks = Math.ceil(totalRecords / maxPageSize);
         let allData = [];
         let totalData = null;
         
-        // Initialize progress tracking
         this.setState({ 
             exportProgress: 0, 
-            exportStatus: `Preparing to export ${totalRecords.toLocaleString()} records...` 
+            exportStatus: `Preparing to export ${totalRecords.toLocaleString()} records using pagination...` 
         });
         
-        // Process data in chunks
         for (let i = 0; i < chunks; i++) {
             const chunkParam = Object.assign({}, param, {
-                IsExportExcel: true,
                 PageIndex: i + 1,
-                PageSize: chunkSize
+                PageSize: maxPageSize
             });
             
-            // Update status
             this.setState({ 
-                exportStatus: `Fetching data chunk ${i + 1} of ${chunks}...` 
+                exportStatus: `Fetching page ${i + 1} of ${chunks} (${maxPageSize} records per page)...`
             });
             
             const chunkData = await this.props.fetchData(chunkParam);
@@ -114,41 +88,57 @@ export class Content extends Component {
             if (chunkData && chunkData.MainData) {
                 allData = allData.concat(chunkData.MainData);
                 
-                // Store total data from first chunk
                 if (i === 0) {
                     totalData = chunkData.Total;
                 }
                 
-                // Update progress
                 const progress = Math.round(((i + 1) / chunks) * 100);
                 this.setState({ 
                     exportProgress: progress,
-                    exportStatus: `Downloaded ${allData.length.toLocaleString()} of ${totalRecords.toLocaleString()} records...`
+                    exportStatus: `Downloaded ${allData.length.toLocaleString()} of ${totalRecords.toLocaleString()} records (Page ${i + 1}/${chunks})...`
                 });
             }
             
-            // Small delay to prevent overwhelming the server
             if (i < chunks - 1) {
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise(resolve => setTimeout(resolve, 150));
             }
         }
         
-        // Update status for Excel generation
         this.setState({ 
             exportStatus: 'Generating Excel file...' 
         });
         
-        // Create Excel with combined data
         const combinedData = {
             MainData: allData,
             Total: totalData,
             TotalItem: totalRecords
         };
         
-        const reportExcel = new ReportExcel(combinedData, reportTitle, selectedProducts);
-        reportExcel.export();
+        console.log('Export Debug Info:', {
+            totalRecords,
+            actualDataCount: allData.length,
+            selectedProductsCount: selectedProducts.length,
+            hasTotalData: !!totalData,
+            reportTitle
+        });
         
-        // Clear progress
+        if (!allData || allData.length === 0) {
+            throw new Error('No data available for export');
+        }
+        
+        if (!selectedProducts || selectedProducts.length === 0) {
+            throw new Error('No products selected for export');
+        }
+        
+        try {
+            const reportExcel = new ReportExcel(combinedData, reportTitle, selectedProducts);
+            await reportExcel.export();
+            console.log('Excel export completed successfully');
+        } catch (excelError) {
+            console.error('Excel generation error:', excelError);
+            throw new Error(`Excel generation failed: ${excelError.message}`);
+        }
+        
         this.setState({ 
             exportProgress: null, 
             exportStatus: null 
@@ -213,8 +203,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, param, productList }) {
-    return Object.assign({}, { reportTitle, param, productList });
+function mapStateToProps({ reportTitle, param, productList, pagingOption }) {
+    return Object.assign({}, { reportTitle, param, productList, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {
