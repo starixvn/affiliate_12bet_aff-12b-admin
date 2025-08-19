@@ -24,20 +24,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
                 {
                     var criteria = GetPlayerGgrReportCriteria(param);
 
+                    ValidatePaginationParameters(criteria);
+
                     var (dataItemObjects, dataTotalObjects) = DynamicRepository.FetchMultiple<JObject, JObject>(criteria);
 
                     var selectedProductIdList = param.ProductIds.Split(',');
 
+                    if (param.IsExportExcel && IsLargeDatasetRequest(criteria, selectedProductIdList.Length))
+                    {
+                        LogHelper.WriteInfo($"Processing large dataset: {criteria.TotalItem} records, {selectedProductIdList.Length} products, PageSize: {criteria.PageSize}");
+                    }
+
                     return new EntityResult<PlayerGgrReport>
                     {
-                        MainData = BuildDataItemList(dataItemObjects, selectedProductIdList),
+                        MainData = IsLargeDatasetRequest(criteria, selectedProductIdList.Length) 
+                            ? BuildDataItemListOptimized(dataItemObjects, selectedProductIdList)
+                            : BuildDataItemList(dataItemObjects, selectedProductIdList),
                         TotalItem = criteria.TotalItem,
                         Total = dataTotalObjects.Any() ? BuildTotalDataItem(dataTotalObjects.First(), selectedProductIdList) : null,
                     };
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.WriteError(ex, "Cannot build PlayerGgr Report!");
+                    LogHelper.WriteError(ex, $"Cannot build PlayerGgr Report! Params: PageSize={param.PageSize}, PageIndex={param.PageIndex}, ProductCount={param.ProductIds?.Split(',').Length ?? 0}");
 
                     return new EntityResult<PlayerGgrReport> { MainData = new List<PlayerGgrReport>() };
                 }
@@ -57,7 +66,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
                 ProductIds = param.ProductIds,
                 PageIndex = param.PageIndex,
                 PageSize = param.PageSize,
-                IsExportExcel = param.IsExportExcel,
+                //IsExportExcel = param.IsExportExcel,
                 BaseCurrency = param.BaseCurrencyId,
             };
         }
@@ -117,6 +126,51 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
         private static decimal ConvertToDecimal(decimal? data)
         {
             return data ?? 0;
+        }
+
+        private static void ValidatePaginationParameters(PlayerGgrReportCriteria criteria)
+        {
+            const int maxPageSize = 2000;
+            const int minPageSize = 1;
+
+            if (criteria.PageSize > maxPageSize || criteria.PageSize < minPageSize)
+            {
+                criteria.PageSize = maxPageSize;
+            }
+
+            if (criteria.PageIndex < 1)
+            {
+                criteria.PageIndex = 1;
+            }
+        }
+
+        private static bool IsLargeDatasetRequest(PlayerGgrReportCriteria criteria, int productCount)
+        {
+            const int largePageSizeThreshold = 2000;
+            const int manyProductsThreshold = 100;
+            const int largeDatasetThreshold = 4000;
+
+            return criteria.PageSize > largePageSizeThreshold || 
+                   productCount > manyProductsThreshold || 
+                   (criteria.PageIndex * criteria.PageSize) > largeDatasetThreshold;
+        }
+
+        private static List<PlayerGgrReport> BuildDataItemListOptimized(IEnumerable<JObject> dataItemObjects, string[] selectedProductIdList)
+        {
+            var dataList = new List<PlayerGgrReport>();
+            
+            var estimatedCount = dataItemObjects.Count();
+            if (estimatedCount > 0)
+            {
+                dataList.Capacity = estimatedCount;
+            }
+
+            foreach (var dataItem in dataItemObjects)
+            {
+                dataList.Add(BuildDataItem(dataItem, selectedProductIdList));
+            }
+
+            return dataList;
         }
     }
 }

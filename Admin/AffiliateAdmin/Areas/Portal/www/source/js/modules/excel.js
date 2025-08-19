@@ -9,10 +9,18 @@ const MapExcelType = {
 let _XLSX = null;
 export default class Excel {
     static async process(callback) {
-        _XLSX = await import( /* webpackChunkName: "xlsx-style" */ 'xlsx-style-sparta');
-
-        if (_XLSX) {
-            callback && callback();
+        try {
+            _XLSX = await import( /* webpackChunkName: "xlsx-style" */ 'xlsx-style-sparta');
+            
+            if (_XLSX) {
+                if (callback) {
+                    callback();
+                }
+            } else {
+                throw new Error('XLSX library failed to load');
+            }
+        } catch (error) {
+            throw error;
         }
     }
 
@@ -26,6 +34,29 @@ export default class Excel {
         this.download(workbookOutput, fileName);
     }
 
+    static exportMultiSheet(workbookData, fileName) {
+        try {
+            const option = { bookType: EXCEL_TYPE, bookSST: false, type: 'binary' };
+            const workbook = { 
+                SheetNames: Object.keys(workbookData), 
+                Sheets: {}, 
+                Props: {} 
+            };
+
+            // Add each sheet to the workbook
+            Object.keys(workbookData).forEach(sheetName => {
+                const sheetData = workbookData[sheetName];
+                workbook.Sheets[sheetName] = sheetData.worksheet;
+            });
+
+            var workbookOutput = _XLSX.write(workbook, option);
+            
+            this.download(workbookOutput, fileName);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     static getCellType(value) {
         return MapExcelType[typeof value];
     }
@@ -35,26 +66,42 @@ export default class Excel {
     }
 
     static download(workbookOut, fileName) {
-        const blob = new Blob([this.sheetToArrayBuffer(workbookOut)], {
-            type: "application/octet-stream"
-        });
-
-        this.downloadFromBolb(blob, fileName);
+        try {
+            const arrayBuffer = this.sheetToArrayBuffer(workbookOut);
+            const blob = new Blob([arrayBuffer], {
+                type: "application/octet-stream"
+            });
+            
+            this.downloadFromBolb(blob, fileName);
+        } catch (error) {
+            throw error;
+        }
     }
 
     static downloadFromBolb(blob, fileName) {
         const fileNameDownload = `${fileName}.${EXCEL_TYPE}`;
 
-        // IE 10+
-        if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
-            navigator.msSaveOrOpenBlob(blob, fileNameDownload);
-        } else {
-            const element = window.document.createElement('a');
-            element.href = window.URL.createObjectURL(blob);
-            element.download = fileNameDownload;
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
+        try {
+            // IE 10+
+            if (typeof navigator !== "undefined" && navigator.msSaveOrOpenBlob) {
+                navigator.msSaveOrOpenBlob(blob, fileNameDownload);
+            } else {
+                const element = window.document.createElement('a');
+                const objectUrl = window.URL.createObjectURL(blob);
+                
+                element.href = objectUrl;
+                element.download = fileNameDownload;
+                element.style.display = 'none'; // Hide the element
+                
+                document.body.appendChild(element);
+                element.click();
+                
+                // Clean up
+                document.body.removeChild(element);
+                window.URL.revokeObjectURL(objectUrl);
+            }
+        } catch (error) {
+            throw error;
         }
     }
 
