@@ -5,11 +5,14 @@ import { setMemberCpaId } from '../../actions';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import TableFooter from './TableFooter';
+import { getMaxHeight } from '../../../libs/constants';
 
 export const TurnoverDetail = ({ turnoverDetail, memberCpaId, setMemberCpaId }) => {
     if (!memberCpaId || !turnoverDetail) {
         return null;
     }
+
+    const maxHeight = getMaxHeight()
 
     const closeModal = () => {
         setMemberCpaId(null)
@@ -17,7 +20,7 @@ export const TurnoverDetail = ({ turnoverDetail, memberCpaId, setMemberCpaId }) 
 
     return (
         <Modal
-            className="deal-popup-container"
+            className="turnover-detail-popup-container"
             isOpen={!!memberCpaId}
             toggle={closeModal}
             backdrop="static"
@@ -33,8 +36,8 @@ export const TurnoverDetail = ({ turnoverDetail, memberCpaId, setMemberCpaId }) 
                 </h5>
             </ModalHeader>
             <ModalBody>
-                <div className="modal-body-wrapper">
-                    <Table bordered responsive className="mb-0">
+                <div className="modal-body-wrapper table-responsive" style={{ maxHeight }}>
+                    <Table freeze-table bordered className="mb-0">
                         <TableHeader />
                         <TableBody groups={turnoverDetail.groups} />
                         <TableFooter total={turnoverDetail.total} />

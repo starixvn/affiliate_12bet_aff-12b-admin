@@ -38,7 +38,7 @@ const Title = ({ reportTitle, params, toggleLoader}) => {
 
 export const Content = ({ reportTitle, toggleLoader, params }) => {
     return (
-        <div className='data-content my-2 report-content-container'>
+        <div className='data-content my-2 report-player-cpa-content-container'>
             {
                 reportTitle && (
                     <ReportTitle content={<Title reportTitle={reportTitle} params={params} toggleLoader={toggleLoader} />} />
