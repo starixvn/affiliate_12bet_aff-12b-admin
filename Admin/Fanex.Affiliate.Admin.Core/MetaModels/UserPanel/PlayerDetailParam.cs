@@ -3,16 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
-    public class PlayerDetailParam : AffiliatePagingParam
+    public class PlayerDetailParam : AffiliatePagingByDateParam
     {
         private const int Turnover = 5;
 
         public byte ProductId { get; set; }
 
         public int BaseCurrencyId { get; set; }
-
-        [Required]
-        public DateTime MonthDate { get; set; }
 
         public bool IsExportExcel { get; set; }
 

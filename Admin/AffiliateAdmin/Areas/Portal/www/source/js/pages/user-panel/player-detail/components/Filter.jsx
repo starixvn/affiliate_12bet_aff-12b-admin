@@ -2,26 +2,31 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
-import MonthPicker from '@9softstudio/react-monthpicker';
+import { DatePicker } from '@9softstudio/react-datepicker';
 
-import { globalResource, resource, selectedAllProduct, shortedMonthNames, minMonthDate, SortByIdList, SortingColumnDefault, defaultBaseCurrency } from '../modules/constants';
+import { globalResource, selectedAllProduct, minMonthDate, SortByIdList, SortingColumnDefault, defaultBaseCurrency } from '../modules/constants';
 import { setParam, fetchData, setSortingColumn } from '../actions';
 import ReportExcel from '../modules/reportExcel';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import Select from '../../../../components/select';
 import MultipleSelect from '../../../../components/multiple-select';
-import { handleChangeMultipleSelected } from '../../../../modules/utils';
+import { handleChangeMultipleSelected, handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
+import { minDate, sixMonth } from '../../../../modules/constants';
 
 export class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
         const { today, baseCurrencyList, currencyList } = this.props;
-        const monthDate = new Date(today);
+        const now = new Date(today);
+        const currentMonth = now.getMonth() + 1;
+        const currentYear = now.getFullYear();
+        this.nowString = `${currentMonth}/${now.getDate()}/${currentYear}`;
 
         this.state = {
             selectedProduct: selectedAllProduct,
-            monthDate,
+            fromDate: `${currentMonth}/01/${currentYear}`,
+            toDate: this.nowString,
             isIncludeRemovedPlayer: false,
             selectedBaseCurrency: baseCurrencyList && baseCurrencyList.length && baseCurrencyList[0].ExchangeId || defaultBaseCurrency,
             selectedCurrencyList: currencyList && currencyList.filter(item => item.checked).map(item => item.key).join(',') || '',
@@ -29,10 +34,12 @@ export class Filter extends PureComponent {
         }
     }
 
-    handleSelectMonth = (month, year) => {
-        this.setState({
-            monthDate: new Date(year, month - 1)
-        })
+    handleChangeFromDate = (momentDate) => {
+        this.setState(prevState => handleAfterChangeFromDate(momentDate, prevState.toDate, sixMonth));
+    }
+
+    handleChangeToDate = (momentDate) => {
+        this.setState(prevState => handleAfterChangeToDate(momentDate, prevState.fromDate, sixMonth));
     }
 
     handleChangeProduct = (selectedProduct) => {
@@ -60,26 +67,23 @@ export class Filter extends PureComponent {
         this.setState({ selectedCurrencyList, currencyList });
     }
 
-    handleFormatMonthPicker = (month, year) => {
-        return `${shortedMonthNames[month - 1]}-${year}`
-    }
-
-    handleSearch = (monthDate) => {
-        const { selectedProduct, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayer } = this.state;
+    handleSearch = () => {
+        const { selectedProduct, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayer, fromDate, toDate } = this.state;
 
         const param = {
             productId: selectedProduct,
             baseCurrencyId: selectedBaseCurrency,
             currencyIds: selectedCurrencyList,
             isIncludeRemovedPlayer,
-            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            fromDate,
+            toDate,
         }
         this.props.setParam(param);
         this.props.setSortingColumn(SortingColumnDefault);
     }
 
     handleExportExcel = async () => {
-        const { selectedProduct, monthDate, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayer } = this.state;
+        const { selectedProduct, fromDate, toDate, selectedBaseCurrency, selectedCurrencyList, isIncludeRemovedPlayer } = this.state;
         const { affId, sortingColumn, isDepositFeePercent, isWithdrawalFeePercent } = this.props;
 
         const param = {
@@ -88,7 +92,8 @@ export class Filter extends PureComponent {
             baseCurrencyId: selectedBaseCurrency,
             currencyIds: selectedCurrencyList,
             isIncludeRemovedPlayer,
-            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
+            fromDate,
+            toDate,
             affId,
             sortById: SortByIdList[sortingColumn.ColumnName],
             isSortAsc: sortingColumn.IsSortAsc
@@ -105,12 +110,12 @@ export class Filter extends PureComponent {
 
     _getReportTitle() {
         const { baseCurrencyList } = this.props;
-        const { selectedProduct, monthDate, selectedBaseCurrency } = this.state;
+        const { selectedProduct, fromDate, toDate, selectedBaseCurrency } = this.state;
         const productTitle = selectedProduct === 0 ? 'All Products' : this._getSelectedProductName(selectedProduct);
-        const selectedMonthTitle = this.handleFormatMonthPicker(monthDate.getMonth() + 1, monthDate.getFullYear());
+        const fromToTitle = `FROM ${fromDate} TO ${toDate}`;
         const currency = baseCurrencyList ? baseCurrencyList.filter(x => x.ExchangeId == selectedBaseCurrency) : [];
 
-        return `Player Detail - ${currency[0] && `Base Currency ${currency[0].Code} - ` || ''}${productTitle} - ${selectedMonthTitle}`;
+        return `Player Detail - ${currency[0] && `Base Currency ${currency[0].Code} - ` || ''}${productTitle} - ${fromToTitle}`;
     }
 
     _getSelectedProductName(productId) {
@@ -120,7 +125,7 @@ export class Filter extends PureComponent {
     }
 
     render() {
-        const { selectedProduct, selectedBaseCurrency, monthDate, currencyList, isIncludeRemovedPlayer } = this.state;
+        const { selectedProduct, selectedBaseCurrency, fromDate, toDate, currencyList, isIncludeRemovedPlayer } = this.state;
         const { productList, baseCurrencyList, isProduction } = this.props;
         const dataSource = [{ ProductId: selectedAllProduct, ProductName: globalResource.All }].concat(productList);
 
@@ -170,13 +175,16 @@ export class Filter extends PureComponent {
                     }
 
                     <FormGroup className="mr-sm-2">
-                        <Label className="mr-sm-2">{resource.Month}</Label>
-                        <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
-                            selectedDropdownYear={monthDate.getFullYear()}
-                            selectedMonth={monthDate.getMonth() + 1}
-                            onSelect={this.handleSelectMonth}
-                            onFormat={this.handleFormatMonthPicker}
-                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
+                        <Label className="mr-sm-2">{globalResource.From}</Label>
+                        <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            onChange={this.handleChangeFromDate} />
+                    </FormGroup>
+                    <FormGroup className="mr-sm-2">
+                        <Label className="mr-sm-2">{globalResource.To}</Label>
+                        <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            onChange={this.handleChangeToDate} />
                     </FormGroup>
                     <FormGroup className="mr-sm-3">
                         <Label checked>
@@ -184,7 +192,7 @@ export class Filter extends PureComponent {
                             <Input className="ml-2 mt-1" type="checkbox" id="isIncludeRemovedPlayer" name="isIncludeRemovedPlayer" checked={isIncludeRemovedPlayer} onChange={(e) => this.handleCheckIncludeRemovedPlayers(!isIncludeRemovedPlayer)} />
                         </Label>
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={() => this.handleSearch(monthDate)}>
+                    <Button outline color="primary" type="button" onClick={this.handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
 
