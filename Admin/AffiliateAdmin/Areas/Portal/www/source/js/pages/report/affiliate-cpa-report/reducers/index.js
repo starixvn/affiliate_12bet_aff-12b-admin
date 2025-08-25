@@ -30,6 +30,18 @@ export const isSubmit = createReducer(false, {
     }
 })
 
+export const dealId = createReducer(null, {
+    [types.SET_DEAL_ID](prevState, action) {
+        return action.data;
+    }
+})
+
+export const isShowDealPopup = createReducer(false, {
+    [types.TOGGLE_DEAL_POPUP](prevState) {
+        return !prevState;
+    }
+})
+
 export default combineReducers({
     params,
     today,
@@ -37,5 +49,7 @@ export default combineReducers({
     reportTitle,
     isShowLoader,
     pagingOption,
-    isSubmit
+    isSubmit,
+    dealId,
+    isShowDealPopup
 });

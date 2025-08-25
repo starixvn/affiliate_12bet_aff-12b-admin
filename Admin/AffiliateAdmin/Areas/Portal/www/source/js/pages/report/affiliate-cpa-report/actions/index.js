@@ -1,5 +1,4 @@
 ﻿import * as types from './types';
-import { post } from '../../../../modules/ajaxRequest';
 import { setPagingOption } from '../../../../actions/pagingAction';
 
 export { setPagingOption };
@@ -21,5 +20,18 @@ export const setParams = (data) => {
 export const toggleSubmit = () => {
     return {
         type: types.TOGGLE_SUBMIT
+    }
+}
+
+export const setDealId = (data) => {
+    return {
+        type: types.SET_DEAL_ID,
+        data
+    }
+}
+
+export const toggleDealPopup = () => {
+    return {
+        type: types.TOGGLE_DEAL_POPUP
     }
 }

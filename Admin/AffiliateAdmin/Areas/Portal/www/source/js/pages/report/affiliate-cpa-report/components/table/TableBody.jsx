@@ -1,14 +1,22 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { globalResource } from '../../../../../modules/globalResource';
 import { formatDecimal } from '../../../../../modules/numberFormat';
+import { setDealId, toggleDealPopup } from '../../actions';
+import { resolveClientUrl } from '../../../../../modules/utils';
 
-const RowData = ({ data, rowNumber }) => {
+const RowData = ({ data, rowNumber, setDealId, toggleDealPopup }) => {
+    const handleClickDeal = () => {
+        setDealId(data.groupId);
+        toggleDealPopup();
+    }
+
     return (
         <tr key={`dataRow-${rowNumber}`}>
             <td className="text-center">{rowNumber}</td>
             <td className="text-center">{data.month}</td>
-            <td><a target='_blank' href={`/Portal/Customer?user=${data.affiliate}`}>{data.affiliate}</a></td>
-            <td><a target='_blank' href={`/Portal/Customer?user=${data.affiliate}`}>{data.dealName}</a></td>
+            <td><a target='_blank' href={resolveClientUrl(`Portal/Customer?user=${data.affiliate}`)}>{data.affiliate}</a></td>
+            <td><button className="btn btn-link" onClick={handleClickDeal}>{data.dealName}</button></td>
             <td className="text-center">{data.dealType}</td>
             <td className="text-center">{data.paymentFrequency}</td>
             <td className="text-center">{`${data.quota}`}</td>
@@ -18,9 +26,11 @@ const RowData = ({ data, rowNumber }) => {
         </tr>
     )
 }
-export default function TableBody({
+export function TableBody({
     data,
-    pagingOption
+    pagingOption,
+    setDealId,
+    toggleDealPopup
 }) {
     if(!data || data.length === 0){
         return (
@@ -40,9 +50,24 @@ export default function TableBody({
         <tbody>
             {
                 data && data.map((item, index) => (
-                    <RowData key={index} data={item} rowNumber={getRowNumber(index)} />
+                    <RowData 
+                        key={index} 
+                        data={item} 
+                        rowNumber={getRowNumber(index)} 
+                        setDealId={setDealId} 
+                        toggleDealPopup={toggleDealPopup} 
+                    />
                 ))
             }
         </tbody>
     )
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setDealId: (data) => dispatch(setDealId(data)),
+        toggleDealPopup: () => dispatch(toggleDealPopup())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(TableBody);

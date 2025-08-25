@@ -5,6 +5,9 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
 import Loader from '../../../../components/Loader';
+import ViewDealWrapper from '../../../operation/view-deal';
+
+import { toggleDealPopup } from '../actions';
 
 export const AppContainer = (props) => {
     return (
@@ -12,12 +15,23 @@ export const AppContainer = (props) => {
             <Loader show={props.isShowLoader} />
             <Filter />
             <Content />
+            {props.isShowDealPopup && <ViewDealWrapper dealId={props.dealId} toggle={props.toggleDealPopup} />}
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+const mapStateToProps = (state) => {
+    return {
+        isShowLoader: state.isShowLoader,
+        isShowDealPopup: state.isShowDealPopup,
+        dealId: state.dealId
+    }
 }
 
-export default connect(mapStateToProps)(React.memo(AppContainer));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleDealPopup: () => dispatch(toggleDealPopup())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));
