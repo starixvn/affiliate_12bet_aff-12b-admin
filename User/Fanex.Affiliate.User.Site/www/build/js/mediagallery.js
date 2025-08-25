@@ -1491,6 +1491,7 @@ var MarketingBase = (function ($) {
                 deviceType: $("#DeviceType").val(),
                 targetId: $("#AffLinkType").val(),
                 targetCountryCode: $('#TargetCountry').val(),
+                domainId: $("#Domain").val(),
                 isMediaGallery,
                 isChangeAffTypeLink
             };
@@ -1574,7 +1575,6 @@ var MarketingBase = (function ($) {
 
         updateLanguageDropdown: function (languageList) {
             if (languageList && !languageList.length) {
-                $('#btnMarketingSubmit').prop('disabled', true);
                 $('#Language').html(NO_INFO_OPTION);
 
                 return;
@@ -1588,7 +1588,6 @@ var MarketingBase = (function ($) {
 
         updateSizeDropdown: function (sizeList) {
             if (sizeList && !sizeList.length) {
-                $('#btnMarketingSubmit').prop('disabled', true);
                 $('#Size').html(NO_INFO_OPTION);
 
                 return;
@@ -1608,7 +1607,6 @@ var MarketingBase = (function ($) {
 
         updateCategoryDropdown: function (categoryList) {
             if (categoryList && !categoryList.length) {
-                $('#btnMarketingSubmit').prop('disabled', true);
                 $('#Category').html(NO_INFO_OPTION);
 
                 return;
@@ -1616,15 +1614,13 @@ var MarketingBase = (function ($) {
 
             var html = Site.buildOptionList(categoryList, "Value", "Text", true);
 
-            var previousSelectedCategory = $("#Category").val();
-
             $("#Category").html(html);
+            $("#Category").val('');
 
-            var hasPreviousSelectedCategory = categoryList.some(i => i.Value == previousSelectedCategory);
-
-            if (hasPreviousSelectedCategory) {
-                $("#Category").val(previousSelectedCategory);
-            }
+            var $subCategoryContainer = $("#SubCategory").closest(".form-group");
+            var html = Site.buildOptionList([], "Value", "Text", true);
+            $("#SubCategory").html(html);
+            $subCategoryContainer.addClass("hide");
         },
     };
 
@@ -1635,6 +1631,7 @@ var MediaGallery = (function ($) {
     var CATEGORY_SPORTSBOOK = "sportsbook";
 
     var optionAll = "<option value=''>" + window.dic.all + "</option>";
+    const NO_INFO_OPTION = "<option value=''>" + langResource.noInfo + "</option>";
 
     var _pageSize = 20;
     var _pageIndex = 0;
@@ -1742,8 +1739,15 @@ var MediaGallery = (function ($) {
                 data: param,
                 url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetSubCategory"),
                 success: function (response) {
+                    if (response && !response.length) {
+                        $('#SubCategory').html(NO_INFO_OPTION);
+
+                        return;
+                    }
+
                     var html = Site.buildOptionList(response, "Value", "Text", true);
                     $("#SubCategory").html(html);
+                    $('#SubCategory').val('');
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -1772,8 +1776,14 @@ var MediaGallery = (function ($) {
                 cache: false,
                 data: param,
                 url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetSize"),
-                success: function (response) {
-                    var html = Site.buildOptionList(response, "Size", "Size", true);
+                success: function (sizeList) {
+                    if (sizeList && !sizeList.length) {
+                        $('#Size').html(NO_INFO_OPTION);
+
+                        return;
+                    }
+
+                    var html = Site.buildOptionList(sizeList, "Size", "Size", true);
                     $("#Size").html(html);
                 },
                 beforeSend: function () {
