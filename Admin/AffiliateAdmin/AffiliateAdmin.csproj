@@ -390,6 +390,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\operation\view-deal\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\view-deal\ViewDeal.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\operation\view-deal\ViewDealPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-cpa-report\components\table\TableBody.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-cpa-report\components\table\TableFooter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-cpa-report\components\table\TableHeader.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-cpa-report\hooks\useAffiliateCpaData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-cpa-report\libs\services.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-cpa-report\components\__test__\AppContainer.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\affiliate-cpa-report\libs\exportExcel.js" />
