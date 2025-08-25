@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
 {
@@ -105,6 +106,140 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         public string GetExtension(string fileName)
         {
             return Path.GetExtension(fileName);
+        }
+
+        // New methods for Landing Page Builder
+        public void SaveFile(HttpPostedFileBase file, string path)
+        {
+            if (file == null)
+            {
+                throw new ArgumentNullException(nameof(file));
+            }
+
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentException("Path cannot be null or empty", nameof(path));
+            }
+
+            // Ensure directory exists
+            var directory = Path.GetDirectoryName(path);
+            EnsureDirectoryExists(directory);
+
+            // Save the file
+            file.SaveAs(path);
+        }
+
+        public bool FileExists(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return false;
+            }
+
+            return File.Exists(path);
+        }
+
+        public long GetFileSize(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+            {
+                return 0;
+            }
+
+            try
+            {
+                var fileInfo = new FileInfo(path);
+                return fileInfo.Length;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public void CopyFile(string sourcePath, string destinationPath, bool overwrite = false)
+        {
+            if (string.IsNullOrWhiteSpace(sourcePath))
+            {
+                throw new ArgumentException("Source path cannot be null or empty", nameof(sourcePath));
+            }
+
+            if (string.IsNullOrWhiteSpace(destinationPath))
+            {
+                throw new ArgumentException("Destination path cannot be null or empty", nameof(destinationPath));
+            }
+
+            if (!File.Exists(sourcePath))
+            {
+                throw new FileNotFoundException($"Source file not found: {sourcePath}");
+            }
+
+            // Ensure destination directory exists
+            var destinationDirectory = Path.GetDirectoryName(destinationPath);
+            EnsureDirectoryExists(destinationDirectory);
+
+            File.Copy(sourcePath, destinationPath, overwrite);
+        }
+
+        public void EnsureDirectoryExists(string directoryPath)
+        {
+            if (string.IsNullOrWhiteSpace(directoryPath))
+            {
+                return;
+            }
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+        }
+
+        public FileInfo GetFileInfo(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+            {
+                return null;
+            }
+
+            try
+            {
+                return new FileInfo(path);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public string ReadAllText(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+            {
+                return string.Empty;
+            }
+
+            try
+            {
+                return File.ReadAllText(path);
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        public void WriteAllText(string path, string content)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentException("Path cannot be null or empty", nameof(path));
+            }
+
+            // Ensure directory exists
+            var directory = Path.GetDirectoryName(path);
+            EnsureDirectoryExists(directory);
+
+            File.WriteAllText(path, content ?? string.Empty);
         }
     }
 }

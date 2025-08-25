@@ -300,4 +300,8 @@
 	<Setting Key="Aff_Admin_Assign_Deal_Sel" SpName="Aff_Admin_Assign_Deal_Sel" DbName="" />
 	<Setting Key="Aff_Admin_Deal_PlayerTargetCountry_ListSel" SpName="Aff_Admin_Deal_PlayerTargetCountry_ListSel" DbName="" />
   </Function>
+    <Function Name="Operation">
+	    <Setting Key="Aff_LandingPage_ModuleSel" SpName="Aff_LandingPage_ModuleSel" DbName="" />
+	    <Setting Key="Aff_LandingPage_StatusSel" SpName="Aff_LandingPage_StatusSel" DbName="" />
+    </Function>
 </Functions>

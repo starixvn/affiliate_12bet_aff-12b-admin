@@ -3,6 +3,7 @@ using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
@@ -10,22 +11,22 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
-    public class LandingPageService : BaseDynamicService, ILandingPageService
+    public class LandingPageListService : BaseDynamicService, ILandingPageListService
     {
         private const string RestrictedCharacterPattern = "[;/\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
         private const string RestrictedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
 
-        public LandingPageService(
+        public LandingPageListService(
             IDynamicRepository dynamicRepository) : base(dynamicRepository) { }
 
-        public IEnumerable<LandingPage> GetLandingPageList()
+        public IEnumerable<DTO.MediaGallery.LandingPage> GetLandingPageList()
         {
-            return FetchTData<LandingPage>(new LandingPageCriteria());
+            return FetchTData<DTO.MediaGallery.LandingPage>(new LandingPageCriteria());
         }
 
-        public LandingPage GetLandingPageById(int pageId)
+        public DTO.MediaGallery.LandingPage GetLandingPageById(int pageId)
         {
-            return GetTData<LandingPage>(new LandingPageCriteria { PageId = pageId });
+            return GetTData<DTO.MediaGallery.LandingPage>(new LandingPageCriteria { PageId = pageId });
         }
 
         public IEnumerable<TargetCountry> GetExcludedTargetCountryList(int pageId)

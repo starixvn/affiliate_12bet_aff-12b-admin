@@ -15,6 +15,7 @@
         {"Player",Function.Player },
         {"Report",Function.AffReport },
         {"MediaGallery",Function.Media },
+        {"LandingPage",Function.LandingPage },
         {"Message",Function.HotNews },
         {"Administrator",Function.UserControl },
         {"Domain",Function.Domain }
@@ -39,17 +40,14 @@
 @functions{
     public string GetMenuName(string menuKey)
     {
-        if (menuKey == "MediaGallery")
+        switch (menuKey)
         {
-            return "Media Gallery";
-        }
-        else if (menuKey == "ExchangeRate")
-        {
-            return "Ex.Rate";
-        }
-        else
-        {
-            return menuKey;
+            case "MediaGallery":
+                return "Media Gallery";
+            case "LandingPage":
+                return "Landing Page";
+            default:
+                return menuKey;
         }
     }
 }
@@ -87,6 +85,9 @@
             break;
         case 'LandingPageList':
             element = document.getElementById('MediaGallery');
+            break;
+        case 'PageBuilder': case 'AssetUploader': case 'FormManagement': case 'ModuleManagement':
+            element = document.getElementById('LandingPage');
             break;
         case 'Department':
             element = document.getElementById('Administrator');

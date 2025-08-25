@@ -300,6 +300,10 @@
 	<Setting Key="Aff_Admin_Assign_Deal_Sel" SpName="Aff_Admin_Assign_Deal_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Deal_PlayerTargetCountry_ListSel" SpName="Aff_Admin_Deal_PlayerTargetCountry_ListSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
+    <Function Name="Operation">
+	    <Setting Key="Aff_LandingPage_ModuleSel" SpName="Aff_LandingPage_ModuleSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	    <Setting Key="Aff_LandingPage_StatusSel" SpName="Aff_LandingPage_StatusSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    </Function>
 </Functions>
 
 		

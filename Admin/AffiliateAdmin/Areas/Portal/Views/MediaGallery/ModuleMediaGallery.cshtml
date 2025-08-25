@@ -1,0 +1,39 @@
+@model Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery.ModuleMediaGalleryViewModel
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/module-media-gallery.css")" rel="stylesheet" />
+}
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            moduleList: @Html.Raw(Json.Encode(Model.ModuleList)),
+            moduleTypes: @Html.Raw(Json.Encode(Model.ModuleTypes)),
+            mediaRootUrl: @Html.Raw(Json.Encode(Model.MediaRootUrl)),
+            selectedModuleId: @Model.SelectedModuleId,
+            selectedModuleName: @Html.Raw(Json.Encode(Model.SelectedModuleName ?? "")),
+            permissions: {
+                canUpload: @Html.Raw(Json.Encode(Model.CanUpload)),
+                canEdit: @Html.Raw(Json.Encode(Model.CanEdit)),
+                canDelete: @Html.Raw(Json.Encode(Model.CanDelete))
+            },
+            uploadSettings: {
+                maxFileSize: @Model.MaxFileSize,
+                allowedExtensions: @Html.Raw(Json.Encode(Model.AllowedExtensions)),
+                maxImageWidth: @Model.MaxImageWidth,
+                maxImageHeight: @Model.MaxImageHeight
+            },
+            totalMediaFiles: @Model.TotalMediaFiles,
+            totalStorageUsed: @Model.TotalStorageUsed
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/module-media-gallery.js")"></script>
+}
+
+<div id="module-media-gallery-root">
+    <!-- React component will be rendered here -->
+    <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Loading Module Media Gallery...</p>
+    </div>
+</div>

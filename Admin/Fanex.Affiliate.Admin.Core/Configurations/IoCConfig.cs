@@ -2,6 +2,8 @@
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Apis;
 using Fanex.Affiliate.Admin.Core.Handlers;
+using Fanex.Affiliate.Admin.Core.Services.LandingPage;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Caching;
 using Fanex.Data.Repository;
 using ONEbook.UM.Configurations;
@@ -90,6 +92,9 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<DynamicRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            
+            // Register Landing Page Builder services
+            // Note: These services are registered elsewhere or not yet implemented
         }
     }
 }

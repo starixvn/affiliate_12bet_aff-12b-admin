@@ -1,0 +1,336 @@
+﻿@model Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery.LandingPageBuilderViewModel
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/landing-page-builder.css")" rel="stylesheet" />
+}
+
+<div class="landing-page-container">
+    <!-- Sub Navigation Tabs -->
+    <div class="sub-navigation">
+        <div class="nav-tabs-container">
+            <ul class="nav nav-tabs" id="landingPageTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="page-management-tab" data-toggle="tab" href="#page-management" role="tab">
+                        <i class="fas fa-list-alt"></i> Page Management
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="page-builder-tab" data-toggle="tab" href="#page-builder" role="tab">
+                        <i class="fas fa-plus-circle"></i> Page Builder
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="asset-uploader-tab" data-toggle="tab" href="#asset-uploader" role="tab">
+                        <i class="fas fa-cloud-upload-alt"></i> Asset Uploader
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="registration-form-tab" data-toggle="tab" href="#registration-form" role="tab">
+                        <i class="fas fa-wpforms"></i> Registration Form Management
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="landingPageTabContent">
+        <!-- Page Management Tab -->
+        <div class="tab-pane fade show active" id="page-management" role="tabpanel">
+            <div class="page-management-content">
+                <!-- Search Filters -->
+                <div class="search-filters">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="landingPageName">Landing Page Name</label>
+                                <input type="text" id="landingPageName" class="form-control" placeholder="Enter page name" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="targetCountry">Target Country</label>
+                                <select id="targetCountry" class="form-control">
+                                    <option value="">All Target Countries</option>
+                                    @foreach (var country in Model.TargetCountries)
+                                    {
+                                        <option value="@country.CountryCode">@country.CountryName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="language">Language</label>
+                                <select id="language" class="form-control">
+                                    <option value="">All Languages</option>
+                                    @foreach (var lang in Model.Languages)
+                                    {
+                                        <option value="@lang.LanguageCode">@lang.LanguageName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="landingPageCode">Landing Page Code</label>
+                                <input type="text" id="landingPageCode" class="form-control" placeholder="Enter page code" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="deal">Deal</label>
+                                <select id="deal" class="form-control">
+                                    <option value="">All Deals</option>
+                                    <option value="NoCommission">NoCommission</option>
+                                    <option value="NoCommission_MKT">NoCommission_MKT</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status" class="form-control">
+                                    <option value="">All Statuses</option>
+                                    <option value="Published">Published</option>
+                                    <option value="Draft">Draft</option>
+                                    <option value="Archived">Archived</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="search-actions">
+                                <button type="button" class="btn btn-primary" onclick="searchLandingPages()">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                                <button type="button" class="btn btn-success ml-2" onclick="createNewLandingPage()">
+                                    <i class="fas fa-plus"></i> Create New
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landing Pages Grid -->
+                <div class="landing-pages-grid">
+                    <div class="grid-header">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="duplicate-info">
+                                    <span class="text-muted">
+                                        <i class="fas fa-info-circle"></i>
+                                        Click to Duplicate an existing Landing Page. System redirect user to [Page Builder] with Duplication.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="landingPagesTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Landing Page Name</th>
+                                    <th>Landing Page Code</th>
+                                    <th>Target Country</th>
+                                    <th>Language</th>
+                                    <th>Deal</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="landingPagesTableBody">
+                                <!-- Sample data for demonstration -->
+                                <tr>
+                                    <td>1</td>
+                                    <td><a href="#" class="text-primary">MYR Join Landing Page</a></td>
+                                    <td>myr-12join</td>
+                                    <td>Malaysia</td>
+                                    <td>English</td>
+                                    <td>NoCommission,NoCommission_MKT</td>
+                                    <td><span class="badge badge-success">Published</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-info ml-1" title="Duplicate">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><a href="#" class="text-primary">MYR Join Landing Page 2</a></td>
+                                    <td>myr-12join2</td>
+                                    <td>Malaysia</td>
+                                    <td>English</td>
+                                    <td>NoCommission,NoCommission_MKT</td>
+                                    <td><span class="badge badge-secondary">Archived</span></td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-info ml-1" title="Duplicate">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagination-container">
+                        <nav aria-label="Landing pages pagination">
+                            <ul class="pagination" id="landingPagesPagination">
+                                <!-- Pagination will be generated dynamically -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Builder Tab -->
+        <div class="tab-pane fade" id="page-builder" role="tabpanel">
+            <div id="pageBuilderContent">
+                <!-- Page Builder content will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Asset Uploader Tab -->
+        <div class="tab-pane fade" id="asset-uploader" role="tabpanel">
+            <div id="assetUploaderContent">
+                <!-- Asset Uploader content will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Registration Form Management Tab -->
+        <div class="tab-pane fade" id="registration-form" role="tabpanel">
+            <div id="registrationFormContent">
+                <!-- Registration Form content will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section pagejs{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Initialize tab functionality
+            $('#landingPageTabs a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+
+            // Search functionality
+            window.searchLandingPages = function() {
+                var filters = {
+                    landingPageName: $('#landingPageName').val(),
+                    targetCountry: $('#targetCountry').val(),
+                    language: $('#language').val(),
+                    landingPageCode: $('#landingPageCode').val(),
+                    deal: $('#deal').val(),
+                    status: $('#status').val()
+                };
+                
+                // TODO: Implement AJAX search
+                console.log('Searching with filters:', filters);
+            };
+
+            // Create new landing page
+            window.createNewLandingPage = function() {
+                // Switch to Page Builder tab
+                $('#page-builder-tab').tab('show');
+                // TODO: Initialize page builder for new page
+                console.log('Creating new landing page');
+            };
+
+            // Handle edit actions
+            $(document).on('click', '.btn-outline-primary', function() {
+                var pageId = $(this).closest('tr').find('td:first').text();
+                // Switch to Page Builder tab
+                $('#page-builder-tab').tab('show');
+                // TODO: Load page data for editing
+                console.log('Editing page ID:', pageId);
+            });
+
+            // Handle duplicate actions
+            $(document).on('click', '.btn-outline-info', function() {
+                var pageId = $(this).closest('tr').find('td:first').text();
+                var pageName = $(this).closest('tr').find('td:eq(1) a').text();
+                
+                if (confirm('Are you sure you want to duplicate "' + pageName + '"?')) {
+                    // Switch to Page Builder tab
+                    $('#page-builder-tab').tab('show');
+                    // TODO: Load page data for duplication
+                    console.log('Duplicating page ID:', pageId);
+                }
+            });
+
+            // Tab content loading
+            $('#landingPageTabs a').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr("href");
+                
+                switch(target) {
+                    case '#page-builder':
+                        loadPageBuilderContent();
+                        break;
+                    case '#asset-uploader':
+                        loadAssetUploaderContent();
+                        break;
+                    case '#registration-form':
+                        loadRegistrationFormContent();
+                        break;
+                }
+            });
+
+            function loadPageBuilderContent() {
+                $('#pageBuilderContent').html(`
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        Page Builder functionality will be implemented here. This will include:
+                        <ul class="mt-2 mb-0">
+                            <li>Drag and drop module interface</li>
+                            <li>Live preview functionality</li>
+                            <li>Module configuration panels</li>
+                            <li>Template save/load capabilities</li>
+                        </ul>
+                    </div>
+                `);
+            }
+
+            function loadAssetUploaderContent() {
+                $('#assetUploaderContent').html(`
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        Asset Uploader functionality will be implemented here. This will include:
+                        <ul class="mt-2 mb-0">
+                            <li>Drag and drop file upload</li>
+                            <li>Image optimization and resizing</li>
+                            <li>Asset organization by modules</li>
+                            <li>Bulk upload and management</li>
+                        </ul>
+                    </div>
+                `);
+            }
+
+            function loadRegistrationFormContent() {
+                $('#registrationFormContent').html(`
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        Registration Form Management functionality will be implemented here. This will include:
+                        <ul class="mt-2 mb-0">
+                            <li>Form template creation and editing</li>
+                            <li>Field configuration and validation</li>
+                            <li>Form preview and testing</li>
+                            <li>Integration with landing pages</li>
+                        </ul>
+                    </div>
+                `);
+            }
+        });
+    </script>
+}

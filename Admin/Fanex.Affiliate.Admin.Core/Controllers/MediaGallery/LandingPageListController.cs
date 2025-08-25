@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -13,13 +14,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.Media)]
     public class LandingPageListController : ReadOnlySessionBaseController
     {
-        private readonly ILandingPageService _landingPageService;
+        private readonly ILandingPageListService _landingPageService;
         private readonly ISystemService _systemService;
         private readonly ICommonDealService _commGroupCommonService;
 
         public LandingPageListController(
             ISessionService sessionService,
-            ILandingPageService landingPageService,
+            ILandingPageListService landingPageService,
             ISystemService systemService,
             ICommonDealService commGroupCommonService) : base(sessionService)
         {

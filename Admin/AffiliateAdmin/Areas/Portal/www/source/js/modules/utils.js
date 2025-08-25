@@ -215,3 +215,15 @@ export const getLastDayOfThisMonth = () => {
     const today = moment()
     return today.endOf('month').format('MM/DD/YYYY');
 }
+
+
+
+let _xsrfToken = null;
+
+export const getAntiForgeryToken = () => {
+    if (!_xsrfToken) {
+        _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
+    }
+
+    return _xsrfToken;
+}

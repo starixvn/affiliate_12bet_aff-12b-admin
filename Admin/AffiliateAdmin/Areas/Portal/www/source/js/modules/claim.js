@@ -6,6 +6,7 @@
     Payment: "[Payment]",
     EmailHistory: "[EmailHistory]",
     Media: "[Media]",
+    LandingPage: "[Media]",
     AffExRate: "[AffEx.Rate]",
     HotNews: "[HotNews]",
     RevenueGroup: "[RevenueGroup]",

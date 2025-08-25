@@ -1,16 +1,16 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
-    public interface ILandingPageService
+    public interface ILandingPageListService
     {
-        IEnumerable<LandingPage> GetLandingPageList();
+        IEnumerable<DTO.MediaGallery.LandingPage> GetLandingPageList();
 
-        LandingPage GetLandingPageById(int pageId);
+        DTO.MediaGallery.LandingPage GetLandingPageById(int pageId);
 
         IEnumerable<TargetCountry> GetExcludedTargetCountryList(int pageId);
 

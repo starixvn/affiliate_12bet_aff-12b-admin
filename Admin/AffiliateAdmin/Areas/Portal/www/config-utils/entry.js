@@ -28,6 +28,9 @@ module.exports = {
     [`${styleDist}/pages/media-gallery/landing-page`]: clientRoot + "/style/pages/media-gallery/landing-page.scss",
     [`${styleDist}/pages/media-gallery/banner-list`]: clientRoot + "/style/pages/media-gallery/banner-list.scss",
 
+    //Landing Page
+    [`${jsDist}/pages/landing-page`]: clientRoot + "/js/pages/landing-page/index.jsx",
+    [`${styleDist}/pages/landing-page`]: clientRoot + "/style/pages/landing-page.scss",
 
     //Domain
     [`${jsDist}/pages/domain`]: clientRoot + "/js/pages/domain/index.jsx",

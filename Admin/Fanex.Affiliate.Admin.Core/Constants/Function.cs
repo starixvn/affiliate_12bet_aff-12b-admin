@@ -14,6 +14,8 @@
 
         public const string Media = "[Media]";
 
+        public const string LandingPage = "[Media]";
+
         public const string AffExRate = "[AffEx.Rate]";
 
         public const string HotNews = "[HotNews]";

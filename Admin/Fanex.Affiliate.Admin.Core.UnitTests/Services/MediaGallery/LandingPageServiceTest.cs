@@ -126,11 +126,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Services.MediaGallery
             Assert.True(result.IsSuccessful);
         }
 
-        private static LandingPageService CreateLandingPageService(IDynamicRepository dynamicRepository = null)
+        private static LandingPageListService CreateLandingPageService(IDynamicRepository dynamicRepository = null)
         {
             var fakedynamicRepository = dynamicRepository ?? Mock.Of<IDynamicRepository>();
 
-            return new LandingPageService(fakedynamicRepository);
+            return new LandingPageListService(fakedynamicRepository);
         }
     }
 }

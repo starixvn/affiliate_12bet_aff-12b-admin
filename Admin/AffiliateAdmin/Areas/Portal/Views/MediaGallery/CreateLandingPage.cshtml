@@ -1,0 +1,222 @@
+@model Fanex.Affiliate.Admin.Core.ViewModels.MediaGallery.CreateLandingPageViewModel
+
+@section pagecss{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/media-gallery/create-landing-page.css")" rel="stylesheet" />
+}
+
+<div class="create-landing-page-container">
+    <div class="page-header">
+        <div class="header-left">
+            <h2>@(Model.PageId > 0 ? "Edit Landing Page" : "Create New Landing Page")</h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "MediaGallery")">Media Gallery</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "LandingPageBuilder")">Landing Page Builder</a></li>
+                    <li class="breadcrumb-item active">@(Model.PageId > 0 ? "Edit Landing Page" : "Create Landing Page")</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="header-actions">
+            <button type="button" class="btn btn-outline-secondary" onclick="showPreview()">
+                <i class="fas fa-eye"></i> Preview
+            </button>
+            <button type="button" class="btn btn-success" onclick="saveLandingPage()">
+                <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-info" onclick="resetPage()">
+                <i class="fas fa-undo"></i> Reset
+            </button>
+        </div>
+    </div>
+
+    <div class="page-configuration">
+        <div class="config-form">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="targetCountry">Target Country</label>
+                        <select id="targetCountry" class="form-control">
+                            <option value="">Select Country</option>
+                            @foreach (var country in Model.TargetCountries)
+                            {
+                                <option value="@country.CountryCode">@country.CountryName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="language">Language</label>
+                        <select id="language" class="form-control">
+                            <option value="">Select Language</option>
+                            @foreach (var lang in Model.Languages)
+                            {
+                                <option value="@lang.LanguageCode">@lang.LanguageName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="landingPageName">Landing Page Name *</label>
+                        <input type="text" id="landingPageName" class="form-control" placeholder="Enter page name" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="landingPageCode">Landing Page Code *</label>
+                        <input type="text" id="landingPageCode" class="form-control" placeholder="Enter page code" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="deal">Deal</label>
+                        <select id="deal" class="form-control">
+                            <option value="">Select Deal</option>
+                            <option value="2 selected">2 selected</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="form-control">
+                            <option value="Draft">Draft</option>
+                            <option value="Published">Published</option>
+                            <option value="Archived">Archived</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" onclick="createLandingPage()">
+                            <i class="fas fa-plus"></i> Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="module-components-section">
+        <h3>
+            <i class="fas fa-puzzle-piece"></i> Module Components
+            <span class="info-icon" data-toggle="tooltip" title="Drag and drop modules to build your landing page">
+                <i class="fas fa-info-circle"></i>
+            </span>
+        </h3>
+        
+        <div class="builder-workspace">
+            <div class="modules-sidebar">
+                <div class="module-library">
+                    <h4>Available Modules</h4>
+                    <div class="module-list">
+                        @foreach (var moduleType in Model.ModuleTypes)
+                        {
+                            <div class="module-item" data-module-type="@moduleType.Id" draggable="true">
+                                <div class="module-icon">
+                                    <i class="fas fa-@(moduleType.Icon ?? "cube")"></i>
+                                </div>
+                                <div class="module-info">
+                                    <h5>@moduleType.Name</h5>
+                                    <p>@moduleType.Description</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-builder">
+                <div class="builder-canvas">
+                    <div class="canvas-header">
+                        <h4>Page Canvas</h4>
+                        <div class="canvas-controls">
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="addModule()">
+                                <i class="fas fa-plus"></i> Add Module
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeSelectedModule()">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="module-workspace" id="moduleWorkspace">
+                        <div class="module-row" data-order="1">
+                            <div class="module-placeholder">
+                                <div class="module-selector">
+                                    <select class="form-control module-select">
+                                        <option value="">Please select</option>
+                                        @foreach (var module in Model.AvailableModules)
+                                        {
+                                            <option value="@module.ModuleId">@module.ModuleName (@module.ModuleTypeName)</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="source-selector">
+                                    <select class="form-control source-select">
+                                        <option value="">Please select</option>
+                                    </select>
+                                </div>
+                                <div class="module-actions">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="addModuleRow()">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="removeModuleRow(this)">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="empty-state" id="emptyState">
+                            <div class="empty-icon">
+                                <i class="fas fa-mouse-pointer"></i>
+                            </div>
+                            <h4>Create a new page, then select components in order to start building</h4>
+                            <p>Reference: Drag and drop modules or use the selectors above for optimal layout</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h4>Landing Page Preview</h4>
+                    <div class="preview-controls">
+                        <button type="button" class="btn btn-sm btn-outline-info active" data-preview="desktop">
+                            <i class="fas fa-desktop"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-info" data-preview="tablet">
+                            <i class="fas fa-tablet-alt"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-info" data-preview="mobile">
+                            <i class="fas fa-mobile-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="preview-content">
+                    <iframe id="previewFrame" src="about:blank"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section pagejs{
+    <script type="text/javascript">
+        window.initialState = {
+            pageId: @Model.PageId,
+            targetCountries: @Html.Raw(Json.Encode(Model.TargetCountries)),
+            languages: @Html.Raw(Json.Encode(Model.Languages)),
+            availableModules: @Html.Raw(Json.Encode(Model.AvailableModules)),
+            moduleTypes: @Html.Raw(Json.Encode(Model.ModuleTypes)),
+            navigationTargets: @Html.Raw(Json.Encode(Model.NavigationTargets)),
+            existingPageData: @Html.Raw(Json.Encode(Model.ExistingPageData))
+        };
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/media-gallery/create-landing-page.js")"></script>
+}
