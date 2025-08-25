@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
-import { convertListToMutilpleSelected } from '../../../modules/utils';
 import AppContainer from "./components/AppContainer";
 
 const App = () => {

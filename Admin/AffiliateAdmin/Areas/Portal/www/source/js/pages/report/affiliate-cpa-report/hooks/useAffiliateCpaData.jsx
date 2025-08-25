@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption, setReportTitle, toggleSubmit } from '../actions';
 import { reportName, viewByOptions } from '../libs/constants';
-import moment from 'moment';
 import { fetchAffiliateCpaData } from '../libs/services';
 
 export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) => {
@@ -16,37 +15,33 @@ export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) =>
 
     const fetchData = () => {
         dispatch(toggleLoader(true));
-        
-        fetchAffiliateCpaData({ ...params, isExportExcel: false })
-        .then(res => {
-            setAffiliateCpaData(res);
-            dispatch(setPagingOption({
-                ...pagingOption,
-                TotalItem: res?.totalItem
-            }));
-            dispatch(setReportTitle(getTitle()));
 
-        }).finally(() => {
-            dispatch(toggleLoader(false));
-            dispatch(toggleSubmit());
-        });
+        fetchAffiliateCpaData({ ...params, isExportExcel: false })
+            .then(res => {
+                setAffiliateCpaData(res);
+                dispatch(setPagingOption({
+                    ...pagingOption,
+                    TotalItem: res?.totalItem
+                }));
+                dispatch(setReportTitle(getTitle()));
+
+            }).finally(() => {
+                dispatch(toggleLoader(false));
+                dispatch(toggleSubmit());
+            });
     }
 
     const getTitle = () => {
         let title = reportName;
-        if(params.viewBy) {
+        if (params.viewBy) {
             title += ` - View By ${viewByOptions[+params.viewBy - 1].label}`;
         }
-        title += ` - From ${moment(params.fromDate).format('MM/YYYY')} - To ${moment(params.toDate).format('MM/YYYY')}`;
-        
+        title += ` - From ${params.fromDate} - To ${params.toDate}`;
+
         return title;
     }
 
     return affiliateCpaData
 };
 
-
-
 export default useAffiliateCpaData;
-
-

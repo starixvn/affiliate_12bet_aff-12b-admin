@@ -4,6 +4,7 @@
     using Fanex.Affiliate.Admin.Core.DTO.Report;
     using Fanex.Affiliate.Admin.Core.MetaModels.Report;
     using Fanex.Data.Repository;
+    using Utilities;
 
     public class AffiliateCpaReportService : BaseDynamicService, IAffiliateCpaReportService
     {
@@ -11,8 +12,12 @@
 
         public EntityResult<AffiliateCpaReport> GetData(AffiliateCpaRequest request)
         {
-            var criteria = request.CreateCriteria();
+            if (!DateTimeHelper.IsValidDateRange(request.FromDate, request.ToDate))
+            {
+                return new EntityResult<AffiliateCpaReport>();
+            }
 
+            var criteria = request.CreateCriteria();
             return FetchEntityResultHasItemTotal<AffiliateCpaReport>(criteria);
         }
     }

@@ -1,5 +1,3 @@
-import { getFirstDayOfMonth, getLastDayOfThisMonth } from "../../../../modules/utils";
-
 export const reportName = 'AFFILIATE CPA REPORT';
 
 export const MAX_MONTH_DIFF = 5;
@@ -10,8 +8,8 @@ export const defaultParams = {
     username: '',
     dealName: '',
     viewBy: 1,
-    fromDate: getFirstDayOfMonth(),
-    toDate: getLastDayOfThisMonth(),
+    fromDate: '',
+    toDate: '',
     sortType: 1,
     sortDirectionType: false,
     pageIndex: 1,
