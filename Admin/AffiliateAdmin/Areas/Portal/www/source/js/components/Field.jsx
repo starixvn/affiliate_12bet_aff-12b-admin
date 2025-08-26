@@ -10,7 +10,8 @@ export default function Field({
     placeholder,
     maxLength,
     selectOptions,
-    className
+    className,
+    onPressEnter = null
 }) {
     return (
         <FormGroup className={className}>
@@ -23,6 +24,7 @@ export default function Field({
                 onChange={onChange}
                 value={value}
                 placeholder={placeholder}
+                onKeyPress={onPressEnter}
             >
                 {selectOptions && selectOptions.map((option) => (
                     <option key={option.value} value={option.value}>{option.label}</option>

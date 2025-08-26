@@ -4,7 +4,7 @@ import { Cell } from '@9softstudio/react-fixed-table-header';
 import { connect } from 'react-redux';
 import { setParams, toggleSubmit } from '../../actions';
 import { bindActionCreators } from 'redux';
-import { headerRows } from '../../libs/constants';
+import { headerRows, dataKey } from '../../libs/constants';
 
 const RowHeader = ({ index, row, sortColumn, isAscending, handleClickHeader }) => {
     return (
@@ -23,7 +23,12 @@ const RowHeader = ({ index, row, sortColumn, isAscending, handleClickHeader }) =
                             className="p-0 th-wrapper" 
                             color="link" 
                             onClick={() => handleClickHeader(cell.sortColumn)}>
-                            <span>{cell.title}</span>
+                            {cell.title}
+                            {
+                                cell.field === dataKey.CPAAmount && (
+                                    <span className="oi icon-info ml-1" title='Click to view Turnover CPA Detail'></span>
+                                )
+                            }
                             {cell.sortable && (
                                 <div className="icon-container">
                                     <span className={`caret asc ${sortColumn === cell.sortColumn && isAscending ? "current" : ''}`}></span>

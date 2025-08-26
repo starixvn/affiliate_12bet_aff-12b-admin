@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Report
 {
+    using System.Linq;
     using Fanex.Affiliate.Admin.Core.Attributes;
     using Fanex.Affiliate.Admin.Core.Constants;
     using Fanex.Affiliate.Admin.Core.MetaModels.Report;
@@ -8,13 +9,17 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Fanex.Affiliate.Admin.Core.Extensions;
+    using MetaModels.Operation;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using Services.Operation;
 
     [FunctionAuthorize(FunctionName = Function.AffReport)]
     public class PlayerCpaReportController : ReadOnlySessionBaseController
     {
         private readonly IPlayerCpaService _playerCpaService;
+        private readonly ICommonDealService _commonDealService;
+
         private readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -22,15 +27,20 @@
 
         public PlayerCpaReportController(
             ISessionService sessionService,
-            IPlayerCpaService playerCpaService) : base(sessionService)
+            IPlayerCpaService playerCpaService,
+            ICommonDealService commonDealService) : base(sessionService)
         {
             _playerCpaService = playerCpaService;
+            _commonDealService = commonDealService;
         }
 
 
         [HttpGet]
         public ActionResult Index()
         {
+            var dealList = _commonDealService.GetNormalDealList(new GetNormalDealParam { IsOnlyRevenue = false });
+            ViewBag.Deals = dealList.Where(d => d.GroupTypeId != DealType.RevenueShare);
+
             return View("~/Areas/Portal/Views/Report/PlayerCpaReport.cshtml");
         }
 

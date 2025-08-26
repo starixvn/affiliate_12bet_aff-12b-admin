@@ -61,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ toggleSubmit, toggleLoader }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

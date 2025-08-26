@@ -1,5 +1,3 @@
-import moment from "moment";
-
 export const statusOptions = [
     { value: -1, label: 'All Statuses' },
     { value: 2, label: 'Eligible' },
@@ -16,22 +14,16 @@ export const viewByOptions = [
     { value: '3', label: 'Approval Date' },
 ]
 
-export const MAX_MONTH_DIFF = 6;
-
 export const DATE_FORMAT = 'MM/DD/YYYY';
-
-const now = new Date();
-const currentMonth = now.getMonth() + 1;
-const currentYear = now.getFullYear();
 
 export const defaultParams = {
     userName: '',
-    custName: "",
-    dealName: "",
+    custName: '',
+    dealName: '',
     statusId: -1,
     viewBy: '1',
-    fromDate: `${currentMonth}/01/${currentYear}`,
-    toDate: `${currentMonth}/${now.getDate()}/${currentYear}`,
+    fromDate: '',
+    toDate: '',
     pageSize: 20,
     pageIndex: 1,
     sortColumn: 'AffUserName',
@@ -159,7 +151,7 @@ export const row1 = [
     }
 ];
 
-export const row2 =[
+export const row2 = [
     {
         title: headerText.FTD,
         width: 100,

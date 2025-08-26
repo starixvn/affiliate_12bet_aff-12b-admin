@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { get, post } from '../../../../modules/ajaxRequest';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { booleanFields, DATE_FORMAT, dateFields, decimalFields, TotalText } from './constants';
+import { DATE_FORMAT, dateFields, decimalFields, TotalText } from './constants';
 
 export const getPlayerCpaData = async (params, isExportExcel = false) => {
     const url = 'Portal/PlayerCpaReport/GetData';

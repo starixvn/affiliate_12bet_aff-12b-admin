@@ -43,13 +43,7 @@ const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup }
             </td>
             <td className="text-center">
                 {
-                    data.isTO ? 
-                        <Button 
-                            className="p-0" 
-                            color="link" 
-                            onClick={handleClickTO}>
-                            <span>Yes</span>
-                        </Button> : "No"
+                    data.isTO ? 'Yes' : 'No'
                 }
             </td>
             <td className="text-center">
@@ -57,10 +51,10 @@ const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup }
             </td>
             <td className="text-right">
                 {
-                    data.isTO ? 
-                        <Button 
-                            className="p-0" 
-                            color="link" 
+                    data.isTO ?
+                        <Button
+                            className="p-0"
+                            color="link"
                             onClick={handleClickTO}>
                             <span>{data.cpaAmount}</span>
                         </Button> : data.cpaAmount
@@ -101,7 +95,7 @@ export function TableBody({
     setDealId,
     toggleDealPopup
 }) {
-    if(!data || data.length === 0){
+    if (!data || data.length === 0) {
         return (
             <tbody>
                 <tr>

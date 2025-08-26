@@ -7,6 +7,11 @@ import createReducer from '../../../../modules/createReducer';
 import * as types from '../actions/types.js';
 import { defaultParams } from '../libs/constants';
 
+const now = new Date();
+const defaultToday = `${now.getMonth()}/${now.getDate()}/${now.getFullYear()}`;
+const today = createReducer(defaultToday, {});
+const deals = createReducer([], {});
+
 export const reportTitle = createReducer('', {
     [types.SET_REPORT_TITLE](prevState, action) {
         return action.data;
@@ -52,5 +57,7 @@ export default combineReducers({
     isShowLoader,
     pagingOption,
     dealId,
-    isShowDealPopup
+    isShowDealPopup,
+    today,
+    deals
 });

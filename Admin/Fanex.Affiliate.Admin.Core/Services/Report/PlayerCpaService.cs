@@ -44,7 +44,7 @@
 
         public async Task<TurnoverDetailModel> GetTurnoverDetailAsync(int memberCpaId)
         {
-            var criteria = new TurnoverCpaDetailCriteria {MemberCpaId = memberCpaId};
+            var criteria = new TurnoverCpaDetailCriteria { MemberCpaId = memberCpaId };
 
             var (groupByProducts, groupByProductDetails, total) = await _dynamicRepository
                 .FetchMultipleAsync<TurnoverGroupByProduct, TurnoverGroupByProductDetail, TurnoverGroupByProduct>(criteria);
@@ -52,8 +52,8 @@
             groupByProducts = groupByProducts.Select(group =>
             {
                 group.Products = groupByProductDetails.Where(detail =>
-                    detail.MemberCPAId == group.MemberCPAId 
-                    && detail.MemberCPATierId == group.MemberCPATierId 
+                    detail.MemberCPAId == group.MemberCPAId
+                    && detail.MemberCPATierId == group.MemberCPATierId
                     && detail.GroupProductId == group.GroupProductId);
                 return group;
             });
@@ -72,8 +72,8 @@
 
         private async Task<EntityResult<PlayerCpaReport>> GetFromCacheAsync(string cacheKey)
         {
-            return await _cache.ContainAsync(cacheKey) 
-                ? await _cache.GetAsync<EntityResult<PlayerCpaReport>>(cacheKey) 
+            return await _cache.ContainAsync(cacheKey)
+                ? await _cache.GetAsync<EntityResult<PlayerCpaReport>>(cacheKey)
                 : null;
         }
 
@@ -92,11 +92,6 @@
 
         private static EntityResult<PlayerCpaReport> ApplyDataFilters(EntityResult<PlayerCpaReport> result, PlayerCpaReportRequest request)
         {
-            if (request.IsExportExcel)
-            {
-                return result;
-            }
-
             var sortColumns = request.SortColumn
                 .Split(',')
                 .ToDictionary(item => item, (e) => request.IsAscending);

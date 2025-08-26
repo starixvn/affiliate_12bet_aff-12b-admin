@@ -62,4 +62,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(GridData);
+export default connect(mapStateToProps)(React.memo(GridData));

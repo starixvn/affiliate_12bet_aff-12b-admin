@@ -401,7 +401,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\table\TableBody.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\table\TableFooter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\table\TableHeader.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\Title.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\turnover\TableBody.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\turnover\TableFooter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\turnover\TableHeader.jsx" />
