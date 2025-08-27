@@ -67,7 +67,14 @@
 
         private static string GetCacheKey(PlayerCpaReportRequest request)
         {
-            return $"{request.UserName}.{request.CustName}.{request.DealName}.{request.StatusId}.{request.ViewBy}.{request.FromDate.ToShortDateString()}.{request.ToDate.ToShortDateString()}";
+            return $"{request.UserName}" +
+                   $".{request.CustName}" +
+                   $".{request.DealName}" +
+                   $".{request.StatusId}" +
+                   $".{request.ViewBy}" +
+                   $".{request.FromDate.ToShortDateString()}" +
+                   $".{request.ToDate.ToShortDateString()}" +
+                   $".{request.IsExportExcel.ToString()}";
         }
 
         private async Task<EntityResult<PlayerCpaReport>> GetFromCacheAsync(string cacheKey)

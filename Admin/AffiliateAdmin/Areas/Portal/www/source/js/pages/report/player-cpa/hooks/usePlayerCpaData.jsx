@@ -3,10 +3,9 @@ import { getPlayerCpaData, getTurnoverDetail } from '../libs/service'
 import { toggleLoader } from '../../../../actions/loaderAction'
 import { toggleSubmit, setPagingOption } from '../actions'
 import { setReportTitle } from '../actions'
-import { DATE_FORMAT, viewByOptions } from '../libs/constants'
-import moment from 'moment'
+import { viewByOptions } from '../libs/constants'
 
-const reportName = 'PLAYER CPA REPORT'
+const reportName = 'PLAYER CPA REPORT';
 
 export default function usePlayerCpaData(isSubmit, params, pagingOption, memberCpaId, dispatch) {
     const [playerCpaData, setPlayerCpaData] = useState(null)
@@ -52,7 +51,7 @@ export default function usePlayerCpaData(isSubmit, params, pagingOption, memberC
 
         title += ` - View By ${viewByOptions[+params.viewBy - 1].label}`;
 
-        title += ` - From ${moment(params.fromDate).format(DATE_FORMAT)} - To ${moment(params.toDate).format(DATE_FORMAT)}`;
+        title += ` - From ${params.fromDate} - To ${params.toDate}`;
 
         return title;
     }
