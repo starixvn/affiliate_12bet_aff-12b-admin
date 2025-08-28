@@ -10,7 +10,7 @@ import { defaultParams } from '../libs/constants';
 const now = new Date();
 const defaultToday = `${now.getMonth()}/${now.getDate()}/${now.getFullYear()}`;
 const today = createReducer(defaultToday, {});
-const isProduction = createReducer(false, {});
+const deals = createReducer([], {});
 
 export const reportTitle = createReducer('', {
     [types.SET_REPORT_TITLE](prevState, action) {
@@ -45,7 +45,7 @@ export const isShowDealPopup = createReducer(false, {
 export default combineReducers({
     params,
     today,
-    isProduction,
+    deals,
     reportTitle,
     isShowLoader,
     pagingOption,

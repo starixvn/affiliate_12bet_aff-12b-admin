@@ -4,14 +4,17 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
+import MultipleSelect from '../../../../components/multiple-select';
+
 import { setParams, toggleSubmit } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 import { viewByOptions } from '../libs/constants';
-import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate } from '../../../../modules/utils';
+import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate, handleChangeMultipleSelected } from '../../../../modules/utils';
 import { minDate, sixMonth } from '../../../../modules/constants';
 
-const Filter = ({ setParams, params, toggleSubmit, today }) => {
+const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
     const [nowString, setNowString] = useState('');
+    const [dealList, setDealList] = useState(deals);
 
     useEffect(() => {
         const now = new Date(today);
@@ -26,6 +29,15 @@ const Filter = ({ setParams, params, toggleSubmit, today }) => {
             toDate: nowString
         });
     }, [today]);
+
+    useEffect(() => {
+        if (deals && deals.length > 0) {
+            const dealIds = deals.map(deal => deal.key).join(',');
+            setParams({
+                dealName: dealIds
+            });
+        }
+    }, [deals]);
 
 
     const onEnterPress = (event) => {
@@ -47,6 +59,13 @@ const Filter = ({ setParams, params, toggleSubmit, today }) => {
         setParams({ ...handleAfterChangeToDate(date, params.fromDate, sixMonth) });
     }
 
+    const handleChangeDeals = (item, selectedDeals) => {
+        setDealList(handleChangeMultipleSelected(dealList, selectedDeals));
+        setParams({
+            dealName: selectedDeals
+        });
+    }
+
     const onSearch = () => {
         toggleSubmit();
     }
@@ -63,10 +82,16 @@ const Filter = ({ setParams, params, toggleSubmit, today }) => {
                 </FormGroup>
                 <FormGroup className="my-sm-1 mr-sm-2">
                     <Label htmlFor="Deal" className="mr-sm-2">Deal Name</Label>
-                    <Input type="text" name="dealName" id="Deal" maxLength="30"
-                        onKeyPress={onEnterPress}
-                        onChange={onChange}
-                        value={params.dealName} />
+                    <MultipleSelect
+                        dataSource={dealList}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        noneSelectedLabel="None Select"
+                        selectedAllLabel="All Deals"
+                        hasInputOption={true}
+                        onChange={handleChangeDeals} />
                 </FormGroup>
                 <FormGroup className="my-sm-1 mr-sm-2">
                     <Label htmlFor="ViewBy" className="mr-sm-2">View By</Label>
@@ -115,6 +140,7 @@ function mapStateToProps(state) {
         isProduction: state.isProduction,
         today: state.today,
         params: state.params,
+        deals: state.deals
     });
 }
 

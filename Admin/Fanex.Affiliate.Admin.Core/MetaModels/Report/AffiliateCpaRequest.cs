@@ -10,7 +10,6 @@
         [MaxLength(Validation.MaxLengthInputString, ErrorMessage = "Affiliate must shorter than 30 characters!")]
         public string Username { get; set; }
 
-        [MaxLength(Validation.Hundred, ErrorMessage = "Player must shorter than 100 characters!")]
         public string DealName { get; set; }
 
         public short ViewBy { get; set; }

@@ -81,7 +81,8 @@ const Filter = ({ params, setParams, toggleSubmit, today, deals }) => {
             <Form inline tag="div">
                 <Field className="my-sm-1 mr-sm-2" name="userName" value={params.userName} onChange={handleChange} label="Affiliate" onPressEnter={handlePressEnter} />
                 <Field className="my-sm-1 mr-sm-2" name="custName" value={params.custName} onChange={handleChange} label="Player" onPressEnter={handlePressEnter} />
-                <FormGroup className="my-sm-2 mr-sm-4 comm-group">
+                <FormGroup className="my-sm-1 mr-sm-2">
+                    <Label htmlFor="Deal" className="mr-sm-2">Deal Name</Label>
                     <MultipleSelect
                         dataSource={dealList}
                         keyField="key"
