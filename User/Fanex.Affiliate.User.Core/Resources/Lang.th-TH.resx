@@ -1624,9 +1624,6 @@
   <data name="UsernameSignUp" xml:space="preserve">
     <value>ยูสเซอร์เนมรับค่าคอมมิชชั่น</value>
   </data>
-  <data name="QualifyingMembers" xml:space="preserve">
-    <value>≥5</value>
-  </data>
   <data name="ProductType" xml:space="preserve">
     <value>ประเภทการเดิมพัน</value>
   </data>
