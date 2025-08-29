@@ -7,11 +7,27 @@ import createReducer from '../../../../modules/createReducer';
 import * as types from '../actions/types';
 
 const now = new Date();
-const defaultToday = `${now.getMonth() + 1}/${now.getFullYear()}`;
+const defaultToday = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 const today = createReducer(defaultToday, {});
+const deals = createReducer([], {});
+
+export const params = createReducer({}, {
+    [types.SET_PARAMS](prevState, action) {
+        return Object.assign({}, prevState, action.data);
+    }
+})
+
+export const isSubmit = createReducer(false, {
+    [types.TOGGLE_SUBMIT](prevState, action) {
+        return action.data;
+    }
+})
 
 export default combineReducers({
     today,
+    deals,
     pagingOption,
     isShowLoader,
+    params,
+    isSubmit
 });

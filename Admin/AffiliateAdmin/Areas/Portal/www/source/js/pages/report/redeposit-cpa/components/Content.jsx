@@ -1,7 +1,84 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export const Content = () => {
-    return <div>Redeposit CPA</div>;
+import GridData from './GridData';
+import ReportExcel from '../libs/reportExcel';
+import { getRedepositCpaData } from '../libs/service';
+
+import { toggleLoader } from '../../../../actions/loaderAction';
+
+const REDEPOSIT_CPA_REPORT_TITLE = 'REDEPOSIT CPA REPORT - View By Approval Date';
+
+const Title = ({ params, isSubmit, toggleLoader }) => {
+    const [reportTitle, setReportTitle] = useState('');
+
+    useEffect(() => {
+        if (isSubmit) {
+            let title = REDEPOSIT_CPA_REPORT_TITLE;
+
+            title += ` - From ${params.fromDate} To ${params.toDate}`;
+
+            setReportTitle(title);
+        }
+    }, [isSubmit]);
+
+    const handleExportExcel = async () => {
+        toggleLoader(true);
+        try {
+            const exportData = await getRedepositCpaData(params, true);
+
+            if (exportData) {
+                const reportExcel = new ReportExcel(exportData, reportTitle, {
+                    showTotal: true
+                });
+                reportExcel.export();
+            }
+        }
+        catch (err) {
+            console.log('err', err);
+        }
+        finally {
+            toggleLoader(false);
+        }
+    }
+
+    return reportTitle && (
+        <div className="report-title-container">
+            <div className="report-title">
+                <div className="d-flex align-items-center">
+                    {reportTitle}
+                    <button type="button" className="ml-auto btn btn-link btn-excel" onClick={handleExportExcel} title="Export Excel">
+                        <span className="oi icon-excel"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const Content = ({ params, isSubmit, toggleLoader }) => {
+    return (
+        <React.Fragment>
+            <div className='data-content my-2 report-redeposit-cpa-content-container'>
+                <Title params={params} isSubmit={isSubmit} toggleLoader={toggleLoader} />
+                <GridData />
+            </div>
+        </React.Fragment>
+    )
 };
 
-export default Content;
+const mapStateToProps = ({ params, isSubmit }) => {
+    return {
+        params,
+        isSubmit,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        toggleLoader
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

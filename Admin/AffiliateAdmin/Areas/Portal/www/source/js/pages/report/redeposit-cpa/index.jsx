@@ -5,9 +5,14 @@ import AppContainer from './components/AppContainer';
 
 import { configureStore } from '../../../modules/store';
 import reducers from './reducers';
+import { convertListToMutilpleSelected } from '../../../modules/utils';
+
+const { deals } = window.initialState;
+const newDeals = convertListToMutilpleSelected(deals, 'GroupId', 'GroupName');
 
 const store = configureStore({
     ...window.initialState,
+    deals: newDeals
 }, reducers);
 
 export const App = () => {

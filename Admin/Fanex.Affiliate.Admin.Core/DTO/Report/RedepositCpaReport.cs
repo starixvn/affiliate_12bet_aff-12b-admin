@@ -2,8 +2,10 @@
 {
     using System;
 
-    public class RedepositReport
+    public class RedepositCpaReport
     {
+        public int RowIdx { get; set; }
+
         public int AffId { get; set; }
 
         public string AffUserName { get; set; }
@@ -14,13 +16,13 @@
 
         public string PaymentFrequency { get; set; }
 
-        public DateTime? StartDate { get; set; }
+        public DateTime? StartFrom { get; set; }
 
-        public string StartDateStr => StartDate?.ToString("MM/dd/yyyy") ?? string.Empty;
+        public string StartFromStr => StartFrom?.ToString("MM/dd/yyyy") ?? string.Empty;
 
-        public DateTime? SettledDate { get; set; }
+        public DateTime? ApprovalDate { get; set; }
 
-        public string SettledDateStr => SettledDate?.ToString("MM/dd/yyyy") ?? string.Empty;
+        public string ApprovalDateStr => ApprovalDate?.ToString("MM/dd/yyyy") ?? string.Empty;
 
         public int RecheckDays { get; set; }
 
@@ -34,7 +36,7 @@
 
         public int ApprovedCpaPlayerRate { get; set; }
 
-        public int NumOfPlayerRedeposit { get; set; }
+        public string NumOfPlayerRedeposit { get; set; }
 
         public decimal TotalSettledCpaAmount { get; set; }
 

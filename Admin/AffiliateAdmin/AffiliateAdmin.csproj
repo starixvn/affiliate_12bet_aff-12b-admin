@@ -432,7 +432,14 @@
     <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\components\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\components\table\TableBody.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\components\table\TableFooter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\components\table\TableHeader.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\libs\headerConfigs.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\libs\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\libs\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\marketing-statistics\actions\types.js" />
@@ -1470,8 +1477,8 @@
     <Content Include="Areas\Portal\Views\Report\AffiliateCpaReport.cshtml" />
     <Content Include="Areas\Portal\Views\Report\PlayerCpaReport.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\report\player-cpa-report.scss" />
-    <Content Include="Areas\Portal\Views\Report\RedepositReport.cshtml" />
-    <Content Include="Areas\Portal\www\source\style\pages\report\affiliate-cpa-report.scss" />
+    <Content Include="Areas\Portal\Views\Report\RedepositCpaReport.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\report\redeposit-cpa-report.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -1501,7 +1508,6 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\pages\marketing-account\__test__\" />
     <Folder Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\__test__\__snapshots__\" />
-    <Folder Include="Areas\Portal\www\source\js\pages\report\redeposit-cpa\libs\" />
     <Folder Include="Areas\Portal\www\source\js\pages\user-panel\user-account\modules\__test__\" />
   </ItemGroup>
   <ItemGroup>

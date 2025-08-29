@@ -38,7 +38,6 @@ module.exports = {
     [`${styleDist}/user-panel-layout`]: clientRoot + "/style/layout/user-panel-layout.scss",
     [`${styleDist}/pages/report`]: clientRoot + "/style/pages/report/index.scss",
     [`${styleDist}/pages/affiliate-info`]: clientRoot + "/style/pages/affiliate-info.scss",
-    [`${styleDist}/pages/affiliate-cpa-report`]: clientRoot + "/style/pages/report/affiliate-cpa-report.scss",
     [`${styleDist}/pages/email-history`]: clientRoot + "/style/pages/email-history.scss",
     [`${styleDist}/pages/payment/payment-request`]: clientRoot + "/style/pages/payment/payment-request.scss",
     [`${styleDist}/pages/customer`]: clientRoot + "/style/pages/customer/main.scss",
