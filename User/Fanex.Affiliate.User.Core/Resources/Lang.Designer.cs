@@ -5243,15 +5243,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ≥ 5 .
-        /// </summary>
-        public static string QualifyingMembers {
-            get {
-                return ResourceManager.GetString("QualifyingMembers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Racebook.
         /// </summary>
         public static string Racebook {

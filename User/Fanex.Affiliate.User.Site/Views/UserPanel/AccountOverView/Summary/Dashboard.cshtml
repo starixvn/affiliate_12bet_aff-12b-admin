@@ -1,8 +1,11 @@
 ﻿@using Fanex.Affiliate.User.Core.CoreService
+@using Fanex.Affiliate.User.Core.Utilities
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview.OverviewSummary
 
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+    var isAffOfNoCommissionCPAGroup = StatisticsHelper.IsAffOfNoCommissionCPAGroup(appSetting, sessionService.UserSession?.GroupName);
 }
 
 <div class="dashboard-section-col">
@@ -16,10 +19,20 @@
             <span class="info-panel-content">@($"{Model.Signups}/{Model.DepositedMembers}")</span>
         </div>
 
-        <div class="info-panel">
-            <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.ActivePlayersAndQualified</span>
-            <span class="info-panel-content">@($"{Model.ActivePlayers}/{Model.QualifiedMember}")</span>
-        </div>
+        @if (isAffOfNoCommissionCPAGroup)
+        {
+            <div class="info-panel">
+                <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.ActivePlayers</span>
+                <span class="info-panel-content">@($"{Model.ActivePlayers}")</span>
+            </div>
+        }
+        else
+        {
+            <div class="info-panel">
+                <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.ActivePlayersAndQualified</span>
+                <span class="info-panel-content">@($"{Model.ActivePlayers}/{Model.QualifiedMember}")</span>
+            </div>
+        }
     </div>
     <div class="group group-two">
         <div class="img-icon">

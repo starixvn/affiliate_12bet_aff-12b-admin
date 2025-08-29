@@ -1616,9 +1616,6 @@
   <data name="UsernameSignUp" xml:space="preserve">
     <value>12BET玩家账号</value>
   </data>
-  <data name="QualifyingMembers" xml:space="preserve">
-    <value>≥ 5 </value>
-  </data>
   <data name="ProductType" xml:space="preserve">
     <value>产品</value>
   </data>
@@ -2544,7 +2541,7 @@
     <value>从旧系统结转的账户余额。</value>
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
-    <value>符合资格的活跃玩家</value>
+    <value>合格会员数</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
     <value>订阅我们的 {0}，掌握12BET合作成功的最新动态与优惠活动。</value>

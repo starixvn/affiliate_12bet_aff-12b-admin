@@ -1738,9 +1738,6 @@ For any reason, you do not receive the email, please check your Spam box or &lt;
   <data name="UsernameSignUp" xml:space="preserve">
     <value>Username</value>
   </data>
-  <data name="QualifyingMembers" xml:space="preserve">
-    <value>≥ 5 </value>
-  </data>
   <data name="ProductType" xml:space="preserve">
     <value>Product Type</value>
   </data>

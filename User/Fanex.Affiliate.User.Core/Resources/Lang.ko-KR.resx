@@ -1608,9 +1608,6 @@
   <data name="UsernameSignUp" xml:space="preserve">
     <value>아이디</value>
   </data>
-  <data name="QualifyingMembers" xml:space="preserve">
-    <value>≥5</value>
-  </data>
   <data name="ProductType" xml:space="preserve">
     <value>게임제품 선택</value>
   </data>
@@ -2510,7 +2507,7 @@
     <value>이전 시스템에서 이월된 계정 잔액.</value>
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
-    <value>요건 충족 회원</value>
+    <value>자격을 갖춘 회원</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
     <value>최신 업데이트 및 프로모션을 받으시려면 {0}을 구독해 주세요.</value>

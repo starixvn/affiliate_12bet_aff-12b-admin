@@ -1624,9 +1624,6 @@ Vì bất kỳ lý do gì, bạn không nhận được email, vui lòng kiểm 
   <data name="UsernameSignUp" xml:space="preserve">
     <value>Tên truy cập 12BET</value>
   </data>
-  <data name="QualifyingMembers" xml:space="preserve">
-    <value>≥ 5 </value>
-  </data>
   <data name="ProductType" xml:space="preserve">
     <value>Loại Sản Phẩm</value>
   </data>
@@ -2526,7 +2523,7 @@ THANH TOÁN ỔN ĐỊNH</value>
     <value>Số dư trước đó sẽ được chuyển sang trang mới.</value>
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
-    <value>Người chơi đang hoạt động đủ điều kiện</value>
+    <value>Số thành viên hợp lệ</value>
   </data>
   <data name="SubscribeToOur" xml:space="preserve">
     <value>Hãy theo dõi {0} của chúng tôi để nhận các cập nhật và khuyến mãi mới nhất.</value>

@@ -1229,7 +1229,7 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
     <value>Ini adalah email yang dibuat otomatis oleh sistem, jangan membalas email ini secara langsung.</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>Level</value>
+    <value>TINGKATAN</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Kata sandi baru akan dikirim ke alamat email yang sudah Anda berikan.&lt;br /&gt;Jika Anda mengalami kesulitan lebih jauh, silakan &lt;a href="{0}"&gt;Hubungi kami&lt;/a&gt;.</value>
@@ -1620,9 +1620,6 @@ Periksa folder Spam apabila Anda tidak menerima email atau &lt;a href='{0}'&gt;H
   </data>
   <data name="UsernameSignUp" xml:space="preserve">
     <value>Username</value>
-  </data>
-  <data name="QualifyingMembers" xml:space="preserve">
-    <value>≥ 5 </value>
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>Tipe Permainan</value>
@@ -2517,7 +2514,7 @@ PEMBAYARAN KONSISTEN</value>
     <value>Saldo akun dibawa dari sistem sebelumnya.</value>
   </data>
   <data name="QualifiedActivePlayers" xml:space="preserve">
-    <value>Pemain Aktif Yang Terkualifikasi</value>
+    <value>PEMAIN AKTIF TERKUALIFIKASI</value>
   </data>
   <data name="ActivePlayersAndQualified" xml:space="preserve">
     <value>Pemain Aktif / Terkualifikasi</value>
