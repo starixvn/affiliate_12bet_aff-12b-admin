@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Campaign;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
 using Fanex.Affiliate.Admin.Core.DTO.Operation;
@@ -8,9 +9,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 {
     public interface ILandingPageService
     {
+        IEnumerable<CampaignInfo> GetCampaignInfoList();
+
         IEnumerable<LandingPageModule> GetModuleList();
 
-        IEnumerable<LandingPageStatus> GetLandingPageStatusList();
+        IEnumerable<LandingPageModule> GetModuleListExcludeRegistrationForm();
+
+        IEnumerable<StatusInfo> GetLandingPageStatusList();
 
         IEnumerable<NormalDeal> GetNormalDealList();
 

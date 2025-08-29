@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Services.Operation;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
@@ -292,13 +293,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         private LandingPageListController CreateLandingPageListController(
         ISessionService sessionService = null,
         ILandingPageListService landingPageService = null,
-        ISystemService systemService = null
+        ISystemService systemService = null,
+        ICommonDealService commonDealService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeLandingPageService = landingPageService ?? Mock.Of<ILandingPageListService>();
             var fakeSystemService = systemService ?? Mock.Of<ISystemService>();
-            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeSystemService);
+            var fakeICommonDealService = commonDealService ?? Mock.Of<ICommonDealService>();
+            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeSystemService, fakeICommonDealService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

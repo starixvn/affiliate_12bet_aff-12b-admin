@@ -5,13 +5,13 @@ import { bindActionCreators } from 'redux';
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 import Filter from './Filter';
-import ControlButtons from '../../common/components/ControlButtons';
+import ControlButtons from '../../../common/components/ControlButtons';
 import Content from './Content';
 import EditBannerForm from './EditBannerForm';
-import BannerDetailPopup from './BannerDetailPopup';
+import MediaReviewPopup from '../../../common/components/MediaReviewPopup';
 
 import { messages } from '../libs/constants';
-import { setParam, fetchData, toggleLoader, setSelectedBannerId, setCheckedBanners, deleteBanners, setShouldResetScrollPosition } from '../actions';
+import { setParam, fetchData, toggleLoader, setSelectedBannerId, setCheckedBanners, deleteBanners, setShouldResetScrollPosition, setBannerDetailUrl } from '../actions';
 
 export const AppContainer = (props) => {
 
@@ -32,17 +32,20 @@ export const AppContainer = (props) => {
             />
             <Content />
             <EditBannerForm />
-            <BannerDetailPopup />
+            <MediaReviewPopup
+                mediaDetailUrl={props.bannerDetailUrl}
+                setMediaDetailUrl={props.setBannerDetailUrl}
+            />
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, param, gridData, checkedBanners }) {
-    return Object.assign({}, { isShowLoader, param, gridData, checkedBanners });
+function mapStateToProps({ isShowLoader, param, gridData, checkedBanners, bannerDetailUrl }) {
+    return Object.assign({}, { isShowLoader, param, gridData, checkedBanners, bannerDetailUrl });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, fetchData, toggleLoader, setSelectedBannerId, setCheckedBanners, deleteBanners, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ setParam, fetchData, toggleLoader, setSelectedBannerId, setCheckedBanners, deleteBanners, setShouldResetScrollPosition, setBannerDetailUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

@@ -2,6 +2,122 @@
 @import "../components/select";
 @import "../components/multiple-select";
 
-#dealName {
-    max-width: 170px;
+#deal {
+    max-width: 130px;
+}
+
+.landing-page-content {
+    .status-dropdown {
+        min-width: 100px;
+        font-size: 12px;
+        padding: 2px 5px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        color: white;
+        font-weight: 500;
+        
+        &:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        
+        // Status-specific colors
+        &.status-draft {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        
+        &.status-published {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        
+        &.status-archived {
+            background-color: #fd7e14;
+            border-color: #fd7e14;
+        }
+        
+        // Hover effects
+        &.status-draft:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        
+        &.status-published:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        
+        &.status-archived:hover {
+            background-color: #e8650c;
+            border-color: #dc5f0a;
+        }
+        
+        // Enhanced option styling with multiple browser approaches
+        option {
+            color: white !important;
+            font-weight: 500 !important;
+            padding: 8px 12px !important;
+            margin: 2px !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 25px !important;
+            
+            // Webkit specific (Chrome, Safari, Edge)
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+            
+            // Try to force border-radius
+            -webkit-border-radius: 25px !important;
+            -moz-border-radius: 25px !important;
+            
+            // Status-specific colors with enhanced selectors
+            &.status-draft,
+            &[data-status="draft"] {
+                background-color: #6c757d !important;
+                background: #6c757d !important;
+                color: white !important;
+                border-color: rgba(255, 255, 255, 0.2) !important;
+                border-radius: 25px !important;
+                -webkit-border-radius: 25px !important;
+                -moz-border-radius: 25px !important;
+            }
+            
+            &.status-published,
+            &[data-status="published"] {
+                background-color: #28a745 !important;
+                background: #28a745 !important;
+                color: white !important;
+                border-color: rgba(255, 255, 255, 0.2) !important;
+                border-radius: 25px !important;
+                -webkit-border-radius: 25px !important;
+                -moz-border-radius: 25px !important;
+            }
+            
+            &.status-archived,
+            &[data-status="archived"] {
+                background-color: #fd7e14 !important;
+                background: #fd7e14 !important;
+                color: white !important;
+                border-color: rgba(255, 255, 255, 0.2) !important;
+                border-radius: 25px !important;
+                -webkit-border-radius: 25px !important;
+                -moz-border-radius: 25px !important;
+            }
+        }
+    }
+}
+
+.align-self-center {
+    align-self: center;
+}
+
+.input-file-group {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-validation-warning {
+    border: 1px solid #dc3545 !important;
 }

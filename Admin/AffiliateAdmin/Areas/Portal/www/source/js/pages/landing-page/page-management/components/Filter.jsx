@@ -12,11 +12,13 @@ export const Filter = ({
     dealList, 
     statusList, 
     pagingOption, 
+    campaignList,
     setParam 
 }) => {
     const [filters, setFilters] = useState({
         landingPageName: '',
-        dealName: '',
+        campaign: '',
+        deal: '',
         targetCountry: '',
         language: '',
         status: ''
@@ -55,8 +57,22 @@ export const Filter = ({
                 </FormGroup>
                 
                 <FormGroup className="mr-sm-3 pb-2">
-                    <Label htmlFor="dealName" className="mr-sm-2">Deal Name</Label>
-                    <Input type="select" name="dealName" id="dealName" value={filters.dealName} onChange={handleChange}>
+                    <Label htmlFor="campaign" className="mr-sm-2">Campaign</Label>
+                    <Input type="select" name="campaign" id="campaign" value={filters.campaign} onChange={handleChange}>
+                        <option value="">All Campaigns</option>
+                        {
+                            campaignList && campaignList.map(item => (
+                                <option key={`campaign-${item.CampaignCode}`} value={item.CampaignCode}>
+                                    {item.CampaignName}
+                                </option>
+                            ))
+                        }
+                    </Input>
+                </FormGroup>
+
+                <FormGroup className="mr-sm-3 pb-2">
+                    <Label htmlFor="deal" className="mr-sm-2">Deal</Label>
+                    <Input type="select" name="deal" id="deal" value={filters.deal} onChange={handleChange}>
                         <option value="">All Deals</option>
                         {
                             dealList && dealList.map(item => (
@@ -118,13 +134,14 @@ export const Filter = ({
     );
 };
 
-function mapStateToProps({ targetCountryList, languageList, dealList, statusList, pagingOption }) {
+function mapStateToProps({ targetCountryList, languageList, dealList, statusList, pagingOption, campaignList }) {
     return {
         targetCountryList,
         languageList,
         dealList,
         statusList,
-        pagingOption
+        pagingOption,
+        campaignList
     };
 }
 

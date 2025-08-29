@@ -1,4 +1,5 @@
 using Fanex.Affiliate.Admin.Core.Constants;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
@@ -106,31 +107,31 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
 
     #region Asset Management Parameters
 
-    public class UploadAssetsParam : AffiliateBasicInfoParam
+    public class UploadAssetsParam : UserInfoParam
     {
-        public int? ModuleId { get; set; }
-        
-        [Required(ErrorMessage = "Asset type is required")]
-        public string AssetType { get; set; }
-        
-        public string AssetName { get; set; }
-        public string AssetDescription { get; set; }
-        public string Tags { get; set; }
-    }
+        public int MediaId { get; set; }
 
-    public class AssetListParam : AffiliatePagingParam
-    {
-        public int? ModuleId { get; set; }
-        public string AssetType { get; set; }
-        public string SearchTerm { get; set; }
-        public string Tags { get; set; }
-        public bool IncludeDeleted { get; set; }
+        [Required(ErrorMessage = "Module Id is required")]
+        public int ModuleId { get; set; }
+        
+        [Required(ErrorMessage = "Target Country is required")]
+        public string TargetCountry { get; set; }
+
+        [Required(ErrorMessage = "Language is required")]
+        public string Language { get; set; }
+
+        public string Files { get; set; }
+
+        public List<string> FilePaths { get; set; } = new List<string>();
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string InputFileNames { get; set; } = string.Empty;
     }
 
     public class DeleteAssetsParam : AffiliateBasicInfoParam
     {
         [Required(ErrorMessage = "Asset IDs are required")]
-        public string AssetIds { get; set; }
+        public string MediaIds { get; set; }
         
         public bool PermanentDelete { get; set; }
         public string DeleteReason { get; set; }
@@ -139,7 +140,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
     public class OptimizeAssetParam
     {
         [Required(ErrorMessage = "Asset ID is required")]
-        public int AssetId { get; set; }
+        public int MediaId { get; set; }
         
         public int? MaxWidth { get; set; }
         public int? MaxHeight { get; set; }

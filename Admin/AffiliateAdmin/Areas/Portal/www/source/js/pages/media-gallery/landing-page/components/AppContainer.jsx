@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
-import ControlButtons from '../../common/components/ControlButtons';
+import ControlButtons from '../../../common/components/ControlButtons';
 import Content from './Content';
 import InsertUpdateForm from './InsertUpdateForm';
 

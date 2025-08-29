@@ -243,6 +243,7 @@
     <Content Include="Areas\Portal\www\dist\imgs\i_operation.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_landing.png" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\ControlButtons.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\common\components\MediaReviewPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\asset-uploader\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\asset-uploader\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\asset-uploader\components\AppContainer.jsx" />
@@ -284,10 +285,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\actions\__test__\index.test.js" />
@@ -919,8 +920,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\reducers\__test__\index.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\__test__\ControlButtons.test.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\member\member-list\actions\__test__\index.test.js" />
@@ -940,7 +939,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\message\actions\__test__\index.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\message\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\NotificationPopup.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\common\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\redux\GridData.redux.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\banner-list\components\Filter.jsx" />

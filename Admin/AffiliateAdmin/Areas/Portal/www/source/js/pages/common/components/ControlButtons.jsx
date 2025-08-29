@@ -14,6 +14,7 @@ export const ControlButtons = (props) => {
     }
 
     const hasData = props.gridData && props.gridData.length;
+    const label = props.label || globalResource.Add;
 
     return props.gridData && (
         <React.Fragment>
@@ -30,7 +31,7 @@ export const ControlButtons = (props) => {
                                 hasIcon={true}
                                 isOpenNotification={true}
                             />
-                            <Button outline type="button" className="mx-2" onClick={_handleAddItem}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                            <Button outline type="button" className="mx-2" onClick={_handleAddItem}>{label} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
                         <SelectAll
                             checkedList={props.checkedItems}
@@ -40,7 +41,7 @@ export const ControlButtons = (props) => {
                     </React.Fragment>
                 ) : (
                         <div className="my-2">
-                            <Button outline type="button" onClick={_handleAddItem}>{globalResource.Add} <span className="oi oi-plus ml-2"></span></Button>
+                            <Button outline type="button" onClick={_handleAddItem}>{label} <span className="oi oi-plus ml-2"></span></Button>
                         </div>
                     )
             }
@@ -48,4 +49,4 @@ export const ControlButtons = (props) => {
     );
 }
 
-export default (React.memo(ControlButtons));
+export default React.memo(ControlButtons);

@@ -4,12 +4,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.LandingPage
 {
     public class LandingPageAsset
     {
-        public int AssetId { get; set; }
+        public int MediaId { get; set; }
         public string AssetName { get; set; }
         public string AssetDescription { get; set; }
         public string FileName { get; set; }
         public string FilePath { get; set; }
         public string FileExtension { get; set; }
+        public string Size { get; set; }
         public long FileSize { get; set; }
         public string AssetType { get; set; } // Image, Video, Document, etc.
         public int? ModuleId { get; set; }

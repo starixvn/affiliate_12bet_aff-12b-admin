@@ -1,12 +1,12 @@
-﻿import React from 'react';
+﻿import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData } from '../actions';
+import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption } from '../actions';
 
 export const Content = (props) => {
     useEffect(() => {
@@ -18,6 +18,13 @@ export const Content = (props) => {
     const _onDuplicateLandingPage = (landingPageId) => {
         // TODO: Implement duplicate functionality
         console.log('Duplicate landing page:', landingPageId);
+    }
+
+    const _onStatusChange = (landingPageId, newStatusId) => {
+        // TODO: Implement status update functionality
+        console.log('Update status for landing page:', landingPageId, 'to status:', newStatusId);
+        // Here you would typically call an API to update the status
+        // props.updateLandingPageStatus(landingPageId, newStatusId);
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
@@ -34,14 +41,17 @@ export const Content = (props) => {
     function _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Deal}>{headerText.Deal}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={30} title={headerText.Action}>{headerText.Action}</Cell>
+                <Cell header={true} colWidth={10} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.CampaignName}>{headerText.CampaignName}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.Language}>{headerText.Language}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Deal}>{headerText.Deal}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.LastModified}>{headerText.LastModified}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Status}>{headerText.Status}</Cell>
+                <Cell header={true} colWidth={20} title={headerText.Action}>{headerText.Action}</Cell>
             </Row>
         );
     }
@@ -49,7 +59,7 @@ export const Content = (props) => {
     function _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList && dataList.length) {
+        if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
                 dataRows.push(_buildDataRow(dataItem, i + 1));
@@ -57,30 +67,61 @@ export const Content = (props) => {
         }
         else {
             dataRows.push(<Row key="no-info">
-                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="11">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
         return dataRows;
     }
 
+    const _getStatusClass = (statusName) => {
+        return `status-${statusName.toLowerCase()}`;
+    }
+
     function _buildDataRow(dataItem, index) {
+        const campaignName = htmlDecode(dataItem.CampaignName);
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
-        const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
+        const targetCountry = htmlDecode(dataItem.TargetCountry);
         const language = dataItem.Language || 'English';
         const deal = dataItem.Deal || '';
-        const status = dataItem.Status || '';
+        const createdDate = dataItem.CreatedDate || '';
+        const lastModified = dataItem.LastModified || '';
+        const statusItem = props.statusList && props.statusList.find(item => item.StatusId === dataItem.StatusId);
+        const statusClass = _getStatusClass(statusItem.Status);
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
+                <Cell className="text-left" title={campaignName}>{campaignName}</Cell>
+                <Cell className="text-left" title={landingPageName}>
+                    <a href={`${props.landingPageUrl}/${landingPageCode}`} target="_blank">{landingPageName}</a>
+                </Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
-                <Cell className="text-left" title={blockTargetCountry}>{blockTargetCountry}</Cell>
-                <Cell className="text-center" title={language}>{language}</Cell>
-                <Cell className="text-center" title={deal}>{deal}</Cell>
-                <Cell className="text-center" title={status}>{status}</Cell>
+                <Cell className="text-left" title={targetCountry}>{targetCountry}</Cell>
+                <Cell className="text-left" title={language}>{language}</Cell>
+                <Cell className="text-left" title={deal}>{deal}</Cell>
+                <Cell className="text-left" title={createdDate}>{createdDate}</Cell>
+                <Cell className="text-left" title={lastModified}>{lastModified}</Cell>
+                <Cell className="text-left" title={statusItem.Status}>
+                    <Input 
+                        type="select" 
+                        className={`status-dropdown ${statusClass}`}
+                        value={dataItem.StatusId || ''} 
+                        onChange={(e) => _onStatusChange(dataItem.PageId, e.target.value)}
+                    >
+                        {props.statusList && props.statusList.map(item => (
+                             <option 
+                                 key={`status-${item.StatusId}`} 
+                                 value={item.StatusId}
+                                 className={_getStatusClass(item.Status)}
+                                 data-status={item.Status.toLowerCase()}
+                             >
+                                 {item.Status}
+                             </option>
+                         ))}
+                    </Input>
+                </Cell>
                 <Cell className="text-center">
                     <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)} title="Edit Landing Page">
                         <span className="oi oi-pencil text-secondary"></span>
@@ -93,7 +134,7 @@ export const Content = (props) => {
         )
     }
 
-    return (
+    return props.gridData && (
         <div className="data-content">
             <div className="landing-page-content table-responsive table-striped my-2">
                 <Table
@@ -113,8 +154,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param });
+function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl });
 }
 
 function mapDispatchToProps(dispatch) {

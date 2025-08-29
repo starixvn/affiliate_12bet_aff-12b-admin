@@ -10,6 +10,7 @@ export const languageList = createReducer(null, {});
 export const dealList = createReducer(null, {});
 export const statusList = createReducer(null, {});
 export const landingPageUrl = createReducer(null, {});
+export const campaignList = createReducer(null, {});
 
 export const param = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
@@ -46,6 +47,7 @@ export default combineReducers({
     languageList,
     dealList,
     statusList,
+    campaignList,
     param,
     gridData,
     pagingOption,

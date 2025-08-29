@@ -6,13 +6,29 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 import { fileUpload } from '../libs/constants';
 import * as types from '../actions/types';
 
-export const moduleList = createReducer(null, {});
-export const targetCountryList = createReducer(null, {});
-export const languageList = createReducer(null, {});
+export const statusList = createReducer(null, {});
 export const maxFileSize = createReducer(fileUpload.MaxFileSize, {});
 export const maximumFiles = createReducer(fileUpload.MaximumFiles, {});
 export const bannerRootUrl = createReducer(null, {});
 export const allowedExtensions = createReducer(fileUpload.AllowedImageExtensions, {});
+
+export const moduleList = createReducer(null, {
+    [types.SET_MODULE_LIST](prevState, action) {
+        return action.data;
+    }
+})
+
+export const targetCountryList = createReducer(null, {
+    [types.SET_TARGET_COUNTRY_LIST](prevState, action) {
+        return action.data;
+    }
+})
+
+export const languageList = createReducer(null, {
+    [types.SET_LANGUAGE_LIST](prevState, action) {
+        return action.data;
+    }
+})
 
 export const param = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
@@ -26,13 +42,13 @@ export const assetDetailUrl = createReducer(null, {
     }
 })
 
-export const selectedAssetId = createReducer(null, {
-    [types.SET_SELECTED_ASSET_ID](prevState, action) {
+export const selectedMediaId = createReducer(null, {
+    [types.SET_SELECTED_MEDIA_ID](prevState, action) {
         return action.data;
     }
 })
 
-export const checkedBanners = createReducer({}, {
+export const checkedAssets = createReducer({}, {
     [types.SET_CHECKED_ASSETS](prevState, action) {
         return action.data;
     }
@@ -54,6 +70,7 @@ export default combineReducers({
     moduleList,
     targetCountryList,
     languageList,
+    statusList,
     maxFileSize,
     maximumFiles,
     allowedExtensions,
@@ -62,8 +79,8 @@ export default combineReducers({
     gridData,
     pagingOption,
     isShowLoader,
-    checkedBanners,
+    checkedAssets,
     shouldResetScrollPosition,
     assetDetailUrl,
-    selectedAssetId,
+    selectedMediaId,
 });

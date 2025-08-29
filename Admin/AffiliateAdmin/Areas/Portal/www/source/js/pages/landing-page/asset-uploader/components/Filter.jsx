@@ -2,27 +2,46 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import MultipleSelect from '../../../../components/multiple-select';
+import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
-import { setParam } from '../actions';
-import { headerText } from '../libs/constants';
+import { setParam, setModuleList, setTargetCountryList, setLanguageList } from '../actions';
+import { headerText, allAssetStatus } from '../libs/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 export const Filter = ({
     moduleList,
     targetCountryList,
     languageList,
+    statusList,
     pagingOption, 
-    param,
     setParam,
+    setModuleList,
+    setTargetCountryList,
+    setLanguageList,
 }) => {
     const [filters, setFilters] = useState({
-        module: '',
-        targetCountry: '',
-        language: '',
+        moduleIds: moduleList.filter(item => item.checked).map(item => item.key).join(',') || '',
+        targetCountryCodes: targetCountryList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
+        languageCodes: languageList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
+        status: allAssetStatus,
     });
 
     const handleSearch = useCallback(() => {
-        const newParam = { ...filters, PageIndex: 1, PageSize: pagingOption.PageSize };
+        const { moduleIds, targetCountryCodes, languageCodes, status } = filters;
+        
+        const isSelectAllTargetCountry = targetCountryList.every(c => c.checked);
+        const isSelectAllLanguage = languageList.every(c => c.checked);
+
+        const newParam = {
+            ModuleIds: moduleIds,
+            TargetCountryCodes: isSelectAllTargetCountry ? 'all' : targetCountryCodes,
+            LanguageCodes: isSelectAllLanguage ? 'all' : languageCodes,
+            Status: status,
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize,
+        };
+
         setParam(newParam);
     }, [filters, pagingOption.PageSize, setParam]);
 
@@ -34,42 +53,74 @@ export const Filter = ({
         setFilters(newFilters);
     };
 
+    const handleChangeModule = (item, selectedModuleList) => {
+        setFilters({ ...filters, moduleIds: selectedModuleList });
+
+        setModuleList(handleChangeMultipleSelected(moduleList, selectedModuleList));
+    }
+
+    const handleChangeTargetCountry = (item, selectedTargetCountryList) => {
+
+        setFilters({ ...filters, targetCountryCodes: selectedTargetCountryList });
+
+        setTargetCountryList(handleChangeMultipleSelected(targetCountryList, selectedTargetCountryList));
+    }
+
+    const handleChangeLanguage = (item, selectedLanguageList) => {
+        setFilters({ ...filters, languageCodes: selectedLanguageList });
+
+        setLanguageList(handleChangeMultipleSelected(languageList, selectedLanguageList));
+    }
+
     return (
         <div className="filter-container my-2 pb-0">
             <Form inline tag="div">
-                <FormGroup className="mr-sm-3 pb-2">
-                    <Label htmlFor="selectedModuleId" className="mr-sm-2">{headerText.Module}</Label>
-                    <Input type="select" name="module" id="module" value={filters.module} onChange={handleChange}>
-                        <option key={'module-all'} value="0">{globalResource.All}</option>
-                        {
-                            moduleList && moduleList.map(item => {
-                                return (<option key={`module-${item.ModuleId}`} value={item.ModuleId}>{item.ModuleName}</option>)
-                            })
-                        }
-                    </Input>
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                    <Label className="mr-sm-2">{headerText.Module}</Label>
+                    <MultipleSelect
+                        dataSource={moduleList}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        noneSelectedLabel="None Select"
+                        selectedAllLabel="All"
+                        onChange={handleChangeModule} />
                 </FormGroup>
-                <FormGroup className="mr-sm-3 pb-2">
-                    <Label htmlFor="targetCountry" className="mr-sm-2">Target Country</Label>
-                    <Input type="select" name="targetCountry" id="targetCountry" value={filters.targetCountry} onChange={handleChange}>
-                        <option value="">All Target Countries</option>
-                        {
-                            targetCountryList && targetCountryList.map(item => (
-                                <option key={`country-${item.TargetCountryCode}`} value={item.TargetCountryCode}>
-                                    {item.TargetCountryName}
-                                </option>
-                            ))
-                        }
-                    </Input>
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                    <Label className="mr-sm-2">{headerText.TargetCountry}</Label>
+                    <MultipleSelect
+                        dataSource={targetCountryList}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        noneSelectedLabel="None Select"
+                        selectedAllLabel="All"
+                        onChange={handleChangeTargetCountry} />
+                </FormGroup>
+
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                    <Label htmlFor="language" className="mr-sm-2">{headerText.Language}</Label>
+                    <MultipleSelect
+                        dataSource={languageList}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        noneSelectedLabel="None Select"
+                        selectedAllLabel="All"
+                        onChange={handleChangeLanguage} />
                 </FormGroup>
 
                 <FormGroup className="mr-sm-3 pb-2">
-                    <Label htmlFor="language" className="mr-sm-2">Language</Label>
-                    <Input type="select" name="language" id="language" value={filters.language} onChange={handleChange}>
-                        <option value="">All Languages</option>
+                    <Label htmlFor="status" className="mr-sm-2">Status</Label>
+                    <Input type="select" name="status" id="status" value={filters.status} onChange={handleChange}>
+                        <option value={allAssetStatus}>All</option>
                         {
-                            languageList && languageList.map(item => (
-                                <option key={`language-${item.LanguageCode}`} value={item.LanguageCode}>
-                                    {item.LanguageName}
+                            statusList && statusList.map(item => (
+                                <option key={`status-${item.StatusId}`} value={item.StatusId}>
+                                    {item.Status}
                                 </option>
                             ))
                         }
@@ -84,14 +135,14 @@ export const Filter = ({
     );
 };
 
-function mapStateToProps({ moduleList, targetCountryList, languageList, pagingOption, param }) {
+function mapStateToProps({ moduleList, targetCountryList, languageList, pagingOption, statusList, setModuleList, setTargetCountryList, setLanguageList }) {
     return Object.assign({}, {
-        moduleList, targetCountryList, languageList, pagingOption, param
+        moduleList, targetCountryList, languageList, pagingOption, statusList, setModuleList, setTargetCountryList, setLanguageList
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, setModuleList, setTargetCountryList, setLanguageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

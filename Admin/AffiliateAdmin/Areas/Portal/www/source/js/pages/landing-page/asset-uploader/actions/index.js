@@ -6,6 +6,27 @@ import * as types from './types';
 
 export { toggleLoader, setPagingOption };
 
+export const setModuleList = (data) => {
+    return {
+        type: types.SET_MODULE_LIST,
+        data
+    }
+}
+
+export const setTargetCountryList = (data) => {
+    return {
+        type: types.SET_TARGET_COUNTRY_LIST,
+        data
+    }
+}
+
+export const setLanguageList = (data) => {
+    return {
+        type: types.SET_LANGUAGE_LIST,
+        data
+    }
+}
+
 export const setParam = (data) => {
     return {
         type: types.SET_PARAM,
@@ -20,9 +41,9 @@ export const setAssetDetailUrl = (data) => {
     }
 }
 
-export const setSelectedAssetId = (data) => {
+export const setSelectedMediaId = (data) => {
     return {
-        type: types.SET_SELECTED_ASSET_ID,
+        type: types.SET_SELECTED_MEDIA_ID,
         data
     }
 }
@@ -48,23 +69,14 @@ export const setGridData = (data) => {
     }
 }
 
-export const getAssetList = (param) => async (dispatch) => {
-    const url = 'Portal/LandingPage/GetAssetList';
-    const response = await post(url, param);
-
-    const data = response && response.status === 200 ? response.data : [];
-
-    dispatch(setAssetList(data));
-}
-
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/LandingPage/GetAssetList';
+    const url = 'Portal/AssetUploader/GetAssetList';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
-    const checkedAssets = data ? _convertCheckedAssets(data.MainData) : {};
+    const checkedAssets = data ? _convertCheckedAssets(data.MainData || []) : {};
 
     dispatch(setGridData(data ? data.MainData : []));
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
@@ -76,28 +88,28 @@ export const fetchData = (param) => async (dispatch) => {
 function _convertCheckedAssets(dataList) {
     const checkedAssets = {};
     for (let item of dataList) {
-        const itemId = item.AssetId;
+        const itemId = item.MediaId;
         checkedAssets[itemId] = false;
     }
 
     return checkedAssets;
 }
 
-export const getAssetDetail = (selectedAssetId) => async () => {
-    const url = 'Portal/LandingPage/GetAssetDetail';
-    const response = await post(url, { selectedAssetId });
+export const getAssetDetail = (selectedMediaId) => async () => {
+    const url = 'Portal/AssetUploader/GetAssetDetail';
+    const response = await post(url, { selectedMediaId });
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const insertAsset = (param) => () => {
-    const url = 'Portal/LandingPage/InsertAsset';
+export const uploadAssets = (param) => () => {
+    const url = 'Portal/AssetUploader/UploadAssets';
 
     return handleExcute(url, param);
 }
 
 export const updateAsset = (param) => () => {
-    const url = 'Portal/LandingPage/UpdateAsset';
+    const url = 'Portal/AssetUploader/UpdateAsset';
 
     return handleExcute(url, param);
 }
@@ -122,8 +134,15 @@ const handleExcute = async (url, param) => {
 }
 
 export const deleteAssets = (param) => async () => {
-    const url = 'Portal/LandingPage/DeleteAssets';
+    const url = 'Portal/AssetUploader/DeleteAssets';
     const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
+}
+
+export const toggleAssetStatus = (mediaId, isActive) => async () => {
+    const url = 'Portal/AssetUploader/ToggleAssetStatus';
+    const response = await post(url, { mediaId, isActive });
 
     return response && response.status === 200 ? response.data : null;
 }

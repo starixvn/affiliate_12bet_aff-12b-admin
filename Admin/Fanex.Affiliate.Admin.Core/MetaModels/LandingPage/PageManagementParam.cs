@@ -5,6 +5,7 @@
         public string TargetCountry { get; set; }
         public string Language { get; set; }
         public string Deal { get; set; }
+        public string Campaign { get; set; }
         public string Status { get; set; }
         public string LandingPageName { get; set; }
     }

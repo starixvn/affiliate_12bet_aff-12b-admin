@@ -5,22 +5,27 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.LandingPage;
 using Fanex.Affiliate.Admin.Core.ViewModels.LandingPage;
 using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
-    [FunctionAuthorize(FunctionName = Function.LandingPage)]
+    [FunctionAuthorize(FunctionName = Function.RegistrationFormManagement)]
     public class FormManagementController : ReadOnlySessionBaseController
     {
         private readonly IAppSetting _appSetting;
         private readonly ILandingPageService _landingPageService;
+        private readonly IAssetUploaderService _assetService;
 
         public FormManagementController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILandingPageService landingPageService) : base(sessionService)
+            ILandingPageService landingPageService,
+            IAssetUploaderService assetService) : base(sessionService)
         {
             _appSetting = appSetting;
             _landingPageService = landingPageService;
+            _assetService = assetService;
         }
 
         [HttpGet]
@@ -34,6 +39,22 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             };
 
             return View("~/Areas/Portal/Views/LandingPage/FormManagement.cshtml", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetFormManagementList(PagingParam param)
+        {
+            var queryParam = new AssetListParam
+            {
+                FunctionName = Function.RegistrationFormManagement,
+                UserId = SessionService.UserId,
+                ModuleIds = LandingPageConstants.ModuleIds.RegistrationForm.ToString(),
+                PageIndex = param.PageIndex,
+                PageSize = param.PageSize
+            };
+
+            return GenerateJsonNetResult(_assetService.GetAssetList(queryParam));
         }
     }
 }

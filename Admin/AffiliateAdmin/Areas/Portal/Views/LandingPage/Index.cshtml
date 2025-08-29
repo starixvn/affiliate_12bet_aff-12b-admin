@@ -8,6 +8,7 @@
     <script type="text/javascript">
         window.initialState = {
             dealList: @Html.Raw(Json.Encode(Model.DealList)),
+            campaignList: @Html.Raw(Json.Encode(Model.CampaignList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
             targetCountryList: @Html.Raw(Json.Encode(Model.TargetCountryList)),
             statusList: @Html.Raw(Json.Encode(Model.StatusList)),

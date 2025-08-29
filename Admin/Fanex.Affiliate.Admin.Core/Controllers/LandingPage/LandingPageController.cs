@@ -32,6 +32,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             var model = new PageManagementViewModel
             {
                 LandingPageUrl = _appSetting.LandingPageUrl,
+                CampaignList = _landingPageService.GetCampaignInfoList(),
                 LanguageList = _landingPageService.GetLanguageList(),
                 DealList = _landingPageService.GetNormalDealList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),

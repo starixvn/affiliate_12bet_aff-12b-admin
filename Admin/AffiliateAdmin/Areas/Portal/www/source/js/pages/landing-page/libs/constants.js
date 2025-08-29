@@ -1,4 +1,8 @@
-﻿import { resolveClientUrl } from "../../../modules/utils"
+﻿import { resolveClientUrl } from "../../../modules/utils";
+import { globalResource } from "../../../modules/globalResource";
+import { defaultInsertId } from "../../../modules/constants";
+
+export { globalResource, defaultInsertId };
 
 export const menuKey = {
     pageManagement: 'pageManagement',

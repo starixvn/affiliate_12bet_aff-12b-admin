@@ -7,14 +7,15 @@ import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 
 const App = () => {
-    const { targetCountryList, languageList, dealList, statusList, landingPageUrl } = window.initialState;
+    const { targetCountryList, languageList, dealList, statusList, landingPageUrl, campaignList } = window.initialState;
 
     const store = configureStore({
         targetCountryList,
         languageList,
         dealList,
         statusList,
-        landingPageUrl
+        landingPageUrl,
+        campaignList
     }, reducer);
 
     return (

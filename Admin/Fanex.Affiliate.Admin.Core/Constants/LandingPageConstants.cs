@@ -1,3 +1,6 @@
+using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
+using System.Collections.Generic;
+
 namespace Fanex.Affiliate.Admin.Core.Constants
 {
     public static class LandingPageConstants
@@ -11,12 +14,18 @@ namespace Fanex.Affiliate.Admin.Core.Constants
             public const int Link = 4;
         }
 
+        public static class ModuleIds
+        {
+            public const int RegistrationForm = 9;
+        }
+
         // File Upload Limits
         public static class FileUpload
         {
             public const int MaximumFiles = 10;
             public const int BytesPerKilobyte = 1024;
-            public const int MaxFileSizeBytes = 5 * BytesPerKilobyte * BytesPerKilobyte; // 5MB
+            public const int MaxFileSizeBytes = 3 * BytesPerKilobyte * BytesPerKilobyte; // 3MB
+            public const int MaxFileSizeMegabytes = 3;
             public const int MaxImageWidth = 2000;
             public const int MaxImageHeight = 2000;
             public const int ThumbnailSize = 150;
@@ -101,5 +110,17 @@ namespace Fanex.Affiliate.Admin.Core.Constants
             public const string UploadSuccess = "Successfully uploaded {0} of {1} files";
             public const string UploadFailed = "Failed to upload any files";
         }
+
+        public static class AssetStatusTypes
+        {
+            public const int Active = 1;
+            public const int Inactive = 2;
+        }
+
+        public static IList<StatusInfo> AssetStatusList => new List<StatusInfo>
+        {
+            new StatusInfo { StatusId = AssetStatusTypes.Active, Status = "Active" },
+            new StatusInfo { StatusId = AssetStatusTypes.Inactive, Status = "Inactive" },
+        };
     }
 }

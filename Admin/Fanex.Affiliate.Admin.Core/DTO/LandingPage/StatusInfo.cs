@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.DTO.LandingPage
 {
-    public class LandingPageStatus
+    public class StatusInfo
     {
         public byte StatusId { get; set; }
 

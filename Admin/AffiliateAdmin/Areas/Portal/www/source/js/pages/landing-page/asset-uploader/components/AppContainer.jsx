@@ -7,11 +7,11 @@ import Loader from '../../../../components/Loader';
 import Filter from './Filter';
 import ControlButtons from '../../../common/components/ControlButtons';
 import Content from './Content';
-//import EditAssetForm from './EditAssetForm';
-//import AssetDetailPopup from './AssetDetailPopup';
+import MediaReviewPopup from '../../../common/components/MediaReviewPopup';
+import AssetUploaderForm from './AssetUploaderForm';
 
 import { messages } from '../libs/constants';
-import { setParam, fetchData, toggleLoader, setSelectedAssetId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition } from '../actions';
+import { setParam, fetchData, toggleLoader, setSelectedMediaId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition, setAssetDetailUrl } from '../actions';
 
 export const AppContainer = (props) => {
 
@@ -27,22 +27,25 @@ export const AppContainer = (props) => {
                 setCheckedItems={props.setCheckedAssets}
                 toggleLoader={props.toggleLoader}
                 setShouldResetScrollPosition={props.setShouldResetScrollPosition}
-                setSelectedItemId={props.setSelectedAssetId}
-                deleteItems={(assetIdList) => props.deleteAssets({ assetIdList })}
+                setSelectedItemId={props.setSelectedMediaId}
+                deleteItems={(mediaIdList) => props.deleteAssets({ mediaIdList })}
             />
             <Content />
-            {/*<EditAssetForm />*/}
-            {/*<AssetDetailPopup />*/}
+            <MediaReviewPopup
+                mediaDetailUrl={props.assetDetailUrl}
+                setMediaDetailUrl={props.setAssetDetailUrl}
+            />
+            <AssetUploaderForm />
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, param, gridData, checkedAssets }) {
-    return Object.assign({}, { isShowLoader, param, gridData, checkedAssets });
+function mapStateToProps({ isShowLoader, param, gridData, checkedAssets, assetDetailUrl }) {
+    return Object.assign({}, { isShowLoader, param, gridData, checkedAssets, assetDetailUrl });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, fetchData, toggleLoader, setSelectedAssetId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ setParam, fetchData, toggleLoader, setSelectedMediaId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition, setAssetDetailUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

@@ -1,103 +1,100 @@
-﻿import React, { PureComponent } from 'react';
+﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader, getSizeList, getCategoryList } from '../actions/index';
-import { headerText, defaultState, Casino, Sportsbook, regSpecialCharacters } from '../libs/constants';
-import { globalResource, defaultInsertId, userTypeList, UserType, playerBanner } from '../../common/libs/constants';
+import { setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader } from '../actions/index';
+import { defaultState, regSpecialCharacters } from '../libs/constants';
+import { globalResource, defaultInsertId } from '../../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
-import { validateFileExtension, validateInputFile } from '../libs/utils';
-import MultipleSelect from '../../../../components/multiple-select';
+import { validateFileExtension, validateInputFile, validateFileSize } from '../libs/utils';
 import InputFile from '../../../common/components/InputFile';
 
 const regexSpecialCharacters = new RegExp(regSpecialCharacters);
 
-export class AssetUploaderForm extends PureComponent {
-    constructor(props) {
-        super(props)
-
-        const { playerCategoryList, subCategoryList, currencyList, affTypeList, deviceTypeList, defaultLanguage } = this.props;
-
-        this.state = {
-            ...defaultState,
-            language: defaultLanguage || 'English',
-            categoryList: playerCategoryList,
-            subCategoryList,
-            currencyList,
-            affTypeList,
-            deviceTypeList
+export const AssetUploaderForm = (props) => {
+    const { moduleList, targetCountryList, languageList, selectedMediaId, param, maximumFiles, maxFileSize, allowedExtensions } = props;
+    
+    const [state, setState] = useState({
+        ...defaultState,
+        language: '',
+        module: '',
+        targetCountry: '',
+        errors: {
+            module: false,
+            targetCountry: false,
+            language: false,
+            file: false
         }
+    });
 
-        this.modalRef = React.createRef();
-    }
+    const modalRef = useRef();
 
-    componentDidUpdate(prevProps) {
-        const { selectedBannerId } = this.props;
-        if (prevProps.selectedBannerId !== selectedBannerId) {
-            this.setState({ isInsert: selectedBannerId === defaultInsertId });
-            if (selectedBannerId) {
-                this._handleGetBannerDetail(selectedBannerId);
-            }
+    useEffect(() => {
+        setState(prev => ({ ...prev, isInsert: selectedMediaId === defaultInsertId }));
+        if (selectedMediaId) {
+            handleGetAssetDetail(selectedMediaId);
         }
-    }
+    }, [selectedMediaId]);
 
-    _handleGetBannerDetail = async (selectedBannerId) => {
-        const bannerInfo = await this.props.getBannerDetail(selectedBannerId, this.props.param.userType);
+    // Keep lists updated but don't auto-select values
+    useEffect(() => {
+        // Only update if we're editing an existing asset and have loaded data
+        if (selectedMediaId && selectedMediaId !== defaultInsertId) {
+            // Values will be set by handleGetAssetDetail
+        }
+    }, [moduleList, targetCountryList, languageList, selectedMediaId]);
 
-        if (bannerInfo) {
-            const { playerCategoryList, subAffiliateCategoryList, subCategoryList, currencyList, affTypeList, deviceTypeList } = this.props;
-            const isPlayer = bannerInfo.UserType === playerBanner;
-            const categoryList = isPlayer ? playerCategoryList : subAffiliateCategoryList;
-            const fileName = htmlDecode(bannerInfo.FileName);
+    const handleGetAssetDetail = useCallback(async (selectedMediaId) => {
+        const assetInfo = await props.getAssetDetail(selectedMediaId);
+
+        if (assetInfo) {
+            const fileName = htmlDecode(assetInfo.FileName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
             const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
 
-            this.setState({
+            setState(prev => ({
+                ...prev,
                 inputFileNames: [shortFileName],
-                categoryList: this.handleChangeMultipleSelected(categoryList, bannerInfo.Categories, true),
-                subCategoryList: this.handleChangeMultipleSelected(subCategoryList.filter(s => bannerInfo.Categories.includes(s.parentCategoryName)), bannerInfo.SubCategories),
-                language: bannerInfo.Language,
-                currencyList: this.handleChangeMultipleSelected(currencyList, bannerInfo.Currencies),
-                affTypeList: this.handleChangeMultipleSelected(affTypeList, bannerInfo.AffTypes),
-                deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, bannerInfo.DeviceTypes),
-                iniatalFileName: shortFileName,
-                userType: bannerInfo.UserType,
-                isDisableCurrency: !isPlayer
-            });
+                language: assetInfo.Language || prev.language,
+                module: assetInfo.Module || prev.module,
+                targetCountry: assetInfo.TargetCountry || prev.targetCountry,
+                iniatalFileName: shortFileName
+            }));
         }
-    }
+    }, [props]);
 
-    _handleChange = (event) => {
+    const handleChange = useCallback((event) => {
         const value = event.target.value;
         const name = event.target.name;
 
-        this.setState({ [name]: value });
+        setState(prev => ({ 
+            ...prev, 
+            [name]: value,
+            // Clear error when user selects a value
+            errors: {
+                ...prev.errors,
+                [name]: false
+            }
+        }));
+    }, []);
 
-        if (name === UserType) {
-            const { playerCategoryList, subAffiliateCategoryList } = this.props;
-            const isPlayer = value == playerBanner;
-
-            this.setState({ isDisableCurrency: !isPlayer, categoryList: isPlayer ? playerCategoryList : subAffiliateCategoryList })
-        }
-    }
-
-    _handleChangeInputFileName = (event, index) => {
+    const handleChangeInputFileName = useCallback((event, index) => {
         const value = event.target.value;
 
         if (regexSpecialCharacters.test(value)) {
-            this._handleShowAlert(false, `A File Name can't contain any of the following characters: \\/:*?"<>|#%&+`);
+            handleShowAlert(false, `A File Name can't contain any of the following characters: \\/:*?"<>|#%&+`);
         } else {
-            let inputFileNames = [...this.state.inputFileNames];
-
-            inputFileNames[index] = value;
-
-            this.setState({ inputFileNames });
+            setState(prev => {
+                let inputFileNames = [...prev.inputFileNames];
+                inputFileNames[index] = value;
+                return { ...prev, inputFileNames };
+            });
         }
-    }
+    }, []);
 
-    _handleFile = (event) => {
+    const handleFile = useCallback((event) => {
         let { files } = event.target;
 
         if (files && files.length > 0) {
@@ -110,100 +107,125 @@ export class AssetUploaderForm extends PureComponent {
             for (let file of files) {
                 let fileName = file.name;
                 inputFileNames.push(fileName);
-                let result = validateFileExtension(fileName);
-
-                if (!result.isOK) {
-                    allResults = result;
+                
+                // Validate file extension
+                let extensionResult = validateFileExtension(fileName, allowedExtensions);
+                if (!extensionResult.isOK) {
+                    allResults = extensionResult;
+                    break;
+                }
+                
+                // Validate file size
+                let sizeResult = validateFileSize(file, maxFileSize);
+                if (!sizeResult.isOK) {
+                    allResults = sizeResult;
+                    break;
                 }
             }
 
-            this.setState({ files: Array.from(files), inputFileNames, isDisabled: !allResults.isOK });
-            !allResults.isOK && this._handleShowAlert(false, allResults.message);
-        }
-    }
-
-    _handleRemoveImageAt = (index) => {
-        let inputFileNames = this.state.inputFileNames;
-        let files = this.state.files;
-        if (!files || files.length == 0 || files.length < index + 1) {
-            return;
-        }
-
-        inputFileNames = [...inputFileNames.slice(0, index), ...inputFileNames.slice(index + 1, inputFileNames.length)];
-        files = [...files.slice(0, index), ...files.slice(index + 1, files.length)];
-        if (files && files.length) {
-            let allResults = {
-                isOK: true,
-                message: ''
-            };
-
-            for (let file of files) {
-                let fileName = file.name;
-                let result = validateFileExtension(fileName);
-
-                if (!result.isOK) {
-                    allResults = result;
+            setState(prev => ({ 
+                ...prev, 
+                files: Array.from(files), 
+                inputFileNames, 
+                isDisabled: !allResults.isOK,
+                // Clear file error when files are selected
+                errors: {
+                    ...prev.errors,
+                    file: false
                 }
+            }));
+            !allResults.isOK && handleShowAlert(false, allResults.message);
+        }
+    }, [allowedExtensions, maxFileSize]);
+
+    const handleRemoveImageAt = useCallback((index) => {
+        setState(prev => {
+            let inputFileNames = prev.inputFileNames;
+            let files = prev.files;
+            if (!files || files.length == 0 || files.length < index + 1) {
+                return prev;
             }
 
-            this.setState({ files, inputFileNames, isDisabled: !allResults.isOK });
-            !allResults.isOK && this._handleShowAlert(false, allResults.message);
-        } else {
-            this.setState({ inputFileNames: [''], files, isDisabled: true });
-        }
-    }
+            inputFileNames = [...inputFileNames.slice(0, index), ...inputFileNames.slice(index + 1, inputFileNames.length)];
+            files = [...files.slice(0, index), ...files.slice(index + 1, files.length)];
+            
+            if (files && files.length) {
+                let allResults = {
+                    isOK: true,
+                    message: ''
+                };
 
-    _handleAfterSave = (isInsert, result) => {
+                for (let file of files) {
+                    let fileName = file.name;
+                    
+                    // Validate file extension
+                    let extensionResult = validateFileExtension(fileName, allowedExtensions);
+                    if (!extensionResult.isOK) {
+                        allResults = extensionResult;
+                        break;
+                    }
+                    
+                    // Validate file size
+                    let sizeResult = validateFileSize(file, maxFileSize);
+                    if (!sizeResult.isOK) {
+                        allResults = sizeResult;
+                        break;
+                    }
+                }
+
+                !allResults.isOK && handleShowAlert(false, allResults.message);
+                return { ...prev, files, inputFileNames, isDisabled: !allResults.isOK };
+            } else {
+                return { ...prev, inputFileNames: [''], files, isDisabled: true };
+            }
+        });
+    }, [allowedExtensions, maxFileSize]);
+
+    const handleAfterSave = useCallback((isInsert, result) => {
         if (result) {
-            result.IsSuccessful && this.props.getSizeList(this.props.param);
-
-            const message = isInsert ? "Your banner has been added successfully!" : "Your banner has been updated successfully!";
-
-            this._handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+            const message = isInsert ? "Your asset has been added successfully!" : "Your asset has been updated successfully!";
+            handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
         } else {
-            this._handleShowAlert(false, isInsert ? "The add is failed!" : "The update is failed!");
+            handleShowAlert(false, isInsert ? "The add is failed!" : "The update is failed!");
         }
-    }
+    }, []);
 
-    _save = async (hasSubCategory) => {
-        const { inputFileNames, isInsert, iniatalFileName, files } = this.state;
-        const bannerInfo = this._getParam(hasSubCategory);
+    const save = useCallback(async () => {
+        const { inputFileNames, isInsert, iniatalFileName, files } = state;
+        const assetInfo = getParam();
 
         if (isInsert) {
-            const result = await this.props.insertBanner(bannerInfo);
-            this._handleAfterSave(isInsert, result);
+            const result = await props.uploadAssets(assetInfo);
+            handleAfterSave(isInsert, result);
         } else {
             if (inputFileNames[0] === iniatalFileName && !!files.length) {
-                this.setState({ messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' });
+                setState(prev => ({ ...prev, messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' }));
             } else {
-                this._updateBanner(bannerInfo);
+                updateAssetHandler(assetInfo);
             }
+        }
+    }, [state, props]);
+
+    const getParam = useCallback(() => {
+        const { files, inputFileNames, language, module, targetCountry, isInsert } = state;
+
+        return {
+            MediaId: selectedMediaId,
+            files,
+            inputFileNames: isInsert ? inputFileNames.map(item => item.trim()).join('|') : inputFileNames[0] && inputFileNames[0].trim(),
+            language,
+            module,
+            targetCountry
         };
-    }
+    }, [state, selectedMediaId]);
 
-    _getParam = (hasSubCategory) => {
-        const { selectedBannerId } = this.props;
-        const { files, inputFileNames, categoryList, subCategoryList, language, currencyList, affTypeList, deviceTypeList, userType, isInsert, isDisableCurrency } = this.state;
+    const updateAssetHandler = useCallback(async (assetInfo) => {
+        const result = await props.updateAsset(assetInfo);
+        handleAfterSave(state.isInsert, result);
+    }, [props, state.isInsert]);
 
-        const categories = categoryList.filter(item => item.checked).map(item => item.key).join(',');
-        const subCategories = hasSubCategory ? subCategoryList.filter(item => item.checked).map(item => item.key).join(',') : '';
-        const currencies = isDisableCurrency ? '' : currencyList.filter(item => item.checked).map(item => item.key).join(',');
-        const affTypes = affTypeList.filter(item => item.checked).map(item => item.key).join(',');
-        const deviceTypes = deviceTypeList.filter(item => item.checked).map(item => item.key).join(',');
-
-        return Object.assign({}, {
-            bannerId: selectedBannerId, files, inputFileNames: isInsert ? inputFileNames.map(item => item.trim()).join('|') : inputFileNames[0] && inputFileNames[0].trim(),
-            categories, subCategories, language, currencies, affTypes, deviceTypes, userType
-        });
-    }
-
-    _updateBanner = async (bannerInfo) => {
-        const result = await this.props.updateBanner(bannerInfo);
-        this._handleAfterSave(this.state.isInsert, result);
-    }
-
-    _validateInputFileName = () => {
-        const { inputFileNames, isInsert, files } = this.state;
+    const validateInputFileName = useCallback(() => {
+        const { inputFileNames, isInsert, files } = state;
 
         let validInputFileNames = {
             isOK: true,
@@ -215,7 +237,7 @@ export class AssetUploaderForm extends PureComponent {
                 let inputFileName = inputFileNames[i];
 
                 if (inputFileName) {
-                    let result = validateInputFile(inputFileName.trim());
+                    let result = validateInputFile(inputFileName.trim(), allowedExtensions);
 
                     if (!result.isOK) {
                         result.message = `File Name ${i + 1} incorrect.<br />` + result.message;
@@ -223,7 +245,7 @@ export class AssetUploaderForm extends PureComponent {
                     }
                 } else {
                     if (files && files.length > 0) {
-                        let result = validateInputFile(files[i].name);
+                        let result = validateInputFile(files[i].name, allowedExtensions);
 
                         if (!result.isOK) {
                             validInputFileNames = result;
@@ -231,7 +253,7 @@ export class AssetUploaderForm extends PureComponent {
                     } else {
                         validInputFileNames = {
                             isOK: false,
-                            message: 'You must browse a banner.'
+                            message: 'You must browse a file.'
                         };
                     }
                 }
@@ -239,14 +261,14 @@ export class AssetUploaderForm extends PureComponent {
         } else {
             const inputFileName = inputFileNames[0];
             if (inputFileName) {
-                let result = validateInputFile(inputFileNames[0]);
+                let result = validateInputFile(inputFileNames[0], allowedExtensions);
 
                 if (!result.isOK) {
                     validInputFileNames = result;
                 }
             } else {
                 if (files && files.length > 0) {
-                    let result = validateInputFile(files[0].name);
+                    let result = validateInputFile(files[0].name, allowedExtensions);
 
                     if (!result.isOK) {
                         validInputFileNames = result;
@@ -254,16 +276,16 @@ export class AssetUploaderForm extends PureComponent {
                 } else {
                     validInputFileNames = {
                         isOK: false,
-                        message: 'You must either enter a file name for banner or browse other banner.'
+                        message: 'You must either enter a file name for asset or browse other file.'
                     };
                 }
             }
         }
 
         return validInputFileNames;
-    }
+    }, [state]);
 
-    _hasDuplicateFileNames = (inputFileNames) => {
+    const hasDuplicateFileNames = useCallback((inputFileNames) => {
         const length = inputFileNames.length;
         for (let i = 0; i <= length - 1; i++) {
             let fileName = inputFileNames[i].trim().toLowerCase();
@@ -276,377 +298,275 @@ export class AssetUploaderForm extends PureComponent {
         }
 
         return false;
-    }
+    }, []);
 
-    _handleSubmit = (hasSubCategory) => {
-        this.props.toggleLoader(true);
+    const handleSubmit = useCallback(() => {
+        props.toggleLoader(true);
 
-        const { categoryList, subCategoryList, currencyList, affTypeList, deviceTypeList, inputFileNames, isDisableCurrency } = this.state;
-        const category = categoryList.filter(item => item.checked).map(item => item.key);
-        const subCategory = hasSubCategory && subCategoryList.filter(item => item.checked);
-        const currency = currencyList.filter(item => item.checked);
-        const affType = affTypeList.filter(item => item.checked);
-        const deviceType = deviceTypeList.filter(item => item.checked);
+        const { inputFileNames, module, targetCountry, language, files, isInsert } = state;
 
-        if (!category.length) {
-            this._handleShowAlert(false, "Please select Category.");
+        // Track validation errors
+        const newErrors = {
+            module: !module,
+            targetCountry: !targetCountry,
+            language: !language,
+            file: isInsert && (!files || files.length === 0)
+        };
+
+        // Update state with errors
+        setState(prev => ({ ...prev, errors: newErrors }));
+
+        // Check if any validation failed
+        const hasErrors = Object.values(newErrors).some(error => error);
+
+        if (hasErrors) {
+            let errorMessage = "<strong>Please complete the required fields:</strong><br />";
+            if (newErrors.module) errorMessage += "• Module selection is required<br />";
+            if (newErrors.targetCountry) errorMessage += "• Target Country selection is required<br />";
+            if (newErrors.language) errorMessage += "• Language selection is required<br />";
+            if (newErrors.file) errorMessage += "• File upload is required<br />";
+            
+            // Use a custom warning alert for validation errors
+            setState(prev => ({
+                ...prev,
+                message: errorMessage,
+                isSuccess: false,
+                isShowMessage: true
+            }));
+            
+            modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
+            setTimeout(() => setState(prev => ({ ...prev, isShowMessage: false })), 7000);
+            props.toggleLoader(false);
             return;
         }
-        if (hasSubCategory && (category.indexOf(Casino) !== -1 || category.indexOf(Sportsbook) !== -1) && !subCategory.length) {
-            this._handleShowAlert(false, "Please select Sub Category.");
+
+        if (inputFileNames.length > maximumFiles) {
+            handleShowAlert(false, `You can upload up to ${maximumFiles} files only.`);
             return;
         }
-        if (!isDisableCurrency && !currency.length) {
-            this._handleShowAlert(false, "Please select Currency.");
-            return;
-        }
-        if (!affType.length) {
-            this._handleShowAlert(false, "Please select Affiliate Type.");
-            return;
-        }
-        if (!deviceType.length) {
-            this._handleShowAlert(false, "Please select Device.");
-            return;
-        }
-        if (inputFileNames.length > 10) {
-            this._handleShowAlert(false, "Can't upload exceed 10 images one time");
-            return;
-        }
-        if (this._hasDuplicateFileNames(inputFileNames)) {
-            this._handleShowAlert(false, "File Name is unique, please enter other file name!");
+        if (hasDuplicateFileNames(inputFileNames)) {
+            handleShowAlert(false, "Duplicate file name(s) detected. Please rename or remove the file(s).");
             return;
         }
 
-        const validInputFileNames = this._validateInputFileName();
-        validInputFileNames.isOK ? this._save(hasSubCategory) : this._handleShowAlert(false, validInputFileNames.message)
+        const validInputFileNames = validateInputFileName();
+        validInputFileNames.isOK ? save() : handleShowAlert(false, validInputFileNames.message);
 
-        this.props.toggleLoader(false);
-    }
+        props.toggleLoader(false);
+    }, [state, props, maximumFiles, hasDuplicateFileNames, validateInputFileName, save]);
 
-    _handleShowAlert = (isSuccess, message) => {
-        this.modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    const handleShowAlert = useCallback((isSuccess, message) => {
+        modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
 
-        this.setState({
+        setState(prev => ({
+            ...prev,
             message,
             isSuccess,
             isShowMessage: true,
-        }, () => window.setTimeout(() => this._hideMessage(isSuccess), isSuccess ? 3000 : 5000));
+        }));
 
-        this.props.toggleLoader(false);
-    }
+        setTimeout(() => hideMessage(isSuccess), isSuccess ? 3000 : 5000);
+        props.toggleLoader(false);
+    }, [props]);
 
-    _hideMessage = (isSuccess) => {
-        this.setState({
-            isShowMessage: false
-        });
+    const hideMessage = useCallback((isSuccess) => {
+        setState(prev => ({ ...prev, isShowMessage: false }));
 
         if (isSuccess) {
-            this.props.fetchData(this.props.param);
-            this._handleClosePopup();
+            props.fetchData(param);
+            handleClosePopup();
         }
-    }
+    }, [props, param]);
 
-    _handleClosePopup = () => {
-        this.props.setSelectedBannerId(null);
+    const handleClosePopup = useCallback(() => {
+        props.setSelectedMediaId(null);
+        setState({
+            ...defaultState,
+            language: '',
+            module: '',
+            targetCountry: '',
+            errors: {
+                module: false,
+                targetCountry: false,
+                language: false,
+                file: false
+            }
+        });
+    }, [props]);
 
-        const { playerCategoryList, subCategoryList, currencyList, affTypeList, deviceTypeList, defaultLanguage } = this.props;
-        this.setState({ ...defaultState, categoryList: playerCategoryList, subCategoryList, currencyList, affTypeList, deviceTypeList, language: defaultLanguage || 'English' });
-    }
-
-    handleCloseNotificationPopup = (confirmResult, hasSubCategory) => {
-        this.setState({ messageNotificationPopup: '' });
+    const handleCloseNotificationPopup = useCallback((confirmResult) => {
+        setState(prev => ({ ...prev, messageNotificationPopup: '' }));
 
         if (confirmResult) {
-            const bannerInfo = this._getParam(hasSubCategory);
-
-            this._updateBanner(bannerInfo);
+            const assetInfo = getParam();
+            updateAssetHandler(assetInfo);
         }
-    }
+    }, [getParam, updateAssetHandler]);
 
-    _handlePressEnter = (event) => {
-        if (event.charCode === 13) {
-            event.preventDefault()
-            this._handleSubmit();
-        }
-    }
+    const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, files, errors } = state;
+    const isShowPopup = selectedMediaId !== null;
+    const title = isInsert ? "Add New Asset" : "Update Existing Asset";
+    const buttonLabel = isInsert ? "Upload" : "Update";
 
-    getSubCategories = (categories) => {
-        const { subCategoryList } = this.state;
-        const categoryNames = categories.filter(category => category.checked).map(category => category.categoryName);
-        let newSubCategoryList = categoryNames.map(c => this.props.subCategoryList.filter(sub => sub.parentCategoryName == c)).reduce((accumulator, field) => {
-            var newField = field.reduce((acc, item) => {
-                var newItem = subCategoryList && subCategoryList.filter(sub => sub.key === item.key);
+    return (
+        <React.Fragment>
+            {
+                !!messageNotificationPopup && <NotificationPopup
+                    message={messageNotificationPopup}
+                    isConfirmPopup={true}
+                    onClose={handleCloseNotificationPopup}
+                />
+            }
+            <Modal isOpen={isShowPopup} toggle={handleClosePopup} backdrop='static' innerRef={modalRef}>
+                <ModalHeader toggle={handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
+                <ModalBody>
+                    <div className="modal-body-wrapper">
+                        <div className="banner-list-form-container">
+                            <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                            </Alert>
+                            <Form tag="form" className="mb-3 p-1 border" autoComplete="off">
+                                <Label>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</Label>
+                                <Label className="d-block">[File Size Limit: {maxFileSize}MB]</Label>
+                                {
+                                    isInsert && <Label className="d-block">[Maximum files: {maximumFiles}]</Label>
+                                }
+                                <div className="alert alert-info p-2 mb-3">
+                                    <small><strong>Note:</strong> Module, Target Country, and Language cannot be changed if the image is already used in an existing landing page.</small>
+                                </div>
+                                <br />
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} htmlFor="module" className="required">Module</Label>
+                                    <Col sm={5} className='align-self-center'>
+                                        <Input 
+                                            type="select" 
+                                            name="module" 
+                                            id="module" 
+                                            value={state.module} 
+                                            onChange={handleChange}
+                                            className={errors.module ? 'form-validation-warning' : ''}>
+                                            <option value="">Please Select</option>
+                                            {
+                                                moduleList && moduleList.map(item => {
+                                                    return (<option key={`module-${item.ModuleName}`} value={item.ModuleName}>{item.ModuleName}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} htmlFor="targetCountry" className="required pr-0">Target Country</Label>
+                                    <Col sm={5} className='align-self-center'>
+                                        <Input 
+                                            type="select" 
+                                            name="targetCountry" 
+                                            id="targetCountry" 
+                                            value={state.targetCountry} 
+                                            onChange={handleChange}
+                                            className={errors.targetCountry ? 'form-validation-warning' : ''}>
+                                            <option value="">Please Select</option>
+                                            {
+                                                targetCountryList && targetCountryList.map(item => {
+                                                    return (<option key={`country-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} htmlFor="language" className="required">Language</Label>
+                                    <Col sm={5} className='align-self-center'>
+                                        <Input 
+                                            type="select" 
+                                            name="language" 
+                                            id="language" 
+                                            value={language} 
+                                            onChange={handleChange}
+                                            className={errors.language ? 'form-validation-warning' : ''}>
+                                            <option value="">Please Select</option>
+                                            {
+                                                languageList && languageList.map(item => {
+                                                    return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} htmlFor="file" className={isInsert ? "required" : ""}>Upload File</Label>
+                                    <Col sm={9} className='align-self-center'>
+                                        <InputFile id="file" 
+                                            className={`input-file-group border ${errors.file ? "form-validation-warning" : (isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
+                                            lblText="No file chosen"
+                                            btnName={globalResource.ChooseFile}
+                                            isMultiple={isInsert} files={files}
+                                            handleOnChangeFiles={handleFile}
+                                            accept={allowedExtensions && allowedExtensions.map(ext => `image/${ext.replace('.', '')}`).join(', ')} />
+                                    </Col>
+                                </FormGroup>
+                                {
+                                    isInsert ? inputFileNames && inputFileNames.map((value, index) => {
+                                        let inputFileName = `inputFileName${index}`;
 
-                return acc.concat((!!newItem && !!newItem[0]) ? newItem : item);
-            }, []);
-            return accumulator.concat(newField);
-        }, []);
-        return newSubCategoryList;
-    }
-
-    handleChangeMultipleSelected = (initialList, selectedKey, isCategory) => {
-        const selectedList = typeof (selectedKey) === "string" ? selectedKey.split(',').filter(p => !!p) : selectedKey;
-
-        return initialList && initialList.map(item => {
-            const { key, name, categoryName } = item;
-            const checked = selectedList.indexOf(key.toString()) !== -1;
-
-            return isCategory ? {
-                categoryName,
-                key,
-                name,
-                checked
-            } : {
-                    key,
-                    name,
-                    checked
-                };
-        })
-    }
-
-    handleChangeCategory = (item, selectedKey) => {
-        const { playerCategoryList, subAffiliateCategoryList } = this.props;
-        const categoryList = this.state.userType == playerBanner ? playerCategoryList : subAffiliateCategoryList;
-
-        const newCategoryList = this.handleChangeMultipleSelected(categoryList, selectedKey, true);
-        const newSubCategoryList = this.getSubCategories(newCategoryList);
-
-        this.setState({ categoryList: newCategoryList, subCategoryList: newSubCategoryList });
-    }
-
-    handleChangeSubCategory = (item, selectedKey) => {
-        const { subCategoryList } = this.state;
-
-        this.setState({ subCategoryList: this.handleChangeMultipleSelected(subCategoryList, selectedKey) });
-    }
-
-    handleChangeCurrency = (item, selectedKey) => {
-        const { currencyList } = this.state;
-
-        this.setState({ currencyList: this.handleChangeMultipleSelected(currencyList, selectedKey) });
-    }
-
-    handleChangeAffType = (item, selectedKey) => {
-        const { affTypeList } = this.state;
-
-        this.setState({ affTypeList: this.handleChangeMultipleSelected(affTypeList, selectedKey) });
-    }
-
-    handleChangeDevice = (item, selectedKey) => {
-        const { deviceTypeList } = this.state;
-
-        this.setState({ deviceTypeList: this.handleChangeMultipleSelected(deviceTypeList, selectedKey) });
-    }
-
-    render() {
-        const { selectedBannerId, languageList } = this.props;
-        const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, categoryList,
-            subCategoryList, currencyList, affTypeList, deviceTypeList, files, userType, isDisableCurrency } = this.state;
-        const isShowPopup = selectedBannerId !== null;
-        const title = isInsert ? "Add Banner" : "Update Banner";
-        const buttonLabel = isInsert ? "Upload" : "Update";
-        const selectedCategory = categoryList.filter(item => item.checked).map(item => item.key);
-        const hasSubCategory = selectedCategory.indexOf(Casino) !== -1 || selectedCategory.indexOf(Sportsbook) !== -1;
-
-        return (
-            <React.Fragment>
-                {
-                    !!messageNotificationPopup && <NotificationPopup
-                        message={messageNotificationPopup}
-                        isConfirmPopup={true}
-                        onClose={(confirmResult) => this.handleCloseNotificationPopup(confirmResult, hasSubCategory)}
-                    />
-                }
-                <Modal isOpen={isShowPopup} toggle={this._handleClosePopup} backdrop='static' innerRef={this.modalRef}>
-                    <ModalHeader toggle={this._handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
-                    <ModalBody>
-                        <div className="modal-body-wrapper">
-                            <div className="banner-list-form-container">
-                                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
-                                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                                </Alert>
-                                <Form tag="form" className="mb-2 p-1 border" autoComplete="off">
-                                    <Label>[Valid Types: .gif, .jpg, .png, .jpeg]</Label>
-                                    <Label className="d-block">[File Size Limit: 3MB]</Label>
-                                    {
-                                        isInsert && <Label className="d-block">[Maximum files: 10]</Label>
-                                    }                                    <br />
-                                    <FormGroup row className="mb-2">
-                                        <Label sm={3} htmlFor="file" className={isInsert ? "required" : ""}>File</Label>
-                                        <Col sm={9} >
-                                            <InputFile id="file" className={`border ${(isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
-                                                lblText="No file choosen"
-                                                btnName={globalResource.ChooseFile}
-                                                isMultiple={isInsert} files={files}
-                                                handleOnChangeFiles={this._handleFile}
-                                                accept="image/jpg, image/gif, image/png, image/jpeg" />
-                                        </Col>
-                                    </FormGroup>
-                                    {
-                                        isInsert && <FormGroup row className="mb-2">
-                                            <Label sm={3} htmlFor="userType">{headerText.UserType}</Label>
-                                            <Col sm={5}>
-                                                <Input type="select" name="userType" id="userType" value={userType} onChange={this._handleChange}>
-                                                    {
-                                                        Object.keys(userTypeList).map(key => {
-                                                            return (<option key={`userType-${key}`} value={key}>{userTypeList[key]}</option>)
-                                                        })
-                                                    }
-                                                </Input>
+                                        return (<FormGroup row className="mb-2" key={`FileName${index + 1}`}>
+                                            <Label sm={3} htmlFor={inputFileName}>{`File Name ${index + 1}`}</Label>
+                                            <Col sm={7} className='align-self-center'>
+                                                <Input type="text"
+                                                    name={inputFileName}
+                                                    id={inputFileName}
+                                                    title={value}
+                                                    value={value}
+                                                    disabled={true} />
+                                            </Col>
+                                            <div className='align-self-center'>
+                                                <Button className="mr-3"
+                                                    type="button"
+                                                    color="danger"
+                                                    disabled={files && !files.length}
+                                                    onClick={() => handleRemoveImageAt(index)}>
+                                                    {globalResource.Remove}
+                                                </Button>
+                                            </div>
+                                        </FormGroup>)
+                                    }) : (
+                                        <FormGroup row className="mb-2">
+                                            <Label sm={3} htmlFor="inputFileName">File Name</Label>
+                                            <Col sm={7} className='align-self-center'>
+                                                <Input type="text"
+                                                    name="inputFileName"
+                                                    id="inputFileName"
+                                                    value={inputFileNames && inputFileNames[0]}
+                                                    disabled={true} />
                                             </Col>
                                         </FormGroup>
-                                    }
-                                    <FormGroup row className="mb-2">
-                                        <Label sm={3} htmlFor="category" className="required">{headerText.Category}</Label>
-                                        <Col sm={5}>
-                                            <MultipleSelect
-                                                dataSource={categoryList}
-                                                keyField="key"
-                                                valueField="name"
-                                                statusField="checked"
-                                                maxDisplayItemCount={1}
-                                                noneSelectedLabel="Please Select"
-                                                onChange={this.handleChangeCategory} />
-                                        </Col>
-                                    </FormGroup>
-                                    {
-                                        hasSubCategory && (
-                                            <FormGroup row className="mb-2">
-                                                <Label sm={3} htmlFor="subCategory" className="required">{headerText.SubCategory}</Label>
-                                                <Col sm={5}>
-                                                    <MultipleSelect
-                                                        dataSource={subCategoryList}
-                                                        keyField="key"
-                                                        valueField="name"
-                                                        statusField="checked"
-                                                        maxDisplayItemCount={1}
-                                                        noneSelectedLabel="Please Select"
-                                                        onChange={this.handleChangeSubCategory} />
-                                                </Col>
-                                            </FormGroup>
-                                        )
-                                    }
-                                    <FormGroup row className="mb-2">
-                                        <Label sm={3} htmlFor="language">{headerText.Language}</Label>
-                                        <Col sm={5}>
-                                            <Input type="select" name="language" id="language" value={language} onChange={this._handleChange}>
-                                                {
-                                                    languageList && languageList.map(item => {
-                                                        return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
-                                                    })
-                                                }
-                                            </Input>
-                                        </Col>
-                                    </FormGroup>
-                                    {
-                                        !isDisableCurrency && (
-                                            <FormGroup row className="mb-2">
-                                                <Label sm={3} htmlFor="currency" className="required">{headerText.Currency}</Label>
-                                                <Col sm={5}>
-                                                    <MultipleSelect
-                                                        dataSource={currencyList}
-                                                        keyField="key"
-                                                        valueField="name"
-                                                        statusField="checked"
-                                                        maxDisplayItemCount={1}
-                                                        noneSelectedLabel="Please Select"
-                                                        onChange={this.handleChangeCurrency} />
-                                                </Col>
-                                            </FormGroup>)
-                                    }
-                                    <FormGroup row className="mb-2">
-                                        <Label sm={3} htmlFor="affType" className="required">{headerText.AffType}</Label>
-                                        <Col sm={5}>
-                                            <MultipleSelect
-                                                dataSource={affTypeList}
-                                                keyField="key"
-                                                valueField="name"
-                                                statusField="checked"
-                                                maxDisplayItemCount={1}
-                                                noneSelectedLabel="Please Select"
-                                                onChange={this.handleChangeAffType} />
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row className="mb-2">
-                                        <Label sm={3} htmlFor="deviceType" className="required">{headerText.Device}</Label>
-                                        <Col sm={5}>
-                                            <MultipleSelect
-                                                dataSource={deviceTypeList}
-                                                keyField="key"
-                                                valueField="name"
-                                                statusField="checked"
-                                                maxDisplayItemCount={1}
-                                                noneSelectedLabel="Please Select"
-                                                onChange={this.handleChangeDevice} />
-                                        </Col>
-                                    </FormGroup>
-                                    {
-                                        isInsert ? inputFileNames && inputFileNames.map((value, index) => {
-                                            let inputFileName = `inputFileName${index}`;
+                                    )
+                                }
+                            </Form>
 
-                                            return (<FormGroup row className="mb-2" key={`FileName${index + 1}`}>
-                                                <Label sm={3} htmlFor={inputFileName}>{`File Name ${index + 1}`}</Label>
-                                                <Col sm={7}>
-                                                    <Input type="text"
-                                                        name={inputFileName}
-                                                        id={inputFileName}
-                                                        value={value} onChange={(e) => this._handleChangeInputFileName(e, index)}
-                                                        onKeyPress={this._handlePressEnter} />
-                                                </Col>
-                                                <div>
-                                                    <Button className="mr-3"
-                                                        type="button"
-                                                        color="danger"
-                                                        disabled={files && !files.length}
-                                                        onClick={() => this._handleRemoveImageAt(index)}>
-                                                        {globalResource.Remove}
-                                                    </Button>
-                                                </div>
-                                            </FormGroup>)
-                                        }) : (
-                                                <FormGroup row className="mb-2">
-                                                    <Label sm={3} htmlFor="inputFileName">File Name</Label>
-                                                    <Col sm={7}>
-                                                        <Input type="text"
-                                                            name="inputFileName"
-                                                            id="inputFileName"
-                                                            value={inputFileNames && inputFileNames[0]}
-                                                            onChange={(e) => this._handleChangeInputFileName(e, 0)}
-                                                            onKeyPress={this._handlePressEnter} />
-                                                    </Col>
-                                                </FormGroup>
-                                            )
-                                    }
-                                </Form>
-
-                                <Button type="button"
-                                    color="success"
-                                    className="mr-3"
-                                    disabled={((isInsert || (inputFileNames && !inputFileNames[0]))) ? isDisabled : false}
-                                    onClick={() => this._handleSubmit(hasSubCategory)}>
-                                    {buttonLabel}
-                                </Button>
-                                <Button type="button" color="info" onClick={this._handleClosePopup}>{globalResource.Cancel}</Button>
-                            </div>
+                            <Button type="button"
+                                color="success"
+                                className="mr-3"
+                                disabled={((isInsert || (inputFileNames && !inputFileNames[0]))) ? isDisabled : false}
+                                onClick={handleSubmit}>
+                                {buttonLabel}
+                            </Button>
+                            <Button type="button" color="info" onClick={handleClosePopup}>{globalResource.Cancel}</Button>
                         </div>
-                    </ModalBody>
-                </Modal>
-            </React.Fragment>
-        );
-    }
+                    </div>
+                </ModalBody>
+            </Modal>
+        </React.Fragment>
+    );
 }
 
-function mapStateToProps({ selectedBannerId, param, playerCategoryList, subAffiliateCategoryList, subCategoryCasinoList, subCategorySportsbookList,
-    languageList, currencyList, sizeList, affTypeList, deviceTypeList, subCategoryList, defaultLanguage }) {
-    return Object.assign({},
-        {
-            selectedBannerId, param, playerCategoryList, subAffiliateCategoryList, subCategoryCasinoList, defaultLanguage,
-            subCategorySportsbookList, languageList, currencyList, sizeList, affTypeList, deviceTypeList, subCategoryList
-        });
+function mapStateToProps({ selectedMediaId, param, moduleList, targetCountryList, languageList, maximumFiles, maxFileSize, allowedExtensions }) {
+    return Object.assign({}, {
+        selectedMediaId, param, moduleList, targetCountryList, languageList, maximumFiles, maxFileSize, allowedExtensions
+    });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedBannerId, getBannerDetail, fetchData, insertBanner, updateBanner, toggleLoader, getSizeList, getCategoryList }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AssetUploaderForm);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AssetUploaderForm));

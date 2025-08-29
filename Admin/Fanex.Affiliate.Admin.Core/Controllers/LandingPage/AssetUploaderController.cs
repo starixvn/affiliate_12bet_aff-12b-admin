@@ -7,10 +7,11 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Services.LandingPage;
 using Fanex.Affiliate.Admin.Core.ViewModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
+using Fanex.Affiliate.Admin.Core.DTO;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
-    [FunctionAuthorize(FunctionName = Function.LandingPage)]
+    [FunctionAuthorize(FunctionName = Function.AssetUploader)]
     public class AssetUploaderController : ReadOnlySessionBaseController
     {
         private readonly IAppSetting _appSetting;
@@ -32,18 +33,27 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         {
             var model = new AssetUploaderViewModel
             {
-                ModuleList = _landingPageService.GetModuleList(),
+                ModuleList = _landingPageService.GetModuleListExcludeRegistrationForm(),
                 LanguageList = _landingPageService.GetLanguageList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
+                StatusList = LandingPageConstants.AssetStatusList,
                 BannerRootUrl = _appSetting.BannerRootUrl,
                 MaximumFiles = LandingPageConstants.FileUpload.MaximumFiles,
-                MaxFileSize = LandingPageConstants.FileUpload.MaxFileSizeBytes,
-                AllowedExtensions = LandingPageConstants.FileExtensions.AllowedImageExtensions
+                MaxFileSize = LandingPageConstants.FileUpload.MaxFileSizeMegabytes,
+                AllowedExtensions = LandingPageConstants.FileExtensions.AllImageExtensions
             };
 
             return View("~/Areas/Portal/Views/LandingPage/AssetUploader.cshtml", model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetAssetList(AssetListParam param)
+        {
+            param.FunctionName = Function.AssetUploader;
+            param.UserId = SessionService.UserId;
+            return GenerateJsonNetResult(_assetService.GetAssetList(param));
+        }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
@@ -61,9 +71,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetAssetList(AssetListParam param)
+        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult UpdateAsset(HttpPostedFileBase file, UploadAssetsParam param)
         {
-            return GenerateJsonNetResult(_assetService.GetAssetList(param));
+            if (ModelState.IsValid && (!string.IsNullOrEmpty(param.InputFileNames) || file != null))
+            {
+                var encodeParam = EncodeUploadAssetsParam(param);
+                AssignUserInfoParam(encodeParam);
+                return GenerateJsonNetResult(_assetService.UpdateAsset(file, encodeParam));
+            }
+            return GenerateErrResult("Please select valid files to upload.");
         }
 
         [HttpPost]
@@ -81,6 +98,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult ToggleAssetStatus(int mediaId)
+        {
+            return GenerateJsonNetResult(new ResultInfo());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult OptimizeAsset(OptimizeAssetParam param)
         {
             if (ModelState.IsValid)
@@ -90,22 +115,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             return GenerateModelStateErrResult();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetAssetStatistics(int? moduleId)
-        {
-            return GenerateJsonNetResult(_assetService.GetAssetStatistics(moduleId));
-        }
-
         private UploadAssetsParam EncodeUploadAssetsParam(UploadAssetsParam param)
         {
             return new UploadAssetsParam
             {
+                MediaId = param.MediaId,
                 ModuleId = param.ModuleId,
-                AssetType = param.AssetType,
-                AssetName = Server.HtmlEncode(param.AssetName),
-                AssetDescription = Server.HtmlEncode(param.AssetDescription),
-                Tags = Server.HtmlEncode(param.Tags)
+                TargetCountry = Server.HtmlEncode(param.TargetCountry),
+                Language = Server.HtmlEncode(param.Language),
+                InputFileNames = param.InputFileNames,
             };
         }
     }

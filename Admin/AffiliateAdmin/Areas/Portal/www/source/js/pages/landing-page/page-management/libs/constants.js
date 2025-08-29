@@ -4,11 +4,14 @@ export { globalResource };
 
 export const headerText = {
     Index: '#',
+    CampaignName: 'Campaign Name',
     LandingPageName: 'Landing Page Name',
     LandingPageCode: 'Landing Page Code',
     TargetCountry: 'Target Country',
     Language: 'Language',
     Deal: 'Deal',
+    CreatedDate: 'Created Date',
+    LastModified: 'Last Modified',
     Status: 'Status',
     Action: 'Action'
 }

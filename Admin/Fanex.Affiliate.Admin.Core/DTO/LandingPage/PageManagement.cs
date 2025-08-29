@@ -8,6 +8,9 @@
         public string TargetCountry { get; set; }
         public string Language { get; set; }
         public string Deal { get; set; }
-        public string Status { get; set; }
+        public byte StatusId { get; set; }
+        public string CampaignName { get; set; }
+        public string CreatedDate { get; set; }
+        public string LastModified { get; set; }
     }
 }

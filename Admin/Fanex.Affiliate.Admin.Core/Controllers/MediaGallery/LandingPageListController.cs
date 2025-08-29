@@ -16,23 +16,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     {
         private readonly ILandingPageListService _landingPageService;
         private readonly ISystemService _systemService;
-        private readonly ICommonDealService _commGroupCommonService;
+        private readonly ICommonDealService _commonDealService;
 
         public LandingPageListController(
             ISessionService sessionService,
             ILandingPageListService landingPageService,
             ISystemService systemService,
-            ICommonDealService commGroupCommonService) : base(sessionService)
+            ICommonDealService commonDealService) : base(sessionService)
         {
             _landingPageService = landingPageService;
             _systemService = systemService;
-            _commGroupCommonService = commGroupCommonService;
+            _commonDealService = commonDealService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.DealList = _commGroupCommonService.GetNormalDealList(new GetNormalDealParam());
+            ViewBag.DealList = _commonDealService.GetNormalDealList(new GetNormalDealParam());
             return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
         }
 

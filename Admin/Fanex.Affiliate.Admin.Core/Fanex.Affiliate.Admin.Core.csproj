@@ -444,6 +444,7 @@
     <Compile Include="Criterias\Administrator\AdministratorCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorDetailCriteria.cs" />
     <Compile Include="Criterias\Domain\GetTargetCountryListByDomainCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetAssetListCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetModuleCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetPageManagementCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BannerCriteria.cs" />
@@ -523,7 +524,7 @@
     <Compile Include="DTO\Domain\DomainInfo.cs" />
     <Compile Include="DTO\Domain\SpecificDomainControlInfo.cs" />
     <Compile Include="DTO\Domain\TargetCountryByDomain.cs" />
-    <Compile Include="DTO\LandingPage\LandingPageStatus.cs" />
+    <Compile Include="DTO\LandingPage\StatusInfo.cs" />
     <Compile Include="DTO\LandingPage\ModuleMedia.cs" />
     <Compile Include="DTO\LandingPage\PageManagement.cs" />
     <Compile Include="DTO\Market.cs" />
@@ -614,6 +615,9 @@
     <Compile Include="MetaModels\Domain\UpdateSpecificDomainControlParam.cs" />
     <Compile Include="MetaModels\EmailHistory\DeleteEmailHistoryParam.cs" />
     <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />
+    <Compile Include="MetaModels\LandingPage\AssetListParam.cs" />
+    <Compile Include="MetaModels\LandingPage\BaseLandingPageParam.cs" />
+    <Compile Include="MetaModels\LandingPage\FormManagementParam.cs" />
     <Compile Include="MetaModels\LandingPage\MediaPickerParam.cs" />
     <Compile Include="MetaModels\LandingPage\PageManagementParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
@@ -633,7 +637,7 @@
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Report\AffiliateReport.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
-    <Compile Include="DTO\SelectItem.cs" />
+    <Compile Include="DTO\Campaign\CampaignInfo.cs" />
     <Compile Include="DTO\SubMenu.cs" />
     <Compile Include="DTO\UserPanel\ContactApp.cs" />
     <Compile Include="DTO\UserPanel\CustomerMember.cs" />

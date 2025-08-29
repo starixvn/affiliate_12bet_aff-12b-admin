@@ -4,6 +4,7 @@ export const headerText = {
     PreviewImageName: 'Preview Image Name',
     Demensions: 'Demensions',
     PreviewImage: 'Preview Image',
+    Active: 'Active',
     Action: 'Action'
 };
 

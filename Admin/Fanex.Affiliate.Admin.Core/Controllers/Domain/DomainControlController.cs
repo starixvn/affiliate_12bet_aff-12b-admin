@@ -19,15 +19,15 @@
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
-        private readonly ICommonDealService _commGroupCommonService;
+        private readonly ICommonDealService _commonDealService;
 
         public DomainControlController(
             ISessionService sessionService,
             IDomainControlService domainControlService,
-            ICommonDealService commGroupCommonService) : base(sessionService)
+            ICommonDealService commonDealService) : base(sessionService)
         {
             _domainControlService = domainControlService;
-            _commGroupCommonService = commGroupCommonService;
+            _commonDealService = commonDealService;
         }
 
         public ActionResult Index()
@@ -36,7 +36,7 @@
             {
                 AffSubDomainList = _domainControlService.GetSubAffDomainControlList(),
                 TargetCountryList = GetVisibleTargetCountries(),
-                DealList = _commGroupCommonService.GetNormalDealList(new GetNormalDealParam())
+                DealList = _commonDealService.GetNormalDealList(new GetNormalDealParam())
             };
 
             return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);

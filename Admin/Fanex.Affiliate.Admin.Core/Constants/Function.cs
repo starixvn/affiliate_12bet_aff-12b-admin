@@ -15,6 +15,10 @@
         public const string Media = "[Media]";
 
         public const string LandingPage = "[Media]";
+        
+        public const string AssetUploader = "[AssetUploader]";
+
+        public const string RegistrationFormManagement = "[RegistrationFormManagement]";
 
         public const string AffExRate = "[AffEx.Rate]";
 

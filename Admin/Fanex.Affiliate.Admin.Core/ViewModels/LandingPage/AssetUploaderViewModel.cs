@@ -10,6 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.LandingPage
         public IEnumerable<LandingPageModule> ModuleList { get; set; }
         public IEnumerable<Language> LanguageList { get; set; }
         public IEnumerable<TargetCountry> TargetCountryList { get; set; }
+        public IEnumerable<StatusInfo> StatusList { get; set; }
         public int MaximumFiles { get; set; }
         public long MaxFileSize { get; set; }
         public string[] AllowedExtensions { get; set; }

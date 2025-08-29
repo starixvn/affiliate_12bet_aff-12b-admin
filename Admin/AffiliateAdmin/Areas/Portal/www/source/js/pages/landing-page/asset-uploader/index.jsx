@@ -6,17 +6,24 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 
+import { convertListToMutilpleSelected } from '../../../modules/utils';
+
 const App = () => {
-    const { moduleList, targetCountryList, languageList, maxFileSize, maximumFiles, allowedExtensions, bannerRootUrl } = window.initialState;
+    const { moduleList, targetCountryList, languageList, maxFileSize, maximumFiles, allowedExtensions, bannerRootUrl, statusList } = window.initialState;
+
+    const newModuleList = convertListToMutilpleSelected(moduleList, 'ModuleId', 'ModuleName');
+    const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
+    const newLanguageList = convertListToMutilpleSelected(languageList, 'LanguageCode', 'LanguageName');
 
     const store = configureStore({
-        moduleList,
-        targetCountryList,
-        languageList,
+        moduleList: newModuleList,
+        targetCountryList: newTargetCountryList,
+        languageList: newLanguageList,
         maxFileSize,
         maximumFiles,
         allowedExtensions,
-        bannerRootUrl
+        bannerRootUrl,
+        statusList
     }, reducer);
 
     return (

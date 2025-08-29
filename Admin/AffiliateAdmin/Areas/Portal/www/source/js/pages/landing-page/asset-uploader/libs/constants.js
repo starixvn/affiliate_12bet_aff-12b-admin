@@ -8,13 +8,17 @@ export const fileUpload = {
     MaxFileSize: 3
 }
 
+export const allAssetStatus = -1;
+
 export const headerText = {
     Index: '#',
     Module: 'Module',
-    MediaName: 'Media Name',
     FileName: 'File Name',
+    TargetCountry: 'Target Country',
+    Language: 'Language',
     Dimensions: 'Dimensions',
-    Images: 'Images',
+    PreviewAsset: 'Preview Asset',
+    Active: 'Active',
     Action: 'Action',
 }
 

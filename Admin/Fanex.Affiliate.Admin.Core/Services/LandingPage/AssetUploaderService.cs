@@ -1,5 +1,7 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using Fanex.Affiliate.Admin.Core.Criterias.LandingPage;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Data.Repository;
 using System.Web;
@@ -21,9 +23,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             };
         }
 
+        public ResultInfo UpdateAsset(HttpPostedFileBase file, UploadAssetsParam param)
+        {
+            return new ResultInfo
+            {
+                Code = 0,
+                Message = $"The asset updated successfully"
+            };
+        }
+
         public EntityResult<LandingPageAsset> GetAssetList(AssetListParam param)
         {
-            return new EntityResult<LandingPageAsset>();
+            var criteria = param.MapTo<AssetListParam, GetAssetListCriteria>();
+
+            return FetchEntityResult<LandingPageAsset>(criteria);
         }
 
         public ResultInfo DeleteAssets(DeleteAssetsParam param)

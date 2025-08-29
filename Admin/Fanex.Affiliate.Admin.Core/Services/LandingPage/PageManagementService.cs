@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Data.Repository;
+using System;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
@@ -23,7 +24,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                     TargetCountry = "Malaysia",
                     Language = "English",
                     Deal = "NoCommission,NoCommission_MKT",
-                    Status = "Published",
+                    StatusId = 1,
+                    CampaignName = "Campaign_1",
+                    CreatedDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                    LastModified = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                 },
                 new PageManagement
                 {
@@ -33,7 +37,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                     TargetCountry = "Malaysia",
                     Language = "English",
                     Deal = "NoCommission,NoCommission_MKT",
-                    Status = "Archived",
+                    StatusId = 2,
+                    CampaignName = "Campaign_2",
+                    CreatedDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                    LastModified = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                 }
             };
 
