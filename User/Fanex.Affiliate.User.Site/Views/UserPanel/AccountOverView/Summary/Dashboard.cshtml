@@ -1,11 +1,9 @@
 ﻿@using Fanex.Affiliate.User.Core.CoreService
-@using Fanex.Affiliate.User.Core.Utilities
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverview.OverviewSummary
 
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
-    var isAffOfNoCommissionCPAGroup = StatisticsHelper.IsAffOfNoCommissionCPAGroup(appSetting, sessionService.UserSession?.GroupName);
+    var isAffOfNoCommissionCPAGroup = string.Equals(sessionService.UserSession?.GroupName, "NoCommission-CPA", StringComparison.OrdinalIgnoreCase);
 }
 
 <div class="dashboard-section-col">
