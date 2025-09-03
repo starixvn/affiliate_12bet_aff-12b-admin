@@ -6,10 +6,10 @@
     pointer-events: none !important;
     cursor: not-allowed !important;
     
-    * {
-        pointer-events: none !important;
-        cursor: not-allowed !important;
-    }
+    // * {
+    //     pointer-events: none !important;
+    //     cursor: not-allowed !important;
+    // }
     
     input, select, textarea, button {
         pointer-events: none !important;
@@ -23,9 +23,18 @@
         opacity: 0.8 !important;
     }
 
-    .btn-close, .tabs button {
+    .btn-close, 
+    .tabs button, 
+    .multiple-select-container, 
+    .multiple-select-container button, 
+    .multiple-select-options input[type="text"] {
         pointer-events: auto !important;
         cursor: pointer !important;
+        opacity: 1 !important;
+    }
+
+    label>span {
+        pointer-events: auto !important;
         opacity: 1 !important;
     }
 }
