@@ -57,11 +57,11 @@ export const GridData = ({ params, isSubmit, toggleLoader, toggleSubmit, setPagi
 
     return data && (
         <React.Fragment>
-            <div className="table-responsive redeposit-cpa-report">
-                <Table className="freeze-table table-bordered table-hover">
+            <div className="table-responsive aff-report-table-container">
+                <Table className="freeze-table table-bordered table-hover" style={{ minWidth: '1900px' }}>
                     <TableHeader />
                     <TableBody data={data} />
-                    <TableFooter total={total} />
+                    <TableFooter total={total} totalItem={pagingOption.TotalItem} />
                 </Table>
             </div>
             <Pager

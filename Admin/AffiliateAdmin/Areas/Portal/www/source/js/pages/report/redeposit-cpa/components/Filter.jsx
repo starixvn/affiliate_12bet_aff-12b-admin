@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Form, FormGroup, Label, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Button, Input } from 'reactstrap';
 
 import Field from '../../../../components/Field';
 import MultipleSelect from '../../../../components/multiple-select';
@@ -93,6 +93,10 @@ export const Filter = ({ params, setParams, today, deals, toggleSubmit }) => {
                             selectedAllLabel="All Deals"
                             hasInputOption={true}
                             onChange={handleChangeDeals} />
+                    </FormGroup>
+                    <FormGroup className="my-sm-1 mr-sm-4">
+                        <Label className="mr-sm-2">View By</Label>
+                        <Input disabled name="viewBy" id="viewBy" value='Approval Date' />
                     </FormGroup>
                     <FormGroup className="my-sm-1 mr-sm-4">
                         <Label className="mr-sm-2">{globalResource.From}</Label>

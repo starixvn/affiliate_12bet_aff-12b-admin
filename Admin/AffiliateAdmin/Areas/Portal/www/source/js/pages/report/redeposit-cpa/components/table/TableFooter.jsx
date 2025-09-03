@@ -5,9 +5,10 @@ import { format, formatDecimal } from '../../../../../modules/numberFormat';
 
 export const TableFooter = ({
     total,
+    totalItem
 }) => {
 
-    if (!total) {
+    if (!totalItem) {
         return null;
     }
 

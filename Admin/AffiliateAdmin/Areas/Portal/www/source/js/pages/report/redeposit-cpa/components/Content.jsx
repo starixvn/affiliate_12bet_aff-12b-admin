@@ -60,7 +60,7 @@ const Title = ({ params, isSubmit, toggleLoader }) => {
 export const Content = ({ params, isSubmit, toggleLoader }) => {
     return (
         <React.Fragment>
-            <div className='data-content my-2 report-redeposit-cpa-content-container'>
+            <div className='data-content my-2 report-content-container'>
                 <Title params={params} isSubmit={isSubmit} toggleLoader={toggleLoader} />
                 <GridData />
             </div>
