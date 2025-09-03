@@ -16,7 +16,7 @@ const GridData = ({
     isSubmit
 }) => {
     const affiliateCpaData = useAffiliateCpaData(isSubmit, params, pagingOption, dispatch);
-    const { mainData, total } = affiliateCpaData || { mainData: [], total: null };
+    const { mainData, total, totalItem } = affiliateCpaData || { mainData: [], total: null, totalItem: null };
 
     const handlePaging = (pageIndex, pageSize) => {
         dispatch(setParams({ ...params, pageIndex: pageIndex, pageSize: pageSize}));
@@ -48,6 +48,7 @@ const GridData = ({
                     />
                     <TableFooter 
                         total={total} 
+                        totalItem={totalItem}
                     />
                 </Table>
             </div>

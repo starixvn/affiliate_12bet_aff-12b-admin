@@ -35,7 +35,7 @@ const Title = ({ reportTitle, params, toggleLoader}) => {
 
 const Content = ({ reportTitle, params, toggleLoader }) => {
     return (
-        <div className="data-content my-2 report-content-container">
+        <div className="data-content my-2 report-aff-cpa-content-container">
             {
                 reportTitle && (
                     <ReportTitle content={<Title reportTitle={reportTitle} params={params} toggleLoader={toggleLoader} />} />

@@ -36,7 +36,7 @@ export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) =>
         if (params.viewBy) {
             title += ` - View By ${viewByOptions[+params.viewBy - 1].label}`;
         }
-        title += ` - From ${params.fromDate} - To ${params.toDate}`;
+        title += ` - From ${params.fromDate} To ${params.toDate}`;
 
         return title;
     }

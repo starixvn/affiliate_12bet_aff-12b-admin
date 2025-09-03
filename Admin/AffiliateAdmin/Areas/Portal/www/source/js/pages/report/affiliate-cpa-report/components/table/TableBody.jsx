@@ -11,18 +11,22 @@ const RowData = ({ data, rowNumber, setDealId, toggleDealPopup }) => {
         toggleDealPopup();
     }
 
+    const cpaAmount = formatDecimal(data.cpaAmount);
+    const estimatedCPAAmount = formatDecimal(data.estimatedCPAAmount);
+    const approvedCPAAmount = formatDecimal(data.approvedCPAAmount);
+
     return (
         <tr key={`dataRow-${rowNumber}`}>
-            <td className="text-center">{rowNumber}</td>
-            <td className="text-center">{data.month}</td>
-            <td><a target='_blank' href={resolveClientUrl(`Portal/Customer?user=${data.affiliate}`)}>{data.affiliate}</a></td>
-            <td><button className="btn btn-link" onClick={handleClickDeal}>{data.dealName}</button></td>
-            <td className="text-center">{data.dealType}</td>
-            <td className="text-center">{data.paymentFrequency}</td>
-            <td className="text-center">{`${data.quota}`}</td>
-            <td className="text-right">{formatDecimal(data.cpaAmount)}</td>
-            <td className="text-right">{formatDecimal(data.estimatedCPAAmount)}</td>
-            <td className="text-right">{formatDecimal(data.approvedCPAAmount)}</td>
+            <td title={rowNumber} className="text-center">{rowNumber}</td>
+            <td title={data.month} className="text-center">{data.month}</td>
+            <td title={data.affiliate}><a target='_blank' href={resolveClientUrl(`Portal/Customer?user=${data.affiliate}`)}>{data.affiliate}</a></td>
+            <td title={data.dealName}><span className="btn-link" onClick={handleClickDeal}>{data.dealName}</span></td>
+            <td title={data.dealType} className="text-center">{data.dealType}</td>
+            <td title={data.paymentFrequency} className="text-center">{data.paymentFrequency}</td>
+            <td title={data.quota} className="text-center">{data.quota}</td>
+            <td title={cpaAmount} className="text-right">{cpaAmount}</td>
+            <td title={estimatedCPAAmount} className="text-right">{estimatedCPAAmount}</td>
+            <td title={approvedCPAAmount} className="text-right">{approvedCPAAmount}</td>
         </tr>
     )
 }
@@ -32,7 +36,7 @@ export function TableBody({
     setDealId,
     toggleDealPopup
 }) {
-    if(!data || data.length === 0){
+    if (!data || data.length === 0) {
         return (
             <tbody>
                 <tr>
@@ -50,12 +54,12 @@ export function TableBody({
         <tbody>
             {
                 data && data.map((item, index) => (
-                    <RowData 
-                        key={index} 
-                        data={item} 
-                        rowNumber={getRowNumber(index)} 
-                        setDealId={setDealId} 
-                        toggleDealPopup={toggleDealPopup} 
+                    <RowData
+                        key={index}
+                        data={item}
+                        rowNumber={getRowNumber(index)}
+                        setDealId={setDealId}
+                        toggleDealPopup={toggleDealPopup}
                     />
                 ))
             }

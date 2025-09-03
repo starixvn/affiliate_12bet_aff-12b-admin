@@ -22,9 +22,9 @@ export const TableHeader = ({ sortType, sortDirectionType, setParams, toggleSubm
             <tr className='freeze-row'>
                 {
                     headers.map((header) => (
-                        <Cell header={true} style={{'width': header.width}} className="th freeze-column-header">
+                        <Cell header={true} style={{'width': header.width}} className="th freeze-column-header" title={header.title}>
                             <Button 
-                                className="p-0 th-wrapper" 
+                                className="th-wrapper" 
                                 color="link" 
                                 onClick={() => handleClickHeader(header.sortable, header.sortType)}>
                                 <span>{header.title}</span>

@@ -73,14 +73,14 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
     return (
         <div className="filter-container">
             <Form inline tag="div">
-                <FormGroup className="my-sm-1 mr-sm-2">
+                <FormGroup className="my-sm-1 mr-sm-4">
                     <Label htmlFor="Affiliate" className="mr-sm-2">Affiliate</Label>
                     <Input type="text" name="username" id="Affiliate" maxLength="30"
                         onKeyPress={onEnterPress}
                         onChange={onChange}
                         value={params.username} />
                 </FormGroup>
-                <FormGroup className="my-sm-1 mr-sm-2">
+                <FormGroup className="my-sm-1 mr-sm-4">
                     <Label htmlFor="Deal" className="mr-sm-2">Deal Name</Label>
                     <MultipleSelect
                         dataSource={dealList}
@@ -93,7 +93,7 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
                         hasInputOption={true}
                         onChange={handleChangeDeals} />
                 </FormGroup>
-                <FormGroup className="my-sm-1 mr-sm-2">
+                <FormGroup className="my-sm-1 mr-sm-4">
                     <Label htmlFor="ViewBy" className="mr-sm-2">View By</Label>
                     <Input type="select" name="viewBy" id="ViewBy"
                         onKeyPress={onEnterPress}
@@ -105,7 +105,7 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
                     </Input>
                 </FormGroup>
 
-                <FormGroup className="my-sm-1 mr-sm-2">
+                <FormGroup className="my-sm-1 mr-sm-4">
                     <Label className="mr-sm-2">{globalResource.From}</Label>
                     <DatePicker
                         minDate={minDate}
@@ -115,7 +115,7 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
                         iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
 
                 </FormGroup>
-                <FormGroup className="my-sm-1 mr-sm-2"
+                <FormGroup className="my-sm-1 mr-sm-4"
                     key={`${params.fromDate}-${params.toDate}`}>
                     <Label className="mr-sm-2">{globalResource.To}</Label>
                     <DatePicker
