@@ -161,8 +161,8 @@ export default class ExportExcel {
     }
 
     _createTotalRow() {     
-        const total = this.data.total;
-        if(!total) return;
+        const {total, totalItem} = this.data;
+        if(!totalItem) return;
 
         const renderCell = (colIndex, value, style) => {
             const address = Excel.getCellAddress({ c: colIndex, r: this.currentRowIndex });

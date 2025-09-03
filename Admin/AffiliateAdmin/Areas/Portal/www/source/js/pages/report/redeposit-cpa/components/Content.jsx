@@ -30,7 +30,7 @@ const Title = ({ params, isSubmit, toggleLoader }) => {
 
             if (exportData) {
                 const reportExcel = new ReportExcel(exportData, reportTitle, {
-                    showTotal: true
+                    showTotal: exportData.TotalItem > 0
                 });
                 reportExcel.export();
             }

@@ -17,7 +17,6 @@ const Title = ({ reportTitle, params, toggleLoader}) => {
     const handleExportExcel = async () => {
         toggleLoader(true);
         const data = await fetchAffiliateCpaData(params, isExportExcel);
-        if(!data || data.totalItem === 0) return;
         const excel = new ExportExcel(data, reportTitle, headers);
         excel.export();
         toggleLoader(false);
