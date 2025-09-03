@@ -17,13 +17,13 @@ export const AppContainer = (props) => {
             <Filter />
             <Content />
             <TurnoverDetail />
-            {props.isShowDealPopup && <ViewDealWrapper dealId={props.dealId} toggle={props.toggleDealPopup} />}
+            {props.isShowDealPopup && <ViewDealWrapper dealId={props.dealId} affName={props.affName} toggle={props.toggleDealPopup} />}
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, isShowDealPopup, dealId }) {
-    return Object.assign({}, { isShowLoader, isShowDealPopup, dealId });
+function mapStateToProps({ isShowLoader, isShowDealPopup, dealId, affName }) {
+    return Object.assign({}, { isShowLoader, isShowDealPopup, dealId, affName });
 }
 
 const mapDispatchToProps = (dispatch) => {

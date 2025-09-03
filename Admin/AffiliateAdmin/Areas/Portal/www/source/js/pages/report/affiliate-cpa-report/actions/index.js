@@ -35,3 +35,10 @@ export const toggleDealPopup = () => {
         type: types.TOGGLE_DEAL_POPUP
     }
 }
+
+export const setAffName = (data) => {
+    return {
+        type: types.SET_AFF_NAME,
+        data
+    }
+}

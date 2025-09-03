@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { globalResource } from '../../../../../modules/globalResource';
 import { formatDecimal } from '../../../../../modules/numberFormat';
-import { setDealId, toggleDealPopup } from '../../actions';
+import { setDealId, toggleDealPopup, setAffName } from '../../actions';
 import { resolveClientUrl } from '../../../../../modules/utils';
 
-const RowData = ({ data, rowNumber, setDealId, toggleDealPopup }) => {
+const RowData = ({ data, rowNumber, setDealId, toggleDealPopup, setAffName }) => {
     const handleClickDeal = () => {
         setDealId(data.groupId);
+        setAffName(data.affiliate);
         toggleDealPopup();
     }
 
@@ -34,7 +35,8 @@ export function TableBody({
     data,
     pagingOption,
     setDealId,
-    toggleDealPopup
+    toggleDealPopup,
+    setAffName
 }) {
     if (!data || data.length === 0) {
         return (
@@ -60,6 +62,7 @@ export function TableBody({
                         rowNumber={getRowNumber(index)}
                         setDealId={setDealId}
                         toggleDealPopup={toggleDealPopup}
+                        setAffName={setAffName}
                     />
                 ))
             }
@@ -70,7 +73,8 @@ export function TableBody({
 const mapDispatchToProps = (dispatch) => {
     return {
         setDealId: (data) => dispatch(setDealId(data)),
-        toggleDealPopup: () => dispatch(toggleDealPopup())
+        toggleDealPopup: () => dispatch(toggleDealPopup()),
+        setAffName: (data) => dispatch(setAffName(data))
     }
 }
 

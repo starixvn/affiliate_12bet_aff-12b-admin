@@ -49,6 +49,12 @@ export const playerCpaData = createReducer(null, {
     }
 })
 
+export const affName = createReducer('', {
+    [types.SET_AFF_NAME](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     params,
     reportTitle,
@@ -59,5 +65,6 @@ export default combineReducers({
     isShowDealPopup,
     today,
     deals,
-    playerCpaData
+    playerCpaData,
+    affName
 });

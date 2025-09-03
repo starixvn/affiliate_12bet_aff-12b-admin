@@ -1,9 +1,9 @@
 import React from 'react'
 import { globalResource } from '../../../../../modules/globalResource';
 import { connect } from 'react-redux';
-import { setMemberCpaId, setDealId, toggleDealPopup } from '../../actions';
+import { setMemberCpaId, setDealId, toggleDealPopup, setAffName } from '../../actions';
 
-const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup }) => {
+const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup, setAffName }) => {
 
     const handleClickTO = () => {
         setMemberCpaId(data.memberCPAId)
@@ -11,6 +11,7 @@ const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup }
 
     const handleClickDeal = () => {
         setDealId(data.groupId)
+        setAffName(data.affUserName)
         toggleDealPopup()
     }
 
@@ -91,7 +92,8 @@ export function TableBody({
     pagingOption,
     setMemberCpaId,
     setDealId,
-    toggleDealPopup
+    toggleDealPopup,
+    setAffName
 }) {
     if (!data || data.length === 0) {
         return (
@@ -111,7 +113,7 @@ export function TableBody({
         <tbody>
             {
                 data && data.map((item, index) => (
-                    <RowData key={index} data={item} rowNumber={getRowNumber(index)} setMemberCpaId={setMemberCpaId} setDealId={setDealId} toggleDealPopup={toggleDealPopup} />
+                    <RowData key={index} data={item} rowNumber={getRowNumber(index)} setMemberCpaId={setMemberCpaId} setDealId={setDealId} toggleDealPopup={toggleDealPopup} setAffName={setAffName} />
                 ))
             }
         </tbody>
@@ -122,7 +124,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setMemberCpaId: (data) => dispatch(setMemberCpaId(data)),
         setDealId: (data) => dispatch(setDealId(data)),
-        toggleDealPopup: () => dispatch(toggleDealPopup())
+        toggleDealPopup: () => dispatch(toggleDealPopup()),
+        setAffName: (data) => dispatch(setAffName(data))
     }
 }
 

@@ -43,3 +43,10 @@ export const setPlayerCpaData = (data) => {
         data
     }
 }
+
+export const setAffName = (data) => {
+    return {
+        type: types.SET_AFF_NAME,
+        data
+    }
+}

@@ -7,7 +7,7 @@ import ViewDealPopup from './ViewDealPopup';
 import { configureStore } from '../../../modules/store';
 import reducer from '../deal/reducers';
 
-export default function ViewDealWrapper({ dealId, toggle }) {
+export default function ViewDealWrapper({ dealId, toggle, affName }) {
     const [store, setStore] = useState(null);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function ViewDealWrapper({ dealId, toggle }) {
 
     return (
         <Provider store={store}>
-            <ViewDealPopup dealId={dealId} toggle={toggle} />
+            <ViewDealPopup dealId={dealId} toggle={toggle} affName={affName} />
         </Provider>
     );
 }

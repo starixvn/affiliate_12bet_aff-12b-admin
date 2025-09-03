@@ -23,12 +23,13 @@ export const ViewDealPopup = (props) => {
     return props.dealInfo && (
         <Fragment>
             <Modal className="deal-popup-container" isOpen={!!props.dealInfo} toggle={_handleHidePopup} size="lg" backdrop='static'>
-                <ModalHeader toggle={_handleHidePopup}><span className="iconpopup"></span>{props.dealInfo.DealName}</ModalHeader>
+                <ModalHeader toggle={_handleHidePopup}><span className="iconpopup"></span>{`${props.affName} - ${props.dealInfo.DealName}`}</ModalHeader>
                 <ModalBody className='disabled-all'>
                     <div className="modal-body-wrapper">
                         <ViewDeal
                             dealType={props.dealInfo.DealType}
-                            onClose={_handleHidePopup} />
+                            onClose={_handleHidePopup}
+                        />
                     </div>
                 </ModalBody>
             </Modal>

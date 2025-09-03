@@ -42,6 +42,12 @@ export const isShowDealPopup = createReducer(false, {
     }
 })
 
+export const affName = createReducer('', {
+    [types.SET_AFF_NAME](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     params,
     today,
@@ -51,5 +57,6 @@ export default combineReducers({
     pagingOption,
     isSubmit,
     dealId,
-    isShowDealPopup
+    isShowDealPopup,
+    affName
 });

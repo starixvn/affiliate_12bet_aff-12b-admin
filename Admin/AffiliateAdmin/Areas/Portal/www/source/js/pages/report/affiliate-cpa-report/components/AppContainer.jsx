@@ -15,7 +15,7 @@ export const AppContainer = (props) => {
             <Loader show={props.isShowLoader} />
             <Filter />
             <Content />
-            {props.isShowDealPopup && <ViewDealWrapper dealId={props.dealId} toggle={props.toggleDealPopup} />}
+            {props.isShowDealPopup && <ViewDealWrapper dealId={props.dealId} affName={props.affName} toggle={props.toggleDealPopup} />}
         </AppLayout>
     );
 }
@@ -24,7 +24,8 @@ const mapStateToProps = (state) => {
     return {
         isShowLoader: state.isShowLoader,
         isShowDealPopup: state.isShowDealPopup,
-        dealId: state.dealId
+        dealId: state.dealId,
+        affName: state.affName
     }
 }
 
