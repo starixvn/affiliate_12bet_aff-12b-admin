@@ -84,6 +84,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             command.AffDomainID = param.AffDomainId;
             command.LicenseeDomainId = param.RedirectDomainId;
             command.TargetCountryCode = param.TargetCountryCode;
+            command.IsMobile = param.IsMobile;
+            command.IsExcluded = param.IsExcluded;
+            command.DealIds = param.DealIds;
             command.Status = param.IsUsed;
             command.UserId = param.UserId;
             command.Ip = param.Ip;

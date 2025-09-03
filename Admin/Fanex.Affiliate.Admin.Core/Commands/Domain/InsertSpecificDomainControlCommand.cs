@@ -19,5 +19,7 @@
         public bool RedirectDomainIsSSL { get; set; }
 
         public bool Status { get; set; }
+
+        public bool IsMobile { get; set; }
     }
 }

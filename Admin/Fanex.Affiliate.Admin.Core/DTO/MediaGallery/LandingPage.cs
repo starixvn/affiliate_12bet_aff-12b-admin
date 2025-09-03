@@ -8,6 +8,14 @@
 
         public string PageCode { get; set; }
 
+        public bool IsExcluded { get; set; }
+
+        public string DealIds { get; set; }
+
+        public bool IsMobile { get; set; }
+
         public string BlockTargetCountry { get; set; }
+
+        public bool IsDefault { get; set; }
     }
 }

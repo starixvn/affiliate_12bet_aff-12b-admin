@@ -9,5 +9,11 @@
         public string TargetCountryCode { get; set; }
 
         public bool Status { get; set; }
+
+        public bool IsMobile { get; set; }
+
+        public bool IsExcluded { get; set; }
+
+        public string DealIds { get; set; }
     }
 }

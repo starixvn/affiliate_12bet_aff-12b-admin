@@ -19,5 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         public bool RedirectDomainIsSSL { get; set; } = true;
 
         public bool Status { get; set; } = true;
+
+        public bool IsMobile { get; set; }
     }
 }

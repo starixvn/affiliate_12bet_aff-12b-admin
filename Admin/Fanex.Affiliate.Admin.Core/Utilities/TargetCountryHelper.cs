@@ -8,17 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
 {
     public static class TargetCountryHelper
     {
-        public static string GetVisibleTargetCountryCodes(string targetCountryCode, IEnumerable<TargetCountry> visibleTargetCountries)
-        {
-            var targetCountries = visibleTargetCountries;
-            if (!string.IsNullOrWhiteSpace(targetCountryCode))
-            {
-                targetCountries = visibleTargetCountries.Where(l => l.TargetCountryCode.MatchWith(targetCountryCode));
-            }
-
-            return string.Join(",", targetCountries.Select(m => m.TargetCountryCode));
-        }
-
         public static bool IsValidTargetCountryCodes(string targetCountryCodes, IEnumerable<TargetCountry> visibleTargetCountries)
         {
             if (string.IsNullOrWhiteSpace(targetCountryCodes))

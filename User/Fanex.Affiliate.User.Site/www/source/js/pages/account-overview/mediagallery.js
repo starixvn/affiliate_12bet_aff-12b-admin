@@ -3,6 +3,7 @@
     var CATEGORY_SPORTSBOOK = "sportsbook";
 
     var optionAll = "<option value=''>" + window.dic.all + "</option>";
+    const NO_INFO_OPTION = "<option value=''>" + langResource.noInfo + "</option>";
 
     var _pageSize = 20;
     var _pageIndex = 0;
@@ -110,8 +111,15 @@
                 data: param,
                 url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetSubCategory"),
                 success: function (response) {
+                    if (response && !response.length) {
+                        $('#SubCategory').html(NO_INFO_OPTION);
+
+                        return;
+                    }
+
                     var html = Site.buildOptionList(response, "Value", "Text", true);
                     $("#SubCategory").html(html);
+                    $('#SubCategory').val('');
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -140,8 +148,14 @@
                 cache: false,
                 data: param,
                 url: Site.resolveRelativeLangUrl("UserPanel/Marketing/GetSize"),
-                success: function (response) {
-                    var html = Site.buildOptionList(response, "Size", "Size", true);
+                success: function (sizeList) {
+                    if (sizeList && !sizeList.length) {
+                        $('#Size').html(NO_INFO_OPTION);
+
+                        return;
+                    }
+
+                    var html = Site.buildOptionList(sizeList, "Size", "Size", true);
                     $("#Size").html(html);
                 },
                 beforeSend: function () {

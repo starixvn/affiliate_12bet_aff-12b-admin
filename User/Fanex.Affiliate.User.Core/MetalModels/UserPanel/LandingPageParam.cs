@@ -4,11 +4,9 @@
 
     public class LandingPageParam
     {
-        public string CommGroupName { get; set; }
+        public int AffId { get; set; }
 
-        public bool IsSelectedMobileDomain { get; set; }
-
-        public bool IsUsingInStatistics { get; set; }
+        public bool IsMobile { get; set; }
 
         public string TargetCountryCode  { get; set; }
 

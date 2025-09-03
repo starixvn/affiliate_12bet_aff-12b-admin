@@ -1,16 +1,14 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.Constants;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.DTO.UserPanel.Statistics;
     using Fanex.Affiliate.User.Core.Enum;
     using Filters;
     using MetalModels.UserPanel;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel.Statistics;
 
@@ -52,9 +50,7 @@
 
             var landingPageParam = new LandingPageParam
             {
-                CommGroupName = userSession.GroupName,
-                IsUsingInStatistics = true,
-                IsInternal = isInternal,
+                IsInternal = isInternal
             };
 
             var viewModel = new LandingPageStatisticsViewModel

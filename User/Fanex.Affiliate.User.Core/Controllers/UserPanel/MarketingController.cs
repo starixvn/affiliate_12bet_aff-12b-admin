@@ -71,11 +71,10 @@
         public ActionResult GetLinkTo(LinkToParam param)
         {
             var selectedDomain = GetDomain(param.SelectedDomainId, param.TargetCountryCode, param.LinkType);
-
             var pageList = MarketingService.GetLandingPageList(new LandingPageParam
             {
-                CommGroupName = SessionService.UserSession.GroupName,
-                IsSelectedMobileDomain = selectedDomain?.IsUsingForMobile ?? false,
+                AffId = SessionService.UserSession.AffId,
+                IsMobile = selectedDomain.IsMobile,
                 IsInternal = SessionService.IsInternal,
                 LinkType = param.LinkType,
                 TargetCountryCode = param.TargetCountryCode

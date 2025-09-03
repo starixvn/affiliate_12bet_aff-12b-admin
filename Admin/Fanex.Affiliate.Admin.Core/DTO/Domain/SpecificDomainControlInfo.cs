@@ -25,5 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
         public string Editor { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
+
+        public bool IsMobile { get; set; }
     }
 }

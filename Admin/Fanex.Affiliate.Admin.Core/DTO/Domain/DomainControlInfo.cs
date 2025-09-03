@@ -27,5 +27,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Domain
         public DateTime? CreatedDate { get; set; }
 
         public string CreatedDateText => CreatedDate?.ToString("MM/dd/yyyy");
+
+        public bool IsMobile { get; set; }
+
+        public bool IsExcluded { get; set; }
+
+        public string DealIds { get; set; }
     }
 }

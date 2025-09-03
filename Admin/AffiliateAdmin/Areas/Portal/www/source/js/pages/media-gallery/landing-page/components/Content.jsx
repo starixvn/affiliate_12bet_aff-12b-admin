@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
 import { setSelectedLandingPageId, setCheckedLandingPages, setShouldResetScrollPosition } from '../actions';
+import { _formatDealText } from '../../../common/modules/utils/dealInfoFormat';
 
 export const Content = (props) => {
 
@@ -21,10 +22,12 @@ export const Content = (props) => {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={25}></Cell>
-                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
-                <Cell header={true} colWidth={350} title={headerText.BlockTargetCountry}>{headerText.BlockTargetCountry}</Cell>
+                <Cell header={true} colWidth={350} title={headerText.Deal}>{headerText.Deal}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.MobileOnly}>{headerText.MobileOnly}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.BlockTargetCountry}>{headerText.BlockTargetCountry}</Cell>
                 <Cell header={true} colWidth={30} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
@@ -51,17 +54,29 @@ export const Content = (props) => {
     function _buildDataRow(dataItem, index) {
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
+        const { dealStr, deal } = _formatDealText(dataItem.DealIds, dataItem.IsExcluded, props.dealList);
         const blockTargetCountry = htmlDecode(dataItem.BlockTargetCountry).split(',').join(', ');
+        const isDefault = dataItem.IsDefault;
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedLandingPages[dataItem.PageId] || false}
-                        onChange={(e) => _onCheckItem(e.target.checked, dataItem.PageId)} />
+                    {
+                        isDefault ? (
+                            <input type="checkbox" disabled checked={false} />
+                        ) : (
+                            <input type="checkbox" checked={props.checkedLandingPages[dataItem.PageId] || false}
+                                onChange={(e) => _onCheckItem(e.target.checked, dataItem.PageId)} />
+                        )
+                    }
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={landingPageName}>{landingPageName}</Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
+                <Cell className="text-center" title={dealStr} dangerouslySetInnerHTML={{ __html: deal }}></Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" disabled checked={dataItem.IsMobile} />
+                </Cell>
                 <Cell className="text-left" title={blockTargetCountry}>{blockTargetCountry}</Cell>
                 <Cell className="text-center" title="Edit Landing Page">
                     <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)}>
@@ -89,8 +104,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData });
+function mapStateToProps({ checkedLandingPages, shouldResetScrollPosition, gridData, dealList }) {
+    return Object.assign({}, { checkedLandingPages, shouldResetScrollPosition, gridData, dealList });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -2,17 +2,33 @@
 
 export { globalResource };
 
+export const filterDealMode = {
+    'Exclude': 1,
+    'Include': 0
+}
+
 export const headerText = {
     Index: '#',
     BlockTargetCountry: 'Block Target Country',
-    LandingPageName: 'Landing Page Name (Shown in dropdown)',
-    LandingPageCode: 'Landing Page Code (Contained in links)'
+    LandingPageName: 'Landing Page Name',
+    ShowInDropdown: 'Show in dropdown',
+    LandingPageCode: 'Landing Page Code',
+    ContainInLinks: 'Contained in links',
+    Deal: 'Deal',
+    MobileOnly: 'Mobile Only',
 }
 
 export const defaultState = {
-    isBlockAllTargetCountries: false,
-    selectedLandingPage: { pageName: '', pageCode: '', blockTargetCountry: '' },
-    targetCountryList: null,
+    selectedLandingPage: {
+        pageName: '',
+        pageCode: '',
+        blockTargetCountry: '',
+        isExcluded: 0,
+        isMobile: false,
+        dealIds: ''
+    },
+    targetCountryList: [],
+    dealListMultipleSelected: [],
     isClickedSubmit: false,
     isInsert: true,
     isShowMessage: false,

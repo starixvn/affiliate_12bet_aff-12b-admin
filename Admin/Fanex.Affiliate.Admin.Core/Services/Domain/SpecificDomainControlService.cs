@@ -75,6 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Domain
             command.AffDomainIsSSL = param.AffDomainIsSSL;
             command.RedirectDomain = param.RedirectDomain;
             command.RedirectDomainIsSSL = param.RedirectDomainIsSSL;
+            command.IsMobile = param.IsMobile;
             command.Status = param.Status;
             command.UserId = param.UserId;
             command.Ip = param.Ip;

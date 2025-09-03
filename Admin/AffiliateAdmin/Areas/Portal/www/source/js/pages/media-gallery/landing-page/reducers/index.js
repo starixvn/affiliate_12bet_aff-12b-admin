@@ -4,6 +4,8 @@ import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
+const dealList = createReducer(null, {});
+
 export const selectedLandingPageId = createReducer(null, {
     [types.SET_SELECTED_LANDING_PAGE_ID](prevState, action) {
         return action.data;
@@ -33,5 +35,6 @@ export default combineReducers({
     isShowLoader,
     checkedLandingPages,
     selectedLandingPageId,
-    shouldResetScrollPosition
+    shouldResetScrollPosition,
+    dealList
 });

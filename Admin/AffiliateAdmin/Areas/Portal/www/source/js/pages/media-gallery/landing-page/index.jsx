@@ -10,7 +10,7 @@ export default class App extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.store = configureStore({}, reducer);
+        this.store = configureStore({ ...window.initialState }, reducer);
     }
 
     render() {

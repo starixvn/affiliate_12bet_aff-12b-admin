@@ -1,56 +1,27 @@
-﻿using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
-using Fanex.Affiliate.User.Core.Extensions;
-using Fanex.Affiliate.User.Core.Resources;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using Fanex.Affiliate.User.Core.DTO.UserPanel.MediaGallery;
+using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
     public static class StatisticsHelper
     {
-        public static IEnumerable<LandingPage> GetFilteredLandingPageList(IAppSetting appSetting, IEnumerable<LandingPage> landingPages, bool isSelectedMobileDomain, bool isUsingInStatistics)
-        {
-            if (isUsingInStatistics)
-            {
-                return landingPages;
-            }    
-
-            if (isSelectedMobileDomain)
-            {
-                return landingPages.Where(l => appSetting.MarketingPageCodeRegexPatterns.Any(m => RegexHelper.IsMatch(l.PageCode, $"^{m}$", RegexOptions.IgnoreCase)));
-            }
-
-            return landingPages.Where(l => !appSetting.MarketingPageCodeRegexPatterns.Any(m => RegexHelper.IsMatch(l.PageCode, $"^{m}$", RegexOptions.IgnoreCase)));
-        }
-
-        public static IEnumerable<Domain> GetCustomAvailableDomainList(IAppSetting appSetting, IEnumerable<MappingDomainInfo> availDomains, int affId, string commGroup)
+        public static IEnumerable<Domain> GetCustomAvailableDomainList(IEnumerable<MappingDomainInfo> availDomains, int affId)
         {
             if (availDomains?.Any() != true)
             {
                 return Enumerable.Empty<Domain>();
             }
 
-            var customDomains = availDomains.Select((domain, index) => MapToDomain(domain, appSetting, affId + index));
-
-            if (!IsAffOfNoCommissionGroup(appSetting, commGroup))
-            {
-                return customDomains.Where(d => !d.IsUsingForMobile);
-            }
+            var customDomains = availDomains.Select((domain, index) => MapToDomain(domain, affId + index));
 
             return customDomains;
         }
 
-        public static bool IsAffOfNoCommissionCPAGroup(IAppSetting appSetting, string commGroupName)
+        private static Domain MapToDomain(MappingDomainInfo domain, int customId)
         {
-            return appSetting.MarketingForCPACommGroups.Any(c => c.MatchWith(commGroupName));
-        }
-
-        private static Domain MapToDomain(MappingDomainInfo domain, IAppSetting appSetting, int customId)
-        {
-            var isDomainUsingForMobile = IsDomainUsingForMobile(domain, appSetting);
-
-            var domainDescription = isDomainUsingForMobile
+            var domainDescription = domain.IsMobile
                 ? $"{domain.DomainName} ({Lang.MobileDevice})"
                 : domain.DomainName;
 
@@ -60,20 +31,9 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 DomainName = domain.DomainName,
                 DomainDescription = domainDescription,
                 IsSsl = domain.IsSsl,
-                IsUsingForMobile = isDomainUsingForMobile,
+                IsMobile = domain.IsMobile,
                 CreateDate = domain.CreateDate
             };
-        }
-
-        private static bool IsDomainUsingForMobile(MappingDomainInfo domain, IAppSetting appSetting)
-        {
-            return appSetting.MarketingAvailDomainMobilePatterns
-                .Any(pattern => RegexHelper.IsMatch(domain.RedirectDomain ?? string.Empty, $"^{pattern}$", RegexOptions.IgnoreCase));
-        }
-
-        private static bool IsAffOfNoCommissionGroup(IAppSetting appSetting, string commGroupName)
-        {
-            return appSetting.MarketingForCommGroups.Any(c => c.MatchWith(commGroupName));
         }
     }
 }

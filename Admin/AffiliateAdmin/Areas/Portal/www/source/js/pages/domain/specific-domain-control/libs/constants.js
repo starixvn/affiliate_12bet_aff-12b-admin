@@ -15,7 +15,8 @@ export const headerText = {
     UpdatedBy: 'Updated By',
     UpdatedDate: 'Updated Date',
     Edit: globalResource.Edit,
-    Delete: globalResource.Delete
+    Delete: globalResource.Delete,
+    MobileOnly: 'Mobile Only'
 }
 
 export const defaultState = {

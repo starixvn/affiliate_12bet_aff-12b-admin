@@ -17,5 +17,12 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string BlockTargetCountry { get; set; }
+
+        public bool IsMobile { get; set; }
+
+        public bool IsExcluded { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string DealIds { get; set; }
     }
 }

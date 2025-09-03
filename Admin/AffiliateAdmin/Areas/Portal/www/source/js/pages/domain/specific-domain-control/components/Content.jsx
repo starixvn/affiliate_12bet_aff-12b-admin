@@ -69,7 +69,7 @@ export class Content extends PureComponent {
             }
 
             this.setState({
-                message: result.IsSuccessful 
+                message: result.IsSuccessful
                     ? 'The domain control has been removed successfully!'
                     : result.Message,
                 isConfirmPopup: false
@@ -100,6 +100,7 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={60} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.UpdatedDate}>{headerText.UpdatedDate}</Cell>
+                <Cell header={true} colWidth={35} title={headerText.MobileOnly}>{headerText.MobileOnly}</Cell>
                 <Cell header={true} colWidth={25} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.Delete}>{headerText.Delete}</Cell>
@@ -143,6 +144,9 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
                 <Cell className="text-center" title={editor}>{editor}</Cell>
                 <Cell className="text-center" title={updatedDate}>{updatedDate}</Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" disabled checked={dataItem.IsMobile} />
+                </Cell>
                 <Cell className="text-center">
                     <input type="checkbox" disabled checked={dataItem.Status} />
                 </Cell>

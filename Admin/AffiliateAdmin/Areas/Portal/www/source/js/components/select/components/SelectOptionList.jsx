@@ -62,7 +62,7 @@ export class SelectOptionList extends PureComponent {
         }
     }
 
-    _resetSelectingOption= () => {
+    _resetSelectingOption = () => {
         const { selectedOption } = this.state;
         selectedOption && selectedOption.current && selectedOption.current.classList.remove("hover");
         this.selectOptionsRef.current.scrollTop = 0;
@@ -78,6 +78,14 @@ export class SelectOptionList extends PureComponent {
         const { selectedIndex, selectedOption, minLength, maxLength } = this.state;
 
         if (e.target.name !== "inputOption") {
+            return;
+        }
+
+        const isWithinThisComponent = this.selectOptionsRef.current &&
+            (this.selectOptionsRef.current.contains(e.target) ||
+                e.target.closest('.select-container') === this.selectOptionsRef.current.closest('.select-container'));
+
+        if (!isWithinThisComponent) {
             return;
         }
 

@@ -15,6 +15,13 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Domain
         [Range(Validation.MinId, Validation.MaxId)]
         public int RedirectDomainId { get; set; }
 
+        public bool IsMobile { get; set; }
+
+        public bool IsExcluded { get; set; }
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
+        public string DealIds { get; set; }
+
         public bool IsUsed { get; set; } = true;
     }
 }

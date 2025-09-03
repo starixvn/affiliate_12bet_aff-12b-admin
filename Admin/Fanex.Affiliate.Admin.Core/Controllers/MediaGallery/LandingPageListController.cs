@@ -1,8 +1,10 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
+using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Services.Operation;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Web.Mvc;
 
@@ -13,19 +15,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     {
         private readonly ILandingPageService _landingPageService;
         private readonly ISystemService _systemService;
+        private readonly ICommonDealService _commGroupCommonService;
 
         public LandingPageListController(
             ISessionService sessionService,
             ILandingPageService landingPageService,
-            ISystemService systemService) : base(sessionService)
+            ISystemService systemService,
+            ICommonDealService commGroupCommonService) : base(sessionService)
         {
             _landingPageService = landingPageService;
             _systemService = systemService;
+            _commGroupCommonService = commGroupCommonService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.DealList = _commGroupCommonService.GetNormalDealList(new GetNormalDealParam());
             return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
         }
 
@@ -106,7 +112,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
                 PageId = param.PageId,
                 BlockTargetCountry = Server.HtmlEncode(param.BlockTargetCountry),
                 PageName = Server.HtmlEncode(param.PageName),
-                PageCode = Server.HtmlEncode(param.PageCode)
+                PageCode = Server.HtmlEncode(param.PageCode),
+                DealIds = Server.HtmlEncode(param.DealIds),
+                IsExcluded = param.IsExcluded,
+                IsMobile = param.IsMobile
             };
         }
     }

@@ -1,5 +1,8 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Domain
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Attributes;
     using Constants;
     using Extensions;
@@ -7,22 +10,24 @@
     using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
     using Fanex.Affiliate.Admin.Core.Services.Domain;
     using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
+    using MetaModels.Operation;
     using Services.Common;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
+    using Services.Operation;
     using Utilities;
 
     [FunctionAuthorize(FunctionName = Function.Domain)]
     public class DomainControlController : ReadOnlySessionBaseController
     {
         private readonly IDomainControlService _domainControlService;
+        private readonly ICommonDealService _commGroupCommonService;
 
         public DomainControlController(
             ISessionService sessionService,
-            IDomainControlService domainControlService) : base(sessionService)
+            IDomainControlService domainControlService,
+            ICommonDealService commGroupCommonService) : base(sessionService)
         {
             _domainControlService = domainControlService;
+            _commGroupCommonService = commGroupCommonService;
         }
 
         public ActionResult Index()
@@ -30,7 +35,8 @@
             var model = new DomainControlViewModel
             {
                 AffSubDomainList = _domainControlService.GetSubAffDomainControlList(),
-                TargetCountryList = GetVisibleTargetCountries()
+                TargetCountryList = GetVisibleTargetCountries(),
+                DealList = _commGroupCommonService.GetNormalDealList(new GetNormalDealParam())
             };
 
             return View("~/Areas/Portal/Views/Domain/DomainControl.cshtml", model);

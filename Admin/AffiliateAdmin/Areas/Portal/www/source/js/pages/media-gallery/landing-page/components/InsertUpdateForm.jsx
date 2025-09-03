@@ -1,14 +1,17 @@
 ﻿import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import BlockTargetCountryFormGroup from '../../../common/components/BlockTargetCountryFormGroup';
-
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert, FormFeedback } from 'reactstrap';
+
+import MultipleSelect from '../../../../components/multiple-select';
+
 import { setSelectedLandingPageId, getLandingPageDetail, fetchData, insertLandingPage, updateLandingPage, toggleLoader, getTargetCountryListByLandingPage } from '../actions/index';
-import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength } from '../libs/constants';
+import { defaultState, headerText, globalResource, messages, restrictedCharactersPattern, maxLength, filterDealMode } from '../libs/constants';
 import { defaultInsertId } from '../../common/libs/constants';
-import { getBlockTargetCountryList, checkBlockAllTargetCountries } from '../../../common/modules/utils/targetcountry';
+import { getBlockTargetCountryList, _handleInitialTargetCountryList } from '../../../common/modules/utils/targetCountry';
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { handleChangeMultipleSelected } from '../../../../modules/utils';
+import { _handleInitialDealList, _validateSelectedDealsByMode } from '../../../common/modules/utils/dealInfoFormat';
 
 export class InsertUpdateForm extends PureComponent {
     constructor(props) {
@@ -37,27 +40,68 @@ export class InsertUpdateForm extends PureComponent {
     _handleUpdateState = async (pageId) => {
         this.props.toggleLoader(true);
 
+        const { dealList } = this.props;
+
         if (pageId === 0) {
             const visibleTargetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
-            this.setState({ isInsert: true, selectedLandingPage: { pageName: '', pageCode: '', blockTargetCountry: '' }, targetCountryList: visibleTargetCountryList });
+            this.setState({
+                isInsert: true,
+                selectedLandingPage:
+                {
+                    pageName: '',
+                    pageCode: '',
+                    blockTargetCountry: '',
+                    isMobile: false,
+                    isExcluded: filterDealMode.Exclude,
+                    dealIds: '',
+                    isDefault: false
+                },
+                dealListMultipleSelected: _handleInitialDealList(dealList, ''),
+                targetCountryList: _handleInitialTargetCountryList(visibleTargetCountryList, '')
+            });
         } else {
             const landingPage = await this.props.getLandingPageDetail(pageId);
 
             if (landingPage) {
                 const pageName = htmlDecode(landingPage.PageName);
                 const pageCode = htmlDecode(landingPage.PageCode);
+                const dealIds = htmlDecode(landingPage.DealIds);
+                const isMobile = landingPage.IsMobile;
+                const isExcluded = landingPage.IsExcluded;
+                const isDefault = landingPage.IsDefault;
 
                 const targetCountryList = await this.props.getTargetCountryListByLandingPage({ pageId });
 
-                if (targetCountryList && targetCountryList.length) {
-                    const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
-                    const isBlockAllTargetCountries = checkBlockAllTargetCountries(targetCountryList, blockTargetCountryList);
+                const newDealList = _handleInitialDealList(dealList, dealIds);
 
-                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: blockTargetCountryList.join(',') }, targetCountryList, isBlockAllTargetCountries });
-                } else {
-                    this.setState({ isInsert: false, selectedLandingPage: { pageName, pageCode, blockTargetCountry: '' } });
+                const selectedLandingPage = {
+                    pageName,
+                    pageCode,
+                    isMobile,
+                    isExcluded,
+                    dealIds,
+                    blockTargetCountry: '',
+                    isDefault
+                };
+
+                const newState = {
+                    isInsert: false,
+                    selectedLandingPage,
+                    dealListMultipleSelected: newDealList
+                };
+
+                if (targetCountryList?.length) {
+                    const blockTargetCountryList = getBlockTargetCountryList(targetCountryList);
+                    const blockTargetCountry = blockTargetCountryList.join(',');
+
+                    const newTargetCountryList = _handleInitialTargetCountryList(targetCountryList, blockTargetCountry);
+
+                    newState.selectedLandingPage.blockTargetCountry = blockTargetCountry;
+                    newState.targetCountryList = newTargetCountryList;
                 }
+
+                this.setState(newState);
             }
         }
 
@@ -65,19 +109,42 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     _handleChange = (event) => {
-        const { name, value } = event.target;
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
 
         const { selectedLandingPage } = this.state;
-        const newPage = Object.assign({}, selectedLandingPage, { [name]: value });
+        const newPage = Object.assign({}, selectedLandingPage, { [target.name]: value });
 
         this.setState({ selectedLandingPage: newPage });
     }
 
-    handleChangeTargetCountry = (isBlockAllTargetCountries, blockTargetCountry, newTargetCountryList) => {
-        const { selectedLandingPage } = this.state;
-        const newPage = Object.assign({}, selectedLandingPage, { blockTargetCountry });
+    _handleChangeTargetCountry = (item, selectedTargetCountry) => {
+        const { selectedLandingPage, targetCountryList } = this.state;
+        const newPage = Object.assign({}, selectedLandingPage, { blockTargetCountry: selectedTargetCountry });
+        const newTargetCountryList = handleChangeMultipleSelected(targetCountryList, selectedTargetCountry);
 
-        this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList, isBlockAllTargetCountries });
+        this.setState({ selectedLandingPage: newPage, targetCountryList: newTargetCountryList });
+    }
+
+    _handleChangeFilterDealMode = (event) => {
+        const { value } = event.target;
+        this.setState({
+            selectedLandingPage: {
+                ...this.state.selectedLandingPage,
+                isExcluded: Number(value),
+                dealIds: ''
+            },
+            dealListMultipleSelected: handleChangeMultipleSelected(this.state.dealListMultipleSelected, '')
+        });
+    }
+
+    _handleChangeDeals = (item, selectedDeals) => {
+        const isAllDeals = selectedDeals.split(',').length === this.props.dealList.length;
+
+        this.setState({
+            selectedLandingPage: { ...this.state.selectedLandingPage, dealIds: isAllDeals ? '0' : selectedDeals },
+            dealListMultipleSelected: handleChangeMultipleSelected(this.state.dealListMultipleSelected, selectedDeals)
+        });
     }
 
     _validatePageCode() {
@@ -122,7 +189,6 @@ export class InsertUpdateForm extends PureComponent {
             const { selectedLandingPageId } = this.props;
             const message = isInsert ? "Add Successfully!" : "Update Successfully!";
             const landingPageInfo = Object.assign({}, { pageId: selectedLandingPageId, ...selectedLandingPage });
-
             const result = isInsert ? await this.props.insertLandingPage(landingPageInfo) : await this.props.updateLandingPage(landingPageInfo);
 
             if (result) {
@@ -168,10 +234,12 @@ export class InsertUpdateForm extends PureComponent {
     }
 
     render() {
-        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, isBlockAllTargetCountries } = this.state;
+        const { selectedLandingPage, isShowMessage, isSuccess, message, isInsert, isClickedSubmit, targetCountryList, dealListMultipleSelected } = this.state;
+        const { pageCode, pageName, isDefault, isMobile, isExcluded, dealIds } = selectedLandingPage;
         const pageNameValidation = this._validatePageName();
         const pageCodeValidation = this._validatePageCode();
-        const isValid = pageNameValidation.isValid && pageCodeValidation.isValid;
+        const dealValidation = _validateSelectedDealsByMode(isExcluded, dealIds, filterDealMode);
+        const isValid = pageNameValidation.isValid && pageCodeValidation.isValid && dealValidation === '';
         const isShowPopup = this.props.selectedLandingPageId !== null;
         const title = isInsert ? "Add Landing Page" : "Edit Landing Page";
 
@@ -186,31 +254,84 @@ export class InsertUpdateForm extends PureComponent {
                             </Alert>
                             <Form tag="form" className="mb-2" autoComplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for="pageName" sm={6} className="required pr-0">{headerText.LandingPageName}</Label>
-                                    <Col sm={6}>
-                                        <Input type="text" name="pageName" className="input-required mt-2" value={selectedLandingPage.pageName} onChange={this._handleChange}
+                                    <Label for="pageName" sm={4}>
+                                        {headerText.LandingPageName}
+                                        <span className="text-danger required ml-1">*</span>
+                                        <span title={headerText.ShowInDropdown} className="oi icon-info ml-1"></span>
+                                    </Label>
+                                    <Col sm={8}>
+                                        <Input type="text" name="pageName" className="input-required mt-2" value={pageName} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageNameValidation.isValid} />
                                         {pageNameValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageNameValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label for="pageCode" sm={6} className="required">{headerText.LandingPageCode}</Label>
-                                    <Col sm={6}>
-                                        <Input type="text" name="pageCode" className="input-required mt-2" value={selectedLandingPage.pageCode} onChange={this._handleChange}
+                                    <Label for="pageCode" sm={4}>
+                                        {headerText.LandingPageCode}
+                                        <span className="text-danger required ml-1">*</span>
+                                        <span title={headerText.ContainInLinks} className="oi icon-info ml-1"></span>
+                                    </Label>
+                                    <Col sm={8}>
+                                        <Input type="text" name="pageCode" className="input-required mt-2" value={pageCode} onChange={this._handleChange}
                                             onKeyPress={(e) => this._handleKeyPress(e, isValid)} invalid={isClickedSubmit && !pageCodeValidation.isValid} />
                                         {pageCodeValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: pageCodeValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Label sm={4}>Deal</Label>
+                                    <Col sm={8}>
+                                        <Input disabled={isDefault} type="select" name="isExcluded" className='mt-2' value={Number(isExcluded)} onChange={isDefault ? null : this._handleChangeFilterDealMode}>
+                                            <option key="isExcluded-0" value={filterDealMode.Include}>Applied To</option>
+                                            <option key="isExcluded-1" value={filterDealMode.Exclude}>Applied To All Deals Except</option>
+                                        </Input>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Col sm={4}></Col>
+                                    <Col sm={8} >
+                                        <div className={`mt-2 ${dealValidation && isClickedSubmit ? 'is-invalid' : ''}`}>
+                                            <MultipleSelect
+                                                dataSource={dealListMultipleSelected}
+                                                keyField="key"
+                                                valueField="name"
+                                                statusField="checked"
+                                                noneSelectedLabel="None"
+                                                selectedAllLabel="All Deals"
+                                                hasInputOption={true}
+                                                isDisable={isDefault}
+                                                onChange={isDefault ? null : this._handleChangeDeals} />
+                                        </div>
+                                        {dealValidation && isClickedSubmit && <span className="text-danger">{dealValidation}</span>}
+                                    </Col>
+                                </FormGroup>
                                 {
-                                    targetCountryList && <BlockTargetCountryFormGroup
-                                        sm={4}
-                                        targetCountryList={targetCountryList}
-                                        isBlockAllTargetCountries={isBlockAllTargetCountries}
-                                        changeTargetCountry={this.handleChangeTargetCountry}
-                                    />
+                                    targetCountryList && <FormGroup row className="align-items-center mb-2">
+                                        <Label sm={4}>Block Target Country</Label>
+                                        <Col sm={8}>
+                                            <div className='mt-2'>
+                                                <MultipleSelect
+                                                    dataSource={targetCountryList}
+                                                    keyField="key"
+                                                    valueField="name"
+                                                    statusField="checked"
+                                                    noneSelectedLabel="None"
+                                                    selectedAllLabel="All Target Countries"
+                                                    hasInputOption={false}
+                                                    isDisable={isDefault}
+                                                    onChange={isDefault ? null : this._handleChangeTargetCountry} />
+                                            </div>
+                                        </Col>
+                                    </FormGroup>
                                 }
+                                <FormGroup row className="align-items-center mb-2">
+                                    <Col sm={4}></Col>
+                                    <Label sm={4} className="d-flex mt-1">
+                                        <input type="checkbox" name="isMobile" disabled={isDefault} checked={isMobile} onChange={isDefault ? null : this._handleChange} />
+                                        <span className='ml-2'>Is Mobile Only</span>
+                                    </Label>
+                                </FormGroup>
                             </Form>
 
                             <Button type="button" color="success" className="mr-3" disabled={isClickedSubmit ? !isValid : false} onClick={() => this._handleSubmit(isValid)} >Submit</Button>
@@ -223,8 +344,8 @@ export class InsertUpdateForm extends PureComponent {
     }
 }
 
-function mapStateToProps({ selectedLandingPageId }) {
-    return Object.assign({}, { selectedLandingPageId });
+function mapStateToProps({ selectedLandingPageId, dealList }) {
+    return Object.assign({}, { selectedLandingPageId, dealList });
 }
 
 function mapDispatchToProps(dispatch) {

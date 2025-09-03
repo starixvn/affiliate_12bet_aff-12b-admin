@@ -59,14 +59,6 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string AppMailAddress { get; }
 
-        IEnumerable<string> MarketingForCommGroups { get; }
-
-        IEnumerable<string> MarketingForCPACommGroups { get; }
-
-        IEnumerable<string> MarketingPageCodeRegexPatterns { get; }
-
-        IEnumerable<string> MarketingAvailDomainMobilePatterns { get; }
-
         bool IsMarketingSpecificEmail(string email);
 
         string MemberSiteApiUrl { get; }

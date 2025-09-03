@@ -279,6 +279,7 @@ var MarketingBase = (function ($) {
                 deviceType: $("#DeviceType").val(),
                 targetId: $("#AffLinkType").val(),
                 targetCountryCode: $('#TargetCountry').val(),
+                domainId: $("#Domain").val(),
                 isMediaGallery,
                 isChangeAffTypeLink
             };
@@ -362,7 +363,6 @@ var MarketingBase = (function ($) {
 
         updateLanguageDropdown: function (languageList) {
             if (languageList && !languageList.length) {
-                $('#btnMarketingSubmit').prop('disabled', true);
                 $('#Language').html(NO_INFO_OPTION);
 
                 return;
@@ -376,7 +376,6 @@ var MarketingBase = (function ($) {
 
         updateSizeDropdown: function (sizeList) {
             if (sizeList && !sizeList.length) {
-                $('#btnMarketingSubmit').prop('disabled', true);
                 $('#Size').html(NO_INFO_OPTION);
 
                 return;
@@ -396,7 +395,6 @@ var MarketingBase = (function ($) {
 
         updateCategoryDropdown: function (categoryList) {
             if (categoryList && !categoryList.length) {
-                $('#btnMarketingSubmit').prop('disabled', true);
                 $('#Category').html(NO_INFO_OPTION);
 
                 return;
@@ -404,15 +402,13 @@ var MarketingBase = (function ($) {
 
             var html = Site.buildOptionList(categoryList, "Value", "Text", true);
 
-            var previousSelectedCategory = $("#Category").val();
-
             $("#Category").html(html);
+            $("#Category").val('');
 
-            var hasPreviousSelectedCategory = categoryList.some(i => i.Value == previousSelectedCategory);
-
-            if (hasPreviousSelectedCategory) {
-                $("#Category").val(previousSelectedCategory);
-            }
+            var $subCategoryContainer = $("#SubCategory").closest(".form-group");
+            var html = Site.buildOptionList([], "Value", "Text", true);
+            $("#SubCategory").html(html);
+            $subCategoryContainer.addClass("hide");
         },
     };
 

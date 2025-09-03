@@ -33,20 +33,6 @@ export const setGridData = (data) => {
     }
 }
 
-export const setAffDomainList = (data) => {
-    return {
-        type: types.SET_AFF_DOMAIN_LIST,
-        data
-    }
-}
-
-export const setRedirectDomainList = (data) => {
-    return {
-        type: types.SET_REDIRECT_DOMAIN_LIST,
-        data
-    }
-}
-
 export const setAffSubDomainList = (data) => {
     return {
         type: types.SET_AFF_SUB_DOMAIN_LIST,
@@ -61,7 +47,7 @@ export const fetchData = (targetCountryCode, affSubDomainList, shouldUpdateAffSu
     const subDomainRegex = selectedAffSubDomains.map(s => s.columnName).join('|');
 
     const url = 'Portal/DomainControl/GetDomainControlList';
-    const response = await post(url, { targetCountryCode, isGetAll, subDomainRegex  });
+    const response = await post(url, { targetCountryCode, isGetAll, subDomainRegex });
 
     const data = response && response.status === 200 ? response.data : [];
 
@@ -82,9 +68,20 @@ export const getDomainControlById = (domainControlId) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const fetchDomain = () => async (dispatch) => {
-    dispatch(setAffDomainList(await getDomainList(true)));
-    dispatch(setRedirectDomainList(await getDomainList(false)));
+export const fetchDomain = (targetCountryCode) => async () => {
+    const affDomainList = await getDomainList(true);
+    const redirectDomainList = await getDomainList(false);
+
+    const availableAffDomainList = await getAvailableDomain(targetCountryCode, affDomainList);
+    const availableRedirectDomainList = await getAvailableDomain(targetCountryCode, redirectDomainList);
+
+    return { affDomainList: availableAffDomainList, redirectDomainList: availableRedirectDomainList };
+}
+
+const getAvailableDomain = async (targetCountryCode, domainList) => {
+    if(!domainList?.length) return [];
+
+    return domainList.filter(domain => !domain.BlockTargetCountryCode || !domain.BlockTargetCountryCode.includes(targetCountryCode));
 }
 
 export const insertDomain = (param) => async () => {
@@ -115,7 +112,7 @@ const HandleUpdateAffSubDomainControlList = async (isGetAll, affSubDomainList, d
     const data = response && response.status === 200 ? response.data : [];
     let shouldDispatch = false;
 
-    const subDomainList =  data.map(item => {
+    const subDomainList = data.map(item => {
         var subDomain = affSubDomainList.find(a => a.columnKey == item);
 
         if (!subDomain) {

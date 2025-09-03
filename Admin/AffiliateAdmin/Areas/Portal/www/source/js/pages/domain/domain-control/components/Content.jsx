@@ -7,7 +7,8 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { headerText, globalResource } from '../libs/constants';
-import { deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
+import { deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition } from '../actions';
+import { _formatDealText } from '../../../common/modules/utils/dealInfoFormat';
 
 export class Content extends PureComponent {
     constructor(props) {
@@ -18,12 +19,6 @@ export class Content extends PureComponent {
             message: '',
             isConfirmPopup: true
         }
-    }
-
-    componentDidMount() {
-        const { affDomainList, redirectDomainList } = this.props;
-
-        (!affDomainList || !redirectDomainList) && this.props.fetchDomain();
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -72,7 +67,9 @@ export class Content extends PureComponent {
                 <Cell header={true} colWidth={120} title={headerText.AffDomain}>{headerText.AffDomain}</Cell>
                 <Cell header={true} colWidth={120} title={headerText.RedirectDomain}>{headerText.RedirectDomain}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.Creator}>{headerText.Creator}</Cell>
+                <Cell header={true} colWidth={130} title={headerText.Deal}>{headerText.Deal}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.MobileOnly}>{headerText.MobileOnly}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Delete}>{headerText.Delete}</Cell>
@@ -103,6 +100,8 @@ export class Content extends PureComponent {
         const redirectDomain = htmlDecode(dataItem.RedirectDomain);
         const creator = htmlDecode(dataItem.Creator);
 
+        const { dealStr, deal } = _formatDealText(dataItem.DealIds, dataItem.IsExcluded, this.props.dealList);
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
@@ -110,7 +109,11 @@ export class Content extends PureComponent {
                 <Cell className="text-center" title={affDomain}>{affDomain}</Cell>
                 <Cell className="text-center" title={redirectDomain}>{redirectDomain}</Cell>
                 <Cell className="text-center" title={creator}>{creator}</Cell>
+                <Cell className="text-center" title={dealStr} dangerouslySetInnerHTML={{ __html: deal }}></Cell>
                 <Cell className="text-center" title={dataItem.CreatedDateText}>{dataItem.CreatedDateText}</Cell>
+                <Cell className="text-center">
+                    <input type="checkbox" disabled checked={dataItem.IsMobile} />
+                </Cell>
                 <Cell className="text-center">
                     <input type="checkbox" disabled checked={dataItem.IsUsed} />
                 </Cell>
@@ -160,12 +163,12 @@ export class Content extends PureComponent {
     }
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountry, affDomainList, redirectDomainList, affSubDomainList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, selectedTargetCountry, affSubDomainList, dealList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, selectedTargetCountry, affSubDomainList, dealList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteDomain, fetchData, fetchDomain, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ deleteDomain, fetchData, toggleLoader, setSelectedDomainId, setShouldResetScrollPosition }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
