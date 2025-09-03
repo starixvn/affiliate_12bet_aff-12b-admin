@@ -4,7 +4,10 @@
 
     public class PlayerCpaReport
     {
-        public int MemberCPAId { get; set; }   
+        private const string HYPHEN = "-";
+        private const string DATE_FORMAT = "MM/dd/yyyy";
+
+        public int MemberCPAId { get; set; }
 
         public int AffId { get; set; }
 
@@ -15,6 +18,8 @@
         public string CustUserName { get; set; }
 
         public DateTime? RegisteredDate { get; set; }
+
+        public string RegisteredDateStr => RegisteredDate?.ToString(DATE_FORMAT + " HH:mm:ss") ?? HYPHEN;
 
         public int GroupId { get; set; }
 
@@ -34,6 +39,8 @@
 
         public DateTime AQD { get; set; }
 
+        public string AqdStr => AQD.ToString(DATE_FORMAT);
+
         public decimal CPAAmount { get; set; }
 
         public int HoldingBetTickets { get; set; }
@@ -42,7 +49,11 @@
 
         public DateTime? HQD { get; set; }
 
+        public string HqdStr => HQD?.ToString(DATE_FORMAT) ?? HYPHEN;
+
         public DateTime? HED { get; set; }
+
+        public string HedStr => HED?.ToString(DATE_FORMAT) ?? HYPHEN;
 
         public decimal? EstimatedCPAAmount { get; set; }
 
@@ -52,11 +63,12 @@
 
         public DateTime? CPADate { get; set; }
 
+        public string CpaDateStr => CPADate?.ToString(DATE_FORMAT) ?? HYPHEN;
+
         public bool IsAbnormal { get; set; }
 
         public string Description { get; set; }
 
-        public string BetTicket => $"{HoldingBetTickets}/{HoldingTickets}";
-
+        public string BetTicket => HoldingBetTickets == 0 && HoldingTickets == 0 ? HYPHEN : $"{HoldingBetTickets}/{HoldingTickets}";
     }
 }

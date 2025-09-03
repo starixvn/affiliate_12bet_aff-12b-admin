@@ -18,7 +18,8 @@ const RowHeader = ({ index, row, sortColumn, isAscending, handleClickHeader }) =
                             style={{ width: cell.width, maxWidth: cell.width }}
                             className={`freeze-column-${index}`}
                             rowSpan={cell.rowSpan}
-                            colSpan={cell.columnSpan}>
+                            colSpan={cell.columnSpan}
+                            title={cell.title}>
                             {cell.sortable ? (
                                 <Button
                                     className="th-wrapper"

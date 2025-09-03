@@ -2,20 +2,30 @@ import React from 'react'
 import { formatDecimal } from '../../../../../modules/numberFormat';
 
 const ProductGroup = ({ group, index }) => {
+
+    const groupName = `Group ${index + 1}`;
+    const turnover = formatDecimal(group.turnover);
+    const cpaAmount = formatDecimal(group.cpaAmount);
+
     return (
         <React.Fragment key={index}>
             <tr style={{ backgroundColor: '#f2f2f2' }}>
-                <td className="font-weight-bold">{`Group ${index + 1}`}</td>
-                <td className="text-right font-weight-bold">{formatDecimal(group.turnover)}</td>
-                <td className="text-right font-weight-bold">{formatDecimal(group.cpaAmount)}</td>
+                <td title={groupName} className="font-weight-bold">{groupName}</td>
+                <td title={turnover} className="text-right font-weight-bold">{turnover}</td>
+                <td title={cpaAmount} className="text-right font-weight-bold">{cpaAmount}</td>
             </tr>
-            {group.products.map((product, prodIndex) => (
-                <tr key={`${index}-${prodIndex}`}>
-                    <td className="pl-4">{product.productName}</td>
-                    <td className="text-right">{formatDecimal(product.turnover)}</td>
-                    <td className="text-right"></td>
-                </tr>
-            ))}
+            {group.products.map((product, prodIndex) => {
+                const productName = product.productName;
+                const productTurnover = formatDecimal(product.turnover);
+
+                return (
+                    <tr key={`${index}-${prodIndex}`}>
+                        <td title={productName} className="pl-4">{productName}</td>
+                        <td title={productTurnover} className="text-right">{productTurnover}</td>
+                        <td className="text-right"></td>
+                    </tr>
+                )
+            })}
         </React.Fragment>
     )
 }

@@ -68,21 +68,21 @@ export const dataKey = {
     No: 'no',
     Affiliate: 'affUserName',
     Player: 'custUserName',
-    RegistrationDate: 'registeredDate',
+    RegistrationDate: 'registeredDateStr',
     DealName: 'dealName',
     PaymentFrequency: 'scheduleName',
     FTD: 'ftd',
     TotalDeposit: 'totalDeposit',
     Turnover: 'isTO',
-    ActiveQualifiedDate: 'aqd',
+    ActiveQualifiedDate: 'aqdStr',
     CPAAmount: 'cpaAmount',
     BetTicket: 'betTicket',
-    HoldingQualifiedDate: 'hqd',
-    HoldingExpiredDate: 'hed',
+    HoldingQualifiedDate: 'hqdStr',
+    HoldingExpiredDate: 'hedStr',
     EstimatedCPAAmount: 'estimatedCPAAmount',
     ApprovedCPAAmount: 'approvedCPAAmount',
     CPAStatus: 'cpaStatus',
-    ApprovalDate: 'cpaDate'
+    ApprovalDate: 'cpaDateStr'
 };
 
 export const row1 = [
@@ -241,14 +241,6 @@ export const row2 = [
 ]
 
 export const headerRows = [row1, row2]
-
-export const dateFields = [
-    dataKey.RegistrationDate,
-    dataKey.ActiveQualifiedDate,
-    dataKey.HoldingQualifiedDate,
-    dataKey.HoldingExpiredDate,
-    dataKey.ApprovalDate
-]
 
 export const decimalFields = [
     dataKey.FTD,

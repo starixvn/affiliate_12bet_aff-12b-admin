@@ -1,6 +1,5 @@
 import React from 'react'
 import { globalResource } from '../../../../../modules/globalResource';
-import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setMemberCpaId, setDealId, toggleDealPopup } from '../../actions';
 
@@ -17,28 +16,28 @@ const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup }
 
     return (
         <tr key={`dataRow-${rowNumber}`}>
-            <td className="text-center freeze-column-0">
+            <td title={rowNumber} className="text-center freeze-column-0">
                 {rowNumber}
             </td>
-            <td className="text-left freeze-column-1">
+            <td title={data.affUserName} className="text-left freeze-column-1">
                 {data.affUserName}
             </td>
-            <td className="text-left freeze-column-2">
+            <td title={data.custUserName} className="text-left freeze-column-2">
                 {data.custUserName}
             </td>
-            <td className="text-center">
-                {data.registeredDate}
+            <td title={data.registeredDateStr} className="text-center">
+                {data.registeredDateStr}
             </td>
-            <td className="text-left">
-                <button className="btn btn-link" onClick={handleClickDeal}>{data.dealName}</button>
+            <td title={data.dealName} className="text-left">
+                <span className="btn-link" onClick={handleClickDeal}>{data.dealName}</span>
             </td>
-            <td className="text-center">
+            <td title={data.scheduleName} className="text-center">
                 {data.scheduleName}
             </td>
-            <td className="text-right">
+            <td title={data.ftd} className="text-right">
                 {data.ftd}
             </td>
-            <td className="text-right">
+            <td title={data.totalDeposit} className="text-right">
                 {data.totalDeposit}
             </td>
             <td className="text-center">
@@ -46,43 +45,42 @@ const RowData = ({ data, rowNumber, setMemberCpaId, setDealId, toggleDealPopup }
                     data.isTO ? 'Yes' : 'No'
                 }
             </td>
-            <td className="text-center">
-                {data.aqd}
+            <td title={data.aqdStr} className="text-center">
+                {data.aqdStr}
             </td>
-            <td className="text-right">
+            <td title={data.cpaAmount} className="text-right">
                 {
                     data.isTO ?
-                        <Button
-                            className="p-0"
-                            color="link"
+                        <span
+                            className="btn-link"
                             onClick={handleClickTO}>
                             <span>{data.cpaAmount}</span>
-                        </Button> : data.cpaAmount
+                        </span> : data.cpaAmount
                 }
             </td>
-            <td className="text-center">
+            <td title={data.betTicket} className="text-center">
                 {data.betTicket}
             </td>
-            <td className="text-center">
-                {data.hqd}
+            <td title={data.hqdStr} className="text-center">
+                {data.hqdStr}
             </td>
-            <td className="text-center">
-                {data.hed}
+            <td title={data.hedStr} className="text-center">
+                {data.hedStr}
             </td>
-            <td className="text-right">
+            <td title={data.estimatedCPAAmount} className="text-right">
                 {data.estimatedCPAAmount}
             </td>
-            <td className="text-right">
+            <td title={data.approvedCPAAmount} className="text-right">
                 {data.approvedCPAAmount}
             </td>
-            <td className="text-center">
+            <td title={data.cpaStatus} className="text-center">
                 {data.cpaStatus}
                 {
                     data.isAbnormal && <span title={data.description} className="ml-1 oi icon-info"></span>
                 }
             </td>
-            <td className="text-center">
-                {data.cpaDate}
+            <td title={data.cpaDateStr} className="text-center">
+                {data.cpaDateStr}
             </td>
         </tr>
     )
@@ -99,7 +97,7 @@ export function TableBody({
         return (
             <tbody>
                 <tr>
-                    <td className="text-center" colSpan={18}>{globalResource.NoInfo}</td>
+                    <td title={globalResource.NoInfo} className="text-center" colSpan={18}>{globalResource.NoInfo}</td>
                 </tr>
             </tbody>
         )

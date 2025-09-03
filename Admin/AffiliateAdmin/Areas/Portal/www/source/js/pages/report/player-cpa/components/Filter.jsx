@@ -105,9 +105,9 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
     return (
         <div className="filter-container">
             <Form inline tag="div">
-                <Field className="my-sm-1 mr-sm-2" name="userName" value={params.userName} onChange={handleChange} label="Affiliate" onPressEnter={handlePressEnter} />
-                <Field className="my-sm-1 mr-sm-2" name="custName" value={params.custName} onChange={handleChange} label="Player" onPressEnter={handlePressEnter} />
-                <FormGroup className="my-sm-1 mr-sm-2">
+                <Field className="my-sm-1 mr-sm-4" name="userName" value={params.userName} onChange={handleChange} label="Affiliate" onPressEnter={handlePressEnter} />
+                <Field className="my-sm-1 mr-sm-4" name="custName" value={params.custName} onChange={handleChange} label="Player" onPressEnter={handlePressEnter} />
+                <FormGroup className="my-sm-1 mr-sm-4">
                     <Label htmlFor="Deal" className="mr-sm-2">Deal Name</Label>
                     <MultipleSelect
                         dataSource={dealList}
@@ -120,9 +120,9 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
                         hasInputOption={true}
                         onChange={handleChangeDeals} />
                 </FormGroup>
-                <Field className="my-sm-1 mr-sm-2" name="statusId" value={params.status} onChange={handleChange} label="Status" selectOptions={statusOptions} type='select' />
-                <Field className="my-sm-1 mr-sm-2" name="viewBy" value={params.viewBy} onChange={handleChange} label="View By" selectOptions={viewByOptions} type='select' />
-                <FormGroup className="my-sm-1 mr-sm-2">
+                <Field className="my-sm-1 mr-sm-4" name="statusId" value={params.status} onChange={handleChange} label="Status" selectOptions={statusOptions} type='select' />
+                <Field className="my-sm-1 mr-sm-4" name="viewBy" value={params.viewBy} onChange={handleChange} label="View By" selectOptions={viewByOptions} type='select' />
+                <FormGroup className="my-sm-1 mr-sm-4">
                     <Label className="mr-sm-2">{globalResource.From}</Label>
                     <DatePicker
                         minDate={minDate}
@@ -131,7 +131,7 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
                         iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                         onChange={handleChangeFromDate} />
                 </FormGroup>
-                <FormGroup className="my-sm-1 mr-sm-2">
+                <FormGroup className="my-sm-1 mr-sm-4">
                     <Label className="mr-sm-2">{globalResource.To}</Label>
                     <DatePicker
                         minDate={params.fromDate}

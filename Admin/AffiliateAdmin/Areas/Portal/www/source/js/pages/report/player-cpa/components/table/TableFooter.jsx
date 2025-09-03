@@ -6,27 +6,33 @@ export default function TableFooter({
     total,
     totalItem
 }) {
-    if(!totalItem){
+    if (!totalItem) {
         return null;
     }
+
+    const ftd = formatDecimal(total.ftd);
+    const totalDeposit = formatDecimal(total.totalDeposit);
+    const cpaAmount = formatDecimal(total.cpaAmount);
+    const estimatedCPAAmount = formatDecimal(total.estimatedCPAAmount);
+    const approvedCPAAmount = formatDecimal(total.approvedCPAAmount);
 
     return (
         <tfoot>
             <tr className="total-row freeze-row">
-                <td colSpan="3" className="text-left font-weight-bold freeze-column-0">{TotalText}</td>
+                <td title={TotalText} colSpan="3" className="text-left font-weight-bold freeze-column-0">{TotalText}</td>
                 <td className="text-right font-weight-bold"></td>
                 <td className="text-right font-weight-bold"></td>
                 <td className="text-right font-weight-bold"></td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.ftd)}</td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.totalDeposit)}</td>
+                <td title={ftd} className="text-right font-weight-bold">{ftd}</td>
+                <td title={totalDeposit} className="text-right font-weight-bold">{totalDeposit}</td>
                 <td className="text-right font-weight-bold"></td>
                 <td className="text-right font-weight-bold"></td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.cpaAmount)}</td>
+                <td title={cpaAmount} className="text-right font-weight-bold">{cpaAmount}</td>
                 <td className="text-right font-weight-bold"></td>
                 <td className="text-right font-weight-bold"></td>
                 <td className="text-right font-weight-bold"></td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.estimatedCPAAmount)}</td>
-                <td className="text-right font-weight-bold">{formatDecimal(total.approvedCPAAmount)}</td>
+                <td title={estimatedCPAAmount} className="text-right font-weight-bold">{estimatedCPAAmount}</td>
+                <td title={approvedCPAAmount} className="text-right font-weight-bold">{approvedCPAAmount}</td>
                 <td className="text-right font-weight-bold"></td>
                 <td className="text-right font-weight-bold"></td>
             </tr>
