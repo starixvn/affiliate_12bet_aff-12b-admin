@@ -1,3 +1,5 @@
+export const reportName = 'PLAYER CPA REPORT';
+
 export const statusOptions = [
     { value: -1, label: 'All Statuses' },
     { value: 2, label: 'Eligible' },
@@ -26,7 +28,7 @@ export const defaultParams = {
     toDate: '',
     pageSize: 20,
     pageIndex: 1,
-    sortColumn: 'AffUserName',
+    sortColumn: 'affUserName',
     isAscending: true
 }
 
@@ -95,7 +97,7 @@ export const row1 = [
         title: headerText.Affiliate,
         width: 150,
         sortable: true,
-        sortColumn: "AffUserName",
+        sortColumn: dataKey.Affiliate,
         rowSpan: 2,
         field: dataKey.Affiliate
     },
@@ -103,7 +105,7 @@ export const row1 = [
         title: headerText.Player,
         width: 150,
         sortable: true,
-        sortColumn: "CustUserName",
+        sortColumn: dataKey.Player,
         rowSpan: 2,
         field: dataKey.Player
     },
@@ -111,7 +113,7 @@ export const row1 = [
         title: headerText.RegistrationDate,
         width: 150,
         sortable: true,
-        sortColumn: "RegisteredDate",
+        sortColumn: dataKey.RegistrationDate,
         rowSpan: 2,
         field: dataKey.RegistrationDate
     },
@@ -119,7 +121,7 @@ export const row1 = [
         title: headerText.DealName,
         width: 150,
         sortable: true,
-        sortColumn: "DealName",
+        sortColumn: dataKey.DealName,
         rowSpan: 2,
         field: dataKey.DealName
     },
@@ -127,7 +129,7 @@ export const row1 = [
         title: headerText.PaymentFrequency,
         width: 120,
         sortable: true,
-        sortColumn: "ScheduleName",
+        sortColumn: dataKey.PaymentFrequency,
         rowSpan: 2,
         field: dataKey.PaymentFrequency
     },
@@ -156,84 +158,84 @@ export const row2 = [
         title: headerText.FTD,
         width: 100,
         sortable: true,
-        sortColumn: "FTD",
+        sortColumn: dataKey.FTD,
         field: dataKey.FTD
     },
     {
         title: headerText.TotalDeposit,
         width: 150,
         sortable: true,
-        sortColumn: "TotalDeposit",
+        sortColumn: dataKey.TotalDeposit,
         field: dataKey.TotalDeposit
     },
     {
         title: headerText.Turnover,
         width: 150,
         sortable: true,
-        sortColumn: "IsTO",
+        sortColumn: dataKey.Turnover,
         field: dataKey.Turnover
     },
     {
         title: headerText.ActiveQualifiedDate,
         width: 150,
         sortable: true,
-        sortColumn: "AQD",
+        sortColumn: dataKey.ActiveQualifiedDate,
         field: dataKey.ActiveQualifiedDate
     },
     {
         title: headerText.CPAAmount,
         width: 150,
         sortable: true,
-        sortColumn: "CPAAmount",
+        sortColumn: dataKey.CPAAmount,
         field: dataKey.CPAAmount
     },
     {
         title: headerText.BetTicket,
         width: 150,
         sortable: true,
-        sortColumn: "HoldingTickets,HoldingBetTickets",
+        sortColumn: dataKey.BetTicket,
         field: dataKey.BetTicket
     },
     {
         title: headerText.HoldingQualifiedDate,
         width: 150,
         sortable: true,
-        sortColumn: "HQD",
+        sortColumn: dataKey.HoldingQualifiedDate,
         field: dataKey.HoldingQualifiedDate
     },
     {
         title: headerText.HoldingExpiredDate,
         width: 150,
         sortable: true,
-        sortColumn: "HED",
+        sortColumn: dataKey.HoldingExpiredDate,
         field: dataKey.HoldingExpiredDate
     },
     {
         title: headerText.EstimatedCPAAmount,
         width: 150,
         sortable: true,
-        sortColumn: "EstimatedCPAAmount",
+        sortColumn: dataKey.EstimatedCPAAmount,
         field: dataKey.EstimatedCPAAmount
     },
     {
         title: headerText.ApprovedCPAAmount,
         width: 150,
         sortable: true,
-        sortColumn: "ApprovedCPAAmount",
+        sortColumn: dataKey.ApprovedCPAAmount,
         field: dataKey.ApprovedCPAAmount
     },
     {
         title: headerText.CPAStatus,
         width: 150,
         sortable: true,
-        sortColumn: "CPAStatus",
+        sortColumn: dataKey.CPAStatus,
         field: dataKey.CPAStatus
     },
     {
         title: headerText.ApprovalDate,
         width: 150,
         sortable: true,
-        sortColumn: "CPADate",
+        sortColumn: dataKey.ApprovalDate,
         field: dataKey.ApprovalDate
     }
 ]

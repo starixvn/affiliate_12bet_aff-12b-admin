@@ -1,65 +1,115 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import { Fragment } from 'react';
 import { Table } from 'reactstrap';
 import TableHeader from './table/TableHeader';
-import usePlayerCpaData from '../hooks/usePlayerCpaData';
 import { Pager } from '@9softstudio/react-fixed-table-header';
-import { getMaxHeight } from '../../libs/constants';
-import TableBody from './table/TableBody';
-import { setParams, toggleSubmit, setPagingOption } from '../actions';
 import TableFooter from './table/TableFooter';
-import TurnoverDetail from './turnover/TurnoverDetail';
+import TableBody from './table/TableBody';
 
-const GridData = ({ params, pagingOption, isSubmit, memberCpaId, dispatch }) => {
-    const { playerCpaData, turnoverDetail } = usePlayerCpaData(isSubmit, params, pagingOption, memberCpaId, dispatch)
-    const maxHeight = getMaxHeight()
+import { getMaxHeight } from '../../libs/constants';
+import { setParams, setPagingOption } from '../actions';
+import { paginate, sortBy } from '../libs/service';
+import { toggleLoader } from '../../../../actions/loaderAction';
+
+export const GridData = ({ params, pagingOption, playerCpaData, setParams, setPagingOption, toggleLoader }) => {
+    const [gridData, setGridData] = useState(null);
+
+    useEffect(() => {
+        if (playerCpaData) {
+            const data = paginate(playerCpaData?.mainData, pagingOption?.PageIndex, pagingOption?.PageSize);
+
+            setGridData(data);
+        }
+    }, [playerCpaData]);
 
     const handlePaging = (pageIndex, pageSize) => {
-        dispatch(setParams({ ...params, pageIndex: pageIndex, pageSize: pageSize}));
-        dispatch(setPagingOption({
-            ...pagingOption,
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        }));
-        dispatch(toggleSubmit());
+        toggleLoader(true);
+
+        setTimeout(() => {
+            setParams({ pageIndex: pageIndex, pageSize: pageSize });
+            setPagingOption({
+                ...pagingOption,
+                PageIndex: pageIndex,
+                PageSize: pageSize
+            });
+            const data = paginate(playerCpaData?.mainData, pageIndex, pageSize);
+            setGridData(data);
+            toggleLoader(false);
+        }, 100);
     }
 
-    if(!playerCpaData) {
+    const handleSort = (sortColumnSelected) => {
+        toggleLoader(true);
+
+        setTimeout(() => {
+            if (!sortColumnSelected) return;
+
+            const isAscending = params?.sortColumn === sortColumnSelected ? !params?.isAscending : true;
+            const sortedData = sortBy(
+                playerCpaData?.mainData,
+                sortColumnSelected,
+                isAscending
+            );
+
+            const pagingData = paginate(sortedData, params.pageIndex, params.pageSize);
+
+            setParams({
+                sortColumn: sortColumnSelected,
+                isAscending: isAscending
+            });
+
+            setGridData(pagingData);
+            toggleLoader(false);
+        }, 100);
+    }
+
+    if (!gridData) {
         return null
     }
+
+    const maxHeight = getMaxHeight()
 
     return (
         <Fragment>
             <div className="table-responsive" style={{ maxHeight }}>
                 <Table className="freeze-table table-bordered table-hover">
-                    <TableHeader 
-                        sortColumn={params?.sortColumn} 
-                        isAscending={params?.isAscending} 
+                    <TableHeader
+                        sortColumn={params?.sortColumn}
+                        isAscending={params?.isAscending}
+                        handleSort={handleSort}
                     />
-                    <TableBody 
-                        data={playerCpaData?.mainData} 
+                    <TableBody
+                        data={gridData}
                         pagingOption={pagingOption} />
-                    <TableFooter 
+                    <TableFooter
                         total={playerCpaData?.total}
-                        totalItem={playerCpaData?.totalItem}/>
+                        totalItem={playerCpaData?.totalItem} />
                 </Table>
-            </div>  
+            </div>
             <Pager
                 pageOption={pagingOption}
                 onPaging={handlePaging} />
-            <TurnoverDetail turnoverDetail={turnoverDetail} />
         </Fragment>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isSubmit: state.isSubmit,
-        params: state.params,
-        pagingOption: state.pagingOption,
-        memberCpaId: state.memberCpaId
-    }
+const mapStateToProps = ({ params, pagingOption, playerCpaData }) => {
+    return Object.assign({}, {
+        params,
+        pagingOption,
+        playerCpaData,
+    })
 }
 
-export default connect(mapStateToProps)(React.memo(GridData));
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        setParams,
+        setPagingOption,
+        toggleLoader
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(GridData));

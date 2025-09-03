@@ -422,7 +422,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\turnover\TableFooter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\turnover\TableHeader.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\components\turnover\TurnoverDetail.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\hooks\usePlayerCpaData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\report\player-cpa\libs\exportExcel.js" />

@@ -1,27 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toggleSubmit } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import ReportTitle from '../../../../components/ReportTitle';
 import GridData from './GridData';
 import ExportExcel from '../libs/exportExcel';
-import { getPlayerCpaData } from '../libs/service';
 import { headerRows } from '../libs/constants';
+import { sortBy } from '../libs/service';
 
-const Title = ({ reportTitle, params, toggleLoader}) => {
+const Title = ({ reportTitle, params, toggleLoader, playerCpaData }) => {
 
     const handleExportExcel = async () => {
         toggleLoader(true);
-        try{
-            const data = await getPlayerCpaData(params, true);
-            const exportExcel = new ExportExcel(data, reportTitle, headerRows);
+        try {
+            const sortedData = sortBy(playerCpaData?.mainData, params.sortColumn, params.isAscending);
+            const exportExcel = new ExportExcel(sortedData, reportTitle, headerRows);
             exportExcel.export();
         }
-        catch(err){
+        catch (err) {
             console.log('err', err);
         }
-        finally{
+        finally {
             toggleLoader(false);
         }
     }
@@ -36,12 +35,12 @@ const Title = ({ reportTitle, params, toggleLoader}) => {
     )
 }
 
-export const Content = ({ reportTitle, toggleLoader, params }) => {
+export const Content = ({ reportTitle, toggleLoader, params, playerCpaData }) => {
     return (
         <div className='data-content my-2 report-player-cpa-content-container'>
             {
                 reportTitle && (
-                    <ReportTitle content={<Title reportTitle={reportTitle} params={params} toggleLoader={toggleLoader} />} />
+                    <ReportTitle content={<Title reportTitle={reportTitle} params={params} toggleLoader={toggleLoader} playerCpaData={playerCpaData} />} />
                 )
             }
             <GridData />
@@ -49,16 +48,16 @@ export const Content = ({ reportTitle, toggleLoader, params }) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ params, reportTitle, playerCpaData }) => {
     return {
-        isSubmit: state.isSubmit,
-        params: state.params,
-        reportTitle: state.reportTitle
+        params,
+        reportTitle,
+        playerCpaData
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ toggleSubmit, toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

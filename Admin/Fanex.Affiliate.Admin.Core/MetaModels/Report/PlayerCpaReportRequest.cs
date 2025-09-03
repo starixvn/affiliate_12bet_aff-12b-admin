@@ -1,10 +1,9 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias.Report;
-
-namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
+﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using Fanex.Affiliate.Admin.Core.Constants;
+    using Fanex.Affiliate.Admin.Core.Criterias.Report;
 
     public class PlayerCpaReportRequest : PaginationRequest
     {
@@ -14,7 +13,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
         [MaxLength(Validation.Hundred, ErrorMessage = "Player must shorter than 100 characters!")]
         public string CustName { get; set; }
 
-        [MaxLength(Validation.Hundred, ErrorMessage = "Deal Name must shorter than 100 characters!")]
         public string DealName { get; set; }
         
         public short StatusId { get; set; }
@@ -24,12 +22,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
-
-        public string SortColumn { get; set; }
-
-        public bool IsAscending { get; set; }
-
-        public bool IsExportExcel { get; set; }
 
         public PlayerCpaReportCriteria CreateCriteria()
         {

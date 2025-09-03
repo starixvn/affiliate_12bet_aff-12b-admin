@@ -553,7 +553,6 @@
     <Compile Include="Extensions\AutoMapperExtension.cs" />
     <Compile Include="Extensions\ClaimPrincipalExtension.cs" />
     <Compile Include="Extensions\HttpRequestExtension.cs" />
-    <Compile Include="Extensions\ListManipulateExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Handlers\AuthenticatedHttpClientHandler.cs" />
     <Compile Include="MetaModels\Administrator\ChangeStatusParam.cs" />

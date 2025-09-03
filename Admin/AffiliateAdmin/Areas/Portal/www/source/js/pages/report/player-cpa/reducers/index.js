@@ -24,12 +24,6 @@ export const params = createReducer(defaultParams, {
     }
 })
 
-export const isSubmit = createReducer(false, {
-    [types.TOGGLE_SUBMIT](prevState, action) {
-        return !prevState;
-    }
-})
-
 export const memberCpaId = createReducer(null, {
     [types.SET_MEMBER_CPA_ID](prevState, action) {
         return action.data;
@@ -49,15 +43,21 @@ export const isShowDealPopup = createReducer(false, {
     }
 })
 
+export const playerCpaData = createReducer(null, {
+    [types.SET_PLAYER_CPA_DATA](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     params,
     reportTitle,
-    isSubmit,
     memberCpaId,
     isShowLoader,
     pagingOption,
     dealId,
     isShowDealPopup,
     today,
-    deals
+    deals,
+    playerCpaData
 });

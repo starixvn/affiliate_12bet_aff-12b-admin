@@ -8,13 +8,15 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 import Field from '../../../../components/Field';
 import MultipleSelect from '../../../../components/multiple-select';
 
-import { setReportTitle, toggleSubmit, setParams } from '../actions';
-import { statusOptions, viewByOptions } from '../libs/constants';
+import { setReportTitle, setParams, setPlayerCpaData, setPagingOption } from '../actions';
+import { reportName, statusOptions, viewByOptions } from '../libs/constants';
 import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate, handleChangeMultipleSelected } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
 import { minDate, sixMonth } from '../../../../modules/constants';
+import { getPlayerCpaData } from '../libs/service';
+import { toggleLoader } from '../../../../actions/loaderAction';
 
-const Filter = ({ params, setParams, toggleSubmit, today, deals }) => {
+const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOption, today, deals, toggleLoader, setReportTitle }) => {
 
     const [nowString, setNowString] = useState('');
     const [dealList, setDealList] = useState(deals);
@@ -73,7 +75,31 @@ const Filter = ({ params, setParams, toggleSubmit, today, deals }) => {
     }
 
     const handleClickSearch = () => {
-        toggleSubmit()
+        fetchData();
+    }
+
+    const fetchData = async () => {
+        toggleLoader(true);
+
+        const data = await getPlayerCpaData(params);
+        if (data) {
+            setReportTitle(getTitle());
+            setPlayerCpaData(data);
+            setPagingOption({
+                ...pagingOption,
+                TotalItem: data?.totalItem
+            });
+        }
+
+        toggleLoader(false);
+    }
+
+    const getTitle = () => {
+        let title = reportName;
+        title += ` - View By ${viewByOptions[+params.viewBy - 1].label}`;
+        title += ` - From ${params.fromDate} To ${params.toDate}`;
+
+        return title;
     }
 
     return (
@@ -121,17 +147,24 @@ const Filter = ({ params, setParams, toggleSubmit, today, deals }) => {
         </div>
     )
 }
-function mapStateToProps(state) {
+function mapStateToProps({ playerCpaData, params, today, deals, pagingOption }) {
     return Object.assign({}, {
-        pagingOption: state.pagingOption,
-        params: state.params,
-        today: state.today,
-        deals: state.deals
+        playerCpaData,
+        params,
+        today,
+        deals,
+        pagingOption
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParams, toggleSubmit }, dispatch);
+    return bindActionCreators({
+        setReportTitle,
+        setParams,
+        setPlayerCpaData,
+        setPagingOption,
+        toggleLoader
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

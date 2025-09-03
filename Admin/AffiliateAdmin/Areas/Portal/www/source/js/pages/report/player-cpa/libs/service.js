@@ -1,53 +1,79 @@
-import moment from 'moment';
+
 import { get, post } from '../../../../modules/ajaxRequest';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { DATE_FORMAT, dateFields, decimalFields, TotalText } from './constants';
+import { decimalFields } from './constants';
 
-export const getPlayerCpaData = async (params, isExportExcel = false) => {
+export const getPlayerCpaData = async (params) => {
     const url = 'Portal/PlayerCpaReport/GetData';
-    
-    if(isExportExcel) {
-        params = {...params, isExportExcel: true};
-    }
 
     const response = await post(url, params);
 
-    return response && response.status === 200 ? transformData(response.data) : null;
+    return response && response.status === 200 ? transformData(response.data, params) : null;
 }
 
-/**
- * Transforms raw data by formatting dates and decimal values
- * @param {Object} data - The data object containing mainData array
- * @returns {Object} Transformed data object
- */
-const transformData = (data) => {
-
-    const transformDate = (value) => 
-        value == null || value == undefined ? "-" : moment(value).format(DATE_FORMAT);
-
+const transformData = (data, params) => {
     const transformDecimal = (value) =>
-        value == null || value == undefined ? "-" : formatDecimal(value);
+        value == null ? '-' : formatDecimal(value);
 
-    const transformField = (value, key) => {
-        if (dateFields.includes(key)) return transformDate(value);
-        if (decimalFields.includes(key)) return transformDecimal(value);
-        return value ?? "-";
+    const transformField = (key, value) =>
+        decimalFields.includes(key) ? transformDecimal(value) : (value ?? '-');
+
+    const transformData = data.mainData.map(item =>
+        Object.fromEntries(
+            Object.entries(item).map(([key, value]) => [key, transformField(key, value)])
+        )
+    );
+
+    const sortedData = sortBy(transformData, params.sortColumn, params.isAscending);
+
+    return {
+        ...data,
+        mainData: sortedData
     };
-
-    data.mainData = data.mainData.map(item => {
-        return Object.fromEntries(
-            Object.entries(item).map(([key, value]) => [key, transformField(value, key)])
-        );
-    });
-
-    data.total = { ...data.total, affUserName: TotalText };
-
-    return data;
 };
+
 
 export const getTurnoverDetail = async (memberCpaId) => {
     const url = `Portal/PlayerCpaReport/GetTurnoverDetail?memberCpaId=${memberCpaId}`;
     const response = await get(url);
 
     return response && response.status === 200 ? response.data : null;
+}
+
+export const paginate = (list, pageIndex, pageSize) => {
+    if (!list) {
+        return [];
+    }
+
+    const start = (pageIndex - 1) * pageSize;
+    const end = pageIndex * pageSize;
+    return list.slice(start, end);
+};
+
+
+export const sortBy = (list, prop = 'affUserName', isAscending = true) => {
+
+    if (!list) {
+        return [];
+    }
+
+    const sortedList = list.sort((a, b) => {
+        const valueA = a[prop];
+        const valueB = b[prop];
+
+        const numA = Number(valueA);
+        const numB = Number(valueB);
+
+        if (!isNaN(numA) && !isNaN(numB)) {
+            if (numA < numB) return isAscending ? -1 : 1;
+            if (numA > numB) return isAscending ? 1 : -1;
+            return 0;
+        }
+
+        if (valueA < valueB) return isAscending ? -1 : 1;
+        if (valueA > valueB) return isAscending ? 1 : -1;
+        return 0;
+    });
+
+    return sortedList;
 }

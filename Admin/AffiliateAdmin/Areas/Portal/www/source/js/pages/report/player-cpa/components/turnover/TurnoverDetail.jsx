@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, ModalHeader, ModalBody, Table } from 'reactstrap';
 import { connect } from 'react-redux';
-import { setMemberCpaId } from '../../actions';
+
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import TableFooter from './TableFooter';
+
+import { setMemberCpaId } from '../../actions';
+import { toggleLoader } from '../../../../../actions/loaderAction';
+import { getTurnoverDetail } from '../../libs/service';
 import { getMaxHeight } from '../../../libs/constants';
 
-export const TurnoverDetail = ({ turnoverDetail, memberCpaId, setMemberCpaId }) => {
-    if (!memberCpaId || !turnoverDetail) {
+export const TurnoverDetail = ({ memberCpaId, setMemberCpaId, toggleLoader }) => {
+    const [turnoverDetail, setTurnoverDetail] = useState(null);
+
+    useEffect(() => {
+        if (memberCpaId) {
+            toggleLoader(true);
+            getTurnoverDetail(memberCpaId)
+                .then(data => {
+                    setTurnoverDetail(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                }).finally(() => {
+                    toggleLoader(false);
+                });
+        }
+    }, [memberCpaId]);
+
+    if (!turnoverDetail) {
         return null;
     }
 
@@ -16,6 +37,7 @@ export const TurnoverDetail = ({ turnoverDetail, memberCpaId, setMemberCpaId }) 
 
     const closeModal = () => {
         setMemberCpaId(null)
+        setTurnoverDetail(null)
     }
 
     return (
@@ -56,8 +78,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setMemberCpaId: (data) => dispatch(setMemberCpaId(data))
+        setMemberCpaId: (data) => dispatch(setMemberCpaId(data)),
+        toggleLoader: (data) => dispatch(toggleLoader(data))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TurnoverDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(TurnoverDetail));

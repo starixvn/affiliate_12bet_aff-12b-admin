@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'reactstrap';
 import { Cell } from '@9softstudio/react-fixed-table-header';
 import { connect } from 'react-redux';
-import { setParams, toggleSubmit } from '../../actions';
+import { setParams, setPlayerCpaData } from '../../actions';
 import { bindActionCreators } from 'redux';
 import { headerRows, dataKey } from '../../libs/constants';
 
@@ -36,11 +36,11 @@ const RowHeader = ({ index, row, sortColumn, isAscending, handleClickHeader }) =
                                     </div>
                                 </Button>
                             ) :
-                            (
-                                <div className="th-wrapper">
-                                    {cell.title}
-                                </div>
-                            )}
+                                (
+                                    <div className="th-wrapper">
+                                        {cell.title}
+                                    </div>
+                                )}
                         </Cell>
                     )
                 })
@@ -49,15 +49,9 @@ const RowHeader = ({ index, row, sortColumn, isAscending, handleClickHeader }) =
     )
 }
 
-export const TableHeader = ({ sortColumn, isAscending, setParams, toggleSubmit }) => {
+export const TableHeader = ({ sortColumn, isAscending, handleSort }) => {
     const handleClickHeader = (sortColumnSelected) => {
-        if (!sortColumnSelected) return;
-
-        setParams({
-            sortColumn: sortColumnSelected,
-            isAscending: sortColumnSelected === sortColumn ? !isAscending : false
-        });
-        toggleSubmit();
+        handleSort(sortColumnSelected);
     }
 
     return (
@@ -80,8 +74,14 @@ export const TableHeader = ({ sortColumn, isAscending, setParams, toggleSubmit }
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ setParams, toggleSubmit }, dispatch);
+const mapStateToProps = ({ playerCpaData }) => {
+    return {
+        playerCpaData
+    }
 }
 
-export default connect(null, mapDispatchToProps)(TableHeader);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ setParams, setPlayerCpaData }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableHeader);

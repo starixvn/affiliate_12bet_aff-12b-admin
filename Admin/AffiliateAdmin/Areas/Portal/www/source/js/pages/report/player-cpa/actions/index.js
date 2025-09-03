@@ -17,12 +17,6 @@ export const setParams = (data) => {
     }
 }
 
-export const toggleSubmit = () => {
-    return {
-        type: types.TOGGLE_SUBMIT,
-    }
-}
-
 export const setMemberCpaId = (data) => {
     return {
         type: types.SET_MEMBER_CPA_ID,
@@ -40,5 +34,12 @@ export const setDealId = (data) => {
 export const toggleDealPopup = () => {
     return {
         type: types.TOGGLE_DEAL_POPUP,
+    }
+}
+
+export const setPlayerCpaData = (data) => {
+    return {
+        type: types.SET_PLAYER_CPA_DATA,
+        data
     }
 }
