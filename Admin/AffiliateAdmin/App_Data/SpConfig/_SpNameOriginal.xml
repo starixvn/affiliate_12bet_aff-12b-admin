@@ -68,6 +68,7 @@
     <Setting Key="Aff_Admin_Report_AffiliateCPA" SpName="Aff_Admin_Report_AffiliateCPA" DbName="" />
     <Setting Key="Aff_Admin_Report_PlayerCPA" SpName="Aff_Admin_Report_PlayerCPA" DbName="" />
     <Setting Key="Aff_Admin_Report_PlayerCPA_TO_Detail" SpName="Aff_Admin_Report_PlayerCPA_TO_Detail" DbName="" />
+    <Setting Key="Aff_Admin_Report_RedepositCPA" SpName="Aff_Admin_Report_RedepositCPA" DbName="" />
   </Function>
   <Function Name="Info">
     <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="" >
