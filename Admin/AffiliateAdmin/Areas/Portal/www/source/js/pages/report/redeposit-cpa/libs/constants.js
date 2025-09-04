@@ -32,7 +32,7 @@ export const headerText = {
     [reportKey.ExpiredRedepositDateStr]: 'Expired Redeposit Date',
     [reportKey.RedepositStatistics]: 'Redeposit Statistics',
     [reportKey.ApprovedCpaPlayer]: 'Approved CPA Player',
-    [reportKey.RedepositRate]: 'Redeposit%',
+    [reportKey.RedepositRate]: 'Redeposit %',
     [reportKey.NumOfPlayerRedeposit]: 'No. of Player Redeposit',
     [reportKey.TotalSettledCpaAmount]: 'Total Settled CPA Amount',
     [reportKey.Status]: 'Status'

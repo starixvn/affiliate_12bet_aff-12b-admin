@@ -39,8 +39,8 @@ const SubEntryRow = ({ subEntry, isFirst, rowSpan, groupIndex }) => {
             {isFirst && (
                 <>
                     <td title={groupIndex} className="text-center" rowSpan={rowSpan}>{groupIndex}</td>
-                    <td title={subEntry.AffUserName} className="text-center" rowSpan={rowSpan}>{subEntry.AffUserName}</td>
-                    <td title={subEntry.DealName} className="text-center" rowSpan={rowSpan}>{subEntry.DealName}</td>
+                    <td title={subEntry.AffUserName} className="text-left" rowSpan={rowSpan}>{subEntry.AffUserName}</td>
+                    <td title={subEntry.DealName} className="text-left" rowSpan={rowSpan}>{subEntry.DealName}</td>
                     <td title={subEntry.PaymentFrequency} className="text-center" rowSpan={rowSpan}>{subEntry.PaymentFrequency}</td>
                 </>
             )}
