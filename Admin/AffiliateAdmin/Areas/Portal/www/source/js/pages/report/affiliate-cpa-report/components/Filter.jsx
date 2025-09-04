@@ -8,9 +8,9 @@ import MultipleSelect from '../../../../components/multiple-select';
 
 import { setParams, toggleSubmit } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
-import { viewByOptions } from '../libs/constants';
+import { viewByOptions, defaultParams } from '../libs/constants';
 import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate, handleChangeMultipleSelected } from '../../../../modules/utils';
-import { minDate, sixMonth } from '../../../../modules/constants';
+import { minDate, sixMonth, defaultPagingOption } from '../../../../modules/constants';
 
 const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
     const [nowString, setNowString] = useState('');
@@ -67,7 +67,17 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
     }
 
     const onSearch = () => {
+        resetParams();
         toggleSubmit();
+    }
+
+    const resetParams = () => {
+        setParams({
+            pageIndex: defaultPagingOption.PageIndex,
+            pageSize: defaultPagingOption.PageSize,
+            sortType: defaultParams.sortType,
+            sortDirectionType: defaultParams.sortDirectionType
+        });
     }
 
     return (

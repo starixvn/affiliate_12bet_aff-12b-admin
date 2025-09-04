@@ -26,8 +26,6 @@ export const defaultParams = {
     viewBy: '1',
     fromDate: '',
     toDate: '',
-    pageSize: 20,
-    pageIndex: 1,
     sortColumn: 'affUserName',
     isAscending: true
 }

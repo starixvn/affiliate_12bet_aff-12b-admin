@@ -10,7 +10,7 @@ import { DatePicker } from '@9softstudio/react-datepicker';
 import { setParams, toggleSubmit } from '../actions';
 import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate, handleChangeMultipleSelected } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
-import { minDate, sixMonth } from '../../../../modules/constants';
+import { defaultPagingOption, minDate, sixMonth } from '../../../../modules/constants';
 
 export const Filter = ({ params, setParams, today, deals, toggleSubmit }) => {
     const [dealList, setDealList] = useState(deals);
@@ -66,7 +66,15 @@ export const Filter = ({ params, setParams, today, deals, toggleSubmit }) => {
     }
 
     const handleClickSearch = () => {
+        resetParams();
         toggleSubmit(true);
+    }
+
+    const resetParams = () => {
+        setParams({
+            pageIndex: defaultPagingOption.PageIndex,
+            pageSize: defaultPagingOption.PageSize
+        });
     }
 
     return (

@@ -4,7 +4,7 @@ import { setPagingOption, setReportTitle, toggleSubmit } from '../actions';
 import { reportName, viewByOptions } from '../libs/constants';
 import { fetchAffiliateCpaData } from '../libs/services';
 
-export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) => {
+export const useAffiliateCpaData = (isSubmit, params, dispatch) => {
     const [affiliateCpaData, setAffiliateCpaData] = useState(null);
 
     useEffect(() => {
@@ -18,11 +18,12 @@ export const useAffiliateCpaData = (isSubmit, params, pagingOption, dispatch) =>
 
         fetchAffiliateCpaData({ ...params, isExportExcel: false })
             .then(res => {
-                setAffiliateCpaData(res);
                 dispatch(setPagingOption({
-                    ...pagingOption,
+                    PageIndex: params.pageIndex,
+                    PageSize: params.pageSize,
                     TotalItem: res?.totalItem
                 }));
+                setAffiliateCpaData(res);
                 dispatch(setReportTitle(getTitle()));
 
             }).finally(() => {

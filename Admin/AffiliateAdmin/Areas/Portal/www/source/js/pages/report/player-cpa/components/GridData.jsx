@@ -29,7 +29,6 @@ export const GridData = ({ params, pagingOption, playerCpaData, setParams, setPa
         toggleLoader(true);
 
         setTimeout(() => {
-            setParams({ pageIndex: pageIndex, pageSize: pageSize });
             setPagingOption({
                 ...pagingOption,
                 PageIndex: pageIndex,
@@ -54,7 +53,7 @@ export const GridData = ({ params, pagingOption, playerCpaData, setParams, setPa
                 isAscending
             );
 
-            const pagingData = paginate(sortedData, params.pageIndex, params.pageSize);
+            const pagingData = paginate(sortedData, pagingOption.PageIndex, pagingOption.PageSize);
 
             setParams({
                 sortColumn: sortColumnSelected,

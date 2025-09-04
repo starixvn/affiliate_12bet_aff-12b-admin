@@ -9,31 +9,32 @@ import TableBody from './table/TableBody';
 import TableFooter from './table/TableFooter';
 
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { toggleSubmit, setPagingOption, setParams } from '../actions';
+import { toggleSubmit, setPagingOption } from '../actions';
 import { getRedepositCpaData } from '../libs/service';
 
-export const GridData = ({ params, isSubmit, toggleLoader, toggleSubmit, setPagingOption, pagingOption, setParams }) => {
+export const GridData = ({ params, isSubmit, toggleLoader, toggleSubmit, setPagingOption, pagingOption }) => {
     const [data, setData] = useState(null);
     const [total, setTotal] = useState(null);
 
     useEffect(() => {
         if (isSubmit) {
-            fetchData();
+            fetchData(params);
         }
     }, [isSubmit]);
 
-    const fetchData = () => {
+    const fetchData = (params) => {
         toggleLoader(true);
         getRedepositCpaData(params)
             .then(data => {
                 if (!!data) {
                     const { MainData, Total, TotalItem } = data;
-                    setData(MainData);
                     setTotal(Total);
                     setPagingOption({
-                        ...pagingOption,
+                        PageIndex: params.pageIndex,
+                        PageSize: params.pageSize,
                         TotalItem: TotalItem
                     });
+                    setData(MainData);
                 }
             })
             .catch(err => {
@@ -47,12 +48,14 @@ export const GridData = ({ params, isSubmit, toggleLoader, toggleSubmit, setPagi
 
     const handlePaging = (index, size) => {
         const newPaging = {
-            PageIndex: index,
-            PageSize: size
+            pageIndex: index,
+            pageSize: size
         };
-        setPagingOption(newPaging);
-        setParams(newPaging);
-        toggleSubmit(true);
+        const newParams = {
+            ...params,
+            ...newPaging
+        };
+        fetchData(newParams);
     }
 
     return data && (
@@ -83,8 +86,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         toggleLoader,
         toggleSubmit,
-        setPagingOption,
-        setParams
+        setPagingOption
     }, dispatch);
 }
 

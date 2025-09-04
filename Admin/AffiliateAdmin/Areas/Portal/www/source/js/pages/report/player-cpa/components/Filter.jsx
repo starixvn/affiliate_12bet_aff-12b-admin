@@ -9,10 +9,10 @@ import Field from '../../../../components/Field';
 import MultipleSelect from '../../../../components/multiple-select';
 
 import { setReportTitle, setParams, setPlayerCpaData, setPagingOption } from '../actions';
-import { reportName, statusOptions, viewByOptions } from '../libs/constants';
+import { reportName, statusOptions, viewByOptions, defaultParams } from '../libs/constants';
 import { formatUnit, handleAfterChangeFromDate, handleAfterChangeToDate, handleChangeMultipleSelected } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
-import { minDate, sixMonth } from '../../../../modules/constants';
+import { defaultPagingOption, minDate, sixMonth } from '../../../../modules/constants';
 import { getPlayerCpaData } from '../libs/service';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
@@ -75,7 +75,16 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
     }
 
     const handleClickSearch = () => {
+        resetParams();
         fetchData();
+    }
+
+
+    const resetParams = () => {
+        setParams({
+            sortColumn: defaultParams.sortColumn,
+            isAscending: defaultParams.isAscending
+        });
     }
 
     const fetchData = async () => {
@@ -83,12 +92,13 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
 
         const data = await getPlayerCpaData(params);
         if (data) {
-            setReportTitle(getTitle());
-            setPlayerCpaData(data);
             setPagingOption({
-                ...pagingOption,
+                PageIndex: defaultPagingOption.PageIndex,
+                PageSize: defaultPagingOption.PageSize,
                 TotalItem: data?.totalItem
             });
+            setReportTitle(getTitle());
+            setPlayerCpaData(data);
         }
 
         toggleLoader(false);

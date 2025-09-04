@@ -2,35 +2,30 @@
 import { connect } from 'react-redux';
 import { Table } from 'reactstrap';
 import { Pager } from '@9softstudio/react-fixed-table-header';
-import { setPagingOption, setParams, toggleSubmit } from '../actions';
+import { setParams, toggleSubmit } from '../actions';
 import { getMaxHeight } from '../../libs/constants';
 import useAffiliateCpaData from '../hooks/useAffiliateCpaData';
 import TableHeader from './table/TableHeader';
 import TableBody from './table/TableBody';
 import TableFooter from './table/TableFooter';
 
-const GridData = ({ 
-    params, 
-    pagingOption, 
+const GridData = ({
+    params,
+    pagingOption,
     dispatch,
     isSubmit
 }) => {
-    const affiliateCpaData = useAffiliateCpaData(isSubmit, params, pagingOption, dispatch);
+    const affiliateCpaData = useAffiliateCpaData(isSubmit, params, dispatch);
     const { mainData, total, totalItem } = affiliateCpaData || { mainData: [], total: null, totalItem: null };
 
     const handlePaging = (pageIndex, pageSize) => {
-        dispatch(setParams({ ...params, pageIndex: pageIndex, pageSize: pageSize}));
-        dispatch(setPagingOption({
-            ...pagingOption,
-            PageIndex: pageIndex,
-            PageSize: pageSize
-        }));
+        dispatch(setParams({ ...params, pageIndex: pageIndex, pageSize: pageSize }));
         dispatch(toggleSubmit());
     }
 
     const maxHeight = getMaxHeight();
 
-    if(!affiliateCpaData) {
+    if (!affiliateCpaData) {
         return null;
     }
 
@@ -38,16 +33,16 @@ const GridData = ({
         <Fragment>
             <div className="table-responsive" style={{ maxHeight }}>
                 <Table className="freeze-table table-bordered table-hover">
-                    <TableHeader 
-                        sortType={params.sortType} 
-                        sortDirectionType={params.sortDirectionType} 
+                    <TableHeader
+                        sortType={params.sortType}
+                        sortDirectionType={params.sortDirectionType}
                     />
-                    <TableBody 
-                        data={mainData} 
-                        pagingOption={pagingOption} 
+                    <TableBody
+                        data={mainData}
+                        pagingOption={pagingOption}
                     />
-                    <TableFooter 
-                        total={total} 
+                    <TableFooter
+                        total={total}
                         totalItem={totalItem}
                     />
                 </Table>
@@ -63,4 +58,4 @@ function mapStateToProps({ pagingOption, params, isSubmit }) {
     return { pagingOption, params, isSubmit };
 }
 
-export default connect(mapStateToProps)(GridData);
+export default connect(mapStateToProps)(React.memo(GridData));
