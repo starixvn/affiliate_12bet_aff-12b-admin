@@ -13,7 +13,7 @@ import { format } from '../../../../../../../modules/numberFormat';
 import { isValidNumber } from '../../../../../../../modules/utils';
 
 
-export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, tomorrow }) => {
+export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, tomorrow, isModifiable }) => {
 
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(false);
@@ -177,7 +177,7 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
             <FormGroup row className='align-items-center'>
                 <Label sm={4} className="d-flex mr_15neg" htmlFor='IsRedeposit'>
                     <input
-                        disabled={isEdit}
+                        disabled={isEdit || !isModifiable}
                         type="checkbox"
                         name="IsRedeposit"
                         id="IsRedeposit"
@@ -212,6 +212,7 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
             <FormGroup row className='align-items-center'>
                 <Label sm={4} className="d-flex mr_15neg" htmlFor='IsQuota'>
                     <input
+                        disabled={!isModifiable}
                         type="checkbox"
                         name="IsQuota"
                         id="IsQuota"
@@ -237,7 +238,6 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
                 <Label htmlFor="ScheduleId" sm={4} className="d-flex mr_15neg">
                     Payment Frequency
                     <span title="Choose how often CPA is calculated and payments are made, starting from the ‘Start from’ date." className="ml-1 oi icon-info"></span>
-
                 </Label>
                 <Col sm={3}>
                     <Input type="select"
@@ -280,13 +280,14 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
     );
 }
 
-const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, tomorrow }) => {
+const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, tomorrow, isModifiable }) => {
     return {
         dealInfo,
         paymentFrequencyList,
         isEdit,
         isSubmitted,
-        tomorrow
+        tomorrow,
+        isModifiable
     };
 };
 

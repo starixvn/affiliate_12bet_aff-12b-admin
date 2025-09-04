@@ -13,7 +13,7 @@ import { convertTargetCountryList } from '../../../../libs/service';
 import { isValidNumber } from '../../../../../../../modules/utils';
 
 
-export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }) => {
+export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo, isModifiable }) => {
 
     const _handleChangeTargetCountry = (item, selectedTargetCountry) => {
         setDealInfo({ CountryCodes: selectedTargetCountry });
@@ -89,7 +89,6 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
                     Activity Period
                     <span className="text-danger required" style={{ marginLeft: 3 }}>*</span>
                     <span title="The player must complete all required actions within this time period to qualify. For example: within 30 days from registration." className="ml-1 oi icon-info"></span>
-
                 </Label>
                 <Col sm={3} className="d-flex align-items-center">
                     <Input type="text"
@@ -105,6 +104,7 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
             <FormGroup row className='align-items-center'>
                 <Label sm={4} className="d-flex mr_15neg" htmlFor='IsActivePlayerHoldingPeriod'>
                     <input
+                        disabled={!isModifiable}
                         type="checkbox"
                         name="IsActivePlayerHoldingPeriod"
                         id="IsActivePlayerHoldingPeriod"
@@ -141,11 +141,12 @@ export const Player = ({ dealInfo, targetCountryList, isSubmitted, setDealInfo }
     );
 }
 
-const mapStateToProps = ({ dealInfo, targetCountryList, isSubmitted }) => {
+const mapStateToProps = ({ dealInfo, targetCountryList, isSubmitted, isModifiable }) => {
     return {
         targetCountryList,
         dealInfo,
-        isSubmitted
+        isSubmitted,
+        isModifiable
     };
 };
 
