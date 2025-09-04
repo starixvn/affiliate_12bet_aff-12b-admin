@@ -177,11 +177,12 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
             <FormGroup row className='align-items-center'>
                 <Label sm={4} className="d-flex mr_15neg" htmlFor='IsRedeposit'>
                     <input
+                        disabled={isEdit}
                         type="checkbox"
                         name="IsRedeposit"
                         id="IsRedeposit"
                         checked={dealInfo.IsRedeposit}
-                        onChange={_handleCheckRedeposit}
+                        onChange={isEdit ? null : _handleCheckRedeposit}
                     />
                     <span className="ml-1">Redeposit</span>
                     <span title="The affiliate receive CPA Amount only when a minimum percentage of their referred players redeposit within a specified number of days." className="ml-1 oi icon-info"></span>
@@ -189,22 +190,22 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
 
                 <Col sm={2} className="d-flex align-items-center">
                     <Input type="text"
-                        disabled={!dealInfo.IsRedeposit}
+                        disabled={!dealInfo.IsRedeposit || isEdit}
                         name="RedepositRate"
                         className={isRedepositRateError ? 'has-error' : ''}
                         id="RedepositRate"
                         value={dealInfo.RedepositRate}
-                        onChange={_handleChangeRedepositRate} />
+                        onChange={isEdit || !dealInfo.IsRedeposit ? null : _handleChangeRedepositRate} />
                 </Col>
                 <Label className="text-content mb-0 ms-2">% of eligible players | Re-checked within</Label>
                 <Col sm={2} className="d-flex align-items-center">
                     <Input type="text"
-                        disabled={!dealInfo.IsRedeposit}
+                        disabled={!dealInfo.IsRedeposit || isEdit}
                         name="RedepositDays"
                         className={_getErrorClass(dealInfo.RedepositDays, dealInfo.IsRedeposit)}
                         id="RedepositDays"
                         value={format(dealInfo.RedepositDays)}
-                        onChange={_handleChangePositiveInteger} />
+                        onChange={isEdit || !dealInfo.IsRedeposit ? null : _handleChangePositiveInteger} />
                 </Col>
                 <Label className="text-content mb-0 ms-2">(days)</Label>
             </FormGroup>
