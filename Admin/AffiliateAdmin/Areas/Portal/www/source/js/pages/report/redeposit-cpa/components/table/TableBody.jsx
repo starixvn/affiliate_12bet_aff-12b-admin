@@ -26,7 +26,7 @@ const groupData = (data) => {
     return Object.values(grouped);
 };
 
-const SubEntryRow = ({ subEntry, isFirst, rowSpan, groupIndex }) => {
+const SubEntryRow = ({ subEntry, isFirst, rowSpan }) => {
 
     const statusClassName = `status-${subEntry.Status.toLowerCase().replace(' ', '-')}`;
     const recheckDays = subEntry.RecheckDays ? `${format(subEntry.RecheckDays)} days` : '';
@@ -36,9 +36,9 @@ const SubEntryRow = ({ subEntry, isFirst, rowSpan, groupIndex }) => {
 
     return (
         <tr>
+            <td title={subEntry.RowIdx} className="text-center">{subEntry.RowIdx}</td>
             {isFirst && (
                 <>
-                    <td title={groupIndex} className="text-center" rowSpan={rowSpan}>{groupIndex}</td>
                     <td title={subEntry.AffUserName} className="text-left" rowSpan={rowSpan}>{subEntry.AffUserName}</td>
                     <td title={subEntry.DealName} className="text-left" rowSpan={rowSpan}>{subEntry.DealName}</td>
                     <td title={subEntry.PaymentFrequency} className="text-center" rowSpan={rowSpan}>{subEntry.PaymentFrequency}</td>
@@ -72,15 +72,16 @@ const SubEntryRow = ({ subEntry, isFirst, rowSpan, groupIndex }) => {
 const GroupRow = ({ group, rowNumber }) => {
     return (
         <>
-            {group.subEntries.map((subEntry, index) => (
-                <SubEntryRow
-                    key={`${rowNumber}-${index}`}
-                    subEntry={subEntry}
-                    isFirst={index === 0}
-                    rowSpan={group.subEntries.length}
-                    groupIndex={rowNumber}
-                />
-            ))}
+            {group.subEntries.map((subEntry, index) => {
+                return (
+                    <SubEntryRow
+                        key={`${rowNumber}-${index}`}
+                        subEntry={subEntry}
+                        isFirst={index === 0}
+                        rowSpan={group.subEntries.length}
+                    />
+                )
+            })}
         </>
     );
 };

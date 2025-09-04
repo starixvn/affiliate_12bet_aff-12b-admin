@@ -352,9 +352,6 @@ export default class ReportExcel {
             } else if (field === fields.TotalSettledCpaAmount) {
                 value = totalData[field] || 0;
                 style = totalCellStyle.decimal;
-            } else if (field === fields.RedepositRate || field === fields.NumOfPlayerRedeposit) {
-                value = 'N/A';
-                style = totalCellStyle.center;
             } else {
                 value = '';
                 style = totalCellStyle.center;

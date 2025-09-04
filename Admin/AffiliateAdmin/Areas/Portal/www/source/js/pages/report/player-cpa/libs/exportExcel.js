@@ -2,11 +2,11 @@ import Excel from '../../../../modules/excel';
 import { titleCellStyle, headerCellStyle, bodyCellStyle, totalCellStyle } from '../../../../modules/excelStyleConstant';
 import { formatDateTime } from '../../../../modules/utils';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { row1, row2, TotalText } from './constants';
+import { reportName, row1, row2, TotalText } from './constants';
 import { dataKey } from './constants';
 
 const resource = {
-    reportName: 'Player CPA Report',
+    reportName: reportName,
     space: ' ',
     dash: ' - '
 };
@@ -45,11 +45,11 @@ const colConfig = {
         [COL_WIDTH]: 120
     },
     [dataKey.FTD]: {
-        [MAIN_SECTION_STYLE]: {...bodyCellStyle.decimal, ...bodyCellStyle.right},
+        [MAIN_SECTION_STYLE]: { ...bodyCellStyle.decimal, ...bodyCellStyle.right },
         [COL_WIDTH]: 100
     },
     [dataKey.TotalDeposit]: {
-        [MAIN_SECTION_STYLE]: {...bodyCellStyle.decimal, ...bodyCellStyle.right},
+        [MAIN_SECTION_STYLE]: { ...bodyCellStyle.decimal, ...bodyCellStyle.right },
         [COL_WIDTH]: 150
     },
     [dataKey.Turnover]: {
@@ -61,7 +61,7 @@ const colConfig = {
         [COL_WIDTH]: 150
     },
     [dataKey.CPAAmount]: {
-        [MAIN_SECTION_STYLE]: {...bodyCellStyle.decimal, ...bodyCellStyle.right},
+        [MAIN_SECTION_STYLE]: { ...bodyCellStyle.decimal, ...bodyCellStyle.right },
         [COL_WIDTH]: 150
     },
     [dataKey.BetTicket]: {
@@ -77,11 +77,11 @@ const colConfig = {
         [COL_WIDTH]: 150
     },
     [dataKey.EstimatedCPAAmount]: {
-        [MAIN_SECTION_STYLE]: {...bodyCellStyle.decimal, ...bodyCellStyle.right},
+        [MAIN_SECTION_STYLE]: { ...bodyCellStyle.decimal, ...bodyCellStyle.right },
         [COL_WIDTH]: 150
     },
     [dataKey.ApprovedCPAAmount]: {
-        [MAIN_SECTION_STYLE]: {...bodyCellStyle.decimal, ...bodyCellStyle.right},
+        [MAIN_SECTION_STYLE]: { ...bodyCellStyle.decimal, ...bodyCellStyle.right },
         [COL_WIDTH]: 150
     },
     [dataKey.CPAStatus]: {
@@ -146,14 +146,14 @@ export default class ExportExcel {
     _createHeader() {
         // Create general columns in first row
         this._createFirstRowHeaders();
-        
+
         // Create period columns in first row
         const periodColumns = [
             { title: "Active Period", count: NUMBER_ACTIVE_COLUMNS, startCol: GENERAL_COLUMNS },
             { title: "Holding Period", count: NUMBER_HOLDING_COLUMNS, startCol: GENERAL_COLUMNS + NUMBER_ACTIVE_COLUMNS },
             { title: "Approval Period", count: NUMBER_APPROVAL_COLUMNS, startCol: GENERAL_COLUMNS + NUMBER_ACTIVE_COLUMNS + NUMBER_HOLDING_COLUMNS }
         ];
-        
+
         periodColumns.forEach(period => {
             this._createPeriodHeader(period.title, period.startCol, period.count);
         });
@@ -229,9 +229,9 @@ export default class ExportExcel {
      */
     _createSecondRowHeaders() {
         row2.forEach((cel, celIdx) => {
-            const address = Excel.getCellAddress({ 
-                c: celIdx + GENERAL_COLUMNS, 
-                r: HEADER_ROW_INDEX + 1 
+            const address = Excel.getCellAddress({
+                c: celIdx + GENERAL_COLUMNS,
+                r: HEADER_ROW_INDEX + 1
             });
             this.worksheet[address] = {
                 t: "s",
@@ -274,7 +274,7 @@ export default class ExportExcel {
             const columnConfig = this.columnConfigs[colIndex];
             let value = item[columnConfig.field];
 
-            if(columnConfig.field === dataKey.Turnover) {
+            if (columnConfig.field === dataKey.Turnover) {
                 value = value ? "Yes" : "No";
             }
 
@@ -302,9 +302,9 @@ export default class ExportExcel {
         }
     }
 
-    _createTotalRow() {     
+    _createTotalRow() {
         const total = this.data.total;
-        if(!total) return;
+        if (!total) return;
 
         const cellValues = [
             { colIndex: 0, value: TotalText, style: bodyCellStyle.left },
@@ -315,12 +315,12 @@ export default class ExportExcel {
             { colIndex: 15, value: formatDecimal(total.approvedCPAAmount), style: totalCellStyle.decimal }
         ]
 
-        for(let i = 0; i < this.totalColumn; i++) {
+        for (let i = 0; i < this.totalColumn; i++) {
             const address = Excel.getCellAddress({ c: i, r: this.currentRowIndex });
             this.worksheet[address] = {
                 t: "s",
                 v: "",
-                s: {...totalCellStyle.default, ...totalCellStyle.left}
+                s: { ...totalCellStyle.default, ...totalCellStyle.left }
             };
         }
 
@@ -330,12 +330,12 @@ export default class ExportExcel {
             this.worksheet[address] = {
                 t: Excel.getCellType(cell.value),
                 v: cell.value,
-                s: { ...totalCellStyle.right, ...cell.style}
+                s: { ...totalCellStyle.right, ...cell.style }
             };
         })
 
         this._mergeCell(this.currentRowIndex, 0, this.currentRowIndex, TOTAL_MERGE_COLUMNS - 1);
-        
+
     }
 
     _createExcelConfig() {

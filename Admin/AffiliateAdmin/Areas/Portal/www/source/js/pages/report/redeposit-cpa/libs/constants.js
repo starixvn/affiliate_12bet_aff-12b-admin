@@ -66,7 +66,6 @@ export const headerConfigs = {
 }
 
 export const resource = {
-    reportName: 'Redeposit CPA Report',
-    reportDetailName: 'Detail',
+    reportName: 'REDEPOSIT CPA REPORT',
     space: ' '
 }
