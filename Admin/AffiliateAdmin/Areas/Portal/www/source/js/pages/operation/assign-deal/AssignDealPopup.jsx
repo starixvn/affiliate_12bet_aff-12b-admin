@@ -39,12 +39,11 @@ export default class AssignDealPopup extends PureComponent {
         const title = isNewAffiliate ? 'Assign Deal For New Affiliate' : `Change Deal For ${affName}`;
 
         const url = resolveClientUrl(`Portal/DealAssignment/AssignDeal?affId=${affId}`);
-        const size = '';
         const maxWidth = 650;
 
         return (
             <div className="data-content">
-                <Modal isOpen={showPopupAssignDeal} toggle={this.handleClosePopup} backdrop='static' size={size} style={{ maxWidth }}>
+                <Modal isOpen={showPopupAssignDeal} toggle={this.handleClosePopup} backdrop='static' style={{ maxWidth }}>
                     <ModalHeader toggle={this.handleClosePopup}>
                         <span className="iconpopup"></span> {title}
                     </ModalHeader>

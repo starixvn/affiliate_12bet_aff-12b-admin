@@ -35,7 +35,7 @@
                 DealTypes = _commonDealService.GetDealTypes(),
                 PaymentFrequencies = _commonDealService.GetPaymentFrequency(),
                 Deductions = _commonDealService.GetDeductionList(),
-                TargetCountries = _systemService.GetTargetCountryList(),
+                TargetCountries = _commonDealService.GetPlayerTargetCountry(),
                 Products = _systemService.GetProductList()
             };
 

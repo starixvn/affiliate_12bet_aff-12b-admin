@@ -10,7 +10,7 @@
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
-            //dealTypeList: @Html.Raw(Json.Encode(Model.DealTypeList)),
+            dealTypeList: @Html.Raw(Json.Encode(Model.DealTypeList)),
             dealList: @Html.Raw(Json.Encode(Model.DealList)),
             affInfo: @Html.Raw(Json.Encode(Model.AffInfo))
         }
