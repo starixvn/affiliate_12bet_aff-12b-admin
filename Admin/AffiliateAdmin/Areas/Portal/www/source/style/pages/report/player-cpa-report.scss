@@ -3,6 +3,12 @@ $left1: 60px;
 $left2: 210px;
 $outline: 0.5px solid #cccccc;
 
+.filter-container {
+    .rdr-DateRange {
+        z-index: 11;
+    }
+}
+
 .report-player-cpa-content-container {
     table {
         th, td {
@@ -194,6 +200,7 @@ $outline: 0.5px solid #cccccc;
         background: url('../../assets/icon-info.png');
         width: 16px;
         height: 16px;
+        z-index: 9;
     }
 }
 

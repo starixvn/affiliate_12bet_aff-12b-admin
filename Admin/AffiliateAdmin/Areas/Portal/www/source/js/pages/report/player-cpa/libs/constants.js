@@ -80,7 +80,8 @@ export const dataKey = {
     EstimatedCPAAmount: 'estimatedCPAAmount',
     ApprovedCPAAmount: 'approvedCPAAmount',
     CPAStatus: 'cpaStatus',
-    ApprovalDate: 'cpaDateStr'
+    ApprovalDate: 'cpaDateStr',
+    HoldingTickets: 'holdingTickets'
 };
 
 export const row1 = [
@@ -191,7 +192,7 @@ export const row2 = [
         title: headerText.BetTicket,
         width: 150,
         sortable: true,
-        sortColumn: dataKey.BetTicket,
+        sortColumn: dataKey.HoldingTickets,
         field: dataKey.BetTicket
     },
     {
@@ -246,4 +247,12 @@ export const decimalFields = [
     dataKey.CPAAmount,
     dataKey.EstimatedCPAAmount,
     dataKey.ApprovedCPAAmount
+]
+
+export const dateFields = [
+    dataKey.RegistrationDate,
+    dataKey.ActiveQualifiedDate,
+    dataKey.HoldingQualifiedDate,
+    dataKey.HoldingExpiredDate,
+    dataKey.ApprovalDate
 ]

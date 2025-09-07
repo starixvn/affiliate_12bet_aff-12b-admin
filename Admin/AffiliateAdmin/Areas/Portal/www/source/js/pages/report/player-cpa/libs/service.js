@@ -1,7 +1,8 @@
 
 import { get, post } from '../../../../modules/ajaxRequest';
+import { minDate } from '../../../../modules/constants';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { decimalFields } from './constants';
+import { decimalFields, dateFields } from './constants';
 
 export const getPlayerCpaData = async (params) => {
     const url = 'Portal/PlayerCpaReport/GetData';
@@ -32,7 +33,6 @@ const transformData = (data, params) => {
     };
 };
 
-
 export const getTurnoverDetail = async (memberCpaId) => {
     const url = `Portal/PlayerCpaReport/GetTurnoverDetail?memberCpaId=${memberCpaId}`;
     const response = await get(url);
@@ -50,30 +50,31 @@ export const paginate = (list, pageIndex, pageSize) => {
     return list.slice(start, end);
 };
 
-
 export const sortBy = (list, prop = 'affUserName', isAscending = true) => {
+    if (!list) return [];
 
-    if (!list) {
-        return [];
-    }
+    const normalizer = getNormalizer(prop);
 
-    const sortedList = list.sort((a, b) => {
-        const valueA = a[prop];
-        const valueB = b[prop];
-
-        const numA = Number(valueA);
-        const numB = Number(valueB);
-
-        if (!isNaN(numA) && !isNaN(numB)) {
-            if (numA < numB) return isAscending ? -1 : 1;
-            if (numA > numB) return isAscending ? 1 : -1;
-            return 0;
-        }
+    return [...list].sort((a, b) => {
+        const valueA = normalizer(a[prop]);
+        const valueB = normalizer(b[prop]);
 
         if (valueA < valueB) return isAscending ? -1 : 1;
         if (valueA > valueB) return isAscending ? 1 : -1;
         return 0;
     });
+};
 
-    return sortedList;
-}
+const getNormalizer = (prop) => {
+    if (decimalFields.includes(prop)) {
+        return (val) => val === '-' ? 0 : Number(String(val).replace(/,/g, ''));
+    }
+    if (dateFields.includes(prop)) {
+        return (val) => {
+            if (val === '-') return minDate;
+            const d = new Date(val);
+            return isNaN(d) ? minDate : d;
+        };
+    }
+    return (val) => val ?? '';
+};
