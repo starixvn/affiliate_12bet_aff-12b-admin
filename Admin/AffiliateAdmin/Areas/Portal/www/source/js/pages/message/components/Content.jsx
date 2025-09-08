@@ -33,10 +33,37 @@ export const Content = (props) => {
         props.setParam(newParam);
     };
 
+    const _onCheckAll = (isCheckAll) => {
+        const { checkedMessages } = props;
+        const newCheckedMessages = Object.keys(checkedMessages).reduce((accumulator, currentValue) => {
+            accumulator[currentValue] = isCheckAll;
+
+            return accumulator;
+        }, {});
+
+        props.setShouldResetScrollPosition(false);
+        props.setCheckedMessages(newCheckedMessages);
+    }
+
     function _renderHeader() {
+        let allChecked = false;
+        if (props.checkedMessages && Object.keys(props.checkedMessages).length > 0) {
+            allChecked = Object.keys(props.checkedMessages).every(function (key) {
+                return props.checkedMessages[key];
+            });
+        }
+
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={40}></Cell>
+                <Cell header={true} colWidth={40}>
+                    <input
+                        className="my-2"
+                        id={`checkbox-all`}
+                        type="checkbox"
+                        checked={allChecked}
+                        onChange={(e) => _onCheckAll(e.target.checked)}
+                    />
+                </Cell>
                 <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Creator}>{headerText.Creator}</Cell>
                 <Cell header={true} colWidth={140} title={headerText.PostedDate}>{headerText.PostedDate}</Cell>

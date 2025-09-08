@@ -62,6 +62,13 @@ export const setShouldResetScrollPosition = (data) => {
     }
 }
 
+export const setNotification = (data) => {
+    return {
+        type: types.SET_NOTIFICATION,
+        data
+    }
+}
+
 export const setGridData = (data) => {
     return {
         type: types.SET_GRID_DATA,
@@ -89,15 +96,19 @@ function _convertCheckedAssets(dataList) {
     const checkedAssets = {};
     for (let item of dataList) {
         const itemId = item.MediaId;
-        checkedAssets[itemId] = false;
+
+        checkedAssets[itemId] = {
+            isChecked: false,
+            isCanDelete: !item.IsMediaIdInUse
+        };
     }
 
     return checkedAssets;
 }
 
-export const getAssetDetail = (selectedMediaId) => async () => {
+export const getAssetDetail = (param) => async () => {
     const url = 'Portal/AssetUploader/GetAssetDetail';
-    const response = await post(url, { selectedMediaId });
+    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
@@ -140,9 +151,9 @@ export const deleteAssets = (param) => async () => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const toggleAssetStatus = (mediaId, isActive) => async () => {
+export const toggleAssetStatus = (param) => async () => {
     const url = 'Portal/AssetUploader/ToggleAssetStatus';
-    const response = await post(url, { mediaId, isActive });
+    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }

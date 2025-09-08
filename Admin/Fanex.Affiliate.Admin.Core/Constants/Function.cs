@@ -18,7 +18,7 @@
         
         public const string AssetUploader = "[AssetUploader]";
 
-        public const string RegistrationFormManagement = "[RegistrationFormManagement]";
+        public const string RegistrationFormUploader = "[RegistrationFormUploader]";
 
         public const string AffExRate = "[AffEx.Rate]";
 

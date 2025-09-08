@@ -29,7 +29,7 @@ const MultipleSelectLabel = (props) => {
     const selectedItemString = getSelectedItemsString(props);
 
     return (
-        <button type="button" className="multiple-select-default multiple-select-label"
+        <button id={`${props.id}`} type="button" className="multiple-select-default multiple-select-label"
             onClick={props.onToggle}>
             <span className="text-display" title={selectedItemString}>{selectedItemString}</span>
             <b className="caret"></b>

@@ -301,6 +301,10 @@
     <Compile Include="Commands\Domain\UpdateDomainCommand.cs" />
     <Compile Include="Commands\Domain\UpdateDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\UpdateSpecificDomainControlCommand.cs" />
+    <Compile Include="Commands\LandingPage\BaseMediaNonQueryCommand.cs" />
+    <Compile Include="Commands\LandingPage\DeleteMediasCommand.cs" />
+    <Compile Include="Commands\LandingPage\UpdateMediasStatusCommand.cs" />
+    <Compile Include="Commands\LandingPage\UploadAssetsCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseBannerCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseLandingPageCommand.cs" />
     <Compile Include="Commands\LandingPage\BaseLandingPageModuleCommand.cs" />
@@ -444,6 +448,7 @@
     <Compile Include="Criterias\Administrator\AdministratorCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorDetailCriteria.cs" />
     <Compile Include="Criterias\Domain\GetTargetCountryListByDomainCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetAssetDetailCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetAssetListCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetModuleCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetPageManagementCriteria.cs" />
@@ -615,11 +620,14 @@
     <Compile Include="MetaModels\Domain\UpdateSpecificDomainControlParam.cs" />
     <Compile Include="MetaModels\EmailHistory\DeleteEmailHistoryParam.cs" />
     <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />
+    <Compile Include="MetaModels\LandingPage\AssetDetailParam.cs" />
     <Compile Include="MetaModels\LandingPage\AssetListParam.cs" />
     <Compile Include="MetaModels\LandingPage\BaseLandingPageParam.cs" />
     <Compile Include="MetaModels\LandingPage\FormManagementParam.cs" />
     <Compile Include="MetaModels\LandingPage\MediaPickerParam.cs" />
     <Compile Include="MetaModels\LandingPage\PageManagementParam.cs" />
+    <Compile Include="MetaModels\LandingPage\DeleteMediasParam.cs" />
+    <Compile Include="MetaModels\LandingPage\UpdateMediasStatusParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />

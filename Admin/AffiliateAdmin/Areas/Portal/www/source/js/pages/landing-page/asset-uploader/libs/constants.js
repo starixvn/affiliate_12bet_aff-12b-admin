@@ -1,16 +1,4 @@
-﻿export const maxWidthHeight = 501;
-export const maxLength = 50;
-export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
-
-export const fileUpload = {
-    AllowedImageExtensions: [".jpg", ".jpeg", ".png", ".gif", ".webp"],
-    MaximumFiles: 10,
-    MaxFileSize: 3
-}
-
-export const allAssetStatus = -1;
-
-export const headerText = {
+﻿export const headerText = {
     Index: '#',
     Module: 'Module',
     FileName: 'File Name',
@@ -22,10 +10,18 @@ export const headerText = {
     Action: 'Action',
 }
 
-export const messages = {
-    PleaseSelect: 'Please select asset(s) to delete',
-    AreYouSureDeleteItems: 'Are you sure to delete the selected asset(s)?',
-    DeleteItemsSuccessfully: 'Delete asset(s) successfully'
+export const messageDelete = {
+    PleaseSelect: 'Please select image(s) to delete',
+    AreYouSureDeleteItems: 'The delete action will only be performed on assets that are not associated with any landing page.<br />Are you sure you want to delete the selected image(s)?',
+    DeleteItemsSuccessfully: 'Delete image(s) successfully',
+    FailedToDelete: 'Failed to delete image(s)'
+}
+
+export const messageSwitchStatus = {
+    PleaseSelect: 'Please select image(s) to switch status',
+    AreYouSureSwitchStatus: 'Only active image(s) will be available for selection when creating a new landing page.<br />Are you sure you want to change status of the selected image(s)?',
+    SwitchStatusSuccessfully: 'Switch status of image(s) successfully',
+    FailedToSwitchStatus: 'Failed to change status of the selected image(s)'
 }
 
 export const defaultState = {

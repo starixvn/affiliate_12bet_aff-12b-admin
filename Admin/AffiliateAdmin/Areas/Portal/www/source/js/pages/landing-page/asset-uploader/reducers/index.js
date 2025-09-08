@@ -3,7 +3,7 @@
 import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
-import { fileUpload } from '../libs/constants';
+import { fileUpload } from '../../libs/constants';
 import * as types from '../actions/types';
 
 export const statusList = createReducer(null, {});
@@ -66,6 +66,12 @@ export const gridData = createReducer(null, {
     }
 })
 
+export const notification = createReducer({ message: '', isConfirmPopup: false }, {
+    [types.SET_NOTIFICATION](prevState, action) {
+        return Object.assign({}, prevState, action.data);
+    }
+})
+
 export default combineReducers({
     moduleList,
     targetCountryList,
@@ -83,4 +89,5 @@ export default combineReducers({
     shouldResetScrollPosition,
     assetDetailUrl,
     selectedMediaId,
+    notification,
 });

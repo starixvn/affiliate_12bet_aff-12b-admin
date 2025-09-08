@@ -3,14 +3,31 @@ import { combineReducers } from 'redux';
 import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
-import { fileUpload } from '../../asset-uploader/libs/constants';
+import { fileUpload } from '../../libs/constants';
 import { defaultPagingOption } from '../../../../modules/constants';
 import * as types from '../actions/types';
 
+export const statusList = createReducer(null, {});
 export const maxFileSize = createReducer(fileUpload.MaxFileSize, {});
 export const maximumFiles = createReducer(fileUpload.MaximumFiles, {});
 export const bannerRootUrl = createReducer(null, {});
 export const allowedExtensions = createReducer(fileUpload.AllowedImageExtensions, {});
+
+export const formNameList = createReducer(null, {
+    [types.SET_FORM_NAME_LIST](prevState, action) {
+        return action.data;
+    }
+});
+export const targetCountryList = createReducer(null, {
+    [types.SET_TARGET_COUNTRY_LIST](prevState, action) {
+        return action.data;
+    }
+});
+export const languageList = createReducer(null, {
+    [types.SET_LANGUAGE_LIST](prevState, action) {
+        return action.data;
+    }
+});
 
 export const param = createReducer({ PageIndex: defaultPagingOption.PageIndex, PageSize: defaultPagingOption.PageSize }, {
     [types.SET_PARAM](prevState, action) {
@@ -18,8 +35,8 @@ export const param = createReducer({ PageIndex: defaultPagingOption.PageIndex, P
     }
 })
 
-export const assetDetailUrl = createReducer(null, {
-    [types.SET_ASSET_DETAIL_URL](prevState, action) {
+export const formDetailUrl = createReducer(null, {
+    [types.SET_FORM_DETAIL_URL](prevState, action) {
         return Object.assign({}, { ...action.data });
     }
 })
@@ -30,8 +47,8 @@ export const selectedMediaId = createReducer(null, {
     }
 })
 
-export const checkedAssets = createReducer({}, {
-    [types.SET_CHECKED_ASSETS](prevState, action) {
+export const checkedForms = createReducer({}, {
+    [types.SET_CHECKED_FORMS](prevState, action) {
         return action.data;
     }
 })
@@ -49,6 +66,10 @@ export const gridData = createReducer(null, {
 })
 
 export default combineReducers({
+    formNameList,
+    targetCountryList,
+    languageList,
+    statusList,
     maxFileSize,
     maximumFiles,
     allowedExtensions,
@@ -57,8 +78,8 @@ export default combineReducers({
     gridData,
     pagingOption,
     isShowLoader,
-    checkedAssets,
+    checkedForms,
     shouldResetScrollPosition,
-    assetDetailUrl,
+    formDetailUrl,
     selectedMediaId,
 });

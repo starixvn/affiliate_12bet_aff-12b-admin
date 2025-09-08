@@ -13,9 +13,28 @@ export const setParam = (data) => {
     }
 }
 
-export const setAssetDetailUrl = (data) => {
+export const setFormNameList = (data) => {
     return {
-        type: types.SET_ASSET_DETAIL_URL,
+        type: types.SET_FORM_NAME_LIST,
+        data
+    }
+}
+export const setTargetCountryList = (data) => {
+    return {
+        type: types.SET_TARGET_COUNTRY_LIST,
+        data
+    }
+}
+export const setLanguageList = (data) => {
+    return {
+        type: types.SET_LANGUAGE_LIST,
+        data
+    }
+}
+
+export const setFormDetailUrl = (data) => {
+    return {
+        type: types.SET_FORM_DETAIL_URL,
         data
     }
 }
@@ -27,9 +46,9 @@ export const setSelectedMediaId = (data) => {
     }
 }
 
-export const setCheckedAssets = (data) => {
+export const setCheckedForms = (data) => {
     return {
-        type: types.SET_CHECKED_ASSETS,
+        type: types.SET_CHECKED_FORMS,
         data
     }
 }
@@ -51,44 +70,44 @@ export const setGridData = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
-    const url = 'Portal/AssetUploader/GetAssetList';
+    const url = 'Portal/FormManagement/GetFormManagementList';
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
-    const checkedAssets = data ? _convertCheckedAssets(data.MainData || []) : {};
+    const checkedForms = data ? _convertCheckedForms(data.MainData || []) : {};
 
     dispatch(setGridData(data ? data.MainData : []));
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
     dispatch(setShouldResetScrollPosition(true));
-    dispatch(setCheckedAssets(checkedAssets));
+    dispatch(setCheckedForms(checkedForms));
     dispatch(toggleLoader(false));
 }
 
-function _convertCheckedAssets(dataList) {
-    const checkedAssets = {};
+function _convertCheckedForms(dataList) {
+    const checkedForms = {};
     for (let item of dataList) {
-        const itemId = item.MediaId;
-        checkedAssets[itemId] = false;
+        const itemId = item.FormId;
+        checkedForms[itemId] = false;
     }
 
-    return checkedAssets;
+    return checkedForms;
 }
 
-export const getAssetDetail = (selectedMediaId) => async () => {
-    const url = 'Portal/AssetUploader/GetAssetDetail';
+export const getFormDetail = (selectedMediaId) => async () => {
+    const url = 'Portal/FormManagement/GetFormDetail';
     const response = await post(url, { selectedMediaId });
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const uploadAssets = (param) => () => {
-    const url = 'Portal/AssetUploader/UploadAssets';
+export const uploadForms = (param) => () => {
+    const url = 'Portal/FormManagement/UploadForms';
 
     return handleExcute(url, param);
 }
 
-export const updateAsset = (param) => () => {
-    const url = 'Portal/AssetUploader/UpdateAsset';
+export const updateForm = (param) => () => {
+    const url = 'Portal/FormManagement/UpdateForm';
 
     return handleExcute(url, param);
 }
@@ -112,16 +131,16 @@ const handleExcute = async (url, param) => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const deleteAssets = (param) => async () => {
-    const url = 'Portal/AssetUploader/DeleteAssets';
+export const deleteForms = (param) => async () => {
+    const url = 'Portal/FormManagement/DeleteForms';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }
 
-export const toggleAssetStatus = (mediaId, isActive) => async () => {
-    const url = 'Portal/AssetUploader/ToggleAssetStatus';
-    const response = await post(url, { mediaId, isActive });
+export const toggleFormStatus = (param) => async () => {
+    const url = 'Portal/FormManagement/ToggleFormStatus';
+    const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;
 }

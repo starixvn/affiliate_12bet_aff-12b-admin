@@ -10,9 +10,14 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 
         public override bool IsValid() => true;
 
+        public int UserId { get; set; }
+        [SpParam(SqlParamName = "StatusId")]
+        public int Status { get; set; }
         public string ModuleIds { get; set; }
         public string TargetCountrycodes { get; set; }
         [SpParam(SqlParamName = "MarketIds")]
         public string LanguageCodes { get; set; }
+        public string FunctionName { get; set; }
+        public int MediaId { get; set; }
     }
 }

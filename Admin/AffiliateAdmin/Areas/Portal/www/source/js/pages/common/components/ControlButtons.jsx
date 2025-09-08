@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Button } from 'reactstrap';
 
-import SelectAll from './SelectAll';
 import ButtonDeleteItems from './ButtonDeleteItems';
 import { defaultInsertId } from '../../../modules/constants';
 import { globalResource } from '../../../modules/globalResource';
@@ -13,8 +12,14 @@ export const ControlButtons = (props) => {
         props.setShouldResetScrollPosition(false);
     }
 
+    function _handleClickOptionButton() {
+        props.clickOptionButton && props.clickOptionButton();
+        props.setShouldResetScrollPosition(false);
+    }
+
     const hasData = props.gridData && props.gridData.length;
     const label = props.label || globalResource.Add;
+    const optionLabel = props.optionLabel;
 
     return props.gridData && (
         <React.Fragment>
@@ -32,12 +37,12 @@ export const ControlButtons = (props) => {
                                 isOpenNotification={true}
                             />
                             <Button outline type="button" className="mx-2" onClick={_handleAddItem}>{label} <span className="oi oi-plus ml-2"></span></Button>
+                            {
+                                !!optionLabel && (
+                                    <Button outline type="button" onClick={() => _handleClickOptionButton()}><div dangerouslySetInnerHTML={{ __html: optionLabel }}></div></Button>
+                                )
+                            }
                         </div>
-                        <SelectAll
-                            checkedList={props.checkedItems}
-                            setCheckedList={props.setCheckedItems}
-                            setShouldResetScrollPosition={props.setShouldResetScrollPosition}
-                        />
                     </React.Fragment>
                 ) : (
                         <div className="my-2">

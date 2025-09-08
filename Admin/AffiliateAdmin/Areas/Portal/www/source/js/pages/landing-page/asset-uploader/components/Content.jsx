@@ -6,8 +6,10 @@ import { Button } from 'reactstrap';
 
 import { resizeWidthHeight } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
-import { headerText, maxWidthHeight } from '../libs/constants';
-import { setSelectedMediaId, setPagingOption, fetchData, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus } from '../actions';
+import { headerText, messageDelete, messageSwitchStatus } from '../libs/constants';
+import { maxWidthHeight, assetStatus } from '../../libs/constants';
+import { htmlDecode } from '../../../../modules/htmlHelper';
+import { setSelectedMediaId, setPagingOption, fetchData, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus, deleteAssets, setNotification } from '../actions';
 
 export const Content = (props) => {
 
@@ -18,36 +20,49 @@ export const Content = (props) => {
     }, [props.param]);
 
     const _onCheckItem = (isChecked, mediaId) => {
-        const newCheckedAssets = Object.assign({}, props.checkedAssets, { [mediaId]: isChecked });
+        const newCheckedAssets = Object.assign({}, props.checkedAssets, { [mediaId]: {...props.checkedAssets[mediaId], isChecked} });
 
         props.setShouldResetScrollPosition(false);
         props.setCheckedAssets(newCheckedAssets);
     }
 
-    const _onDeleteItem = (mediaId) => {
-        // Handle single item deletion
-        if (window.confirm('Are you sure you want to delete this item?')) {
-            // Add delete logic here - this would typically call a delete action
-            console.log('Delete item with ID:', mediaId);
-            // props.deleteItem(mediaId); // Uncomment when delete action is available
+    const _onDeleteItem = async (mediaId, isMediaIdInUse) => {
+        if (!isMediaIdInUse) {
+            props.setNotification({
+                message: 'Are you sure you want to delete the selected image(s)?',
+                isConfirmPopup: true,
+                onConfirm: async () => {
+                    const result = await props.deleteAssets({ mediaIds: `${mediaId}`, ...props.param });
+                    if (result && result.IsSuccessful) {
+                        props.fetchData(props.param);
+                    }
+
+                    props.setNotification({
+                        message: result?.IsSuccessful ? messageDelete.DeleteItemsSuccessfully : result?.Message || messageDelete.FailedToDelete,
+                        isConfirmPopup: false
+                    });
+                }
+            });
         }
     }
 
     const _onToggleActiveStatus = async (mediaId, currentStatus) => {
-        try {
-            const newStatus = !currentStatus;
-            const result = await props.toggleAssetStatus(mediaId, newStatus);
-            
-            if (result && result.IsSuccessful) {
-                // Refresh the data to show updated status
-                props.fetchData(props.param);
-            } else {
-                alert(result?.Message || 'Failed to update asset status');
+        const newStatus = currentStatus === assetStatus.active ? assetStatus.inactive : assetStatus.active;
+        props.setNotification({
+            message: `Are you sure you want to change status of the selected image(s)?`,
+            isConfirmPopup: true,
+            onConfirm: async () => {
+                const result = await props.toggleAssetStatus({ mediaIds: `${mediaId}`, status: newStatus });
+                if (result && result.IsSuccessful) {
+                    props.fetchData(props.param);
+                }
+
+                props.setNotification({
+                    message: result?.IsSuccessful ? messageSwitchStatus.SwitchStatusSuccessfully : result?.Message || messageSwitchStatus.FailedToSwitchStatus,
+                    isConfirmPopup: false
+                });
             }
-        } catch (error) {
-            console.error('Error toggling asset status:', error);
-            alert('An error occurred while updating the asset status');
-        }
+        });
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
@@ -61,10 +76,40 @@ export const Content = (props) => {
         props.setParam(newParam);
     };
 
+    function _onCheckAll(isCheckAll) {
+        const { checkedAssets } = props;
+        const newCheckedAssets = Object.keys(checkedAssets).reduce((accumulator, currentValue) => {
+            accumulator[currentValue] = {
+                isChecked: isCheckAll,
+                isCanDelete: checkedAssets[currentValue].isCanDelete
+            };
+
+            return accumulator;
+        }, {});
+
+        props.setShouldResetScrollPosition(false);
+        props.setCheckedAssets(newCheckedAssets);
+    }
+
     function _renderHeader() {
+        let allChecked = false;
+        if (props.checkedAssets && Object.keys(props.checkedAssets).length > 0) {
+            allChecked = Object.keys(props.checkedAssets).every(function(key) {
+                return props.checkedAssets[key].isChecked;
+            });
+        }
+
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={30}></Cell>
+                <Cell header={true} colWidth={25}>
+                    <input
+                        className="my-2"
+                        id={`checkbox-all`}
+                        type="checkbox"
+                        checked={allChecked}
+                        onChange={(e) => _onCheckAll(e.target.checked)}
+                    />
+                </Cell>
                 <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={175} title={headerText.FileName}>{headerText.FileName}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Module}>{headerText.Module}</Cell>
@@ -101,30 +146,32 @@ export const Content = (props) => {
 
     function _buildDataRow(dataItem, index) {
         const mediaId = dataItem.MediaId;
-        const fileName = dataItem.FileName;
-        const targetCountry = dataItem.TargetCountry || '';
-        const language = dataItem.Language || '';
-        const module = dataItem.Module || '';
+        const fileName = htmlDecode(dataItem.FileName);
+        const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
+        const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
+        const targetCountry = dataItem.TargetCountryName;
+        const language = dataItem.MarketName;
+        const module = dataItem.ModuleName;
         const src = `${props.assetRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
-        const size = dataItem.Size;
-        const strSize = size.split('x');
-        const realWidth = strSize[0];
-        const realHeight = strSize[1];
+        const dimension = dataItem.Dimension;
+        const strDimension = dimension.split('x');
+        const realWidth = strDimension[0];
+        const realHeight = strDimension[1];
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedAssets[mediaId] || false}
+                    <input id={`checkbox${mediaId}`} type="checkbox" checked={props.checkedAssets[mediaId]?.isChecked || false}
                         onChange={(e) => _onCheckItem(e.target.checked, mediaId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
+                <Cell className="text-center text-break" title={shortFileName}>{shortFileName}</Cell>
                 <Cell className="text-center text-break" title={module}>{module}</Cell>
                 <Cell className="text-center text-break" title={targetCountry}>{targetCountry}</Cell>
                 <Cell className="text-center text-break" title={language}>{language}</Cell>
-                <Cell className="text-center text-break" title={size}>{size}</Cell>
+                <Cell className="text-center text-break" title={dimension}>{dimension}</Cell>
                 <Cell className="text-center">
                     {
                         isValidWithHeight ? (
@@ -137,30 +184,28 @@ export const Content = (props) => {
                     }
                 </Cell>
                 <Cell className="text-center">
-                    {/* <div className="custom-control custom-switch">
-                        <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id={`activeSwitch${mediaId}`}
-                            checked={dataItem.IsActive}
-                            onChange={() => _onToggleActiveStatus(mediaId, dataItem.IsActive)}
-                        />
-                        <label className="custom-control-label" htmlFor={`activeSwitch${mediaId}`}></label>
-                    </div> */}
                     <input
                             type="checkbox"
                             id={`activeSwitch${mediaId}`}
-                            checked={dataItem.IsActive}
-                            onChange={() => _onToggleActiveStatus(mediaId, dataItem.IsActive)}
+                            checked={dataItem.StatusId === assetStatus.active}
+                            onChange={() => _onToggleActiveStatus(mediaId, dataItem.StatusId)}
                         />
                 </Cell>
                 <Cell className="text-center">
                     <Button color="link" onClick={() => props.setSelectedMediaId(mediaId)} title="Edit">
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
-                    <Button color="link" onClick={() => _onDeleteItem(mediaId)} title="Delete" className="ml-1">
-                        <span className="oi oi-trash text-danger"></span>
-                    </Button>
+                    {
+                        dataItem.IsMediaIdInUse ? (
+                            <Button color="link" disabled title="Delete" className="ml-1">
+                                <span className="oi oi-trash"></span>
+                            </Button>
+                        ) : (
+                            <Button color="link" onClick={() => _onDeleteItem(mediaId, dataItem.IsMediaIdInUse)} title="Delete" className="ml-1">
+                                <span className="oi oi-trash text-danger"></span>
+                            </Button>
+                        )
+                    }
                 </Cell>
             </Row>
         )
@@ -168,7 +213,7 @@ export const Content = (props) => {
 
     return props.gridData && (
         <div className="data-content">
-            <div className="banner-list-content table-responsive table-striped my-2">
+            <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1190}
                     autoWidth={true}
@@ -191,7 +236,7 @@ function mapStateToProps({ pagingOption, param, checkedAssets, bannerRootUrl, sh
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus, deleteAssets, setNotification }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

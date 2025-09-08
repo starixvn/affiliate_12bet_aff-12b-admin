@@ -6,7 +6,8 @@ import MultipleSelect from '../../../../components/multiple-select';
 import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
 import { setParam, setModuleList, setTargetCountryList, setLanguageList } from '../actions';
-import { headerText, allAssetStatus } from '../libs/constants';
+import { headerText } from '../libs/constants';
+import { assetStatus } from '../../libs/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 export const Filter = ({
@@ -24,7 +25,7 @@ export const Filter = ({
         moduleIds: moduleList.filter(item => item.checked).map(item => item.key).join(',') || '',
         targetCountryCodes: targetCountryList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
         languageCodes: languageList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
-        status: allAssetStatus,
+        status: assetStatus.all,
     });
 
     const handleSearch = useCallback(() => {
@@ -76,25 +77,29 @@ export const Filter = ({
         <div className="filter-container my-2 pb-0">
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
-                    <Label className="mr-sm-2">{headerText.Module}</Label>
+                    <Label htmlFor="module" className="mr-sm-2">{headerText.Module}</Label>
                     <MultipleSelect
+                        id="module"
                         dataSource={moduleList}
                         keyField="key"
                         valueField="name"
                         statusField="checked"
                         maxDisplayItemCount={1}
+                        hasInputOption={true}
                         noneSelectedLabel="None Select"
                         selectedAllLabel="All"
                         onChange={handleChangeModule} />
                 </FormGroup>
                 <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
-                    <Label className="mr-sm-2">{headerText.TargetCountry}</Label>
+                    <Label htmlFor="targetCountry" className="mr-sm-2">{headerText.TargetCountry}</Label>
                     <MultipleSelect
+                        id="targetCountry"
                         dataSource={targetCountryList}
                         keyField="key"
                         valueField="name"
                         statusField="checked"
                         maxDisplayItemCount={1}
+                        hasInputOption={true}
                         noneSelectedLabel="None Select"
                         selectedAllLabel="All"
                         onChange={handleChangeTargetCountry} />
@@ -103,11 +108,13 @@ export const Filter = ({
                 <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="language" className="mr-sm-2">{headerText.Language}</Label>
                     <MultipleSelect
+                        id="language"
                         dataSource={languageList}
                         keyField="key"
                         valueField="name"
                         statusField="checked"
                         maxDisplayItemCount={1}
+                        hasInputOption={true}
                         noneSelectedLabel="None Select"
                         selectedAllLabel="All"
                         onChange={handleChangeLanguage} />
@@ -116,7 +123,7 @@ export const Filter = ({
                 <FormGroup className="mr-sm-3 pb-2">
                     <Label htmlFor="status" className="mr-sm-2">Status</Label>
                     <Input type="select" name="status" id="status" value={filters.status} onChange={handleChange}>
-                        <option value={allAssetStatus}>All</option>
+                        <option value={assetStatus.all}>All</option>
                         {
                             statusList && statusList.map(item => (
                                 <option key={`status-${item.StatusId}`} value={item.StatusId}>

@@ -15,8 +15,24 @@ export default class ButtonDeleteItems extends PureComponent {
 
     _getCheckedItemIdList = () => {
         const { checkedItems } = this.props;
+        if (!checkedItems || typeof checkedItems !== 'object') {
+            return [];
+        }
 
-        return Object.keys(checkedItems).filter(key => checkedItems[key]);
+        const checkedItemsList = Object.keys(checkedItems);
+        if (checkedItemsList.length === 0) {
+            return [];
+        }
+
+        const firstValue = checkedItems[checkedItemsList[0]];
+        if (typeof firstValue === 'boolean') {
+            return checkedItemsList.filter(key => checkedItems[key]);
+        }
+
+        return checkedItemsList.filter(key => {
+            const item = checkedItems[key];
+            return item && item.isChecked && item.isCanDelete;
+        });
     }
 
     _handleOpenNotificationPopup = (message, isConfirmPopup, itemIdList) => {

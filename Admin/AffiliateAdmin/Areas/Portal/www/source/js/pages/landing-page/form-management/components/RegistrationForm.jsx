@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader } from '../actions/index';
-import { defaultState, regSpecialCharacters } from '../../asset-uploader/libs/constants';
-import { globalResource, defaultInsertId } from '../../libs/constants';
+import { setSelectedMediaId, getFormDetail, fetchData, uploadForms, updateForm, toggleLoader } from '../actions/index';
+import { defaultState } from '../libs/constants';
+import { regSpecialCharacters, globalResource, defaultInsertId } from '../../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import NotificationPopup from '../../../common/components/NotificationPopup';
-import { validateFileExtension, validateInputFile, validateFileSize } from '../../asset-uploader/libs/utils';
+import { validateFileExtension, validateFileSize } from '../../libs/utils';
 import InputFile from '../../../common/components/InputFile';
 
 const regexSpecialCharacters = new RegExp(regSpecialCharacters);
@@ -30,7 +30,7 @@ export const RegistrationForm = (props) => {
     useEffect(() => {
         setState(prev => ({ ...prev, isInsert: selectedMediaId === defaultInsertId }));
         if (selectedMediaId) {
-            handleGetAssetDetail(selectedMediaId);
+            handleGetFormDetail(selectedMediaId);
         }
     }, [selectedMediaId]);
 
@@ -42,8 +42,8 @@ export const RegistrationForm = (props) => {
         }
     }, [selectedMediaId]);
 
-    const handleGetAssetDetail = useCallback(async (selectedMediaId) => {
-        const assetInfo = await props.getAssetDetail(selectedMediaId);
+    const handleGetFormDetail = useCallback(async (selectedMediaId) => {
+        const assetInfo = await props.getFormDetail(selectedMediaId);
 
         if (assetInfo) {
             const fileName = htmlDecode(assetInfo.FileName);
@@ -192,13 +192,13 @@ export const RegistrationForm = (props) => {
         const assetInfo = getParam();
 
         if (isInsert) {
-            const result = await props.uploadAssets(assetInfo);
+            const result = await props.uploadForms(assetInfo);
             handleAfterSave(isInsert, result);
         } else {
             if (inputFileNames[0] === iniatalFileName && !!files.length) {
                 setState(prev => ({ ...prev, messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' }));
             } else {
-                updateAssetHandler(assetInfo);
+                updateFormHandler(assetInfo);
             }
         }
     }, [state, props]);
@@ -214,8 +214,8 @@ export const RegistrationForm = (props) => {
         };
     }, [state, selectedMediaId]);
 
-    const updateAssetHandler = useCallback(async (assetInfo) => {
-        const result = await props.updateAsset(assetInfo);
+    const updateFormHandler = useCallback(async (assetInfo) => {
+        const result = await props.updateForm(assetInfo);
         handleAfterSave(state.isInsert, result);
     }, [props, state.isInsert]);
 
@@ -371,9 +371,9 @@ export const RegistrationForm = (props) => {
 
         if (confirmResult) {
             const assetInfo = getParam();
-            updateAssetHandler(assetInfo);
+            updateFormHandler(assetInfo);
         }
-    }, [getParam, updateAssetHandler]);
+    }, [getParam, updateFormHandler]);
 
     const { inputFileNames, formNames, previewImages, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, files, errors } = state;
     const isShowPopup = selectedMediaId !== null;
@@ -518,7 +518,7 @@ function mapStateToProps({ selectedMediaId, param, maximumFiles, maxFileSize, al
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, getFormDetail, fetchData, uploadForms, updateForm, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(RegistrationForm));

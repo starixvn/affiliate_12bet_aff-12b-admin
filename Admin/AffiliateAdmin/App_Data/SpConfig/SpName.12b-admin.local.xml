@@ -305,6 +305,7 @@
 		<Setting Key="Aff_LandingPage_AssetUploader_Ins" SpName="Aff_LandingPage_AssetUploader_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_LandingPage_AssetUploader_Upd" SpName="Aff_LandingPage_AssetUploader_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_LandingPage_AssetUploader_Del" SpName="Aff_LandingPage_AssetUploader_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_LandingPage_AssetUploader_Status_Upd" SpName="Aff_LandingPage_AssetUploader_Status_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	    <Setting Key="Aff_LandingPage_Campaign_Sel" SpName="Aff_LandingPage_Campaign_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	    <Setting Key="Aff_LandingPage_BuilderManage_Sel" SpName="Aff_LandingPage_BuilderManage_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_LandingPage_Module_Sel" SpName="Aff_LandingPage_Module_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />

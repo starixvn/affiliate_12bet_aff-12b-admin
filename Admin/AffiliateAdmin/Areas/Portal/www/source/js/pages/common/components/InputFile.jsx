@@ -25,7 +25,7 @@ export default class InputFile extends React.PureComponent {
     }
 
     render() {
-        const { className, files, isMultiple, handleOnChangeFiles, accept, btnName, lblText } = this.props;
+        const { className, files, isMultiple, handleOnChangeFiles, accept, btnName, lblText, id } = this.props;
         let text = lblText;
 
         if (files.length > 0) {
@@ -35,7 +35,7 @@ export default class InputFile extends React.PureComponent {
         return (
             <React.Fragment>
                 <div className={className} style={{ cursor: 'pointer' }} onClick={this.handleClick}>
-                    <Button type="button">{btnName}</Button>
+                    <Button id={id} type="button">{btnName}</Button>
                     <span className="px-2" style={{ 'marginTop': '2px' }} title={text}>{text}</span>
                     <Input type="file"
                         name="file"
@@ -58,10 +58,12 @@ InputFile.propTypes = {
     btnName: PropTypes.string,
     lblText: PropTypes.string,
     className: PropTypes.string,
-    multiple: PropTypes.bool
+    multiple: PropTypes.bool,
+    id: PropTypes.string
 };
 
 InputFile.defaultProps = {
+    id: 'upload-file-button',
     multiple: false,
     className: null,
     btnName: 'Choosen',

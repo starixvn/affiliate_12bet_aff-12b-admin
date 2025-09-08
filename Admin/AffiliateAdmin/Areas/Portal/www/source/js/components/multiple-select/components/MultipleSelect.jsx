@@ -15,7 +15,7 @@ let id = 1;
 export default class MultipleSelect extends PureComponent {
     constructor(props) {
         super(props);
-        this.id = `multiple-select-${props.id || id++}`;
+        this.id = props.id || `multiple-select-${id++}`;
 
         this.state = {
             showOptionList: false,
@@ -161,7 +161,7 @@ export default class MultipleSelect extends PureComponent {
 
         const { optionAllLabel, isDisable } = this.props;
 
-        return (<OptionAll id={this.id} checked={checkedAll} label={optionAllLabel} onChange={this.checkAllHandler} isDisable={isDisable || isDisableItem} />);
+        return (<OptionAll id={`option-all-${this.id}`} checked={checkedAll} label={optionAllLabel} onChange={this.checkAllHandler} isDisable={isDisable || isDisableItem} />);
     }
 
     render() {
@@ -174,8 +174,9 @@ export default class MultipleSelect extends PureComponent {
         const selectedItems = dataSourceLabel.filter(item => item.checked);
 
         return (
-            <div className="multiple-select-container" id={this.id} ref={element => this.wrapper = element}>
+            <div className="multiple-select-container" id={`multiple-select-${this.id}`} ref={element => this.wrapper = element}>
                 <MultipleSelectLabel
+                    id={this.id}
                     selectedItems={selectedItems}
                     onToggle={this.onToggle}
                     noneSelectedLabel={noneSelectedLabel}

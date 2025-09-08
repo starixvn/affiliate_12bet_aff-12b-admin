@@ -6,8 +6,8 @@ import { Button } from 'reactstrap';
 
 import { globalResource } from '../../../../modules/globalResource';
 import { headerText } from '../libs/constants';
-import { maxWidthHeight } from '../../asset-uploader/libs/constants';
-import { setSelectedMediaId, setPagingOption, fetchData, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl } from '../actions';
+import { maxWidthHeight } from '../../libs/constants';
+import { setSelectedMediaId, setPagingOption, fetchData, setCheckedForms, setShouldResetScrollPosition, setParam, setFormDetailUrl } from '../actions';
 import { resizeWidthHeight } from '../../../../modules/utils';
 
 export const Content = (props) => {
@@ -18,10 +18,10 @@ export const Content = (props) => {
     }, [props.param]);
 
     const _onCheckItem = (isChecked, mediaId) => {
-        const newCheckedAssets = Object.assign({}, props.checkedAssets, { [mediaId]: isChecked });
+        const newCheckedForms = Object.assign({}, props.checkedForms, { [mediaId]: isChecked });
 
         props.setShouldResetScrollPosition(false);
-        props.setCheckedAssets(newCheckedAssets);
+        props.setCheckedForms(newCheckedForms);
     }
 
     const _onDeleteItem = (mediaId) => {
@@ -36,17 +36,17 @@ export const Content = (props) => {
     const _onToggleActiveStatus = async (mediaId, currentStatus) => {
         try {
             const newStatus = !currentStatus;
-            const result = await props.toggleAssetStatus(mediaId, newStatus);
+            const result = await props.toggleFormStatus(mediaId, newStatus);
             
             if (result && result.IsSuccessful) {
-                // Refresh the data to show updated status
+                // Refresh the data to show updated form status
                 props.fetchData(props.param);
             } else {
-                alert(result?.Message || 'Failed to update asset status');
+                alert(result?.Message || 'Failed to update form status');
             }
         } catch (error) {
-            console.error('Error toggling asset status:', error);
-            alert('An error occurred while updating the asset status');
+            console.error('Error toggling form status:', error);
+            alert('An error occurred while updating the form status');
         }
     }
 
@@ -109,12 +109,12 @@ export const Content = (props) => {
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
 
-        console.log(props.checkedAssets);
+        console.log(props.checkedForms);
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedAssets[mediaId] || false}
+                    <input type="checkbox" checked={props.checkedForms[mediaId] || false}
                         onChange={(e) => _onCheckItem(e.target.checked, mediaId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
@@ -126,7 +126,7 @@ export const Content = (props) => {
                         isValidWithHeight ? (
                             <img id={`img${mediaId}`} src={src} alt="Preview Image" height={realHeight} width={realWidth} />
                         ) : (
-                                <a href="javascript:;" id={`link${mediaId}`} onClick={() => props.setAssetDetailUrl({ src, mediaId, width: realWidth, height: realHeight })}>
+                                <a href="javascript:;" id={`link${mediaId}`} onClick={() => props.setFormDetailUrl({ src, mediaId, width: realWidth, height: realHeight })}>
                                     <img id={`img${mediaId}`} src={src} alt="Preview Image" height={resizeResult.height} width={resizeResult.width} />
                                 </a>
                             )
@@ -172,12 +172,12 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ pagingOption, checkedAssets, shouldResetScrollPosition, gridData, param, bannerRootUrl }) {
-    return Object.assign({}, { pagingOption, checkedAssets, shouldResetScrollPosition, gridData, param, bannerRootUrl });
+function mapStateToProps({ pagingOption, checkedForms, shouldResetScrollPosition, gridData, param, bannerRootUrl }) {
+    return Object.assign({}, { pagingOption, checkedForms, shouldResetScrollPosition, gridData, param, bannerRootUrl });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedForms, setShouldResetScrollPosition, setParam, setFormDetailUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

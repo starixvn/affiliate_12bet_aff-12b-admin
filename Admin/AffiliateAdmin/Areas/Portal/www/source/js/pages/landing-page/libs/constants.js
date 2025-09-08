@@ -17,3 +17,19 @@ export const relativePath = {
     assetUploader: resolveClientUrl('Portal/AssetUploader'),
     formManagement: resolveClientUrl('Portal/FormManagement'),
 }
+
+export const maxWidthHeight = 501;
+export const maxLength = 50;
+export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
+
+export const fileUpload = {
+    AllowedImageExtensions: [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+    MaximumFiles: 10,
+    MaxFileSize: 3
+}
+
+export const assetStatus = {
+    all: -1,
+    active: 1,
+    inactive: 2
+};

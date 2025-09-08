@@ -10,7 +10,8 @@ import RegistrationForm from './RegistrationForm';
 import MediaReviewPopup from '../../../common/components/MediaReviewPopup';
 
 import { messages } from '../libs/constants';
-import { fetchData, toggleLoader, setSelectedMediaId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition, setAssetDetailUrl } from '../actions';
+import { fetchData, toggleLoader, setSelectedMediaId, setCheckedForms, deleteForms, setShouldResetScrollPosition, setFormDetailUrl } from '../actions';
+import Filter from './Filter';
 
 export const AppContainer = (props) => {
 
@@ -18,33 +19,34 @@ export const AppContainer = (props) => {
         <AppLayout>
             <Loader show={props.isShowLoader} />
             <ControlButtons
-                label={"Add Registration Form"}
+                label={"Add Registration"}
                 messages={messages}
                 gridData={props.gridData}
                 fetchData={() => props.fetchData()}
-                checkedItems={props.checkedAssets}
-                setCheckedItems={props.setCheckedAssets}
+                checkedItems={props.checkedForms}
+                setCheckedItems={props.setCheckedForms}
                 toggleLoader={props.toggleLoader}
                 setShouldResetScrollPosition={props.setShouldResetScrollPosition}
                 setSelectedItemId={props.setSelectedMediaId}
-                deleteItems={(mediaIdList) => props.deleteAssets({ mediaIdList })}
+                deleteItems={(mediaIdList) => props.deleteForms({ mediaIdList })}
             />
+            <Filter />
             <Content />
             <RegistrationForm />
             <MediaReviewPopup
-                mediaDetailUrl={props.assetDetailUrl}
-                setMediaDetailUrl={props.setAssetDetailUrl}
+                mediaDetailUrl={props.formDetailUrl}
+                setMediaDetailUrl={props.setFormDetailUrl}
             />
         </AppLayout>
     );
 }
 
-function mapStateToProps({ isShowLoader, gridData, checkedAssets, assetDetailUrl }) {
-    return Object.assign({}, { isShowLoader, gridData, checkedAssets, assetDetailUrl });
+function mapStateToProps({ isShowLoader, gridData, checkedForms, formDetailUrl }) {
+    return Object.assign({}, { isShowLoader, gridData, checkedForms, formDetailUrl });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, toggleLoader, setSelectedMediaId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition, setAssetDetailUrl }, dispatch);
+    return bindActionCreators({ fetchData, toggleLoader, setSelectedMediaId, setCheckedForms, deleteForms, setShouldResetScrollPosition, setFormDetailUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

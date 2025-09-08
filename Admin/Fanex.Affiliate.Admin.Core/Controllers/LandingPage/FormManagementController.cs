@@ -10,7 +10,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
-    [FunctionAuthorize(FunctionName = Function.RegistrationFormManagement)]
+    [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader)]
     public class FormManagementController : ReadOnlySessionBaseController
     {
         private readonly IAppSetting _appSetting;
@@ -33,8 +33,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         {
             var model = new FormManagementViewModel
             {
+                FormNameList = _landingPageService.GetModuleList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
                 LanguageList = _landingPageService.GetLanguageList(),
+                StatusList = LandingPageConstants.AssetStatusList,
                 BannerRootUrl = _appSetting.BannerRootUrl,
             };
 
@@ -47,7 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         {
             var queryParam = new AssetListParam
             {
-                FunctionName = Function.RegistrationFormManagement,
+                FunctionName = Function.RegistrationFormUploader,
                 UserId = SessionService.UserId,
                 ModuleIds = LandingPageConstants.ModuleIds.RegistrationForm.ToString(),
                 PageIndex = param.PageIndex,
@@ -55,6 +57,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             };
 
             return GenerateJsonNetResult(_assetService.GetAssetList(queryParam));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
+        public ActionResult ToggleFormStatus(UpdateMediasStatusParam param)
+        {
+            param.FunctionName = Function.RegistrationFormUploader;
+            AssignUserInfoParam(param);
+
+            return GenerateJsonNetResult(_assetService.ToggleAssetStatus(param));
         }
     }
 }

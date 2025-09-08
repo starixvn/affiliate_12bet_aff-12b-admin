@@ -7,8 +7,10 @@
 @section pagejs{
     <script type="text/javascript">
         window.initialState = {
+            formNameList: @Html.Raw(Json.Encode(Model.FormNameList)),
             targetCountryList: @Html.Raw(Json.Encode(Model.TargetCountryList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            statusList: @Html.Raw(Json.Encode(Model.StatusList)),
             bannerRootUrl: "@Model.BannerRootUrl",
         }
     </script>

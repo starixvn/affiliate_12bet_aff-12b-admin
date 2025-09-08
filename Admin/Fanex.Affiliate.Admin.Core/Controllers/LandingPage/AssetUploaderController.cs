@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Services.LandingPage;
 using Fanex.Affiliate.Admin.Core.ViewModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
-using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
         public ActionResult UploadAssets(HttpPostedFileBase[] files, UploadAssetsParam param)
         {
             if (ModelState.IsValid && files != null && files.Length > 0)
@@ -71,7 +71,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult GetAssetDetail(AssetListParam param)
+        {
+            param.FunctionName = Function.AssetUploader;
+            param.UserId = SessionService.UserId;
+            return GenerateJsonNetResult(_assetService.GetAssetDetail(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
         public ActionResult UpdateAsset(HttpPostedFileBase file, UploadAssetsParam param)
         {
             if (ModelState.IsValid && (!string.IsNullOrEmpty(param.InputFileNames) || file != null))
@@ -85,23 +94,28 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
-        public ActionResult DeleteAssets(DeleteAssetsParam param)
+        [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
+        public ActionResult DeleteAssets(DeleteMediasParam param)
         {
             if (ModelState.IsValid)
             {
-                AssignUserInfoParam(param);
-                return GenerateJsonNetResult(_assetService.DeleteAssets(param));
+                param.FunctionName = Function.AssetUploader;
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.GetClientIP();
+                return GenerateJsonNetResult(_assetService.DeleteMedias(param));
             }
             return GenerateModelStateErrResult();
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
-        public ActionResult ToggleAssetStatus(int mediaId)
+        [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
+        public ActionResult ToggleAssetStatus(UpdateMediasStatusParam param)
         {
-            return GenerateJsonNetResult(new ResultInfo());
+            param.FunctionName = Function.AssetUploader;
+            AssignUserInfoParam(param);
+
+            return GenerateJsonNetResult(_assetService.ToggleAssetStatus(param));
         }
 
         [HttpPost]
@@ -121,9 +135,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             {
                 MediaId = param.MediaId,
                 ModuleId = param.ModuleId,
-                TargetCountry = Server.HtmlEncode(param.TargetCountry),
-                Language = Server.HtmlEncode(param.Language),
+                TargetCountryCode = Server.HtmlEncode(param.TargetCountryCode),
+                MarketId = Server.HtmlEncode(param.MarketId),
                 InputFileNames = param.InputFileNames,
+                FunctionName = Function.AssetUploader
             };
         }
     }

@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader } from '../actions/index';
-import { defaultState, regSpecialCharacters } from '../libs/constants';
-import { globalResource, defaultInsertId } from '../../libs/constants';
+import { setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader, setNotification } from '../actions/index';
+import { defaultState } from '../libs/constants';
+import { regSpecialCharacters, globalResource, defaultInsertId } from '../../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import NotificationPopup from '../../../common/components/NotificationPopup';
-import { validateFileExtension, validateInputFile, validateFileSize } from '../libs/utils';
+import { validateFileExtension, validateInputFile, validateFileSize } from '../../libs/utils';
 import InputFile from '../../../common/components/InputFile';
 
 const regexSpecialCharacters = new RegExp(regSpecialCharacters);
@@ -18,13 +17,14 @@ export const AssetUploaderForm = (props) => {
     
     const [state, setState] = useState({
         ...defaultState,
-        language: '',
-        module: '',
-        targetCountry: '',
+        marketId: '',
+        moduleId: '',
+        targetCountryCode: '',
+        isMediaIdInUse: false,
         errors: {
-            module: false,
-            targetCountry: false,
-            language: false,
+            moduleId: false,
+            targetCountryCode: false,
+            marketId: false,
             file: false
         }
     });
@@ -38,16 +38,9 @@ export const AssetUploaderForm = (props) => {
         }
     }, [selectedMediaId]);
 
-    // Keep lists updated but don't auto-select values
-    useEffect(() => {
-        // Only update if we're editing an existing asset and have loaded data
-        if (selectedMediaId && selectedMediaId !== defaultInsertId) {
-            // Values will be set by handleGetAssetDetail
-        }
-    }, [moduleList, targetCountryList, languageList, selectedMediaId]);
-
     const handleGetAssetDetail = useCallback(async (selectedMediaId) => {
-        const assetInfo = await props.getAssetDetail(selectedMediaId);
+        const queryParam = { mediaId: selectedMediaId };
+        const assetInfo = await props.getAssetDetail(queryParam);
 
         if (assetInfo) {
             const fileName = htmlDecode(assetInfo.FileName);
@@ -57,13 +50,14 @@ export const AssetUploaderForm = (props) => {
             setState(prev => ({
                 ...prev,
                 inputFileNames: [shortFileName],
-                language: assetInfo.Language || prev.language,
-                module: assetInfo.Module || prev.module,
-                targetCountry: assetInfo.TargetCountry || prev.targetCountry,
+                marketId: assetInfo.MarketId || prev.MarketId,
+                moduleId: assetInfo.ModuleId || prev.ModuleId,
+                targetCountryCode: assetInfo.TargetCountryCode || prev.TargetCountryCode,
+                isMediaIdInUse: assetInfo.IsMediaIdInUse || prev.IsMediaIdInUse,
                 iniatalFileName: shortFileName
             }));
         }
-    }, [props]);
+    }, [props, param]);
 
     const handleChange = useCallback((event) => {
         const value = event.target.value;
@@ -78,20 +72,6 @@ export const AssetUploaderForm = (props) => {
                 [name]: false
             }
         }));
-    }, []);
-
-    const handleChangeInputFileName = useCallback((event, index) => {
-        const value = event.target.value;
-
-        if (regexSpecialCharacters.test(value)) {
-            handleShowAlert(false, `A File Name can't contain any of the following characters: \\/:*?"<>|#%&+`);
-        } else {
-            setState(prev => {
-                let inputFileNames = [...prev.inputFileNames];
-                inputFileNames[index] = value;
-                return { ...prev, inputFileNames };
-            });
-        }
     }, []);
 
     const handleFile = useCallback((event) => {
@@ -134,9 +114,12 @@ export const AssetUploaderForm = (props) => {
                     file: false
                 }
             }));
-            !allResults.isOK && handleShowAlert(false, allResults.message);
+            !allResults.isOK && props.setNotification({
+                message: allResults.message,
+                isConfirmPopup: false
+            });
         }
-    }, [allowedExtensions, maxFileSize]);
+    }, [allowedExtensions, maxFileSize, props]);
 
     const handleRemoveImageAt = useCallback((index) => {
         setState(prev => {
@@ -173,22 +156,59 @@ export const AssetUploaderForm = (props) => {
                     }
                 }
 
-                !allResults.isOK && handleShowAlert(false, allResults.message);
+                !allResults.isOK && props.setNotification({
+                    message: allResults.message,
+                    isConfirmPopup: false
+                });
                 return { ...prev, files, inputFileNames, isDisabled: !allResults.isOK };
             } else {
                 return { ...prev, inputFileNames: [''], files, isDisabled: true };
             }
         });
-    }, [allowedExtensions, maxFileSize]);
+    }, [allowedExtensions, maxFileSize, props]);
 
     const handleAfterSave = useCallback((isInsert, result) => {
         if (result) {
-            const message = isInsert ? "Your asset has been added successfully!" : "Your asset has been updated successfully!";
-            handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+            const message = isInsert ? "Your image(s) has been added successfully!" : "Your image has been updated successfully!";
+            if (result.IsSuccessful) {
+                setState(prev => ({
+                    ...prev,
+                    message,
+                    isSuccess: true,
+                    isShowMessage: true,
+                }));
+                setTimeout(() => {
+                    setState(prevState => ({ ...prevState, isShowMessage: false }));
+                    props.fetchData(param);
+                    props.setSelectedMediaId(null);
+                    setState({
+                        ...defaultState,
+                        marketId: '',
+                        moduleId: '',
+                        targetCountryCode: '',
+                        isMediaIdInUse: false,
+                        errors: {
+                            moduleId: false,
+                            targetCountryCode: false,
+                            marketId: false,
+                            file: false
+                        }
+                    });
+                }, 3000);
+            } else {
+                props.setNotification({
+                    message: result.Message,
+                    isConfirmPopup: false
+                });
+            }
         } else {
-            handleShowAlert(false, isInsert ? "The add is failed!" : "The update is failed!");
+            props.setNotification({
+                message: isInsert ? "Oops! Failed to add your image(s)!" : "Oops! Failed to update your image!",
+                isConfirmPopup: false
+            });
         }
-    }, []);
+        props.toggleLoader(false);
+    }, [props, param]);
 
     const save = useCallback(async () => {
         const { inputFileNames, isInsert, iniatalFileName, files } = state;
@@ -199,7 +219,11 @@ export const AssetUploaderForm = (props) => {
             handleAfterSave(isInsert, result);
         } else {
             if (inputFileNames[0] === iniatalFileName && !!files.length) {
-                setState(prev => ({ ...prev, messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' }));
+                props.setNotification({
+                    message: 'This file name exists already. Do you want to overwrite the current file?',
+                    isConfirmPopup: true,
+                    onConfirm: () => updateAssetHandler(assetInfo)
+                });
             } else {
                 updateAssetHandler(assetInfo);
             }
@@ -207,15 +231,15 @@ export const AssetUploaderForm = (props) => {
     }, [state, props]);
 
     const getParam = useCallback(() => {
-        const { files, inputFileNames, language, module, targetCountry, isInsert } = state;
+        const { files, inputFileNames, marketId, moduleId, targetCountryCode, isInsert } = state;
 
         return {
             MediaId: selectedMediaId,
             files,
             inputFileNames: isInsert ? inputFileNames.map(item => item.trim()).join('|') : inputFileNames[0] && inputFileNames[0].trim(),
-            language,
-            module,
-            targetCountry
+            marketId,
+            moduleId,
+            targetCountryCode
         };
     }, [state, selectedMediaId]);
 
@@ -283,7 +307,7 @@ export const AssetUploaderForm = (props) => {
         }
 
         return validInputFileNames;
-    }, [state]);
+    }, [state, allowedExtensions]);
 
     const hasDuplicateFileNames = useCallback((inputFileNames) => {
         const length = inputFileNames.length;
@@ -303,13 +327,13 @@ export const AssetUploaderForm = (props) => {
     const handleSubmit = useCallback(() => {
         props.toggleLoader(true);
 
-        const { inputFileNames, module, targetCountry, language, files, isInsert } = state;
+        const { inputFileNames, moduleId, targetCountryCode, marketId, files, isInsert } = state;
 
         // Track validation errors
         const newErrors = {
-            module: !module,
-            targetCountry: !targetCountry,
-            language: !language,
+            moduleId: !moduleId,
+            targetCountryCode: !targetCountryCode,
+            marketId: !marketId,
             file: isInsert && (!files || files.length === 0)
         };
 
@@ -321,9 +345,9 @@ export const AssetUploaderForm = (props) => {
 
         if (hasErrors) {
             let errorMessage = "<strong>Please complete the required fields:</strong><br />";
-            if (newErrors.module) errorMessage += "• Module selection is required<br />";
-            if (newErrors.targetCountry) errorMessage += "• Target Country selection is required<br />";
-            if (newErrors.language) errorMessage += "• Language selection is required<br />";
+            if (newErrors.moduleId) errorMessage += "• Module selection is required<br />";
+            if (newErrors.targetCountryCode) errorMessage += "• Target Country selection is required<br />";
+            if (newErrors.marketId) errorMessage += "• Language selection is required<br />";
             if (newErrors.file) errorMessage += "• File upload is required<br />";
             
             // Use a custom warning alert for validation errors
@@ -341,82 +365,59 @@ export const AssetUploaderForm = (props) => {
         }
 
         if (inputFileNames.length > maximumFiles) {
-            handleShowAlert(false, `You can upload up to ${maximumFiles} files only.`);
+            props.setNotification({
+                message: `You can upload up to ${maximumFiles} files only.`,
+                isConfirmPopup: false
+            });
             return;
         }
         if (hasDuplicateFileNames(inputFileNames)) {
-            handleShowAlert(false, "Duplicate file name(s) detected. Please rename or remove the file(s).");
+            props.setNotification({
+                message: "Duplicate file name(s) detected. Please rename or remove the file(s).",
+                isConfirmPopup: false
+            });
             return;
         }
 
         const validInputFileNames = validateInputFileName();
-        validInputFileNames.isOK ? save() : handleShowAlert(false, validInputFileNames.message);
+        if (validInputFileNames.isOK) {
+            save();
+        } else {
+            props.setNotification({
+                message: validInputFileNames.message,
+                isConfirmPopup: false
+            });
+        }
 
         props.toggleLoader(false);
     }, [state, props, maximumFiles, hasDuplicateFileNames, validateInputFileName, save]);
 
-    const handleShowAlert = useCallback((isSuccess, message) => {
-        modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
-
-        setState(prev => ({
-            ...prev,
-            message,
-            isSuccess,
-            isShowMessage: true,
-        }));
-
-        setTimeout(() => hideMessage(isSuccess), isSuccess ? 3000 : 5000);
-        props.toggleLoader(false);
-    }, [props]);
-
-    const hideMessage = useCallback((isSuccess) => {
-        setState(prev => ({ ...prev, isShowMessage: false }));
-
-        if (isSuccess) {
-            props.fetchData(param);
-            handleClosePopup();
-        }
-    }, [props, param]);
 
     const handleClosePopup = useCallback(() => {
         props.setSelectedMediaId(null);
         setState({
             ...defaultState,
-            language: '',
-            module: '',
-            targetCountry: '',
+            marketId: '',
+            moduleId: '',
+            targetCountryCode: '',
+            isMediaIdInUse: false,
             errors: {
-                module: false,
-                targetCountry: false,
-                language: false,
+                moduleId: false,
+                targetCountryCode: false,
+                marketId: false,
                 file: false
             }
         });
     }, [props]);
 
-    const handleCloseNotificationPopup = useCallback((confirmResult) => {
-        setState(prev => ({ ...prev, messageNotificationPopup: '' }));
 
-        if (confirmResult) {
-            const assetInfo = getParam();
-            updateAssetHandler(assetInfo);
-        }
-    }, [getParam, updateAssetHandler]);
-
-    const { inputFileNames, language, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, files, errors } = state;
+    const { inputFileNames, marketId, isShowMessage, isSuccess, message, isInsert, isDisabled, files, errors, isMediaIdInUse } = state;
     const isShowPopup = selectedMediaId !== null;
-    const title = isInsert ? "Add New Asset" : "Update Existing Asset";
+    const title = isInsert ? "Add New Asset" : "Edit Asset";
     const buttonLabel = isInsert ? "Upload" : "Update";
 
     return (
         <React.Fragment>
-            {
-                !!messageNotificationPopup && <NotificationPopup
-                    message={messageNotificationPopup}
-                    isConfirmPopup={true}
-                    onClose={handleCloseNotificationPopup}
-                />
-            }
             <Modal isOpen={isShowPopup} toggle={handleClosePopup} backdrop='static' innerRef={modalRef}>
                 <ModalHeader toggle={handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
@@ -425,68 +426,70 @@ export const AssetUploaderForm = (props) => {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-3 p-1 border" autoComplete="off">
-                                <Label>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</Label>
-                                <Label className="d-block">[File Size Limit: {maxFileSize}MB]</Label>
-                                {
-                                    isInsert && <Label className="d-block">[Maximum files: {maximumFiles}]</Label>
-                                }
-                                <div className="alert alert-info p-2 mb-3">
-                                    <small><strong>Note:</strong> Module, Target Country, and Language cannot be changed if the image is already used in an existing landing page.</small>
+                            <Form tag="form" className="mb-3" autoComplete="off">
+                                <div className='px-1 mb-3 border'>
+                                    <p>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</p>
+                                    <p className="d-block">[File Size Limit: {maxFileSize}MB]</p>
+                                    {
+                                        isInsert && <p className="d-block">[Maximum files: {maximumFiles}]</p>
+                                    }
+                                    <span><strong>Note:</strong> Module, Target Country, and Language cannot be changed if the image is already used in an existing landing page.</span>
                                 </div>
-                                <br />
                                 <FormGroup row className="mb-2">
-                                    <Label sm={3} htmlFor="module" className="required">Module</Label>
+                                    <Label sm={3} htmlFor="moduleId" className="required">Module</Label>
                                     <Col sm={5} className='align-self-center'>
                                         <Input 
                                             type="select" 
-                                            name="module" 
-                                            id="module" 
-                                            value={state.module} 
+                                            name="moduleId" 
+                                            id="moduleId"
+                                            disabled={isMediaIdInUse} 
+                                            value={state.moduleId} 
                                             onChange={handleChange}
-                                            className={errors.module ? 'form-validation-warning' : ''}>
+                                            className={errors.moduleId ? 'form-validation-warning' : ''}>
                                             <option value="">Please Select</option>
                                             {
                                                 moduleList && moduleList.map(item => {
-                                                    return (<option key={`module-${item.ModuleName}`} value={item.ModuleName}>{item.ModuleName}</option>)
+                                                    return (<option key={`module-${item.key}`} value={item.key}>{item.name}</option>)
                                                 })
                                             }
                                         </Input>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={3} htmlFor="targetCountry" className="required pr-0">Target Country</Label>
+                                    <Label sm={3} htmlFor="targetCountryCode" className="required pr-0">Target Country</Label>
                                     <Col sm={5} className='align-self-center'>
                                         <Input 
                                             type="select" 
-                                            name="targetCountry" 
-                                            id="targetCountry" 
-                                            value={state.targetCountry} 
+                                            name="targetCountryCode" 
+                                            id="targetCountryCode" 
+                                            disabled={isMediaIdInUse} 
+                                            value={state.targetCountryCode} 
                                             onChange={handleChange}
-                                            className={errors.targetCountry ? 'form-validation-warning' : ''}>
+                                            className={errors.targetCountryCode ? 'form-validation-warning' : ''}>
                                             <option value="">Please Select</option>
                                             {
                                                 targetCountryList && targetCountryList.map(item => {
-                                                    return (<option key={`country-${item.TargetCountryCode}`} value={item.TargetCountryCode}>{item.TargetCountryName}</option>)
+                                                    return (<option key={`country-${item.key}`} value={item.key}>{item.name}</option>)
                                                 })
                                             }
                                         </Input>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={3} htmlFor="language" className="required">Language</Label>
+                                    <Label sm={3} htmlFor="marketId" className="required">Language</Label>
                                     <Col sm={5} className='align-self-center'>
                                         <Input 
                                             type="select" 
-                                            name="language" 
-                                            id="language" 
-                                            value={language} 
+                                            name="marketId" 
+                                            id="marketId" 
+                                            disabled={isMediaIdInUse} 
+                                            value={marketId} 
                                             onChange={handleChange}
-                                            className={errors.language ? 'form-validation-warning' : ''}>
+                                            className={errors.marketId ? 'form-validation-warning' : ''}>
                                             <option value="">Please Select</option>
                                             {
                                                 languageList && languageList.map(item => {
-                                                    return (<option key={`language-${item.LanguageName}`} value={item.LanguageName}>{item.LanguageName}</option>)
+                                                    return (<option key={`language-${item.key}`} value={item.key}>{item.name}</option>)
                                                 })
                                             }
                                         </Input>
@@ -566,7 +569,7 @@ function mapStateToProps({ selectedMediaId, param, moduleList, targetCountryList
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, getAssetDetail, fetchData, uploadAssets, updateAsset, toggleLoader, setNotification }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AssetUploaderForm));

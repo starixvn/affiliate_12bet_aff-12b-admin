@@ -305,6 +305,7 @@
 		<Setting Key="Aff_LandingPage_AssetUploader_Ins" SpName="Aff_LandingPage_AssetUploader_Ins" DbName="" />
 		<Setting Key="Aff_LandingPage_AssetUploader_Upd" SpName="Aff_LandingPage_AssetUploader_Upd" DbName="" />
 		<Setting Key="Aff_LandingPage_AssetUploader_Del" SpName="Aff_LandingPage_AssetUploader_Del" DbName="" />
+		<Setting Key="Aff_LandingPage_AssetUploader_Status_Upd" SpName="Aff_LandingPage_AssetUploader_Status_Upd" DbName="" />
 	    <Setting Key="Aff_LandingPage_Campaign_Sel" SpName="Aff_LandingPage_Campaign_Sel" DbName="" />
 	    <Setting Key="Aff_LandingPage_BuilderManage_Sel" SpName="Aff_LandingPage_BuilderManage_Sel" DbName="" />
 		<Setting Key="Aff_LandingPage_Module_Sel" SpName="Aff_LandingPage_Module_Sel" DbName="" />
