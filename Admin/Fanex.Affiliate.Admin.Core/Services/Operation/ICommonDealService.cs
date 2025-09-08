@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.Operation
 {
     using System.Collections.Generic;
+    using DTO.Common;
     using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
     using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
@@ -18,5 +19,7 @@
         IEnumerable<DeductionItem> GetDeductionList();
 
         IEnumerable<NormalDeal> GetNormalDealList(GetNormalDealParam param);
+
+        IEnumerable<TargetCountry> GetPlayerTargetCountry();
     }
 }

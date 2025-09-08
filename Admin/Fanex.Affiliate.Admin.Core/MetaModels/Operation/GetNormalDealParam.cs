@@ -9,5 +9,7 @@
         public int GroupTypeId { get; set; }
 
         public int GroupId { get; set; }
+
+        public bool IsOnlyRevenue { get; set; } = true;
     }
 }

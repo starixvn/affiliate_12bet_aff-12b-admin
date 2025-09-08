@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Controllers.Operation
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Fanex.Affiliate.Admin.Core.Attributes;
@@ -14,7 +15,7 @@
     using Services.Operation;
     using ViewModels.Operation;
 
-    [FunctionAuthorize(FunctionName = Function.RevenueGroup)]
+    [FunctionAuthorize(FunctionName = Function.Deal)]
     public class DealAssignmentController : ReadOnlySessionBaseController
     {
         private readonly IAffiliateService _affiliateService;
@@ -39,14 +40,14 @@
 
             if (affId >= Validation.MinId)
             {
-                //var dealTypeList = _commonDealService.GetDealTypes();
+                var dealTypeList = _commonDealService.GetDealTypes();
                 var param = new GetNormalDealParam { AffId = affId };
                 var dealList = _commonDealService.GetNormalDealList(param);
 
                 viewModel = new AssignDealViewModel
                 {
                     DealList = dealList,
-                    //DealTypeList = dealTypeList,
+                    DealTypeList = dealTypeList.Where(dt => dt.GroupTypeId == DealType.RevenueShare),
                     AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
                 };
             }
@@ -54,7 +55,7 @@
             return View("~/Areas/Portal/Views/Operation/AssignDeal.cshtml", viewModel);
         }
 
-        [FunctionAuthorize(FunctionName = Function.RevenueGroup, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.Deal, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public async Task<ActionResult> AssignDeal(AssignDealParam assignParam, AffInfoParam affInfo)

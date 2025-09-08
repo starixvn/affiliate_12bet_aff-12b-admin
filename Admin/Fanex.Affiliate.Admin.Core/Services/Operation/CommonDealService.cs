@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using DTO.Common;
     using Fanex.Affiliate.Admin.Core.Criterias.Operation;
     using Fanex.Affiliate.Admin.Core.DTO;
     using Fanex.Affiliate.Admin.Core.DTO.Operation;
@@ -88,13 +89,21 @@
             var criteria = new GetAssignDealCriteria
             {
                 AffId = param.AffId,
-                //GroupTypeId = param.GroupTypeId
+                //GroupTypeId = param.GroupTypeId,
+                IsOnlyRevenue = param.IsOnlyRevenue
             };
 
             var normalDeals = FetchTData<NormalDeal>(criteria);
             param.GroupId = criteria.GroupId;
 
             return normalDeals;
+        }
+
+        public IEnumerable<TargetCountry> GetPlayerTargetCountry()
+        {
+            const string spKey = "Aff_Admin_Deal_PlayerTargetCountry_ListSel";
+
+            return FetchTData<TargetCountry>(spKey);
         }
     }
 }
