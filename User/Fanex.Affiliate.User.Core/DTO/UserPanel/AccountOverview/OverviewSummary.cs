@@ -12,8 +12,6 @@
 
         public int QualifiedMember { get; set; }
 
-        public decimal Turnover { get; set; }
-
         public decimal Deposit { get; set; }
 
         public decimal Commission { get; set; }

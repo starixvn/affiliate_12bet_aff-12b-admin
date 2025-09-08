@@ -49,14 +49,9 @@
         <div class="img-icon">
             <img class="img-responsive" src="~/www/build/styles/Images/account-overview/total-deposit.svg" alt="Total Deposit icon" />
         </div>
-        <div class="info-panel">
+        <div class="info-panel w-100">
             <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.TotalDeposit/@Lang.FdmDeposit</span>
             <span class="info-panel-content">@Model.Deposit.ToStringMoneyWithSymbol("$")/@Model.FdmDeposit.ToStringMoneyWithSymbol("$")</span>
-        </div>
-
-        <div class="info-panel">
-            <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.TotalTurnover</span>
-            <span class="info-panel-content">@Model.Turnover.ToStringMoneyWithSymbol("$")</span>
         </div>
     </div>
 </div>
