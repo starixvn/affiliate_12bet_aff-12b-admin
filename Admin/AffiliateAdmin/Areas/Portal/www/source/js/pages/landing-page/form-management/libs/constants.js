@@ -11,11 +11,21 @@ export const headerText = {
     Action: 'Action'
 };
 
-export const messages = {
+export const messageDelete = {
     PleaseSelect: 'Please select form(s) to delete',
-    AreYouSureDeleteItems: 'Are you sure to delete the selected form(s)?',
-    DeleteItemsSuccessfully: 'Delete form(s) successfully'
+    AreYouSureDeleteItems: 'The delete action will only be performed on assets that are not associated with any landing page.<br />Are you sure you want to delete the selected form(s)?',
+    DeleteItemsSuccessfully: 'Delete form(s) successfully',
+    FailedToDeleteItems: 'Failed to delete form(s)'
 }
+
+export const messageSwitchStatus = {
+    PleaseSelect: 'Please select form(s) to switch status',
+    AreYouSureSwitchStatus: 'Only active form(s) will be available for selection when creating a new landing page.<br />Are you sure you want to change status of the selected form(s)?',
+    SwitchStatusSuccessfully: 'Switch status of form(s) successfully',
+    FailedToSwitchStatus: 'Failed to change status of the selected form(s)'
+}
+
+export const defaultFormManagementModuleId = 9;
 
 export const defaultState = {
     files: [],

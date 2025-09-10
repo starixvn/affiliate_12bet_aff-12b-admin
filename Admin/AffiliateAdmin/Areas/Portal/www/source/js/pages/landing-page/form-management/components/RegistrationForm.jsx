@@ -3,29 +3,48 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
-import { setSelectedMediaId, getFormDetail, fetchData, uploadForms, updateForm, toggleLoader } from '../actions/index';
-import { defaultState } from '../libs/constants';
+import { setSelectedMediaId, getFormDetail, fetchData, uploadForms, updateForm, toggleLoader, setNotification } from '../actions/index';
+import { defaultState, defaultFormManagementModuleId } from '../libs/constants';
 import { regSpecialCharacters, globalResource, defaultInsertId } from '../../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import NotificationPopup from '../../../common/components/NotificationPopup';
 import { validateFileExtension, validateFileSize } from '../../libs/utils';
 import InputFile from '../../../common/components/InputFile';
 
 const regexSpecialCharacters = new RegExp(regSpecialCharacters);
 
 export const RegistrationForm = (props) => {
-    const { selectedMediaId, param, maximumFiles, maxFileSize, allowedExtensions } = props;
+    const { moduleList, targetCountryList, languageList, selectedMediaId, param, maximumFiles, maxFileSize, allowedExtensions } = props;
     
     const [state, setState] = useState({
         ...defaultState,
-        formNames: [''],
+        mediaNames: [''],
         previewImages: [''],
+        marketId: '',
+        moduleId: defaultFormManagementModuleId,
+        targetCountryCode: '',
+        isMediaIdInUse: false,
         errors: {
+            moduleId: false,
+            targetCountryCode: false,
+            marketId: false,
             file: false
         }
     });
 
     const modalRef = useRef();
+    const messageTimeoutRef = useRef();
+
+    // Reusable method to extract media name from file name
+    const getMediaNameFromFileName = useCallback((fileName, allowedExtensions) => {
+        if (!fileName || !allowedExtensions || allowedExtensions.length === 0) {
+            return fileName;
+        }
+        
+        // Remove dots from extensions and join them for regex pattern
+        const cleanExtensions = allowedExtensions.map(ext => ext.replace(/^\./, ''));
+        const extensionPattern = new RegExp(`\\.(${cleanExtensions.join('|')})$`, 'i');
+        return fileName.replace(extensionPattern, '');
+    }, []);
 
     useEffect(() => {
         setState(prev => ({ ...prev, isInsert: selectedMediaId === defaultInsertId }));
@@ -46,6 +65,7 @@ export const RegistrationForm = (props) => {
         const assetInfo = await props.getFormDetail(selectedMediaId);
 
         if (assetInfo) {
+            const mediaName = htmlDecode(assetInfo.MediaName);
             const fileName = htmlDecode(assetInfo.FileName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
             const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
@@ -53,39 +73,101 @@ export const RegistrationForm = (props) => {
             setState(prev => ({
                 ...prev,
                 inputFileNames: [shortFileName],
-                formNames: [shortFileName.replace(/\.(png|jpg|jpeg)$/i, '')],
+                mediaNames: [mediaName],
                 previewImages: [shortFileName],
-                iniatalFileName: shortFileName
+                marketId: assetInfo.MarketId || prev.marketId,
+                moduleId: assetInfo.ModuleId || prev.moduleId,
+                targetCountryCode: assetInfo.TargetCountryCode || prev.targetCountryCode,
+                isMediaIdInUse: assetInfo.IsMediaIdInUse || prev.IsMediaIdInUse,
+                initialFileName: shortFileName
             }));
         }
     }, [props]);
+
+    const handleChange = useCallback((event) => {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        setState(prev => ({ 
+            ...prev, 
+            [name]: value,
+            // Clear error when user selects a value
+            errors: {
+                ...prev.errors,
+                [name]: false
+            }
+        }));
+    }, []);
+
+    const handleClosePopup = useCallback(() => {
+        // Clear any pending message timeout
+        if (messageTimeoutRef.current) {
+            clearTimeout(messageTimeoutRef.current);
+        }
+        
+        props.setSelectedMediaId(null);
+        setState({
+            ...defaultState,
+            mediaNames: [''],
+            previewImages: [''],
+            marketId: '',
+            moduleId: defaultFormManagementModuleId,
+            targetCountryCode: '',
+            isMediaIdInUse: false,
+            errors: {
+                moduleId: false,
+                targetCountryCode: false,
+                marketId: false,
+                file: false
+            }
+        });
+    }, [props]);
+
+    const showMessage = useCallback((message, isSuccess = false, duration) => {
+        // Clear any existing timeout
+        if (messageTimeoutRef.current) {
+            clearTimeout(messageTimeoutRef.current);
+        }
+
+        modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
+
+        setState(prev => ({
+            ...prev,
+            message,
+            isSuccess,
+            isShowMessage: true
+        }));
+
+        messageTimeoutRef.current = duration && setTimeout(() => {
+            setState(prev => ({ ...prev, isShowMessage: false }));
+            
+            if (isSuccess) {
+                props.fetchData(param);
+                handleClosePopup();
+            }
+        }, duration);
+    }, [props, param, handleClosePopup]);
 
     const handleChangeFormName = useCallback((event, index) => {
         const value = event.target.value;
 
         if (regexSpecialCharacters.test(value)) {
-            handleShowAlert(false, `A Form Name can't contain any of the following characters: \\/:*?"<>|#%&+`);
+            showMessage(`A Form Name can't contain any of the following characters: \\/:*?"<>|#%&+`, false);
         } else {
             setState(prev => {
-                let formNames = [...prev.formNames];
-                let inputFileNames = [...prev.inputFileNames];
-                formNames[index] = value;
-                // Update the corresponding file name if we have files
-                if (prev.files && prev.files[index]) {
-                    const fileExtension = prev.files[index].name.split('.').pop();
-                    inputFileNames[index] = value ? `${value}.${fileExtension}` : prev.files[index].name;
-                }
-                return { ...prev, formNames, inputFileNames };
+                let mediaNames = [...prev.mediaNames];
+                mediaNames[index] = value;
+                return { ...prev, mediaNames };
             });
         }
-    }, []);
+    }, [showMessage]);
 
     const handleFile = useCallback((event) => {
         let { files } = event.target;
 
         if (files && files.length > 0) {
             let inputFileNames = [];
-            let formNames = [];
+            let mediaNames = [];
             let previewImages = [];
             let allResults = {
                 isOK: true,
@@ -94,9 +176,9 @@ export const RegistrationForm = (props) => {
 
             for (let file of files) {
                 let fileName = file.name;
-                let formName = fileName.replace(/\.(png|jpg|jpeg)$/i, '');
+                let mediaName = getMediaNameFromFileName(fileName, allowedExtensions);
                 inputFileNames.push(fileName);
-                formNames.push(formName);
+                mediaNames.push(mediaName);
                 previewImages.push(fileName);
                 
                 // Validate file extension
@@ -118,7 +200,7 @@ export const RegistrationForm = (props) => {
                 ...prev, 
                 files: Array.from(files), 
                 inputFileNames, 
-                formNames,
+                mediaNames,
                 previewImages,
                 isDisabled: !allResults.isOK,
                 // Clear file error when files are selected
@@ -127,14 +209,14 @@ export const RegistrationForm = (props) => {
                     file: false
                 }
             }));
-            !allResults.isOK && handleShowAlert(false, allResults.message);
+            !allResults.isOK && showMessage(allResults.message, false);
         }
-    }, [allowedExtensions, maxFileSize]);
+    }, [allowedExtensions, maxFileSize, getMediaNameFromFileName, showMessage]);
 
     const handleRemoveImageAt = useCallback((index) => {
         setState(prev => {
             let inputFileNames = prev.inputFileNames;
-            let formNames = prev.formNames;
+            let mediaNames = prev.mediaNames;
             let previewImages = prev.previewImages;
             let files = prev.files;
             if (!files || files.length == 0 || files.length < index + 1) {
@@ -142,7 +224,7 @@ export const RegistrationForm = (props) => {
             }
 
             inputFileNames = [...inputFileNames.slice(0, index), ...inputFileNames.slice(index + 1, inputFileNames.length)];
-            formNames = [...formNames.slice(0, index), ...formNames.slice(index + 1, formNames.length)];
+            mediaNames = [...mediaNames.slice(0, index), ...mediaNames.slice(index + 1, mediaNames.length)];
             previewImages = [...previewImages.slice(0, index), ...previewImages.slice(index + 1, previewImages.length)];
             files = [...files.slice(0, index), ...files.slice(index + 1, files.length)];
             
@@ -170,33 +252,38 @@ export const RegistrationForm = (props) => {
                     }
                 }
 
-                !allResults.isOK && handleShowAlert(false, allResults.message);
-                return { ...prev, files, inputFileNames, formNames, previewImages, isDisabled: !allResults.isOK };
+                !allResults.isOK && showMessage(allResults.message, false);
+                return { ...prev, files, inputFileNames, mediaNames, previewImages, isDisabled: !allResults.isOK };
             } else {
-                return { ...prev, inputFileNames: [''], formNames: [''], previewImages: [''], files, isDisabled: true };
+                return { ...prev, inputFileNames: [''], mediaNames: [''], previewImages: [''], files, isDisabled: true };
             }
         });
-    }, [allowedExtensions, maxFileSize]);
+    }, [allowedExtensions, maxFileSize, showMessage]);
 
     const handleAfterSave = useCallback((isInsert, result) => {
         if (result) {
             const message = isInsert ? "Your asset has been added successfully!" : "Your asset has been updated successfully!";
-            handleShowAlert(result.IsSuccessful, result.IsSuccessful ? message : result.Message);
+            showMessage(result.IsSuccessful ? message : result.Message, result.IsSuccessful, result.IsSuccessful && 3000);
         } else {
-            handleShowAlert(false, isInsert ? "The add is failed!" : "The update is failed!");
+            const message = isInsert ? "The add is failed!" : "The update is failed!";
+            showMessage(message, false);
         }
-    }, []);
+    }, [showMessage]);
 
     const save = useCallback(async () => {
-        const { inputFileNames, isInsert, iniatalFileName, files } = state;
+        const { inputFileNames, isInsert, initialFileName, files } = state;
         const assetInfo = getParam();
 
         if (isInsert) {
             const result = await props.uploadForms(assetInfo);
             handleAfterSave(isInsert, result);
         } else {
-            if (inputFileNames[0] === iniatalFileName && !!files.length) {
-                setState(prev => ({ ...prev, messageNotificationPopup: 'This file name exists already. Do you want to overwrite the current file?' }));
+            if (inputFileNames[0] === initialFileName && !!files.length) {
+                props.setNotification({
+                    message: 'This form name exists already. Do you want to overwrite the current form?',
+                    isConfirmPopup: true,
+                    onConfirm: () => updateFormHandler(assetInfo)
+                });
             } else {
                 updateFormHandler(assetInfo);
             }
@@ -204,13 +291,16 @@ export const RegistrationForm = (props) => {
     }, [state, props]);
 
     const getParam = useCallback(() => {
-        const { files, inputFileNames, formNames, isInsert } = state;
+        const { files, inputFileNames, mediaNames, isInsert, marketId, moduleId, targetCountryCode } = state;
 
         return {
             MediaId: selectedMediaId,
             files,
             inputFileNames: isInsert ? inputFileNames.map(item => item.trim()).join('|') : inputFileNames[0] && inputFileNames[0].trim(),
-            formNames: isInsert ? formNames.map(item => item.trim()).join('|') : formNames[0] && formNames[0].trim(),
+            inputMediaNames: isInsert ? mediaNames.map(item => item.trim()).join('|') : mediaNames[0] && mediaNames[0].trim(),
+            marketId,
+            moduleId,
+            targetCountryCode
         };
     }, [state, selectedMediaId]);
 
@@ -219,26 +309,26 @@ export const RegistrationForm = (props) => {
         handleAfterSave(state.isInsert, result);
     }, [props, state.isInsert]);
 
-    const validateFormNames = useCallback(() => {
-        const { formNames, isInsert, files } = state;
+    const validateMediaNames = useCallback(() => {
+        const { mediaNames, isInsert, files } = state;
 
-        let validFormNames = {
+        let validMediaNames = {
             isOK: true,
             message: ''
         };
 
         if (isInsert) {
-            for (let i = 0; i < formNames.length; i++) {
-                let formName = formNames[i];
+            for (let i = 0; i < mediaNames.length; i++) {
+                let mediaName = mediaNames[i];
 
-                if (!formName || formName.trim() === '') {
-                    validFormNames = {
+                if (!mediaName || mediaName.trim() === '') {
+                    validMediaNames = {
                         isOK: false,
                         message: `Form Name ${i + 1} is required.`
                     };
                     break;
-                } else if (regexSpecialCharacters.test(formName.trim())) {
-                    validFormNames = {
+                } else if (regexSpecialCharacters.test(mediaName.trim())) {
+                    validMediaNames = {
                         isOK: false,
                         message: `Form Name ${i + 1} contains invalid characters.`
                     };
@@ -246,34 +336,34 @@ export const RegistrationForm = (props) => {
                 }
             }
         } else {
-            const formName = formNames[0];
-            if (!formName || formName.trim() === '') {
+            const mediaName = mediaNames[0];
+            if (!mediaName || mediaName.trim() === '') {
                 if (files && files.length > 0) {
                     // Use the original file name if no form name provided
                 } else {
-                    validFormNames = {
+                    validMediaNames = {
                         isOK: false,
                         message: 'You must either enter a form name or browse a file.'
                     };
                 }
-            } else if (regexSpecialCharacters.test(formName.trim())) {
-                validFormNames = {
+            } else if (regexSpecialCharacters.test(mediaName.trim())) {
+                validMediaNames = {
                     isOK: false,
                     message: 'Form Name contains invalid characters.'
                 };
             }
         }
 
-        return validFormNames;
+        return validMediaNames;
     }, [state]);
 
-    const hasDuplicateFormNames = useCallback((formNames) => {
-        const length = formNames.length;
+    const hasDuplicateMediaNames = useCallback((mediaNames) => {
+        const length = mediaNames.length;
         for (let i = 0; i <= length - 1; i++) {
-            let formName = formNames[i].trim().toLowerCase();
+            let mediaName = mediaNames[i].trim().toLowerCase();
 
             for (let j = i + 1; j < length; j++) {
-                if (formName == formNames[j].trim().toLowerCase()) {
+                if (mediaName == mediaNames[j].trim().toLowerCase()) {
                     return true;
                 }
             }
@@ -285,10 +375,13 @@ export const RegistrationForm = (props) => {
     const handleSubmit = useCallback(() => {
         props.toggleLoader(true);
 
-        const { formNames, files, isInsert } = state;
+        const { mediaNames, files, isInsert, moduleId, targetCountryCode, marketId } = state;
 
         // Track validation errors
         const newErrors = {
+            moduleId: !moduleId,
+            targetCountryCode: !targetCountryCode,
+            marketId: !marketId,
             file: isInsert && (!files || files.length === 0)
         };
 
@@ -299,96 +392,55 @@ export const RegistrationForm = (props) => {
         const hasErrors = Object.values(newErrors).some(error => error);
 
         if (hasErrors) {
-            let errorMessage = "<strong>Please complete the required fields:</strong><br />";
-            if (newErrors.file) errorMessage += "• File upload is required<br />";
+            let errorMessage = "";
+            if (newErrors.moduleId) errorMessage += "Please select a module.<br />";
+            if (newErrors.targetCountryCode) errorMessage += "Please select a target country.<br />";
+            if (newErrors.marketId) errorMessage += "Please select a language.<br />";
+            if (newErrors.file) errorMessage += "Please browse a file.<br />";
             
-            // Use a custom warning alert for validation errors
-            setState(prev => ({
-                ...prev,
-                message: errorMessage,
-                isSuccess: false,
-                isShowMessage: true
-            }));
-            
-            modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
-            setTimeout(() => setState(prev => ({ ...prev, isShowMessage: false })), 7000);
+            showMessage(errorMessage, false);
             props.toggleLoader(false);
             return;
         }
 
-        if (formNames.length > maximumFiles) {
-            handleShowAlert(false, `You can upload up to ${maximumFiles} files only.`);
+        if (mediaNames.length > maximumFiles) {
+            showMessage(`You can upload up to ${maximumFiles} files only.`, false);
+            props.toggleLoader(false);
             return;
         }
-        if (hasDuplicateFormNames(formNames)) {
-            handleShowAlert(false, "Duplicate form name(s) detected. Please rename or remove the form(s).");
+        if (hasDuplicateMediaNames(mediaNames)) {
+            showMessage("Duplicate form name(s) detected. Please rename or remove the form(s).", false);
+            props.toggleLoader(false);
             return;
         }
 
-        const validFormNames = validateFormNames();
-        validFormNames.isOK ? save() : handleShowAlert(false, validFormNames.message);
-
-        props.toggleLoader(false);
-    }, [state, props, maximumFiles, hasDuplicateFormNames, validateFormNames, save]);
-
-    const handleShowAlert = useCallback((isSuccess, message) => {
-        modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
-
-        setState(prev => ({
-            ...prev,
-            message,
-            isSuccess,
-            isShowMessage: true,
-        }));
-
-        setTimeout(() => hideMessage(isSuccess), isSuccess ? 3000 : 5000);
-        props.toggleLoader(false);
-    }, [props]);
-
-    const hideMessage = useCallback((isSuccess) => {
-        setState(prev => ({ ...prev, isShowMessage: false }));
-
-        if (isSuccess) {
-            props.fetchData(param);
-            handleClosePopup();
+        const validMediaNames = validateMediaNames();
+        if (validMediaNames.isOK) {
+            save();
+        } else {
+            showMessage(validMediaNames.message, false);
+            props.toggleLoader(false);
         }
-    }, [props, param]);
 
-    const handleClosePopup = useCallback(() => {
-        props.setSelectedMediaId(null);
-        setState({
-            ...defaultState,
-            formNames: [''],
-            previewImages: [''],
-            errors: {
-                file: false
+        props.toggleLoader(false);
+    }, [state, props, maximumFiles, hasDuplicateMediaNames, validateMediaNames, save, showMessage]);
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (messageTimeoutRef.current) {
+                clearTimeout(messageTimeoutRef.current);
             }
-        });
-    }, [props]);
+        };
+    }, []);
 
-    const handleCloseNotificationPopup = useCallback((confirmResult) => {
-        setState(prev => ({ ...prev, messageNotificationPopup: '' }));
-
-        if (confirmResult) {
-            const assetInfo = getParam();
-            updateFormHandler(assetInfo);
-        }
-    }, [getParam, updateFormHandler]);
-
-    const { inputFileNames, formNames, previewImages, isShowMessage, isSuccess, message, isInsert, isDisabled, messageNotificationPopup, files, errors } = state;
+    const { mediaNames, previewImages, isShowMessage, isSuccess, message, isInsert, isDisabled, files, errors, isMediaIdInUse } = state;
     const isShowPopup = selectedMediaId !== null;
     const title = isInsert ? "Registration Form" : "Update Registration Form";
     const buttonLabel = isInsert ? "Add" : "Update";
 
     return (
         <React.Fragment>
-            {
-                !!messageNotificationPopup && <NotificationPopup
-                    message={messageNotificationPopup}
-                    isConfirmPopup={true}
-                    onClose={handleCloseNotificationPopup}
-                />
-            }
             <Modal isOpen={isShowPopup} toggle={handleClosePopup} backdrop='static' innerRef={modalRef}>
                 <ModalHeader toggle={handleClosePopup}><span className="iconpopup"></span>{title}</ModalHeader>
                 <ModalBody>
@@ -397,22 +449,69 @@ export const RegistrationForm = (props) => {
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-3 p-1 border" autoComplete="off">
-                                <Label>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</Label>
-                                <Label className="d-block">[File Size Limit: {maxFileSize}MB]</Label>
-                                {
-                                    isInsert && <Label className="d-block">[Maximum files: {maximumFiles}]</Label>
-                                }
-                                <br />
+                            <Form tag="form" className="mb-3 p-1" autoComplete="off">
+                                <div className='px-1 mb-3 border'>
+                                    <p>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</p>
+                                    <p className="d-block">[File Size Limit: {maxFileSize}MB]</p>
+                                    <p className="d-block">[Maximum files: {maximumFiles}]</p>
+                                    <span><strong>Note:</strong> Module, Target Country, and Language cannot be changed if the image is already used in an existing landing page.</span>
+                                </div>
                                 <FormGroup row className="mb-2">
-                                    <Label sm={3} htmlFor="module">Module</Label>
+                                    <Label sm={3} htmlFor="moduleId">Module</Label>
                                     <Col sm={7} className='align-self-center'>
                                         <Input 
-                                            type="text"
+                                            type="select" 
+                                            name="moduleId" 
+                                            id="moduleId"
+                                            value={state.moduleId}
                                             disabled={true}
-                                            name="module" 
-                                            id="module" 
-                                            value="Registration Form">
+                                            onChange={handleChange}
+                                            className={errors.moduleId ? 'form-validation-warning' : ''}>
+                                            {
+                                                moduleList && moduleList.map(item => {
+                                                    return (<option key={`module-${item.key}`} value={item.key}>{item.name}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} htmlFor="targetCountryCode" className="required pr-0">Target Country</Label>
+                                    <Col sm={7} className='align-self-center'>
+                                        <Input 
+                                            type="select" 
+                                            name="targetCountryCode" 
+                                            id="targetCountryCode" 
+                                            disabled={isMediaIdInUse} 
+                                            value={state.targetCountryCode} 
+                                            onChange={handleChange}
+                                            className={errors.targetCountryCode ? 'form-validation-warning' : ''}>
+                                            <option value="">Please Select</option>
+                                            {
+                                                targetCountryList && targetCountryList.map(item => {
+                                                    return (<option key={`country-${item.key}`} value={item.key}>{item.name}</option>)
+                                                })
+                                            }
+                                        </Input>
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row className="mb-2">
+                                    <Label sm={3} htmlFor="marketId" className="required">Language</Label>
+                                    <Col sm={7} className='align-self-center'>
+                                        <Input 
+                                            type="select" 
+                                            name="marketId" 
+                                            id="marketId" 
+                                            disabled={isMediaIdInUse} 
+                                            value={state.marketId} 
+                                            onChange={handleChange}
+                                            className={errors.marketId ? 'form-validation-warning' : ''}>
+                                            <option value="">Please Select</option>
+                                            {
+                                                languageList && languageList.map(item => {
+                                                    return (<option key={`language-${item.key}`} value={item.key}>{item.name}</option>)
+                                                })
+                                            }
                                         </Input>
                                     </Col>
                                 </FormGroup>
@@ -420,7 +519,7 @@ export const RegistrationForm = (props) => {
                                     <Label sm={3} htmlFor="file" className={isInsert ? "required" : ""}>Upload File</Label>
                                     <Col sm={9} className='align-self-center'>
                                         <InputFile id="file" 
-                                            className={`input-file-group border ${errors.file ? "form-validation-warning" : (isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
+                                            className={`input-file-group border ${errors.file ? "form-validation-warning" : isDisabled || files.length === 0 ? "text-danger" : "text-success"}`}
                                             lblText="No file chosen"
                                             btnName={globalResource.ChooseFile}
                                             isMultiple={isInsert} files={files}
@@ -429,18 +528,18 @@ export const RegistrationForm = (props) => {
                                     </Col>
                                 </FormGroup>
                                 {
-                                    isInsert ? formNames && formNames.map((value, index) => {
-                                        let formNameId = `formName${index}`;
+                                    isInsert ? mediaNames && mediaNames.map((value, index) => {
+                                        let mediaNameId = `mediaName${index}`;
                                         let previewImageId = `previewImage${index}`;
 
                                         return (
                                             <React.Fragment key={`FormSection${index + 1}`}>
                                                 <FormGroup row className="mb-2">
-                                                    <Label sm={3} htmlFor={formNameId}>{`Form Name ${index + 1}`}</Label>
+                                                    <Label sm={3} htmlFor={mediaNameId}>{`Form Name ${index + 1}`}</Label>
                                                     <Col sm={7} className='align-self-center'>
                                                         <Input type="text"
-                                                            name={formNameId}
-                                                            id={formNameId}
+                                                            name={mediaNameId}
+                                                            id={mediaNameId}
                                                             title={value}
                                                             value={value} 
                                                             onChange={(e) => handleChangeFormName(e, index)} />
@@ -470,12 +569,12 @@ export const RegistrationForm = (props) => {
                                     }) : (
                                         <React.Fragment>
                                             <FormGroup row className="mb-2">
-                                                <Label sm={3} htmlFor="formName">Form Name</Label>
+                                                <Label sm={3} htmlFor="mediaName">Form Name</Label>
                                                 <Col sm={7} className='align-self-center'>
                                                     <Input type="text"
-                                                        name="formName"
-                                                        id="formName"
-                                                        value={formNames && formNames[0]}
+                                                        name="mediaName"
+                                                        id="mediaName"
+                                                        value={mediaNames && mediaNames[0]}
                                                         onChange={(e) => handleChangeFormName(e, 0)} />
                                                 </Col>
                                             </FormGroup>
@@ -486,8 +585,7 @@ export const RegistrationForm = (props) => {
                                                         name="previewImage"
                                                         id="previewImage"
                                                         value={previewImages && previewImages[0]}
-                                                        disabled={true}
-                                                        className="bg-light" />
+                                                        disabled={true} />
                                                 </Col>
                                             </FormGroup>
                                         </React.Fragment>
@@ -498,7 +596,7 @@ export const RegistrationForm = (props) => {
                             <Button type="button"
                                 color="success"
                                 className="mr-3"
-                                disabled={isInsert ? isDisabled : false}
+                                disabled={((isInsert || (inputFileNames && isDisabled))) ? isDisabled : false}
                                 onClick={handleSubmit}>
                                 {buttonLabel}
                             </Button>
@@ -511,14 +609,14 @@ export const RegistrationForm = (props) => {
     );
 }
 
-function mapStateToProps({ selectedMediaId, param, maximumFiles, maxFileSize, allowedExtensions }) {
+function mapStateToProps({ selectedMediaId, param, moduleList, targetCountryList, languageList, maximumFiles, maxFileSize, allowedExtensions }) {
     return Object.assign({}, {
-        selectedMediaId, param, maximumFiles, maxFileSize, allowedExtensions
+        selectedMediaId, param, moduleList, targetCountryList, languageList, maximumFiles, maxFileSize, allowedExtensions
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMediaId, getFormDetail, fetchData, uploadForms, updateForm, toggleLoader }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, getFormDetail, fetchData, uploadForms, updateForm, toggleLoader, setNotification }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(RegistrationForm));

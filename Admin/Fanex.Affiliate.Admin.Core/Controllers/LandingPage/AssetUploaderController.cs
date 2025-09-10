@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetAssetList(AssetListParam param)
+        public ActionResult GetAssetList(AssetUploaderParam param)
         {
             param.FunctionName = Function.AssetUploader;
             param.UserId = SessionService.UserId;
@@ -62,7 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         {
             if (ModelState.IsValid && files != null && files.Length > 0)
             {
-                var encodeParam = EncodeUploadAssetsParam(param);
+                var encodeParam = EncodeAssetParam(param);
                 AssignUserInfoParam(encodeParam);
                 return GenerateJsonNetResult(_assetService.UploadAssets(files, encodeParam));
             }
@@ -71,9 +71,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetAssetDetail(AssetListParam param)
+        public ActionResult GetAssetDetail(AssetDetailParam param)
         {
-            param.FunctionName = Function.AssetUploader;
             param.UserId = SessionService.UserId;
             return GenerateJsonNetResult(_assetService.GetAssetDetail(param));
         }
@@ -81,15 +80,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
-        public ActionResult UpdateAsset(HttpPostedFileBase file, UploadAssetsParam param)
+        public ActionResult UpdateAsset(HttpPostedFileBase files, UpdateAssetParam param)
         {
-            if (ModelState.IsValid && (!string.IsNullOrEmpty(param.InputFileNames) || file != null))
+            if (ModelState.IsValid && (!string.IsNullOrEmpty(param.InputFileNames) || files != null))
             {
-                var encodeParam = EncodeUploadAssetsParam(param);
+                var encodeParam = EncodeAssetParam(param);
+                encodeParam.MediaId = param.MediaId;
+
                 AssignUserInfoParam(encodeParam);
-                return GenerateJsonNetResult(_assetService.UpdateAsset(file, encodeParam));
+                return GenerateJsonNetResult(_assetService.UpdateAsset(files, encodeParam));
             }
-            return GenerateErrResult("Please select valid files to upload.");
+            return GenerateErrResult("Please select valid  file to update.");
         }
 
         [HttpPost]
@@ -118,26 +119,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             return GenerateJsonNetResult(_assetService.ToggleAssetStatus(param));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult OptimizeAsset(OptimizeAssetParam param)
+        private UpdateAssetParam EncodeAssetParam(UploadAssetsParam param)
         {
-            if (ModelState.IsValid)
+            return new UpdateAssetParam
             {
-                return GenerateJsonNetResult(_assetService.OptimizeAsset(param));
-            }
-            return GenerateModelStateErrResult();
-        }
-
-        private UploadAssetsParam EncodeUploadAssetsParam(UploadAssetsParam param)
-        {
-            return new UploadAssetsParam
-            {
-                MediaId = param.MediaId,
                 ModuleId = param.ModuleId,
                 TargetCountryCode = Server.HtmlEncode(param.TargetCountryCode),
                 MarketId = Server.HtmlEncode(param.MarketId),
-                InputFileNames = param.InputFileNames,
+                InputFileNames = Server.HtmlEncode(param.InputFileNames),
+                InputMediaNames = Server.HtmlEncode(param.InputMediaNames),
                 FunctionName = Function.AssetUploader
             };
         }

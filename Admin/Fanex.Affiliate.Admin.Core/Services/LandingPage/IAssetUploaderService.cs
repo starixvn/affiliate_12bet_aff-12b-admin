@@ -8,12 +8,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
     public interface IAssetUploaderService
     {
         ResultInfo UploadAssets(HttpPostedFileBase[] files, UploadAssetsParam param);
-        ResultInfo UpdateAsset(HttpPostedFileBase file, UploadAssetsParam param);
-        EntityResult<LandingPageAsset> GetAssetList(AssetListParam param);
-        LandingPageAsset GetAssetDetail(AssetListParam param);
+        ResultInfo UpdateAsset(HttpPostedFileBase file, UpdateAssetParam param);
+        EntityResult<LandingPageAsset> GetAssetList(AssetUploaderParam param);
+        LandingPageAsset GetAssetDetail(AssetDetailParam param);
         ResultInfo DeleteMedias(DeleteMediasParam param);
         ResultInfo ToggleAssetStatus(UpdateMediasStatusParam param);
-        OptimizedAssetResult OptimizeAsset(OptimizeAssetParam param);
-        AssetStatistics GetAssetStatistics(int? moduleId);
     }
 }

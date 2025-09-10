@@ -144,9 +144,9 @@ const handleExcute = async (url, param) => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const deleteAssets = (param) => async () => {
+export const deleteAssets = (mediaIds) => async () => {
     const url = 'Portal/AssetUploader/DeleteAssets';
-    const response = await post(url, param);
+    const response = await post(url, { mediaIds });
 
     return response && response.status === 200 ? response.data : null;
 }

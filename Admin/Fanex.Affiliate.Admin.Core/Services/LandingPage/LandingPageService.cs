@@ -31,20 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         public IEnumerable<CampaignInfo> GetCampaignInfoList()
         {
-            return new List<CampaignInfo>
-            {
-                new CampaignInfo
-                {
-                    CampaignCode = "Campaign_1",
-                    CampaignName = "Campaign_1",
-                },
-                new CampaignInfo
-                {
-                    CampaignCode = "Campaign_2",
-                    CampaignName = "Campaign_2",
-                }
-            };
-            //return FetchTData<CampaignInfo>(new GetCampaignInfoCriteria());
+            return FetchTData<CampaignInfo>(new GetCampaignInfoCriteria());
         }
         
         public IEnumerable<LandingPageModule> GetModuleList()

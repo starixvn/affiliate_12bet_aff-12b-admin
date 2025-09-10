@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.LandingPage
         public IEnumerable<LandingPageModule> ModuleList { get; set; }
     }
 
+
+
     public class ManageLandingPageViewModel
     {
         public IEnumerable<TargetCountry> TargetCountries { get; set; }

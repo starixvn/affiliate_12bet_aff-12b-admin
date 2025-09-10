@@ -2,6 +2,7 @@
 
 export { globalResource };
 
+// Legacy constants (keep for backward compatibility)
 export const headerText = {
     Index: '#',
     BlockTargetCountry: 'Block Target Country',
@@ -30,3 +31,75 @@ export const messages = {
     AreYouSureDeleteItems: 'Are you sure to delete the selected landing page(s)?',
     DeleteItemsSuccessfully: 'Delete landing page(s) Successfully'
 }
+
+// Page Builder Constants
+export const pageBuilderLabels = {
+    campaignName: 'Campaign Name',
+    targetCountry: 'Target Country',
+    language: 'Language',
+    deal: 'Deal',
+    pageName: 'Page Name',
+    pageCode: 'Page Code',
+    status: 'Status',
+    moduleComponents: 'Module Components',
+    order: 'Order',
+    module: 'Module',
+    source: 'Source',
+    preview: 'Preview',
+    create: 'Create',
+    reset: 'Reset',
+    copyLink: 'Copy Link',
+    add: 'Add +',
+    remove: 'Remove'
+};
+
+export const statusOptions = [
+    { value: 'Draft', label: 'Draft' },
+    { value: 'Active', label: 'Active' },
+    { value: 'Inactive', label: 'Inactive' }
+];
+
+export const pageBuilderDefaultState = {
+    formData: {
+        campaignId: null,
+        targetCountryId: null,
+        languageId: null,
+        dealIds: [],
+        pageName: '',
+        pageCode: '',
+        status: 'Draft'
+    },
+    moduleComponents: [
+        {
+            id: 1,
+            order: 1,
+            moduleId: null,
+            sourceId: null
+        }
+    ],
+    validation: {
+        errors: {},
+        isValid: false,
+        isValidating: false
+    },
+    ui: {
+        isPreviewOpen: false,
+        isCopyLinkOpen: false,
+        isLoading: false,
+        nextModuleOrder: 2
+    }
+};
+
+export const validationMessages = {
+    campaignRequired: 'Campaign Name is required',
+    pageNameRequired: 'Page Name is required',
+    pageNameExists: 'Page Name already exists. Please enter a different name.',
+    pageCodeRequired: 'Page Code is required',
+    pageCodeExists: 'Page Code already exists. Please enter a different code.',
+    pageCodeInvalid: 'Page Code can only contain letters, numbers, hyphens and underscores',
+    moduleRequired: 'Module is required',
+    sourceRequired: 'Source is required',
+    atLeastOneModule: 'At least one module component is required'
+};
+
+export const pageCodePattern = /^[a-zA-Z0-9-_]+$/;

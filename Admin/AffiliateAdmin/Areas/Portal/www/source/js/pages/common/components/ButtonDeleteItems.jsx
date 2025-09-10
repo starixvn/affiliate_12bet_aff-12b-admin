@@ -7,13 +7,13 @@ export default class ButtonDeleteItems extends PureComponent {
         super(props);
 
         this.state = {
-            itemIdList: '',
+            itemIdList: [],
             message: '',
             isConfirmPopup: false
         }
     }
 
-    _getCheckedItemIdList = () => {
+    _getCheckedItemIdList = (shouldCheckCanDelete = false) => {
         const { checkedItems } = this.props;
         if (!checkedItems || typeof checkedItems !== 'object') {
             return [];
@@ -31,12 +31,12 @@ export default class ButtonDeleteItems extends PureComponent {
 
         return checkedItemsList.filter(key => {
             const item = checkedItems[key];
-            return item && item.isChecked && item.isCanDelete;
+            return item && item.isChecked && (shouldCheckCanDelete ? item.isCanDelete : true);
         });
     }
 
     _handleOpenNotificationPopup = (message, isConfirmPopup, itemIdList) => {
-        this.setState({ message, isConfirmPopup: isConfirmPopup || false, itemIdList: itemIdList || '' });
+        this.setState({ message, isConfirmPopup: isConfirmPopup || false, itemIdList: itemIdList || [] });
     }
 
     _handleCloseNotificationPopup = (confirmResult) => {
@@ -50,13 +50,13 @@ export default class ButtonDeleteItems extends PureComponent {
 
     _handleDelete = () => {
         const itemIdList = this._getCheckedItemIdList();
-        itemIdList.length === 0 ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems, true, itemIdList);
+        itemIdList.length === 0 ? this._handleOpenNotificationPopup(this.props.messages.PleaseSelect) : this._handleOpenNotificationPopup(this.props.messages.AreYouSureDeleteItems, true, this._getCheckedItemIdList(true));
     }
 
     _deleteExcute = async (itemIdList) => {
         this.props.toggleLoader(true);
 
-        const result = await this.props.deleteItems(itemIdList.join(','));
+        const result = itemIdList.length === 0 ? { IsSuccessful: true } : await this.props.deleteItems(itemIdList.join(','));
 
         if (result) {
             if (result.IsSuccessful) {

@@ -17,25 +17,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
     {
         private readonly IAppSetting _appSetting;
         private readonly ILandingPageBuilderService _builderService;
-        private readonly IModuleManagementService _moduleService;
-        private readonly IModuleMediaGalleryService _mediaService;
-        private readonly IRegistrationFormService _formService;
         private readonly ILandingPageService _landingPageService;
 
         public PageBuilderController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILandingPageBuilderService builderService,
-            IModuleManagementService moduleService,
-            IModuleMediaGalleryService mediaService,
-            IRegistrationFormService formService,
             ILandingPageService landingPageService) : base(sessionService)
         {
             _appSetting = appSetting;
             _builderService = builderService;
-            _moduleService = moduleService;
-            _mediaService = mediaService;
-            _formService = formService;
             _landingPageService = landingPageService;
         }
 
@@ -50,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             var model = new PageBuilderViewModel
             {
                 LandingPageUrl = _appSetting.LandingPageUrl,
+                CampaignList = _landingPageService.GetCampaignInfoList(),
                 LanguageList = _landingPageService.GetLanguageList(),
                 DealList = _landingPageService.GetNormalDealList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
@@ -152,9 +144,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
                 PageId = pageId ?? 0,
                 TargetCountries = _landingPageService.GetTargetCountryList(),
                 Languages = _landingPageService.GetLanguageList(),
-                AvailableModules = _moduleService.GetModuleList(),
-                ModuleTypes = _moduleService.GetModuleTypes(),
-                NavigationTargets = _moduleService.GetNavigationTargets()
+                AvailableModules = _landingPageService.GetModuleList(),
+                //ModuleTypes = _moduleService.GetModuleTypes(),
+                //NavigationTargets = _moduleService.GetNavigationTargets()
             };
 
             // If editing existing page, load its configuration
@@ -265,9 +257,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
                     PageSize = param.PageSize,
                     IncludeDeleted = false
                 };
-
-                var result = _mediaService.GetModuleMediaList(criteria);
-                return GenerateJsonNetResult(result);
             }
             return GenerateModelStateErrResult();
         }
@@ -322,112 +311,112 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         #endregion
 
-        #region 4. Manage Registration Form Functions
+        //#region 4. Manage Registration Form Functions
 
-        /// <summary>
-        /// Manage Registration Form - Form template management
-        /// </summary>
-        [HttpGet]
-        public ActionResult ManageRegistrationForm()
-        {
-            var model = new ManageRegistrationFormViewModel
-            {
-                TargetCountries = _landingPageService.GetTargetCountryList(),
-                Languages = _landingPageService.GetLanguageList(),
-                FormTemplateList = _formService.GetRegistrationFormList().MainData,
-                FormFieldTypes = _formService.GetFormFieldTypes()
-            };
+        ///// <summary>
+        ///// Manage Registration Form - Form template management
+        ///// </summary>
+        //[HttpGet]
+        //public ActionResult ManageRegistrationForm()
+        //{
+        //    var model = new ManageRegistrationFormViewModel
+        //    {
+        //        TargetCountries = _landingPageService.GetTargetCountryList(),
+        //        Languages = _landingPageService.GetLanguageList(),
+        //        FormTemplateList = _formService.GetRegistrationFormList().MainData,
+        //        FormFieldTypes = _formService.GetFormFieldTypes()
+        //    };
 
-            return View("~/Areas/Portal/Views/MediaGallery/ManageRegistrationForm.cshtml", model);
-        }
+        //    return View("~/Areas/Portal/Views/MediaGallery/ManageRegistrationForm.cshtml", model);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetRegistrationFormList(RegistrationFormListParam param)
-        {
-            return GenerateJsonNetResult(_formService.GetRegistrationFormList(param));
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //public ActionResult GetRegistrationFormList(RegistrationFormListParam param)
+        //{
+        //    return GenerateJsonNetResult(_formService.GetRegistrationFormList(param));
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GetRegistrationFormById(int formId)
-        {
-            if (formId <= 0)
-            {
-                return GenerateErrResult("Invalid form ID.");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //public ActionResult GetRegistrationFormById(int formId)
+        //{
+        //    if (formId <= 0)
+        //    {
+        //        return GenerateErrResult("Invalid form ID.");
+        //    }
 
-            return GenerateJsonNetResult(_formService.GetRegistrationFormById(formId));
-        }
+        //    return GenerateJsonNetResult(_formService.GetRegistrationFormById(formId));
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
-        public ActionResult CreateRegistrationForm(CreateRegistrationFormParam param)
-        {
-            if (ModelState.IsValid)
-            {
-                var encodeParam = EncodeRegistrationFormParam(param);
-                AssignUserInfoParam(encodeParam);
-                return GenerateJsonNetResult(_formService.CreateRegistrationForm(encodeParam));
-            }
-            return GenerateModelStateErrResult();
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //[FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        //public ActionResult CreateRegistrationForm(CreateRegistrationFormParam param)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var encodeParam = EncodeRegistrationFormParam(param);
+        //        AssignUserInfoParam(encodeParam);
+        //        return GenerateJsonNetResult(_formService.CreateRegistrationForm(encodeParam));
+        //    }
+        //    return GenerateModelStateErrResult();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
-        public ActionResult UpdateRegistrationForm(UpdateRegistrationFormParam param)
-        {
-            if (ModelState.IsValid)
-            {
-                var encodeParam = EncodeUpdateRegistrationFormParam(param);
-                AssignUserInfoParam(encodeParam);
-                return GenerateJsonNetResult(_formService.UpdateRegistrationForm(encodeParam));
-            }
-            return GenerateModelStateErrResult();
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //[FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        //public ActionResult UpdateRegistrationForm(UpdateRegistrationFormParam param)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var encodeParam = EncodeUpdateRegistrationFormParam(param);
+        //        AssignUserInfoParam(encodeParam);
+        //        return GenerateJsonNetResult(_formService.UpdateRegistrationForm(encodeParam));
+        //    }
+        //    return GenerateModelStateErrResult();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
-        public ActionResult DeleteRegistrationForm(DeleteRegistrationFormParam param)
-        {
-            if (ModelState.IsValid)
-            {
-                AssignUserInfoParam(param);
-                return GenerateJsonNetResult(_formService.DeleteRegistrationForm(param));
-            }
-            return GenerateModelStateErrResult();
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //[FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        //public ActionResult DeleteRegistrationForm(DeleteRegistrationFormParam param)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        AssignUserInfoParam(param);
+        //        return GenerateJsonNetResult(_formService.DeleteRegistrationForm(param));
+        //    }
+        //    return GenerateModelStateErrResult();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
-        public ActionResult UploadFormAssets(HttpPostedFileBase[] files, UploadFormAssetsParam param)
-        {
-            if (ModelState.IsValid && files != null && files.Length > 0)
-            {
-                var encodeParam = EncodeFormAssetsParam(param);
-                AssignUserInfoParam(encodeParam);
-                return GenerateJsonNetResult(_formService.UploadFormAssets(files, encodeParam));
-            }
-            return GenerateErrResult("Please select valid files to upload.");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //[FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        //public ActionResult UploadFormAssets(HttpPostedFileBase[] files, UploadFormAssetsParam param)
+        //{
+        //    if (ModelState.IsValid && files != null && files.Length > 0)
+        //    {
+        //        var encodeParam = EncodeFormAssetsParam(param);
+        //        AssignUserInfoParam(encodeParam);
+        //        return GenerateJsonNetResult(_formService.UploadFormAssets(files, encodeParam));
+        //    }
+        //    return GenerateErrResult("Please select valid files to upload.");
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryHeader]
-        public ActionResult GenerateFormPreview(int formId)
-        {
-            if (formId <= 0)
-            {
-                return GenerateErrResult("Invalid form ID.");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryHeader]
+        //public ActionResult GenerateFormPreview(int formId)
+        //{
+        //    if (formId <= 0)
+        //    {
+        //        return GenerateErrResult("Invalid form ID.");
+        //    }
 
-            return GenerateJsonNetResult(_formService.GenerateFormPreview(formId));
-        }
+        //    return GenerateJsonNetResult(_formService.GenerateFormPreview(formId));
+        //}
 
-        #endregion
+        //#endregion
 
         #region Helper Methods
 

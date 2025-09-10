@@ -7,6 +7,8 @@ using Fanex.Affiliate.Admin.Core.ViewModels.LandingPage;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using System.Web;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
@@ -31,32 +33,83 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [HttpGet]
         public ActionResult Index()
         {
-            var model = new FormManagementViewModel
+            var model = new AssetUploaderViewModel
             {
-                FormNameList = _landingPageService.GetModuleList(),
-                TargetCountryList = _landingPageService.GetTargetCountryList(),
+                ModuleList = _landingPageService.GetModuleList(),
                 LanguageList = _landingPageService.GetLanguageList(),
+                TargetCountryList = _landingPageService.GetTargetCountryList(),
                 StatusList = LandingPageConstants.AssetStatusList,
                 BannerRootUrl = _appSetting.BannerRootUrl,
+                MaximumFiles = LandingPageConstants.FileUpload.MaximumFiles,
+                MaxFileSize = LandingPageConstants.FileUpload.MaxFileSizeMegabytes,
+                AllowedExtensions = LandingPageConstants.FileExtensions.AllImageExtensions
             };
 
-            return View("~/Areas/Portal/Views/LandingPage/FormManagement.cshtml", model);
+            return View("~/Areas/Portal/Views/LandingPage/AssetUploader.cshtml", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetFormManagementList(PagingParam param)
+        public ActionResult GetFormManagementList(AssetUploaderParam param)
         {
-            var queryParam = new AssetListParam
-            {
-                FunctionName = Function.RegistrationFormUploader,
-                UserId = SessionService.UserId,
-                ModuleIds = LandingPageConstants.ModuleIds.RegistrationForm.ToString(),
-                PageIndex = param.PageIndex,
-                PageSize = param.PageSize
-            };
+            param.ModuleIds = LandingPageConstants.ModuleIds.RegistrationForm.ToString();
+            param.UserId = SessionService.UserId;
+            param.FunctionName = Function.RegistrationFormUploader;
 
-            return GenerateJsonNetResult(_assetService.GetAssetList(queryParam));
+            return GenerateJsonNetResult(_assetService.GetAssetList(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetFormDetail(AssetDetailParam param)
+        {
+            param.UserId = SessionService.UserId;
+            return GenerateJsonNetResult(_assetService.GetAssetDetail(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
+        public ActionResult UploadRegistrationForms(HttpPostedFileBase[] files, UploadAssetsParam param)
+        {
+            if (ModelState.IsValid && files != null && files.Length > 0)
+            {
+                var encodeParam = EncodeAssetParam(param);
+                AssignUserInfoParam(encodeParam);
+                return GenerateJsonNetResult(_assetService.UploadAssets(files, encodeParam));
+            }
+            return GenerateErrResult("Please select valid files to upload.");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
+        public ActionResult UpdateRegistrationForm(HttpPostedFileBase files, UpdateAssetParam param)
+        {
+            if (ModelState.IsValid && (!string.IsNullOrEmpty(param.InputFileNames) || files != null))
+            {
+                var encodeParam = EncodeAssetParam(param);
+                encodeParam.MediaId = param.MediaId;
+
+                AssignUserInfoParam(encodeParam);
+                return GenerateJsonNetResult(_assetService.UpdateAsset(files, encodeParam));
+            }
+            return GenerateErrResult("Please select valid file to update.");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
+        public ActionResult DeleteForms(DeleteMediasParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                param.FunctionName = Function.RegistrationFormUploader;
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.GetClientIP();
+                return GenerateJsonNetResult(_assetService.DeleteMedias(param));
+            }
+            return GenerateModelStateErrResult();
         }
 
         [HttpPost]
@@ -68,6 +121,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             AssignUserInfoParam(param);
 
             return GenerateJsonNetResult(_assetService.ToggleAssetStatus(param));
+        }
+
+        private UpdateAssetParam EncodeAssetParam(UploadAssetsParam param)
+        {
+            return new UpdateAssetParam
+            {
+                ModuleId = param.ModuleId,
+                TargetCountryCode = Server.HtmlEncode(param.TargetCountryCode),
+                MarketId = Server.HtmlEncode(param.MarketId),
+                InputFileNames = Server.HtmlEncode(param.InputFileNames),
+                InputMediaNames = Server.HtmlEncode(param.InputMediaNames),
+                FunctionName = Function.RegistrationFormUploader
+            };
         }
     }
 }

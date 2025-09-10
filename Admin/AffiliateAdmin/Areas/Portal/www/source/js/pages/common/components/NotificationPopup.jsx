@@ -1,23 +1,39 @@
-﻿import React from 'react';
+﻿import React, { useRef } from 'react';
 import { Modal, Button } from 'reactstrap';
 
 const widthHeight = { width: 70, height: 35 };
 
 export const NotificationPopup = (props) => {
+    const contentRef = useRef(null);
 
     const handleClosePopup = () => {
         props.onClose(false);
     }
 
     const handleConfirm = () => {
-        props.onClose(true);
+        // Extract form data if available
+        let confirmData = true;
+        if (contentRef.current) {
+            const selectElement = contentRef.current.querySelector('select');
+            const inputElement = contentRef.current.querySelector('input[type="text"], input[type="number"]');
+            
+            if (selectElement || inputElement) {
+                confirmData = {
+                    confirmed: true,
+                    selectValue: selectElement?.value,
+                    inputValue: inputElement?.value
+                };
+            }
+        }
+        props.onClose(confirmData);
     }
+
 
     return (
         <Modal isOpen={!!props.message} toggle={handleClosePopup} backdrop='static'>
             <div className="notification-popup-content p-3" style={{ fontSize: 14 }}>
                 <h5>{window.location.host} says</h5>
-                <div style={{ whiteSpace: "pre-line" }} dangerouslySetInnerHTML={{ __html: props.message }}></div>
+                <div ref={contentRef} style={props.style} dangerouslySetInnerHTML={{ __html: props.message }}></div>
                 {
                     props.isConfirmPopup ? (
                         <div className="float-right mt-4">

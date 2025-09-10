@@ -4,7 +4,6 @@ import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import { fileUpload } from '../../libs/constants';
-import { defaultPagingOption } from '../../../../modules/constants';
 import * as types from '../actions/types';
 
 export const statusList = createReducer(null, {});
@@ -13,8 +12,8 @@ export const maximumFiles = createReducer(fileUpload.MaximumFiles, {});
 export const bannerRootUrl = createReducer(null, {});
 export const allowedExtensions = createReducer(fileUpload.AllowedImageExtensions, {});
 
-export const formNameList = createReducer(null, {
-    [types.SET_FORM_NAME_LIST](prevState, action) {
+export const moduleList = createReducer(null, {
+    [types.SET_MODULE_LIST](prevState, action) {
         return action.data;
     }
 });
@@ -28,8 +27,13 @@ export const languageList = createReducer(null, {
         return action.data;
     }
 });
+export const notification = createReducer({ message: '', isConfirmPopup: false }, {
+    [types.SET_NOTIFICATION](prevState, action) {
+        return action.data;
+    }
+});
 
-export const param = createReducer({ PageIndex: defaultPagingOption.PageIndex, PageSize: defaultPagingOption.PageSize }, {
+export const param = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }
@@ -66,7 +70,7 @@ export const gridData = createReducer(null, {
 })
 
 export default combineReducers({
-    formNameList,
+    moduleList,
     targetCountryList,
     languageList,
     statusList,
@@ -82,4 +86,5 @@ export default combineReducers({
     shouldResetScrollPosition,
     formDetailUrl,
     selectedMediaId,
+    notification,
 });

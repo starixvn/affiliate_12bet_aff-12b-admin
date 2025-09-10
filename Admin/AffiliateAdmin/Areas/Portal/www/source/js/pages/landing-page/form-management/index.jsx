@@ -8,13 +8,13 @@ import { configureStore } from '../../../modules/store';
 import { convertListToMutilpleSelected } from '../../../modules/utils';
 
 const App = () => {
-    const { targetCountryList, languageList, bannerRootUrl, formNameList, statusList } = window.initialState;
+    const { targetCountryList, languageList, bannerRootUrl, moduleList, statusList } = window.initialState;
 
-    const newFormNameList = convertListToMutilpleSelected(formNameList, 'ModuleId', 'ModuleName');
+    const newModuleList = convertListToMutilpleSelected(moduleList, 'ModuleId', 'ModuleName');
     const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
     const newLanguageList = convertListToMutilpleSelected(languageList, 'LanguageCode', 'LanguageName');
 
-    const store = configureStore({ targetCountryList: newTargetCountryList, languageList: newLanguageList, bannerRootUrl, formNameList: newFormNameList, statusList }, reducer);
+    const store = configureStore({ targetCountryList: newTargetCountryList, languageList: newLanguageList, bannerRootUrl, moduleList: newModuleList, statusList }, reducer);
 
     return (
         <Provider store={store}>

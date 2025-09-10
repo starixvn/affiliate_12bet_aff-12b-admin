@@ -30,6 +30,7 @@ export const AssetUploaderForm = (props) => {
     });
 
     const modalRef = useRef();
+    const messageTimeoutRef = useRef();
 
     useEffect(() => {
         setState(prev => ({ ...prev, isInsert: selectedMediaId === defaultInsertId }));
@@ -44,17 +45,18 @@ export const AssetUploaderForm = (props) => {
 
         if (assetInfo) {
             const fileName = htmlDecode(assetInfo.FileName);
+            const mediaName = htmlDecode(assetInfo.MediaName);
             const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
             const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
 
             setState(prev => ({
                 ...prev,
-                inputFileNames: [shortFileName],
+                inputFileNames: [mediaName],
                 marketId: assetInfo.MarketId || prev.MarketId,
                 moduleId: assetInfo.ModuleId || prev.ModuleId,
                 targetCountryCode: assetInfo.TargetCountryCode || prev.TargetCountryCode,
                 isMediaIdInUse: assetInfo.IsMediaIdInUse || prev.IsMediaIdInUse,
-                iniatalFileName: shortFileName
+                initialFileName: shortFileName
             }));
         }
     }, [props, param]);
@@ -114,10 +116,9 @@ export const AssetUploaderForm = (props) => {
                     file: false
                 }
             }));
-            !allResults.isOK && props.setNotification({
-                message: allResults.message,
-                isConfirmPopup: false
-            });
+            if (!allResults.isOK) {
+                showMessage(allResults.message, false, 5000);
+            }
         }
     }, [allowedExtensions, maxFileSize, props]);
 
@@ -156,10 +157,9 @@ export const AssetUploaderForm = (props) => {
                     }
                 }
 
-                !allResults.isOK && props.setNotification({
-                    message: allResults.message,
-                    isConfirmPopup: false
-                });
+                if (!allResults.isOK) {
+                    showMessage(allResults.message, false);
+                }
                 return { ...prev, files, inputFileNames, isDisabled: !allResults.isOK };
             } else {
                 return { ...prev, inputFileNames: [''], files, isDisabled: true };
@@ -167,58 +167,76 @@ export const AssetUploaderForm = (props) => {
         });
     }, [allowedExtensions, maxFileSize, props]);
 
+    const handleClosePopup = useCallback(() => {
+        // Clear any pending message timeout
+        if (messageTimeoutRef.current) {
+            clearTimeout(messageTimeoutRef.current);
+        }
+        
+        props.setSelectedMediaId(null);
+        setState({
+            ...defaultState,
+            marketId: '',
+            moduleId: '',
+            targetCountryCode: '',
+            isMediaIdInUse: false,
+            errors: {
+                moduleId: false,
+                targetCountryCode: false,
+                marketId: false,
+                file: false
+            }
+        });
+    }, [props]);
+
+    const showMessage = useCallback((message, isSuccess = false, duration) => {
+        // Clear any existing timeout
+        if (messageTimeoutRef.current) {
+            clearTimeout(messageTimeoutRef.current);
+        }
+
+        modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
+
+        setState(prev => ({
+            ...prev,
+            message,
+            isSuccess,
+            isShowMessage: true
+        }));
+
+        messageTimeoutRef.current = duration && setTimeout(() => {
+            setState(prev => ({ ...prev, isShowMessage: false }));
+            
+            if (isSuccess) {
+                props.fetchData(param);
+                handleClosePopup();
+            }
+        }, duration);
+    }, [props, param, handleClosePopup]);
+
     const handleAfterSave = useCallback((isInsert, result) => {
         if (result) {
             const message = isInsert ? "Your image(s) has been added successfully!" : "Your image has been updated successfully!";
             if (result.IsSuccessful) {
-                setState(prev => ({
-                    ...prev,
-                    message,
-                    isSuccess: true,
-                    isShowMessage: true,
-                }));
-                setTimeout(() => {
-                    setState(prevState => ({ ...prevState, isShowMessage: false }));
-                    props.fetchData(param);
-                    props.setSelectedMediaId(null);
-                    setState({
-                        ...defaultState,
-                        marketId: '',
-                        moduleId: '',
-                        targetCountryCode: '',
-                        isMediaIdInUse: false,
-                        errors: {
-                            moduleId: false,
-                            targetCountryCode: false,
-                            marketId: false,
-                            file: false
-                        }
-                    });
-                }, 3000);
+                showMessage(message, true, 3000);
             } else {
-                props.setNotification({
-                    message: result.Message,
-                    isConfirmPopup: false
-                });
+                showMessage(result.Message, false);
             }
         } else {
-            props.setNotification({
-                message: isInsert ? "Oops! Failed to add your image(s)!" : "Oops! Failed to update your image!",
-                isConfirmPopup: false
-            });
+            const message = isInsert ? "Oops! Failed to add your image(s)!" : "Oops! Failed to update your image!";
+            showMessage(message, false);
         }
-        props.toggleLoader(false);
-    }, [props, param]);
+    }, [showMessage]);
 
     const save = useCallback(async () => {
-        const { inputFileNames, isInsert, iniatalFileName, files } = state;
+        const { inputFileNames, isInsert, initialFileName, files } = state;
         const assetInfo = getParam();
 
         if (isInsert) {
             const result = await props.uploadAssets(assetInfo);
             handleAfterSave(isInsert, result);
         } else {
-            if (inputFileNames[0] === iniatalFileName && !!files.length) {
+            if (inputFileNames[0] === initialFileName && !!files.length) {
                 props.setNotification({
                     message: 'This file name exists already. Do you want to overwrite the current file?',
                     isConfirmPopup: true,
@@ -325,8 +343,6 @@ export const AssetUploaderForm = (props) => {
     }, []);
 
     const handleSubmit = useCallback(() => {
-        props.toggleLoader(true);
-
         const { inputFileNames, moduleId, targetCountryCode, marketId, files, isInsert } = state;
 
         // Track validation errors
@@ -344,71 +360,44 @@ export const AssetUploaderForm = (props) => {
         const hasErrors = Object.values(newErrors).some(error => error);
 
         if (hasErrors) {
-            let errorMessage = "<strong>Please complete the required fields:</strong><br />";
-            if (newErrors.moduleId) errorMessage += "• Module selection is required<br />";
-            if (newErrors.targetCountryCode) errorMessage += "• Target Country selection is required<br />";
-            if (newErrors.marketId) errorMessage += "• Language selection is required<br />";
-            if (newErrors.file) errorMessage += "• File upload is required<br />";
+            let errorMessage = "";
+            if (newErrors.moduleId) errorMessage += "Please select a module.<br />";
+            if (newErrors.targetCountryCode) errorMessage += "Please select a target country.<br />";
+            if (newErrors.marketId) errorMessage += "Please select a language.<br />";
+            if (newErrors.file) errorMessage += "Please browse a file.<br />";
             
-            // Use a custom warning alert for validation errors
-            setState(prev => ({
-                ...prev,
-                message: errorMessage,
-                isSuccess: false,
-                isShowMessage: true
-            }));
-            
-            modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
-            setTimeout(() => setState(prev => ({ ...prev, isShowMessage: false })), 7000);
-            props.toggleLoader(false);
+            showMessage(errorMessage, false);
             return;
         }
 
         if (inputFileNames.length > maximumFiles) {
-            props.setNotification({
-                message: `You can upload up to ${maximumFiles} files only.`,
-                isConfirmPopup: false
-            });
+            showMessage(`Upload limit exceeded. You can only upload up to ${maximumFiles} files at a time.`, false);
             return;
         }
         if (hasDuplicateFileNames(inputFileNames)) {
-            props.setNotification({
-                message: "Duplicate file name(s) detected. Please rename or remove the file(s).",
-                isConfirmPopup: false
-            });
+            showMessage("Duplicate file name(s) detected. Please rename or remove the file(s) before uploading.", false);
             return;
         }
 
         const validInputFileNames = validateInputFileName();
         if (validInputFileNames.isOK) {
+            props.toggleLoader(true);
             save();
+            props.toggleLoader(false);
         } else {
-            props.setNotification({
-                message: validInputFileNames.message,
-                isConfirmPopup: false
-            });
+            showMessage(validInputFileNames.message, false);
         }
-
-        props.toggleLoader(false);
-    }, [state, props, maximumFiles, hasDuplicateFileNames, validateInputFileName, save]);
+    }, [state, props, maximumFiles, hasDuplicateFileNames, validateInputFileName, save, showMessage]);
 
 
-    const handleClosePopup = useCallback(() => {
-        props.setSelectedMediaId(null);
-        setState({
-            ...defaultState,
-            marketId: '',
-            moduleId: '',
-            targetCountryCode: '',
-            isMediaIdInUse: false,
-            errors: {
-                moduleId: false,
-                targetCountryCode: false,
-                marketId: false,
-                file: false
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (messageTimeoutRef.current) {
+                clearTimeout(messageTimeoutRef.current);
             }
-        });
-    }, [props]);
+        };
+    }, []);
 
 
     const { inputFileNames, marketId, isShowMessage, isSuccess, message, isInsert, isDisabled, files, errors, isMediaIdInUse } = state;
@@ -430,9 +419,7 @@ export const AssetUploaderForm = (props) => {
                                 <div className='px-1 mb-3 border'>
                                     <p>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</p>
                                     <p className="d-block">[File Size Limit: {maxFileSize}MB]</p>
-                                    {
-                                        isInsert && <p className="d-block">[Maximum files: {maximumFiles}]</p>
-                                    }
+                                    <p className="d-block">[Maximum files: {maximumFiles}]</p>
                                     <span><strong>Note:</strong> Module, Target Country, and Language cannot be changed if the image is already used in an existing landing page.</span>
                                 </div>
                                 <FormGroup row className="mb-2">
@@ -499,7 +486,7 @@ export const AssetUploaderForm = (props) => {
                                     <Label sm={3} htmlFor="file" className={isInsert ? "required" : ""}>Upload File</Label>
                                     <Col sm={9} className='align-self-center'>
                                         <InputFile id="file" 
-                                            className={`input-file-group border ${errors.file ? "form-validation-warning" : (isInsert && isDisabled) || files.length === 0 ? "text-danger" : "text-success"}`}
+                                            className={`input-file-group border ${errors.file ? "form-validation-warning" : isDisabled || files.length === 0 ? "text-danger" : "text-success"}`}
                                             lblText="No file chosen"
                                             btnName={globalResource.ChooseFile}
                                             isMultiple={isInsert} files={files}
@@ -549,7 +536,7 @@ export const AssetUploaderForm = (props) => {
                             <Button type="button"
                                 color="success"
                                 className="mr-3"
-                                disabled={((isInsert || (inputFileNames && !inputFileNames[0]))) ? isDisabled : false}
+                                disabled={((isInsert || (inputFileNames && isDisabled))) ? isDisabled : false}
                                 onClick={handleSubmit}>
                                 {buttonLabel}
                             </Button>

@@ -23,7 +23,7 @@ export default class App extends React.PureComponent {
         return (
             <Router forceRefresh={true}>
                 <SubMenuList img={imgSrc}
-                    menus={renderMenuList.map((menu) => { return { label: menu.label, href: menu.href } })} />
+                    menus={renderMenuList.map((menu) => { return { label: menu.label, href: menu.href } })} menuTitle="Landing Page Content Management" />
                 <Suspense fallback={null}>
                     <Switch>
                         {renderMenuList.map((menu, index) => <Route key={`route_${index}`} path={menu.href} component={menu.component} />)}

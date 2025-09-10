@@ -32,7 +32,7 @@ export const Content = (props) => {
                 message: 'Are you sure you want to delete the selected image(s)?',
                 isConfirmPopup: true,
                 onConfirm: async () => {
-                    const result = await props.deleteAssets({ mediaIds: `${mediaId}`, ...props.param });
+                    const result = await props.deleteAssets(`${mediaId}`);
                     if (result && result.IsSuccessful) {
                         props.fetchData(props.param);
                     }
@@ -147,12 +147,11 @@ export const Content = (props) => {
     function _buildDataRow(dataItem, index) {
         const mediaId = dataItem.MediaId;
         const fileName = htmlDecode(dataItem.FileName);
-        const indexOfShortFileName = fileName.lastIndexOf('/') + 1;
-        const shortFileName = fileName.substring(indexOfShortFileName, fileName.length);
+        const mediaName = htmlDecode(dataItem.MediaName);
         const targetCountry = dataItem.TargetCountryName;
         const language = dataItem.MarketName;
         const module = dataItem.ModuleName;
-        const src = `${props.assetRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
+        const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.UpdatedDate}`;
         const dimension = dataItem.Dimension;
         const strDimension = dimension.split('x');
         const realWidth = strDimension[0];
@@ -167,7 +166,7 @@ export const Content = (props) => {
                         onChange={(e) => _onCheckItem(e.target.checked, mediaId)} />
                 </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center text-break" title={shortFileName}>{shortFileName}</Cell>
+                <Cell className="text-center text-break" title={mediaName}>{mediaName}</Cell>
                 <Cell className="text-center text-break" title={module}>{module}</Cell>
                 <Cell className="text-center text-break" title={targetCountry}>{targetCountry}</Cell>
                 <Cell className="text-center text-break" title={language}>{language}</Cell>
@@ -232,7 +231,7 @@ export const Content = (props) => {
 }
 
 function mapStateToProps({ pagingOption, param, checkedAssets, bannerRootUrl, shouldResetScrollPosition, gridData }) {
-    return Object.assign({}, { pagingOption, param, checkedAssets, assetRootUrl: bannerRootUrl, shouldResetScrollPosition, gridData });
+    return Object.assign({}, { pagingOption, param, checkedAssets, bannerRootUrl, shouldResetScrollPosition, gridData });
 }
 
 function mapDispatchToProps(dispatch) {

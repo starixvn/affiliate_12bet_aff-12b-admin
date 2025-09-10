@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 {
-    public class GetAssetListCriteria : PagingCriteria
+    public class GetAssetUploaderCriteria : PagingCriteria
     {
         private const string SP_NAME = "Aff_LandingPage_AssetUploader_ManageSel";
 
@@ -19,5 +19,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
         public string LanguageCodes { get; set; }
         public string FunctionName { get; set; }
         public int MediaId { get; set; }
+        public string MediaName { get; set; }
     }
 }

@@ -12,7 +12,5 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 
         public int MediaId { get; set; }
         public int UserId { get; set; }
-        public string FunctionName { get; set; }
-        public string ModuleIds { get; set; } = string.Empty;
     }
 }

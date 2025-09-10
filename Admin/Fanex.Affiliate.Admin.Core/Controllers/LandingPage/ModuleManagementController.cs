@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.DisabledFunction
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Areas/Portal/Views/LandingPage/Index.cshtml");
+            return View("~/Areas/Portal/Views/LandingPage/ModuleManagement.cshtml");
         }
 
         [HttpPost]
@@ -90,11 +90,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.DisabledFunction
         [ValidateAntiForgeryHeader]
         public ActionResult GetModulesByType(int moduleType)
         {
-            if (moduleType < 1 || moduleType > 4)
-            {
-                return GenerateErrResult("Invalid module type.");
-            }
-
             return GenerateJsonNetResult(_moduleService.GetModulesByType(moduleType));
         }
 

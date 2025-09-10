@@ -13,9 +13,9 @@ export const setParam = (data) => {
     }
 }
 
-export const setFormNameList = (data) => {
+export const setModuleList = (data) => {
     return {
-        type: types.SET_FORM_NAME_LIST,
+        type: types.SET_MODULE_LIST,
         data
     }
 }
@@ -60,6 +60,13 @@ export const setShouldResetScrollPosition = (data) => {
     }
 }
 
+export const setNotification = (data) => {
+    return {
+        type: types.SET_NOTIFICATION,
+        data
+    }
+}
+
 export const setGridData = (data) => {
     return {
         type: types.SET_GRID_DATA,
@@ -93,21 +100,21 @@ function _convertCheckedForms(dataList) {
     return checkedForms;
 }
 
-export const getFormDetail = (selectedMediaId) => async () => {
+export const getFormDetail = (mediaId) => async () => {
     const url = 'Portal/FormManagement/GetFormDetail';
-    const response = await post(url, { selectedMediaId });
+    const response = await post(url, { mediaId });
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const uploadForms = (param) => () => {
-    const url = 'Portal/FormManagement/UploadForms';
+    const url = 'Portal/FormManagement/UploadRegistrationForms';
 
     return handleExcute(url, param);
 }
 
 export const updateForm = (param) => () => {
-    const url = 'Portal/FormManagement/UpdateForm';
+    const url = 'Portal/FormManagement/UpdateRegistrationForm';
 
     return handleExcute(url, param);
 }
@@ -131,9 +138,9 @@ const handleExcute = async (url, param) => {
     return response && response.status === 200 ? response.data : null;
 }
 
-export const deleteForms = (param) => async () => {
+export const deleteForms = (mediaIds) => async () => {
     const url = 'Portal/FormManagement/DeleteForms';
-    const response = await post(url, param);
+    const response = await post(url, { mediaIds });
 
     return response && response.status === 200 ? response.data : null;
 }

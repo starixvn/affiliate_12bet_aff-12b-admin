@@ -5,10 +5,11 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { globalResource } from '../../../../modules/globalResource';
-import { headerText } from '../libs/constants';
-import { maxWidthHeight } from '../../libs/constants';
-import { setSelectedMediaId, setPagingOption, fetchData, setCheckedForms, setShouldResetScrollPosition, setParam, setFormDetailUrl } from '../actions';
+import { headerText, messageDelete, messageSwitchStatus } from '../libs/constants';
+import { maxWidthHeight, assetStatus } from '../../libs/constants';
+import { setSelectedMediaId, setPagingOption, fetchData, setCheckedForms, setShouldResetScrollPosition, setParam, setFormDetailUrl, deleteForms, toggleFormStatus, setNotification } from '../actions';
 import { resizeWidthHeight } from '../../../../modules/utils';
+import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export const Content = (props) => {
     useEffect(() => {
@@ -24,30 +25,43 @@ export const Content = (props) => {
         props.setCheckedForms(newCheckedForms);
     }
 
-    const _onDeleteItem = (mediaId) => {
-        // Handle single item deletion
-        if (window.confirm('Are you sure you want to delete this item?')) {
-            // Add delete logic here - this would typically call a delete action
-            console.log('Delete item with ID:', mediaId);
-            // props.deleteItem(mediaId); // Uncomment when delete action is available
+    const _onDeleteItem = async (mediaId, isMediaIdInUse) => {
+        if (!isMediaIdInUse) {
+            props.setNotification({
+                message: 'Are you sure you want to delete the selected form(s)?',
+                isConfirmPopup: true,
+                onConfirm: async () => {
+                    const result = await props.deleteForms(`${mediaId}`);
+                    if (result && result.IsSuccessful) {
+                        props.fetchData(props.param);
+                    }
+
+                    props.setNotification({
+                        message: result?.IsSuccessful ? messageDelete.DeleteItemsSuccessfully : result?.Message || messageDelete.FailedToDeleteItems,
+                        isConfirmPopup: false
+                    });
+                }
+            });
         }
     }
 
     const _onToggleActiveStatus = async (mediaId, currentStatus) => {
-        try {
-            const newStatus = !currentStatus;
-            const result = await props.toggleFormStatus(mediaId, newStatus);
-            
-            if (result && result.IsSuccessful) {
-                // Refresh the data to show updated form status
-                props.fetchData(props.param);
-            } else {
-                alert(result?.Message || 'Failed to update form status');
+        const newStatus = currentStatus === assetStatus.active ? assetStatus.inactive : assetStatus.active;
+        props.setNotification({
+            message: `Are you sure you want to change status of the selected form(s)?`,
+            isConfirmPopup: true,
+            onConfirm: async () => {
+                const result = await props.toggleFormStatus({ mediaIds: `${mediaId}`, status: newStatus });
+                if (result && result.IsSuccessful) {
+                    props.fetchData(props.param);
+                }
+
+                props.setNotification({
+                    message: result?.IsSuccessful ? messageSwitchStatus.SwitchStatusSuccessfully : result?.Message || messageSwitchStatus.FailedToSwitchStatus,
+                    isConfirmPopup: false
+                });
             }
-        } catch (error) {
-            console.error('Error toggling form status:', error);
-            alert('An error occurred while updating the form status');
-        }
+        });
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
@@ -64,14 +78,15 @@ export const Content = (props) => {
     function _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={15}></Cell>
                 <Cell header={true} colWidth={15} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.FormName}>{headerText.FormName}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.PreviewImageName}>{headerText.PreviewImageName}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.Demensions}>{headerText.Demensions}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.PreviewImage}>{headerText.PreviewImage}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Active}>{headerText.Active}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Action}>{headerText.Action}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Active}>{headerText.Active}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Action}>{headerText.Action}</Cell>
             </Row>
         );
     }
@@ -99,28 +114,26 @@ export const Content = (props) => {
 
     function _buildDataRow(dataItem, index) {
         const mediaId = dataItem.MediaId;
-        const formName = dataItem.FormName;
-        const fileName = dataItem.FileName;
-        const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.LastUpdateText}`;
-        const size = dataItem.Size;
-        const strSize = size.split('x');
-        const realWidth = strSize[0];
-        const realHeight = strSize[1];
+        const fileName = htmlDecode(dataItem.FileName);
+        const mediaName = htmlDecode(dataItem.MediaName);
+        const targetCountry = dataItem.TargetCountryName;
+        const language = dataItem.MarketName;
+        const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.UpdatedDate}`;
+        const dimension = dataItem.Dimension;
+        const strDimension = dimension.split('x');
+        const realWidth = strDimension[0];
+        const realHeight = strDimension[1];
         const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
         const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
 
-        console.log(props.checkedForms);
-
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center">
-                    <input type="checkbox" checked={props.checkedForms[mediaId] || false}
-                        onChange={(e) => _onCheckItem(e.target.checked, mediaId)} />
-                </Cell>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell className="text-center text-break" title={formName}>{formName}</Cell>
+                <Cell className="text-center text-break" title={mediaName}>{mediaName}</Cell>
                 <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
-                <Cell className="text-center text-break" title={size}>{size}</Cell>
+                <Cell className="text-center text-break" title={targetCountry}>{targetCountry}</Cell>
+                <Cell className="text-center text-break" title={language}>{language}</Cell>
+                <Cell className="text-center text-break" title={dimension}>{dimension}</Cell>
                 <Cell className="text-center">
                     {
                         isValidWithHeight ? (
@@ -136,17 +149,25 @@ export const Content = (props) => {
                     <input
                             type="checkbox"
                             id={`activeSwitch${mediaId}`}
-                            checked={dataItem.IsActive}
-                            onChange={() => _onToggleActiveStatus(mediaId, dataItem.IsActive)}
+                            checked={dataItem.StatusId === assetStatus.active}
+                            onChange={() => _onToggleActiveStatus(mediaId, dataItem.StatusId)}
                         />
                 </Cell>
                 <Cell className="text-center">
                     <Button color="link" onClick={() => props.setSelectedMediaId(mediaId)} title="Edit">
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
-                    <Button color="link" onClick={() => _onDeleteItem(mediaId)} title="Delete" className="ml-1">
-                        <span className="oi oi-trash text-danger"></span>
-                    </Button>
+                    {
+                        dataItem.IsMediaIdInUse ? (
+                            <Button color="link" disabled title="Delete" className="ml-1">
+                                <span className="oi oi-trash"></span>
+                            </Button>
+                        ) : (
+                            <Button color="link" onClick={() => _onDeleteItem(mediaId, dataItem.IsMediaIdInUse)} title="Delete" className="ml-1">
+                                <span className="oi oi-trash text-danger"></span>
+                            </Button>
+                        )
+                    }
                 </Cell>
             </Row>
         )
@@ -177,7 +198,7 @@ function mapStateToProps({ pagingOption, checkedForms, shouldResetScrollPosition
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedForms, setShouldResetScrollPosition, setParam, setFormDetailUrl }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedForms, setShouldResetScrollPosition, setParam, setFormDetailUrl, setNotification, toggleFormStatus, deleteForms }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

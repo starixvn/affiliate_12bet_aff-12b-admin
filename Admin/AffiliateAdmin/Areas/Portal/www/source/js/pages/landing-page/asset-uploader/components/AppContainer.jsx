@@ -38,15 +38,38 @@ export const AppContainer = (props) => {
             });
         }
         else {
-            const firstSelectedItem = itemIdList[0];
-            const firstItem = props.gridData.find(item => item.MediaId == firstSelectedItem);
+            const firstItem = props.gridData.find(item => itemIdList.includes(item.MediaId.toString()));
             const newStatus = firstItem.StatusId === assetStatus.active ? assetStatus.inactive : assetStatus.active;
 
+            const htmlMessage = `
+                <div style="white-space: normal;">
+                    <span>Only active image(s) will be available for selection when creating a new landing page.</span>
+                    <div class="switch-status-popup">
+                        <label for="selected-status">Switch status of all selected image(s) to:</label><br/>
+                        <select 
+                            name="selected-status" 
+                            id="selected-status" 
+                            class="form-control ml-2" 
+                            style="width: auto; display: inline-block;"
+                        >
+                            <option value="${assetStatus.active}" ${newStatus === assetStatus.active ? 'selected' : ''}>Active</option>
+                            <option value="${assetStatus.inactive}" ${newStatus === assetStatus.inactive ? 'selected' : ''}>Inactive</option>
+                        </select>
+                    </div>
+                    <span>Are you sure you want to proceed?</span>
+                </div>
+            `;
+
             props.setNotification({
-                message: messageSwitchStatus.AreYouSureSwitchStatus,
+                message: htmlMessage,
                 isConfirmPopup: true,
-                onConfirm: async () => {
-                    const result = await props.toggleAssetStatus({ mediaIds: itemIdList.join(','), status: newStatus });
+                onConfirm: async (confirmData) => {
+                    let statusToApply = newStatus;
+                    if (confirmData && typeof confirmData === 'object' && confirmData.selectValue) {
+                        statusToApply = parseInt(confirmData.selectValue);
+                    }
+                    
+                    const result = await props.toggleAssetStatus({ mediaIds: itemIdList.join(','), status: statusToApply });
                     if (result && result.IsSuccessful) {
                         props.fetchData(props.param);
                     }
@@ -73,7 +96,7 @@ export const AppContainer = (props) => {
                 toggleLoader={props.toggleLoader}
                 setShouldResetScrollPosition={props.setShouldResetScrollPosition}
                 setSelectedItemId={props.setSelectedMediaId}
-                deleteItems={(mediaIds) => props.deleteAssets({ mediaIds, ...props.param })}
+                deleteItems={(mediaIds) => props.deleteAssets(mediaIds)}
                 optionLabel="Switch Status <span class='oi oi-loop-circular'></span>"
                 clickOptionButton={_handleSwitchStatus}
             />
@@ -88,7 +111,7 @@ export const AppContainer = (props) => {
                 isConfirmPopup={props.notification.isConfirmPopup}
                 onClose={(result) => {
                     if (props.notification.onConfirm && result) {
-                        props.notification.onConfirm();
+                        props.notification.onConfirm(result);
                     }
                     props.setNotification({ message: '', isConfirmPopup: false, onConfirm: null });
                 }}
@@ -97,8 +120,8 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification }) {
-    return Object.assign({}, { isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification });
+function mapStateToProps({ isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification, statusList }) {
+    return Object.assign({}, { isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification, statusList });
 }
 
 function mapDispatchToProps(dispatch) {

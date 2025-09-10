@@ -4,41 +4,25 @@ import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
-//import ControlButtons from '../../common/components/ControlButtons';
-//import Content from './Content';
-//import InsertUpdateForm from './InsertUpdateForm';
+import LandingPageForm from './LandingPageForm';
 
-//import { messages } from '../libs/constants';
-import { fetchData, toggleLoader, setSelectedLandingPageId, setCheckedLandingPages, deleteLandingPages, setShouldResetScrollPosition } from '../actions';
+const AppContainer = (props) => {
+    const { isShowLoader } = props;
 
-export const AppContainer = (props) => {
     return (
         <AppLayout>
-            <Loader show={props.isShowLoader} />
-            <h2>Page Management</h2>
-            {/*<ControlButtons*/}
-            {/*    messages={messages}*/}
-            {/*    gridData={props.gridData}*/}
-            {/*    fetchData={props.fetchData}*/}
-            {/*    checkedItems={props.checkedLandingPages}*/}
-            {/*    setCheckedItems={props.setCheckedLandingPages}*/}
-            {/*    toggleLoader={props.toggleLoader}*/}
-            {/*    setShouldResetScrollPosition={props.setShouldResetScrollPosition}*/}
-            {/*    setSelectedItemId={props.setSelectedLandingPageId}*/}
-            {/*    deleteItems={props.deleteLandingPages}*/}
-            {/*/>*/}
-            {/*<Content />*/}
-            {/*<InsertUpdateForm />*/}
+            <Loader show={isShowLoader} />
+            <LandingPageForm />
         </AppLayout>
     );
-}
+};
 
-function mapStateToProps({ isShowLoader, gridData, checkedLandingPages }) {
-    return Object.assign({}, { isShowLoader, gridData, checkedLandingPages });
+function mapStateToProps({ isShowLoader }) {
+    return Object.assign({}, { isShowLoader });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchData, toggleLoader, setSelectedLandingPageId, setCheckedLandingPages, deleteLandingPages, setShouldResetScrollPosition }, dispatch);
+    return bindActionCreators({ }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AppContainer));

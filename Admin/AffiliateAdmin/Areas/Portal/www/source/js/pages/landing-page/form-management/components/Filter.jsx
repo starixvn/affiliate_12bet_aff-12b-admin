@@ -5,37 +5,37 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../../components/multiple-select';
 import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
-import { setParam, setFormNameList, setTargetCountryList, setLanguageList } from '../actions';
+import { setParam, setModuleList, setTargetCountryList, setLanguageList } from '../actions';
 import { headerText } from '../libs/constants';
 import { assetStatus } from '../../libs/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 export const Filter = ({
-    formNameList,
+    moduleList,
     targetCountryList,
     languageList,
     statusList,
     pagingOption, 
     setParam,
-    setFormNameList,
+    setModuleList,
     setTargetCountryList,
     setLanguageList,
 }) => {
     const [filters, setFilters] = useState({
-        formNames: formNameList.filter(item => item.checked).map(item => item.key).join(',') || '',
+        mediaName: '',
         targetCountryCodes: targetCountryList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
         languageCodes: languageList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
         status: assetStatus.all,
     });
 
     const handleSearch = useCallback(() => {
-        const { formNames, targetCountryCodes, languageCodes, status } = filters;
+        const { mediaName, targetCountryCodes, languageCodes, status } = filters;
         
         const isSelectAllTargetCountry = targetCountryList.every(c => c.checked);
         const isSelectAllLanguage = languageList.every(c => c.checked);
 
         const newParam = {
-            FormNames: formNames,
+            MediaName: mediaName,
             TargetCountryCodes: isSelectAllTargetCountry ? 'all' : targetCountryCodes,
             LanguageCodes: isSelectAllLanguage ? 'all' : languageCodes,
             Status: status,
@@ -54,12 +54,6 @@ export const Filter = ({
         setFilters(newFilters);
     };
 
-    const handleChangeFormName = (item, selectedFormNameList) => {
-        setFilters({ ...filters, formNames: selectedFormNameList });
-
-        setFormNameList(handleChangeMultipleSelected(formNameList, selectedFormNameList));
-    }
-
     const handleChangeTargetCountry = (item, selectedTargetCountryList) => {
 
         setFilters({ ...filters, targetCountryCodes: selectedTargetCountryList });
@@ -76,19 +70,16 @@ export const Filter = ({
     return (
         <div className="filter-container my-2 pb-0">
             <Form inline tag="div">
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
-                    <Label htmlFor="formName" className="mr-sm-2">{headerText.FormName}</Label>
-                    <MultipleSelect
-                        id="formName"
-                        dataSource={formNameList}
-                        keyField="key"
-                        valueField="name"
-                        statusField="checked"
-                        maxDisplayItemCount={1}
-                        hasInputOption={true}
-                        noneSelectedLabel="None Select"
-                        selectedAllLabel="All"
-                        onChange={handleChangeFormName} />
+                <FormGroup className="mr-sm-3 pb-2">
+                    <Label htmlFor="mediaName" className="mr-sm-2">Form Name</Label>
+                    <Input 
+                        type="text" 
+                        name="mediaName" 
+                        id="mediaName" 
+                        value={filters.mediaName} 
+                        onChange={handleChange}
+                        placeholder="Search form name"
+                    />
                 </FormGroup>
                 <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="targetCountry" className="mr-sm-2">{headerText.TargetCountry}</Label>
@@ -142,14 +133,14 @@ export const Filter = ({
     );
 };
 
-function mapStateToProps({ formNameList, targetCountryList, languageList, pagingOption, statusList, setFormNameList, setTargetCountryList, setLanguageList }) {
+function mapStateToProps({ moduleList, targetCountryList, languageList, pagingOption, statusList, setModuleList, setTargetCountryList, setLanguageList }) {
     return Object.assign({}, {
-        formNameList, targetCountryList, languageList, pagingOption, statusList, setFormNameList, setTargetCountryList, setLanguageList
+        moduleList, targetCountryList, languageList, pagingOption, statusList, setModuleList, setTargetCountryList, setLanguageList
     });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setFormNameList, setTargetCountryList, setLanguageList }, dispatch);
+    return bindActionCreators({ setParam, setModuleList, setTargetCountryList, setLanguageList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

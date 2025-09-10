@@ -3,7 +3,7 @@
 export const validateFileExtension = (fileName, allowedExtensions = [".jpg", ".gif", ".png", ".jpeg", ".webp"]) => {
     const result = {
         isOK: false,
-        message: `Sorry! We just support these file types: ${allowedExtensions.join(', ')}`,
+        message: `Invalid file type. Please upload only ${allowedExtensions.join(', ')} files.`,
     }
     
     if (!!fileName && allowedExtensions && allowedExtensions.length > 0) {
@@ -41,7 +41,7 @@ export const validateFileSize = (file, maxSizeMB = 3) => {
         
         if (fileSizeMB > maxSizeMB) {
             result.isOK = false;
-            result.message = `File "${file.name}" is ${fileSizeMB.toFixed(2)}MB. Maximum file size allowed is ${maxSizeMB}MB.`;
+            result.message = `File size exceeds ${maxSizeMB}MB limit. Please upload a smaller file.`;
         }
     }
 

@@ -15,6 +15,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
@@ -22,8 +23,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
     public class AssetUploaderService : BaseDynamicService, IAssetUploaderService
     {
         private const int MaxLength = 50;
-        private const int DefaultCompressionPercentage = 25;
         private const string RestrictedMultiInputFileNamesPattern = "[\\\\/:*?\"<>#%&+]";
+        private const string DefaultDimensions = "0x0";
+        private const string AssetNotFoundMessage = "Asset not found.";
+        private const string FileAlreadyExistsMessage = "File already exists";
+        private const string DatabaseInsertionFailsMessage = "Database insertion fails";
+        private const string MaxLengthFileNameMessage = "The maximum length of file name is 50.";
+        private const string MaxLengthMediaNameMessage = "The maximum length of media name is 50.";
+        private const string MaxLengthFormNameMessage = "The maximum length of form name is 50. Please choose another name for Form Name {0} or select another Form.<br />";
+        private const string DuplicateFileNameMessage = "{0} Name is unique, please enter other {0} name!";
+        private const string ExistingAssetsMessage = "This file name(s) belong to existing asset(s). Please change the file name.";
 
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
@@ -40,36 +49,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             _landingPageService = landingPageService;
         }
 
+        /// <summary>
+        /// Uploads multiple asset files with validation and database storage
+        /// </summary>
+        /// <param name="files">Array of files to upload</param>
+        /// <param name="param">Upload parameters containing file names, media names, and metadata</param>
+        /// <returns>Result information indicating success or failure with details</returns>
         public ResultInfo UploadAssets(HttpPostedFileBase[] files, UploadAssetsParam param)
         {
-            // Validate all files first
-            var result = ValidateAllFiles(files);
+            var result = ValidateUploadRequest(files, param);
             if (!result.IsSuccessful)
             {
                 return result;
             }
 
-            // Validate input file names
-            if (RegexHelper.IsMatch(param.InputFileNames, RestrictedMultiInputFileNamesPattern))
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = Lang.FileNameCanNotContain
-                };
-            }
+            var inputFileNames = PrepareInputFileNames(files, param);
+            var inputMediaNames = PrepareInputMediaNames(inputFileNames, param);
 
-            var inputFileNames = string.IsNullOrEmpty(param.InputFileNames) 
-                ? files.Select(f => f.FileName).ToArray()
-                : param.InputFileNames.Split('|');
-
-            result = ValidateAllInputFileNames(inputFileNames, files);
+            result = ValidateInputNames(inputFileNames, files, inputMediaNames);
             if (!result.IsSuccessful)
             {
                 return result;
             }
 
-            // Check for duplicate files in target folder
             var folder = GetAssetFolder(param.ModuleId, param.TargetCountryCode, param.MarketId);
             result = CheckMultipleFilesInFolder(inputFileNames, folder);
             if (!result.IsSuccessful)
@@ -77,73 +79,44 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 return result;
             }
 
-            // Process and upload files
-            for (var i = 0; i < files.Length; i++)
-            {
-                var file = files[i];
-                var inputFileName = inputFileNames[i];
-                var path = $"{folder}/{inputFileName}";
+            ProcessAndUploadFiles(files, inputFileNames, inputMediaNames, folder, param);
 
-                var dimensions = ExtractImageDimensions(file.InputStream);
-                param.MediaNames.Add(inputFileName);
-                param.FilePaths.Add(path);
-                param.Dimensions.Add(dimensions);
-
-                // Upload file to all configured server paths
-                UploadFile(file, path);
-            }
-
-            // Build files XML for database insertion
-            BuildFilesXml(param);
-
-            // Insert asset records to database
-            try
-            {
-                result = InsertAssets(param);
-            } catch (Exception ex)
-            {
-                LogHelper.WriteError(ex);
-                result = ResultInfo.GenerateErr("Database insertion fails");
-            }
-
-            // If database insertion fails, clean up uploaded files
-            if (!result.IsSuccessful)
-            {
-                foreach (var path in param.FilePaths)
-                {
-                    DeleteFile(path);
-                }
-            }
-
-            return result;
+            return SaveAssetsToDatabase(param);
         }
 
-        public ResultInfo UpdateAsset(HttpPostedFileBase file, UploadAssetsParam param)
+        /// <summary>
+        /// Updates an existing asset with new file content or metadata
+        /// </summary>
+        /// <param name="file">New file to upload (optional for metadata-only updates)</param>
+        /// <param name="param">Update parameters containing file names, media names, and asset ID</param>
+        /// <returns>Result information indicating success or failure with details</returns>
+        public ResultInfo UpdateAsset(HttpPostedFileBase file, UpdateAssetParam param)
         {
-            var result = ValidationInputFileName(file, param);
+            var result = ValidateUpdateAssetInput(file, param);
             if (!result.IsSuccessful)
             {
                 return result;
             }
 
-            var oldAssetInfo = GetAssetDetail(new AssetListParam { MediaId = param.MediaId });
+            var oldAssetInfo = GetAssetDetail(new AssetDetailParam { MediaId = param.MediaId, UserId = param.UserId });
             if (oldAssetInfo == null)
             {
                 return new ResultInfo
                 {
                     Code = ErrCode.GeneralErrorCode,
-                    Message = "Asset not found."
+                    Message = AssetNotFoundMessage
                 };
             }
 
             return ProcessAssetUpdate(file, param, oldAssetInfo);
         }
 
-        private ResultInfo ProcessAssetUpdate(HttpPostedFileBase file, UploadAssetsParam param, LandingPageAsset oldAssetInfo)
+        private ResultInfo ProcessAssetUpdate(HttpPostedFileBase file, UpdateAssetParam param, LandingPageAsset oldAssetInfo)
         {
             var oldFilePath = oldAssetInfo.FileName;
             var folder = GetAssetFolder(param.ModuleId, param.TargetCountryCode, param.MarketId);
             var inputFileName = string.IsNullOrEmpty(param.InputFileNames) ? file?.FileName : param.InputFileNames;
+            var inputMediaName = param.InputMediaNames;
             var path = $"{folder}/{inputFileName}";
 
             var result = CheckFileInFolderForUpdate(path, oldFilePath);
@@ -153,14 +126,21 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             }
 
             param.FilePaths.Add(path);
-            param.MediaNames.Add(inputFileName);
+            
+            if (string.IsNullOrEmpty(inputMediaName))
+            {
+                inputMediaName = param.FunctionName.MatchWith(Function.RegistrationFormUploader) ?
+                    CreateFileExtensionRemovalRegex().Replace(inputFileName, string.Empty) : inputFileName;
+            }
+            
+            param.MediaNames.Add(inputMediaName);
 
             return file != null 
                 ? ProcessFileUpdate(file, param, path, oldFilePath)
                 : ProcessMetadataUpdate(param, path, oldFilePath, oldAssetInfo);
         }
 
-        private ResultInfo ProcessFileUpdate(HttpPostedFileBase file, UploadAssetsParam param, string path, string oldFilePath)
+        private ResultInfo ProcessFileUpdate(HttpPostedFileBase file, UpdateAssetParam param, string path, string oldFilePath)
         {
             var result = ValidateFile(file.FileName, file.ContentLength, file.InputStream);
             if (!result.IsSuccessful)
@@ -182,15 +162,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return result;
         }
 
-        private ResultInfo ProcessMetadataUpdate(UploadAssetsParam param, string path, string oldFilePath, LandingPageAsset oldAssetInfo)
+        private ResultInfo ProcessMetadataUpdate(UpdateAssetParam param, string path, string oldFilePath, LandingPageAsset oldAssetInfo)
         {
-            param.Dimensions.Add(oldAssetInfo.Dimension ?? "0x0");
+            param.Dimensions.Add(oldAssetInfo.Dimension ?? DefaultDimensions);
             BuildFilesXml(param);
             var result = ExecuteUpdateAsset(param);
 
             if (result.IsSuccessful && !string.Equals(path, oldFilePath, StringComparison.CurrentCultureIgnoreCase))
             {
                 MoveFile(path, oldFilePath);
+                DeleteFile(oldFilePath);
             }
 
             return result;
@@ -207,24 +188,51 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             }
             catch
             {
-                return "0x0";
+                return DefaultDimensions;
             }
         }
 
-        public EntityResult<LandingPageAsset> GetAssetList(AssetListParam param)
+        private static Regex CreateFileExtensionRemovalRegex()
         {
-            var criteria = param.MapTo<AssetListParam, GetAssetListCriteria>();
+            var extensionPattern = CreateFileExtensionPattern();
+            return new Regex(@"\.(" + extensionPattern + ")$", RegexOptions.IgnoreCase);
+        }
+
+        private static string CreateFileExtensionPattern()
+        {
+            return string.Join("|", LandingPageConstants.FileExtensions.AllImageExtensions
+                .Select(ext => ext.StartsWith(".") ? ext.Substring(1) : ext));
+        }
+
+        /// <summary>
+        /// Retrieves a paginated list of assets based on filter criteria
+        /// </summary>
+        /// <param name="param">Filter parameters for asset search</param>
+        /// <returns>Paginated result containing matching assets</returns>
+        public EntityResult<LandingPageAsset> GetAssetList(AssetUploaderParam param)
+        {
+            var criteria = param.MapTo<AssetUploaderParam, GetAssetUploaderCriteria>();
 
             return FetchEntityResult<LandingPageAsset>(criteria);
         }
 
-        public LandingPageAsset GetAssetDetail(AssetListParam param)
+        /// <summary>
+        /// Retrieves detailed information for a specific asset
+        /// </summary>
+        /// <param name="param">Parameters containing asset ID and user ID</param>
+        /// <returns>Asset details or null if not found</returns>
+        public LandingPageAsset GetAssetDetail(AssetDetailParam param)
         {
-            var criteria = param.MapTo<AssetListParam, GetAssetListCriteria>();
+            var criteria = param.MapTo<AssetDetailParam, GetAssetDetailCriteria>();
 
             return GetTData<LandingPageAsset>(criteria);
         }
 
+        /// <summary>
+        /// Toggles the active status of one or more assets
+        /// </summary>
+        /// <param name="param">Parameters containing media IDs and new status</param>
+        /// <returns>Result information indicating success or failure</returns>
         public ResultInfo ToggleAssetStatus(UpdateMediasStatusParam param)
         {
             var command = param.MapTo<UpdateMediasStatusParam, UpdateMediasStatusCommand>();
@@ -232,56 +240,138 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return ExecuteReturnResultInfo(command);
         }
 
+        /// <summary>
+        /// Deletes one or more assets from both database and file system
+        /// </summary>
+        /// <param name="param">Parameters containing media IDs to delete</param>
+        /// <returns>Result information indicating success or failure</returns>
         public ResultInfo DeleteMedias(DeleteMediasParam param)
         {
             return DeleteAssets(param);
         }
 
-        public OptimizedAssetResult OptimizeAsset(OptimizeAssetParam param)
-        {
-            return new OptimizedAssetResult
-            {
-                WasOptimized = true,
-                OriginalFileName = "sample.jpg",
-                OptimizedFileName = "sample_optimized.jpg",
-                CompressionPercentage = DefaultCompressionPercentage
-            };
-        }
-
-        public AssetStatistics GetAssetStatistics(int? moduleId)
-        {
-            return new AssetStatistics
-            {
-                TotalAssets = 0,
-                TotalSize = 0,
-                ImageCount = 0,
-                VideoCount = 0,
-                DocumentCount = 0,
-                TotalSizeFormatted = "0 KB"
-            };
-        }
-
         #region Private Helper Methods
+
+        private ResultInfo ValidateUploadRequest(HttpPostedFileBase[] files, UploadAssetsParam param)
+        {
+            var result = ValidateAllFiles(files);
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
+            if (RegexHelper.IsMatch(param.InputFileNames, RestrictedMultiInputFileNamesPattern) || 
+                RegexHelper.IsMatch(param.InputMediaNames, RestrictedMultiInputFileNamesPattern))
+            {
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = Lang.FileNameCanNotContain
+                };
+            }
+
+            return new ResultInfo();
+        }
+
+        private static string[] PrepareInputFileNames(HttpPostedFileBase[] files, UploadAssetsParam param)
+        {
+            return string.IsNullOrEmpty(param.InputFileNames) 
+                ? files.Select(f => f.FileName).ToArray() 
+                : param.InputFileNames.Split('|');
+        }
+
+        private static string[] PrepareInputMediaNames(string[] inputFileNames, UploadAssetsParam param)
+        {
+            return string.IsNullOrEmpty(param.InputMediaNames) 
+                ? inputFileNames 
+                : param.InputMediaNames.Split('|');
+        }
+
+        private ResultInfo ValidateInputNames(string[] inputFileNames, HttpPostedFileBase[] files, string[] inputMediaNames)
+        {
+            var result = ValidateAllInputFileNames(inputFileNames, files);
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
+            return ValidateAllInputMediaNames(inputMediaNames);
+        }
+
+        private void ProcessAndUploadFiles(HttpPostedFileBase[] files, string[] inputFileNames, string[] inputMediaNames, string folder, UploadAssetsParam param)
+        {
+            var extensionRemovalRegex = CreateFileExtensionRemovalRegex();
+
+            for (var i = 0; i < files.Length; i++)
+            {
+                var file = files[i];
+                var fileName = inputFileNames[i];
+                var path = $"{folder}/{fileName}";
+
+                var dimensions = ExtractImageDimensions(file.InputStream);
+
+                string mediaName = inputMediaNames[i];
+                if (string.IsNullOrEmpty(mediaName))
+                {
+                    mediaName = extensionRemovalRegex.Replace(fileName, string.Empty);
+                }
+
+                param.MediaNames.Add(mediaName);
+                param.FilePaths.Add(path);
+                param.Dimensions.Add(dimensions);
+
+                UploadFile(file, path);
+            }
+        }
+
+        private ResultInfo SaveAssetsToDatabase(UploadAssetsParam param)
+        {
+            BuildFilesXml(param);
+
+            try
+            {
+                var result = InsertAssets(param);
+                if (!result.IsSuccessful)
+                {
+                    CleanupUploadedFiles(param.FilePaths);
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteError(ex);
+                CleanupUploadedFiles(param.FilePaths);
+                return ResultInfo.GenerateErr(DatabaseInsertionFailsMessage);
+            }
+        }
+
+        private void CleanupUploadedFiles(List<string> filePaths)
+        {
+            foreach (var path in filePaths)
+            {
+                DeleteFile(path);
+            }
+        }
 
         private ResultInfo ValidateAllFiles(HttpPostedFileBase[] files)
         {
-            var resultValidateAllFiles = new ResultInfo();
+            var result = new ResultInfo();
             var message = new StringBuilder();
             
             foreach (var file in files)
             {
                 var fileName = file.FileName;
-                var result = ValidateFile(fileName, file.ContentLength, file.InputStream);
+                var validationResult = ValidateFile(fileName, file.ContentLength, file.InputStream);
 
-                if (!result.IsSuccessful)
+                if (!validationResult.IsSuccessful)
                 {
-                    resultValidateAllFiles.Code = result.Code;
-                    message.Append($"File {fileName} is incorrect.<br />" + result.Message);
+                    result.Code = validationResult.Code;
+                    message.Append($"File {fileName} is incorrect.<br />" + validationResult.Message);
                 }
             }
 
-            resultValidateAllFiles.Message = message.ToString();
-            return resultValidateAllFiles;
+            result.Message = message.ToString();
+            return result;
         }
 
         private ResultInfo ValidateFile(string fileName, int contentLength, Stream inputStream)
@@ -335,7 +425,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return new ResultInfo();
         }
 
-        private ResultInfo CheckDuplicateFileNames(string[] inputFileNames)
+        private ResultInfo CheckDuplicateFileNames(string[] inputFileNames, string nameType = "File")
         {
             var length = inputFileNames.Length;
             for (var i = 0; i <= length - 1; i++)
@@ -349,7 +439,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                         return new ResultInfo
                         {
                             Code = ErrCode.GeneralErrorCode,
-                            Message = "File Name is unique, please enter other file name!"
+                            Message = string.Format(DuplicateFileNameMessage, nameType)
                         };
                     }
                 }
@@ -369,34 +459,81 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             var message = new StringBuilder();
             for (int i = 0; i < inputFileNames.Length; i++)
             {
-                var inputFileName = inputFileNames[i];
-
-                if (string.IsNullOrEmpty(inputFileNames[i]))
+                var validationResult = ValidateSingleInputFileName(inputFileNames, files, i, message);
+                if (!validationResult.IsSuccessful)
                 {
-                    var file = files[i];
-                    inputFileNames[i] = file.FileName;
-
-                    if (file.FileName.Length > MaxLength)
-                    {
-                        result.Code = ErrCode.GeneralErrorCode;
-                        message.Append($"The maximum length of file name is 50. Please choose another name for File Name {i + 1} or select another File.<br />");
-                    }
+                    result.Code = validationResult.Code;
                 }
-                else
+            }
+
+            result.Message = message.ToString();
+            return result;
+        }
+
+        private ResultInfo ValidateSingleInputFileName(string[] inputFileNames, HttpPostedFileBase[] files, int index, StringBuilder message)
+        {
+            var inputFileName = inputFileNames[index];
+
+            if (string.IsNullOrEmpty(inputFileName))
+            {
+                return ValidateEmptyInputFileName(inputFileNames, files, index, message);
+            }
+
+            return ValidateProvidedInputFileName(inputFileName, index, message);
+        }
+
+        private ResultInfo ValidateEmptyInputFileName(string[] inputFileNames, HttpPostedFileBase[] files, int index, StringBuilder message)
+        {
+            var file = files[index];
+            inputFileNames[index] = file.FileName;
+
+            if (file.FileName.Length > MaxLength)
+            {
+                message.Append($"The maximum length of file name is 50. Please choose another name for File Name {index + 1} or select another File.<br />");
+                return new ResultInfo { Code = ErrCode.GeneralErrorCode };
+            }
+
+            return new ResultInfo();
+        }
+
+        private ResultInfo ValidateProvidedInputFileName(string inputFileName, int index, StringBuilder message)
+        {
+            var result = new ResultInfo();
+
+            var extension = _systemFile.GetExtension(inputFileName).ToLower(System.Globalization.CultureInfo.InvariantCulture);
+            if (!LandingPageConstants.FileExtensions.AllImageExtensions.Contains(extension))
+            {
+                result.Code = ErrCode.GeneralErrorCode;
+                message.Append($"File Name {index + 1} is incorrect.<br />" + LandingPageConstants.ErrorMessages.InvalidFileType);
+            }
+
+            if (inputFileName.Length > MaxLength)
+            {
+                result.Code = ErrCode.GeneralErrorCode;
+                message.Append($"The maximum length of file name is 50. Please choose another name File Name {index + 1}.<br />");
+            }
+
+            return result;
+        }
+
+        private ResultInfo ValidateAllInputMediaNames(string[] inputMediaNames)
+        {
+            var result = CheckDuplicateFileNames(inputMediaNames, "Form");
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
+            var message = new StringBuilder();
+            for (int i = 0; i < inputMediaNames.Length; i++)
+            {
+                var inputMediaName = inputMediaNames[i];
+
+                if (!string.IsNullOrEmpty(inputMediaName) && inputMediaName.Length > MaxLength)
                 {
-                    var extension = _systemFile.GetExtension(inputFileName).ToLower(System.Globalization.CultureInfo.InvariantCulture);
-                    if (!LandingPageConstants.FileExtensions.AllImageExtensions.Contains(extension))
-                    {
-                        result.Code = ErrCode.GeneralErrorCode;
-                        message.Append($"File Name {i + 1} is incorrect.<br />" + LandingPageConstants.ErrorMessages.InvalidFileType);
-                    }
-
-                    if (inputFileName.Length > MaxLength)
-                    {
-                        result.Code = ErrCode.GeneralErrorCode;
-                        message.Append($"The maximum length of file name is 50. Please choose another name File Name {i + 1}.<br />");
-                    }
-                }
+                    result.Code = ErrCode.GeneralErrorCode;
+                    message.Append(string.Format(MaxLengthFormNameMessage, i + 1));
+                }       
             }
 
             result.Message = message.ToString();
@@ -405,31 +542,30 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         private ResultInfo CheckMultipleFilesInFolder(string[] inputFileNames, string folder)
         {
-            var resultCheckMultipleFilesInFolder = new ResultInfo();
+            var result = new ResultInfo();
             var message = new StringBuilder();
 
-            for (int i = 0; i < inputFileNames.Length; i++)
+            foreach (var inputFileName in inputFileNames)
             {
-                var inputFileName = inputFileNames[i];
                 var filePath = $"{folder}/{inputFileName}";
-                var result = CheckFileInFolder(filePath);
+                var checkResult = CheckFileInFolder(filePath);
 
-                if (!result.IsSuccessful)
+                if (!checkResult.IsSuccessful)
                 {
-                    if (result.Code == ErrCode.ErrCanNotAccessFolder)
+                    if (checkResult.Code == ErrCode.ErrCanNotAccessFolder)
                     {
-                        return result;
+                        return checkResult;
                     }
 
-                    resultCheckMultipleFilesInFolder.Code = ErrCode.GeneralErrorCode;
+                    result.Code = ErrCode.GeneralErrorCode;
                     message.Append($"{inputFileName}, ");
                 }
             }
 
-            resultCheckMultipleFilesInFolder.Message = resultCheckMultipleFilesInFolder.IsSuccessful ? string.Empty
-                : message.Append("This file name(s) belong to existing asset(s). Please change the file name.").ToString();
+            result.Message = result.IsSuccessful ? string.Empty
+                : message.Append(ExistingAssetsMessage).ToString();
 
-            return resultCheckMultipleFilesInFolder;
+            return result;
         }
 
         private ResultInfo CheckFileInFolder(string filePath)
@@ -443,7 +579,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                     return new ResultInfo
                     {
                         Code = ErrCode.ErrTheFileNameAlreadyExists,
-                        Message = "File already exists"
+                        Message = FileAlreadyExistsMessage
                     };
                 }
             }
@@ -459,7 +595,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             var moduleName = GetModuleName(moduleId);
 
             // Create folder structure: Asset/TargetCountry/Language/ModuleName
-            return $"Asset/{targetCountryName}/{languageName}/{moduleName}";
+            return  HttpUtility.HtmlEncode($"Asset/{targetCountryName}/{languageName}/{moduleName}");
         }
 
         private string GetTargetCountryName(string targetCountryCode)
@@ -485,8 +621,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             var modules = _landingPageService.GetModuleList();
             var module = modules.FirstOrDefault(m => m.ModuleId == moduleId);
-            
-            return module?.ModuleName ?? moduleId.ToString();
+            var moduleName = module?.ModuleName ?? moduleId.ToString();
+
+            if (!string.IsNullOrEmpty(moduleName))
+            {
+                moduleName = moduleName.Replace(" ", string.Empty).Replace("&", "_");
+            }
+
+            return moduleName;
         }
 
         private static void BuildFilesXml(UploadAssetsParam param)
@@ -509,12 +651,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             foreach (var serverPath in _appSetting.BannerFolders)
             {
                 var filePath = Path.Combine(serverPath, fileName);
-                
-                // Ensure directory exists
                 var directory = Path.GetDirectoryName(filePath);
                 _systemFile.EnsureDirectoryExists(directory);
-                
-                // Save the file
+
                 _systemFile.SaveFile(file, filePath);
             }
         }
@@ -529,21 +668,23 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         private ResultInfo InsertAssets(UploadAssetsParam param)
         {
-            var command = new UploadAssetsCommand
-            {
-                Files = param.Files,
-                ModuleId = param.ModuleId,
-                TargetCountryCode = param.TargetCountryCode,
-                MarketId = param.MarketId,
-                FunctionName = param.FunctionName,
-                UserId = param.UserId,
-                Ip = param.Ip
-            };
+            var command = param.MapTo<UploadAssetsParam, UploadAssetsCommand>();
 
             return ExecuteReturnResultInfo(command);
         }
 
-        private ResultInfo ValidationInputFileName(HttpPostedFileBase file, UploadAssetsParam param)
+        private ResultInfo ValidateUpdateAssetInput(HttpPostedFileBase file, UploadAssetsParam param)
+        {
+            var result = ValidateInputFileNameForUpdate(file, param);
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
+            return ValidateInputMediaNameForUpdate(param);
+        }
+
+        private ResultInfo ValidateInputFileNameForUpdate(HttpPostedFileBase file, UploadAssetsParam param)
         {
             if (!string.IsNullOrEmpty(param.InputFileNames))
             {
@@ -565,32 +706,59 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                         Message = LandingPageConstants.ErrorMessages.InvalidFileType
                     };
                 }
+
+                if (param.InputFileNames.Length > MaxLength)
+                {
+                    return new ResultInfo
+                    {
+                        Code = ErrCode.GeneralErrorCode,
+                        Message = MaxLengthFileNameMessage
+                    };
+                }
             }
-            else if (file != null)
-            {
-                param.InputFileNames = file.FileName;
-            }
-            else
-            {
-                // No file and no input file name provided - this is handled by validation
+            else {
+                if (file != null)
+                {
+                    param.InputFileNames = file.FileName;
+                }
             }
 
-            return param.InputFileNames != null && param.InputFileNames.Length > MaxLength ? new ResultInfo
+            return new ResultInfo();
+        }
+
+        private ResultInfo ValidateInputMediaNameForUpdate(UploadAssetsParam param)
+        {
+            if (!string.IsNullOrEmpty(param.InputMediaNames))
             {
-                Code = ErrCode.GeneralErrorCode,
-                Message = "The maximum length of file name is 50."
-            } : new ResultInfo();
+                if (RegexHelper.IsMatch(param.InputMediaNames, RestrictedMultiInputFileNamesPattern))
+                {
+                    return new ResultInfo
+                    {
+                        Code = ErrCode.GeneralErrorCode,
+                        Message = Lang.FileNameCanNotContain
+                    };
+                }
+
+                if (param.InputMediaNames.Length > MaxLength)
+                {
+                    return new ResultInfo
+                    {
+                        Code = ErrCode.GeneralErrorCode,
+                        Message = MaxLengthMediaNameMessage
+                    };
+                }
+            }
+
+            return new ResultInfo();
         }
 
         private ResultInfo CheckFileInFolderForUpdate(string filePath, string oldFilePath = null)
         {
-            // Check if file already exists in any of the configured server paths
             foreach (var serverPath in _appSetting.BannerFolders)
             {
                 var fullPath = Path.Combine(serverPath, filePath);
                 if (_systemFile.FileExists(fullPath))
                 {
-                    // If updating and the file path is the same as old file, it's allowed
                     if (!string.IsNullOrEmpty(oldFilePath) && 
                         string.Equals(filePath, oldFilePath, StringComparison.CurrentCultureIgnoreCase))
                     {
@@ -600,7 +768,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                     return new ResultInfo
                     {
                         Code = ErrCode.ErrTheFileNameAlreadyExists,
-                        Message = "File already exists"
+                        Message = FileAlreadyExistsMessage
                     };
                 }
             }
@@ -608,18 +776,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return new ResultInfo();
         }
 
-        private ResultInfo ExecuteUpdateAsset(UploadAssetsParam param)
+        private ResultInfo ExecuteUpdateAsset(UpdateAssetParam param)
         {
-            var command = new UpdateModuleMediaCommand
-            {
-                MediaId = param.MediaId,
-                ModuleId = param.ModuleId,
-                MediaName = string.Join("|", param.MediaNames),
-                FileName = string.Join("|", param.FilePaths),
-                Size = string.Join("|", param.Dimensions),
-                UserId = param.UserId,
-                Ip = param.Ip
-            };
+            var command = param.MapTo<UpdateAssetParam, UpdateAssetCommand>();
 
             return ExecuteReturnResultInfo(command);
         }
@@ -634,8 +793,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         private ResultInfo DeleteAssets(DeleteMediasParam param)
         {
-            // Get file names before deletion for cleanup
-            var fileNameList = GetAssetFileNameList(param, param.MediaIds);
+            var fileNameList = GetAssetFileNameList(param.UserId, param.MediaIds);
             
             var command = new DeleteMediasCommand
             {
@@ -655,10 +813,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return result;
         }
 
-        private List<string> GetAssetFileNameList(AssetListParam param, string mediaIds)
+        private List<string> GetAssetFileNameList(int userId, string mediaIds)
         {
             var mediaIdList = mediaIds.Split(',');
             var fileNameList = new List<string>();
+            var param = new AssetDetailParam { UserId = userId };
 
             foreach (var mediaId in mediaIdList)
             {
@@ -678,9 +837,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         private void DeleteFiles(List<string> fileList)
         {
-            for (int i = 0; i < fileList.Count; i++)
+            foreach (var filePath in fileList)
             {
-                DeleteFile(fileList[i]);
+                DeleteFile(filePath);
             }
         }
 
