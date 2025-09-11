@@ -9,6 +9,7 @@
         window.initialState = {
             moduleList: @Html.Raw(Json.Encode(Model.ModuleList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            allLanguagesInSystem: @Html.Raw(Json.Encode(Model.AllLanguagesInSystem)),
             targetCountryList: @Html.Raw(Json.Encode(Model.TargetCountryList)),
             statusList: @Html.Raw(Json.Encode(Model.StatusList)),
             bannerRootUrl:"@Model.BannerRootUrl",

@@ -34,12 +34,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return FetchTData<CampaignInfo>(new GetCampaignInfoCriteria());
         }
         
-        public IEnumerable<LandingPageModule> GetModuleList()
+        public IEnumerable<ModuleInfo> GetModuleList()
         {
-            return FetchTData<LandingPageModule>(new GetModuleCriteria());
+            return FetchTData<ModuleInfo>(new GetModuleCriteria());
         }
 
-        public IEnumerable<LandingPageModule> GetModuleListExcludeRegistrationForm()
+        public IEnumerable<ModuleInfo> GetModuleListExcludeRegistrationForm()
         {
             return GetModuleList().Where(m => m.ModuleId != RegistrationFormModuleId);
         }
@@ -52,6 +52,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         public IEnumerable<Language> GetLanguageList()
         {
             return _systemService.GetLanguageList();
+        }
+
+        public IEnumerable<Language> GetAllLanguagesInSystem()
+        {
+            return _systemService.GetAllLanguagesInSystem();
         }
 
         public IEnumerable<NormalDeal> GetNormalDealList()

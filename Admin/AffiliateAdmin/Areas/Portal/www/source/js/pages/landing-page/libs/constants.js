@@ -23,7 +23,7 @@ export const maxLength = 50;
 export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
 
 export const fileUpload = {
-    AllowedImageExtensions: [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+    AllowedImageExtensions: [".jpg", ".jpeg", ".png", ".gif"],
     MaximumFiles: 10,
     MaxFileSize: 3
 }
@@ -33,3 +33,5 @@ export const assetStatus = {
     active: 1,
     inactive: 2
 };
+
+export const defaultFormManagementModuleId = 9;

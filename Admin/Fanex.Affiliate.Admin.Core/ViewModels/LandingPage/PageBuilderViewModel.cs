@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.LandingPage
 {
     public class PageBuilderViewModel : PageManagementViewModel
     {
-        public IEnumerable<LandingPageModule> ModuleList { get; set; }
+        public IEnumerable<ModuleInfo> ModuleList { get; set; }
     }
 
 

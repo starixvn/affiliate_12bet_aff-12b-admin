@@ -382,6 +382,7 @@
     <Compile Include="Controllers\Domain\MemberDomainController.cs" />
     <Compile Include="Controllers\Domain\SpecificDomainControlController.cs" />
     <Compile Include="Controllers\LandingPage\FormManagementController.cs" />
+    <Compile Include="Controllers\LandingPage\MediaUploaderController.cs" />
     <Compile Include="Controllers\LandingPage\ModuleMediaGalleryController.cs" />
     <Compile Include="Controllers\LandingPage\PageManagementController.cs" />
     <Compile Include="Controllers\LandingPage\PageBuilderController.cs" />
@@ -532,6 +533,7 @@
     <Compile Include="DTO\Domain\SpecificDomainControlInfo.cs" />
     <Compile Include="DTO\Domain\TargetCountryByDomain.cs" />
     <Compile Include="DTO\Campaign\CampaignDetailInfo.cs" />
+    <Compile Include="DTO\LandingPage\ModuleInfo.cs" />
     <Compile Include="DTO\LandingPage\StatusInfo.cs" />
     <Compile Include="DTO\LandingPage\ModuleMedia.cs" />
     <Compile Include="DTO\LandingPage\PageManagement.cs" />

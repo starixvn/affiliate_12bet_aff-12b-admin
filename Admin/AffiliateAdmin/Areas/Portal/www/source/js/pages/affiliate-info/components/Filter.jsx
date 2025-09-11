@@ -148,7 +148,7 @@ export class Filter extends Component {
                             valueField="name"
                             statusField="checked"
                             maxDisplayItemCount={1}
-                            noneSelectedLabel="None Select"
+                            noneSelectedLabel="None Selected"
                             selectedAllLabel="All Revenue Groups"
                             onChange={this.handleChangeCommGroup} />
                     </FormGroup>

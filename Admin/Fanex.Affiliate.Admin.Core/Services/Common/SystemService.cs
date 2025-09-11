@@ -13,7 +13,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SystemService : BaseDynamicService, ISystemService
     {
-        private const string ChineseSimplifiedForMalaysia = "mycs";
         private readonly ICacheService _cacheService;
 
         public SystemService(
@@ -29,13 +28,29 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
             if (languageList == null)
             {
-                const string SpKey = "Aff_Market_Sel";
-
-                languageList = FetchTData<Language>(SpKey).Where(l => !l.ShortedLanguageCode.MatchWith(ChineseSimplifiedForMalaysia));
+                languageList = GetAllLanguagesInSystem()
+                    .GroupBy(l => l.LanguageCode)
+                    .Select(g => g.First())
+                    .ToList();
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
             return languageList;
+        }
+
+        public IEnumerable<Language> GetAllLanguagesInSystem()
+        {
+            var allLanguagesInSystem = _cacheService.Get<IEnumerable<Language>>(CacheKey.AllLanguagesInSystem);
+
+            if (allLanguagesInSystem == null)
+            {
+                const string SpKey = "Aff_Market_Sel";
+
+                allLanguagesInSystem = FetchTData<Language>(SpKey);
+                _cacheService.Set(CacheKey.AllLanguagesInSystem, allLanguagesInSystem);
+            }
+
+            return allLanguagesInSystem;
         }
 
         public IEnumerable<Product> GetProductList()

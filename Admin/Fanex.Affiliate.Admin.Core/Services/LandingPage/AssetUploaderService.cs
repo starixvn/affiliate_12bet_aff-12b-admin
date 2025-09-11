@@ -33,6 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         private const string MaxLengthFormNameMessage = "The maximum length of form name is 50. Please choose another name for Form Name {0} or select another Form.<br />";
         private const string DuplicateFileNameMessage = "{0} Name is unique, please enter other {0} name!";
         private const string ExistingAssetsMessage = "This file name(s) belong to existing asset(s). Please change the file name.";
+        private const string InvalidLanguageForTargetCountryMessage = "The selected language is not valid for the chosen country. Please select a supported language.";
 
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
@@ -72,6 +73,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 return result;
             }
 
+            result = ValidateLanguageByTargetCountry(param.MarketId, param.TargetCountryCode);
+            if (!result.IsSuccessful)
+            {
+                return result;
+            }
+
             var folder = GetAssetFolder(param.ModuleId, param.TargetCountryCode, param.MarketId);
             result = CheckMultipleFilesInFolder(inputFileNames, folder);
             if (!result.IsSuccessful)
@@ -106,6 +113,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                     Code = ErrCode.GeneralErrorCode,
                     Message = AssetNotFoundMessage
                 };
+            }
+
+            var validationResult = ValidateLanguageByTargetCountry(param.MarketId, param.TargetCountryCode);
+            if (!validationResult.IsSuccessful)
+            {
+                return validationResult;
             }
 
             return ProcessAssetUpdate(file, param, oldAssetInfo);
@@ -170,8 +183,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
             if (result.IsSuccessful && !string.Equals(path, oldFilePath, StringComparison.CurrentCultureIgnoreCase))
             {
+                // Move file from old path to new path
+                // MoveFile parameters: (destinationPath, sourcePath)
                 MoveFile(path, oldFilePath);
-                DeleteFile(oldFilePath);
             }
 
             return result;
@@ -251,6 +265,30 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         }
 
         #region Private Helper Methods
+
+        private ResultInfo ValidateLanguageByTargetCountry(string marketId, string targetCountryCode)
+        {
+            if (string.IsNullOrEmpty(marketId) || string.IsNullOrEmpty(targetCountryCode))
+            {
+                return ResultInfo.GenerateErr(InvalidLanguageForTargetCountryMessage);
+            }
+
+            var languages = _landingPageService.GetAllLanguagesInSystem();
+            var isValidLanguage = languages.Any(l => 
+                string.Equals(l.LanguageCode, marketId, StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(l.TargetCountryCode, targetCountryCode, StringComparison.OrdinalIgnoreCase));
+
+            if (!isValidLanguage)
+            {
+                return new ResultInfo
+                {
+                    Code = ErrCode.GeneralErrorCode,
+                    Message = InvalidLanguageForTargetCountryMessage
+                };
+            }
+
+            return new ResultInfo();
+        }
 
         private ResultInfo ValidateUploadRequest(HttpPostedFileBase[] files, UploadAssetsParam param)
         {
@@ -787,6 +825,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             foreach (var serverPath in _appSetting.BannerFolders)
             {
+                var newFullPath = Path.Combine(serverPath, newFilePath);
+                var directory = Path.GetDirectoryName(newFullPath);
+                _systemFile.EnsureDirectoryExists(directory);
+                
                 _systemFile.MoveFile(serverPath, newFilePath, oldFilePath);
             }
         }

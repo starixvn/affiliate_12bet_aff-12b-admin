@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         public static class FileExtensions
         {
             public static readonly string[] AllowedImageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
-            public static readonly string[] AllImageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+            public static readonly string[] AllImageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
         }
 
         // Module Names (for validation)

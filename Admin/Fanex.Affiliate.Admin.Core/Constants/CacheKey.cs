@@ -4,6 +4,8 @@
     {
         public const string LanguageList = "Aff.12B.Admin.LanguageList";
 
+        public const string AllLanguagesInSystem = "Aff.12B.Admin.AllLanguagesInSystem";
+
         public const string AffTypeList = "Aff.12B.Admin.AffTypeList";
 
         public const string MediaCurrencyList = "Aff.12B.Admin.MediaCurrencyList";

@@ -242,6 +242,7 @@
     <Compile Include="Areas\Portal\PortalAreaRegistration.cs" />
     <Content Include="Areas\Portal\www\dist\imgs\i_operation.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_landing.png" />
+    <Content Include="Areas\Portal\www\source\js\components\Field.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\ControlButtons.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\common\components\MediaReviewPopup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\asset-uploader\actions\index.js" />
@@ -254,6 +255,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\asset-uploader\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\asset-uploader\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\asset-uploader\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\common\components\BaseMediaUploaderForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\common\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\form-management\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\form-management\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\form-management\components\AppContainer.jsx" />
@@ -282,7 +285,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleRow.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleSelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\SourceSelector.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\PageBuilder.css" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\CreateNewLandingPage.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\LandingPageReview.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\ModuleComponents.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\reducers\index.js" />

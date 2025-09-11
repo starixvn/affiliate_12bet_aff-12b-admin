@@ -7,6 +7,7 @@ import { fileUpload } from '../../libs/constants';
 import * as types from '../actions/types';
 
 export const statusList = createReducer(null, {});
+export const allLanguagesInSystem = createReducer(null, {});
 export const maxFileSize = createReducer(fileUpload.MaxFileSize, {});
 export const maximumFiles = createReducer(fileUpload.MaximumFiles, {});
 export const bannerRootUrl = createReducer(null, {});
@@ -74,6 +75,7 @@ export default combineReducers({
     targetCountryList,
     languageList,
     statusList,
+    allLanguagesInSystem,
     maxFileSize,
     maximumFiles,
     allowedExtensions,

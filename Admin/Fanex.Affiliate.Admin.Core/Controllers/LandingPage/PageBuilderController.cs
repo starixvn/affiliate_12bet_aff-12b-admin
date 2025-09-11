@@ -144,7 +144,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
                 PageId = pageId ?? 0,
                 TargetCountries = _landingPageService.GetTargetCountryList(),
                 Languages = _landingPageService.GetLanguageList(),
-                AvailableModules = _landingPageService.GetModuleList(),
+                //AvailableModules = _landingPageService.GetModuleList(),
                 //ModuleTypes = _moduleService.GetModuleTypes(),
                 //NavigationTargets = _moduleService.GetNavigationTargets()
             };

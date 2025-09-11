@@ -25,8 +25,6 @@ export const messageSwitchStatus = {
     FailedToSwitchStatus: 'Failed to change status of the selected form(s)'
 }
 
-export const defaultFormManagementModuleId = 9;
-
 export const defaultState = {
     files: [],
     inputFileNames: [''],

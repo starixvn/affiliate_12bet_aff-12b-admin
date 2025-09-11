@@ -23,15 +23,3 @@ export const messageSwitchStatus = {
     SwitchStatusSuccessfully: 'Switch status of image(s) successfully',
     FailedToSwitchStatus: 'Failed to change status of the selected image(s)'
 }
-
-export const defaultState = {
-    files: [],
-    inputFileNames: [''],
-    isInsert: true,
-    isShowMessage: false,
-    isSuccess: true,
-    message: '',
-    isDisabled: true,
-    isDisableCurrency: false,
-    messageNotificationPopup: ''
-}

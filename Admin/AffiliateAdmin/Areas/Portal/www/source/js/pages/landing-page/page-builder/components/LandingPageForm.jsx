@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Container, Row, Col, Card, CardBody, Button } from 'reactstrap';
 
-import './PageBuilder.css';
-
 import CampaignSelector from './form/CampaignSelector';
 import TargetCountrySelector from './form/TargetCountrySelector';
 import LanguageSelector from './form/LanguageSelector';

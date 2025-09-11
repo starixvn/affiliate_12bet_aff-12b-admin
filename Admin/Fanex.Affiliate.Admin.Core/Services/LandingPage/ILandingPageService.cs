@@ -11,15 +11,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
     {
         IEnumerable<CampaignInfo> GetCampaignInfoList();
 
-        IEnumerable<LandingPageModule> GetModuleList();
+        IEnumerable<ModuleInfo> GetModuleList();
 
-        IEnumerable<LandingPageModule> GetModuleListExcludeRegistrationForm();
+        IEnumerable<ModuleInfo> GetModuleListExcludeRegistrationForm();
 
         IEnumerable<StatusInfo> GetLandingPageStatusList();
 
         IEnumerable<NormalDeal> GetNormalDealList();
 
         IEnumerable<Language> GetLanguageList();
+
+        IEnumerable<Language> GetAllLanguagesInSystem();
 
         IEnumerable<TargetCountry> GetTargetCountryList();
     }

@@ -7,5 +7,7 @@
         public string LanguageName { get; set; }
 
         public string ShortedLanguageCode { get; set; }
+
+        public string TargetCountryCode { get; set; }
     }
 }
