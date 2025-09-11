@@ -12,5 +12,7 @@
 
         internal const string RsaKeyPairKey = "Affiliate12B.RsaKeyPairKey";
         internal const string VerificationSessionKey = "Affiliate12B.VerificationSessionKey";
+
+        internal const string CurrentCountryKey = "Affiliate12B.CurrentCountryKey";
     }
 }

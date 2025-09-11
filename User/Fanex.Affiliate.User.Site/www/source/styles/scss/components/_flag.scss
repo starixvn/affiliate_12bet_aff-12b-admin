@@ -12,43 +12,47 @@
         background-image: url('../../../build/styles/Images/langs/en.png');
     }
 
-    &-zh-CN {
+    &-zh-CN, &-CN {
         background-image: url('../../../build/styles/Images/langs/cs.png');
     }
 
-    &-zh-TW {
+    &-zh-TW, &-CH {
         background-image: url('../../../build/styles/Images/langs/ch.png?v=0.001');
     }
 
-    &-id-ID {
+    &-id-ID, &-ID {
         background-image: url('../../../build/styles/Images/langs/id.png');
     }
 
-    &-vi-VN {
+    &-vi-VN, &-VN {
         background-image: url('../../../build/styles/Images/langs/vn.png');
     }
 
-    &-th-TH {
+    &-th-TH, &-TH {
         background-image: url('../../../build/styles/Images/langs/th.png');
     }
 
-    &-ko-KR {
+    &-ko-KR, &-KR {
         background-image: url('../../../build/styles/Images/langs/ko.png');
     }
 
-    &-ja-JP {
+    &-ja-JP, &-JP {
         background-image: url('../../../build/styles/Images/langs/ja.png');
     }
 
-    &-en-IN {
+    &-en-IN, &-IN {
         background-image: url('../../../build/styles/Images/langs/hien.png');
     }
 
-    &-km-KH {
+    &-km-KH, &-KH {
         background-image: url('../../../build/styles/Images/langs/kh.png');
     }
 
-    &-bn-BD {
+    &-bn-BD, &-BD {
         background-image: url('../../../build/styles/Images/langs/bn.png');
+    }
+
+    &-MY {
+        background-image: url('../../../build/styles/Images/langs/ms.png');
     }
 }

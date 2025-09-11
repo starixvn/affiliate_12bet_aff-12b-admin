@@ -287,6 +287,8 @@
     <Compile Include="Commands\Verification\UpdateVerificationInfoCommand.cs" />
     <Compile Include="Constants\AffCategory.cs" />
     <Compile Include="CoreService\BaseDynamicService.cs" />
+    <Compile Include="CoreService\IIpLocationService.cs" />
+    <Compile Include="CoreService\IpLocationService.cs" />
     <Compile Include="Criterias\AccountOverview\GetLastLoginInfoCriteria.cs" />
     <Compile Include="Criterias\AccountOverview\GetPlayerDetailListCriteria.cs" />
     <Compile Include="Criterias\AccountOverview\GetSubAffDetailsCriteria.cs" />
@@ -413,11 +415,13 @@
     <Compile Include="DTO\Apis\MemberSiteCustomerInfo.cs" />
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\GeneralAffInfo.cs" />
+    <Compile Include="DTO\IpLocationInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MarketingChannel.cs" />
     <Compile Include="DTO\MarketingChannelLink.cs" />
     <Compile Include="DTO\PaymentRequestInfo.cs" />
     <Compile Include="DTO\Systems\TargetCountry.cs" />
+    <Compile Include="DTO\Systems\TargetCountryLanguage.cs" />
     <Compile Include="DTO\UserPanel\Currency.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\MarketingPageStatistics.cs" />
@@ -729,6 +733,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="Controllers\UserPanel\AccountOverViewController.cs" />
+    <Compile Include="Criterias\GetIpInfoCriteria.cs" />
     <None Include="Fanex.Affiliate.User.Core.Debug.ruleset" />
     <None Include="Fanex.Affiliate.User.Core.ruleset" />
     <EmbeddedResource Include="Resources\Lang.id-ID.resx">

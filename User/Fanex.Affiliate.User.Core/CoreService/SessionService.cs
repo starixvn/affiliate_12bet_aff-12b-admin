@@ -43,6 +43,25 @@ namespace Fanex.Affiliate.User.Core.CoreService
             }
         }
 
+        public string CurrentCountry
+        {
+            get
+            {
+                var session = HttpContext.Current.Session;
+                const string defaultCountryCode = SystemLanguage.DefaultCountryCode;
+
+                if (session == null)
+                {
+                    return defaultCountryCode;
+                }
+
+                var currentCountry = session[CurrentCountryKey] as string;
+
+                return string.IsNullOrWhiteSpace(currentCountry) ? defaultCountryCode : currentCountry;
+            }
+            set => HttpContext.Current.Session[CurrentCountryKey] = value;
+        }
+
         public bool IsInternal
         {
             get { return (bool)(HttpContext.Current.Session[IsInternalKey] ?? false); }

@@ -1,7 +1,7 @@
-﻿using Fanex.Affiliate.User.Core.Infrastructure;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Fanex.Affiliate.User.Core.Infrastructure;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Site
             routes.MapRoute(
               name: "UserPanelHasLang",
               url: "{lang}/UserPanel/{controller}/{action}/{id}",
-              constraints: new { lang = @"(\w{2}|hien|hitg)" },
+              constraints: new { lang = @"(en|bd|bnen|hien|id|iden|jp|jpen|ko|kren|th|then|vn|vnen|cs|csen|phen)" },
               defaults: new { controller = "AccountOverview", action = IndexAction, id = UrlParameter.Optional, lang = UrlParameter.Optional }
             );
 
@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.User.Site
             routes.MapRoute(
                 name: "DefaultHasLang",
                 url: "{lang}/{controller}/{action}/{id}",
-                constraints: new { lang = @"(\w{2}|hien|hitg)" },
+                constraints: new { lang = @"(en|bd|bnen|hien|id|iden|jp|jpen|ko|kren|th|then|vn|vnen|cs|csen|phen)" },
                 defaults: new { controller = "Home", action = IndexAction, id = UrlParameter.Optional, lang = UrlParameter.Optional }
             );
 
