@@ -379,6 +379,7 @@
     <Compile Include="Controllers\Affiliate\MarketingAccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CampaignManagement\CampaignManagementController.cs" />
     <Compile Include="Controllers\Domain\MemberDomainController.cs" />
     <Compile Include="Controllers\Domain\SpecificDomainControlController.cs" />
     <Compile Include="Controllers\LandingPage\FormManagementController.cs" />

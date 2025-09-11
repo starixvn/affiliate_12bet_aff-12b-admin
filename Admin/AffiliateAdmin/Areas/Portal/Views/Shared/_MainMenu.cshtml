@@ -18,8 +18,27 @@
         {"Message",Function.HotNews },
         {"Administrator",Function.UserControl },
         {"Domain",Function.Domain },
-        {"LandingPage",Function.LandingPage },
     };
+
+    // Marketing Tools submenu structure with permissions
+    var marketingToolsSubmenus = new Dictionary<string, object>
+    {
+        {"LandingPageContentManagement", new { Function = Function.LandingPage, Controller = "LandingPage", Action = "Index", DisplayName = "Landing Page Content Management" }},
+        //{"LinkGenerator", new { Function = Function.LandingPage, Controller = "LinkGenerator", Action = "Index", DisplayName = "Link Generator" }},
+        {"CampaignManagement", new { Function = Function.LandingPage, Controller = "CampaignManagement", Action = "Index", DisplayName = "Campaign Management" }},
+    };
+
+    // Check which marketing tools submenus the user has access to
+    var availableMarketingTools = marketingToolsSubmenus.Where(submenu =>
+    {
+        var functionName = ((dynamic)submenu.Value).Function;
+        return claims.Any(p => p.Type == functionName);
+    }).ToList();
+
+    if (availableMarketingTools.Any())
+    {
+        menus.Add("MarketingTools", Function.LandingPage); // Use any function as placeholder since we check submenus individually
+    }
 
     var displayMenus = menus.Where(m =>
     {
@@ -44,7 +63,7 @@
         {
             case "MediaGallery":
                 return "Media Gallery";
-            case "LandingPage":
+            case "MarketingTools":
                 return "Marketing Tools";
             default:
                 return menuKey;
@@ -58,12 +77,44 @@
 
     @foreach (var item in displayMenus)
     {
-        var active = "nav-link " + (controllerName == item ? "active" : string.Empty);
-        <li class="nav-item">
-            <a class="@active" id="@item" href="@Url.Content("~/Portal/"+item)">
-                @GetMenuName(item)
-            </a>
-        </li>
+        if (item == "MarketingTools")
+        {
+            var isMarketingToolsActive = new[] { "PageBuilder", "AssetUploader", "FormManagement", "ModuleManagement" }.Contains(controllerName);
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle @(isMarketingToolsActive ? "active" : string.Empty)" 
+                   id="@item" 
+                   href="#" 
+                   role="button" 
+                   data-toggle="dropdown" 
+                   aria-haspopup="true" 
+                   aria-expanded="false">
+                    @GetMenuName(item)
+                </a>
+                <div class="dropdown-menu" aria-labelledby="@item" style="position: static">
+                    @foreach (var submenu in availableMarketingTools)
+                    {
+                        var submenuData = (dynamic)submenu.Value;
+                        var submenuController = submenuData.Controller;
+                        var submenuAction = submenuData.Action;
+                        var submenuDisplayName = submenuData.DisplayName;
+                        var submenuActive = controllerName == submenuController ? "active" : string.Empty;
+                        
+                        <a class="dropdown-item @submenuActive" id="submenu-@submenuData.Controller" href="@Url.Content("~/Portal/" + submenuController)">
+                            @submenuDisplayName
+                        </a>
+                    }
+                </div>
+            </li>
+        }
+        else
+        {
+            var active = "nav-link " + (controllerName == item ? "active" : string.Empty);
+            <li class="nav-item">
+                <a class="@active" id="@item" href="@Url.Content("~/Portal/"+item)">
+                    @GetMenuName(item)
+                </a>
+            </li>
+        }
     }
 </ul>
 <script type="text/javascript">
@@ -87,7 +138,8 @@
             element = document.getElementById('MediaGallery');
             break;
         case 'PageBuilder': case 'AssetUploader': case 'FormManagement': case 'ModuleManagement':
-            element = document.getElementById('LandingPage');
+            document.getElementById('submenu-LandingPage')?.classList.add("active");
+            element = document.getElementById('MarketingTools');
             break;
         case 'Department':
             element = document.getElementById('Administrator');
@@ -98,4 +150,33 @@
     }
 
     element && element.classList.add("active");
+
+    // Handle dropdown functionality for Marketing Tools
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdown = document.querySelector('.nav-item.dropdown');
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        
+        if (dropdown && dropdownToggle && dropdownMenu) {
+            // Toggle dropdown on click
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+            
+            // Close dropdown when pressing escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        }
+    });
 </script>
