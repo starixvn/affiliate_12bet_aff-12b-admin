@@ -2,8 +2,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import MultipleSelect from '../../../../components/multiple-select';
+import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
-import { setParam } from '../actions';
+import { setParam, setCampaignList, setDealList, setTargetCountryList, setLanguageList, setStatusList } from '../actions';
 import { globalResource } from '../libs/constants';
 
 export const Filter = ({ 
@@ -13,15 +15,20 @@ export const Filter = ({
     statusList, 
     pagingOption, 
     campaignList,
-    setParam 
+    setParam,
+    setCampaignList,
+    setDealList,
+    setTargetCountryList,
+    setLanguageList,
+    setStatusList
 }) => {
     const [filters, setFilters] = useState({
         landingPageName: '',
-        campaign: '',
-        deal: '',
-        targetCountry: '',
-        language: '',
-        status: ''
+        campaignIds: campaignList ? campaignList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
+        dealIds: dealList ? dealList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
+        targetCountryCodes: targetCountryList ? targetCountryList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
+        languageCodes: languageList ? languageList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
+        statusIds: statusList ? statusList.filter(item => item.checked).map(item => item.key).join(',') : 'all'
     });
 
     const handleChange = (event) => {
@@ -32,9 +39,47 @@ export const Filter = ({
         }));
     };
 
+    const handleChangeCampaign = (item, selectedCampaignList) => {
+        setFilters({ ...filters, campaignIds: selectedCampaignList });
+        setCampaignList(handleChangeMultipleSelected(campaignList, selectedCampaignList));
+    };
+
+    const handleChangeDeal = (item, selectedDealList) => {
+        setFilters({ ...filters, dealIds: selectedDealList });
+        setDealList(handleChangeMultipleSelected(dealList, selectedDealList));
+    };
+
+    const handleChangeTargetCountry = (item, selectedTargetCountryList) => {
+        setFilters({ ...filters, targetCountryCodes: selectedTargetCountryList });
+        setTargetCountryList(handleChangeMultipleSelected(targetCountryList, selectedTargetCountryList));
+    };
+
+    const handleChangeLanguage = (item, selectedLanguageList) => {
+        setFilters({ ...filters, languageCodes: selectedLanguageList });
+        setLanguageList(handleChangeMultipleSelected(languageList, selectedLanguageList));
+    };
+
+    const handleChangeStatus = (item, selectedStatusList) => {
+        setFilters({ ...filters, statusIds: selectedStatusList });
+        setStatusList(handleChangeMultipleSelected(statusList, selectedStatusList));
+    };
+
     const handleSearch = () => {
+        const { landingPageName, campaignIds, dealIds, targetCountryCodes, languageCodes, statusIds } = filters;
+        
+        const isSelectAllCampaigns = campaignList ? campaignList.every(c => c.checked) : true;
+        const isSelectAllDeals = dealList ? dealList.every(c => c.checked) : true;
+        const isSelectAllTargetCountries = targetCountryList ? targetCountryList.every(c => c.checked) : true;
+        const isSelectAllLanguages = languageList ? languageList.every(c => c.checked) : true;
+        const isSelectAllStatuses = statusList ? statusList.every(c => c.checked) : true;
+
         const newParam = {
-            ...filters,
+            landingPageName,
+            campaignIds: campaignIds,//isSelectAllCampaigns ? 'all' : campaignIds,
+            dealIds: dealIds,//isSelectAllDeals ? 'all' : dealIds,
+            targetCountryCodes: targetCountryCodes,//isSelectAllTargetCountries ? 'all' : targetCountryCodes,
+            languageCodes: languageCodes,//isSelectAllLanguages ? 'all' : languageCodes,
+            statusIds: statusIds,//isSelectAllStatuses ? 'all' : statusIds,
             PageIndex: 1,
             PageSize: pagingOption.PageSize
         };
@@ -56,74 +101,79 @@ export const Filter = ({
                     />
                 </FormGroup>
                 
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="campaign" className="mr-sm-2">Campaign</Label>
-                    <Input type="select" name="campaign" id="campaign" value={filters.campaign} onChange={handleChange}>
-                        <option value="">All Campaigns</option>
-                        {
-                            campaignList && campaignList.map(item => (
-                                <option key={`campaign-${item.CampaignCode}`} value={item.CampaignCode}>
-                                    {item.CampaignName}
-                                </option>
-                            ))
-                        }
-                    </Input>
+                    <MultipleSelect
+                        id="campaign"
+                        dataSource={campaignList || []}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        hasInputOption={true}
+                        noneSelectedLabel="None Selected"
+                        selectedAllLabel="All"
+                        onChange={handleChangeCampaign} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="deal" className="mr-sm-2">Deal</Label>
-                    <Input type="select" name="deal" id="deal" value={filters.deal} onChange={handleChange}>
-                        <option value="">All Deals</option>
-                        {
-                            dealList && dealList.map(item => (
-                                <option key={`deal-${item.GroupId}`} value={item.GroupId}>
-                                    {item.GroupName}
-                                </option>
-                            ))
-                        }
-                    </Input>
+                    <MultipleSelect
+                        id="deal"
+                        dataSource={dealList || []}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        hasInputOption={true}
+                        noneSelectedLabel="None Selected"
+                        selectedAllLabel="All"
+                        onChange={handleChangeDeal} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="targetCountry" className="mr-sm-2">Target Country</Label>
-                    <Input type="select" name="targetCountry" id="targetCountry" value={filters.targetCountry} onChange={handleChange}>
-                        <option value="">All Target Countries</option>
-                        {
-                            targetCountryList && targetCountryList.map(item => (
-                                <option key={`country-${item.TargetCountryCode}`} value={item.TargetCountryCode}>
-                                    {item.TargetCountryName}
-                                </option>
-                            ))
-                        }
-                    </Input>
+                    <MultipleSelect
+                        id="targetCountry"
+                        dataSource={targetCountryList || []}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        hasInputOption={true}
+                        noneSelectedLabel="None Selected"
+                        selectedAllLabel="All"
+                        onChange={handleChangeTargetCountry} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="language" className="mr-sm-2">Language</Label>
-                    <Input type="select" name="language" id="language" value={filters.language} onChange={handleChange}>
-                        <option value="">All Languages</option>
-                        {
-                            languageList && languageList.map(item => (
-                                <option key={`language-${item.LanguageCode}`} value={item.LanguageCode}>
-                                    {item.LanguageName}
-                                </option>
-                            ))
-                        }
-                    </Input>
+                    <MultipleSelect
+                        id="language"
+                        dataSource={languageList || []}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        hasInputOption={true}
+                        noneSelectedLabel="None Selected"
+                        selectedAllLabel="All"
+                        onChange={handleChangeLanguage} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="status" className="mr-sm-2">Status</Label>
-                    <Input type="select" name="status" id="status" value={filters.status} onChange={handleChange}>
-                        <option value="">All Statuses</option>
-                        {
-                            statusList && statusList.map(item => (
-                                <option key={`status-${item.StatusId}`} value={item.StatusId}>
-                                    {item.Status}
-                                </option>
-                            ))
-                        }
-                    </Input>
+                    <MultipleSelect
+                        id="status"
+                        dataSource={statusList || []}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        hasInputOption={true}
+                        noneSelectedLabel="None Selected"
+                        selectedAllLabel="All"
+                        onChange={handleChangeStatus} />
                 </FormGroup>
 
                 <Button outline color="primary" type="button" className="mb-2" onClick={handleSearch}>
@@ -146,7 +196,14 @@ function mapStateToProps({ targetCountryList, languageList, dealList, statusList
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ 
+        setParam, 
+        setCampaignList, 
+        setDealList, 
+        setTargetCountryList, 
+        setLanguageList, 
+        setStatusList 
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Filter));

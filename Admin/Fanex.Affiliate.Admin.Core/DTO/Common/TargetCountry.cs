@@ -6,6 +6,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Common
 
         public string TargetCountryName { get; set; }
 
+        public string LanguageCode { get; set; }
+
+        public string LanguageName { get; set; }
+
         public byte Status { get; set; }
     }
 }

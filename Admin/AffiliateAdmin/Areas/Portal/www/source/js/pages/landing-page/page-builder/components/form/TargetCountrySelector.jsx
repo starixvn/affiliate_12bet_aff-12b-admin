@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
@@ -7,9 +7,19 @@ import { updateFormField } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 
 const TargetCountrySelector = ({ value, error, targetCountryList, updateFormField }) => {
+    // Set initial value to first country in the list if no value is set
+    useEffect(() => {
+        if (!value && targetCountryList && targetCountryList.length > 0) {
+            const firstCountryCode = targetCountryList[0].TargetCountryCode;
+            updateFormField('targetCountryCode', firstCountryCode);
+            updateFormField('languageCode', targetCountryList[0].LanguageCode);
+        }
+    }, [value, targetCountryList, updateFormField]);
+
     const handleChange = useCallback((event) => {
-        const targetCountryId = event.target.value || null;
-        updateFormField('targetCountryId', targetCountryId);
+        const targetCountryCode = event.target.value || null;
+        updateFormField('targetCountryCode', targetCountryCode);
+        updateFormField('languageCode', targetCountryList.find(country => country.TargetCountryCode === targetCountryCode)?.LanguageCode);
     }, [updateFormField]);
 
     return (
@@ -24,14 +34,13 @@ const TargetCountrySelector = ({ value, error, targetCountryList, updateFormFiel
                 onChange={handleChange}
                 invalid={!!error}
             >
-                <option value="">Please select...</option>
                 {targetCountryList && targetCountryList.map(country => (
-                    <option key={country.value} value={country.value}>
-                        {country.label}
+                    <option key={country.TargetCountryCode} value={country.TargetCountryCode}>
+                        {country.TargetCountryName}
                     </option>
                 ))}
             </Input>
-            {error && <FormFeedback>{error}</FormFeedback>}
+            {error && <FormFeedback>{error}</FormFeedback>} 
         </FormGroup>
     );
 };

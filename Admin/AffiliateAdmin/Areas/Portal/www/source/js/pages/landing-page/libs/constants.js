@@ -34,4 +34,27 @@ export const assetStatus = {
     inactive: 2
 };
 
-export const defaultFormManagementModuleId = 9;
+export const moduleTypes = {
+    Image: 1,
+    Contact: 2,
+    Form: 3,
+    Link: 4,
+    Login: 5
+};
+
+export const defaultModuleIds = {
+    Background: 1,
+    LogoSponsorship: 2,
+    LogoSponsorshipRegiser: 3,
+    HeroImage: 4,
+    CtaButton: 5,
+    PromoList: 6,
+    FavoriteGames: 7,
+    Youtube: 8,
+    RegistrationForm: 9,
+    PaymentMethod: 10,
+    Provider: 11,
+    ContactUs: 12,
+    LicenseAwards: 13,
+    LoginBtn: 14
+};

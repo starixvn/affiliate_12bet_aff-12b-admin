@@ -69,7 +69,7 @@ const PageNameInput = ({ value, error, required = false, validation, updateFormF
                 onChange={handleChange}
                 invalid={!!error}
                 valid={getValidationState() === true}
-                placeholder="Enter page name..."
+                placeholder="e.g.: New Year Promotion Page"
                 maxLength={100}
             />
             {error && <FormFeedback>{error}</FormFeedback>}

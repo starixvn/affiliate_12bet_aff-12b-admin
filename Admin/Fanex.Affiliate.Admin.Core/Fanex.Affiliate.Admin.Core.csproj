@@ -257,6 +257,7 @@
     <Compile Include="Apis\ILicenseeApi.cs" />
     <Compile Include="Apis\ITokenApi.cs" />
     <Compile Include="Attributes\AllowByPassFunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\AllowLandingPageFrameAttribute.cs" />
     <Compile Include="Attributes\CensoredPermissionCheckAttribute.cs" />
     <Compile Include="Attributes\RequiredDependOnFieldAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
@@ -305,6 +306,8 @@
     <Compile Include="Commands\LandingPage\DeleteMediasCommand.cs" />
     <Compile Include="Commands\LandingPage\UpdateMediasStatusCommand.cs" />
     <Compile Include="Commands\LandingPage\UpdateAssetCommand.cs" />
+    <Compile Include="Commands\LandingPage\InsertPageBuilderCommand.cs" />
+    <Compile Include="Commands\LandingPage\UpdatePageBuilderCommand.cs" />
     <Compile Include="Commands\LandingPage\UploadAssetsCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseBannerCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseLandingPageCommand.cs" />
@@ -383,6 +386,7 @@
     <Compile Include="Controllers\Domain\MemberDomainController.cs" />
     <Compile Include="Controllers\Domain\SpecificDomainControlController.cs" />
     <Compile Include="Controllers\LandingPage\FormManagementController.cs" />
+    <Compile Include="Controllers\LandingPage\LandingPageProxyController.cs" />
     <Compile Include="Controllers\LandingPage\MediaUploaderController.cs" />
     <Compile Include="Controllers\LandingPage\ModuleMediaGalleryController.cs" />
     <Compile Include="Controllers\LandingPage\PageManagementController.cs" />
@@ -451,9 +455,11 @@
     <Compile Include="Criterias\Administrator\AdministratorCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorDetailCriteria.cs" />
     <Compile Include="Criterias\Domain\GetTargetCountryListByDomainCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetPageBuilderDetailCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetAssetDetailCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetAssetUploaderCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetCampaignInfoCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetMediaSourceCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetModuleCriteria.cs" />
     <Compile Include="Criterias\LandingPage\GetPageManagementCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BannerCriteria.cs" />
@@ -491,6 +497,7 @@
     <Compile Include="Criterias\Report\ReportCutOffDateCriteria.cs" />
     <Compile Include="Criterias\Report\TransferReportCriteria.cs" />
     <Compile Include="Criterias\Report\TurnoverCpaDetailCriteria.cs" />
+    <Compile Include="Criterias\TargetCountryCriteria.cs" />
     <Compile Include="Criterias\UserPanel\CustomerMemberCriteria.cs" />
     <Compile Include="Criterias\UserPanel\LandingPageStatistics\BaseLandingPageStatisticsCritera.cs" />
     <Compile Include="Criterias\UserPanel\LandingPageStatistics\LandingPageStatisticsCriteria.cs" />
@@ -534,7 +541,10 @@
     <Compile Include="DTO\Domain\SpecificDomainControlInfo.cs" />
     <Compile Include="DTO\Domain\TargetCountryByDomain.cs" />
     <Compile Include="DTO\Campaign\CampaignDetailInfo.cs" />
+    <Compile Include="DTO\LandingPage\ModuleComponentItem.cs" />
     <Compile Include="DTO\LandingPage\ModuleInfo.cs" />
+    <Compile Include="DTO\LandingPage\MediaSourceInfo.cs" />
+    <Compile Include="DTO\LandingPage\PageBuilderDetail.cs" />
     <Compile Include="DTO\LandingPage\StatusInfo.cs" />
     <Compile Include="DTO\LandingPage\ModuleMedia.cs" />
     <Compile Include="DTO\LandingPage\PageManagement.cs" />
@@ -629,7 +639,9 @@
     <Compile Include="MetaModels\LandingPage\AssetDetailParam.cs" />
     <Compile Include="MetaModels\LandingPage\AssetUploaderParam.cs" />
     <Compile Include="MetaModels\LandingPage\BaseLandingPageParam.cs" />
+    <Compile Include="MetaModels\LandingPage\InsertUpdatePageBuilderParam.cs" />
     <Compile Include="MetaModels\LandingPage\MediaPickerParam.cs" />
+    <Compile Include="MetaModels\LandingPage\MediaSourceParam.cs" />
     <Compile Include="MetaModels\LandingPage\PageManagementParam.cs" />
     <Compile Include="MetaModels\LandingPage\DeleteMediasParam.cs" />
     <Compile Include="MetaModels\LandingPage\UpdateAssetParam.cs" />
@@ -752,12 +764,14 @@
     <Compile Include="Services\LandingPage\IModuleManagementService.cs" />
     <Compile Include="Services\LandingPage\ILandingPageService.cs" />
     <Compile Include="Services\LandingPage\IModuleMediaGalleryService.cs" />
+    <Compile Include="Services\LandingPage\IPageBuilderService.cs" />
     <Compile Include="Services\LandingPage\IPageManagementService.cs" />
     <Compile Include="Services\LandingPage\IRegistrationFormService.cs" />
     <Compile Include="Services\LandingPage\LandingPageBuilderService.cs" />
     <Compile Include="Services\LandingPage\ModuleManagementService.cs" />
     <Compile Include="Services\LandingPage\LandingPageService.cs" />
     <Compile Include="Services\LandingPage\ModuleMediaGalleryService.cs" />
+    <Compile Include="Services\LandingPage\PageBuilderService.cs" />
     <Compile Include="Services\LandingPage\PageManagementService.cs" />
     <Compile Include="Services\LandingPage\RegistrationFormService.cs" />
     <Compile Include="Services\Operation\CommonDealService.cs" />

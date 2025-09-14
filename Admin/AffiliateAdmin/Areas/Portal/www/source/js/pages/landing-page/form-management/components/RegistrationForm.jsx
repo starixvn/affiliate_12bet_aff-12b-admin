@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Col, Button, FormGroup, Label, Input } from 'reactstrap';
 
 import { setSelectedMediaId, getFormDetail, fetchData, uploadForms, updateForm, toggleLoader, setNotification } from '../actions/index';
-import { defaultFormManagementModuleId } from '../../libs/constants';
+import { defaultModuleIds } from '../../libs/constants';
 import { regSpecialCharacters, globalResource } from '../../libs/constants';
 import BaseMediaUploaderForm from '../../common/components/BaseMediaUploaderForm';
 
@@ -147,7 +147,7 @@ export const RegistrationForm = (props) => {
             title={title}
             buttonLabel={buttonLabel}
             isModuleDisabled={true}
-            defaultModuleId={defaultFormManagementModuleId}
+            defaultModuleId={defaultModuleIds.RegistrationForm}
             showMediaNames={true}
             showPreviewImages={true}
             onGetDetail={handleGetFormDetail}

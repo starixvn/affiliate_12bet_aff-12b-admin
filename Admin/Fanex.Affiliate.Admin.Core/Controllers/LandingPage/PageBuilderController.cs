@@ -9,25 +9,31 @@ using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.Criterias.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
     [FunctionAuthorize(FunctionName = Function.LandingPage)]
+    [AllowLandingPageFrame]
     public class PageBuilderController : ReadOnlySessionBaseController
     {
         private readonly IAppSetting _appSetting;
         private readonly ILandingPageBuilderService _builderService;
         private readonly ILandingPageService _landingPageService;
+        private readonly IPageBuilderService _pageBuilderService;
 
         public PageBuilderController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILandingPageBuilderService builderService,
-            ILandingPageService landingPageService) : base(sessionService)
+            ILandingPageService landingPageService,
+            IPageBuilderService pageBuilderService) : base(sessionService)
         {
             _appSetting = appSetting;
             _builderService = builderService;
             _landingPageService = landingPageService;
+            _pageBuilderService = pageBuilderService;
         }
 
         #region Main Landing Page Builder Interface
@@ -36,20 +42,98 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         /// Main Landing Page Builder interface - shows all 4 functions
         /// </summary>
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? pageId, bool isClone = false)
         {
+            PageBuilderDetail pageBuilderDetail = null;
+            if(pageId.HasValue)
+            {
+                pageBuilderDetail = _pageBuilderService.GetPageBuilderDetail(pageId.Value);
+                if(isClone)
+                {
+                    pageBuilderDetail.PageId = 0;
+                    pageBuilderDetail.PageName = pageBuilderDetail.PageName + " (Clone)";
+                    pageBuilderDetail.PageCode = pageBuilderDetail.PageCode + " (Clone)";
+                }
+            }
+
             var model = new PageBuilderViewModel
             {
                 LandingPageUrl = _appSetting.LandingPageUrl,
                 CampaignList = _landingPageService.GetCampaignInfoList(),
-                LanguageList = _landingPageService.GetLanguageList(),
+                LanguageList = _landingPageService.GetAllLanguagesInSystem(),
                 DealList = _landingPageService.GetNormalDealList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
                 StatusList = _landingPageService.GetLandingPageStatusList(),
-                ModuleList = _landingPageService.GetModuleList()
+                ModuleList = _landingPageService.GetModuleList(),
+                PageBuilderDetail = pageBuilderDetail
             };
 
             return View("~/Areas/Portal/Views/LandingPage/PageBuilder.cshtml", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetMediaSources(MediaSourceParam param)
+        {
+             return GenerateJsonNetResult(_pageBuilderService.GetMediaSources(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult InsertPageBuilder(InsertUpdatePageBuilderParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                var encodeParam = EncodePageBuilderParam(param);
+                AssignUserInfoParam(encodeParam);
+                return GenerateJsonNetResult(_pageBuilderService.InsertPageBuilder(encodeParam));
+            }
+            return GenerateModelStateErrResult();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult UpdatePageBuilder(InsertUpdatePageBuilderParam param)
+        {
+            if (ModelState.IsValid && param.PageId > 0)
+            {
+                var encodeParam = EncodePageBuilderParam(param);
+                AssignUserInfoParam(encodeParam);
+                return GenerateJsonNetResult(_pageBuilderService.UpdatePageBuilder(encodeParam));
+            }
+            return GenerateModelStateErrResult();
+        }
+
+        private InsertUpdatePageBuilderParam EncodePageBuilderParam(InsertUpdatePageBuilderParam param)
+        {
+            return new InsertUpdatePageBuilderParam
+            {
+                PageId = param.PageId,
+                CampaignId = param.CampaignId,
+                PageName = Server.HtmlEncode(param.PageName),
+                PageCode = Server.HtmlEncode(param.PageCode),
+                DealIds = Server.HtmlEncode(param.DealIds),
+                StatusId = param.StatusId,
+                TargetCountryCode = Server.HtmlEncode(param.TargetCountryCode),
+                LanguageCode = Server.HtmlEncode(param.LanguageCode),
+                ModuleComponentsSetting = EncodeModuleComponents(param.ModuleComponentsSetting),
+                IsPreview = param.IsPreview
+            };
+        }
+
+        private IList<ModuleComponentItem> EncodeModuleComponents(IList<ModuleComponentItem> componentStructure)
+        {
+            foreach (var item in componentStructure)
+            {
+                if (!string.IsNullOrEmpty(item.ExtraInfo))
+                {
+                    item.ExtraInfo = Server.HtmlEncode(item.ExtraInfo);
+                }
+            }
+            
+            return componentStructure;
         }
 
         #endregion

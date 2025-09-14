@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -44,9 +45,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
             if (allLanguagesInSystem == null)
             {
-                const string SpKey = "Aff_Market_Sel";
-
-                allLanguagesInSystem = FetchTData<Language>(SpKey);
+                allLanguagesInSystem = FetchTData<Language>(new TargetCountryCriteria(false));
                 _cacheService.Set(CacheKey.AllLanguagesInSystem, allLanguagesInSystem);
             }
 
@@ -119,9 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
             if (targetCountries == null)
             {
-                const string SpKey = "Aff_TargetCountry_Sel";
-
-                targetCountries = FetchTData<TargetCountry>(SpKey);
+                targetCountries = FetchTData<TargetCountry>(new TargetCountryCriteria());
                 _cacheService.Set(CacheKey.TargetCountryList, targetCountries);
             }
 

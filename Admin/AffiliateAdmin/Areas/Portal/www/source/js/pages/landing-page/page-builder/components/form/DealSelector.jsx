@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { FormGroup, Label, Input, FormFeedback, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 
 import { updateFormField, fetchDeals } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 
-const DealSelector = ({ value = [], error, campaignId, deals, updateFormField, fetchDeals }) => {
+const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField, fetchDeals }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -33,9 +33,35 @@ const DealSelector = ({ value = [], error, campaignId, deals, updateFormField, f
         setSearchTerm(e.target.value);
     }, []);
 
-    const filteredDeals = deals.filter(deal => 
-        deal.label.toLowerCase().includes(searchTerm.toLowerCase())
+    const handleAddDeal = useCallback(() => {
+        alert('Add Deal functionality is not yet implemented. Please contact the administrator to add new deals.');
+    }, []);
+
+    const handleSelectAll = useCallback(() => {
+        const currentDeals = Array.isArray(value) ? value : [];
+        const allDealIds = filteredDeals.map(deal => deal.key);
+        
+        // If all filtered deals are already selected, unselect all
+        const allSelected = allDealIds.every(dealId => currentDeals.includes(dealId));
+        
+        if (allSelected) {
+            // Remove all filtered deals from selection
+            const newDeals = currentDeals.filter(dealId => !allDealIds.includes(dealId));
+            updateFormField('dealIds', newDeals);
+        } else {
+            // Add all filtered deals to selection (avoid duplicates)
+            const newDeals = [...new Set([...currentDeals, ...allDealIds])];
+            updateFormField('dealIds', newDeals);
+        }
+    }, [value, filteredDeals, updateFormField]);
+
+    const filteredDeals = dealList.filter(deal => 
+        deal.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    // Check if all filtered deals are selected
+    const allFilteredSelected = filteredDeals.length > 0 && 
+        filteredDeals.every(deal => value.includes(deal.key));
 
     const selectedDealsText = value.length > 0 
         ? `${value.length} deal(s) selected`
@@ -50,7 +76,7 @@ const DealSelector = ({ value = [], error, campaignId, deals, updateFormField, f
                 <DropdownToggle 
                     caret 
                     className={`form-control text-left ${error ? 'is-invalid' : ''}`}
-                    style={{ backgroundColor: 'white', border: '1px solid #ced4da' }}
+                    style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
                 >
                     {selectedDealsText}
                 </DropdownToggle>
@@ -65,21 +91,50 @@ const DealSelector = ({ value = [], error, campaignId, deals, updateFormField, f
                         />
                     </DropdownItem>
                     <DropdownItem divider />
+                    <DropdownItem toggle={false}>
+                        <span
+                            className="w-100"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleAddDeal();
+                            }}
+                        >
+                            <i className="fa fa-plus me-1"></i>
+                            Add New ...
+                        </span>
+                    </DropdownItem>
+                    {filteredDeals.length > 0 && (
+                        <DropdownItem 
+                            toggle={false}
+                            onClick={handleSelectAll}
+                            className="d-flex align-items-center"
+                            style={{ backgroundColor: '#f8f9fa' }}
+                        >
+                            <Input
+                                type="checkbox"
+                                checked={allFilteredSelected}
+                                onChange={() => {}} // Handled by onClick
+                                className="me-2"
+                            />
+                            <strong>Select All ({filteredDeals.length})</strong>
+                        </DropdownItem>
+                    )}
+                    {filteredDeals.length > 0 && <DropdownItem divider />}
                     {filteredDeals.length > 0 ? (
                         filteredDeals.map(deal => (
                             <DropdownItem 
-                                key={deal.value} 
+                                key={deal.key} 
                                 toggle={false}
-                                onClick={() => handleDealToggle(deal.value)}
+                                onClick={() => handleDealToggle(deal.key)}
                                 className="d-flex align-items-center"
                             >
                                 <Input
                                     type="checkbox"
-                                    checked={value.includes(deal.value)}
+                                    checked={value.includes(deal.key)}
                                     onChange={() => {}} // Handled by onClick
                                     className="me-2"
                                 />
-                                {deal.label}
+                                {deal.name}
                             </DropdownItem>
                         ))
                     ) : (
@@ -94,8 +149,8 @@ const DealSelector = ({ value = [], error, campaignId, deals, updateFormField, f
     );
 };
 
-function mapStateToProps({ deals }) {
-    return Object.assign({}, { deals });
+function mapStateToProps({ dealList }) {
+    return Object.assign({}, { dealList });
 }
 
 function mapDispatchToProps(dispatch) {

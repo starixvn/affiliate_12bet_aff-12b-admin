@@ -41,6 +41,41 @@ export const setGridData = (data) => {
     }
 }
 
+export const setCampaignList = (data) => {
+    return {
+        type: types.SET_CAMPAIGN_LIST,
+        data
+    }
+}
+
+export const setDealList = (data) => {
+    return {
+        type: types.SET_DEAL_LIST,
+        data
+    }
+}
+
+export const setTargetCountryList = (data) => {
+    return {
+        type: types.SET_TARGET_COUNTRY_LIST,
+        data
+    }
+}
+
+export const setLanguageList = (data) => {
+    return {
+        type: types.SET_LANGUAGE_LIST,
+        data
+    }
+}
+
+export const setStatusList = (data) => {
+    return {
+        type: types.SET_STATUS_LIST,
+        data
+    }
+}
+
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
@@ -48,8 +83,9 @@ export const fetchData = (param) => async (dispatch) => {
     const response = await post(url, param);
 
     const data = response && response.status === 200 ? response.data : null;
-
-    dispatch(setGridData(data ? data : []));
+    
+    dispatch(setGridData(data ? data.MainData : []));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
 }

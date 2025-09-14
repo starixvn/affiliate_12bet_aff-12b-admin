@@ -6,9 +6,14 @@ import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { updateFormField, fetchDeals, clearValidationErrors } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 
-const CampaignSelector = ({ value, error, required = false, campaigns, updateFormField, fetchDeals, clearValidationErrors }) => {
+const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, fetchDeals, clearValidationErrors }) => {
     const handleChange = useCallback((event) => {
         const campaignId = event.target.value || null;
+
+        if (campaignId === 'add-new') {
+            alert('Add Campaign functionality is not yet implemented. Please contact the administrator to add new campaigns.');
+            return;
+        }
         
         updateFormField('campaignId', campaignId);
         
@@ -18,9 +23,9 @@ const CampaignSelector = ({ value, error, required = false, campaigns, updateFor
         }
         
         // Fetch deals when campaign is selected
-        if (campaignId) {
-            fetchDeals(campaignId);
-        }
+        // if (campaignId) {
+        //     fetchDeals(campaignId);
+        // }
     }, [updateFormField, error, clearValidationErrors, fetchDeals]);
 
     return (
@@ -35,10 +40,11 @@ const CampaignSelector = ({ value, error, required = false, campaigns, updateFor
                 onChange={handleChange}
                 invalid={!!error}
             >
-                <option value="">Please select...</option>
-                {campaigns && campaigns.map(campaign => (
-                    <option key={campaign.value} value={campaign.value}>
-                        {campaign.label}
+                <option className='d-none' value="" disabled>Select campaign name</option>
+                <option value="add-new">Add New...</option>
+                {campaignList && campaignList.map(campaign => (
+                    <option key={campaign.CampaignId} value={campaign.CampaignId}>
+                        {campaign.CampaignName}
                     </option>
                 ))}
             </Input>
@@ -47,8 +53,8 @@ const CampaignSelector = ({ value, error, required = false, campaigns, updateFor
     );
 };
 
-function mapStateToProps({ campaigns }) {
-    return Object.assign({}, { campaigns });
+function mapStateToProps({ campaignList }) {
+    return Object.assign({}, { campaignList });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -33,6 +33,54 @@ namespace AffiliateAdmin
             AreaRegistration.RegisterAllAreas();
         }
 
+        protected void Application_BeginRequest()
+        {
+            try
+            {
+                // Check if landing page framing is enabled
+                var enableFraming = ConfigurationManager.AppSettings["EnableLandingPageFraming"];
+                if (string.Equals(enableFraming, "true", StringComparison.OrdinalIgnoreCase))
+                {
+                    var landingPageUrl = ConfigurationManager.AppSettings["LandingPageUrl"];
+                    var additionalFrameSources = ConfigurationManager.AppSettings["CSP.AdditionalFrameSources"];
+                    
+                    if (!string.IsNullOrEmpty(landingPageUrl))
+                    {
+                        // Extract the domain from the landing page URL for CSP
+                        var uri = new Uri(landingPageUrl);
+                        var landingDomain = $"{uri.Scheme}://{uri.Host}";
+                        
+                        // Build frame sources list
+                        var frameSources = $"'self' {landingDomain}";
+                        if (!string.IsNullOrEmpty(additionalFrameSources))
+                        {
+                            frameSources += $" {additionalFrameSources}";
+                        }
+                        frameSources += " https:";
+                        
+                        // Add CSP header to allow framing landing page domain
+                        // This allows iframes to load content from the landing page domain
+                        var cspPolicy = $"default-src 'self' blob: data:; " +
+                                       $"frame-src {frameSources}; " +
+                                       $"script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data:; " +
+                                       $"style-src 'self' 'unsafe-inline' blob: data:; " +
+                                       $"img-src 'self' blob: data: https:; " +
+                                       $"connect-src 'self' {landingDomain} https:;";
+                        
+                        Response.Headers.Add("Content-Security-Policy", cspPolicy);
+                        
+                        // Also set X-Frame-Options to allow same origin framing
+                        Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log error but don't break the application
+                LogHelper.WriteError(ex);
+            }
+        }
+
         void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown

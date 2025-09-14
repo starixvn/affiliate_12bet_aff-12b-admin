@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
 import AppContainer from './components/AppContainer';
@@ -6,6 +6,7 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 import { convertListToMutilpleSelected } from '../../../modules/utils';
+import { initializeFromPageBuilderDetail } from './actions';
 
 const App = () => {
     const { 
@@ -15,30 +16,30 @@ const App = () => {
         statusList, 
         moduleList, 
         landingPageUrl,
-        campaignList 
+        campaignList ,
+        pageBuilderDetail
     } = window.initialState;
 
     // Convert lists to proper format for dropdowns
-    const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
-    const newLanguageList = convertListToMutilpleSelected(languageList, 'LanguageCode', 'LanguageName');
-    const newModuleList = convertListToMutilpleSelected(moduleList, 'ModuleId', 'ModuleName');
-    const newCampaignList = convertListToMutilpleSelected(campaignList || [], 'CampaignId', 'CampaignName');
+    const newDealList = convertListToMutilpleSelected(dealList, 'GroupId', 'GroupName');
 
     const store = configureStore({
-        // Legacy state
-        targetCountryList: newTargetCountryList,
-        languageList: newLanguageList,
-        dealList,
-        statusList,
-        moduleList: newModuleList,
+        moduleList,
+        campaignList,
+        targetCountryList,
+        languageList,
+        dealList: newDealList,
+        statusList: statusList.sort((a, b) => a.Status - b.Status),
         landingPageUrl,
-        
-        // Page Builder specific state
-        campaigns: newCampaignList,
+        pageBuilderDetail,
         deals: [],
-        modules: newModuleList,
         sources: []
     }, reducer);
+
+    // Initialize from pageBuilderDetail if it exists (edit mode)
+    if (pageBuilderDetail) {
+        store.dispatch(initializeFromPageBuilderDetail(pageBuilderDetail));
+    }
 
     return (
         <Provider store={store}>

@@ -1,21 +1,27 @@
-﻿namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
+﻿using Fanex.Data;
+
+namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 {
     public class GetPageManagementCriteria : PagingCriteria
     {
-        private const string SP_NAME = "";
+        private const string SP_NAME = "Aff_LandingPage_Builder_ManageSel";
 
         public override string GetSettingKey() => SP_NAME;
 
         public override bool IsValid() => true;
 
-        public string TargetCountry { get; set; }
+        public string TargetCountryCodes { get; set; }
 
-        public string Language { get; set; }
+        [SpParam(SqlParamName = "MarketIds")]
+        public string LanguageCodes { get; set; }
 
-        public string Deal { get; set; }
+        public string DealIds { get; set; }
 
-        public string Status { get; set; }
+        public string StatusIds { get; set; }
 
+        [SpParam(SqlParamName = "PageName")]
         public string LandingPageName { get; set; }
+
+        public string CampaignIds { get; set; }
     }
 }

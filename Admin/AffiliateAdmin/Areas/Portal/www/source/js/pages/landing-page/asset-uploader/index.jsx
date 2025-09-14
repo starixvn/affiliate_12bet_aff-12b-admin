@@ -7,12 +7,12 @@ import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 
 import { convertListToMutilpleSelected } from '../../../modules/utils';
-import { defaultFormManagementModuleId } from '../libs/constants';
+import { moduleTypes } from '../libs/constants';
 
 const App = () => {
     const { moduleList, targetCountryList, languageList, allLanguagesInSystem, maxFileSize, maximumFiles, allowedExtensions, bannerRootUrl, statusList } = window.initialState;
 
-    const newModuleList = convertListToMutilpleSelected(moduleList.filter(item => item.ModuleId !== defaultFormManagementModuleId), 'ModuleId', 'ModuleName');
+    const newModuleList = convertListToMutilpleSelected(moduleList.filter(item => item.ModuleType !== moduleTypes.Form && item.ModuleType !== moduleTypes.Link), 'ModuleId', 'ModuleName');
     const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
     const newLanguageList = convertListToMutilpleSelected(languageList, 'LanguageCode', 'LanguageName');
 

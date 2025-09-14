@@ -8,7 +8,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 {

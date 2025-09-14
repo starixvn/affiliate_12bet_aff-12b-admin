@@ -1,16 +1,11 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Row, Col, Button, Alert } from 'reactstrap';
+import { Row, Col, Alert } from 'reactstrap';
 
 import ModuleRow from './ModuleRow';
-import { addModuleComponent } from '../../actions';
 import { pageBuilderLabels, validationMessages } from '../../libs/constants';
 
-const ModuleComponentsSection = ({ moduleComponents, validation, addModuleComponent }) => {
-    const handleAddModule = useCallback(() => {
-        addModuleComponent();
-    }, [addModuleComponent]);
+const ModuleComponentsSection = ({ moduleComponents, validation }) => {
 
     const hasModuleErrors = validation.errors.moduleComponents;
 
@@ -29,7 +24,7 @@ const ModuleComponentsSection = ({ moduleComponents, validation, addModuleCompon
             {/* Header Row */}
             <Row className="mb-2">
                 <Col sm={1} className="text-center">
-                    <strong>{pageBuilderLabels.order}</strong>
+                    <strong>{pageBuilderLabels.orderId}</strong>
                 </Col>
                 <Col sm={4}>
                     <strong>{pageBuilderLabels.module}</strong>
@@ -53,20 +48,7 @@ const ModuleComponentsSection = ({ moduleComponents, validation, addModuleCompon
                 />
             ))}
 
-            {/* Add Module Button */}
-            <Row className="mt-3">
-                <Col>
-                    <Button 
-                        color="primary" 
-                        outline 
-                        onClick={handleAddModule}
-                        size="sm"
-                    >
-                        <i className="fa fa-plus me-1"></i>
-                        {pageBuilderLabels.add}
-                    </Button>
-                </Col>
-            </Row>
+            {/* Add buttons are now integrated into each ModuleSelector */}
 
             {moduleComponents && moduleComponents.length === 0 && (
                 <Row className="mt-3">
@@ -85,8 +67,4 @@ function mapStateToProps({ moduleComponents, validation }) {
     return Object.assign({}, { moduleComponents, validation });
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ addModuleComponent }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ModuleComponentsSection));
+export default connect(mapStateToProps)(React.memo(ModuleComponentsSection));

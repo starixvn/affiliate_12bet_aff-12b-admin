@@ -20,6 +20,12 @@ export const ControlButtons = (props) => {
     const hasData = props.gridData && props.gridData.length;
     const label = props.label || globalResource.Add;
     const optionLabel = props.optionLabel;
+    
+    // Check if any items are selected
+    const hasSelectedItems = props.checkedItems && Object.keys(props.checkedItems).some(key => {
+        const item = props.checkedItems[key];
+        return typeof item === 'boolean' ? item : (item && item.isChecked);
+    });
 
     return props.gridData && (
         <React.Fragment>
@@ -35,11 +41,12 @@ export const ControlButtons = (props) => {
                                 messages={props.messages}
                                 hasIcon={true}
                                 isOpenNotification={true}
+                                disabled={!hasSelectedItems}
                             />
                             <Button outline type="button" className="mx-2" onClick={_handleAddItem}>{label} <span className="oi oi-plus ml-2"></span></Button>
                             {
                                 !!optionLabel && (
-                                    <Button outline type="button" onClick={() => _handleClickOptionButton()}><div dangerouslySetInnerHTML={{ __html: optionLabel }}></div></Button>
+                                    <Button outline type="button" disabled={!hasSelectedItems} onClick={() => _handleClickOptionButton()}><div dangerouslySetInnerHTML={{ __html: optionLabel }}></div></Button>
                                 )
                             }
                         </div>

@@ -1,55 +1,181 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Input, FormFeedback } from 'reactstrap';
+import { Input, FormFeedback, Label, FormGroup } from 'reactstrap';
 
 import { updateModuleComponent, fetchModuleSources } from '../../actions';
+import SingleSourceSelector from './source-selectors/SingleSourceSelector';
+import TextInputSelector from './source-selectors/TextInputSelector';
+import MultiSelectDropdown from './source-selectors/MultiSelectDropdown';
+import DualInputSelector from './source-selectors/DualInputSelector';
 
-const SourceSelector = ({ moduleId, selectedModuleId, value, error, sources, updateModuleComponent, fetchModuleSources }) => {
+const SourceSelector = ({ 
+    moduleId, 
+    selectedModuleId, 
+    value, 
+    error, 
+    allSources, 
+    moduleList, 
+    moduleComponents, 
+    updateModuleComponent, 
+    fetchModuleSources 
+}) => {
     useEffect(() => {
-        // Fetch sources when selectedModuleId changes
         if (selectedModuleId) {
             fetchModuleSources(selectedModuleId);
         }
     }, [selectedModuleId, fetchModuleSources]);
 
-    const handleSourceSelect = useCallback((event) => {
-        const sourceId = event.target.value || null;
-        updateModuleComponent(moduleId, 'sourceId', sourceId);
+    // Basic data setup
+    const isDisabled = !selectedModuleId;
+    const sources = selectedModuleId ? allSources[selectedModuleId] || [] : [];
+    const currentModule = moduleComponents.find(m => m.id === moduleId);
+    const selectedModuleInfo = moduleList.find(m => m.ModuleId === selectedModuleId);
+    
+    // Module type detection
+    const isMultipleUpload = selectedModuleInfo?.IsMultipleUpload;
+    const selectedModuleType = selectedModuleInfo?.ModuleType;
+    const isYoutubeModule = selectedModuleType === 4;
+    const isContactUsModule = selectedModuleType === 2;
+    const isLoginBtnModule = selectedModuleType === 5;
+    
+    // Temporary override for multi-select modules
+    const forceMultiSelectModules = ['hero image', 'favorite games', 'provider', 'promo list'];
+    const shouldBeMultiSelect = forceMultiSelectModules.some(name => 
+        selectedModuleInfo?.ModuleName?.toLowerCase().includes(name.toLowerCase())
+    );
+    const finalIsMultipleUpload = isMultipleUpload || shouldBeMultiSelect;
+
+    // Event handlers
+    const handleSingleSelect = useCallback((event) => {
+        const mediaId = event.target.value || null;
+        updateModuleComponent(moduleId, 'mediaId', mediaId);
     }, [updateModuleComponent, moduleId]);
 
-    const isDisabled = !selectedModuleId;
+    const handleExtraInfoInput = useCallback((event) => {
+        const extraInfo = event.target.value || null;
+        updateModuleComponent(moduleId, 'extraInfo', extraInfo);
+    }, [updateModuleComponent, moduleId]);
 
+    const handleYouTubeInput = useCallback((event) => {
+        const url = event.target.value || null;
+        updateModuleComponent(moduleId, 'extraInfo', url);
+    }, [updateModuleComponent, moduleId]);
+
+    const handleMultipleSelect = useCallback((sourceId, isChecked) => {
+        const currentValues = Array.isArray(value) ? value : [];
+        let newValues;
+        
+        if (isChecked) {
+            newValues = [...currentValues, sourceId];
+        } else {
+            newValues = currentValues.filter(id => id !== sourceId);
+        }
+        
+        updateModuleComponent(moduleId, 'mediaId', newValues.length > 0 ? newValues : null);
+    }, [updateModuleComponent, moduleId, value]);
+
+    const handleSelectAllSources = useCallback(() => {
+        const currentValues = Array.isArray(value) ? value : [];
+        const allSourceIds = sources.map(source => source.MediaId);
+        
+        // If all sources are already selected, unselect all
+        const allSelected = allSourceIds.every(sourceId => currentValues.includes(sourceId));
+        
+        if (allSelected) {
+            // Remove all sources from selection
+            const newValues = currentValues.filter(sourceId => !allSourceIds.includes(sourceId));
+            updateModuleComponent(moduleId, 'mediaId', newValues.length > 0 ? newValues : null);
+        } else {
+            // Add all sources to selection (avoid duplicates)
+            const newValues = [...new Set([...currentValues, ...allSourceIds])];
+            updateModuleComponent(moduleId, 'mediaId', newValues);
+        }
+    }, [value, sources, updateModuleComponent, moduleId]);
+
+    // Render appropriate component based on module type
+    if (isContactUsModule) {
+        return (
+            <DualInputSelector
+                moduleId={moduleId}
+                value={value}
+                extraValue={currentModule?.extraInfo}
+                error={error}
+                sources={sources}
+                isDisabled={isDisabled}
+                onSourceChange={handleSingleSelect}
+                onExtraChange={handleExtraInfoInput}
+                extraPlaceholder="contact link"
+                extraLabel="Contact"
+            />
+        );
+    }
+
+    if (isLoginBtnModule) {
+        return (
+            <DualInputSelector
+                moduleId={moduleId}
+                value={value}
+                extraValue={currentModule?.extraInfo}
+                error={error}
+                sources={sources}
+                isDisabled={isDisabled}
+                onSourceChange={handleSingleSelect}
+                onExtraChange={handleExtraInfoInput}
+                extraPlaceholder="path"
+                extraLabel="Login Endpoint"
+            />
+        );
+    }
+
+    if (isYoutubeModule) {
+        console.log('currentModule', currentModule);
+        return (
+            <TextInputSelector
+                moduleId={moduleId}
+                value={currentModule?.extraInfo}
+                error={error}
+                isDisabled={isDisabled}
+                onChange={handleYouTubeInput}
+                placeholder="https://www.youtube.com/watch?v="
+            />
+        );
+    }
+
+    if (finalIsMultipleUpload) {
+        return (
+            <MultiSelectDropdown
+                moduleId={moduleId}
+                value={value}
+                error={error}
+                sources={sources}
+                isDisabled={isDisabled}
+                onMultipleSelect={handleMultipleSelect}
+                onSelectAll={handleSelectAllSources}
+            />
+        );
+    }
+
+    // Default: Single select dropdown
     return (
         <div className="source-selector">
-            <Input
-                type="select"
-                value={value || ''}
-                onChange={handleSourceSelect}
-                invalid={!!error}
-                disabled={isDisabled}
-            >
-                <option value="">
-                    {isDisabled ? 'Please select module first' : 'Please select...'}
-                </option>
-                {sources && sources.map(source => (
-                    <option key={source.value} value={source.value}>
-                        {source.label}
-                    </option>
-                ))}
-            </Input>
-            {error && <FormFeedback>{error}</FormFeedback>}
-            {isDisabled && (
-                <small className="text-muted">
-                    Select a module to view available sources
-                </small>
-            )}
+            <FormGroup>
+                <SingleSourceSelector
+                    moduleId={moduleId}
+                    value={value}
+                    error={error}
+                    sources={sources}
+                    isDisabled={isDisabled}
+                    onChange={handleSingleSelect}
+                />
+                {error && <FormFeedback>{error}</FormFeedback>}
+            </FormGroup>
         </div>
     );
 };
 
-function mapStateToProps({ sources }) {
-    return Object.assign({}, { sources });
+function mapStateToProps({ sources, moduleList, moduleComponents }) {
+    return Object.assign({}, { allSources: sources, moduleList, moduleComponents });
 }
 
 function mapDispatchToProps(dispatch) {

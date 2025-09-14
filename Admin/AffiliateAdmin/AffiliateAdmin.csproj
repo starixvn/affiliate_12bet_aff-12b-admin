@@ -270,8 +270,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\actions\ActionButtons.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\actions\CopyLinkModal.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\actions\PreviewModal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\actions\CopyLinkSection.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\form\CampaignSelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\form\DealSelector.jsx" />
@@ -284,6 +283,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleComponentsSection.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleRow.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleSelector.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\source-selectors\DualInputSelector.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\source-selectors\MultiSelectDropdown.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\source-selectors\SingleSourceSelector.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\source-selectors\TextInputSelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\SourceSelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\CreateNewLandingPage.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\LandingPageReview.jsx" />

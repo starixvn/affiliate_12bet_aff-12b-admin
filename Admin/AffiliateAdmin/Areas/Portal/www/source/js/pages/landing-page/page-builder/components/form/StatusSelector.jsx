@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 import { updateFormField } from '../../actions';
-import { pageBuilderLabels, statusOptions } from '../../libs/constants';
+import { pageBuilderLabels } from '../../libs/constants';
 
-const StatusSelector = ({ value, error, updateFormField }) => {
+const StatusSelector = ({ value, error, updateFormField, statusList }) => {
     const handleChange = useCallback((event) => {
         const status = event.target.value;
         updateFormField('status', status);
@@ -37,24 +37,26 @@ const StatusSelector = ({ value, error, updateFormField }) => {
                 onChange={handleChange}
                 invalid={!!error}
             >
-                {statusOptions.map(option => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
+                {statusList.map(item => (
+                    <option key={item.StatusId} value={item.StatusId}>
+                        {item.Status}
                     </option>
                 ))}
             </Input>
             {error && <FormFeedback>{error}</FormFeedback>}
-            {value && (
+            {/* {value && (
                 <small className="text-muted">
                     {getStatusDescription(value)}
                 </small>
-            )}
+            )} */}
         </FormGroup>
     );
 };
 
-function mapStateToProps(state) {
-    return {};
+function mapStateToProps({ statusList }) {
+    return {
+        statusList
+    };
 }
 
 function mapDispatchToProps(dispatch) {

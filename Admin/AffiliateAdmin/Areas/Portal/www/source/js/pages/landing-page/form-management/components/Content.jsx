@@ -115,6 +115,7 @@ export const Content = (props) => {
     function _buildDataRow(dataItem, index) {
         const mediaId = dataItem.MediaId;
         const fileName = htmlDecode(dataItem.FileName);
+        const imageName = fileName ? fileName.substring(fileName.lastIndexOf('/') + 1) : '';
         const mediaName = htmlDecode(dataItem.MediaName);
         const targetCountry = dataItem.TargetCountryName;
         const language = dataItem.MarketName;
@@ -130,7 +131,7 @@ export const Content = (props) => {
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-center text-break" title={mediaName}>{mediaName}</Cell>
-                <Cell className="text-center text-break" title={fileName}>{fileName}</Cell>
+                <Cell className="text-center text-break" title={imageName}>{imageName}</Cell>
                 <Cell className="text-center text-break" title={targetCountry}>{targetCountry}</Cell>
                 <Cell className="text-center text-break" title={language}>{language}</Cell>
                 <Cell className="text-center text-break" title={dimension}>{dimension}</Cell>

@@ -10,6 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 
         public override bool IsValid() => true;
 
-        public string StatusIds { get; set; }
+        public string StatusIds { get; set; } = "0,1,2";
     }
 }

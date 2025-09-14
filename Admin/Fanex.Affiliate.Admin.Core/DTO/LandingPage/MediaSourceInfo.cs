@@ -1,0 +1,15 @@
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.LandingPage
+{
+    public class MediaSourceInfo
+    {
+        public int ModuleId { get; set; }
+
+        public int MediaId { get; set; }
+
+        public string MediaName { get; set; }
+
+        public string FileName { get; set; }
+
+        public string Demenssion { get; set; }
+    }
+}

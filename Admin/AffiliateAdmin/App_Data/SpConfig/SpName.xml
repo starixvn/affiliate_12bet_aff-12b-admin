@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="Language">
-    <Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+	<Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+		<Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
+		<Mapping DataField="MarketName" ObjectProperty="LanguageName" />
+		<Mapping DataField="ShortedCode" ObjectProperty="ShortedLanguageCode" />
+	</Setting>
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
       <Mapping DataField="MarketName" ObjectProperty="LanguageName" />
       <Mapping DataField="ShortedCode" ObjectProperty="ShortedLanguageCode" />
@@ -311,8 +315,12 @@
     <Setting Key="Aff_LandingPage_Module_Sel" SpName="Aff_LandingPage_Module_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Status_Sel" SpName="Aff_LandingPage_Status_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Builder_Del" SpName="Aff_LandingPage_Builder_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_LandingPage_Builder_ManageSel" SpName="Aff_LandingPage_Builder_ManageSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_LandingPage_Builder_ManageSel" SpName="Aff_LandingPage_Builder_ManageSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
+    </Setting>
     <Setting Key="Aff_LandingPage_Builder_Sel" SpName="Aff_LandingPage_Builder_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_LandingPage_Builder_Ins" SpName="Aff_LandingPage_Builder_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_LandingPage_Builder_Upd" SpName="Aff_LandingPage_Builder_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Campaign_Creator_Sel" SpName="Aff_LandingPage_Campaign_Creator_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Campaign_Dashboard_Sel" SpName="Aff_LandingPage_Campaign_Dashboard_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Campaign_Del" SpName="Aff_LandingPage_Campaign_Del" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
@@ -321,6 +329,7 @@
     <Setting Key="Aff_LandingPage_Campaign_ManageSel" SpName="Aff_LandingPage_Campaign_ManageSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Campaign_Status_Sel" SpName="Aff_LandingPage_Campaign_Status_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Campaign_Upd" SpName="Aff_LandingPage_Campaign_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_LandingPage_Media_Sel" SpName="Aff_LandingPage_Media_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Deal_Ins" SpName="Aff_LandingPage_Deal_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Page_Del_Sel" SpName="Aff_LandingPage_Page_Del_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>

@@ -2,27 +2,25 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
+import { resolveClientUrl } from '../../../../modules/utils';
 import { headerText, globalResource } from '../libs/constants';
 import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption } from '../actions';
 
 export const Content = (props) => {
+    const { originalLanguageList } = props;
+
     useEffect(() => {
         const { param } = props;
 
         param && props.fetchData(param);
     }, [props.param]);
     
-    const _onDuplicateLandingPage = (landingPageId) => {
-        // TODO: Implement duplicate functionality
-        console.log('Duplicate landing page:', landingPageId);
-    }
-
     const _onStatusChange = (landingPageId, newStatusId) => {
         // TODO: Implement status update functionality
-        console.log('Update status for landing page:', landingPageId, 'to status:', newStatusId);
+        alert('Update status for landing page:', landingPageId, 'to status:', newStatusId);
         // Here you would typically call an API to update the status
         // props.updateLandingPageStatus(landingPageId, newStatusId);
     }
@@ -78,32 +76,41 @@ export const Content = (props) => {
         return `status-${statusName.toLowerCase()}`;
     }
 
+    const _getTargetLanguageCode = (languageCode, targetCountryCode) => {
+        const selectedLanguage = originalLanguageList?.find(lang => 
+            lang.LanguageCode === languageCode && 
+            lang.TargetCountryCode === targetCountryCode
+        );
+
+        return selectedLanguage?.TargetLanguageCode || selectedLanguage?.ShortedLanguageCode;
+    }
+
     function _buildDataRow(dataItem, index) {
         const campaignName = htmlDecode(dataItem.CampaignName);
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
-        const targetCountry = htmlDecode(dataItem.TargetCountry);
+        const targetCountry = htmlDecode(dataItem.TargetCountryName);
         const language = dataItem.Language || 'English';
-        const deal = dataItem.Deal || '';
+        const deal = dataItem.NoOfDeals || '';
         const createdDate = dataItem.CreatedDate || '';
-        const lastModified = dataItem.LastModified || '';
-        const statusItem = props.statusList && props.statusList.find(item => item.StatusId === dataItem.StatusId);
-        const statusClass = _getStatusClass(statusItem.Status);
+        const lastModified = dataItem.LastModifiedDate || '--';
+        const statusItem = props.statusList && props.statusList.find(item => item.key === dataItem.StatusId);
+        const statusClass = _getStatusClass(statusItem.name);
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell className="text-left" title={campaignName}>{campaignName}</Cell>
                 <Cell className="text-left" title={landingPageName}>
-                    <a href={`${props.landingPageUrl}/${landingPageCode}`} target="_blank">{landingPageName}</a>
+                    <a href={`${props.landingPageUrl}/${_getTargetLanguageCode(dataItem.LanguageCode, dataItem.TargetCountryCode)}/${landingPageCode}`} target="_blank">{landingPageName}</a>
                 </Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
                 <Cell className="text-left" title={targetCountry}>{targetCountry}</Cell>
                 <Cell className="text-left" title={language}>{language}</Cell>
-                <Cell className="text-left" title={deal}>{deal}</Cell>
+                <Cell className="text-center" title={deal}>{deal}</Cell>
                 <Cell className="text-left" title={createdDate}>{createdDate}</Cell>
                 <Cell className="text-left" title={lastModified}>{lastModified}</Cell>
-                <Cell className="text-left" title={statusItem.Status}>
+                <Cell className="text-left" title={statusItem.name}>
                     <Input 
                         type="select" 
                         className={`status-dropdown ${statusClass}`}
@@ -112,23 +119,23 @@ export const Content = (props) => {
                     >
                         {props.statusList && props.statusList.map(item => (
                              <option 
-                                 key={`status-${item.StatusId}`} 
-                                 value={item.StatusId}
-                                 className={_getStatusClass(item.Status)}
-                                 data-status={item.Status.toLowerCase()}
+                                 key={`status-${item.key}`} 
+                                 value={item.key}
+                                 className={_getStatusClass(item.name)}
+                                 data-status={item.name.toLowerCase()}
                              >
-                                 {item.Status}
+                                 {item.name}
                              </option>
                          ))}
                     </Input>
                 </Cell>
                 <Cell className="text-center">
-                    <Button color="link" onClick={() => props.setSelectedLandingPageId(dataItem.PageId)} title="Edit Landing Page">
+                    <a href={resolveClientUrl(`Portal/PageBuilder?pageId=${dataItem.PageId}`)} target="_top" title="Edit Landing Page">
                         <span className="oi oi-pencil text-secondary"></span>
-                    </Button>
-                    <Button color="link" onClick={() => _onDuplicateLandingPage(dataItem.PageId)} title="Duplicate Landing Page">
+                    </a>
+                    <a className='ml-2' href={resolveClientUrl(`Portal/PageBuilder?pageId=${dataItem.PageId}&isClone=true`)} target="_top" title="Duplicate Landing Page">
                         <span className="oi oi-layers text-secondary"></span>
-                    </Button>
+                    </a>
                 </Cell>
             </Row>
         )
@@ -154,8 +161,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl });
+function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, originalLanguageList }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, originalLanguageList });
 }
 
 function mapDispatchToProps(dispatch) {

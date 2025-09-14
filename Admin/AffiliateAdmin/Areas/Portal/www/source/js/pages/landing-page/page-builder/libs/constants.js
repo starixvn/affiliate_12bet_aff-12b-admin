@@ -42,39 +42,35 @@ export const pageBuilderLabels = {
     pageCode: 'Page Code',
     status: 'Status',
     moduleComponents: 'Module Components',
-    order: 'Order',
+    orderId: 'Order',
     module: 'Module',
     source: 'Source',
     preview: 'Preview',
     create: 'Create',
+    update: 'Update',
     reset: 'Reset',
     copyLink: 'Copy Link',
     add: 'Add +',
     remove: 'Remove'
 };
 
-export const statusOptions = [
-    { value: 'Draft', label: 'Draft' },
-    { value: 'Active', label: 'Active' },
-    { value: 'Inactive', label: 'Inactive' }
-];
-
 export const pageBuilderDefaultState = {
     formData: {
+        pageId: 0,
         campaignId: null,
-        targetCountryId: null,
-        languageId: null,
+        targetCountryCode: '',
+        languageCode: '',
         dealIds: [],
         pageName: '',
         pageCode: '',
-        status: 'Draft'
+        status: 1
     },
-    moduleComponents: [
+    moduleComponentsSetting: [
         {
             id: 1,
-            order: 1,
+            orderId: 1,
             moduleId: null,
-            sourceId: null
+            mediaId: null
         }
     ],
     validation: {
@@ -86,7 +82,9 @@ export const pageBuilderDefaultState = {
         isPreviewOpen: false,
         isCopyLinkOpen: false,
         isLoading: false,
-        nextModuleOrder: 2
+        nextModuleOrder: 2,
+        hasPreviewedOrCreated: false,
+        previewUrl: null
     }
 };
 

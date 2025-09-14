@@ -2,11 +2,11 @@
 {
     public class PageManagementParam : PagingParam
     {
-        public string TargetCountry { get; set; }
-        public string Language { get; set; }
-        public string Deal { get; set; }
-        public string Campaign { get; set; }
-        public string Status { get; set; }
+        public string TargetCountryCodes { get; set; }
+        public string LanguageCodes { get; set; }
+        public string DealIds { get; set; }
+        public string CampaignIds { get; set; }
+        public string StatusIds { get; set; }
         public string LandingPageName { get; set; }
     }
 }

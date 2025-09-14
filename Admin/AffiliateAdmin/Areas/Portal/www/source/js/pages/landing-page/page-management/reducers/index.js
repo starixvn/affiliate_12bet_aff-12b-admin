@@ -5,12 +5,38 @@ import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
-export const targetCountryList = createReducer(null, {});
-export const languageList = createReducer(null, {});
-export const dealList = createReducer(null, {});
-export const statusList = createReducer(null, {});
 export const landingPageUrl = createReducer(null, {});
-export const campaignList = createReducer(null, {});
+export const originalLanguageList = createReducer(null, {});
+
+export const targetCountryList = createReducer(null, {
+    [types.SET_TARGET_COUNTRY_LIST](prevState, action) {
+        return action.data;
+    }
+});
+
+export const languageList = createReducer(null, {
+    [types.SET_LANGUAGE_LIST](prevState, action) {
+        return action.data;
+    }
+});
+
+export const dealList = createReducer(null, {
+    [types.SET_DEAL_LIST](prevState, action) {
+        return action.data;
+    }
+});
+
+export const statusList = createReducer(null, {
+    [types.SET_STATUS_LIST](prevState, action) {
+        return action.data;
+    }
+});
+
+export const campaignList = createReducer(null, {
+    [types.SET_CAMPAIGN_LIST](prevState, action) {
+        return action.data;
+    }
+});
 
 export const param = createReducer(null, {
     [types.SET_PARAM](prevState, action) {
@@ -43,8 +69,10 @@ export const gridData = createReducer(null, {
 })
 
 export default combineReducers({
+    landingPageUrl,
     targetCountryList,
     languageList,
+    originalLanguageList,
     dealList,
     statusList,
     campaignList,

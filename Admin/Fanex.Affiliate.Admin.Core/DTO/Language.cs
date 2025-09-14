@@ -9,5 +9,7 @@
         public string ShortedLanguageCode { get; set; }
 
         public string TargetCountryCode { get; set; }
+
+        public string TargetLanguageCode { get; set; }
     }
 }
