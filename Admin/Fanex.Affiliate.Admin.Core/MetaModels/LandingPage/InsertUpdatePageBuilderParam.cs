@@ -1,10 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
 {

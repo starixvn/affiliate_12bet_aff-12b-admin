@@ -9,9 +9,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
     {
         ResultInfo UploadAssets(HttpPostedFileBase[] files, UploadAssetsParam param);
         ResultInfo UpdateAsset(HttpPostedFileBase file, UpdateAssetParam param);
-        EntityResult<LandingPageAsset> GetAssetList(AssetUploaderParam param);
-        LandingPageAsset GetAssetDetail(AssetDetailParam param);
-        ResultInfo DeleteMedias(DeleteMediasParam param);
-        ResultInfo ToggleAssetStatus(UpdateMediasStatusParam param);
+        EntityResult<AssetDetail> GetAssetList(AssetUploaderParam param);
+        AssetDetail GetAssetDetail(AssetDetailParam param);
+        ResultInfo DeleteAssets(DeleteAssetsParam param);
+        ResultInfo ToggleAssetStatus(UpdateAssetsStatusParam param);
     }
 }

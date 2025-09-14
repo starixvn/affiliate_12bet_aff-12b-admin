@@ -1,6 +1,6 @@
-﻿import { maxLength } from './constants';
+﻿import { maxLength, fileUpload } from './constants';
 
-export const validateFileExtension = (fileName, allowedExtensions = [".jpg", ".gif", ".png", ".jpeg", ".webp"]) => {
+export const validateFileExtension = (fileName, allowedExtensions = fileUpload.AllowedImageExtensions) => {
     const result = {
         isOK: false,
         message: `Invalid file type. Please upload only ${allowedExtensions.join(', ')} files.`,
@@ -19,7 +19,7 @@ export const validateFileExtension = (fileName, allowedExtensions = [".jpg", ".g
     return result;
 }
 
-export const validateInputFile = (inputFileName, allowedExtensions = [".jpg", ".gif", ".png", ".jpeg", ".webp"]) => {
+export const validateInputFile = (inputFileName, allowedExtensions = fileUpload.AllowedImageExtensions) => {
     const result = validateFileExtension(inputFileName, allowedExtensions);
 
     if (!!inputFileName && inputFileName.length > maxLength) {
@@ -30,7 +30,7 @@ export const validateInputFile = (inputFileName, allowedExtensions = [".jpg", ".
     return result;
 }
 
-export const validateFileSize = (file, maxSizeMB = 3) => {
+export const validateFileSize = (file, maxSizeMB = fileUpload.MaxFileSize) => {
     const result = {
         isOK: true,
         message: ''

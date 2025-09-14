@@ -10,8 +10,10 @@ using System.Web;
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
     [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader)]
-    public class FormManagementController : MediaUploaderController
+    public class FormManagementController : BaseAssetUploaderController
     {
+        protected override string FunctionName => Function.RegistrationFormUploader;
+
         public FormManagementController(
             ISessionService sessionService,
             IAppSetting appSetting,
@@ -30,17 +32,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [ValidateAntiForgeryHeader]
         public ActionResult GetFormManagementList(AssetUploaderParam param)
         {
-            param.FunctionName = Function.RegistrationFormUploader;
             param.ModuleIds = LandingPageConstants.ModuleIds.RegistrationForm.ToString();
 
-            return base.GetMediaList(param);
+            return GetBaseAssetList(param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetFormDetail(AssetDetailParam param)
         {
-            return base.GetMediaDetail(param);
+            return GetBaseAssetDetail(param);
         }
 
         [HttpPost]
@@ -48,9 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
         public ActionResult UploadRegistrationForms(HttpPostedFileBase[] files, UploadAssetsParam param)
         {
-            param.FunctionName = Function.RegistrationFormUploader;
-
-            return base.UploadMedias(files, param);
+            return UploadBaseAssets(files, param);
         }
 
         [HttpPost]
@@ -58,29 +57,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
         public ActionResult UpdateRegistrationForm(HttpPostedFileBase files, UpdateAssetParam param)
         {
-            param.FunctionName = Function.RegistrationFormUploader;
-
-            return base.UpdateMedia(files, param);
+            return UpdateBaseAsset(files, param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
-        public ActionResult DeleteForms(DeleteMediasParam param)
+        public ActionResult DeleteForms(DeleteAssetsParam param)
         {
-            param.FunctionName = Function.RegistrationFormUploader;
-
-            return base.DeleteMedias(param);
+            return DeleteBaseAssets(param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.RegistrationFormUploader, IsHost = true)]
-        public ActionResult ToggleFormStatus(UpdateMediasStatusParam param)
+        public ActionResult ToggleFormStatus(UpdateAssetsStatusParam param)
         {
-            param.FunctionName = Function.RegistrationFormUploader;
-
-            return base.ToggleMediaStatus(param);
+            return ToggleBaseAssetStatus(param);
         }
     }
 }

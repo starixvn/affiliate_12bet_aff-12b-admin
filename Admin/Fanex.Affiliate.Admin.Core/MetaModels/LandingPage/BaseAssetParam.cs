@@ -1,8 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
 {
-    public class BaseLandingPageParam : PagingParam
+    public class BaseAssetParam : UserInfoParam
     {
-        public int UserId { get; set; }
         public string FunctionName { get; set; }
     }
 }

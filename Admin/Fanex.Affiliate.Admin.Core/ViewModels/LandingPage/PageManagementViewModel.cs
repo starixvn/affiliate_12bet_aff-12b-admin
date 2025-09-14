@@ -4,8 +4,8 @@
     using DTO;
     using DTO.Common;
     using DTO.Operation;
-    using Fanex.Affiliate.Admin.Core.DTO.Campaign;
-    using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
+    using DTO.Campaign;
+    using DTO.LandingPage;
 
     public class PageManagementViewModel
     {

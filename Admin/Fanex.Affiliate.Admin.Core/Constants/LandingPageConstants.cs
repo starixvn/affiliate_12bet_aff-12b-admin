@@ -12,6 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Constants
             public const int Contact = 2;
             public const int Form = 3;
             public const int Link = 4;
+            public const int Login = 5;
         }
 
         public static class ModuleIds

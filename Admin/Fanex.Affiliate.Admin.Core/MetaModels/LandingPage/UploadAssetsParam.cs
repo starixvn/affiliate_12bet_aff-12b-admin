@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
 {
-    public class UploadAssetsParam : UserInfoParam
+    public class UploadAssetsParam : BaseAssetParam
     {
         [Required(ErrorMessage = "Module Id is required")]
         public int ModuleId { get; set; }
@@ -27,7 +27,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string InputMediaNames { get; set; } = string.Empty;
-
-        public string FunctionName { get; set; }
     }
 }

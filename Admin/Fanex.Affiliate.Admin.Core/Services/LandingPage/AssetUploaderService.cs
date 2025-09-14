@@ -12,7 +12,6 @@ using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
 using Fanex.Data.Repository;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -51,12 +50,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             _landingPageService = landingPageService;
         }
 
-        /// <summary>
-        /// Uploads multiple asset files with validation and database storage
-        /// </summary>
-        /// <param name="files">Array of files to upload</param>
-        /// <param name="param">Upload parameters containing file names, media names, and metadata</param>
-        /// <returns>Result information indicating success or failure with details</returns>
         public ResultInfo UploadAssets(HttpPostedFileBase[] files, UploadAssetsParam param)
         {
             var result = ValidateUploadRequest(files, param);
@@ -92,12 +85,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return SaveAssetsToDatabase(param);
         }
 
-        /// <summary>
-        /// Updates an existing asset with new file content or metadata
-        /// </summary>
-        /// <param name="file">New file to upload (optional for metadata-only updates)</param>
-        /// <param name="param">Update parameters containing file names, media names, and asset ID</param>
-        /// <returns>Result information indicating success or failure with details</returns>
         public ResultInfo UpdateAsset(HttpPostedFileBase file, UpdateAssetParam param)
         {
             var result = ValidateUpdateAssetInput(file, param);
@@ -125,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return ProcessAssetUpdate(file, param, oldAssetInfo);
         }
 
-        private ResultInfo ProcessAssetUpdate(HttpPostedFileBase file, UpdateAssetParam param, LandingPageAsset oldAssetInfo)
+        private ResultInfo ProcessAssetUpdate(HttpPostedFileBase file, UpdateAssetParam param, AssetDetail oldAssetInfo)
         {
             var oldFilePath = oldAssetInfo.FileName;
             var folder = GetAssetFolder(param.ModuleId, param.TargetCountryCode, param.MarketId);
@@ -176,7 +163,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return result;
         }
 
-        private ResultInfo ProcessMetadataUpdate(UpdateAssetParam param, string path, string oldFilePath, LandingPageAsset oldAssetInfo)
+        private ResultInfo ProcessMetadataUpdate(UpdateAssetParam param, string path, string oldFilePath, AssetDetail oldAssetInfo)
         {
             param.Dimensions.Add(oldAssetInfo.Dimension ?? DefaultDimensions);
             BuildFilesXml(param);
@@ -184,8 +171,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
             if (result.IsSuccessful && !string.Equals(path, oldFilePath, StringComparison.CurrentCultureIgnoreCase))
             {
-                // Move file from old path to new path
-                // MoveFile parameters: (destinationPath, sourcePath)
                 MoveFile(path, oldFilePath);
             }
 
@@ -209,50 +194,47 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 .Select(ext => ext.StartsWith(".") ? ext.Substring(1) : ext));
         }
 
-        /// <summary>
-        /// Retrieves a paginated list of assets based on filter criteria
-        /// </summary>
-        /// <param name="param">Filter parameters for asset search</param>
-        /// <returns>Paginated result containing matching assets</returns>
-        public EntityResult<LandingPageAsset> GetAssetList(AssetUploaderParam param)
+        public EntityResult<AssetDetail> GetAssetList(AssetUploaderParam param)
         {
             var criteria = param.MapTo<AssetUploaderParam, GetAssetUploaderCriteria>();
 
-            return FetchEntityResult<LandingPageAsset>(criteria);
+            return FetchEntityResult<AssetDetail>(criteria);
         }
 
-        /// <summary>
-        /// Retrieves detailed information for a specific asset
-        /// </summary>
-        /// <param name="param">Parameters containing asset ID and user ID</param>
-        /// <returns>Asset details or null if not found</returns>
-        public LandingPageAsset GetAssetDetail(AssetDetailParam param)
+        public AssetDetail GetAssetDetail(AssetDetailParam param)
         {
             var criteria = param.MapTo<AssetDetailParam, GetAssetDetailCriteria>();
 
-            return GetTData<LandingPageAsset>(criteria);
+            return GetTData<AssetDetail>(criteria);
         }
 
-        /// <summary>
-        /// Toggles the active status of one or more assets
-        /// </summary>
-        /// <param name="param">Parameters containing media IDs and new status</param>
-        /// <returns>Result information indicating success or failure</returns>
-        public ResultInfo ToggleAssetStatus(UpdateMediasStatusParam param)
+        public ResultInfo ToggleAssetStatus(UpdateAssetsStatusParam param)
         {
-            var command = param.MapTo<UpdateMediasStatusParam, UpdateMediasStatusCommand>();
+            var command = param.MapTo<UpdateAssetsStatusParam, UpdateAssetsStatusCommand>();
 
             return ExecuteReturnResultInfo(command);
         }
 
-        /// <summary>
-        /// Deletes one or more assets from both database and file system
-        /// </summary>
-        /// <param name="param">Parameters containing media IDs to delete</param>
-        /// <returns>Result information indicating success or failure</returns>
-        public ResultInfo DeleteMedias(DeleteMediasParam param)
+        public ResultInfo DeleteAssets(DeleteAssetsParam param)
         {
-            return DeleteAssets(param);
+            var fileNameList = GetAssetFileNameList(param.UserId, param.MediaIds);
+
+            var command = new DeleteAssetsCommand
+            {
+                MediaIds = param.MediaIds,
+                FunctionName = param.FunctionName,
+                UserId = param.UserId,
+                Ip = param.Ip
+            };
+
+            var result = ExecuteReturnResultInfo(command);
+
+            if (result.IsSuccessful)
+            {
+                DeleteFiles(fileNameList);
+            }
+
+            return result;
         }
 
         #region Private Helper Methods
@@ -826,29 +808,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 _systemFile.MoveFile(serverPath, newFilePath, oldFilePath);
             }
         }
-
-        private ResultInfo DeleteAssets(DeleteMediasParam param)
-        {
-            var fileNameList = GetAssetFileNameList(param.UserId, param.MediaIds);
-            
-            var command = new DeleteMediasCommand
-            {
-                MediaIds = param.MediaIds,
-                FunctionName = param.FunctionName,
-                UserId = param.UserId,
-                Ip = param.Ip
-            };
-
-            var result = ExecuteReturnResultInfo(command);
-
-            if (result.IsSuccessful)
-            {
-                DeleteFiles(fileNameList);
-            }
-            
-            return result;
-        }
-
         private List<string> GetAssetFileNameList(int userId, string mediaIds)
         {
             var mediaIdList = mediaIds.Split(',');

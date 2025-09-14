@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.Commands.LandingPage
 {
-    public class UpdateMediasStatusCommand : BaseMediaNonQueryCommand
+    public class UpdateAssetsStatusCommand : BaseAssetNonQueryCommand
     {
         private const string SP_NAME = "Aff_LandingPage_AssetUploader_Status_Upd";
 

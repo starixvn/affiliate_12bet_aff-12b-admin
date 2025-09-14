@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
 {
-    public class AssetUploaderParam : BaseLandingPageParam
+    public class AssetUploaderParam : PagingParam
     {
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string ModuleIds { get; set; }
@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
         public int Status { get; set; }
         public int MediaId { get; set; }
         public string MediaName { get; set; }
+        public int UserId { get; set; }
+        public string FunctionName { get; set; }
     }
 }

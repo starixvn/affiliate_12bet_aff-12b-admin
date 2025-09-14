@@ -267,6 +267,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\form-management\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\form-management\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\libs\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\actions\ActionButtons.jsx" />
@@ -296,14 +297,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\libs\menus.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\components\ModuleForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\components\ModuleList.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\libs\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\module-management\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-management\components\AppContainer.jsx" />

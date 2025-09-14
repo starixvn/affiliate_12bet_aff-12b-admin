@@ -10,13 +10,14 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
-    public abstract class MediaUploaderController : ReadOnlySessionBaseController
+    public abstract class BaseAssetUploaderController : ReadOnlySessionBaseController
     {
         private readonly IAppSetting _appSetting;
         private readonly IAssetUploaderService _assetService;
         private readonly ILandingPageService _landingPageService;
+        protected virtual string FunctionName => Function.DisabledFunction;
 
-        protected MediaUploaderController(
+        protected BaseAssetUploaderController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IAssetUploaderService assetService,
@@ -45,61 +46,69 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             return View("~/Areas/Portal/Views/LandingPage/AssetUploader.cshtml", model);
         }
 
-        public ActionResult GetMediaList(AssetUploaderParam param)
+        public ActionResult GetBaseAssetList(AssetUploaderParam param)
         {
             param.UserId = SessionService.UserId;
+            param.FunctionName = FunctionName;
+
             return GenerateJsonNetResult(_assetService.GetAssetList(param));
         }
 
-        public ActionResult UploadMedias(HttpPostedFileBase[] files, UploadAssetsParam param)
-        {
-            if (ModelState.IsValid && files != null && files.Length > 0)
-            {
-                var encodeParam = EncodeMediaParam(param);
-                AssignUserInfoParam(encodeParam);
-                return GenerateJsonNetResult(_assetService.UploadAssets(files, encodeParam));
-            }
-            return GenerateErrResult("Please select valid files to upload.");
-        }
-
-        public ActionResult GetMediaDetail(AssetDetailParam param)
+        public ActionResult GetBaseAssetDetail(AssetDetailParam param)
         {
             param.UserId = SessionService.UserId;
             return GenerateJsonNetResult(_assetService.GetAssetDetail(param));
         }
 
-        public ActionResult UpdateMedia(HttpPostedFileBase files, UpdateAssetParam param)
+        public ActionResult UploadBaseAssets(HttpPostedFileBase[] files, UploadAssetsParam param)
+        {
+            if (ModelState.IsValid && files != null && files.Length > 0)
+            {
+                var encodeParam = EncodeBaseAssetParam(param);
+                AssignBaseAssetUserInfoParam(encodeParam);
+
+                return GenerateJsonNetResult(_assetService.UploadAssets(files, encodeParam));
+            }
+            return GenerateErrResult("Please select valid files to upload.");
+        }
+
+        public ActionResult UpdateBaseAsset(HttpPostedFileBase files, UpdateAssetParam param)
         {
             if (ModelState.IsValid && (!string.IsNullOrEmpty(param.InputFileNames) || files != null))
             {
-                var encodeParam = EncodeMediaParam(param);
+                var encodeParam = EncodeBaseAssetParam(param);
                 encodeParam.MediaId = param.MediaId;
 
-                AssignUserInfoParam(encodeParam);
+                AssignBaseAssetUserInfoParam(encodeParam);
+
                 return GenerateJsonNetResult(_assetService.UpdateAsset(files, encodeParam));
             }
             return GenerateErrResult("Please select valid  file to update.");
         }
 
-        public ActionResult DeleteMedias(DeleteMediasParam param)
+        public ActionResult DeleteBaseAssets(DeleteAssetsParam param)
         {
             if (ModelState.IsValid)
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.GetClientIP();
-                return GenerateJsonNetResult(_assetService.DeleteMedias(param));
+                AssignBaseAssetUserInfoParam(param);
+
+                return GenerateJsonNetResult(_assetService.DeleteAssets(param));
             }
             return GenerateModelStateErrResult();
         }
 
-        public ActionResult ToggleMediaStatus(UpdateMediasStatusParam param)
+        public ActionResult ToggleBaseAssetStatus(UpdateAssetsStatusParam param)
         {
-            AssignUserInfoParam(param);
+            if (ModelState.IsValid)
+            {
+                AssignBaseAssetUserInfoParam(param);
 
-            return GenerateJsonNetResult(_assetService.ToggleAssetStatus(param));
+                return GenerateJsonNetResult(_assetService.ToggleAssetStatus(param));
+            }
+            return GenerateModelStateErrResult();
         }
 
-        private UpdateAssetParam EncodeMediaParam(UploadAssetsParam param)
+        private UpdateAssetParam EncodeBaseAssetParam(UploadAssetsParam param)
         {
             return new UpdateAssetParam
             {
@@ -109,6 +118,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
                 InputFileNames = Server.HtmlEncode(param.InputFileNames),
                 InputMediaNames = Server.HtmlEncode(param.InputMediaNames)
             };
+        }
+
+        protected void AssignBaseAssetUserInfoParam(BaseAssetParam param)
+        {
+            param.FunctionName = FunctionName;
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.GetClientIP();
         }
     }
 }

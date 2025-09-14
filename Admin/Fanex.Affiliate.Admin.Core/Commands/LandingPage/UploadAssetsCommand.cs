@@ -1,6 +1,6 @@
 namespace Fanex.Affiliate.Admin.Core.Commands.LandingPage
 {
-    public class UploadAssetsCommand : BaseMediaNonQueryCommand
+    public class UploadAssetsCommand : BaseAssetNonQueryCommand
     {
         private const string SP_NAME = "Aff_LandingPage_AssetUploader_Ins";
 

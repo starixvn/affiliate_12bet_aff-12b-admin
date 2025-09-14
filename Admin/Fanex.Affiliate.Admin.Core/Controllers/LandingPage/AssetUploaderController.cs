@@ -10,8 +10,10 @@ using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {
     [FunctionAuthorize(FunctionName = Function.AssetUploader)]
-    public class AssetUploaderController : MediaUploaderController
+    public class AssetUploaderController : BaseAssetUploaderController
     {
+        protected override string FunctionName => Function.AssetUploader;
+
         public AssetUploaderController(
             ISessionService sessionService,
             IAppSetting appSetting,
@@ -30,16 +32,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [ValidateAntiForgeryHeader]
         public ActionResult GetAssetList(AssetUploaderParam param)
         {
-            param.FunctionName = Function.AssetUploader;
-
-            return base.GetMediaList(param);
+            return GetBaseAssetList(param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult GetAssetDetail(AssetDetailParam param)
         {
-            return base.GetMediaDetail(param);
+            return GetBaseAssetDetail(param);
         }
 
         [HttpPost]
@@ -47,9 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
         public ActionResult UploadAssets(HttpPostedFileBase[] files, UploadAssetsParam param)
         {
-            param.FunctionName = Function.AssetUploader;
-
-            return base.UploadMedias(files, param);
+            return UploadBaseAssets(files, param);
         }
 
         [HttpPost]
@@ -57,29 +55,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
         public ActionResult UpdateAsset(HttpPostedFileBase files, UpdateAssetParam param)
         {
-            param.FunctionName = Function.AssetUploader;
-
-            return base.UpdateMedia(files, param);
+            return UpdateBaseAsset(files, param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
-        public ActionResult DeleteAssets(DeleteMediasParam param)
+        public ActionResult DeleteAssets(DeleteAssetsParam param)
         {
-            param.FunctionName = Function.AssetUploader;
-
-            return base.DeleteMedias(param);
+            return DeleteBaseAssets(param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.AssetUploader, IsHost = true)]
-        public ActionResult ToggleAssetStatus(UpdateMediasStatusParam param)
+        public ActionResult ToggleAssetStatus(UpdateAssetsStatusParam param)
         {
-            param.FunctionName = Function.AssetUploader;
-
-            return base.ToggleMediaStatus(param);
+            return ToggleBaseAssetStatus(param);
         }
     }
 }

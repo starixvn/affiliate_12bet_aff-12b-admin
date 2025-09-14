@@ -23,7 +23,7 @@ export const maxLength = 50;
 export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
 
 export const fileUpload = {
-    AllowedImageExtensions: [".jpg", ".jpeg", ".png", ".gif"],
+    AllowedImageExtensions: [".jpg", ".jpeg", ".png", ".gif", ".webp"],
     MaximumFiles: 10,
     MaxFileSize: 3
 }
