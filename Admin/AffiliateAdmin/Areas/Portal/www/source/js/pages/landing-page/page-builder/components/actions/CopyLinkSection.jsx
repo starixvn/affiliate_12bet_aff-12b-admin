@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Input, FormGroup, Label, Alert } from 'reactstrap';
 
-import { generatePreviewUrl } from '../../actions';
-
-const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPageUrl, pageBuilderDetail, isEditMode, ui, generatePreviewUrl }) => {
-    const [generatedUrl, setGeneratedUrl] = useState('');
+const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPageUrl, pageBuilderDetail, isEditMode, ui, validation }) => {
     const [copySuccess, setCopySuccess] = useState(false);
     const [error, setError] = useState(null);
 
@@ -26,50 +23,28 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
         return `${landingPageUrl}/${shortedLanguageCode}/${sourcePageCode}`;
     }, [landingPageUrl, languageList]);
 
-    // Initialize URL from pageBuilderDetail if available (edit mode)
-    useEffect(() => {
-        if (isEditMode && pageBuilderDetail && !generatedUrl) {
-            const constructedUrl = constructPreviewUrl(
+    // Get the preview URL from Redux state or construct it as fallback
+    const getPreviewUrl = useCallback(() => {
+        // First try to get from Redux state (set by ActionButtons)
+        if (ui.previewUrl) {
+            return ui.previewUrl;
+        }
+        
+        // Fallback: construct URL for edit mode
+        if (isEditMode && pageBuilderDetail && pageBuilderDetail.PageCode && !validation.isValidating) {
+            return constructPreviewUrl(
                 pageBuilderDetail,
                 pageBuilderDetail.LanguageCode,
                 pageBuilderDetail.TargetCountryCode,
                 pageBuilderDetail.PageCode
             );
-            if (constructedUrl) {
-                setGeneratedUrl(constructedUrl);
-            }
         }
-    }, [isEditMode, pageBuilderDetail, constructPreviewUrl, generatedUrl]);
-
-    // Generate URL when hasPreviewedOrCreated becomes true (after successful create/preview)
-    useEffect(() => {
-        if (ui.hasPreviewedOrCreated && !isEditMode && !generatedUrl && formData.pageCode) {
-            const constructedUrl = constructPreviewUrl(
-                formData,
-                formData.languageCode,
-                formData.targetCountryCode,
-                formData.pageCode
-            );
-            if (constructedUrl) {
-                setGeneratedUrl(constructedUrl);
-            }
-        }
-    }, [ui.hasPreviewedOrCreated, isEditMode, generatedUrl, formData, constructPreviewUrl]);
+        
+        return '';
+    }, [ui.previewUrl, isEditMode, pageBuilderDetail, constructPreviewUrl]);
 
     const handleCopyToClipboard = useCallback(async () => {
-        // If no generated URL, try to construct it from current form data
-        let urlToCopy = generatedUrl;
-        if (!urlToCopy && formData.pageCode) {
-            urlToCopy = constructPreviewUrl(
-                formData,
-                formData.languageCode,
-                formData.targetCountryCode,
-                formData.pageCode
-            );
-            if (urlToCopy) {
-                setGeneratedUrl(urlToCopy);
-            }
-        }
+        const urlToCopy = getPreviewUrl();
         
         if (!urlToCopy) return;
 
@@ -100,7 +75,7 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
             
             document.body.removeChild(textArea);
         }
-    }, [generatedUrl, formData, constructPreviewUrl]);
+    }, [getPreviewUrl]);
 
     // In edit mode, we can use pageBuilderDetail data, otherwise validate formData
     const isFormValid = isEditMode && pageBuilderDetail ? 
@@ -113,8 +88,8 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
                         formData.pageCode &&
                         moduleComponents.length > 0);
 
-    // Check if copy link should be enabled (either has generated URL, is in edit mode with valid data, or has previewed/created)
-    const isCopyLinkEnabled = generatedUrl || 
+    // Check if copy link should be enabled
+    const isCopyLinkEnabled = !!getPreviewUrl() || 
                              (isEditMode && pageBuilderDetail && isFormValid) || 
                              ui.hasPreviewedOrCreated;
 
@@ -138,7 +113,7 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
                     <div>
                         <div className="input-group">
                             <div className="mt-2 p-2 bg-light border rounded w-100" style={{ fontSize: '11px', fontFamily: 'monospace', wordBreak: 'break-all' }}>
-                                {generatedUrl || (formData.pageCode && isCopyLinkEnabled ? constructPreviewUrl(formData, formData.languageCode, formData.targetCountryCode, formData.pageCode) : '')}
+                                {getPreviewUrl()}
                             </div>
                             <Button
                                 color="primary"
@@ -165,7 +140,7 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
     );
 };
 
-function mapStateToProps({ formData, moduleComponents, ui, languageList, landingPageUrl, pageBuilderDetail, isEditMode }) {
+function mapStateToProps({ formData, moduleComponents, ui, languageList, landingPageUrl, pageBuilderDetail, isEditMode, validation }) {
     return {
         formData,
         moduleComponents,
@@ -173,12 +148,13 @@ function mapStateToProps({ formData, moduleComponents, ui, languageList, landing
         landingPageUrl,
         pageBuilderDetail,
         isEditMode,
-        ui
+        ui,
+        validation
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ generatePreviewUrl }, dispatch);
+    return bindActionCreators({}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(CopyLinkSection));

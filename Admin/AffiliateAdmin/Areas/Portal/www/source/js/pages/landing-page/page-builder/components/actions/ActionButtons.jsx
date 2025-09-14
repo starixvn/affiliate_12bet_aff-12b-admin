@@ -59,7 +59,7 @@ const ActionButtons = ({
                     const shortedLanguageCode = selectedLanguage?.ShortedLanguageCode || '';
                     
                     // Combine: landingPageUrl + shortedLanguageCode + pageCode
-                    constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}?pageId=${result.Message}&preview=true`;
+                    constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}?isPreview=true&pageId=${result.Message}`;
                 }
                 
                 setPreviewUrl(constructedPreviewUrl || result.PreviewUrl);

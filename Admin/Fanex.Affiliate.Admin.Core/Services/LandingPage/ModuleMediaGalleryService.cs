@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
 using Fanex.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -481,10 +482,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             try
             {
-                using (var image = Image.FromStream(file.InputStream))
-                {
-                    return $"{image.Width}x{image.Height}";
-                }
+                var dimensions = ImageDimensionHelper.ExtractImageDimensions(file.InputStream);
+                return dimensions == "0x0" ? "Unknown" : dimensions;
             }
             catch
             {

@@ -2,6 +2,7 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
 using System.Web;
 using System.Web.Mvc;
 using System.Linq;
@@ -276,16 +277,22 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         {
             try
             {
-                using (var image = System.Drawing.Image.FromStream(file.InputStream))
+                var maxWidth = GetMaxWidthForModule(moduleInfo);
+                var maxHeight = GetMaxHeightForModule(moduleInfo);
+                
+                var validationResult = ImageDimensionHelper.ValidateImageDimensionsDetailed(
+                    file.InputStream, maxWidth, maxHeight);
+
+                if (!validationResult.IsValid)
                 {
-                    var maxWidth = GetMaxWidthForModule(moduleInfo);
-                    var maxHeight = GetMaxHeightForModule(moduleInfo);
-                    
-                    if (image.Width > maxWidth || image.Height > maxHeight)
+                    if (!string.IsNullOrEmpty(validationResult.ErrorMessage))
                     {
-                        return $"Image dimensions ({image.Width}x{image.Height}) exceed maximum allowed size ({maxWidth}x{maxHeight}) for {moduleInfo?.ModuleName ?? "this module"}";
+                        return "Invalid image file or corrupted data";
                     }
+                    
+                    return $"Image dimensions ({validationResult.Width}x{validationResult.Height}) exceed maximum allowed size ({maxWidth}x{maxHeight}) for {moduleInfo?.ModuleName ?? "this module"}";
                 }
+                
                 file.InputStream.Position = 0; // Reset stream
             }
             catch

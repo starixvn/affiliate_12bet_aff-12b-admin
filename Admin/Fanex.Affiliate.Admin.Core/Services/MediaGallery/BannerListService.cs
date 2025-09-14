@@ -254,13 +254,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
             for (var i = 0; i < files.Length; i++)
             {
                 var file = files[i];
+                var dimensions = ImageDimensionHelper.GetImageDimensions(file.InputStream);
 
                 using (var bitmap = new Bitmap(file.InputStream))
                 {
                     var inputFileName = inputFileNames[i];
                     var path = $"CategoryMedia/{param.Folder}/{inputFileName}";
                     param.FilePaths.Add(path);
-                    param.Sizes.Add(BannerHelper.GetSize(bitmap.Width, bitmap.Height));
+                    param.Sizes.Add(BannerHelper.GetSize(dimensions.Width, dimensions.Height));
                     UploadFile(bitmap, path);
                 }
             }
@@ -339,9 +340,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
                 if (result.IsSuccessful)
                 {
+                    var dimensions = ImageDimensionHelper.GetImageDimensions(file.InputStream);
+                    
                     using (var bitmap = new Bitmap(file.InputStream))
                     {
-                        param.Sizes.Add(BannerHelper.GetSize(bitmap.Width, bitmap.Height));
+                        param.Sizes.Add(BannerHelper.GetSize(dimensions.Width, dimensions.Height));
                         BuildFilesXml(param);
                         result = UpdateBanner(param);
 

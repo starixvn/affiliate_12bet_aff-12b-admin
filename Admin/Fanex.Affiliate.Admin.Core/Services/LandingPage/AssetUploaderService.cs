@@ -8,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.Utilities.MediaGallery;
 using Fanex.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -193,17 +194,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         private static string ExtractImageDimensions(Stream inputStream)
         {
-            try
-            {
-                using (var bitmap = new Bitmap(inputStream))
-                {
-                    return $"{bitmap.Width}x{bitmap.Height}";
-                }
-            }
-            catch
-            {
-                return DefaultDimensions;
-            }
+            return ImageDimensionHelper.ExtractImageDimensions(inputStream);
         }
 
         private static Regex CreateFileExtensionRemovalRegex()
@@ -438,17 +429,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             // Validate image dimensions if it's an image file
             try
             {
-                using (var bitmap = new Bitmap(inputStream))
+                var validationResult = ImageDimensionHelper.ValidateImageDimensionsDetailed(
+                    inputStream, 
+                    LandingPageConstants.FileUpload.MaxImageWidth, 
+                    LandingPageConstants.FileUpload.MaxImageHeight);
+
+                if (!validationResult.IsValid)
                 {
-                    if (bitmap.Width > LandingPageConstants.FileUpload.MaxImageWidth || 
-                        bitmap.Height > LandingPageConstants.FileUpload.MaxImageHeight)
+                    return new ResultInfo
                     {
-                        return new ResultInfo
-                        {
-                            Code = ErrCode.GeneralErrorCode,
-                            Message = LandingPageConstants.ErrorMessages.ImageDimensionsExceeded
-                        };
-                    }
+                        Code = ErrCode.GeneralErrorCode,
+                        Message = string.IsNullOrEmpty(validationResult.ErrorMessage) 
+                            ? LandingPageConstants.ErrorMessages.ImageDimensionsExceeded
+                            : LandingPageConstants.ErrorMessages.InvalidImageData
+                    };
                 }
             }
             catch
