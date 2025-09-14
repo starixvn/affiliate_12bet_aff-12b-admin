@@ -9,7 +9,7 @@ export const SubMenuList = (props) => {
                 <img src={props.img} />
             </div>
             <div className='d-inline-block align-middle'>
-                <h4 className='mb-0 text-danger'>{menuTitle}</h4>
+                <h5 className='mb-0 text-danger'>{menuTitle}</h5>
             </div>
             <div className={`${menuTitle ? 'mt-2' : 'd-inline-block'}`}>
                 <ul className='nav'>

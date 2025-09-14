@@ -386,7 +386,7 @@ export class Filter extends Component {
                                 valueField="name"
                                 statusField="checked"
                                 maxDisplayItemCount={1}
-                                noneSelectedLabel="None Selected"
+                                noneSelectedLabel="No Selection"
                                 selectedAllLabel="All"
                                 onChange={this.handleChangePaymentCurrency} />
                         </FormGroup>
@@ -401,7 +401,7 @@ export class Filter extends Component {
                                 valueField="name"
                                 statusField="checked"
                                 maxDisplayItemCount={1}
-                                noneSelectedLabel="None Selected"
+                                noneSelectedLabel="No Selection"
                                 selectedAllLabel="All"
                                 onChange={this.handleChangeCurrency} />
                         </FormGroup>
@@ -444,7 +444,7 @@ export class Filter extends Component {
                                 valueField="name"
                                 statusField="checked"
                                 maxDisplayItemCount={1}
-                                noneSelectedLabel="None Selected"
+                                noneSelectedLabel="No Selection"
                                 selectedAllLabel="All Revenue Groups"
                                 onChange={this.handleChangeCommGroup} />
                         </FormGroup>

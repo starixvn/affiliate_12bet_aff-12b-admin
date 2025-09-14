@@ -307,6 +307,7 @@
     <Compile Include="Commands\Domain\UpdateSpecificDomainControlCommand.cs" />
     <Compile Include="Commands\LandingPage\BaseAssetNonQueryCommand.cs" />
     <Compile Include="Commands\LandingPage\DeleteAssetsCommand.cs" />
+    <Compile Include="Commands\LandingPage\UpdateLandingPageStatusCommand.cs" />
     <Compile Include="Commands\LandingPage\UpdateAssetsStatusCommand.cs" />
     <Compile Include="Commands\LandingPage\UpdateAssetCommand.cs" />
     <Compile Include="Commands\LandingPage\InsertPageBuilderCommand.cs" />
@@ -618,6 +619,7 @@
     <Compile Include="MetaModels\LandingPage\AssetUploaderParam.cs" />
     <Compile Include="MetaModels\LandingPage\BaseAssetParam.cs" />
     <Compile Include="MetaModels\LandingPage\InsertUpdatePageBuilderParam.cs" />
+    <Compile Include="MetaModels\LandingPage\UpdateLandingPageStatusParam.cs" />
     <Compile Include="MetaModels\LandingPage\MediaSourceParam.cs" />
     <Compile Include="MetaModels\LandingPage\PageManagementParam.cs" />
     <Compile Include="MetaModels\LandingPage\DeleteAssetsParam.cs" />

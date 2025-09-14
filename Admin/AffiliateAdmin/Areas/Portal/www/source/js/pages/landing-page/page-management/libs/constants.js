@@ -4,14 +4,17 @@ export { globalResource };
 
 export const headerText = {
     Index: '#',
+    CampaignCode: 'Campaign Code',
     CampaignName: 'Campaign Name',
-    LandingPageName: 'Landing Page Name',
-    LandingPageCode: 'Landing Page Code',
+    PageName: 'Page Name',
+    PageCode: 'Page Code',
     TargetCountry: 'Target Country',
     Language: 'Language',
     Deal: 'Deal',
     CreatedDate: 'Created Date',
-    LastModified: 'Last Modified',
+    CreatedBy: 'Created By',
+    LastModifiedDate: 'Last Modified Date',
+    LastModifiedBy: 'Last Modified By',
     Status: 'Status',
     Action: 'Action'
 }
@@ -36,4 +39,9 @@ export const messages = {
     PleaseSelect: 'Please select landing page(s) to delete',
     AreYouSureDeleteItems: 'Are you sure to delete the selected landing page(s)?',
     DeleteItemsSuccessfully: 'Delete landing page(s) Successfully'
+}
+
+export const messageSwitchStatus = {
+    SwitchStatusSuccessfully: 'Status changed successfully',
+    FailedToSwitchStatus: 'Failed to change status'
 }

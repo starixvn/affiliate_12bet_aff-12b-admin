@@ -123,8 +123,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         protected void AssignBaseAssetUserInfoParam(BaseAssetParam param)
         {
             param.FunctionName = FunctionName;
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.GetClientIP();
+            AssignUserInfoParam(param);
         }
     }
 }

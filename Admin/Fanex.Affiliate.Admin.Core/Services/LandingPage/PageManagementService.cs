@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.Criterias.LandingPage;
+﻿using Fanex.Affiliate.Admin.Core.Commands.LandingPage;
+using Fanex.Affiliate.Admin.Core.Criterias.LandingPage;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -18,6 +19,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             var criteria = param.MapTo<PageManagementParam, GetPageManagementCriteria>();
             return FetchEntityResult<PageManagement>(criteria);
+        }
+
+        public ResultInfo ToggleLandingPageStatus(UpdateLandingPageStatusParam param)
+        {
+            var command = param.MapTo<UpdateLandingPageStatusParam, UpdateLandingPageStatusCommand>();
+
+            return ExecuteReturnResultInfo(command);
         }
     }
 }

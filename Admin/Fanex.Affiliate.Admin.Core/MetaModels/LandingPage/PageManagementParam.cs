@@ -8,5 +8,6 @@
         public string CampaignIds { get; set; }
         public string StatusIds { get; set; }
         public string LandingPageName { get; set; }
+        public string CampaignName { get; set; }
     }
 }

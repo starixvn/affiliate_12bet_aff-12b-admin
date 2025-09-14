@@ -51,7 +51,7 @@ export const Content = (props) => {
             message: `Are you sure you want to change status of the selected form(s)?`,
             isConfirmPopup: true,
             onConfirm: async () => {
-                const result = await props.toggleFormStatus({ mediaIds: `${mediaId}`, status: newStatus });
+                const result = await props.toggleFormStatus({ mediaIds: `${mediaId}`,statusId: newStatus });
                 if (result && result.IsSuccessful) {
                     props.fetchData(props.param);
                 }

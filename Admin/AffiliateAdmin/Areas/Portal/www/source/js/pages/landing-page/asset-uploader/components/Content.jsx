@@ -52,7 +52,7 @@ export const Content = (props) => {
             message: `Are you sure you want to change status of the selected image(s)?`,
             isConfirmPopup: true,
             onConfirm: async () => {
-                const result = await props.toggleAssetStatus({ mediaIds: `${mediaId}`, status: newStatus });
+                const result = await props.toggleAssetStatus({ mediaIds: `${mediaId}`, statusId: newStatus });
                 if (result && result.IsSuccessful) {
                     props.fetchData(props.param);
                 }

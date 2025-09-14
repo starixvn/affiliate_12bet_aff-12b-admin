@@ -9,6 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.LandingPage
         public string MediaIds { get; set; }
 
         [Range(LandingPageConstants.AssetStatusTypes.Active, LandingPageConstants.AssetStatusTypes.Inactive, ErrorMessage = "Status is invalid")]
-        public byte Status { get; set; }
+        public byte StatusId { get; set; }
     }
 }

@@ -90,7 +90,7 @@
                    aria-expanded="false">
                     @GetMenuName(item)
                 </a>
-                <div class="dropdown-menu" aria-labelledby="@item" style="position: static">
+                <div class="dropdown-menu" aria-labelledby="@item" style="position: static; font-size: 0.9rem">
                     @foreach (var submenu in availableMarketingTools)
                     {
                         var submenuData = (dynamic)submenu.Value;

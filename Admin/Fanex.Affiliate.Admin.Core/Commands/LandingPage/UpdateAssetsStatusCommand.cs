@@ -12,7 +12,6 @@ namespace Fanex.Affiliate.Admin.Core.Commands.LandingPage
 
         public string MediaIds { get; set; }
 
-        [SpParam(SqlParamName = "StatusId")]
-        public byte Status { get; set; }
+        public byte StatusId { get; set; }
     }
 }

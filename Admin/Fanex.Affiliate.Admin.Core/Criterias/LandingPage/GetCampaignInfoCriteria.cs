@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 {
     public class GetCampaignInfoCriteria : CriteriaBase
     {
-        private const string SP_NAME = "Aff_LandingPage_Campaign_ListSel";
+        private const string SP_NAME = "Aff_LandingPage_Campaign_Sel";
 
         public override string GetSettingKey() => SP_NAME;
 

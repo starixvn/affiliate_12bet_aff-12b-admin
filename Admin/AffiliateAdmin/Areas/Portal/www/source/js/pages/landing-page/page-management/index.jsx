@@ -12,7 +12,7 @@ const App = () => {
 
     // Convert lists to proper format for MultipleSelect components
     const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
-    const newLanguageList = convertListToMutilpleSelected(languageList, 'LanguageCode', 'LanguageName');
+    const newLanguageList = convertListToMutilpleSelected([...new Map(languageList.map(item => [item.LanguageCode, item])).values()], 'LanguageCode', 'LanguageName');
     const newDealList = convertListToMutilpleSelected(dealList, 'GroupId', 'GroupName');
     const newStatusList = convertListToMutilpleSelected(statusList, 'StatusId', 'Status');
     const newCampaignList = convertListToMutilpleSelected(campaignList, 'CampaignId', 'CampaignName');

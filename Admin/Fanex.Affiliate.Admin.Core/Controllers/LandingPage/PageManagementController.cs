@@ -25,5 +25,20 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         {
             return GenerateJsonNetResult(_pageManagementService.GetPageManagementList(param));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult ToggleLandingPageStatus(UpdateLandingPageStatusParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                AssignUserInfoParam(param);
+
+                return GenerateJsonNetResult(_pageManagementService.ToggleLandingPageStatus(param));
+            }
+
+            return GenerateModelStateErrResult();
+        }
     }
 }

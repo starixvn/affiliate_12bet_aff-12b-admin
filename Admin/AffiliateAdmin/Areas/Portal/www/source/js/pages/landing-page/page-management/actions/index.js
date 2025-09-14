@@ -76,6 +76,13 @@ export const setStatusList = (data) => {
     }
 }
 
+export const setNotification = (data) => {
+    return {
+        type: types.SET_NOTIFICATION,
+        data
+    }
+}
+
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
@@ -88,4 +95,11 @@ export const fetchData = (param) => async (dispatch) => {
     dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
+}
+
+export const toggleLandingPageStatus = (param) => async () => {
+    const url = 'Portal/PageManagement/ToggleLandingPageStatus';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
 }

@@ -9,9 +9,10 @@
         public string TargetCountryName { get; set; }
         public string Language { get; set; }
         public string LanguageCode { get; set; }
-        public string DealIds { get; set; }
+        public string Deals { get; set; }
         public int NoOfDeals { get; set; }
         public byte StatusId { get; set; }
+        public string CampaignCode { get; set; }
         public string CampaignName { get; set; }
         public string CreatedDate { get; set; }
         public string CreatedBy { get; set; }

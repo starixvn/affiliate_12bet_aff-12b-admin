@@ -68,6 +68,12 @@ export const gridData = createReducer(null, {
     }
 })
 
+export const notification = createReducer({ message: '', isConfirmPopup: false, onConfirm: null }, {
+    [types.SET_NOTIFICATION](prevState, action) {
+        return Object.assign({}, prevState, action.data);
+    }
+})
+
 export default combineReducers({
     landingPageUrl,
     targetCountryList,
@@ -81,4 +87,5 @@ export default combineReducers({
     pagingOption,
     isShowLoader,
     shouldResetScrollPosition,
+    notification,
 });

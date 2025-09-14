@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             {
                 LandingPageUrl = _appSetting.LandingPageUrl,
                 CampaignList = _landingPageService.GetCampaignInfoList(),
-                LanguageList = _landingPageService.GetLanguageList(),
+                LanguageList = _landingPageService.GetAllLanguagesInSystem(),
                 DealList = _landingPageService.GetNormalDealList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
                 StatusList = _landingPageService.GetLandingPageStatusList(),

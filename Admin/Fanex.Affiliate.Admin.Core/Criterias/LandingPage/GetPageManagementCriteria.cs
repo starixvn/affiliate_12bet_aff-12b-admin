@@ -22,6 +22,6 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
         [SpParam(SqlParamName = "PageName")]
         public string LandingPageName { get; set; }
 
-        public string CampaignIds { get; set; }
+        public string CampaignName { get; set; }
     }
 }

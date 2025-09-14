@@ -24,7 +24,7 @@ export const Filter = ({
 }) => {
     const [filters, setFilters] = useState({
         landingPageName: '',
-        campaignIds: campaignList ? campaignList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
+        campaignName: '',
         dealIds: dealList ? dealList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
         targetCountryCodes: targetCountryList ? targetCountryList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
         languageCodes: languageList ? languageList.filter(item => item.checked).map(item => item.key).join(',') : 'all',
@@ -37,11 +37,6 @@ export const Filter = ({
             ...prev,
             [name]: value
         }));
-    };
-
-    const handleChangeCampaign = (item, selectedCampaignList) => {
-        setFilters({ ...filters, campaignIds: selectedCampaignList });
-        setCampaignList(handleChangeMultipleSelected(campaignList, selectedCampaignList));
     };
 
     const handleChangeDeal = (item, selectedDealList) => {
@@ -65,9 +60,8 @@ export const Filter = ({
     };
 
     const handleSearch = () => {
-        const { landingPageName, campaignIds, dealIds, targetCountryCodes, languageCodes, statusIds } = filters;
-        
-        const isSelectAllCampaigns = campaignList ? campaignList.every(c => c.checked) : true;
+        const { landingPageName, campaignName, dealIds, targetCountryCodes, languageCodes, statusIds } = filters;
+
         const isSelectAllDeals = dealList ? dealList.every(c => c.checked) : true;
         const isSelectAllTargetCountries = targetCountryList ? targetCountryList.every(c => c.checked) : true;
         const isSelectAllLanguages = languageList ? languageList.every(c => c.checked) : true;
@@ -75,7 +69,7 @@ export const Filter = ({
 
         const newParam = {
             landingPageName,
-            campaignIds: campaignIds,//isSelectAllCampaigns ? 'all' : campaignIds,
+            campaignName,
             dealIds: dealIds,//isSelectAllDeals ? 'all' : dealIds,
             targetCountryCodes: targetCountryCodes,//isSelectAllTargetCountries ? 'all' : targetCountryCodes,
             languageCodes: languageCodes,//isSelectAllLanguages ? 'all' : languageCodes,
@@ -101,21 +95,18 @@ export const Filter = ({
                     />
                 </FormGroup>
                 
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
-                    <Label htmlFor="campaign" className="mr-sm-2">Campaign</Label>
-                    <MultipleSelect
-                        id="campaign"
-                        dataSource={campaignList || []}
-                        keyField="key"
-                        valueField="name"
-                        statusField="checked"
-                        maxDisplayItemCount={1}
-                        hasInputOption={true}
-                        noneSelectedLabel="None Selected"
-                        selectedAllLabel="All"
-                        onChange={handleChangeCampaign} />
+                <FormGroup className="mr-sm-3 pb-2">
+                    <Label htmlFor="campaignName" className="mr-sm-2">Campaign Name</Label>
+                    <Input 
+                        type="text" 
+                        name="campaignName" 
+                        id="campaignName" 
+                        value={filters.campaignName} 
+                        onChange={handleChange}
+                        placeholder=""
+                    />
                 </FormGroup>
-
+                
                 <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="deal" className="mr-sm-2">Deal</Label>
                     <MultipleSelect
@@ -126,7 +117,7 @@ export const Filter = ({
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="None Selected"
+                        noneSelectedLabel="No Selection"
                         selectedAllLabel="All"
                         onChange={handleChangeDeal} />
                 </FormGroup>
@@ -141,7 +132,7 @@ export const Filter = ({
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="None Selected"
+                        noneSelectedLabel="No Selection"
                         selectedAllLabel="All"
                         onChange={handleChangeTargetCountry} />
                 </FormGroup>
@@ -156,7 +147,7 @@ export const Filter = ({
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="None Selected"
+                        noneSelectedLabel="No Selection"
                         selectedAllLabel="All"
                         onChange={handleChangeLanguage} />
                 </FormGroup>
@@ -171,7 +162,7 @@ export const Filter = ({
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="None Selected"
+                        noneSelectedLabel="No Selection"
                         selectedAllLabel="All"
                         onChange={handleChangeStatus} />
                 </FormGroup>

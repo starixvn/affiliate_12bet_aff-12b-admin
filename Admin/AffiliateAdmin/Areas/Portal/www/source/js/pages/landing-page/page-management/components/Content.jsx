@@ -5,12 +5,12 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Input } from 'reactstrap';
 
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { resolveClientUrl } from '../../../../modules/utils';
-import { headerText, globalResource } from '../libs/constants';
-import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption } from '../actions';
+import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
+import { headerText, globalResource, messageSwitchStatus } from '../libs/constants';
+import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam } from '../actions';
 
 export const Content = (props) => {
-    const { originalLanguageList } = props;
+    const { originalLanguageList, statusList } = props;
 
     useEffect(() => {
         const { param } = props;
@@ -18,11 +18,27 @@ export const Content = (props) => {
         param && props.fetchData(param);
     }, [props.param]);
     
-    const _onStatusChange = (landingPageId, newStatusId) => {
-        // TODO: Implement status update functionality
-        alert('Update status for landing page:', landingPageId, 'to status:', newStatusId);
-        // Here you would typically call an API to update the status
-        // props.updateLandingPageStatus(landingPageId, newStatusId);
+    const _onStatusChange = (pageId, newStatusId) => {
+        const newStatus = statusList.find(item => item.key == newStatusId);
+        console.log(statusList, newStatusId, newStatus);
+
+        props.setNotification({
+            message: `<p>Only Active pages are available for link generation.</p>
+                <p>Inactive pages are not available for link generation. Existing links with an Inactive page will redirect users to the main join page.</p>
+                <span>Are you sure you want to change status of this landing page?</span>`,
+            isConfirmPopup: true,
+            onConfirm: async () => {
+                const result = await props.toggleLandingPageStatus({ pageId, statusId: newStatus.key });
+                if (result && result.IsSuccessful) {
+                    props.fetchData(props.param);
+                }
+
+                props.setNotification({
+                    message: result?.IsSuccessful ? messageSwitchStatus.SwitchStatusSuccessfully : result?.Message || messageSwitchStatus.FailedToSwitchStatus,
+                    isConfirmPopup: false
+                });
+            }
+        });
     }
 
     const _handlePaging = (pageIndex, pageSize) => {
@@ -40,14 +56,17 @@ export const Content = (props) => {
         return (
             <Row key="thead">
                 <Cell header={true} colWidth={10} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.CampaignCode}>{headerText.CampaignCode}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.CampaignName}>{headerText.CampaignName}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.LandingPageName}>{headerText.LandingPageName}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.LandingPageCode}>{headerText.LandingPageCode}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.PageName}>{headerText.PageName}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.PageCode}>{headerText.PageCode}</Cell>
                 <Cell header={true} colWidth={40} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
                 <Cell header={true} colWidth={40} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.Deal}>{headerText.Deal}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Deal}>{headerText.Deal}</Cell>
                 <Cell header={true} colWidth={40} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.LastModified}>{headerText.LastModified}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.LastModifiedDate}>{headerText.LastModifiedDate}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.LastModifiedBy}>{headerText.LastModifiedBy}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Action}>{headerText.Action}</Cell>
             </Row>
@@ -86,20 +105,25 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
+        const campaignCode = htmlDecode(dataItem.CampaignCode);
         const campaignName = htmlDecode(dataItem.CampaignName);
         const landingPageName = htmlDecode(dataItem.PageName);
         const landingPageCode = htmlDecode(dataItem.PageCode);
         const targetCountry = htmlDecode(dataItem.TargetCountryName);
-        const language = dataItem.Language || 'English';
+        const language = dataItem.Language || '';
         const deal = dataItem.NoOfDeals || '';
-        const createdDate = dataItem.CreatedDate || '';
-        const lastModified = dataItem.LastModifiedDate || '--';
+        const dealList = dataItem.Deals?.replace(/, /g, '\n') || '';
+        const createdDate = formatDateTime(dataItem.CreatedDate, 'yyyy-MM-dd');
+        const lastModified = formatDateTime(dataItem.LastModifiedDate, 'yyyy-MM-dd') || '--';
         const statusItem = props.statusList && props.statusList.find(item => item.key === dataItem.StatusId);
         const statusClass = _getStatusClass(statusItem.name);
+        const createdBy = dataItem.CreatedBy || '';
+        const lastModifiedBy = dataItem.LastModifiedBy || '--';
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
+                <Cell className="text-left" title={campaignCode}>{campaignCode}</Cell>
                 <Cell className="text-left" title={campaignName}>{campaignName}</Cell>
                 <Cell className="text-left" title={landingPageName}>
                     <a href={`${props.landingPageUrl}/${_getTargetLanguageCode(dataItem.LanguageCode, dataItem.TargetCountryCode)}/${landingPageCode}`} target="_blank">{landingPageName}</a>
@@ -107,9 +131,11 @@ export const Content = (props) => {
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
                 <Cell className="text-left" title={targetCountry}>{targetCountry}</Cell>
                 <Cell className="text-left" title={language}>{language}</Cell>
-                <Cell className="text-center" title={deal}>{deal}</Cell>
+                <Cell className="text-center text-primary" title={dealList}>{deal}</Cell>
                 <Cell className="text-left" title={createdDate}>{createdDate}</Cell>
+                <Cell className="text-left" title={createdBy}>{createdBy}</Cell>
                 <Cell className="text-left" title={lastModified}>{lastModified}</Cell>
+                <Cell className="text-left" title={lastModifiedBy}>{lastModifiedBy}</Cell>
                 <Cell className="text-left" title={statusItem.name}>
                     <Input 
                         type="select" 
@@ -166,7 +192,7 @@ function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, pa
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption }, dispatch);
+    return bindActionCreators({ setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));
