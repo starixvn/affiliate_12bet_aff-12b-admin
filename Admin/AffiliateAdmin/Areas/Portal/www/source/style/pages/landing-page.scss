@@ -107,10 +107,6 @@
     }
 }
 
-.align-self-center {
-    align-self: center;
-}
-
 .input-file-group {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -126,5 +122,9 @@
 }
 
 .landing-page-preview {
-    height: 100%;
+    height: calc(100% - 10px);
+}
+
+.module-components {
+    min-height: 260px;
 }

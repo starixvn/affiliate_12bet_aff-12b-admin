@@ -10,16 +10,16 @@ import { convertListToMutilpleSelected } from '../../../modules/utils';
 import { moduleTypes } from '../libs/constants';
 
 const App = () => {
-    const { moduleList, targetCountryList, languageList, allLanguagesInSystem, maxFileSize, maximumFiles, allowedExtensions, bannerRootUrl, statusList } = window.initialState;
+    const { moduleList, targetCountryList, allLanguagesInSystem, maxFileSize, maximumFiles, allowedExtensions, bannerRootUrl, statusList } = window.initialState;
 
     const newModuleList = convertListToMutilpleSelected(moduleList.filter(item => item.ModuleType !== moduleTypes.Form && item.ModuleType !== moduleTypes.Link), 'ModuleId', 'ModuleName');
     const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
-    const newLanguageList = convertListToMutilpleSelected(languageList, 'LanguageCode', 'LanguageName');
+    const languageList = convertListToMutilpleSelected([...new Map(allLanguagesInSystem.map(item => [item.LanguageCode, item])).values()], 'LanguageCode', 'LanguageName');
 
     const store = configureStore({
         moduleList: newModuleList,
         targetCountryList: newTargetCountryList,
-        languageList: newLanguageList,
+        languageList,
         allLanguagesInSystem,
         maxFileSize,
         maximumFiles,

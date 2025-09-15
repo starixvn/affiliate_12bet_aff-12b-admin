@@ -19,7 +19,8 @@
         public const int MaxAffType = 4;
 
         public const int MaxLengthCommGroupDescription = 100;
-        public const int MaxLengthLandingPage = 100;
+        public const int MaxLengthLandingPageName = 200;
+        public const int MaxLengthLandingPageCode = 100;
 
         public const int OnlyOneRow = 1;
 

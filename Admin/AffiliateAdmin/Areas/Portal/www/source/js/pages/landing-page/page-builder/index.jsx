@@ -11,7 +11,7 @@ import { initializeFromPageBuilderDetail } from './actions';
 const App = () => {
     const { 
         targetCountryList, 
-        languageList, 
+        allLanguagesInSystem, 
         dealList, 
         statusList, 
         moduleList, 
@@ -27,7 +27,7 @@ const App = () => {
         moduleList,
         campaignList,
         targetCountryList,
-        languageList,
+        languageList: allLanguagesInSystem,
         dealList: newDealList,
         statusList: statusList.sort((a, b) => a.Status - b.Status),
         landingPageUrl,

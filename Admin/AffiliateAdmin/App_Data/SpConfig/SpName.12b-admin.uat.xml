@@ -318,7 +318,9 @@
     <Setting Key="Aff_LandingPage_Builder_ManageSel" SpName="Aff_LandingPage_Builder_ManageSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
     </Setting>
-    <Setting Key="Aff_LandingPage_Builder_Sel" SpName="Aff_LandingPage_Builder_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_LandingPage_Builder_Sel" SpName="Aff_LandingPage_Builder_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
+    </Setting>
     <Setting Key="Aff_LandingPage_Builder_Ins" SpName="Aff_LandingPage_Builder_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Builder_Upd" SpName="Aff_LandingPage_Builder_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Campaign_Creator_Sel" SpName="Aff_LandingPage_Campaign_Creator_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />

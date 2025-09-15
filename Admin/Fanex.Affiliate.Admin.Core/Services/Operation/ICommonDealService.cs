@@ -20,6 +20,8 @@
 
         IEnumerable<NormalDeal> GetNormalDealList(GetNormalDealParam param);
 
+        IEnumerable<NormalDeal> GetMarketingDealList(GetNormalDealParam param);
+
         IEnumerable<TargetCountry> GetPlayerTargetCountry();
     }
 }

@@ -6,7 +6,7 @@ import { fetchCampaigns } from '../actions';
 
 import CreateNewLandingPage from './sections/CreateNewLandingPage';
 import ModuleComponents from './sections/ModuleComponents';
-import LandingPageReview from './sections/LandingPageReview';
+import LandingPagePreview from './sections/LandingPagePreview';
 
 const LandingPageForm = ({ fetchCampaigns }) => {
     useEffect(() => {
@@ -17,12 +17,12 @@ const LandingPageForm = ({ fetchCampaigns }) => {
     return (
         <Container fluid className="landing-page-format">
             <Row>
-                <Col md={9}>
+                <Col lg={9}>
                     <CreateNewLandingPage />
                     <ModuleComponents />
                 </Col>
-                <Col md={3}>
-                    <LandingPageReview />
+                <Col lg={3}>
+                    <LandingPagePreview />
                 </Col>
             </Row>
         </Container>

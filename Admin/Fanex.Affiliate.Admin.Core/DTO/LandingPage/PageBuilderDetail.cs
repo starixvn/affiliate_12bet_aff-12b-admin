@@ -8,8 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.LandingPage
         public string PageCode { get; set; }
         public int CampaignId { get; set; }
         public string TargetCountryCode { get; set; }
-        public string MarketId { get; set; }
-        public string LanguageCode => MarketId;
+        public string LanguageCode { get; set; }
         public string DealIds { get; set; }
         public int StatusId { get; set; }
         public bool IsPreview { get; set; }

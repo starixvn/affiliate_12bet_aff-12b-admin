@@ -6,7 +6,7 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 
 export const landingPageUrl = createReducer(null, {});
-export const originalLanguageList = createReducer(null, {});
+export const allLanguagesInSystem = createReducer(null, {});
 
 export const targetCountryList = createReducer(null, {
     [types.SET_TARGET_COUNTRY_LIST](prevState, action) {
@@ -78,7 +78,7 @@ export default combineReducers({
     landingPageUrl,
     targetCountryList,
     languageList,
-    originalLanguageList,
+    allLanguagesInSystem,
     dealList,
     statusList,
     campaignList,

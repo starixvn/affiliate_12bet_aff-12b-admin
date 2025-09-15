@@ -8,22 +8,22 @@ import { configureStore } from '../../../modules/store';
 import { convertListToMutilpleSelected } from '../../../modules/utils';
 
 const App = () => {
-    const { targetCountryList, languageList, dealList, statusList, landingPageUrl, campaignList } = window.initialState;
+    const { targetCountryList, allLanguagesInSystem, dealList, statusList, landingPageUrl, campaignList } = window.initialState;
 
     // Convert lists to proper format for MultipleSelect components
     const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
-    const newLanguageList = convertListToMutilpleSelected([...new Map(languageList.map(item => [item.LanguageCode, item])).values()], 'LanguageCode', 'LanguageName');
+    const languageList = convertListToMutilpleSelected([...new Map(allLanguagesInSystem.map(item => [item.LanguageCode, item])).values()], 'LanguageCode', 'LanguageName');
     const newDealList = convertListToMutilpleSelected(dealList, 'GroupId', 'GroupName');
     const newStatusList = convertListToMutilpleSelected(statusList, 'StatusId', 'Status');
     const newCampaignList = convertListToMutilpleSelected(campaignList, 'CampaignId', 'CampaignName');
 
     const store = configureStore({
         targetCountryList: newTargetCountryList,
-        languageList: newLanguageList,
+        languageList,
         dealList: newDealList,
         statusList: newStatusList,
         landingPageUrl,
-        originalLanguageList: languageList,
+        allLanguagesInSystem,
         campaignList: newCampaignList
     }, reducer);
 

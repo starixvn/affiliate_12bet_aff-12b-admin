@@ -99,6 +99,11 @@
             return normalDeals;
         }
 
+        public IEnumerable<NormalDeal> GetMarketingDealList(GetNormalDealParam param)
+        {
+            return GetNormalDealList(param).Where(c => c.GroupName.Contains("NoCommission-"));
+        }
+
         public IEnumerable<TargetCountry> GetPlayerTargetCountry()
         {
             const string spKey = "Aff_Admin_Deal_PlayerTargetCountry_ListSel";

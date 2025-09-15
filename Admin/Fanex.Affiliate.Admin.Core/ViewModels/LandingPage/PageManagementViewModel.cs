@@ -11,8 +11,6 @@
     {
         public IEnumerable<CampaignInfo> CampaignList { get; set; }
 
-        public IEnumerable<Language> LanguageList { get; set; }
-
         public IEnumerable<Language> AllLanguagesInSystem { get; set; }
 
         public IEnumerable<TargetCountry> TargetCountryList { get; set; }

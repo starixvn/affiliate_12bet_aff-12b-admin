@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
 
 import { updateFormField } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
@@ -24,23 +24,27 @@ const TargetCountrySelector = ({ value, error, targetCountryList, updateFormFiel
 
     return (
         <FormGroup>
-            <Label for="targetCountrySelector">
-                {pageBuilderLabels.targetCountry}
-            </Label>
-            <Input
-                type="select"
-                id="targetCountrySelector"
-                value={value || ''}
-                onChange={handleChange}
-                invalid={!!error}
-            >
-                {targetCountryList && targetCountryList.map(country => (
-                    <option key={country.TargetCountryCode} value={country.TargetCountryCode}>
-                        {country.TargetCountryName}
-                    </option>
-                ))}
-            </Input>
-            {error && <FormFeedback>{error}</FormFeedback>} 
+            <Row className='align-items-center'>
+                <Label md={4} lg={3} for="targetCountrySelector">
+                    {pageBuilderLabels.targetCountry}
+                </Label>
+                <Col md={8} lg={9}>
+                    <Input
+                        type="select"
+                        id="targetCountrySelector"
+                        value={value || ''}
+                        onChange={handleChange}
+                        invalid={!!error}
+                    >
+                        {targetCountryList && targetCountryList.map(country => (
+                            <option key={country.TargetCountryCode} value={country.TargetCountryCode}>
+                                {country.TargetCountryName}
+                            </option>
+                        ))}
+                    </Input>
+                    {/* {error && <FormFeedback>{error}</FormFeedback>}  */}
+                </Col>
+            </Row>
         </FormGroup>
     );
 };

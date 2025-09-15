@@ -11,5 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         ResultInfo InsertPageBuilder(InsertUpdatePageBuilderParam param);
         ResultInfo UpdatePageBuilder(InsertUpdatePageBuilderParam param);
         PageBuilderDetail GetPageBuilderDetail(int pageId);
+        ResultInfo ValidatePageBuilderParam(InsertUpdatePageBuilderParam param);
     }
 }

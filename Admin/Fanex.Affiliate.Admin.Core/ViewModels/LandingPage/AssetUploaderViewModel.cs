@@ -8,7 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.LandingPage
     public class AssetUploaderViewModel
     {
         public IEnumerable<ModuleInfo> ModuleList { get; set; }
-        public IEnumerable<Language> LanguageList { get; set; }
         public IEnumerable<Language> AllLanguagesInSystem { get; set; }
         public IEnumerable<TargetCountry> TargetCountryList { get; set; }
         public IEnumerable<StatusInfo> StatusList { get; set; }

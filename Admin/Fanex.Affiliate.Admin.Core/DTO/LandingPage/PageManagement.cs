@@ -5,10 +5,9 @@
         public int PageId { get; set; }
         public string PageName { get; set; }
         public string PageCode { get; set; }
-        public string TargetCountryCode { get; set; }
         public string TargetCountryName { get; set; }
         public string Language { get; set; }
-        public string LanguageCode { get; set; }
+        public string TargetLanguageCode { get; set; }
         public string Deals { get; set; }
         public int NoOfDeals { get; set; }
         public byte StatusId { get; set; }

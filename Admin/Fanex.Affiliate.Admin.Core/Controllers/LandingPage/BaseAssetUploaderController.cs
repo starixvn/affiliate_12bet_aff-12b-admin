@@ -33,7 +33,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             var model = new AssetUploaderViewModel
             {
                 ModuleList = _landingPageService.GetModuleList(),
-                LanguageList = _landingPageService.GetLanguageList(),
                 AllLanguagesInSystem = _landingPageService.GetAllLanguagesInSystem(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
                 StatusList = LandingPageConstants.AssetStatusList,

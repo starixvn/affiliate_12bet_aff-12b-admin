@@ -49,8 +49,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             {
                 LandingPageUrl = _appSetting.LandingPageUrl,
                 CampaignList = _landingPageService.GetCampaignInfoList(),
-                LanguageList = _landingPageService.GetAllLanguagesInSystem(),
-                DealList = _landingPageService.GetNormalDealList(),
+                AllLanguagesInSystem = _landingPageService.GetAllLanguagesInSystem(),
+                DealList = _landingPageService.GetMarketingDealList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
                 StatusList = _landingPageService.GetLandingPageStatusList(),
                 ModuleList = _landingPageService.GetModuleList(),

@@ -4,36 +4,6 @@ import * as types from './types';
 
 export { toggleLoader };
 
-// Legacy actions (keep for backward compatibility)
-export const setSelectedLandingPageId = (data) => {
-    return {
-        type: types.SET_SELECTED_LANDING_PAGE_ID,
-        data
-    }
-}
-
-export const setCheckedLandingPages = (data) => {
-    return {
-        type: types.SET_CHECKED_LANDING_PAGES,
-        data
-    }
-}
-
-export const setShouldResetScrollPosition = (data) => {
-    return {
-        type: types.SHOULD_RESET_SCROLL_POSITION,
-        data
-    }
-}
-
-export const setGridData = (data) => {
-    return {
-        type: types.SET_GRID_DATA,
-        data
-    }
-}
-
-// Page Builder Form Actions
 export const setFormData = (data) => ({
     type: types.SET_FORM_DATA,
     data
@@ -59,11 +29,10 @@ export const clearValidationErrors = () => ({
     type: types.CLEAR_VALIDATION_ERRORS
 });
 
-// Module Component Actions
 export const addModuleComponent = () => (dispatch, getState) => {
     const { ui } = getState();
     const newModule = {
-        id: Date.now(), // Use timestamp as unique ID
+        id: Date.now(),
         orderId: ui.nextModuleOrder,
         moduleId: null,
         sourceId: null
@@ -80,8 +49,8 @@ export const insertModuleAfter = (afterModuleId) => (dispatch, getState) => {
     const afterIndex = moduleComponents.findIndex(m => m.id === afterModuleId);
     
     const newModule = {
-        id: Date.now(), // Use timestamp as unique ID
-        orderId: 0, // Will be set in reducer based on position
+        id: Date.now(),
+        orderId: 0,
         moduleId: null,
         mediaId: null
     };
@@ -115,7 +84,6 @@ export const setModuleComponents = (modules) => ({
     modules
 });
 
-// Dropdown Data Actions
 export const setCampaignList = (campaigns) => ({
     type: types.SET_CAMPAIGN_LIST,
     campaigns
@@ -142,17 +110,6 @@ export const setStatusList = (statusList) => ({
     statusList
 });
 
-// UI State Actions
-export const setPreviewModal = (isOpen) => ({
-    type: types.SET_PREVIEW_MODAL,
-    isOpen
-});
-
-export const setCopyLinkModal = (isOpen) => ({
-    type: types.SET_COPY_LINK_MODAL,
-    isOpen
-});
-
 export const setLoadingState = (isLoading) => ({
     type: types.SET_LOADING_STATE,
     isLoading
@@ -168,67 +125,6 @@ export const setPreviewUrl = (previewUrl) => ({
     previewUrl
 });
 
-export const fetchData = () => async (dispatch) => {
-    dispatch(toggleLoader(true));
-
-    const url = 'Portal/LandingPageList/GetLandingPageList';
-    const response = await post(url);
-
-    const data = response && response.status === 200 ? response.data : null;
-    const checkedLandingPages = data ? _convertCheckedLandingPages(data) : {};
-
-    dispatch(setGridData(data ? data : []));
-    dispatch(setShouldResetScrollPosition(true));
-    dispatch(setCheckedLandingPages(checkedLandingPages));
-    dispatch(toggleLoader(false));
-}
-
-function _convertCheckedLandingPages(dataList) {
-    const checkedLandingPages = {};
-    for (let item of dataList) {
-        const itemId = item.PageId;
-        checkedLandingPages[itemId] = false;
-    }
-
-    return checkedLandingPages;
-}
-
-export const getLandingPageDetail = (selectedLandingPageId) => async () => {
-    const url = 'Portal/LandingPageList/GetLandingPageItem';
-    const response = await post(url, { pageId: selectedLandingPageId });
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const getTargetCountryListByLandingPage = (param) => async () => {
-    const url = 'Portal/LandingPageList/GetTargetCountryListByLandingPage';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const insertLandingPage = (param) => async () => {
-    const url = 'Portal/LandingPageList/InsertLandingPage';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const updateLandingPage = (param) => async () => {
-    const url = 'Portal/LandingPageList/UpdateLandingPage';
-    const response = await post(url, param);
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-export const deleteLandingPages = (landingPageIds) => async () => {
-    const url = 'Portal/LandingPageList/DeleteLandingPage';
-    const response = await post(url, { pageIds: landingPageIds });
-
-    return response && response.status === 200 ? response.data : null;
-}
-
-// Page Builder API Actions
 export const fetchCampaigns = () => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/GetCampaignList';
@@ -271,7 +167,7 @@ export const fetchModuleSources = (moduleId) => async (dispatch) => {
 export const validatePageName = (pageName, pageId = null) => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/ValidatePageName';
-        const response =  {data: {IsValid: true}, status: 200};//await post(url, { pageName, pageId });
+        const response =  {data: {IsValid: true}, status: 200};
         
         if (response && response.status === 200) {
             const isValid = response.data && response.data.IsValid;
@@ -296,7 +192,7 @@ export const validatePageName = (pageName, pageId = null) => async (dispatch) =>
 export const validatePageCode = (pageCode, pageId = null) => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/ValidatePageCode';
-        const response = {data: {IsValid: true}, status: 200};//await post(url, { pageCode, pageId });
+        const response = {data: {IsValid: true}, status: 200};
         
         if (response && response.status === 200) {
             const isValid = response.data && response.data.IsValid;
@@ -322,8 +218,6 @@ export const saveLandingPage = (formData, moduleComponents, isReview = false) =>
     try {
         dispatch(setLoadingState(true));
         
-        // Format module components as ModuleComponentsSetting JSON
-        // If component.mediaId is an array, create a new object for each item
         let moduleComponentsSetting = [];
         moduleComponents.forEach(component => {
             if (Array.isArray(component.mediaId)) {
@@ -345,9 +239,8 @@ export const saveLandingPage = (formData, moduleComponents, isReview = false) =>
             }
         });
         
-        // Determine if this is an update (pageId > 0) or insert (pageId = 0)
         const isUpdate = formData.pageId && formData.pageId > 0;
-        const url = isUpdate ? 'Portal/PageBuilder/UpdatePageBuilder' : 'Portal/PageBuilder/InsertPageBuilder';
+        const url = isUpdate && !isReview ? 'Portal/PageBuilder/UpdatePageBuilder' : 'Portal/PageBuilder/InsertPageBuilder';
         
         const payload = {
             PageId: formData.pageId || 0,
@@ -376,7 +269,6 @@ export const saveLandingPage = (formData, moduleComponents, isReview = false) =>
     }
 };
 
-// Preview now uses the same saveLandingPage function with isReview=true
 export const generatePreviewUrl = (formData, moduleComponents) => async (dispatch) => {
     return await dispatch(saveLandingPage(formData, moduleComponents, true));
 };

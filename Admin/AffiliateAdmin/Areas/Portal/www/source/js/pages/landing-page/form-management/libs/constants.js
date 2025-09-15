@@ -15,7 +15,7 @@ export const messageDelete = {
     PleaseSelect: 'Please select form(s) to delete',
     AreYouSureDeleteItems: 'The delete action will only be performed on assets that are not associated with any landing page.<br />Are you sure you want to delete the selected form(s)?',
     DeleteItemsSuccessfully: 'Delete form(s) successfully',
-    FailedToDeleteItems: 'Failed to delete form(s)'
+    FailedToDelete: 'Failed to delete form(s)'
 }
 
 export const messageSwitchStatus = {

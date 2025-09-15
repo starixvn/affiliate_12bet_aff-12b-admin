@@ -12,9 +12,10 @@ import {
     clearValidationErrors,
     setValidationErrors,
     setHasPreviewedOrCreated,
-    setPreviewUrl
+    setPreviewUrl,
+    initializeFromPageBuilderDetail
 } from '../../actions';
-import { pageBuilderLabels, pageBuilderDefaultState } from '../../libs/constants';
+import { pageBuilderLabels, pageBuilderDefaultState, pageCodePattern, validationMessages } from '../../libs/constants';
 
 const ActionButtons = ({ 
     formData, 
@@ -23,6 +24,7 @@ const ActionButtons = ({
     validation, 
     ui,
     isEditMode,
+    pageBuilderDetail,
     languageList,
     landingPageUrl,
     saveLandingPage,
@@ -32,13 +34,11 @@ const ActionButtons = ({
     clearValidationErrors,
     setValidationErrors,
     setHasPreviewedOrCreated,
-    setPreviewUrl
+    setPreviewUrl,
+    initializeFromPageBuilderDetail
 }) => {
     const handlePreview = useCallback(async () => {
-        // Always validate form and show errors when Preview is clicked
-        // Pass current formData and moduleComponents to ensure we have latest values
         if (!validateForm(formData, moduleComponents)) {
-            // Validation errors are already set by validateForm, just return
             return;
         }
         
@@ -46,11 +46,9 @@ const ActionButtons = ({
             const result = await generatePreviewUrl(formData, moduleComponents);
             
             if (result && result.IsSuccessful) {
-                // Construct preview URL: landingPageUrl + shortedLanguageCode + pageCode
                 let constructedPreviewUrl = '';
                 
                 if (landingPageUrl && formData.pageCode) {
-                    // Find the language with matching LanguageCode and TargetCountryCode
                     const selectedLanguage = languageList?.find(lang => 
                         lang.LanguageCode === formData.languageCode && 
                         lang.TargetCountryCode === formData.targetCountryCode
@@ -58,17 +56,15 @@ const ActionButtons = ({
                     
                     const shortedLanguageCode = selectedLanguage?.ShortedLanguageCode || '';
                     
-                    // Combine: landingPageUrl + shortedLanguageCode + pageCode
                     constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}?isPreview=true&pageId=${result.Message}`;
                 }
                 
                 setPreviewUrl(constructedPreviewUrl || result.PreviewUrl);
-                setHasPreviewedOrCreated(true); // Enable Copy Link button
+                setHasPreviewedOrCreated(true);
             } else {
                 alert(result ? result.Message : 'Failed to generate preview. Please check your form data and try again.');
             }
         } catch (err) {
-            console.error('Preview generation error:', err);
             alert('An error occurred while generating the preview.');
         }
     }, [validateForm, formData, moduleComponents, generatePreviewUrl, languageList, landingPageUrl, setPreviewUrl, setHasPreviewedOrCreated]);
@@ -86,6 +82,8 @@ const ActionButtons = ({
 
         if ((!currentFormData.pageCode || currentFormData.pageCode.trim() === '') && (!currentFormData.pagecode || currentFormData.pagecode.trim() === '')) {
             errors.pageCode = 'Page Code is required';
+        } else if (currentFormData.pageCode && !pageCodePattern.test(currentFormData.pageCode)) {
+            errors.pageCode = validationMessages.pageCodeInvalid;
         }
 
         if (!currentFormData.dealIds || 
@@ -184,13 +182,32 @@ const ActionButtons = ({
     }, [formData, moduleComponents, moduleList, setValidationErrors, clearValidationErrors]);
 
     const handleReset = useCallback(() => {
-        if (window.confirm('Are you sure you want to reset the form? All changes will be lost.')) {
-            setFormData(pageBuilderDefaultState.formData);
-            setModuleComponents(pageBuilderDefaultState.moduleComponentsSetting);
-            clearValidationErrors();
-            setHasPreviewedOrCreated(false); // Reset Copy Link availability
+        const confirmMessage = isEditMode 
+            ? 'Are you sure you want to reset the form? All changes will be reverted to the original values.'
+            : 'Are you sure you want to reset the form? All changes will be lost.';
+            
+        if (window.confirm(confirmMessage)) {
+            if (isEditMode && pageBuilderDetail) {
+                // Reset to original edit values
+                initializeFromPageBuilderDetail(pageBuilderDetail);
+                // Keep preview availability in edit mode since we have original data
+                setHasPreviewedOrCreated(true);
+                // Clear validation errors after form is initialized
+                // Use requestAnimationFrame to ensure DOM updates are complete
+                requestAnimationFrame(() => {
+                    clearValidationErrors();
+                });
+            } else {
+                // Clear validation errors first for create mode
+                clearValidationErrors();
+                // Reset to empty form for create mode
+                setFormData(pageBuilderDefaultState.formData);
+                setModuleComponents(pageBuilderDefaultState.moduleComponentsSetting);
+                setHasPreviewedOrCreated(false);
+                setPreviewUrl(''); // Clear any existing preview URL
+            }
         }
-    }, [setFormData, setModuleComponents, clearValidationErrors, setHasPreviewedOrCreated]);
+    }, [isEditMode, pageBuilderDetail, setFormData, setModuleComponents, clearValidationErrors, setHasPreviewedOrCreated, setPreviewUrl, initializeFromPageBuilderDetail]);
 
     const handleCreate = useCallback(async () => {
         // Always validate form and show errors when Create is clicked
@@ -218,18 +235,15 @@ const ActionButtons = ({
         <Row className="py-4">
             <Col>
                 <div className="action-buttons" style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '10px' }}>
-                    {
-                        !isEditMode && <Button 
-                            color="info" 
-                            onClick={handlePreview}
-                            disabled={ui.isLoading}
-                            title="Preview landing page"
-                        >
-                            <i className="fa fa-eye me-1"></i>
-                            {pageBuilderLabels.preview}
-                        </Button>
-                    }
-
+                    <Button 
+                        color="info" 
+                        onClick={handlePreview}
+                        disabled={ui.isLoading}
+                        title="Preview landing page"
+                    >
+                        <i className="fa fa-eye me-1"></i>
+                        {pageBuilderLabels.preview}
+                    </Button>
                     <Button 
                         color="success" 
                         onClick={handleCreate}
@@ -250,7 +264,7 @@ const ActionButtons = ({
                     </Button>
 
                     <Button 
-                        color="secondary" 
+                        className="border border-primary text-dark bg-light" 
                         onClick={handleReset}
                         disabled={ui.isLoading}
                         title="Reset form to initial state"
@@ -268,8 +282,8 @@ const ActionButtons = ({
     );
 };
 
-function mapStateToProps({ formData, moduleComponents, moduleList, validation, ui, isEditMode, languageList, landingPageUrl }) {
-    return Object.assign({}, { formData, moduleComponents, moduleList, validation, ui, isEditMode, languageList, landingPageUrl });
+function mapStateToProps({ formData, moduleComponents, moduleList, validation, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl }) {
+    return Object.assign({}, { formData, moduleComponents, moduleList, validation, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl });
 }
 
 function mapDispatchToProps(dispatch) {
@@ -281,7 +295,8 @@ function mapDispatchToProps(dispatch) {
         clearValidationErrors,
         setValidationErrors,
         setHasPreviewedOrCreated,
-        setPreviewUrl
+        setPreviewUrl,
+        initializeFromPageBuilderDetail
     }, dispatch);
 }
 

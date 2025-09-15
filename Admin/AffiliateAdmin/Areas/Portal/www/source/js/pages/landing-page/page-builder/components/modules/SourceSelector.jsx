@@ -26,27 +26,23 @@ const SourceSelector = ({
         }
     }, [selectedModuleId, fetchModuleSources]);
 
-    // Basic data setup
     const isDisabled = !selectedModuleId;
     const sources = selectedModuleId ? allSources[selectedModuleId] || [] : [];
     const currentModule = moduleComponents.find(m => m.id === moduleId);
     const selectedModuleInfo = moduleList.find(m => m.ModuleId === selectedModuleId);
     
-    // Module type detection
     const isMultipleUpload = selectedModuleInfo?.IsMultipleUpload;
     const selectedModuleType = selectedModuleInfo?.ModuleType;
     const isYoutubeModule = selectedModuleType === 4;
     const isContactUsModule = selectedModuleType === 2;
     const isLoginBtnModule = selectedModuleType === 5;
     
-    // Temporary override for multi-select modules
     const forceMultiSelectModules = ['hero image', 'favorite games', 'provider', 'promo list'];
     const shouldBeMultiSelect = forceMultiSelectModules.some(name => 
         selectedModuleInfo?.ModuleName?.toLowerCase().includes(name.toLowerCase())
     );
     const finalIsMultipleUpload = isMultipleUpload || shouldBeMultiSelect;
 
-    // Event handlers
     const handleSingleSelect = useCallback((event) => {
         const mediaId = event.target.value || null;
         updateModuleComponent(moduleId, 'mediaId', mediaId);
@@ -79,21 +75,17 @@ const SourceSelector = ({
         const currentValues = Array.isArray(value) ? value : [];
         const allSourceIds = sources.map(source => source.MediaId);
         
-        // If all sources are already selected, unselect all
         const allSelected = allSourceIds.every(sourceId => currentValues.includes(sourceId));
         
         if (allSelected) {
-            // Remove all sources from selection
             const newValues = currentValues.filter(sourceId => !allSourceIds.includes(sourceId));
             updateModuleComponent(moduleId, 'mediaId', newValues.length > 0 ? newValues : null);
         } else {
-            // Add all sources to selection (avoid duplicates)
             const newValues = [...new Set([...currentValues, ...allSourceIds])];
             updateModuleComponent(moduleId, 'mediaId', newValues);
         }
     }, [value, sources, updateModuleComponent, moduleId]);
 
-    // Render appropriate component based on module type
     if (isContactUsModule) {
         return (
             <DualInputSelector
@@ -129,7 +121,6 @@ const SourceSelector = ({
     }
 
     if (isYoutubeModule) {
-        console.log('currentModule', currentModule);
         return (
             <TextInputSelector
                 moduleId={moduleId}
@@ -156,7 +147,6 @@ const SourceSelector = ({
         );
     }
 
-    // Default: Single select dropdown
     return (
         <div className="source-selector">
             <FormGroup>
@@ -168,7 +158,7 @@ const SourceSelector = ({
                     isDisabled={isDisabled}
                     onChange={handleSingleSelect}
                 />
-                {error && <FormFeedback>{error}</FormFeedback>}
+                {/* {error && <FormFeedback>{error}</FormFeedback>} */}
             </FormGroup>
         </div>
     );

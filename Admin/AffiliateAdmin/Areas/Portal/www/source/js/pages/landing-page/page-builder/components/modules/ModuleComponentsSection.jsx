@@ -6,33 +6,21 @@ import ModuleRow from './ModuleRow';
 import { pageBuilderLabels, validationMessages } from '../../libs/constants';
 
 const ModuleComponentsSection = ({ moduleComponents, validation }) => {
-
-    const hasModuleErrors = validation.errors.moduleComponents;
-
     return (
         <div className="module-components-section">
-            {hasModuleErrors && (
-                <Row className="mb-3">
-                    <Col>
-                        <Alert color="danger">
-                            {hasModuleErrors}
-                        </Alert>
-                    </Col>
-                </Row>
-            )}
 
             {/* Header Row */}
             <Row className="mb-2">
-                <Col sm={1} className="text-center">
+                <Col xs={1} className="text-center">
                     <strong>{pageBuilderLabels.orderId}</strong>
                 </Col>
-                <Col sm={4}>
+                <Col xs={4}>
                     <strong>{pageBuilderLabels.module}</strong>
                 </Col>
-                <Col sm={4}>
+                <Col xs={4}>
                     <strong>{pageBuilderLabels.source}</strong>
                 </Col>
-                <Col sm={3} className="text-center">
+                <Col xs={3} className="text-center">
                     <strong>Actions</strong>
                 </Col>
             </Row>

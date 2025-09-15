@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
 
 import { updateFormField, validatePageCode, setValidationErrors } from '../../actions';
 import { pageBuilderLabels, validationMessages, pageCodePattern } from '../../libs/constants';
@@ -14,13 +14,17 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
         // Sync with external value changes
         if (value !== localValue) {
             setLocalValue(value || '');
-            if (!pageCodePattern.test(value)) {
-                setValidationErrors({
-                    pageCode: validationMessages.pageCodeInvalid
-                });
+            // Only validate pattern if value exists and is not empty
+            // Skip validation if there are no existing validation errors (likely a programmatic reset)
+            if (value && value.trim().length > 0 && validation && validation.errors && Object.keys(validation.errors).length > 0) {
+                if (!pageCodePattern.test(value)) {
+                    setValidationErrors({
+                        pageCode: validationMessages.pageCodeInvalid
+                    });
+                }
             }
         }
-    }, [value]);
+    }, [value, validation, setValidationErrors]);
 
     // Validate page code when initialized from pageBuilderDetail (edit mode)
     useEffect(() => {
@@ -106,34 +110,37 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
 
     return (
         <FormGroup>
-            <Label for="pageCodeInput" className={required ? 'required' : ''}>
-                {pageBuilderLabels.pageCode}
-            </Label>
-            <Input
-                type="text"
-                id="pageCodeInput"
-                value={localValue}
-                onChange={handleChange}
-                invalid={!!error}
-                valid={getValidationState() === true}
-                placeholder="e.g.: LP-2025-NY"
-                maxLength={50}
-            />
-            {error && <FormFeedback>{error}</FormFeedback>}
-            {isValidating && (
-                <small className="text-muted">
-                    <i className="fa fa-spinner fa-spin me-1"></i>
-                    Checking availability...
-                </small>
-            )}
-            {!error && localValue && !isValidating && (
-                <FormFeedback valid>
-                    Page code is available
-                </FormFeedback>
-            )}
-            {/* <small className="text-muted">
-                Page code will be used in URLs. Only letters, numbers, hyphens and underscores are allowed.
-            </small> */}
+            <Row className='align-items-center'>
+                <Label md={4} lg={3} for="pageCodeInput" className={required ? 'required' : ''}>
+                    {pageBuilderLabels.pageCode}
+                </Label>
+                <Col md={8} lg={9}>
+                    <Input
+                        type="text"
+                        id="pageCodeInput"
+                        value={localValue}
+                        onChange={handleChange}
+                        invalid={!!error}
+                        placeholder="e.g.: LP-2025-NY"
+                        maxLength={100}
+                    />
+                    {/* {error && <FormFeedback>{error}</FormFeedback>} */}
+                    {isValidating && (
+                        <small className="text-muted">
+                            <i className="fa fa-spinner fa-spin me-1"></i>
+                            Checking availability...
+                        </small>
+                    )}
+                    {/* {!error && localValue && !isValidating && (
+                        <FormFeedback valid>
+                            Page code is available
+                        </FormFeedback>
+                    )} */}
+                    {/* <small className="text-muted">
+                        Page code will be used in URLs. Only letters, numbers, hyphens and underscores are allowed.
+                    </small> */}
+                </Col>
+            </Row>
         </FormGroup>
     );
 };

@@ -84,18 +84,6 @@ export const Filter = ({
         <div className="filter-container my-2 pb-0">
             <Form inline tag="div">
                 <FormGroup className="mr-sm-3 pb-2">
-                    <Label htmlFor="landingPageName" className="mr-sm-2">Landing Page Name</Label>
-                    <Input 
-                        type="text" 
-                        name="landingPageName" 
-                        id="landingPageName" 
-                        value={filters.landingPageName} 
-                        onChange={handleChange}
-                        placeholder=""
-                    />
-                </FormGroup>
-                
-                <FormGroup className="mr-sm-3 pb-2">
                     <Label htmlFor="campaignName" className="mr-sm-2">Campaign Name</Label>
                     <Input 
                         type="text" 
@@ -103,23 +91,19 @@ export const Filter = ({
                         id="campaignName" 
                         value={filters.campaignName} 
                         onChange={handleChange}
-                        placeholder=""
+                        placeholder="Search campaign name"
                     />
                 </FormGroup>
-                
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
-                    <Label htmlFor="deal" className="mr-sm-2">Deal</Label>
-                    <MultipleSelect
-                        id="deal"
-                        dataSource={dealList || []}
-                        keyField="key"
-                        valueField="name"
-                        statusField="checked"
-                        maxDisplayItemCount={1}
-                        hasInputOption={true}
-                        noneSelectedLabel="No Selection"
-                        selectedAllLabel="All"
-                        onChange={handleChangeDeal} />
+                <FormGroup className="mr-sm-3 pb-2">
+                    <Label htmlFor="landingPageName" className="mr-sm-2">Page Name</Label>
+                    <Input 
+                        type="text" 
+                        name="landingPageName" 
+                        id="landingPageName" 
+                        value={filters.landingPageName} 
+                        onChange={handleChange}
+                        placeholder="Search page name"
+                    />
                 </FormGroup>
 
                 <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
@@ -152,6 +136,21 @@ export const Filter = ({
                         onChange={handleChangeLanguage} />
                 </FormGroup>
 
+                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                    <Label htmlFor="deal" className="mr-sm-2">Deal</Label>
+                    <MultipleSelect
+                        id="deal"
+                        dataSource={dealList || []}
+                        keyField="key"
+                        valueField="name"
+                        statusField="checked"
+                        maxDisplayItemCount={1}
+                        hasInputOption={true}
+                        noneSelectedLabel="No Selection"
+                        selectedAllLabel="All"
+                        onChange={handleChangeDeal} />
+                </FormGroup>
+                
                 <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
                     <Label htmlFor="status" className="mr-sm-2">Status</Label>
                     <MultipleSelect

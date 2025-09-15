@@ -78,7 +78,7 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
             <Dropdown isOpen={isOpen} toggle={toggle} className="w-100">
                 <DropdownToggle
                     caret
-                    className={`form-control text-left ${error ? 'is-invalid' : ''}`}
+                    className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
                     style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
                 >
                     {displayText}
@@ -117,7 +117,7 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                     )}
                 </DropdownMenu>
             </Dropdown>
-            {error && <div className="invalid-feedback d-block">{error}</div>}
+            {/* {error && <div className="invalid-feedback d-block">{error}</div>} */}
         </div>
     );
 };

@@ -1,39 +1,31 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Input, FormGroup, Label, Alert } from 'reactstrap';
+import { Button, FormGroup, Alert } from 'reactstrap';
 
 const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPageUrl, pageBuilderDetail, isEditMode, ui, validation }) => {
-    const [copySuccess, setCopySuccess] = useState(false);
-    const [error, setError] = useState(null);
+    const [alertState, setAlertState] = useState({ show: false, type: 'success', message: '' });
 
-    // Function to construct URL from pageBuilderDetail or formData
-    const constructPreviewUrl = useCallback((sourceData, sourceLanguageCode, sourceTargetCountryCode, sourcePageCode) => {
+    const constructPreviewUrl = useCallback((sourceLanguageCode, sourceTargetCountryCode, sourcePageCode) => {
         if (!landingPageUrl || !sourcePageCode) return '';
-        
-        // Find the language with matching LanguageCode and TargetCountryCode
+
         const selectedLanguage = languageList?.find(lang => 
-            lang.LanguageCode === sourceLanguageCode && 
-            lang.TargetCountryCode === sourceTargetCountryCode
+            lang.LanguageCode == sourceLanguageCode && 
+            lang.TargetCountryCode == sourceTargetCountryCode
         );
-        
+
         const shortedLanguageCode = selectedLanguage?.TargetLanguageCode || selectedLanguage?.ShortedLanguageCode;
         
-        // Combine: landingPageUrl + shortedLanguageCode + pageCode
         return `${landingPageUrl}/${shortedLanguageCode}/${sourcePageCode}`;
     }, [landingPageUrl, languageList]);
 
-    // Get the preview URL from Redux state or construct it as fallback
     const getPreviewUrl = useCallback(() => {
-        // First try to get from Redux state (set by ActionButtons)
         if (ui.previewUrl) {
             return ui.previewUrl;
         }
         
-        // Fallback: construct URL for edit mode
         if (isEditMode && pageBuilderDetail && pageBuilderDetail.PageCode && !validation.isValidating) {
             return constructPreviewUrl(
-                pageBuilderDetail,
                 pageBuilderDetail.LanguageCode,
                 pageBuilderDetail.TargetCountryCode,
                 pageBuilderDetail.PageCode
@@ -46,38 +38,64 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
     const handleCopyToClipboard = useCallback(async () => {
         const urlToCopy = getPreviewUrl();
         
-        if (!urlToCopy) return;
+        if (!urlToCopy) {
+            setAlertState({ 
+                show: true, 
+                type: 'danger', 
+                message: 'No URL available to copy. Please generate a preview first.' 
+            });
+            setTimeout(() => setAlertState({ show: false, type: 'success', message: '' }), 5000);
+            return;
+        }
+
+        setAlertState({ show: false, type: 'success', message: '' });
 
         try {
             await navigator.clipboard.writeText(urlToCopy);
-            setCopySuccess(true);
+            setAlertState({ 
+                show: true, 
+                type: 'success', 
+                message: 'Link copied to clipboard successfully!' 
+            });
             
-            // Reset success message after 3 seconds
             setTimeout(() => {
-                setCopySuccess(false);
+                setAlertState({ show: false, type: 'success', message: '' });
             }, 3000);
         } catch (err) {
-            console.error('Failed to copy to clipboard:', err);
-            
-            // Fallback for older browsers
             const textArea = document.createElement('textarea');
             textArea.value = urlToCopy;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
             document.body.appendChild(textArea);
+            textArea.focus();
             textArea.select();
             
             try {
-                document.execCommand('copy');
-                setCopySuccess(true);
-                setTimeout(() => setCopySuccess(false), 3000);
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    setAlertState({ 
+                        show: true, 
+                        type: 'success', 
+                        message: 'Link copied to clipboard successfully!' 
+                    });
+                    setTimeout(() => setAlertState({ show: false, type: 'success', message: '' }), 3000);
+                } else {
+                    throw new Error('execCommand copy returned false');
+                }
             } catch (fallbackErr) {
-                console.error('Fallback copy failed:', fallbackErr);
+                setAlertState({ 
+                    show: true, 
+                    type: 'danger', 
+                    message: 'Failed to copy URL to clipboard. Please copy the URL manually.' 
+                });
+                setTimeout(() => setAlertState({ show: false, type: 'success', message: '' }), 5000);
             }
             
             document.body.removeChild(textArea);
         }
     }, [getPreviewUrl]);
 
-    // In edit mode, we can use pageBuilderDetail data, otherwise validate formData
     const isFormValid = isEditMode && pageBuilderDetail ? 
                        (pageBuilderDetail.CampaignId && 
                         pageBuilderDetail.PageName && 
@@ -88,7 +106,6 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
                         formData.pageCode &&
                         moduleComponents.length > 0);
 
-    // Check if copy link should be enabled
     const isCopyLinkEnabled = !!getPreviewUrl() || 
                              (isEditMode && pageBuilderDetail && isFormValid) || 
                              ui.hasPreviewedOrCreated;
@@ -96,45 +113,28 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
     return (
         <div className="mt-3">
             <FormGroup>
-                {/* <Label for="previewUrl" className="small text-muted">
-                    <i className="fa fa-link me-1"></i>
-                    Preview Link
-                </Label> */}
-                
-                {error && (
-                    <Alert color="danger" className="mb-2 py-2">
-                        <small>
-                            <i className="fa fa-exclamation-triangle me-1"></i>
-                            {error}
-                        </small>
-                    </Alert>
-                )}
-
-                    <div>
-                        <div className="input-group">
-                            <div className="mt-2 p-2 bg-light border rounded w-100" style={{ fontSize: '11px', fontFamily: 'monospace', wordBreak: 'break-all' }}>
-                                {getPreviewUrl()}
-                            </div>
-                            <Button
-                                color="primary"
-                                className='w-100'
-                                disabled={!isCopyLinkEnabled}
-                                onClick={handleCopyToClipboard}
-                                title="Copy to clipboard"
-                            >
-                                <i className="fa fa-copy me-1"></i>
-                                Copy Link
-                            </Button>
-                        </div>
+                <div>
+                    <div className='p-2 bg-light border w-100' style={{ fontSize: '11px', wordBreak: 'break-all', minHeight: '51px' }}>
+                        {
+                            alertState.show ? (
+                                <span className={`text-${alertState.type}`}>{alertState.message}</span>
+                            ) : (
+                                <span>{getPreviewUrl()}</span>
+                            )
+                        }
                     </div>
-                {copySuccess && (
-                    <Alert color="success" className="mt-2">
-                        <small>
-                            <i className="fa fa-check me-1"></i>
-                            Link copied to clipboard successfully!
-                        </small>
-                    </Alert>
-                )}
+                    
+                    <Button
+                        color={isCopyLinkEnabled ? 'primary' : 'secondary'}
+                        className='w-100'
+                        disabled={!isCopyLinkEnabled}
+                        onClick={handleCopyToClipboard}
+                        title="Copy to clipboard"
+                    >
+                        <i className="fa fa-copy me-1"></i>
+                        Copy Link
+                    </Button>
+                </div>
             </FormGroup>
         </div>
     );

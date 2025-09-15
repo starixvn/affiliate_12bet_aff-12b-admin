@@ -290,7 +290,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\source-selectors\TextInputSelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\SourceSelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\CreateNewLandingPage.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\LandingPageReview.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\LandingPagePreview.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\ModuleComponents.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\libs\constants.js" />
@@ -1542,7 +1542,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\__test__\__snapshots__\InsertUpdateForm.test.js.snap" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\__test__\__snapshots__\index.test.js.snap" />
     <Content Include="Areas\Portal\Views\LandingPage\AssetUploader.cshtml" />
-    <Content Include="Areas\Portal\Views\LandingPage\ModuleManagement.cshtml" />
     <Content Include="Areas\Portal\Views\LandingPage\PageBuilder.cshtml" />
     <Content Include="Areas\Portal\Views\CampaignManagement\Index.cshtml" />
     <None Include="packages.config" />

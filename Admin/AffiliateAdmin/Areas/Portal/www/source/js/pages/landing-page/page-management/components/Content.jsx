@@ -10,7 +10,7 @@ import { headerText, globalResource, messageSwitchStatus } from '../libs/constan
 import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam } from '../actions';
 
 export const Content = (props) => {
-    const { originalLanguageList, statusList } = props;
+    const { allLanguagesInSystem, statusList } = props;
 
     useEffect(() => {
         const { param } = props;
@@ -59,14 +59,14 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={50} title={headerText.CampaignCode}>{headerText.CampaignCode}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.CampaignName}>{headerText.CampaignName}</Cell>
                 <Cell header={true} colWidth={60} title={headerText.PageName}>{headerText.PageName}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.PageCode}>{headerText.PageCode}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
+                <Cell header={true} colWidth={50} title={headerText.PageCode}>{headerText.PageCode}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
                 <Cell header={true} colWidth={40} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.Deal}>{headerText.Deal}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.LastModifiedDate}>{headerText.LastModifiedDate}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.LastModifiedBy}>{headerText.LastModifiedBy}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.LastModifiedDate}>{headerText.LastModifiedDate}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.LastModifiedBy}>{headerText.LastModifiedBy}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={20} title={headerText.Action}>{headerText.Action}</Cell>
             </Row>
@@ -95,15 +95,6 @@ export const Content = (props) => {
         return `status-${statusName.toLowerCase()}`;
     }
 
-    const _getTargetLanguageCode = (languageCode, targetCountryCode) => {
-        const selectedLanguage = originalLanguageList?.find(lang => 
-            lang.LanguageCode === languageCode && 
-            lang.TargetCountryCode === targetCountryCode
-        );
-
-        return selectedLanguage?.TargetLanguageCode || selectedLanguage?.ShortedLanguageCode;
-    }
-
     function _buildDataRow(dataItem, index) {
         const campaignCode = htmlDecode(dataItem.CampaignCode);
         const campaignName = htmlDecode(dataItem.CampaignName);
@@ -126,17 +117,17 @@ export const Content = (props) => {
                 <Cell className="text-left" title={campaignCode}>{campaignCode}</Cell>
                 <Cell className="text-left" title={campaignName}>{campaignName}</Cell>
                 <Cell className="text-left" title={landingPageName}>
-                    <a href={`${props.landingPageUrl}/${_getTargetLanguageCode(dataItem.LanguageCode, dataItem.TargetCountryCode)}/${landingPageCode}`} target="_blank">{landingPageName}</a>
+                    <a href={`${props.landingPageUrl}/${dataItem.TargetLanguageCode}/${landingPageCode}`} target="_blank">{landingPageName}</a>
                 </Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
-                <Cell className="text-left" title={targetCountry}>{targetCountry}</Cell>
-                <Cell className="text-left" title={language}>{language}</Cell>
+                <Cell className="text-center" title={targetCountry}>{targetCountry}</Cell>
+                <Cell className="text-center" title={language}>{language}</Cell>
                 <Cell className="text-center text-primary" title={dealList}>{deal}</Cell>
-                <Cell className="text-left" title={createdDate}>{createdDate}</Cell>
-                <Cell className="text-left" title={createdBy}>{createdBy}</Cell>
-                <Cell className="text-left" title={lastModified}>{lastModified}</Cell>
-                <Cell className="text-left" title={lastModifiedBy}>{lastModifiedBy}</Cell>
-                <Cell className="text-left" title={statusItem.name}>
+                <Cell className="text-center" title={createdDate}>{createdDate}</Cell>
+                <Cell className="text-center" title={createdBy}>{createdBy}</Cell>
+                <Cell className="text-center" title={lastModified}>{lastModified}</Cell>
+                <Cell className="text-center" title={lastModifiedBy}>{lastModifiedBy}</Cell>
+                <Cell className="text-center" title={statusItem.name}>
                     <Input 
                         type="select" 
                         className={`status-dropdown ${statusClass}`}
@@ -187,8 +178,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, originalLanguageList }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, originalLanguageList });
+function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, allLanguagesInSystem }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, allLanguagesInSystem });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -1,20 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import { FormGroup, Label, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col } from 'reactstrap';
 
-import { updateFormField, fetchDeals } from '../../actions';
+import { updateFormField } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 
-const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField, fetchDeals }) => {
+const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField, required = false }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-
-    useEffect(() => {
-        if (campaignId) {
-            fetchDeals(campaignId);
-        }
-    }, [campaignId, fetchDeals]);
 
     const toggle = useCallback(() => {
         setIsOpen(prevState => !prevState);
@@ -41,15 +35,12 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
         const currentDeals = Array.isArray(value) ? value : [];
         const allDealIds = filteredDeals.map(deal => deal.key);
         
-        // If all filtered deals are already selected, unselect all
         const allSelected = allDealIds.every(dealId => currentDeals.includes(dealId));
         
         if (allSelected) {
-            // Remove all filtered deals from selection
             const newDeals = currentDeals.filter(dealId => !allDealIds.includes(dealId));
             updateFormField('dealIds', newDeals);
         } else {
-            // Add all filtered deals to selection (avoid duplicates)
             const newDeals = [...new Set([...currentDeals, ...allDealIds])];
             updateFormField('dealIds', newDeals);
         }
@@ -59,7 +50,6 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
         deal.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Check if all filtered deals are selected
     const allFilteredSelected = filteredDeals.length > 0 && 
         filteredDeals.every(deal => value.includes(deal.key));
 
@@ -69,82 +59,84 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
 
     return (
         <FormGroup>
-            <Label for="dealSelector">
-                {pageBuilderLabels.deal}
-            </Label>
-            <Dropdown isOpen={isOpen} toggle={toggle} className="w-100">
-                <DropdownToggle 
-                    caret 
-                    className={`form-control text-left ${error ? 'is-invalid' : ''}`}
-                    style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
-                >
-                    {selectedDealsText}
-                </DropdownToggle>
-                <DropdownMenu className="w-100" style={{ maxHeight: '300px', overflowY: 'auto' }}>
-                    <DropdownItem header>
-                        <Input
-                            type="text"
-                            placeholder="Search deals..."
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            onClick={(e) => e.stopPropagation()}
-                        />
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem toggle={false}>
-                        <span
-                            className="w-100"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleAddDeal();
-                            }}
+            <Row className='align-items-center'>
+                <Label md={4} lg={3} for="dealSelector" className={required ? 'required' : ''}>
+                    {pageBuilderLabels.deal}
+                </Label>
+                <Col md={8} lg={9}>
+                    <Dropdown isOpen={isOpen} toggle={toggle} className="w-100">
+                        <DropdownToggle 
+                            caret 
+                            id="dealSelector"
+                            className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
+                            style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
                         >
-                            <i className="fa fa-plus me-1"></i>
-                            Add New ...
-                        </span>
-                    </DropdownItem>
-                    {filteredDeals.length > 0 && (
-                        <DropdownItem 
-                            toggle={false}
-                            onClick={handleSelectAll}
-                            className="d-flex align-items-center"
-                            style={{ backgroundColor: '#f8f9fa' }}
-                        >
-                            <Input
-                                type="checkbox"
-                                checked={allFilteredSelected}
-                                onChange={() => {}} // Handled by onClick
-                                className="me-2"
-                            />
-                            <strong>Select All ({filteredDeals.length})</strong>
-                        </DropdownItem>
-                    )}
-                    {filteredDeals.length > 0 && <DropdownItem divider />}
-                    {filteredDeals.length > 0 ? (
-                        filteredDeals.map(deal => (
-                            <DropdownItem 
-                                key={deal.key} 
-                                toggle={false}
-                                onClick={() => handleDealToggle(deal.key)}
-                                className="d-flex align-items-center"
-                            >
+                            {selectedDealsText}
+                        </DropdownToggle>
+                        <DropdownMenu className="w-100" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                            <DropdownItem header>
                                 <Input
-                                    type="checkbox"
-                                    checked={value.includes(deal.key)}
-                                    onChange={() => {}} // Handled by onClick
-                                    className="me-2"
+                                    type="text"
+                                    placeholder="Search deals..."
+                                    value={searchTerm}
+                                    onChange={handleSearchChange}
+                                    onClick={(e) => e.stopPropagation()}
                                 />
-                                {deal.name}
                             </DropdownItem>
-                        ))
-                    ) : (
-                        <DropdownItem disabled>
-                            {campaignId ? 'No deals found' : 'Please select a campaign first'}
-                        </DropdownItem>
-                    )}
-                </DropdownMenu>
-            </Dropdown>
-            {error && <div className="invalid-feedback d-block">{error}</div>}
+                            <DropdownItem divider />
+                            <DropdownItem toggle={false}>
+                                <span
+                                    className="w-100"
+                                    onClick={handleAddDeal}
+                                >
+                                    <i className="fa fa-plus me-1"></i>
+                                    Add New ...
+                                </span>
+                            </DropdownItem>
+                            {filteredDeals.length > 0 && (
+                                <DropdownItem 
+                                    toggle={false}
+                                    onClick={handleSelectAll}
+                                    className="d-flex align-items-center"
+                                    style={{ backgroundColor: '#f8f9fa' }}
+                                >
+                                    <Input
+                                        type="checkbox"
+                                        checked={allFilteredSelected}
+                                        onChange={() => {}}
+                                        className="me-2"
+                                    />
+                                    <strong>Select All ({filteredDeals.length})</strong>
+                                </DropdownItem>
+                            )}
+                            {filteredDeals.length > 0 && <DropdownItem divider />}
+                            {filteredDeals.length > 0 ? (
+                                filteredDeals.map(deal => (
+                                    <DropdownItem 
+                                        key={deal.key} 
+                                        toggle={false}
+                                        onClick={() => handleDealToggle(deal.key)}
+                                        className="d-flex align-items-center"
+                                    >
+                                        <Input
+                                            type="checkbox"
+                                            checked={value.includes(deal.key)}
+                                            onChange={() => {}}
+                                            className="me-2"
+                                        />
+                                        {deal.name}
+                                    </DropdownItem>
+                                ))
+                            ) : (
+                                <DropdownItem disabled>
+                                    {campaignId ? 'No deals found' : 'Please select a campaign first'}
+                                </DropdownItem>
+                            )}
+                        </DropdownMenu>
+                    </Dropdown>
+                    {/* {error && <div className="invalid-feedback d-block">{error}</div>} */}
+                </Col>
+            </Row>
         </FormGroup>
     );
 };
@@ -154,7 +146,7 @@ function mapStateToProps({ dealList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateFormField, fetchDeals }, dispatch);
+    return bindActionCreators({ updateFormField }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(DealSelector));
