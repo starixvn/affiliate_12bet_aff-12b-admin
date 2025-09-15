@@ -25,7 +25,7 @@ export const Filter = ({ params, setParams, today, deals, toggleSubmit }) => {
             fromDate: `${currentMonthString}/01/${currentYear}`,
             toDate: today
         });
-    }, [today]);
+    }, []);
 
     useEffect(() => {
         if (deals && deals.length > 0) {
@@ -34,7 +34,7 @@ export const Filter = ({ params, setParams, today, deals, toggleSubmit }) => {
                 dealIds
             });
         }
-    }, [deals]);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

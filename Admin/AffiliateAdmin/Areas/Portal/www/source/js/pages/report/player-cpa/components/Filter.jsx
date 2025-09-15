@@ -16,7 +16,7 @@ import { defaultPagingOption, minDate, sixMonth } from '../../../../modules/cons
 import { getPlayerCpaData } from '../libs/service';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
-const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOption, today, deals, toggleLoader, setReportTitle }) => {
+const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, today, deals, toggleLoader, setReportTitle }) => {
 
     const [nowString, setNowString] = useState('');
     const [dealList, setDealList] = useState(deals);
@@ -35,7 +35,7 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
             fromDate: `${currentMonthString}/01/${currentYear}`,
             toDate: nowString
         });
-    }, [today]);
+    }, []);
 
     useEffect(() => {
         if (deals && deals.length > 0) {
@@ -44,7 +44,7 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
                 dealName: dealIds
             });
         }
-    }, [deals]);
+    }, []);
 
     const handleChange = (e) => {
         setParams({
@@ -157,13 +157,12 @@ const Filter = ({ params, setParams, setPlayerCpaData, setPagingOption, pagingOp
         </div>
     )
 }
-function mapStateToProps({ playerCpaData, params, today, deals, pagingOption }) {
+function mapStateToProps({ playerCpaData, params, today, deals }) {
     return Object.assign({}, {
         playerCpaData,
         params,
         today,
-        deals,
-        pagingOption
+        deals
     });
 }
 

@@ -28,7 +28,7 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
             fromDate: `${currentMonthString}/01/${currentYear}`,
             toDate: nowString
         });
-    }, [today]);
+    }, []);
 
     useEffect(() => {
         if (deals && deals.length > 0) {
@@ -37,7 +37,7 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
                 dealName: dealIds
             });
         }
-    }, [deals]);
+    }, []);
 
 
     const onEnterPress = (event) => {
