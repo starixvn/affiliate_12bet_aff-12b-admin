@@ -1,0 +1,280 @@
+@import "../components/modal";
+@import "../components/select";
+@import "../components/multiple-select";
+
+$status-color-total: #ef4444;
+$status-color-active: #10b981;
+$status-color-draft: #f59e0b;
+$status-color-paused: #3b82f6;
+$status-color-inactive: #6b7280;
+
+.campaign-dashboard {
+    padding: 24px;
+
+    .dashboard-header {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #374151;
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .cards-container {
+        display: flex;
+        gap: 16px;
+        flex: 1;
+        
+        @media (max-width: 768px) {
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        @media (max-width: 480px) {
+            flex-direction: column;
+        }
+    }
+
+    .dashboard-card {
+        background: white;
+        border-radius: 8px;
+        border-top: 4px solid;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 0px 16px;
+        transition: all 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-width: 120px;
+        flex: 0 1 auto;
+
+        &:hover:not(.dashboard-card--loading) {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            cursor: pointer;
+        }
+
+        &--loading {
+            opacity: 0.7;
+            pointer-events: auto;
+            
+            &:hover {
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                transform: none;
+            }
+        }
+
+        &--total {
+            border-color: $status-color-total;
+            background-color: #fef2f2;
+            
+            .card-value {
+                color: $status-color-total;
+            }
+        }
+
+        &--active {
+            border-color: $status-color-active;
+            background-color: #f0fdf4;
+            
+            .card-value {
+                color: $status-color-active;
+            }
+        }
+
+        &--draft {
+            border-color: $status-color-draft;
+            background-color: #fffbeb;
+            
+            .card-value {
+                color: $status-color-draft;
+            }
+        }
+
+        &--paused {
+            border-color: $status-color-paused;
+            background-color: #eff6ff;
+            
+            .card-value {
+                color: $status-color-paused;
+            }
+        }
+
+        &--inactive {
+            border-color: $status-color-inactive;
+            background-color: #f9fafb;
+            
+            .card-value {
+                color: $status-color-inactive;
+            }
+        }
+
+        .card-icon {
+            font-size: 28px;
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+
+        .card-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex: 1;
+            height: 100%;
+            flex-direction: row;
+        }
+
+        .card-title {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.2;
+            flex: 1;
+            text-align: center;
+            margin-top: .75rem;
+            
+            strong {
+                font-weight: 700;
+                color: #000000;
+            }
+        }
+
+        .card-value {
+            font-size: 24px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+    }
+
+    .loading-spinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 24px;
+        width: 24px;
+
+        .spinner-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e5e7eb;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+.confirm-popup-content {
+    .confirm-popup-line {
+        margin: 0 0 16px 0;
+        font-size: 14px;
+        color: #4b5563;
+        line-height: 1.5;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.confirm-popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.campaign-form-actions {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.filter-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin-bottom: 24px;
+
+    .form-inline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+
+        @media (max-width: 767px) {
+            flex-direction: column;
+            align-items: stretch;
+
+            .form-group {
+                margin-right: 0 !important;
+                margin-bottom: 12px;
+            }
+        }
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+
+        label {
+            font-weight: 500;
+            color: #374151;
+            white-space: nowrap;
+            margin-bottom: 0;
+            min-width: fit-content;
+        }
+
+        .form-control {
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            min-width: 200px;
+
+            &:focus {
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+
+            &::placeholder {
+                color: #9ca3af;
+            }
+        }
+
+        select.form-control {
+            min-width: 150px;
+        }
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+        padding: 8px 16px;
+
+        .oi {
+            font-size: 14px;
+        }
+    }
+}

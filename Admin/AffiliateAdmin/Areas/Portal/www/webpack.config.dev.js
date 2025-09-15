@@ -13,8 +13,9 @@ const clientRoot = projectPath.clientInputPath;
 const devConfig = config(environment.development)[0];
 
 devConfig.entry = {
-    [`${jsDist}/pages/customer/customer`]: clientRoot + "/js/pages/customer/index.jsx",
-    [`${styleDist}/pages/customer`]: clientRoot + "/style/pages/customer/main.scss",
+    //Campaign Management
+    [`${jsDist}/pages/campaign-management`]: clientRoot + "/js/pages/campaign-management/index.jsx",
+    [`${styleDist}/pages/campaign-management`]: clientRoot + "/style/pages/campaign-management.scss",
 }
 
 module.exports = devConfig;

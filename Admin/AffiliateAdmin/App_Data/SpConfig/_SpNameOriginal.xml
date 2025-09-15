@@ -339,4 +339,7 @@
     </Setting>
     <Setting Key="Aff_LandingPage_Page_Del_Sel" SpName="Aff_LandingPage_Page_Del_Sel" DbName="" />
   </Function>
+  <Functions>
+	<Setting Key="Aff_LandingPage_Campaign_Dashboard_Sel" SpName="Aff_LandingPage_Campaign_Dashboard_Sel" DbName="" />
+  </Functions>
 </Functions>

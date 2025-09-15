@@ -32,6 +32,10 @@ module.exports = {
     [`${jsDist}/pages/landing-page`]: clientRoot + "/js/pages/landing-page/index.jsx",
     [`${styleDist}/pages/landing-page`]: clientRoot + "/style/pages/landing-page.scss",
 
+    //Campaign Management
+    [`${jsDist}/pages/campaign-management`]: clientRoot + "/js/pages/campaign-management/index.jsx",
+    [`${styleDist}/pages/campaign-management`]: clientRoot + "/style/pages/campaign-management.scss",
+
     //Domain
     [`${jsDist}/pages/domain`]: clientRoot + "/js/pages/domain/index.jsx",
     [`${styleDist}/pages/domain`]: clientRoot + "/style/pages/domain.scss",
