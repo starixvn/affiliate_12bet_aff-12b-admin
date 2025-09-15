@@ -169,8 +169,8 @@
 
             AddIfInvalid(dealInfo.ScheduleId == 0, messages["requirePaymentFrequency"]);
 
-            var tomorrowDate = DateTimeHelper.Gmt8Now.AddDays(1).Date;
-            AddIfInvalid(isAdd && (dealInfo.StartDate == null || DateTime.Compare(dealInfo.StartDate.Value.Date, tomorrowDate) < 0), messages["requireStartDate"]);
+            var todayDate = DateTimeHelper.Gmt8Now.Date;
+            AddIfInvalid(isAdd && (dealInfo.StartDate == null || DateTime.Compare(dealInfo.StartDate.Value.Date, todayDate) < 0), messages["requireStartDate"]);
 
             bool isValid = messageList.Count == 0;
 

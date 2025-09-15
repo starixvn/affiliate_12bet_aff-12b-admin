@@ -28,7 +28,7 @@ export const EditDeal = (props) => {
     const _handleSave = async () => {
         const { dealInfo } = props;
 
-        const { isValid, messageList } = validateDealInfo(dealInfo, props.tomorrow, false);
+        const { isValid, messageList } = validateDealInfo(dealInfo, props.today, false);
 
         if (!isValid) {
             if (dealInfo.DealType === DEAL_HYBRID) {
@@ -118,14 +118,14 @@ export const EditDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param, isModifiable, tomorrow }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param, isModifiable, today }) => {
     return {
         dealInfo,
         targetCountryList,
         pagingOption,
         param,
         isModifiable,
-        tomorrow
+        today
     }
 }
 

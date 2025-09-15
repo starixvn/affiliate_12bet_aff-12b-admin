@@ -14,7 +14,7 @@ const deductionList = createReducer([], []);
 const isModifiable = createReducer(false, {});
 const defaultCurrency = createReducer(null, {});
 const paymentFrequencyList = createReducer([], []);
-const tomorrow = createReducer(null, {});
+const today = createReducer(null, {});
 
 const param = createReducer(null, {
     [types.SET_PARAM]: (prevState, action) => {
@@ -62,5 +62,5 @@ export default combineReducers({
     isModifiable,
     defaultCurrency,
     paymentFrequencyList,
-    tomorrow
+    today
 });

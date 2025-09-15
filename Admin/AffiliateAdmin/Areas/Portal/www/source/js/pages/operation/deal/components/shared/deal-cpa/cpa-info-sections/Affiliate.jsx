@@ -13,18 +13,18 @@ import { format } from '../../../../../../../modules/numberFormat';
 import { isValidNumber } from '../../../../../../../modules/utils';
 
 
-export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, tomorrow, isModifiable }) => {
+export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, today, isModifiable }) => {
 
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(false);
     const [scheduleId, setScheduleId] = useState(0);
 
-    const tomorrowDate = new Date(tomorrow);
-    const tomorrowString = `${tomorrowDate.getMonth() + 1}/${tomorrowDate.getDate()}/${tomorrowDate.getFullYear()}`;
+    const todayDate = new Date(today);
+    const todayString = `${todayDate.getMonth() + 1}/${todayDate.getDate()}/${todayDate.getFullYear()}`;
 
     useEffect(() => {
         if (!dealInfo.StartDate && !isEdit) {
-            setDealInfo({ StartDate: tomorrowString });
+            setDealInfo({ StartDate: todayString });
         }
     }, [dealInfo.DealType]);
 
@@ -262,8 +262,8 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
                 <Col sm={4}>
                     <DatePicker
                         isEnable={!isEdit}
-                        minDate={tomorrowString}
-                        date={dealInfo.StartDate || tomorrowString}
+                        minDate={todayString}
+                        date={dealInfo.StartDate || todayString}
                         iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                         onChange={_handleChangeDate}
                     />
@@ -280,13 +280,13 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
     );
 }
 
-const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, tomorrow, isModifiable }) => {
+const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, today, isModifiable }) => {
     return {
         dealInfo,
         paymentFrequencyList,
         isEdit,
         isSubmitted,
-        tomorrow,
+        today,
         isModifiable
     };
 };

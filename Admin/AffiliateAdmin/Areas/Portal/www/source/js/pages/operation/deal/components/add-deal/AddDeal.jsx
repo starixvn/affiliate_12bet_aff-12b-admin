@@ -32,7 +32,7 @@ export const AddDeal = (props) => {
     const _handleSave = async () => {
         const { dealInfo } = props;
 
-        const { isValid, messageList } = validateDealInfo(dealInfo, props.tomorrow, true);
+        const { isValid, messageList } = validateDealInfo(dealInfo, props.today, true);
         if (!isValid) {
             if (dealInfo.DealType === DEAL_HYBRID) {
                 const hasInvalidCPA = messageList.some(m => m.includes(DEAL_HYBRID_CPA_SECTION));
@@ -111,13 +111,13 @@ export const AddDeal = (props) => {
     )
 }
 
-const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param, tomorrow }) => {
+const mapStateToProps = ({ dealInfo, pagingOption, targetCountryList, param, today }) => {
     return {
         dealInfo,
         targetCountryList,
         pagingOption,
         param,
-        tomorrow
+        today
     }
 }
 
