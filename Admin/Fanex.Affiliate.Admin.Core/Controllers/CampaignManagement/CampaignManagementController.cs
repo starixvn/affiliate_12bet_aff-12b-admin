@@ -31,5 +31,14 @@
             var result = _campaignService.GetCampaignDashboard();
             return GenerateJsonNetResult(result);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AllCampaigns)]
+        public ActionResult GetAllCampaignStatus()
+        {
+            var result = _campaignService.GetAllCampaignStatus();
+            return GenerateJsonNetResult(result);
+        }
     }
 }

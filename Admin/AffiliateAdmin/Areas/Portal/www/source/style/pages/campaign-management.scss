@@ -209,72 +209,68 @@ $status-color-inactive: #6b7280;
 }
 
 .filter-container {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    margin-bottom: 24px;
-
     .form-inline {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 12px;
-
-        @media (max-width: 767px) {
-            flex-direction: column;
-            align-items: stretch;
-
-            .form-group {
-                margin-right: 0 !important;
-                margin-bottom: 12px;
-            }
-        }
+        gap: 20px;
     }
 
+    
     .form-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
+        margin-left: 20px;
+        font-size: 14px;
 
-        label {
-            font-weight: 500;
-            color: #374151;
-            white-space: nowrap;
-            margin-bottom: 0;
-            min-width: fit-content;
-        }
-
-        .form-control {
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
+        .wide-input {
             font-size: 14px;
-            min-width: 200px;
-
-            &:focus {
-                border-color: #3b82f6;
-                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            min-width: 280px !important;
+            width: 280px;
+            
+            @media (max-width: 768px) {
+                min-width: 250px !important;
+                width: 250px;
             }
-
-            &::placeholder {
-                color: #9ca3af;
+            
+            @media (max-width: 480px) {
+                min-width: 200px !important;
+                width: 200px;
             }
-        }
-
-        select.form-control {
-            min-width: 150px;
         }
     }
 
-    .btn {
+    .multiple-status-filter {
+        .multiple-select-container {
+            width: 100px;
+        }
+    }
+
+    .button-group {
         display: flex;
         align-items: center;
-        gap: 6px;
-        font-weight: 500;
-        padding: 8px 16px;
-
-        .oi {
+        gap: 8px;
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            padding: 10px 20px;
             font-size: 14px;
+            
+            .oi {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 8px;
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 14px;
+            }
         }
     }
 }

@@ -438,6 +438,7 @@
     <Compile Include="Criterias\AffPagingByDateCriteria.cs" />
     <Compile Include="Commands\Auth\CheckUserPermissionCommand.cs" />
     <Compile Include="Criterias\Auth\UserPermissionCriteria.cs" />
+    <Compile Include="Criterias\CampaignManagement\GetAllCampaignStatusCriteria.cs" />
     <Compile Include="Criterias\CampaignManagement\GetCampaignDashboardCriteria.cs" />
     <Compile Include="Criterias\Customer\AffiliateInfoOnLeftPanelCriteria.cs" />
     <Compile Include="Criterias\Customer\AffiliateOnlineCriteria.cs" />
@@ -526,6 +527,7 @@
     <Compile Include="DTO\Api\PaymentRequestInfo.cs" />
     <Compile Include="DTO\Api\TokenInfo.cs" />
     <Compile Include="DTO\CampaignManagement\CampaignDashboard.cs" />
+    <Compile Include="DTO\CampaignManagement\CampaignStatus.cs" />
     <Compile Include="DTO\Common\TargetCountry.cs" />
     <Compile Include="DTO\Currency.cs" />
     <Compile Include="DTO\Customer\TransferLimitSettingInfo.cs" />

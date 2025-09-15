@@ -49,7 +49,7 @@ const Dashboard = ({ onCardClick }) => {
             value: TotalCampaigns,
             icon: '📊',
             type: 'total',
-            filterValue: null
+            filterValue: -1
         },
         {
             status: 'Active',
@@ -63,21 +63,21 @@ const Dashboard = ({ onCardClick }) => {
             value: DraftCampaigns,
             icon: '✏️',
             type: 'draft',
-            filterValue: 2
+            filterValue: 0
         },
         {
             status: 'Paused',
             value: PausedCampaigns,
             icon: '⏸️',
             type: 'paused',
-            filterValue: 3
+            filterValue: 2
         },
         {
             status: 'Inactive',
             value: InactiveCampaigns,
             icon: '🗑️',
             type: 'inactive',
-            filterValue: 4
+            filterValue: 3
         }
     ];
 

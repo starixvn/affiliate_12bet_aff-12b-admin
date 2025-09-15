@@ -1,23 +1,16 @@
 import React from 'react';
-import Dashboard from './components/Dashboard';
-import FilterForm from './components/FilterForm';
-import TableGrid from './components/TableGrid';
+import AppContainer from './components/AppContainer';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+import { configureStore } from '../../../../modules/store';
 
 const AllCampaigns = () => {
-    const dashboardData = {
-        totalCampaigns: 4,
-        activeCampaigns: 2,
-        draftCampaigns: 1,
-        pausedCampaigns: 1,
-        inactiveCampaigns: 1
-    };
+    const store = configureStore({}, reducer);
 
     return (
-        <div className="all-campaigns">
-            <Dashboard dashboardData={dashboardData} />
-            <FilterForm />
-            <TableGrid />
-        </div>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
     );
 };
 
