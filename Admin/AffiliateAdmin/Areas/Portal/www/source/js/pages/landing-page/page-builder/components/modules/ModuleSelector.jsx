@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Input, FormFeedback, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-import { updateModuleComponent, fetchModuleSources } from '../../actions';
+import { updateModuleComponent } from '../../actions';
 import { defaultModuleIds } from '../../../libs/constants';
 
-const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, updateModuleComponent, fetchModuleSources }) => {
+const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, updateModuleComponent }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedModuleId, setSelectedModuleId] = useState(null);
@@ -48,16 +48,13 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                 // Reset source when module changes
                 updateModuleComponent(moduleId, 'mediaId', null);
                 
-                // Fetch sources for the selected module
-                if (selectedModuleId) {
-                    fetchModuleSources(selectedModuleId);
-                }
+                // Note: fetchModuleSources is handled by SourceSelector with proper country/language parameters
                 
                 // Reset selection trigger
                 setSelectedModuleId(null);
             }, 10);
         }
-    }, [selectedModuleId, updateModuleComponent, moduleId, fetchModuleSources]);
+    }, [selectedModuleId, updateModuleComponent, moduleId]);
 
     // Effect to handle window resize and recalculate dropdown direction
     useEffect(() => {
@@ -196,7 +193,7 @@ function mapStateToProps({ moduleList, moduleComponents }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateModuleComponent, fetchModuleSources }, dispatch);
+    return bindActionCreators({ updateModuleComponent }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(ModuleSelector));

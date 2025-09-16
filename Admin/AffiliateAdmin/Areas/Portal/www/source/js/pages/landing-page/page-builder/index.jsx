@@ -15,6 +15,7 @@ const App = () => {
         dealList, 
         statusList, 
         moduleList, 
+        bannerRootUrl,
         landingPageUrl,
         campaignList ,
         pageBuilderDetail
@@ -23,7 +24,7 @@ const App = () => {
     // Convert lists to proper format for dropdowns
     const newDealList = convertListToMutilpleSelected(dealList, 'GroupId', 'GroupName');
 
-    
+
 
     const store = configureStore({
         moduleList,
@@ -32,6 +33,7 @@ const App = () => {
         languageList: allLanguagesInSystem,
         dealList: newDealList,
         statusList: statusList.sort((a, b) => a.Status - b.Status),
+        bannerRootUrl,
         landingPageUrl,
         pageBuilderDetail,
         deals: [],

@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { 
     Modal, 
     ModalHeader, 
     ModalBody, 
-    ModalFooter, 
     Button, 
     FormGroup, 
     Label, 
@@ -12,36 +13,52 @@ import {
     DropdownMenu, 
     DropdownItem,
     Input,
-    Alert
+    Alert,
+    Form,
+    Col
 } from 'reactstrap';
 
-const AddNewDealModal = ({ isOpen, toggle, onAddDeal }) => {
+import { fetchNormalDealList, insertLandingPageDeal, addDealToList } from '../../actions';
+import { globalResource } from '../../../../../modules/globalResource';
+
+const AddNewDealModal = ({ isOpen, toggle, onAddDeal, normalDealList, dealList, fetchNormalDealList, insertLandingPageDeal, addDealToList }) => {
     const [selectedDealType, setSelectedDealType] = useState('');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [dropDirection, setDropDirection] = useState('down');
-    const [error, setError] = useState('');
+    const [alertState, setAlertState] = useState({ message: '', type: '', show: false });
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const dropdownRef = useRef(null);
+    const alertTimeoutRef = useRef(null);
 
-    // Available deal types based on the image
-    const dealTypes = [
-        { id: 'no-commission', name: 'No Commission' },
-        { id: 'default-comm-group', name: 'Default Comm Group' },
-        { id: '50-fix-commission', name: '50% Fix Commission' },
-        { id: '40-fix-commission', name: '40% Fix Commission' },
-        { id: '10-fix-commission', name: '10% Fix Commission' }
-    ];
+    useEffect(() => {
+        if (isOpen) {
+            if (!normalDealList || normalDealList.length === 0) {
+                setIsLoading(true);
+                fetchNormalDealList();
+                
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 3000);
+            }
+        }
+    }, [isOpen, normalDealList, fetchNormalDealList]);
+
+    useEffect(() => {
+        if (normalDealList && normalDealList.length > 0) {
+            setIsLoading(false);
+        }
+    }, [normalDealList]);
 
     const toggleDropdown = useCallback(() => {
         if (!isDropdownOpen && dropdownRef.current) {
-            // Calculate available space when opening dropdown
             const rect = dropdownRef.current.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
             const spaceBelow = viewportHeight - rect.bottom;
             const spaceAbove = rect.top;
-            const dropdownHeight = 250; // maxHeight of dropdown
+            const dropdownHeight = 250;
             
-            // If not enough space below but more space above, drop up
             if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
                 setDropDirection('up');
             } else {
@@ -51,7 +68,6 @@ const AddNewDealModal = ({ isOpen, toggle, onAddDeal }) => {
         setIsDropdownOpen(prevState => !prevState);
     }, [isDropdownOpen]);
 
-    // Effect to handle window resize and recalculate dropdown direction
     useEffect(() => {
         const handleResize = () => {
             if (isDropdownOpen && dropdownRef.current) {
@@ -82,166 +98,253 @@ const AddNewDealModal = ({ isOpen, toggle, onAddDeal }) => {
         setSearchTerm(e.target.value);
     }, []);
 
-    const handleDealTypeSelect = useCallback((dealType) => {
-        setSelectedDealType(dealType);
-        setIsDropdownOpen(false);
-        setError('');
+    const showAlert = useCallback((message, type = 'danger') => {
+        setAlertState({ message, type, show: true });
+        
+        // Clear any existing timeout
+        if (alertTimeoutRef.current) {
+            clearTimeout(alertTimeoutRef.current);
+        }
+        
+        // Auto-close success alerts after 3 seconds
+        if (type === 'success') {
+            alertTimeoutRef.current = setTimeout(() => {
+                setAlertState(prev => ({ ...prev, show: false }));
+                // Close modal after alert fades
+                setTimeout(() => {
+                    toggle();
+                }, 300); // Allow time for alert to fade out
+            }, 3000);
+        }
+    }, [toggle]);
+
+    const hideAlert = useCallback(() => {
+        setAlertState(prev => ({ ...prev, show: false }));
+        if (alertTimeoutRef.current) {
+            clearTimeout(alertTimeoutRef.current);
+        }
     }, []);
 
-    // Filter deal types based on search term
-    const filteredDealTypes = dealTypes.filter(dealType => 
-        dealType.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const handleDealTypeSelect = useCallback((dealType) => {
+        setSelectedDealType(dealType);
+        hideAlert();
+    }, [hideAlert]);
+
+    const allDealTypes = normalDealList || [];
+    const existingDealList = dealList || [];
+    
+    const availableDealTypes = allDealTypes.filter(normalDeal => {
+        return !existingDealList.some(existingDeal => 
+            existingDeal.key === normalDeal.GroupId
+        );
+    });
+
+    const filteredDealTypes = availableDealTypes.filter(dealType => 
+        dealType.GroupName && dealType.GroupName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Get display text for selected deal type
-    const selectedDealTypeObj = dealTypes.find(d => d.id === selectedDealType);
-    const displayText = selectedDealTypeObj ? selectedDealTypeObj.name : 'Please select';
+    const selectedDealTypeObj = availableDealTypes.find(d => d.GroupId == selectedDealType);
+    const displayText = isLoading ? 'Loading...' : (selectedDealTypeObj ? selectedDealTypeObj.GroupName : 'Please select');
 
-    const handleAdd = useCallback(() => {
+    const handleAdd = useCallback(async () => {
         if (!selectedDealType) {
-            setError('Please select a deal type.');
+            showAlert('Please select a deal type.', 'danger');
             return;
         }
 
-        const selectedDealTypeObj = dealTypes.find(d => d.id === selectedDealType);
-        if (onAddDeal) {
-            onAddDeal(selectedDealTypeObj);
-        }
+        setIsSubmitting(true);
+        hideAlert();
 
-        // Reset form and close modal
-        setSelectedDealType('');
-        setSearchTerm('');
-        setError('');
-        toggle();
-    }, [selectedDealType, onAddDeal, toggle, dealTypes]);
+        try {
+            const result = await insertLandingPageDeal(selectedDealType);
+            
+            if (result && result.IsSuccessful) {
+                const selectedDealTypeObj = availableDealTypes.find(d => d.GroupId == selectedDealType);
+                
+                const newDealForList = {
+                    key: selectedDealTypeObj.GroupId,
+                    name: selectedDealTypeObj.GroupName,
+                    checked: false
+                };
+                addDealToList(newDealForList);
+
+                if (onAddDeal) {
+                    onAddDeal(selectedDealTypeObj);
+                }
+
+                showAlert(result.Message || 'Deal added successfully!', 'success');
+
+                setSelectedDealType('');
+                setSearchTerm('');
+            } else {
+                showAlert(result?.Message || 'Failed to add deal. Please try again.', 'danger');
+            }
+        } catch (error) {
+            showAlert('An unexpected error occurred. Please try again.', 'danger');
+        } finally {
+            setIsSubmitting(false);
+        }
+    }, [selectedDealType, onAddDeal, availableDealTypes, insertLandingPageDeal, addDealToList, showAlert, hideAlert]);
 
     const handleCancel = useCallback(() => {
-        // Reset form and close modal
         setSelectedDealType('');
         setSearchTerm('');
-        setError('');
+        hideAlert();
         toggle();
-    }, [toggle]);
+    }, [toggle, hideAlert]);
 
-    // Reset form when modal is closed
     useEffect(() => {
         if (!isOpen) {
             setSelectedDealType('');
             setSearchTerm('');
-            setError('');
+            hideAlert();
             setIsDropdownOpen(false);
+            setIsSubmitting(false);
         }
-    }, [isOpen]);
+    }, [isOpen, hideAlert]);
+
+    useEffect(() => {
+        return () => {
+            if (alertTimeoutRef.current) {
+                clearTimeout(alertTimeoutRef.current);
+            }
+        };
+    }, []);
 
     return (
-        <Modal isOpen={isOpen} toggle={toggle} size="md" centered>
-            <ModalHeader toggle={toggle} className="bg-primary text-white">
-                <i className="fa fa-plus me-2"></i>
-                Add New Deal
-            </ModalHeader>
+        <Modal isOpen={isOpen} toggle={toggle} backdrop='static' size='xs'>
+            <ModalHeader toggle={toggle}><span className="iconpopup"></span>Add New Deal</ModalHeader>
             <ModalBody>
-                {error && (
-                    <Alert color="danger" className="mb-3">
-                        <i className="fa fa-exclamation-triangle me-2"></i>
-                        {error}
-                    </Alert>
-                )}
-                
-                <FormGroup>
-                    <Label for="dealNameDropdown" className="required">
-                        Deal Name
-                    </Label>
-                    <div className="deal-selector" ref={dropdownRef}>
-                        <style>
-                            {`
-                            .dropdown-menu-up {
-                                bottom: 100% !important;
-                                top: auto !important;
-                                transform: translateY(-2px) !important;
-                                margin-bottom: 2px !important;
-                            }
-                            `}
-                        </style>
-                        <Dropdown 
-                            isOpen={isDropdownOpen} 
-                            toggle={toggleDropdown} 
-                            className="w-100"
-                        >
-                            <DropdownToggle
-                                caret
-                                id="dealNameDropdown"
-                                className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
-                                style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
+                <div className="modal-body-wrapper">
+                    <div className="banner-list-form-container">
+                        {alertState.show && (
+                            <Alert 
+                                color={alertState.type} 
+                                className="mb-3"
+                                toggle={hideAlert}
                             >
-                                {displayText}
-                            </DropdownToggle>
-                            <DropdownMenu 
-                                className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
-                                style={{ 
-                                    maxHeight: '250px', 
-                                    overflowY: 'auto',
-                                    zIndex: 1060,
-                                    position: 'absolute',
-                                    width: '100%'
-                                }}
-                                flip={false}
-                                right={dropDirection === 'up'}
-                            >
-                                <DropdownItem header>
-                                    <Input
-                                        type="text"
-                                        placeholder="Search deal types..."
-                                        value={searchTerm}
-                                        onChange={handleSearchChange}
-                                        onClick={(e) => e.stopPropagation()}
-                                    />
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                {filteredDealTypes.length > 0 ? (
-                                    filteredDealTypes.map(dealType => (
-                                        <DropdownItem
-                                            key={dealType.id}
-                                            tag="button"
-                                            type="button"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                handleDealTypeSelect(dealType.id);
-                                            }}
-                                            active={dealType.id === selectedDealType}
+                                <i className={`fa ${alertState.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'} me-2`}></i>
+                                {alertState.message}
+                            </Alert>
+                        )}
+                        <fieldset>
+                            <legend>
+                                <h6>Deal</h6>
+                            </legend>
+                        <Form tag="form" className="mb-3">
+                            <FormGroup row>
+                                <Label for="dealNameDropdown" className="required" sm={3}>
+                                    Deal Name
+                                </Label>
+                                <Col sm={9} className='align-self-center'>
+                                    <div className="deal-selector" ref={dropdownRef}>
+                                        <style>
+                                            {`
+                                            .dropdown-menu-up {
+                                                bottom: 100% !important;
+                                                top: auto !important;
+                                                transform: translateY(-2px) !important;
+                                                margin-bottom: 2px !important;
+                                            }
+                                            `}
+                                        </style>
+                                        <Dropdown 
+                                            isOpen={isDropdownOpen} 
+                                            toggle={toggleDropdown} 
+                                            className="w-100"
                                         >
-                                            {dealType.name}
-                                        </DropdownItem>
-                                    ))
-                                ) : (
-                                    <DropdownItem disabled>
-                                        No deal types found
-                                    </DropdownItem>
-                                )}
-                            </DropdownMenu>
-                        </Dropdown>
+                                            <DropdownToggle
+                                                caret
+                                                id="dealNameDropdown"
+                                                className={`form-control text-left ${alertState.show && alertState.type === 'danger' ? 'is-invalid border-danger' : ''}`}
+                                                style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
+                                            >
+                                                {displayText}
+                                            </DropdownToggle>
+                                            <DropdownMenu 
+                                                className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
+                                                style={{ 
+                                                    maxHeight: '250px', 
+                                                    overflowY: 'auto',
+                                                    zIndex: 1060,
+                                                    position: 'absolute',
+                                                    width: '100%'
+                                                }}
+                                                flip={false}
+                                                right={dropDirection === 'up'}
+                                            >
+                                                <DropdownItem header>
+                                                    <Input
+                                                        type="text"
+                                                        placeholder="Search deal types..."
+                                                        value={searchTerm}
+                                                        onChange={handleSearchChange}
+                                                        onClick={(e) => e.stopPropagation()}
+                                                    />
+                                                </DropdownItem>
+                                                <DropdownItem divider />
+                                                {isLoading ? (
+                                                    <DropdownItem disabled>
+                                                        <i className="fa fa-spinner fa-spin me-2"></i>
+                                                        Loading deal types...
+                                                    </DropdownItem>
+                                                ) : filteredDealTypes.length > 0 ? (
+                                                    filteredDealTypes.map(dealType => (
+                                                        <DropdownItem
+                                                            key={dealType.GroupId}
+                                                            tag="button"
+                                                            type="button"
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                handleDealTypeSelect(dealType.GroupId);
+                                                            }}
+                                                            active={dealType.GroupId == selectedDealType}
+                                                        >
+                                                            {dealType.GroupName}
+                                                        </DropdownItem>
+                                                    ))
+                                                ) : (
+                                                    <DropdownItem disabled>
+                                                        {searchTerm ? 'No deal types found' : 'No deal types available'}
+                                                    </DropdownItem>
+                                                )}
+                                            </DropdownMenu>
+                                        </Dropdown>
+                                    </div>
+                                </Col>
+                            </FormGroup>
+                        </Form>
+                        </fieldset>
+                        <Button 
+                            type="button"
+                            color="success"
+                            className="mr-3"
+                            disabled={!selectedDealType || isSubmitting}
+                            onClick={handleAdd}
+                        >
+                            {isSubmitting ? (
+                                <>
+                                    <i className="fa fa-spinner fa-spin me-1"></i>
+                                    Adding...
+                                </>
+                            ) : (
+                                globalResource.Add
+                            )}
+                        </Button>
+                        <Button type="button" color="info" onClick={handleCancel}>{globalResource.Cancel}</Button>
                     </div>
-                </FormGroup>
+                </div>
             </ModalBody>
-            <ModalFooter>
-                <Button 
-                    color="success" 
-                    onClick={handleAdd}
-                    className="me-2"
-                >
-                    <i className="fa fa-plus me-1"></i>
-                    Add
-                </Button>
-                <Button 
-                    color="secondary" 
-                    onClick={handleCancel}
-                >
-                    <i className="fa fa-times me-1"></i>
-                    Cancel
-                </Button>
-            </ModalFooter>
         </Modal>
     );
 };
 
-export default AddNewDealModal;
+function mapStateToProps({ normalDealList, dealList }) {
+    return Object.assign({}, { normalDealList, dealList });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ fetchNormalDealList, insertLandingPageDeal, addDealToList }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(AddNewDealModal));

@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Input, FormFeedback, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
+import ImageHoverPreview from './ImageHoverPreview';
+
 const SingleSourceSelector = ({ 
     moduleId, 
     value, 
@@ -8,6 +10,7 @@ const SingleSourceSelector = ({
     sources, 
     isDisabled, 
     onChange,
+    bannerRootUrl,
     className = ""
 }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -161,14 +164,30 @@ const SingleSourceSelector = ({
                                 active={source.MediaId === value}
                                 className="d-flex align-items-center"
                             >
-                                <span className="me-auto">{source.MediaName}</span>
-                                {source.MediaPreview && (
-                                    <img 
-                                        src={source.MediaPreview} 
+                                {source.FileName ? (
+                                    <ImageHoverPreview
+                                        src={`${bannerRootUrl}/${source.FileName}`}
                                         alt={source.MediaName}
-                                        className="ms-2"
-                                        style={{ width: '40px', height: '30px', objectFit: 'cover' }}
-                                    />
+                                        maxPreviewSize={{ width: 400, height: 300 }}
+                                        className="d-flex align-items-center w-100"
+                                    >
+                                        <span className="me-auto">{source.MediaName}</span>
+                                        <img 
+                                            src={`${bannerRootUrl}/${source.FileName}`} 
+                                            alt={source.MediaName}
+                                            className="ms-2 flex-shrink-0"
+                                            style={{ 
+                                                width: '32px', 
+                                                height: '24px', 
+                                                objectFit: 'cover', 
+                                                cursor: 'pointer',
+                                                borderRadius: '3px',
+                                                border: '1px solid #dee2e6'
+                                            }}
+                                        />
+                                    </ImageHoverPreview>
+                                ) : (
+                                    <span className="me-auto">{source.MediaName}</span>
                                 )}
                             </DropdownItem>
                         ))

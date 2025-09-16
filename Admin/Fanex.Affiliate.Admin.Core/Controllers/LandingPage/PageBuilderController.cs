@@ -48,6 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             var model = new PageBuilderViewModel
             {
                 LandingPageUrl = _appSetting.LandingPageUrl,
+                BannerRootUrl = _appSetting.BannerRootUrl,
                 CampaignList = _landingPageService.GetCampaignInfoList(),
                 AllLanguagesInSystem = _landingPageService.GetAllLanguagesInSystem(),
                 DealList = _landingPageService.GetLandingPageDealList(),
@@ -65,6 +66,42 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
         public ActionResult GetMediaSources(MediaSourceParam param)
         {
              return GenerateJsonNetResult(_pageBuilderService.GetMediaSources(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetNormalDealList()
+        {
+            return GenerateJsonNetResult(_landingPageService.GetNormalDealList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult InsertLandingPageDeal(InsertLandingPageDealParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                AssignUserInfoParam(param);
+                return GenerateJsonNetResult(_pageBuilderService.InsertLandingPageDeal(param));
+            }
+            return GenerateModelStateErrResult();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        public ActionResult InsertLandingPageCampaign(InsertLandingPageCampaignParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                AssignUserInfoParam(param);
+                param.CampaignName = Server.HtmlEncode(param.CampaignName);
+                param.Description = Server.HtmlEncode(param.Description);
+
+                return GenerateJsonNetResult(_pageBuilderService.InsertLandingPageCampaign(param));
+            }
+            return GenerateModelStateErrResult();
         }
 
         [HttpPost]

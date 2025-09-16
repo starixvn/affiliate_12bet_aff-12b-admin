@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
+import ImageHoverPreview from './ImageHoverPreview';
+
 const MultiSelectDropdown = ({ 
     moduleId,
     value,
@@ -8,7 +10,8 @@ const MultiSelectDropdown = ({
     sources,
     isDisabled,
     onMultipleSelect,
-    onSelectAll
+    onSelectAll,
+    bannerRootUrl
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -167,16 +170,32 @@ const MultiSelectDropdown = ({
                                         checked={isChecked}
                                         onClick={(e) => e.stopPropagation()}
                                         onChange={(e) => onMultipleSelect(source.MediaId, e.target.checked)}
-                                        className="me-2"
+                                        className="me-2 flex-shrink-0"
                                     />
-                                    <span>{source.MediaName}</span>
-                                    {source.MediaPreview && (
-                                        <img 
-                                            src={source.MediaPreview} 
+                                    {source.FileName ? (
+                                        <ImageHoverPreview
+                                            src={`${bannerRootUrl}/${source.FileName}`}
                                             alt={source.MediaName}
-                                            className="ms-auto"
-                                            style={{ width: '40px', height: '30px', objectFit: 'cover' }}
-                                        />
+                                            maxPreviewSize={{ width: 400, height: 300 }}
+                                            className="d-flex align-items-center flex-grow-1"
+                                        >
+                                            <span className="me-auto">{source.MediaName}</span>
+                                            <img 
+                                                src={`${bannerRootUrl}/${source.FileName}`} 
+                                                alt={source.MediaName}
+                                                className="ml-2 flex-shrink-0"
+                                                style={{ 
+                                                    maxWidth: '50px',
+                                                    maxHeight: '24px',
+                                                    objectFit: 'cover', 
+                                                    cursor: 'pointer',
+                                                    borderRadius: '3px',
+                                                    border: '1px solid #dee2e6'
+                                                }}
+                                            />
+                                        </ImageHoverPreview>
+                                    ) : (
+                                        <span className="me-auto">{source.MediaName}</span>
                                     )}
                                 </DropdownItem>
                             );

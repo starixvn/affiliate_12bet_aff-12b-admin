@@ -1,32 +1,38 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
+
+import AddNewCampaignModal from '../modals/AddNewCampaignModal';
 
 import { updateFormField, fetchDeals, clearValidationErrors } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 
 const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, fetchDeals, clearValidationErrors }) => {
+    const [isAddCampaignModalOpen, setIsAddCampaignModalOpen] = useState(false);
+
     const handleChange = useCallback((event) => {
         const campaignId = event.target.value || null;
 
         if (campaignId === 'add-new') {
-            alert('Add Campaign functionality is not yet implemented. Please contact the administrator to add new campaigns.');
+            setIsAddCampaignModalOpen(true);
             return;
         }
         
         updateFormField('campaignId', campaignId);
         
-        // Clear validation error when user makes a selection
         if (error && campaignId) {
             clearValidationErrors();
         }
-        
-        // Fetch deals when campaign is selected
-        // if (campaignId) {
-        //     fetchDeals(campaignId);
-        // }
-    }, [updateFormField, error, clearValidationErrors, fetchDeals]);
+    }, [updateFormField, error, clearValidationErrors]);
+
+    const handleAddCampaignModalToggle = useCallback(() => {
+        setIsAddCampaignModalOpen(prevState => !prevState);
+    }, []);
+
+    const handleNewCampaignAdded = useCallback((newCampaign) => {
+        updateFormField('campaignId', newCampaign.CampaignId);
+    }, [updateFormField]);
 
     return (
         <FormGroup>
@@ -53,6 +59,13 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
                     {/* {error && <FormFeedback>{error}</FormFeedback>} */}
                 </Col>
             </Row>
+            
+            {/* Add New Campaign Modal */}
+            <AddNewCampaignModal 
+                isOpen={isAddCampaignModalOpen}
+                toggle={handleAddCampaignModalToggle}
+                onAddCampaign={handleNewCampaignAdded}
+            />
         </FormGroup>
     );
 };

@@ -28,41 +28,9 @@ namespace Fanex.Affiliate.Admin.Core.Constants
             public const int MaxFileSizeBytes = 3 * BytesPerKilobyte * BytesPerKilobyte; // 3MB
             public const int MaxFileSizeMegabytes = 3;
             public const int MaxImageWidth = 2000;
-            public const int MaxImageHeight = 2000;
+            public const int MaxImageHeight = 5000;
             public const int ThumbnailSize = 150;
             public const string DefaultMediaFolder = "~/App_Data/Media";
-        }
-
-        // Module-Specific Image Limits
-        public static class ModuleImageLimits
-        {
-            // Background Module
-            public const int BackgroundMaxWidth = 1920;
-            public const int BackgroundMaxHeight = 1080;
-
-            // Hero Image Module
-            public const int HeroMaxWidth = 1200;
-            public const int HeroMaxHeight = 600;
-
-            // Logo & Sponsor Module
-            public const int LogoMaxWidth = 400;
-            public const int LogoMaxHeight = 200;
-
-            // CTA Button Module
-            public const int ButtonMaxWidth = 300;
-            public const int ButtonMaxHeight = 100;
-        }
-
-        // Folder Structure
-        public static class FolderStructure
-        {
-            public const string LandingPageRoot = "LandingPage";
-            public const string ImagesFolder = "Images";
-            public const string ContactFolder = "Contact";
-            public const string FormsFolder = "Forms";
-            public const string LinksFolder = "Links";
-            public const string ThumbnailsFolder = "thumbnails";
-            public const string GeneralFolder = "General";
         }
 
         // File Extensions
@@ -70,24 +38,6 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         {
             public static readonly string[] AllowedImageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
             public static readonly string[] AllImageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
-        }
-
-        // Module Names (for validation)
-        public static class ModuleNames
-        {
-            public const string Background = "background";
-            public const string HeroImage = "hero image";
-            public const string LogoSponsor1 = "logo & sponsor";
-            public const string LogoSponsor2 = "logo sponsor";
-            public const string CTAButton = "cta button";
-        }
-
-        // Validation Limits
-        public static class ValidationLimits
-        {
-            public const int StandardTextLength = 200;
-            public const int MaxPageSize = 2000;
-            public const int ModuleTypeId = 4;
         }
 
         // Error Messages
@@ -116,6 +66,14 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         {
             public const int Active = 1;
             public const int Inactive = 2;
+        }
+
+        public static class CampaignStatusTypes
+        {
+            public const int Draft = 0;
+            public const int Active = 1;
+            public const int Paused = 2;
+            public const int Inactive = 3;
         }
 
         public static IList<StatusInfo> AssetStatusList => new List<StatusInfo>

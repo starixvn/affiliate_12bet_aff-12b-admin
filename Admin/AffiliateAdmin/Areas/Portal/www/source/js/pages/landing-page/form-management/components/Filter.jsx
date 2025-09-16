@@ -25,7 +25,7 @@ export const Filter = ({
         mediaName: '',
         targetCountryCodes: targetCountryList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
         languageCodes: languageList.filter(item => item.checked).map(item => item.key).join(',') || 'all',
-        status: assetStatus.all,
+        status: assetStatus.active,
     });
 
     const handleSearch = useCallback(() => {

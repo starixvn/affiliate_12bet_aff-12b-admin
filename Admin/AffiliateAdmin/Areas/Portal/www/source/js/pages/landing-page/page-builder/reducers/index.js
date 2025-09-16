@@ -6,6 +6,7 @@ import * as types from '../actions/types';
 import { pageBuilderDefaultState } from '../libs/constants';
 
 export const landingPageUrl = createReducer(null, {});
+export const bannerRootUrl = createReducer(null, {});
 
 export const formData = createReducer(pageBuilderDefaultState.formData, {
     [types.SET_FORM_DATA](prevState, action) {
@@ -123,12 +124,25 @@ export const languageList = createReducer([], {
 export const campaignList = createReducer([], {
     [types.SET_CAMPAIGN_LIST](prevState, action) {
         return action.campaigns;
+    },
+    [types.ADD_CAMPAIGN_TO_LIST](prevState, action) {
+        return [...prevState, action.campaign];
     }
 });
 
 export const dealList = createReducer([], {
     [types.SET_DEAL_LIST](prevState, action) {
         return action.deals;
+    },
+    [types.ADD_DEAL_TO_LIST](prevState, action) {
+        // Add the new deal to the existing dealList
+        return [...prevState, action.deal];
+    }
+});
+
+export const normalDealList = createReducer([], {
+    [types.SET_NORMAL_DEAL_LIST](prevState, action) {
+        return action.normalDeals;
     }
 });
 
@@ -216,7 +230,7 @@ export const isEditMode = createReducer(false, {
 export default combineReducers({
     landingPageUrl,
     isShowLoader,
-    
+    bannerRootUrl,
     formData,
     moduleComponents,
     campaignList,
@@ -224,6 +238,7 @@ export default combineReducers({
     targetCountryList,
     languageList,
     dealList,
+    normalDealList,
     statusList,
     sources,
     validation,

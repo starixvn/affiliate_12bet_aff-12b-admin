@@ -219,13 +219,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             var fileNameList = GetAssetFileNameList(param.UserId, param.MediaIds);
 
-            var command = new DeleteAssetsCommand
-            {
-                MediaIds = param.MediaIds,
-                FunctionName = param.FunctionName,
-                UserId = param.UserId,
-                Ip = param.Ip
-            };
+            var command = param.MapTo<DeleteAssetsParam, DeleteAssetsCommand>();
 
             var result = ExecuteReturnResultInfo(command);
 
@@ -422,7 +416,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                     {
                         Code = ErrCode.GeneralErrorCode,
                         Message = string.IsNullOrEmpty(validationResult.ErrorMessage) 
-                            ? LandingPageConstants.ErrorMessages.ImageDimensionsExceeded
+                            ? validationResult.GetValidationMessage()
                             : LandingPageConstants.ErrorMessages.InvalidImageData
                     };
                 }

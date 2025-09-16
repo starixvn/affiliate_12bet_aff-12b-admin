@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
-import { updateFormField, validatePageName } from '../../actions';
-import { pageBuilderLabels, validationMessages } from '../../libs/constants';
+import { updateFormField } from '../../actions';
+import { pageBuilderLabels } from '../../libs/constants';
 
-const PageNameInput = ({ value, error, required = false, validation, updateFormField, validatePageName }) => {
+const PageNameInput = ({ value, error, required = false, updateFormField }) => {
     const [localValue, setLocalValue] = useState(value || '');
     const debounceTimeoutRef = useRef(null);
 
@@ -24,12 +24,6 @@ const PageNameInput = ({ value, error, required = false, validation, updateFormF
         };
     }, []);
 
-    const validateName = useCallback(async (name) => {
-        if (name && name.trim().length > 0) {
-            await validatePageName(name.trim());
-        }
-    }, [validatePageName]);
-
     const handleChange = useCallback((event) => {
         const newValue = event.target.value;
         setLocalValue(newValue);
@@ -39,22 +33,7 @@ const PageNameInput = ({ value, error, required = false, validation, updateFormF
         if (debounceTimeoutRef.current) {
             clearTimeout(debounceTimeoutRef.current);
         }
-        
-        debounceTimeoutRef.current = setTimeout(() => {
-            validateName(newValue);
-        }, 500);
-    }, [updateFormField, validateName]);
-
-    const getValidationState = useCallback(() => {
-        const { isValidating } = validation;
-        
-        if (isValidating) return null;
-        if (error) return false;
-        if (localValue && !error) return true;
-        return null;
-    }, [validation, error, localValue]);
-
-    const { isValidating } = validation;
+    }, [updateFormField]);
 
     return (
         <FormGroup>
@@ -90,12 +69,12 @@ const PageNameInput = ({ value, error, required = false, validation, updateFormF
     );
 };
 
-function mapStateToProps({ validation }) {
-    return Object.assign({}, { validation });
+function mapStateToProps({  }) {
+    return Object.assign({}, {  });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateFormField, validatePageName }, dispatch);
+    return bindActionCreators({ updateFormField }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(PageNameInput));

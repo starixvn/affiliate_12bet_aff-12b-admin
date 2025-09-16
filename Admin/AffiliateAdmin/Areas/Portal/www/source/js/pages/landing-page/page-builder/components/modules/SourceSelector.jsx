@@ -17,14 +17,20 @@ const SourceSelector = ({
     allSources, 
     moduleList, 
     moduleComponents, 
+    bannerRootUrl,
+    formData,
     updateModuleComponent, 
     fetchModuleSources 
 }) => {
     useEffect(() => {
         if (selectedModuleId) {
-            fetchModuleSources(selectedModuleId);
+            fetchModuleSources(
+                selectedModuleId, 
+                formData?.targetCountryCode, 
+                formData?.languageCode
+            );
         }
-    }, [selectedModuleId, fetchModuleSources]);
+    }, [selectedModuleId, formData?.targetCountryCode, formData?.languageCode, fetchModuleSources]);
 
     const isDisabled = !selectedModuleId;
     const sources = selectedModuleId ? allSources[selectedModuleId] || [] : [];
@@ -99,6 +105,7 @@ const SourceSelector = ({
                 onExtraChange={handleExtraInfoInput}
                 extraPlaceholder="contact link"
                 extraLabel="Contact"
+                bannerRootUrl={bannerRootUrl}
             />
         );
     }
@@ -116,6 +123,7 @@ const SourceSelector = ({
                 onExtraChange={handleExtraInfoInput}
                 extraPlaceholder="path"
                 extraLabel="Login Endpoint"
+                bannerRootUrl={bannerRootUrl}
             />
         );
     }
@@ -141,6 +149,7 @@ const SourceSelector = ({
                 error={error}
                 sources={sources}
                 isDisabled={isDisabled}
+                bannerRootUrl={bannerRootUrl}
                 onMultipleSelect={handleMultipleSelect}
                 onSelectAll={handleSelectAllSources}
             />
@@ -157,6 +166,7 @@ const SourceSelector = ({
                     sources={sources}
                     isDisabled={isDisabled}
                     onChange={handleSingleSelect}
+                    bannerRootUrl={bannerRootUrl}
                 />
                 {/* {error && <FormFeedback>{error}</FormFeedback>} */}
             </FormGroup>
@@ -164,8 +174,8 @@ const SourceSelector = ({
     );
 };
 
-function mapStateToProps({ sources, moduleList, moduleComponents }) {
-    return Object.assign({}, { allSources: sources, moduleList, moduleComponents });
+function mapStateToProps({ sources, moduleList, moduleComponents, bannerRootUrl, formData }) {
+    return Object.assign({}, { allSources: sources, moduleList, moduleComponents, bannerRootUrl, formData });
 }
 
 function mapDispatchToProps(dispatch) {

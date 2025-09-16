@@ -5,15 +5,12 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.LandingPage;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
-using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 {
@@ -27,8 +24,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         private const string ValidationMessage_PageCodeRequired = "Page Code is required";
         private const string ValidationMessage_PageCodeMaxLength = "Page Code must not exceed 200 characters";
         private const string ValidationMessage_PageCodeInvalid = "Page Code can only contain letters, numbers, hyphens and underscores";
-        private const string ValidationMessage_PageNameExists = "Page Name already exists. Please enter a different name";
-        private const string ValidationMessage_PageCodeExists = "Page Code already exists. Please enter a different code";
         private const string ValidationMessage_CampaignRequired = "Campaign is required";
         private const string ValidationMessage_TargetCountryRequired = "Target Country is required";
         private const string ValidationMessage_LanguageRequired = "Language is required";
@@ -49,6 +44,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         public PageBuilderService(IDynamicRepository dynamicRepository, ILandingPageService landingPageService) : base(dynamicRepository)
         {
             _landingPageService = landingPageService;
+        }
+
+        public ResultInfo InsertLandingPageDeal(InsertLandingPageDealParam param)
+        {
+            var command = param.MapTo<InsertLandingPageDealParam, InsertLandingPageDealCommand>();
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        public ResultInfo InsertLandingPageCampaign(InsertLandingPageCampaignParam param)
+        {
+            var command = param.MapTo<InsertLandingPageCampaignParam, InsertLandingPageCampaignCommand>();
+
+            return ExecuteReturnResultInfo(command);
         }
 
         public IEnumerable<MediaSourceInfo> GetMediaSources(MediaSourceParam param)

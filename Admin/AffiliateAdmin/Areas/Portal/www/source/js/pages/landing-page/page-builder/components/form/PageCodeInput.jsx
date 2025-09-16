@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
-import { updateFormField, validatePageCode, setValidationErrors } from '../../actions';
+import { updateFormField, setValidationErrors } from '../../actions';
 import { pageBuilderLabels, validationMessages, pageCodePattern } from '../../libs/constants';
 
-const PageCodeInput = ({ value, error, required = false, validation, isEditMode, pageBuilderDetail, updateFormField, validatePageCode, setValidationErrors }) => {
+const PageCodeInput = ({ value, error, required = false, validation, isEditMode, pageBuilderDetail, updateFormField, setValidationErrors }) => {
     const [localValue, setLocalValue] = useState('');
     const debounceTimeoutRef = useRef(null);
 
@@ -41,13 +41,9 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
                     });
                     return;
                 }
-                
-                // In edit mode, exclude the current page from uniqueness validation
-                const currentPageId = pageBuilderDetail.PageId;
-                validatePageCode(pageCodeFromDetail.trim(), currentPageId);
             }
         }
-    }, [isEditMode, pageBuilderDetail, validation.isValidating, validatePageCode, setValidationErrors]);
+    }, [isEditMode, pageBuilderDetail, validation.isValidating, setValidationErrors]);
 
     useEffect(() => {
         return () => {
@@ -66,11 +62,8 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
                 });
                 return;
             }
-            
-            // Then check uniqueness, excluding current page in edit mode
-            await validatePageCode(code.trim(), excludePageId);
         }
-    }, [validatePageCode, setValidationErrors]);
+    }, [setValidationErrors]);
 
     const handleChange = useCallback((event) => {
         const newValue = event.target.value;
@@ -96,15 +89,6 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
             validateCode(newValue, excludePageId);
         }, 500);
     }, [updateFormField, setValidationErrors, validateCode, isEditMode, pageBuilderDetail]);
-
-    const getValidationState = useCallback(() => {
-        const { isValidating } = validation;
-        
-        if (isValidating) return null;
-        if (error) return false;
-        if (localValue && !error) return true;
-        return null;
-    }, [validation, error, localValue]);
 
     const { isValidating } = validation;
 
@@ -151,7 +135,7 @@ function mapStateToProps({ validation, isEditMode, pageBuilderDetail }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateFormField, validatePageCode, setValidationErrors }, dispatch);
+    return bindActionCreators({ updateFormField, setValidationErrors }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(PageCodeInput));

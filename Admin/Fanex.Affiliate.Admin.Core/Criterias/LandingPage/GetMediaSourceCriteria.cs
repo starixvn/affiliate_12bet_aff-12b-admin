@@ -1,4 +1,5 @@
-﻿using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 {
@@ -12,6 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Criterias.LandingPage
 
         public int ModuleId { get; set; }
         public string TargetCountryCode { get; set; }
+        [SpParam(SqlParamName = "MarketId")]
         public string LanguageCode { get; set; }
     }
 }

@@ -10,6 +10,6 @@
 
         public string FileName { get; set; }
 
-        public string Demenssion { get; set; }
+        public string Dimension { get; set; }
     }
 }

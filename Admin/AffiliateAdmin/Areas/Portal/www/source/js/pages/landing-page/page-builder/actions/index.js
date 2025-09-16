@@ -94,6 +94,21 @@ export const setDealList = (deals) => ({
     deals
 });
 
+export const setNormalDealList = (normalDeals) => ({
+    type: types.SET_NORMAL_DEAL_LIST,
+    normalDeals
+});
+
+export const addDealToList = (deal) => ({
+    type: types.ADD_DEAL_TO_LIST,
+    deal
+});
+
+export const addCampaignToList = (campaign) => ({
+    type: types.ADD_CAMPAIGN_TO_LIST,
+    campaign
+});
+
 export const setModuleList = (modules) => ({
     type: types.SET_MODULE_LIST,
     modules
@@ -144,17 +159,37 @@ export const fetchDeals = (campaignId) => async (dispatch) => {
         const response = await post(url, { campaignId });
         
         if (response && response.status === 200) {
-            dispatch(setDeals(response.data || []));
+            dispatch(setDealList(response.data || []));
         }
     } catch (error) {
         console.error('Error fetching deals:', error);
     }
 };
 
-export const fetchModuleSources = (moduleId) => async (dispatch) => {
+export const fetchNormalDealList = () => async (dispatch) => {
+    try {
+        const url = 'Portal/PageBuilder/GetNormalDealList';
+        const response = await post(url, {});
+        
+        if (response && response.status === 200) {
+            dispatch(setNormalDealList(response.data || []));
+            return { success: true, data: response.data };
+        } else {
+            return { success: false, error: 'Unexpected response status' };
+        }
+    } catch (error) {
+        return { success: false, error: error.message };
+    }
+};
+
+export const fetchModuleSources = (moduleId, targetCountryCode = null, languageCode = null) => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/GetMediaSources';
-        const response = await post(url, { moduleId });
+        const response = await post(url, { 
+            moduleId,
+            targetCountryCode,
+            languageCode
+        });
         
         if (response && response.status === 200) {
             dispatch(setSources(moduleId, response.data || []));
@@ -164,53 +199,51 @@ export const fetchModuleSources = (moduleId) => async (dispatch) => {
     }
 };
 
-export const validatePageName = (pageName, pageId = null) => async (dispatch) => {
+export const reloadAllModuleSources = (moduleComponents, targetCountryCode, languageCode) => async (dispatch) => {
     try {
-        const url = 'Portal/PageBuilder/ValidatePageName';
-        const response =  {data: {IsValid: true}, status: 200};
-        
-        if (response && response.status === 200) {
-            const isValid = response.data && response.data.IsValid;
-            
-            if (isValid) {
-                dispatch({ type: types.VALIDATE_PAGE_NAME_SUCCESS });
-            } else {
-                dispatch({ 
-                    type: types.VALIDATE_PAGE_NAME_ERROR, 
-                    error: response.data ? response.data.Message : 'Page name already exists' 
-                });
-            }
-            
-            return isValid;
-        }
+        // Get unique module IDs from current module components
+        const uniqueModuleIds = [...new Set(
+            moduleComponents
+                .map(component => component.moduleId)
+                .filter(moduleId => moduleId) // Filter out null/undefined
+        )];
+
+        // Fetch sources for each unique module
+        const fetchPromises = uniqueModuleIds.map(moduleId => 
+            dispatch(fetchModuleSources(moduleId, targetCountryCode, languageCode))
+        );
+
+        await Promise.all(fetchPromises);
     } catch (error) {
-        dispatch({ type: types.VALIDATE_PAGE_NAME_ERROR, error: 'Error validating page name' });
-        return false;
+        console.error('Error reloading all module sources:', error);
     }
 };
 
-export const validatePageCode = (pageCode, pageId = null) => async (dispatch) => {
+export const validateAndResetInvalidSources = (moduleComponents, allSources) => (dispatch) => {
     try {
-        const url = 'Portal/PageBuilder/ValidatePageCode';
-        const response = {data: {IsValid: true}, status: 200};
-        
-        if (response && response.status === 200) {
-            const isValid = response.data && response.data.IsValid;
+        moduleComponents.forEach(component => {
+            const { id: componentId, moduleId, mediaId } = component;
             
-            if (isValid) {
-                dispatch({ type: types.VALIDATE_PAGE_CODE_SUCCESS });
+            if (!moduleId || !mediaId) return;
+            
+            const availableSources = allSources[moduleId] || [];
+            const availableSourceIds = availableSources.map(source => source.MediaId);
+            
+            if (Array.isArray(mediaId)) {
+                // Multi-select: filter out invalid IDs
+                const validMediaIds = mediaId.filter(id => availableSourceIds.includes(id));
+                if (validMediaIds.length !== mediaId.length) {
+                    dispatch(updateModuleComponent(componentId, 'mediaId', validMediaIds.length > 0 ? validMediaIds : null));
+                }
             } else {
-                dispatch({ 
-                    type: types.VALIDATE_PAGE_CODE_ERROR, 
-                    error: response.data ? response.data.Message : 'Page code already exists' 
-                });
+                // Single select: reset if invalid
+                if (!availableSourceIds.includes(mediaId)) {
+                    dispatch(updateModuleComponent(componentId, 'mediaId', null));
+                }
             }
-            
-            return isValid;
-        }
+        });
     } catch (error) {
-        dispatch({ type: types.VALIDATE_PAGE_CODE_ERROR, error: 'Error validating page code' });
-        return false;
+        console.error('Error validating and resetting invalid sources:', error);
     }
 };
 
@@ -271,4 +304,76 @@ export const saveLandingPage = (formData, moduleComponents, isReview = false) =>
 
 export const generatePreviewUrl = (formData, moduleComponents) => async (dispatch) => {
     return await dispatch(saveLandingPage(formData, moduleComponents, true));
+};
+
+export const insertLandingPageDeal = (dealId) => async (dispatch) => {
+    try {
+        const url = 'Portal/PageBuilder/InsertLandingPageDeal';
+        const response = await post(url, { dealId });
+        
+        if (response && response.status === 200) {
+            if (response.data && response.data.IsSuccessful) {
+                dispatch({
+                    type: types.INSERT_LANDING_PAGE_DEAL_SUCCESS,
+                    message: response.data.Message || 'Deal added successfully'
+                });
+                return response.data;
+            } else {
+                dispatch({
+                    type: types.INSERT_LANDING_PAGE_DEAL_ERROR,
+                    error: response.data?.Message || 'Failed to add deal'
+                });
+                return response.data;
+            }
+        } else {
+            dispatch({
+                type: types.INSERT_LANDING_PAGE_DEAL_ERROR,
+                error: 'Unexpected response from server'
+            });
+            
+            return { IsSuccessful: false, Message: 'Unexpected response from server' };
+        }
+    } catch (error) {
+        dispatch({
+            type: types.INSERT_LANDING_PAGE_DEAL_ERROR,
+            error: error.message || 'An error occurred while adding the deal'
+        });
+        return { IsSuccessful: false, Message: error.message || 'An error occurred while adding the deal' };
+    }
+};
+
+export const insertLandingPageCampaign = (campaignName, description) => async (dispatch) => {
+    try {
+        const url = 'Portal/PageBuilder/InsertLandingPageCampaign';
+        const response = await post(url, { campaignName, description });
+        
+        if (response && response.status === 200) {
+            if (response.data && response.data.IsSuccessful) {
+                dispatch({
+                    type: types.INSERT_LANDING_PAGE_CAMPAIGN_SUCCESS,
+                    message: response.data.Message || 'Campaign added successfully'
+                });
+                return response.data;
+            } else {
+                dispatch({
+                    type: types.INSERT_LANDING_PAGE_CAMPAIGN_ERROR,
+                    error: response.data?.Message || 'Failed to add campaign'
+                });
+                return response.data;
+            }
+        } else {
+            dispatch({
+                type: types.INSERT_LANDING_PAGE_CAMPAIGN_ERROR,
+                error: 'Unexpected response from server'
+            });
+            
+            return { IsSuccessful: false, Message: 'Unexpected response from server' };
+        }
+    } catch (error) {
+        dispatch({
+            type: types.INSERT_LANDING_PAGE_CAMPAIGN_ERROR,
+            error: error.message || 'An error occurred while adding the campaign'
+        });
+        return { IsSuccessful: false, Message: error.message || 'An error occurred while adding the campaign' };
+    }
 };

@@ -20,7 +20,6 @@ export const Content = (props) => {
     
     const _onStatusChange = (pageId, newStatusId) => {
         const newStatus = statusList.find(item => item.key == newStatusId);
-        console.log(statusList, newStatusId, newStatus);
 
         props.setNotification({
             message: `<p>Only Active pages are available for link generation.</p>

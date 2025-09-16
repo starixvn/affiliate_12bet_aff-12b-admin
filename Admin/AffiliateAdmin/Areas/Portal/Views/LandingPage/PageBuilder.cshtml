@@ -14,6 +14,7 @@
             statusList: @Html.Raw(Json.Encode(Model.StatusList)),
             moduleList: @Html.Raw(Json.Encode(Model.ModuleList)),
             landingPageUrl: "@Model.LandingPageUrl",
+            bannerRootUrl:"@Model.BannerRootUrl",
             pageBuilderDetail: @Html.Raw(Json.Encode(Model.PageBuilderDetail)),
         }
     </script>

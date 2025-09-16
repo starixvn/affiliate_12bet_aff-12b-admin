@@ -477,7 +477,7 @@ export const BaseMediaUploaderForm = ({
                             <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                 <div dangerouslySetInnerHTML={{ __html: message }}></div>
                             </Alert>
-                            <Form tag="form" className="mb-3" autoComplete="off">
+                            <Form tag="form" className="mb-3">
                                 <div className='px-1 mb-3 border'>
                                     <p>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</p>
                                     <p className="d-block">[File Size Limit: {maxFileSize}MB]</p>

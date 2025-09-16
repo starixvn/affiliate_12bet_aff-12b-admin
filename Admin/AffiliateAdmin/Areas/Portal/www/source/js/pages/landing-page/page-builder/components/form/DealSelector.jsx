@@ -84,9 +84,8 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
     }, []);
 
     const handleNewDealAdded = useCallback((newDeal) => {
-        // For now, we'll just show a success message
-        // In a real implementation, this would add the deal to the backend and refresh the deal list
-        alert(`New deal "${newDeal.name}" has been added successfully! Please refresh the page to see it in the list.`);
+        // The deal is already added to Redux dealList by AddNewDealModal
+        // No additional action needed here
     }, []);
 
     const handleSelectAll = useCallback(() => {

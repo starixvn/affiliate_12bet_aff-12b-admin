@@ -8,5 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.LandingPage
         public IEnumerable<ModuleInfo> ModuleList { get; set; }
 
         public PageBuilderDetail PageBuilderDetail { get; set; }
+
+        public string BannerRootUrl { get; set; }
     }
 }

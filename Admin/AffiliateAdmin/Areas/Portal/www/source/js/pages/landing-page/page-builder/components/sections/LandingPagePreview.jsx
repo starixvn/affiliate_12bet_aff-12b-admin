@@ -188,6 +188,18 @@ const LandingPagePreview = ({ validation, ui }) => {
                                     </div>
                                 ) : (
                                     <div className="text-center py-4">
+                                        <iframe
+                                                src={useProxy ? getProxyUrl(ui.previewUrl) : ui.previewUrl}
+                                                style={{
+                                                    width: '100%',
+                                                    height: '500px',
+                                                    border: 'none'
+                                                }}
+                                                title="Landing Page Preview"
+                                                onLoad={handleIframeLoad}
+                                                onError={handleIframeError}
+                                                key={useProxy ? 'proxy' : 'direct'}
+                                            />
                                         <Alert color="warning" className="mb-4">
                                             <i className="fa fa-exclamation-triangle me-2"></i>
                                             <strong>Preview cannot be displayed in iframe</strong>

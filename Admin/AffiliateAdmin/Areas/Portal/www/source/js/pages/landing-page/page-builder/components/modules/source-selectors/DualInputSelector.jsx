@@ -13,7 +13,8 @@ const DualInputSelector = ({
     onExtraChange,
     extraPlaceholder = "extra info",
     extraLabel = "Extra Info",
-    extraRequired = true
+    extraRequired = true,
+    bannerRootUrl
 }) => {
     return (
         <div className="source-selector">
@@ -26,6 +27,7 @@ const DualInputSelector = ({
                     sources={sources}
                     isDisabled={isDisabled}
                     onChange={onSourceChange}
+                    bannerRootUrl={bannerRootUrl}
                     className="mb-2"
                 />
             </FormGroup>
