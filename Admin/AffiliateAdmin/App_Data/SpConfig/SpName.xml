@@ -65,10 +65,10 @@
       <Mapping DataField="Currency" ObjectProperty="PlayerCurrency" />
     </Setting>
     <Setting Key="Task_Aff_GetSetting" SpName="Task_Aff_GetSetting" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_AffiliateCPA" SpName="Aff_Admin_Report_AffiliateCPA_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_PlayerCPA" SpName="Aff_Admin_Report_PlayerCPA_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_PlayerCPA_TO_Detail" SpName="Aff_Admin_Report_PlayerCPA_TO_Detail_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_RedepositCPA" SpName="Aff_Admin_Report_RedepositCPA_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Report_AffiliateCPA" SpName="Aff_Admin_Report_AffiliateCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Report_PlayerCPA" SpName="Aff_Admin_Report_PlayerCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Report_PlayerCPA_TO_Detail" SpName="Aff_Admin_Report_PlayerCPA_TO_Detail" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_Report_RedepositCPA" SpName="Aff_Admin_Report_RedepositCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Info">
     <Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
@@ -99,7 +99,7 @@
     <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
   <Function Name="Customer">
-    <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_Member_Sel" SpName="Aff_Admin_Member_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_Admin_AffiliateNote_Sel" SpName="Aff_Admin_AffiliateNote_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
       <Mapping DataField="UpdatedName" ObjectProperty="CreatedBy" />
@@ -298,7 +298,7 @@
 	<Setting Key="Aff_Admin_Deal_Schedule_Sel" SpName="Aff_Admin_Deal_Schedule_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Assign_Deal" SpName="Aff_Admin_Assign_Deal" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	<Setting Key="Aff_Admin_Assign_Deal_Sel" SpName="Aff_Admin_Assign_Deal_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-	<Setting Key="Aff_Admin_Deal_PlayerTargetCountry_ListSel" SpName="Aff_Admin_Deal_PlayerTargetCountry_ListSel_xpre" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+	<Setting Key="Aff_Admin_Deal_PlayerTargetCountry_ListSel" SpName="Aff_Admin_Deal_PlayerTargetCountry_ListSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
 </Functions>
 
