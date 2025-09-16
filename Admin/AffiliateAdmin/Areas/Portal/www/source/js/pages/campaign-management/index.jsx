@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import ClaimPrincipal from '../../modules/claim';
-import SubMenuList from '../common/components/SubMenuList';
+import ClaimPrincipal from '@/modules/claim';
+import SubMenuList from '@/pages/common/components/SubMenuList';
 import { menuKey } from './constants/menu';
 import { relativePath } from './constants/routes';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
@@ -53,25 +53,25 @@ const App = () => {
     }
 
     const renderMenuList = getRenderMenuItems();
-    const imgSrc = 'Areas/Portal/www/dist/imgs/i_campaign.png';
+    const imgSrc = 'Areas/Portal/www/dist/imgs/i_campaign_management.png';
     const firstMenu = renderMenuList[0];
 
     return (
         <ErrorBoundary>
             <Router>
-                <SubMenuList 
+                <SubMenuList
                     img={imgSrc}
-                    menus={renderMenuList.map((menu) => { return { label: menu.label, href: menu.href } })} 
-                    menuTitle="Campaign Management" 
+                    menus={renderMenuList.map((menu) => { return { label: menu.label, href: menu.href } })}
+                    menuTitle="Campaign Management"
                 />
                 <Suspense fallback={<div>Loading...</div>}>
                     <Switch>
                         {renderMenuList.map((menu, index) => (
-                            <Route 
-                                key={`route_${index}`} 
-                                path={menu.href} 
-                                component={menu.component} 
-                                exact 
+                            <Route
+                                key={`route_${index}`}
+                                path={menu.href}
+                                component={menu.component}
+                                exact
                             />
                         ))}
                         {firstMenu && <Redirect exact from="/" to={firstMenu.href} />}

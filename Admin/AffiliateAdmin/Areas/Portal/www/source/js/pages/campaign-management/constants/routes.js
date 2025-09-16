@@ -1,4 +1,4 @@
-import { resolveClientUrl } from "../../../modules/utils";
+import { resolveClientUrl } from "@/modules/utils";
 
 export const relativePath = {
     allCampaigns: resolveClientUrl('Portal/CampaignManagement'),

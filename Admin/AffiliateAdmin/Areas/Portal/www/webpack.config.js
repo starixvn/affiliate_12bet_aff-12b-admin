@@ -26,7 +26,12 @@ module.exports = env => {
     const sharedConfig = () => ({
         mode: env,
         stats: { modules: false },
-        resolve: { extensions: [".js", ".jsx"] },
+        resolve: { 
+            extensions: [".js", ".jsx"],
+            alias: {
+                '@': path.resolve(__dirname, 'source/js')
+            }
+        },
         output: {
             path: projectPath.rootPath,
             filename: "[name].js",

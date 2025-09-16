@@ -1,24 +1,40 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch, batch } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import MultipleSelect from '../../../../../components/multiple-select';
-import { handleChangeMultipleSelected } from '../../../../../modules/utils';
+import MultipleSelect from '@/components/multiple-select';
+import { handleChangeMultipleSelected } from '@/modules/utils';
 import { ActionCreators } from '../actions';
 
-const FilterForm = ({ isLoading = false }) => {
-    const { setSelectedStatus, setSearchCampaign, setSearchDescription, setParam } = ActionCreators;
+
+const FilterForm = () => {
+    const {
+        setSelectedStatus,
+        setStatusList,
+        setSearchCampaign,
+        setSearchDescription,
+        setParam,
+        fetchFilter } = ActionCreators;
+
     const [
         statusList,
+        selectedStatus,
         searchCampaign,
-        searchDescription
+        searchDescription,
+        isShowLoader,
+        pagingOption
     ] = useSelector(state => [
-        state.statusList, 
-        state.searchCampaign, 
-        state.searchDescription]);
+        state.statusList,
+        state.selectedStatus,
+        state.searchCampaign,
+        state.searchDescription,
+        state.isShowLoader,
+        state.pagingOption]);
+
 
     const dispatch = useDispatch();
     const handleChangeStatus = (item, selectedStatusList) => {
-        dispatch(setSelectedStatus(handleChangeMultipleSelected(statusList, selectedStatusList)));
+        dispatch(setSelectedStatus(selectedStatusList));
+        dispatch(setStatusList(handleChangeMultipleSelected(statusList, selectedStatusList)));
     }
 
     const handleChangeCampaignName = (event) => {
@@ -30,21 +46,28 @@ const FilterForm = ({ isLoading = false }) => {
     }
 
     const handleSearch = () => {
-        dispatch(setParam({
-            Status: statusList.filter(item => item.checked).map(item => item.key).join(','),
-            CampaignName: searchCampaign,
+        const params = {
+            StatusIds: selectedStatus,
+            Search: searchCampaign,
             Description: searchDescription,
-        }));
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize
+        }
+        dispatch(setParam(params));
     }
 
     const handleAddNew = () => {
-        if (!isLoading) {
+        if (!isShowLoader) {
             console.log('Add new campaign clicked');
             // TODO: Implement navigation to create campaign page or open modal
             // Example: history.push('/campaign-management/create');
             // Or: setShowCreateModal(true);
         }
     }
+
+    useEffect(() => {
+        dispatch(fetchFilter());
+    }, []);
 
     return (
         <div className="filter-container my-2 pb-0">
@@ -91,11 +114,11 @@ const FilterForm = ({ isLoading = false }) => {
                 </FormGroup>
 
                 <div className="button-group">
-                    <Button outline color="primary" type="button" className="mb-2 mr-2" onClick={handleSearch} disabled={isLoading}>
+                    <Button outline color="primary" type="button" className="mb-2 mr-2" onClick={handleSearch} disabled={!selectedStatus}>
                         <span className="oi oi-magnifying-glass"></span> Search
                     </Button>
-                    
-                    <Button color="success" type="button" className="mb-2" onClick={handleAddNew} disabled={isLoading}>
+
+                    <Button color="success" type="button" className="mb-2" onClick={handleAddNew}>
                         <span className="oi oi-plus"></span> Add Campaign
                     </Button>
                 </div>

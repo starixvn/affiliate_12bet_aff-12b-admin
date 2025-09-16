@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { post } from '../../../../../modules/ajaxRequest';
+import { post } from '@/modules/ajaxRequest';
+import { batch, useDispatch, useSelector } from 'react-redux';
+import { handleChangeMultipleSelected } from '@/modules/utils';
+import { ActionCreators } from '../actions';
+import { defaultState } from '../constants/settings';
 
-const Dashboard = ({ onCardClick }) => {
+
+const Dashboard = () => {
+    const { setSelectedStatus, setStatusList, setParam } = ActionCreators;
     const [dashboardData, setDashboardData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useDispatch();
+    const [statusList] = useSelector(state => [state.statusList]);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -49,41 +57,48 @@ const Dashboard = ({ onCardClick }) => {
             value: TotalCampaigns,
             icon: '📊',
             type: 'total',
-            filterValue: -1
+            filterValue: '-1'
         },
         {
             status: 'Active',
             value: ActiveCampaigns,
             icon: '✅',
             type: 'active',
-            filterValue: 1
+            filterValue: '1'
         },
         {
             status: 'Draft',
             value: DraftCampaigns,
             icon: '✏️',
             type: 'draft',
-            filterValue: 0
+            filterValue: '0'
         },
         {
             status: 'Paused',
             value: PausedCampaigns,
             icon: '⏸️',
             type: 'paused',
-            filterValue: 2
+            filterValue: '2'
         },
         {
             status: 'Inactive',
             value: InactiveCampaigns,
             icon: '🗑️',
             type: 'inactive',
-            filterValue: 3
+            filterValue: '3'
         }
     ];
 
-    const handleCardClick = (card) => {
+    const handleCardClick = (value) => {
         if (!isLoading) {
-            onCardClick && onCardClick(card.filterValue);
+            if (!!value && value === '-1') {
+                value = statusList.map(item => item.key).join(',');
+            }
+            batch(() => {
+                dispatch(setSelectedStatus(value));
+                dispatch(setStatusList(handleChangeMultipleSelected(statusList, value)));
+                dispatch(setParam({ ...defaultState, StatusIds: value }));
+            });
         }
     };
 
@@ -103,7 +118,7 @@ const Dashboard = ({ onCardClick }) => {
                         <div
                             key={index}
                             className={`dashboard-card dashboard-card--${card.type} ${isLoading ? 'dashboard-card--loading' : ''}`}
-                            onClick={() => handleCardClick(card)}
+                            onClick={() => handleCardClick(card.filterValue)}
                             style={{ cursor: isLoading ? 'not-allowed' : 'pointer' }}
                         >
                             <div className="card-icon">

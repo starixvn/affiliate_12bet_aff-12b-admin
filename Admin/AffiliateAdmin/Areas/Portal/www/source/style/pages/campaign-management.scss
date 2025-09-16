@@ -9,13 +9,13 @@ $status-color-paused: #3b82f6;
 $status-color-inactive: #6b7280;
 
 .campaign-dashboard {
-    padding: 24px;
+    padding: 10px;
 
     .dashboard-header {
         display: flex;
         align-items: center;
         gap: 24px;
-        
+
         @media (max-width: 768px) {
             flex-direction: column;
             align-items: flex-start;
@@ -24,7 +24,7 @@ $status-color-inactive: #6b7280;
     }
 
     .title {
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
         color: #374151;
         margin: 0;
@@ -35,12 +35,12 @@ $status-color-inactive: #6b7280;
         display: flex;
         gap: 16px;
         flex: 1;
-        
+
         @media (max-width: 768px) {
             flex-wrap: wrap;
             width: 100%;
         }
-        
+
         @media (max-width: 480px) {
             flex-direction: column;
         }
@@ -69,7 +69,7 @@ $status-color-inactive: #6b7280;
         &--loading {
             opacity: 0.7;
             pointer-events: auto;
-            
+
             &:hover {
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
                 transform: none;
@@ -79,7 +79,7 @@ $status-color-inactive: #6b7280;
         &--total {
             border-color: $status-color-total;
             background-color: #fef2f2;
-            
+
             .card-value {
                 color: $status-color-total;
             }
@@ -88,7 +88,7 @@ $status-color-inactive: #6b7280;
         &--active {
             border-color: $status-color-active;
             background-color: #f0fdf4;
-            
+
             .card-value {
                 color: $status-color-active;
             }
@@ -97,7 +97,7 @@ $status-color-inactive: #6b7280;
         &--draft {
             border-color: $status-color-draft;
             background-color: #fffbeb;
-            
+
             .card-value {
                 color: $status-color-draft;
             }
@@ -106,7 +106,7 @@ $status-color-inactive: #6b7280;
         &--paused {
             border-color: $status-color-paused;
             background-color: #eff6ff;
-            
+
             .card-value {
                 color: $status-color-paused;
             }
@@ -115,7 +115,7 @@ $status-color-inactive: #6b7280;
         &--inactive {
             border-color: $status-color-inactive;
             background-color: #f9fafb;
-            
+
             .card-value {
                 color: $status-color-inactive;
             }
@@ -144,7 +144,7 @@ $status-color-inactive: #6b7280;
             flex: 1;
             text-align: center;
             margin-top: .75rem;
-            
+
             strong {
                 font-weight: 700;
                 color: #000000;
@@ -176,8 +176,13 @@ $status-color-inactive: #6b7280;
     }
 
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
     }
 }
 
@@ -216,7 +221,7 @@ $status-color-inactive: #6b7280;
         gap: 20px;
     }
 
-    
+
     .form-group {
         margin-left: 20px;
         font-size: 14px;
@@ -225,12 +230,12 @@ $status-color-inactive: #6b7280;
             font-size: 14px;
             min-width: 280px !important;
             width: 280px;
-            
+
             @media (max-width: 768px) {
                 min-width: 250px !important;
                 width: 250px;
             }
-            
+
             @media (max-width: 480px) {
                 min-width: 200px !important;
                 width: 200px;
@@ -247,30 +252,21 @@ $status-color-inactive: #6b7280;
     .button-group {
         display: flex;
         align-items: center;
-        gap: 8px;
-        
+        gap: 40px;
+        margin-left: 20px;
+
         .btn {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            padding: 10px 20px;
+            gap: 4px;
+            justify-content: center;
             font-size: 14px;
-            
-            .oi {
-                font-size: 14px;
-            }
         }
-        
-        @media (max-width: 768px) {
-            flex-direction: column;
-            gap: 8px;
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-                font-size: 14px;
-            }
-        }
+    }
+}
+
+.sub-menu-container {
+    img {
+        padding-right: 10px;
     }
 }

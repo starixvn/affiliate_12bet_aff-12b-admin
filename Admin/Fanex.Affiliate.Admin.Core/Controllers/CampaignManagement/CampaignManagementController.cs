@@ -3,12 +3,13 @@
     using System.Web.Mvc;
     using Attributes;
     using Constants;
+    using MetaModels.CampaignManagement;
     using Services.CampaignManagement;
     using Services.Common;
 
     public class CampaignManagementController : ReadOnlySessionBaseController
     {
-        private ICampaignService _campaignService;
+        private readonly ICampaignService _campaignService;
 
         public CampaignManagementController(
             ICampaignService campaignService,
@@ -38,6 +39,16 @@
         public ActionResult GetAllCampaignStatus()
         {
             var result = _campaignService.GetAllCampaignStatus();
+            return GenerateJsonNetResult(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AllCampaigns)]
+        public ActionResult GetCampaignManagementList(GetCampaignListParam param)
+        {
+            var result = _campaignService.GetCampaignList(param);
+
             return GenerateJsonNetResult(result);
         }
     }

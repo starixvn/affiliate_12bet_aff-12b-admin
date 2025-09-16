@@ -440,6 +440,7 @@
     <Compile Include="Criterias\Auth\UserPermissionCriteria.cs" />
     <Compile Include="Criterias\CampaignManagement\GetAllCampaignStatusCriteria.cs" />
     <Compile Include="Criterias\CampaignManagement\GetCampaignDashboardCriteria.cs" />
+    <Compile Include="Criterias\CampaignManagement\GetCampaignListCriteria.cs" />
     <Compile Include="Criterias\Customer\AffiliateInfoOnLeftPanelCriteria.cs" />
     <Compile Include="Criterias\Customer\AffiliateOnlineCriteria.cs" />
     <Compile Include="Criterias\Customer\CustomerStatisticsCriteria.cs" />
@@ -607,6 +608,7 @@
     <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\Api\TokenRequestParam.cs" />
+    <Compile Include="MetaModels\CampaignManagement\GetCampaignListParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\CheckPermissionParam.cs" />
     <Compile Include="MetaModels\Customer\TransferLimitSettingParam.cs" />
