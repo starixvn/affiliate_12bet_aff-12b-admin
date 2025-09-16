@@ -333,6 +333,10 @@
     <Setting Key="Aff_LandingPage_Campaign_Upd" SpName="Aff_LandingPage_Campaign_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Media_Sel" SpName="Aff_LandingPage_Media_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
     <Setting Key="Aff_LandingPage_Deal_Ins" SpName="Aff_LandingPage_Deal_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+    <Setting Key="Aff_LandingPage_Deal_Sel" SpName="Aff_LandingPage_Deal_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+      <Mapping DataField="DealId" ObjectProperty="GroupId" />
+      <Mapping DataField="DealName" ObjectProperty="GroupName" />
+    </Setting>
     <Setting Key="Aff_LandingPage_Page_Del_Sel" SpName="Aff_LandingPage_Page_Del_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
   </Function>
 </Functions>

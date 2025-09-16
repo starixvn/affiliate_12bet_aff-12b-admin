@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 const MultiSelectDropdown = ({ 
@@ -11,16 +11,70 @@ const MultiSelectDropdown = ({
     onSelectAll
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [dropDirection, setDropDirection] = useState('down');
+    const dropdownRef = useRef(null);
 
     const toggle = useCallback(() => {
         if (!isDisabled) {
+            if (!isOpen && dropdownRef.current) {
+                // Calculate available space when opening dropdown
+                const rect = dropdownRef.current.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const spaceBelow = viewportHeight - rect.bottom;
+                const spaceAbove = rect.top;
+                const dropdownHeight = 300; // maxHeight of dropdown
+                
+                // If not enough space below but more space above, drop up
+                if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                    setDropDirection('up');
+                } else {
+                    setDropDirection('down');
+                }
+            }
             setIsOpen(prevState => !prevState);
         }
-    }, [isDisabled]);
+    }, [isDisabled, isOpen]);
 
-    // Check if all sources are selected
-    const allSourcesSelected = sources.length > 0 && 
-        sources.every(source => Array.isArray(value) && value.includes(source.MediaId));
+    // Effect to handle window resize and recalculate dropdown direction
+    useEffect(() => {
+        const handleResize = () => {
+            if (isOpen && dropdownRef.current) {
+                const rect = dropdownRef.current.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const spaceBelow = viewportHeight - rect.bottom;
+                const spaceAbove = rect.top;
+                const dropdownHeight = 300;
+                
+                if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                    setDropDirection('up');
+                } else {
+                    setDropDirection('down');
+                }
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleResize);
+        
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleResize);
+        };
+    }, [isOpen]);
+
+    const handleSearchChange = useCallback((e) => {
+        setSearchTerm(e.target.value);
+    }, []);
+
+    // Filter sources based on search term
+    const filteredSources = sources.filter(source => 
+        source.MediaName && source.MediaName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Check if all filtered sources are selected
+    const allFilteredSourcesSelected = filteredSources.length > 0 && 
+        filteredSources.every(source => Array.isArray(value) && value.includes(source.MediaId));
 
     // Get display text
     const getDisplayText = () => {
@@ -31,8 +85,22 @@ const MultiSelectDropdown = ({
     };
 
     return (
-        <div className="source-selector">
-            <Dropdown isOpen={isOpen} toggle={toggle} className="w-100">
+        <div className="source-selector" ref={dropdownRef}>
+            <style>
+                {`
+                .dropdown-menu-up {
+                    bottom: 100% !important;
+                    top: auto !important;
+                    transform: translateY(-2px) !important;
+                    margin-bottom: 2px !important;
+                }
+                `}
+            </style>
+            <Dropdown 
+                isOpen={isOpen} 
+                toggle={toggle} 
+                className="w-100"
+            >
                 <DropdownToggle
                     caret
                     className={`form-control text-left ${error ? 'is-invalid' : ''}`}
@@ -41,14 +109,31 @@ const MultiSelectDropdown = ({
                 >
                     {getDisplayText()}
                 </DropdownToggle>
-                <DropdownMenu className="w-100" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                <DropdownMenu 
+                    className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
+                    style={{ 
+                        maxHeight: '300px', 
+                        overflowY: 'auto',
+                        zIndex: 1050,
+                        position: 'absolute',
+                        width: '100%'
+                    }}
+                    flip={false}
+                    right={dropDirection === 'up'}
+                >
                     <DropdownItem header>
-                        <strong>Select multiple sources:</strong>
+                        <Input
+                            type="text"
+                            placeholder="Search sources..."
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            onClick={(e) => e.stopPropagation()}
+                        />
                     </DropdownItem>
                     <DropdownItem divider />
                     
                     {/* Select All Checkbox */}
-                    {sources && sources.length > 0 && (
+                    {filteredSources.length > 0 && (
                         <DropdownItem 
                             toggle={false}
                             onClick={onSelectAll}
@@ -57,18 +142,18 @@ const MultiSelectDropdown = ({
                         >
                             <Input
                                 type="checkbox"
-                                checked={allSourcesSelected}
+                                checked={allFilteredSourcesSelected}
                                 onChange={() => {}} // Handled by onClick
                                 className="me-2"
                             />
-                            <strong>Select All ({sources.length})</strong>
+                            <strong>Select All ({filteredSources.length})</strong>
                         </DropdownItem>
                     )}
-                    {sources && sources.length > 0 && <DropdownItem divider />}
+                    {filteredSources.length > 0 && <DropdownItem divider />}
                     
                     {/* Individual Source Checkboxes */}
-                    {sources && sources.length > 0 ? (
-                        sources.map(source => {
+                    {filteredSources.length > 0 ? (
+                        filteredSources.map(source => {
                             const isChecked = Array.isArray(value) && value.includes(source.MediaId);
                             return (
                                 <DropdownItem
@@ -80,6 +165,7 @@ const MultiSelectDropdown = ({
                                     <Input
                                         type="checkbox"
                                         checked={isChecked}
+                                        onClick={(e) => e.stopPropagation()}
                                         onChange={(e) => onMultipleSelect(source.MediaId, e.target.checked)}
                                         className="me-2"
                                     />
@@ -97,7 +183,7 @@ const MultiSelectDropdown = ({
                         })
                     ) : (
                         <DropdownItem disabled>
-                            No sources available
+                            {searchTerm ? 'No sources found' : 'No sources available'}
                         </DropdownItem>
                     )}
                 </DropdownMenu>

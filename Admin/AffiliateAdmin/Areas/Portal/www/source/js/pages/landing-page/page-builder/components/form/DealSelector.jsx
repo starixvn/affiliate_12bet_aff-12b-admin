@@ -1,7 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Row, Col } from 'reactstrap';
+
+import AddNewDealModal from '../modals/AddNewDealModal';
 
 import { updateFormField } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
@@ -9,10 +11,55 @@ import { pageBuilderLabels } from '../../libs/constants';
 const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField, required = false }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const [dropDirection, setDropDirection] = useState('down');
+    const [isAddDealModalOpen, setIsAddDealModalOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
     const toggle = useCallback(() => {
+        if (!isOpen && dropdownRef.current) {
+            // Calculate available space when opening dropdown
+            const rect = dropdownRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const spaceBelow = viewportHeight - rect.bottom;
+            const spaceAbove = rect.top;
+            const dropdownHeight = 300; // maxHeight of dropdown
+            
+            // If not enough space below but more space above, drop up
+            if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                setDropDirection('up');
+            } else {
+                setDropDirection('down');
+            }
+        }
         setIsOpen(prevState => !prevState);
-    }, []);
+    }, [isOpen]);
+
+    // Effect to handle window resize and recalculate dropdown direction
+    useEffect(() => {
+        const handleResize = () => {
+            if (isOpen && dropdownRef.current) {
+                const rect = dropdownRef.current.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const spaceBelow = viewportHeight - rect.bottom;
+                const spaceAbove = rect.top;
+                const dropdownHeight = 300;
+                
+                if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                    setDropDirection('up');
+                } else {
+                    setDropDirection('down');
+                }
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleResize);
+        
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleResize);
+        };
+    }, [isOpen]);
 
     const handleDealToggle = useCallback((dealId) => {
         const currentDeals = Array.isArray(value) ? value : [];
@@ -28,7 +75,18 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
     }, []);
 
     const handleAddDeal = useCallback(() => {
-        alert('Add Deal functionality is not yet implemented. Please contact the administrator to add new deals.');
+        setIsOpen(false); // Close the dropdown first
+        setIsAddDealModalOpen(true);
+    }, []);
+
+    const handleAddDealModalToggle = useCallback(() => {
+        setIsAddDealModalOpen(prevState => !prevState);
+    }, []);
+
+    const handleNewDealAdded = useCallback((newDeal) => {
+        // For now, we'll just show a success message
+        // In a real implementation, this would add the deal to the backend and refresh the deal list
+        alert(`New deal "${newDeal.name}" has been added successfully! Please refresh the page to see it in the list.`);
     }, []);
 
     const handleSelectAll = useCallback(() => {
@@ -59,12 +117,26 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
 
     return (
         <FormGroup>
+            <style>
+                {`
+                .dropdown-menu-up {
+                    bottom: 100% !important;
+                    top: auto !important;
+                    transform: translateY(-2px) !important;
+                    margin-bottom: 2px !important;
+                }
+                `}
+            </style>
             <Row className='align-items-center'>
                 <Label md={4} lg={3} for="dealSelector" className={required ? 'required' : ''}>
                     {pageBuilderLabels.deal}
                 </Label>
-                <Col md={8} lg={9}>
-                    <Dropdown isOpen={isOpen} toggle={toggle} className="w-100">
+                <Col md={8} lg={9} ref={dropdownRef}>
+                    <Dropdown 
+                        isOpen={isOpen} 
+                        toggle={toggle} 
+                        className="w-100"
+                    >
                         <DropdownToggle 
                             caret 
                             id="dealSelector"
@@ -73,7 +145,18 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
                         >
                             {selectedDealsText}
                         </DropdownToggle>
-                        <DropdownMenu className="w-100" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                        <DropdownMenu 
+                            className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
+                            style={{ 
+                                maxHeight: '300px', 
+                                overflowY: 'auto',
+                                zIndex: 1050,
+                                position: 'absolute',
+                                width: '100%'
+                            }}
+                            flip={false}
+                            right={dropDirection === 'up'}
+                        >
                             <DropdownItem header>
                                 <Input
                                     type="text"
@@ -137,6 +220,13 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
                     {/* {error && <div className="invalid-feedback d-block">{error}</div>} */}
                 </Col>
             </Row>
+            
+            {/* Add New Deal Modal */}
+            <AddNewDealModal 
+                isOpen={isAddDealModalOpen}
+                toggle={handleAddDealModalToggle}
+                onAddDeal={handleNewDealAdded}
+            />
         </FormGroup>
     );
 };

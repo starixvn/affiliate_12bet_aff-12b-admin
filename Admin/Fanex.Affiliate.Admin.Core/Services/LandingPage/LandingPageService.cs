@@ -59,9 +59,14 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return _systemService.GetAllLanguagesInSystem();
         }
 
-        public IEnumerable<NormalDeal> GetMarketingDealList()
+        public IEnumerable<NormalDeal> GetNormalDealList()
         {
-            return _commonDealService.GetMarketingDealList(new GetNormalDealParam());
+            return _commonDealService.GetNormalDealList(new GetNormalDealParam());
+        }
+
+        public IEnumerable<NormalDeal> GetLandingPageDealList()
+        {
+            return FetchTData<NormalDeal>(new BaseCriteria("Aff_LandingPage_Deal_Sel"));
         }
 
         public IEnumerable<TargetCountry> GetTargetCountryList()

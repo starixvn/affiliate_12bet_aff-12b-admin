@@ -23,6 +23,8 @@ const App = () => {
     // Convert lists to proper format for dropdowns
     const newDealList = convertListToMutilpleSelected(dealList, 'GroupId', 'GroupName');
 
+    
+
     const store = configureStore({
         moduleList,
         campaignList,

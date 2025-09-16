@@ -17,7 +17,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         IEnumerable<StatusInfo> GetLandingPageStatusList();
 
-        IEnumerable<NormalDeal> GetMarketingDealList();
+        IEnumerable<NormalDeal> GetNormalDealList();
+
+        IEnumerable<NormalDeal> GetLandingPageDealList();
 
         IEnumerable<Language> GetLanguageList();
 

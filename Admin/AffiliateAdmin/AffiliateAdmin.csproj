@@ -281,6 +281,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\form\StatusSelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\form\TargetCountrySelector.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\LandingPageForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modals\AddNewCampaignModal.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modals\AddNewDealModal.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleComponentsSection.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleRow.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\modules\ModuleSelector.jsx" />

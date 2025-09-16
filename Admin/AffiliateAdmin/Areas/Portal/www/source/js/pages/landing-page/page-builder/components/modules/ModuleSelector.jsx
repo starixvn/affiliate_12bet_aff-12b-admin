@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Input, FormFeedback, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -10,10 +10,27 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedModuleId, setSelectedModuleId] = useState(null);
+    const [dropDirection, setDropDirection] = useState('down');
+    const dropdownRef = useRef(null);
 
     const toggle = useCallback(() => {
+        if (!isOpen && dropdownRef.current) {
+            // Calculate available space when opening dropdown
+            const rect = dropdownRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const spaceBelow = viewportHeight - rect.bottom;
+            const spaceAbove = rect.top;
+            const dropdownHeight = 300; // maxHeight of dropdown
+            
+            // If not enough space below but more space above, drop up
+            if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                setDropDirection('up');
+            } else {
+                setDropDirection('down');
+            }
+        }
         setIsOpen(prevState => !prevState);
-    }, []);
+    }, [isOpen]);
 
     // Effect to handle module selection and force dropdown close
     useEffect(() => {
@@ -41,6 +58,33 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
             }, 10);
         }
     }, [selectedModuleId, updateModuleComponent, moduleId, fetchModuleSources]);
+
+    // Effect to handle window resize and recalculate dropdown direction
+    useEffect(() => {
+        const handleResize = () => {
+            if (isOpen && dropdownRef.current) {
+                const rect = dropdownRef.current.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const spaceBelow = viewportHeight - rect.bottom;
+                const spaceAbove = rect.top;
+                const dropdownHeight = 300;
+                
+                if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                    setDropDirection('up');
+                } else {
+                    setDropDirection('down');
+                }
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleResize);
+        
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleResize);
+        };
+    }, [isOpen]);
 
     const handleModuleSelect = useCallback((moduleIdToSelect) => {
         setSelectedModuleId(moduleIdToSelect);
@@ -74,8 +118,22 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
     const displayText = selectedModule ? selectedModule.ModuleName : 'Please select...';
 
     return (
-        <div className="module-selector">
-            <Dropdown isOpen={isOpen} toggle={toggle} className="w-100">
+        <div className="module-selector" ref={dropdownRef}>
+            <style>
+                {`
+                .dropdown-menu-up {
+                    bottom: 100% !important;
+                    top: auto !important;
+                    transform: translateY(-2px) !important;
+                    margin-bottom: 2px !important;
+                }
+                `}
+            </style>
+            <Dropdown 
+                isOpen={isOpen} 
+                toggle={toggle} 
+                className="w-100"
+            >
                 <DropdownToggle
                     caret
                     className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
@@ -83,7 +141,18 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                 >
                     {displayText}
                 </DropdownToggle>
-                <DropdownMenu className="w-100" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                <DropdownMenu 
+                    className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
+                    style={{ 
+                        maxHeight: '300px', 
+                        overflowY: 'auto',
+                        zIndex: 1050,
+                        position: 'absolute',
+                        width: '100%'
+                    }}
+                    flip={false}
+                    right={dropDirection === 'up'}
+                >
                     <DropdownItem header>
                         <Input
                             type="text"

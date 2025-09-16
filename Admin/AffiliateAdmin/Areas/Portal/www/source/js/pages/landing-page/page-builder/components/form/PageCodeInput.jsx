@@ -119,6 +119,7 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
                         type="text"
                         id="pageCodeInput"
                         value={localValue}
+                        disabled={isEditMode}
                         onChange={handleChange}
                         invalid={!!error}
                         placeholder="e.g.: LP-2025-NY"

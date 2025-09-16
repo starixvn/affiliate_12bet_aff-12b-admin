@@ -19,10 +19,8 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
     };
     
     const title = isEditMode
-        ? `Update Landing Page "${pageBuilderDetail.PageName}"`
-        : (pageBuilderDetail
-            ? `Create New Landing Page from "${getClonedPageName(pageBuilderDetail.PageName)}"`
-            : 'Create New Landing Page');
+        ? `Update the Landing Page "${pageBuilderDetail.PageName}"`
+        : 'Create New Landing Page';
 
     const formErrorFields = ['campaignId', 'targetCountryCode', 'pageName', 'languageCode', 'pageCode', 'dealIds', 'status'];
     const formErrors = {};

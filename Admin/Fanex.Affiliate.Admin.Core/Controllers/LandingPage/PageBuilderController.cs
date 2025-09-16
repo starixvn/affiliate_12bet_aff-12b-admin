@@ -40,8 +40,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
                 if(isClone)
                 {
                     pageBuilderDetail.PageId = 0;
-                    pageBuilderDetail.PageName = pageBuilderDetail.PageName + " (Clone)";
-                    pageBuilderDetail.PageCode = pageBuilderDetail.PageCode + " (Clone)";
+                    pageBuilderDetail.PageName = string.Empty;
+                    pageBuilderDetail.PageCode = string.Empty;
                 }
             }
 
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
                 LandingPageUrl = _appSetting.LandingPageUrl,
                 CampaignList = _landingPageService.GetCampaignInfoList(),
                 AllLanguagesInSystem = _landingPageService.GetAllLanguagesInSystem(),
-                DealList = _landingPageService.GetMarketingDealList(),
+                DealList = _landingPageService.GetLandingPageDealList(),
                 TargetCountryList = _landingPageService.GetTargetCountryList(),
                 StatusList = _landingPageService.GetLandingPageStatusList(),
                 ModuleList = _landingPageService.GetModuleList(),
