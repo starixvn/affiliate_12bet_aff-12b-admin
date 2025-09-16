@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 const ImageHoverPreview = ({ 
     src, 
@@ -48,6 +49,8 @@ const ImageHoverPreview = ({
     useEffect(() => {
         if (!src) return;
         
+        setImageLoaded(false); // Reset loading state
+        
         const img = new Image();
         img.onload = () => {
             const optimalSize = calculateOptimalSize(img.naturalWidth, img.naturalHeight);
@@ -63,26 +66,69 @@ const ImageHoverPreview = ({
     const handleMouseEnter = useCallback((e) => {
         if (!src || !imageLoaded) return;
         
+        // Prevent any potential scrolling behavior
+        e.preventDefault();
+        
         const rect = e.currentTarget.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
         const previewWidth = imageDimensions.width + 16; // Add padding
         const previewHeight = imageDimensions.height + 16; // Add padding
         
+        // Check if we're inside a dropdown that's positioned "up"
+        const dropdownMenu = e.currentTarget.closest('.dropdown-menu');
+        const isDropdownUp = dropdownMenu && dropdownMenu.classList.contains('dropdown-menu-up');
+        
         let x = rect.right + 10; // Default: to the right of the trigger
         let y = rect.top;
         
-        // Check if preview would go off the right edge
-        if (x + previewWidth > viewportWidth - 20) {
-            x = rect.left - previewWidth - 10; // Show to the left
+        // Adjust positioning for dropdown-up scenario
+        if (isDropdownUp) {
+            // For dropdowns positioned up, prefer showing preview to the left to avoid conflicts
+            if (rect.left - previewWidth - 10 > 20) {
+                x = rect.left - previewWidth - 10; // Show on left if there's space
+            } else {
+                x = rect.right + 10; // Show on right as fallback
+            }
+            
+            // For dropdown-up, ensure preview doesn't interfere with dropdown positioning
+            const dropdownRect = dropdownMenu.getBoundingClientRect();
+            // Keep preview above the dropdown bottom edge but below the top
+            y = Math.max(20, Math.min(rect.top, dropdownRect.top - previewHeight - 10));
         }
         
-        // Check if preview would go off the bottom edge
+        // Comprehensive boundary checking to prevent horizontal scroll
+        
+        // Check if preview would go off the right edge
+        if (x + previewWidth > viewportWidth - 20) {
+            x = rect.left - previewWidth - 10; // Try showing to the left
+        }
+        
+        // If showing to the left would go off the left edge, constrain within viewport
+        if (x < 20) {
+            x = 20; // Minimum left margin
+        }
+        
+        // Final check: if preview is still too wide for viewport, constrain to viewport
+        if (x + previewWidth > viewportWidth - 20) {
+            x = Math.max(20, viewportWidth - previewWidth - 20);
+        }
+        
+        // Ensure preview never extends beyond viewport horizontally
+        if (x + previewWidth > viewportWidth) {
+            x = viewportWidth - previewWidth - 10;
+        }
+        
+        // Absolute minimum: ensure x is never negative
+        if (x < 0) {
+            x = 10;
+        }
+        
+        // Vertical boundary checking
         if (y + previewHeight > viewportHeight - 20) {
             y = viewportHeight - previewHeight - 20; // Adjust to fit
         }
         
-        // Check if preview would go off the top edge
         if (y < 20) {
             y = 20;
         }
@@ -123,7 +169,7 @@ const ImageHoverPreview = ({
         setPreviewPosition({ x, y });
     }, [showPreview, src, imageLoaded, imageDimensions]);
 
-    // Close preview when clicking outside
+    // Close preview when clicking outside and prevent scroll issues
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (showPreview && 
@@ -135,8 +181,42 @@ const ImageHoverPreview = ({
             }
         };
 
+        // Prevent scroll when preview is shown
+        const preventScroll = (e) => {
+            if (showPreview && previewRef.current) {
+                // Only prevent scroll if the event is not within the dropdown
+                const dropdownMenu = e.target.closest('.dropdown-menu');
+                if (!dropdownMenu) {
+                    e.preventDefault();
+                }
+            }
+        };
+
+        // Prevent horizontal scroll by constraining body overflow
+        const preventHorizontalScroll = () => {
+            if (showPreview) {
+                document.body.style.overflowX = 'hidden';
+            } else {
+                document.body.style.overflowX = '';
+            }
+        };
+
         document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        if (showPreview) {
+            document.addEventListener('wheel', preventScroll, { passive: false });
+            document.addEventListener('touchmove', preventScroll, { passive: false });
+            preventHorizontalScroll(); // Apply horizontal scroll prevention
+        } else {
+            preventHorizontalScroll(); // Remove horizontal scroll prevention
+        }
+        
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('wheel', preventScroll);
+            document.removeEventListener('touchmove', preventScroll);
+            // Restore original overflow-x when component unmounts
+            document.body.style.overflowX = '';
+        };
     }, [showPreview]);
 
     return (
@@ -158,7 +238,7 @@ const ImageHoverPreview = ({
                 {children}
             </div>
             
-            {showPreview && src && imageLoaded && (
+            {showPreview && src && imageLoaded && createPortal(
                 <>
                     <div 
                         className="image-preview-backdrop"
@@ -168,7 +248,7 @@ const ImageHoverPreview = ({
                             left: 0,
                             right: 0,
                             bottom: 0,
-                            zIndex: 9998,
+                            zIndex: 9999, // Just below the preview
                             pointerEvents: 'none'
                         }}
                     />
@@ -179,7 +259,7 @@ const ImageHoverPreview = ({
                             position: 'fixed',
                             left: `${previewPosition.x}px`,
                             top: `${previewPosition.y}px`,
-                            zIndex: 9999,
+                            zIndex: 10000, // Higher than dropdown z-index (1050)
                             backgroundColor: 'white',
                             border: '2px solid #dee2e6',
                             borderRadius: '8px',
@@ -187,7 +267,13 @@ const ImageHoverPreview = ({
                             padding: '8px',
                             width: `${imageDimensions.width + 16}px`,
                             height: `${imageDimensions.height + 16}px`,
-                            pointerEvents: 'none'
+                            maxWidth: `${window.innerWidth - 40}px`, // Ensure it never exceeds viewport
+                            maxHeight: `${window.innerHeight - 40}px`, // Ensure it never exceeds viewport
+                            overflow: 'hidden', // Prevent content overflow
+                            pointerEvents: 'none',
+                            willChange: 'transform', // Optimize for positioning changes
+                            transform: 'translateZ(0)', // Force hardware acceleration
+                            boxSizing: 'border-box' // Include padding and border in width/height calculations
                         }}
                     >
                         <img
@@ -197,6 +283,8 @@ const ImageHoverPreview = ({
                             style={{
                                 width: `${imageDimensions.width}px`,
                                 height: `${imageDimensions.height}px`,
+                                maxWidth: '100%', // Ensure image doesn't exceed container
+                                maxHeight: '100%', // Ensure image doesn't exceed container
                                 objectFit: 'contain',
                                 borderRadius: '4px',
                                 display: 'block'
@@ -245,7 +333,8 @@ const ImageHoverPreview = ({
                             </div>
                         )}
                     </div>
-                </>
+                </>,
+                document.body // Render at document body level, outside dropdown
             )}
         </>
     );

@@ -15,10 +15,17 @@ export const updateFormField = (field, value) => ({
     value
 });
 
-export const initializeFromPageBuilderDetail = (pageBuilderDetail) => ({
-    type: types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL,
-    pageBuilderDetail
-});
+export const initializeFromPageBuilderDetail = (pageBuilderDetail) => (dispatch, getState) => {
+    const state = getState();
+    const moduleList = state.moduleList || [];
+    
+    // Dispatch the initialization with module configuration
+    dispatch({
+        type: types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL,
+        pageBuilderDetail,
+        moduleList
+    });
+};
 
 export const setValidationErrors = (errors) => ({
     type: types.SET_VALIDATION_ERRORS,
@@ -208,37 +215,81 @@ export const reloadAllModuleSources = (moduleComponents, targetCountryCode, lang
                 .filter(moduleId => moduleId) // Filter out null/undefined
         )];
 
-        // Fetch sources for each unique module
+        if (uniqueModuleIds.length === 0) {
+            return;
+        }
+
+        // Fetch sources for each unique module and wait for ALL to complete
         const fetchPromises = uniqueModuleIds.map(moduleId => 
             dispatch(fetchModuleSources(moduleId, targetCountryCode, languageCode))
         );
 
         await Promise.all(fetchPromises);
+        
+        // Add a small delay to ensure Redux state is fully updated
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
     } catch (error) {
         console.error('Error reloading all module sources:', error);
+        throw error; // Re-throw to let caller handle
     }
 };
 
-export const validateAndResetInvalidSources = (moduleComponents, allSources) => (dispatch) => {
+// Helper function to determine if a module supports multiple selection
+const isModuleMultiSelect = (moduleId, moduleList) => {
+    const moduleInfo = moduleList.find(m => m.ModuleId === moduleId);
+    if (!moduleInfo) return false;
+    
+    const isMultipleUpload = moduleInfo.IsMultipleUpload;
+    const forceMultiSelectModules = ['hero image', 'favorite games', 'provider', 'promo list'];
+    const shouldBeMultiSelect = forceMultiSelectModules.some(name => 
+        moduleInfo.ModuleName?.toLowerCase().includes(name.toLowerCase())
+    );
+    
+    return isMultipleUpload || shouldBeMultiSelect;
+};
+
+
+export const validateAndResetInvalidSources = (moduleComponents, allSources) => (dispatch, getState) => {
+    // If allSources is null, get fresh sources from Redux store
+    const sourcesToUse = allSources || getState().sources;
+    const state = getState();
+    const moduleList = state.moduleList || [];
+    
     try {
         moduleComponents.forEach(component => {
             const { id: componentId, moduleId, mediaId } = component;
             
-            if (!moduleId || !mediaId) return;
+            if (!moduleId || !mediaId) {
+                return;
+            }
             
-            const availableSources = allSources[moduleId] || [];
+            const availableSources = sourcesToUse[moduleId] || [];
             const availableSourceIds = availableSources.map(source => source.MediaId);
+            const isMultiSelect = isModuleMultiSelect(moduleId, moduleList);
             
-            if (Array.isArray(mediaId)) {
-                // Multi-select: filter out invalid IDs
-                const validMediaIds = mediaId.filter(id => availableSourceIds.includes(id));
-                if (validMediaIds.length !== mediaId.length) {
-                    dispatch(updateModuleComponent(componentId, 'mediaId', validMediaIds.length > 0 ? validMediaIds : null));
+            if (isMultiSelect) {
+                // Module supports multiple selection
+                let currentValues = Array.isArray(mediaId) ? mediaId : (mediaId ? [mediaId] : []);
+                const validMediaIds = currentValues.filter(id => availableSourceIds.includes(id));
+                
+                // For multi-select modules, always store as array (or null if empty)
+                const newValue = validMediaIds.length > 0 ? validMediaIds : null;
+                const needsUpdate = JSON.stringify(currentValues.sort()) !== JSON.stringify((validMediaIds || []).sort()) || 
+                                   !Array.isArray(mediaId);
+                
+                if (needsUpdate) {
+                    dispatch(updateModuleComponent(componentId, 'mediaId', newValue));
                 }
             } else {
-                // Single select: reset if invalid
-                if (!availableSourceIds.includes(mediaId)) {
+                // Module supports single selection only
+                let currentValue = Array.isArray(mediaId) ? mediaId[0] : mediaId;
+                
+                if (currentValue && !availableSourceIds.includes(currentValue)) {
                     dispatch(updateModuleComponent(componentId, 'mediaId', null));
+                } else if (Array.isArray(mediaId)) {
+                    // Convert array to single value for single-select modules
+                    dispatch(updateModuleComponent(componentId, 'mediaId', currentValue || null));
                 }
             }
         });

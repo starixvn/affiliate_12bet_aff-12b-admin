@@ -11,19 +11,12 @@ import LandingPagePreview from './sections/LandingPagePreview';
 const LandingPageForm = ({ 
     formData, 
     moduleComponents, 
-    sources, 
-    fetchCampaigns, 
+    sources,
     reloadAllModuleSources, 
     validateAndResetInvalidSources 
 }) => {
     const previousCountryCode = useRef(null);
     const previousLanguageCode = useRef(null);
-
-    useEffect(() => {
-        // Initialize data on component mount
-        //fetchCampaigns();
-    }, [fetchCampaigns]);
-
     // Watch for changes in targetCountryCode or languageCode
     useEffect(() => {
         const currentCountryCode = formData?.targetCountryCode;
@@ -47,10 +40,14 @@ const LandingPageForm = ({
             if (moduleComponents && moduleComponents.length > 0) {
                 reloadAllModuleSources(moduleComponents, currentCountryCode, currentLanguageCode)
                     .then(() => {
-                        // After sources are reloaded, validate and reset invalid selections
+                        // Add another small delay to ensure React has updated the sources prop
                         setTimeout(() => {
-                            validateAndResetInvalidSources(moduleComponents, sources);
-                        }, 500); // Small delay to ensure sources are updated in Redux
+                            // Call validation with fresh sources using a thunk
+                            validateAndResetInvalidSources(moduleComponents, null); // null signals to get fresh sources
+                        }, 200);
+                    })
+                    .catch(error => {
+                        console.error('LandingPageForm - Error reloading sources:', error);
                     });
             }
         }

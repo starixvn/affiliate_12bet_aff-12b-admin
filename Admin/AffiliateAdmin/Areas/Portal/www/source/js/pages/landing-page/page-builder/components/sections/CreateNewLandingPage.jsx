@@ -13,11 +13,6 @@ import StatusSelector from '../form/StatusSelector';
 import ActionButtons from '../actions/ActionButtons';
 
 const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDetail }) => {
-    const getClonedPageName = (name) => {
-        if (!name) return '';
-        return name.replace(/\s*\(Clone\)$/, '');
-    };
-    
     const title = isEditMode
         ? `Update the Landing Page "${pageBuilderDetail.PageName}"`
         : 'Create New Landing Page';

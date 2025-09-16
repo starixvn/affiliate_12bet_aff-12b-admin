@@ -40,10 +40,10 @@ const LandingPagePreview = ({ validation, ui }) => {
         }
     }, [useProxy]);
 
-    const getProxyUrl = useCallback((originalUrl) => {
-        if (!originalUrl) return null;
-        return `/Portal/LandingPageProxy/ProxyLandingPage?url=${encodeURIComponent(originalUrl)}`;
-    }, []);
+    // const getProxyUrl = useCallback((originalUrl) => {
+    //     if (!originalUrl) return null;
+    //     return `/Portal/LandingPageProxy/ProxyLandingPage?url=${encodeURIComponent(originalUrl)}`;
+    // }, []);
 
     const handleIframeLoadTimeout = useCallback(() => {
         const timeoutId = setTimeout(() => {
@@ -66,19 +66,19 @@ const LandingPagePreview = ({ validation, ui }) => {
         }
     }, [ui.previewUrl]);
 
-    useEffect(() => {
-        if (ui.previewUrl && !iframeBlocked) {
-            setIframeLoaded(false);
-            setCspDetected(false);
-            const timeoutId = handleIframeLoadTimeout();
+    // useEffect(() => {
+    //     if (ui.previewUrl && !iframeBlocked) {
+    //         setIframeLoaded(false);
+    //         setCspDetected(false);
+    //         const timeoutId = handleIframeLoadTimeout();
             
-            return () => {
-                if (timeoutId) {
-                    clearTimeout(timeoutId);
-                }
-            };
-        }
-    }, [ui.previewUrl, iframeBlocked, useProxy, handleIframeLoadTimeout]);
+    //         return () => {
+    //             if (timeoutId) {
+    //                 clearTimeout(timeoutId);
+    //             }
+    //         };
+    //     }
+    // }, [ui.previewUrl, iframeBlocked, useProxy, handleIframeLoadTimeout]);
     
     useEffect(() => {
         const handleSecurityPolicyViolation = (event) => {
@@ -173,32 +173,32 @@ const LandingPagePreview = ({ validation, ui }) => {
                                             display: iframeLoaded ? 'block' : 'none'
                                         }}>
                                             <iframe
-                                                src={useProxy ? getProxyUrl(ui.previewUrl) : ui.previewUrl}
+                                                src={ui.previewUrl}
                                                 style={{
                                                     width: '100%',
-                                                    height: '500px',
+                                                    //height: '500px',
                                                     border: 'none'
                                                 }}
-                                                title="Landing Page Preview"
-                                                onLoad={handleIframeLoad}
-                                                onError={handleIframeError}
-                                                key={useProxy ? 'proxy' : 'direct'}
+                                                // title="Landing Page Preview"
+                                                // onLoad={handleIframeLoad}
+                                                // onError={handleIframeError}
+                                                // key={useProxy ? 'proxy' : 'direct'}
                                             />
                                         </div>
                                     </div>
                                 ) : (
                                     <div className="text-center py-4">
                                         <iframe
-                                                src={useProxy ? getProxyUrl(ui.previewUrl) : ui.previewUrl}
+                                                src={ui.previewUrl}
                                                 style={{
                                                     width: '100%',
                                                     height: '500px',
                                                     border: 'none'
                                                 }}
-                                                title="Landing Page Preview"
-                                                onLoad={handleIframeLoad}
-                                                onError={handleIframeError}
-                                                key={useProxy ? 'proxy' : 'direct'}
+                                                // title="Landing Page Preview"
+                                                // onLoad={handleIframeLoad}
+                                                // onError={handleIframeError}
+                                                // key={useProxy ? 'proxy' : 'direct'}
                                             />
                                         <Alert color="warning" className="mb-4">
                                             <i className="fa fa-exclamation-triangle me-2"></i>

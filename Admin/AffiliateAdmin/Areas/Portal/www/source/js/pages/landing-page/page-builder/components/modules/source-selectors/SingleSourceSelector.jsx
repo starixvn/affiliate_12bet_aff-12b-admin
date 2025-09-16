@@ -85,7 +85,11 @@ const SingleSourceSelector = ({
     );
 
     // Get display text for selected source
-    const selectedSource = sources.find(s => s.MediaId === value);
+    // Handle both string and number comparisons for MediaId
+    const selectedSource = sources.find(s => s.MediaId == value);
+    
+    // Debug: selectedSource found successfully
+    
     const displayText = isDisabled 
         ? 'Please select module first' 
         : (selectedSource ? selectedSource.MediaName : 'Please select...');
@@ -100,6 +104,37 @@ const SingleSourceSelector = ({
                     transform: translateY(-2px) !important;
                     margin-bottom: 2px !important;
                 }
+                .dropdown-toggle-visible-text {
+                    color: #212529 !important;
+                    text-decoration: none !important;
+                }
+                .dropdown-toggle-visible-text:hover {
+                    background-color: #f8f9fa !important;
+                    color: #212529 !important;
+                    text-decoration: none !important;
+                }
+                .dropdown-toggle-visible-text:focus {
+                    background-color: #e9ecef !important;
+                    color: #212529 !important;
+                    text-decoration: none !important;
+                    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25) !important;
+                }
+                /* Fix active dropdown item text visibility */
+                .dropdown-item.active {
+                    background-color: #007bff !important;
+                    color: white !important;
+                }
+                .dropdown-item.active:hover {
+                    background-color: #0056b3 !important;
+                    color: white !important;
+                }
+                .dropdown-item {
+                    color: #212529 !important;
+                }
+                .dropdown-item:hover {
+                    background-color: #f8f9fa !important;
+                    color: #212529 !important;
+                }
                 `}
             </style>
             <Dropdown 
@@ -109,8 +144,13 @@ const SingleSourceSelector = ({
             >
                 <DropdownToggle
                     caret
-                    className={`form-control text-left ${error ? 'is-invalid border-danger' : ''} ${className}`}
-                    style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
+                    className={`form-control text-left dropdown-toggle-visible-text ${error ? 'is-invalid border-danger' : ''} ${className}`}
+                    style={{ 
+                        backgroundColor: 'white',
+                        border: '1px solid #ced4da', 
+                        color: '#212529',
+                        textDecoration: 'none'
+                    }}
                     disabled={isDisabled}
                 >
                     {displayText}
@@ -120,9 +160,11 @@ const SingleSourceSelector = ({
                     style={{ 
                         maxHeight: '300px', 
                         overflowY: 'auto',
+                        overflowX: 'hidden', // Prevent horizontal scroll
                         zIndex: 1050,
                         position: 'absolute',
-                        width: '100%'
+                        width: '100%',
+                        minWidth: '250px' // Ensure minimum width for content
                     }}
                     flip={false}
                     right={dropDirection === 'up'}
@@ -141,10 +183,9 @@ const SingleSourceSelector = ({
                         tag="button"
                         type="button"
                         hidden
-                        onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
+                        onClick={() => {
                             handleSourceSelect('');
+                            toggle(); // Manually call the dropdown toggle function
                         }}
                         active={!value}
                     >
@@ -156,13 +197,22 @@ const SingleSourceSelector = ({
                                 key={source.MediaId}
                                 tag="button"
                                 type="button"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
+                                onClick={() => {
                                     handleSourceSelect(source.MediaId);
+                                    toggle(); // Manually call the dropdown toggle function
                                 }}
                                 active={source.MediaId === value}
                                 className="d-flex align-items-center"
+                                style={{ 
+                                    cursor: 'pointer', 
+                                    border: 'none', 
+                                    backgroundColor: 'transparent',
+                                    overflow: 'hidden', // Prevent item content overflow
+                                    whiteSpace: 'nowrap', // Prevent text wrapping
+                                    maxWidth: '100%', // Ensure item doesn't exceed dropdown width
+                                    width: '100%', // Ensure button takes full width
+                                    textAlign: 'left' // Align content to left
+                                }}
                             >
                                 {source.FileName ? (
                                     <ImageHoverPreview
@@ -171,14 +221,20 @@ const SingleSourceSelector = ({
                                         maxPreviewSize={{ width: 400, height: 300 }}
                                         className="d-flex align-items-center w-100"
                                     >
-                                        <span className="me-auto">{source.MediaName}</span>
+                                        <span 
+                                            className="me-auto text-truncate" 
+                                            style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                            title={source.MediaName} // Show full name on hover
+                                        >
+                                            {source.MediaName}
+                                        </span>
                                         <img 
                                             src={`${bannerRootUrl}/${source.FileName}`} 
                                             alt={source.MediaName}
-                                            className="ms-2 flex-shrink-0"
+                                            className="ml-2 flex-shrink-0"
                                             style={{ 
-                                                width: '32px', 
-                                                height: '24px', 
+                                                maxWidth: '50px',
+                                                maxHeight: '24px',
                                                 objectFit: 'cover', 
                                                 cursor: 'pointer',
                                                 borderRadius: '3px',
@@ -187,7 +243,13 @@ const SingleSourceSelector = ({
                                         />
                                     </ImageHoverPreview>
                                 ) : (
-                                    <span className="me-auto">{source.MediaName}</span>
+                                    <span 
+                                        className="me-auto text-truncate" 
+                                        style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                        title={source.MediaName} // Show full name on hover
+                                    >
+                                        {source.MediaName}
+                                    </span>
                                 )}
                             </DropdownItem>
                         ))

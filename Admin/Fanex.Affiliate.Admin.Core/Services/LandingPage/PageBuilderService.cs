@@ -152,7 +152,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 errors.Add(ValidationMessage_DealRequired);
             }
 
-            if (param.StatusId == 0)
+            if (param.StatusId < LandingPageConstants.LandingPageStatusTypes.Draft || param.StatusId > LandingPageConstants.LandingPageStatusTypes.Inactive)
             {
                 errors.Add(ValidationMessage_StatusRequired);
             }

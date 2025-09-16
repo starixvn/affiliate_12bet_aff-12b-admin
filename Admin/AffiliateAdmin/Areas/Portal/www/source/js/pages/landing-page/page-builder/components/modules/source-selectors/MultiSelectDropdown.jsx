@@ -117,9 +117,11 @@ const MultiSelectDropdown = ({
                     style={{ 
                         maxHeight: '300px', 
                         overflowY: 'auto',
+                        overflowX: 'hidden', // Prevent horizontal scroll
                         zIndex: 1050,
                         position: 'absolute',
-                        width: '100%'
+                        width: '100%',
+                        minWidth: '250px' // Ensure minimum width for content
                     }}
                     flip={false}
                     right={dropDirection === 'up'}
@@ -139,14 +141,16 @@ const MultiSelectDropdown = ({
                     {filteredSources.length > 0 && (
                         <DropdownItem 
                             toggle={false}
-                            onClick={onSelectAll}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onSelectAll();
+                            }}
                             className="d-flex align-items-center"
-                            style={{ backgroundColor: '#f8f9fa' }}
+                            style={{ backgroundColor: '#f8f9fa', cursor: 'pointer' }}
                         >
                             <Input
                                 type="checkbox"
                                 checked={allFilteredSourcesSelected}
-                                onChange={() => {}} // Handled by onClick
                                 className="me-2"
                             />
                             <strong>Select All ({filteredSources.length})</strong>
@@ -162,14 +166,21 @@ const MultiSelectDropdown = ({
                                 <DropdownItem
                                     key={source.MediaId}
                                     tag="div"
-                                    onClick={(e) => e.stopPropagation()}
+                                    toggle={false}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onMultipleSelect(source.MediaId, !isChecked);
+                                    }}
                                     className="d-flex align-items-center"
+                                    style={{ 
+                                        overflow: 'hidden', // Prevent item content overflow
+                                        maxWidth: '100%', // Ensure item doesn't exceed dropdown width
+                                        cursor: 'pointer' // Show pointer cursor to indicate clickability
+                                    }}
                                 >
                                     <Input
                                         type="checkbox"
                                         checked={isChecked}
-                                        onClick={(e) => e.stopPropagation()}
-                                        onChange={(e) => onMultipleSelect(source.MediaId, e.target.checked)}
                                         className="me-2 flex-shrink-0"
                                     />
                                     {source.FileName ? (
@@ -179,7 +190,13 @@ const MultiSelectDropdown = ({
                                             maxPreviewSize={{ width: 400, height: 300 }}
                                             className="d-flex align-items-center flex-grow-1"
                                         >
-                                            <span className="me-auto">{source.MediaName}</span>
+                                            <span 
+                                                className="me-auto text-truncate" 
+                                                style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                                title={source.MediaName} // Show full name on hover
+                                            >
+                                                {source.MediaName}
+                                            </span>
                                             <img 
                                                 src={`${bannerRootUrl}/${source.FileName}`} 
                                                 alt={source.MediaName}
@@ -195,7 +212,13 @@ const MultiSelectDropdown = ({
                                             />
                                         </ImageHoverPreview>
                                     ) : (
-                                        <span className="me-auto">{source.MediaName}</span>
+                                        <span 
+                                            className="me-auto text-truncate" 
+                                            style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                            title={source.MediaName} // Show full name on hover
+                                        >
+                                            {source.MediaName}
+                                        </span>
                                     )}
                                 </DropdownItem>
                             );

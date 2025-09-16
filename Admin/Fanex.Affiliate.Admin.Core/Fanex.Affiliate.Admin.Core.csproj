@@ -305,6 +305,7 @@
     <Compile Include="Commands\Domain\UpdateDomainCommand.cs" />
     <Compile Include="Commands\Domain\UpdateDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\UpdateSpecificDomainControlCommand.cs" />
+    <Compile Include="Commands\LandingPage\BasePageBuilderCommand.cs" />
     <Compile Include="Commands\LandingPage\InsertLandingPageCampaignCommand.cs" />
     <Compile Include="Commands\LandingPage\InsertLandingPageDealCommand.cs" />
     <Compile Include="Commands\LandingPage\BaseAssetNonQueryCommand.cs" />

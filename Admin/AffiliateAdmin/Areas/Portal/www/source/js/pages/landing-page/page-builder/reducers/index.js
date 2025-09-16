@@ -70,7 +70,23 @@ export const moduleComponents = createReducer(pageBuilderDefaultState.moduleComp
     },
     [types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL](prevState, action) {
         const detail = action.pageBuilderDetail;
+        const moduleList = action.moduleList || [];
+        
         if (!detail || !detail.ModuleComponentsSetting) return prevState;
+
+        // Helper function to determine if a module supports multiple selection
+        const isModuleMultiSelect = (moduleId) => {
+            const moduleInfo = moduleList.find(m => m.ModuleId === moduleId);
+            if (!moduleInfo) return false;
+            
+            const isMultipleUpload = moduleInfo.IsMultipleUpload;
+            const forceMultiSelectModules = ['hero image', 'favorite games', 'provider', 'promo list'];
+            const shouldBeMultiSelect = forceMultiSelectModules.some(name => 
+                moduleInfo.ModuleName?.toLowerCase().includes(name.toLowerCase())
+            );
+            
+            return isMultipleUpload || shouldBeMultiSelect;
+        };
 
         const groupedComponents = {};
         
@@ -97,13 +113,29 @@ export const moduleComponents = createReducer(pageBuilderDefaultState.moduleComp
         
         const result = Object.values(groupedComponents)
             .sort((a, b) => a.orderId - b.orderId)
-            .map((group, index) => ({
-                id: index + 1,
-                orderId: group.orderId,
-                moduleId: group.moduleId,
-                mediaId: group.mediaIds.length === 1 ? group.mediaIds[0] : group.mediaIds,
-                extraInfo: group.extraInfo
-            }));
+            .map((group, index) => {
+                const isMultiSelect = isModuleMultiSelect(group.moduleId);
+                let mediaId;
+                
+                if (group.mediaIds.length === 0) {
+                    mediaId = null;
+                } else if (isMultiSelect) {
+                    // Multi-select modules should always have arrays
+                    mediaId = group.mediaIds;
+                } else {
+                    // Single-select modules should have single values
+                    mediaId = group.mediaIds[0] || null;
+                }
+                
+                
+                return {
+                    id: index + 1,
+                    orderId: group.orderId,
+                    moduleId: group.moduleId,
+                    mediaId: mediaId,
+                    extraInfo: group.extraInfo
+                };
+            });
             
         return result;
     }
