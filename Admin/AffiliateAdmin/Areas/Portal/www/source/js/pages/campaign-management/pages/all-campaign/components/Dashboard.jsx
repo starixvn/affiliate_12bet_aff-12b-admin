@@ -4,14 +4,15 @@ import { batch, useDispatch, useSelector } from 'react-redux';
 import { handleChangeMultipleSelected } from '@/modules/utils';
 import { ActionCreators } from '../actions';
 import { defaultState } from '../constants/settings';
-
+import { apiUrl } from '../constants/api';
+import { v4 as uuidv4 } from 'uuid';
 
 const Dashboard = () => {
     const { setSelectedStatus, setStatusList, setParam } = ActionCreators;
     const [dashboardData, setDashboardData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    const [statusList] = useSelector(state => [state.statusList]);
+    const [statusList, param] = useSelector(state => [state.statusList, state.param]);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -19,8 +20,7 @@ const Dashboard = () => {
         const fetchDashboardData = async () => {
             try {
                 setIsLoading(true);
-                const url = "Portal/CampaignManagement/GetDashboard";
-                const response = await post(url, {}, { signal: controller.signal });
+                const response = await post(apiUrl.getDashboard, {}, { signal: controller.signal });
                 if (isMounted) {
                     setDashboardData(response.data);
                 }
@@ -41,7 +41,7 @@ const Dashboard = () => {
             isMounted = false;
             controller.abort();
         };
-    }, []);
+    }, [param]);
 
     const {
         TotalCampaigns = 0,
@@ -97,7 +97,7 @@ const Dashboard = () => {
             batch(() => {
                 dispatch(setSelectedStatus(value));
                 dispatch(setStatusList(handleChangeMultipleSelected(statusList, value)));
-                dispatch(setParam({ ...defaultState, StatusIds: value }));
+                dispatch(setParam({ ...defaultState, StatusIds: value, RequestId: uuidv4() }));
             });
         }
     };

@@ -13,5 +13,9 @@
         IEnumerable<CampaignStatus> GetAllCampaignStatus();
 
         EntityResult<CampaignDetailInfo> GetCampaignList(GetCampaignListParam param);
+
+        ResultInfo UpdateCampaign(UpdateCampaignParam param);
+
+        ResultInfo InsertCampaign(InsertCampaignParam param);
     }
 }

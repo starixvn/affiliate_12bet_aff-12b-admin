@@ -51,5 +51,27 @@
 
             return GenerateJsonNetResult(result);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AllCampaigns)]
+        public ActionResult UpdateCampaign(UpdateCampaignParam param)
+        {
+            AssignUserInfoParam(param);
+            var result = _campaignService.UpdateCampaign(param);
+
+            return GenerateJsonNetResult(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [FunctionAuthorize(FunctionName = Function.AllCampaigns)]
+        public ActionResult InsertCampaign(InsertCampaignParam param)
+        {
+            AssignUserInfoParam(param);
+            var result = _campaignService.InsertCampaign(param);
+
+            return GenerateJsonNetResult(result);
+        }
     }
 }

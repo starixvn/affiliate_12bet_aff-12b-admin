@@ -187,6 +187,9 @@ $status-color-inactive: #6b7280;
 }
 
 .confirm-popup-content {
+    background-color: #e4ebf5;
+    padding: 10px;
+    
     .confirm-popup-line {
         margin: 0 0 16px 0;
         font-size: 14px;
@@ -202,14 +205,13 @@ $status-color-inactive: #6b7280;
 .confirm-popup-actions {
     display: flex;
     justify-content: flex-end;
-    padding-top: 16px;
-    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
 }
 
 .campaign-form-actions {
     display: flex;
     justify-content: flex-start;
-    padding-top: 16px;
+    padding-top: 10px;
     border-top: 1px solid #e5e7eb;
 }
 

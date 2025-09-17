@@ -2,9 +2,9 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import ClaimPrincipal from '@/modules/claim';
 import SubMenuList from '@/pages/common/components/SubMenuList';
-import { menuKey } from './constants/menu';
-import { relativePath } from './constants/routes';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { menuKey, relativePath } from './constants/menu';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const AllCampaigns = React.lazy(() => import('./pages/all-campaign/index'));
 const ComponentManagement = React.lazy(() => import('./pages/component-management/index'));
@@ -77,6 +77,7 @@ const App = () => {
                         {firstMenu && <Redirect exact from="/" to={firstMenu.href} />}
                     </Switch>
                 </Suspense>
+                <ToastContainer />
             </Router>
         </ErrorBoundary>
     );

@@ -25,3 +25,11 @@ export const statusOptions = [
     { value: '2', label: 'Paused', type: 'paused', className: 'status-select--paused' },
     { value: '3', label: 'Inactive', type: 'inactive', className: 'status-select--inactive' }
 ];
+
+export const confirmPopupContent = {
+    title: "Confirm this Action",
+    content: [
+        "Only active campaigns are available for selection when creating a new landing page.",
+        "Are you sure you want to change status of this campaign?"
+    ]
+}

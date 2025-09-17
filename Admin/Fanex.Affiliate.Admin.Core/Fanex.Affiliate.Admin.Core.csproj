@@ -290,6 +290,8 @@
     <Compile Include="Commands\Auth\ReCheckinCommand.cs" />
     <Compile Include="Commands\BaseAffNonQueryCommand.cs" />
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
+    <Compile Include="Commands\CampaignManagement\InsertCampaignCommand.cs" />
+    <Compile Include="Commands\CampaignManagement\UpdateCampaignCommand.cs" />
     <Compile Include="Commands\ChangeAdminPasswordCommand.cs" />
     <Compile Include="Commands\Customer\UpdateAffTypeCommand.cs" />
     <Compile Include="Commands\Customer\UpdateLanguageCommand.cs" />
@@ -609,6 +611,8 @@
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\Api\TokenRequestParam.cs" />
     <Compile Include="MetaModels\CampaignManagement\GetCampaignListParam.cs" />
+    <Compile Include="MetaModels\CampaignManagement\InsertCampaignParam.cs" />
+    <Compile Include="MetaModels\CampaignManagement\UpdateCampaignParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\CheckPermissionParam.cs" />
     <Compile Include="MetaModels\Customer\TransferLimitSettingParam.cs" />

@@ -2,6 +2,7 @@ import * as types from './types';
 
 import { post } from '@/modules/ajaxRequest';
 import { convertListToMutilpleSelected } from '@/modules/utils';
+import { apiUrl } from '../constants/api';
 
 export const setSelectedStatus = (item) => {
     return {
@@ -40,8 +41,7 @@ export const setParam = (item) => {
 
 export const fetchFilter = () => async (dispatch) => {
     try {
-        const url = 'Portal/CampaignManagement/GetAllCampaignStatus';
-        const response = await post(url, {});
+        const response = await post(apiUrl.getAllCampaignStatus, {});
         console.log(response);
 
         const data = response && response.status === 200 ? response.data : [];

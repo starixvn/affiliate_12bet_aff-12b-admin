@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.Services.CampaignManagement
 {
     using System.Collections.Generic;
+    using Commands.CampaignManagement;
     using Criterias.CampaignManagement;
     using Data.Repository;
     using DTO;
@@ -29,6 +30,20 @@
         {
             var criteria = param.MapTo<GetCampaignListParam, GetCampaignListCriteria>();
             return FetchEntityResult<CampaignDetailInfo>(criteria);
+        }
+
+        public ResultInfo UpdateCampaign(UpdateCampaignParam param)
+        {
+            var command = param.MapTo<UpdateCampaignParam, UpdateCampaignCommand>();
+
+            return ExecuteReturnResultInfo(command);
+        }
+
+        public ResultInfo InsertCampaign(InsertCampaignParam param)
+        {
+            var command = param.MapTo<InsertCampaignParam, InsertCampaignCommand>();
+
+            return ExecuteReturnResultInfo(command);
         }
     }
 }

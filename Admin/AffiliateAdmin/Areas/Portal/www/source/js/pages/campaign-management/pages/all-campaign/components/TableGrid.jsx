@@ -4,8 +4,10 @@ import { ActionCreators } from '../actions';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { globalResource } from '@/modules/globalResource';
 import ReportTitle from '@/components/ReportTitle';
-import { headerText } from '../constants/settings';
+import { headerText, confirmPopupContent } from '../constants/settings';
 import StatusDropdown from './StatusDropdown';
+import { showConfirmToast } from '@/pages/common/components/Toast';
+import { v4 as uuidv4 } from 'uuid';
 
 const TableGrid = () => {
     const [
@@ -22,8 +24,9 @@ const TableGrid = () => {
         state.pagingOption
     ]);
 
+
     const dispatch = useDispatch();
-    const { fetchData, setPagingOption, setParam } = ActionCreators;
+    const { fetchData, setPagingOption, setParam, updateCampaign } = ActionCreators;
 
     useEffect(() => {
         param && dispatch(fetchData(param));
@@ -46,10 +49,27 @@ const TableGrid = () => {
     }
 
     const handleStatusChange = (item, newStatusId) => {
-        console.log('Status change:', item, newStatusId);
-        // TODO: Implement status change functionality
-        // Example: dispatch(updateCampaignStatus(item.CampaignCode, newStatusId));
-    }
+        showConfirmToast({
+            title: confirmPopupContent.title,
+            content: confirmPopupContent.content,
+            onConfirm: () => handleConfirmStatusChange(item, newStatusId),
+            onCancel: () => { },
+            cancelText: "Cancel",
+            submitText: "Yes"
+        });
+    };
+
+    const handleConfirmStatusChange = (item, newStatusId) => {
+        console.log('Status change confirmed:', item, newStatusId);
+        var updateParam = {
+            ...item,
+            StatusId: newStatusId
+        };
+
+        dispatch(updateCampaign(updateParam, () => {
+            dispatch(setParam({ ...param, RequestId: uuidv4() }));
+        }));
+    };
 
     const _renderHeader = () => {
         return (
@@ -136,6 +156,7 @@ const TableGrid = () => {
         <>
             <ReportTitle content={_buildReportTitle()} />
             <Table
+                key={param.RequestId}
                 minWidth={1000}
                 autoWidth={true}
                 bodyHeight={300}

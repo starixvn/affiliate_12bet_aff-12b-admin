@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '@/components/multiple-select';
 import { handleChangeMultipleSelected } from '@/modules/utils';
 import { ActionCreators } from '../actions';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const FilterForm = () => {
@@ -51,7 +52,8 @@ const FilterForm = () => {
             Search: searchCampaign,
             Description: searchDescription,
             PageIndex: 1,
-            PageSize: pagingOption.PageSize
+            PageSize: pagingOption.PageSize,
+            RequestId: uuidv4()
         }
         dispatch(setParam(params));
     }

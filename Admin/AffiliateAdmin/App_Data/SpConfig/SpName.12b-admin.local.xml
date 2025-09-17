@@ -339,9 +339,11 @@
 		</Setting>
 		<Setting Key="Aff_LandingPage_Page_Del_Sel" SpName="Aff_LandingPage_Page_Del_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	</Function>
-	<Functions>
+	<Functions Name="Campaign Management">
 		<Setting Key="Aff_LandingPage_Campaign_Dashboard_Sel" SpName="Aff_LandingPage_Campaign_Dashboard_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 		<Setting Key="Aff_LandingPage_Campaign_ManageSel" SpName="Aff_LandingPage_Campaign_ManageSel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_LandingPage_Campaign_Ins" SpName="Aff_LandingPage_Campaign_Ins" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_LandingPage_Campaign_Upd" SpName="Aff_LandingPage_Campaign_Upd" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	</Functions>
 </Functions>
 
