@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Input } from 'reactstrap';
 
+import IframeHoverPreview from './IframeHoverPreview';
+
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
 import { headerText, globalResource, messageSwitchStatus } from '../libs/constants';
@@ -116,7 +118,11 @@ export const Content = (props) => {
                 <Cell className="text-left" title={campaignCode}>{campaignCode}</Cell>
                 <Cell className="text-left" title={campaignName}>{campaignName}</Cell>
                 <Cell className="text-left" title={landingPageName}>
-                    <a href={`${props.landingPageUrl}/${dataItem.TargetLanguageCode}/${landingPageCode}`} target="_blank">{landingPageName}</a>
+                    <IframeHoverPreview src={`${props.landingPageUrl}/${dataItem.TargetLanguageCode}/${landingPageCode}`}>
+                        <a href={`${props.landingPageUrl}/${dataItem.TargetLanguageCode}/${landingPageCode}`} target="_blank">
+                            {landingPageName}
+                        </a>
+                    </IframeHoverPreview>
                 </Cell>
                 <Cell className="text-left" title={landingPageCode}>{landingPageCode}</Cell>
                 <Cell className="text-center" title={targetCountry}>{targetCountry}</Cell>
