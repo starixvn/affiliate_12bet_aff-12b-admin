@@ -299,6 +299,12 @@ export const isEditMode = createReducer(false, {
     }
 });
 
+export const notification = createReducer(null, {
+    [types.SET_NOTIFICATION](prevState, action) {
+        return action.data;
+    }
+});
+
 export default combineReducers({
     landingPageUrl,
     isShowLoader,
@@ -316,5 +322,6 @@ export default combineReducers({
     validation,
     ui,
     pageBuilderDetail,
-    isEditMode
+    isEditMode,
+    notification
 });

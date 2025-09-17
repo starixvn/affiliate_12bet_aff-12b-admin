@@ -451,3 +451,10 @@ export const insertLandingPageCampaign = (campaignName, description) => async (d
         return { IsSuccessful: false, Message: error.message || 'An error occurred while adding the campaign' };
     }
 };
+
+export const setNotification = (data) => {
+    return {
+        type: types.SET_NOTIFICATION,
+        data
+    }
+};

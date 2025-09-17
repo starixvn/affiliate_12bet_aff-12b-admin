@@ -69,6 +69,14 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                                     error={validation.errors.campaignId}
                                 />
                             </Col>
+                            <Col xs={6}>
+                                <DealSelector 
+                                    value={formData.dealIds}
+                                    error={validation.errors.dealIds}
+                                    campaignId={formData.campaignId}
+                                    required={true}
+                                />
+                            </Col>
                         </Row>
                         <Row>
                             <Col xs={6}>
@@ -101,14 +109,6 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={6}>
-                                <DealSelector 
-                                    value={formData.dealIds}
-                                    error={validation.errors.dealIds}
-                                    campaignId={formData.campaignId}
-                                    required={true}
-                                />
-                            </Col>
                             <Col xs={6}>
                                 <StatusSelector 
                                     value={formData.status}

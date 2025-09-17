@@ -1,29 +1,31 @@
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
-import { updateFormField } from '../../actions';
+import { updateFormField, setNotification } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 
-const StatusSelector = ({ value, error, updateFormField, statusList }) => {
+const StatusSelector = ({ value, error, updateFormField, statusList, isEditMode, pageBuilderDetail, setNotification }) => {
     const handleChange = useCallback((event) => {
-        const status = event.target.value;
-        updateFormField('status', status);
-    }, [updateFormField]);
-
-    const getStatusDescription = useCallback((status) => {
-        switch (status) {
-            case 'Draft':
-                return 'Draft landing pages will not be displayed on the user site';
-            case 'Active':
-                return 'Active landing pages will be displayed in the list of landing pages on the user site';
-            case 'Inactive':
-                return 'Inactive landing pages will not be displayed in the list of landing pages on the user site';
-            default:
-                return '';
+        const newStatusId = parseInt(event.target.value);
+        
+        // If in edit mode and pageId exists, show confirmation popup like page-management
+        if (isEditMode && pageBuilderDetail && pageBuilderDetail.PageId) {
+            setNotification({
+                message: `<p>Only Active pages are available for link generation.</p>
+                    <p>Inactive pages are not available for link generation. Existing links with an Inactive page will redirect users to the main join page.</p>
+                    <span>Are you sure you want to change status of this landing page?</span>`,
+                isConfirmPopup: true,
+                onConfirm: async () => {
+                    updateFormField('status', newStatusId);
+                }
+            });
+        } else {
+            // If not in edit mode or no pageId, just update the form field
+            updateFormField('status', newStatusId);
         }
-    }, []);
+    }, [updateFormField, isEditMode, pageBuilderDetail, setNotification]);
 
     return (
         <FormGroup>
@@ -57,14 +59,16 @@ const StatusSelector = ({ value, error, updateFormField, statusList }) => {
     );
 };
 
-function mapStateToProps({ statusList }) {
+function mapStateToProps({ statusList, isEditMode, pageBuilderDetail }) {
     return {
-        statusList
+        statusList,
+        isEditMode,
+        pageBuilderDetail
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateFormField }, dispatch);
+    return bindActionCreators({ updateFormField, setNotification }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(StatusSelector));

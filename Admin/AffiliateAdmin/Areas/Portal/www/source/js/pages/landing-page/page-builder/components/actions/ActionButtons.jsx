@@ -13,7 +13,8 @@ import {
     setValidationErrors,
     setHasPreviewedOrCreated,
     setPreviewUrl,
-    initializeFromPageBuilderDetail
+    initializeFromPageBuilderDetail,
+    setNotification
 } from '../../actions';
 import { pageBuilderLabels, pageBuilderDefaultState, pageCodePattern, validationMessages } from '../../libs/constants';
 
@@ -35,7 +36,8 @@ const ActionButtons = ({
     setValidationErrors,
     setHasPreviewedOrCreated,
     setPreviewUrl,
-    initializeFromPageBuilderDetail
+    initializeFromPageBuilderDetail,
+    setNotification
 }) => {
     const handlePreview = useCallback(async () => {
         if (!validateForm(formData, moduleComponents)) {
@@ -62,12 +64,18 @@ const ActionButtons = ({
                 setPreviewUrl(constructedPreviewUrl || result.PreviewUrl);
                 setHasPreviewedOrCreated(true);
             } else {
-                alert(result ? result.Message : 'Failed to generate preview. Please check your form data and try again.');
+                setNotification({
+                    message: result ? result.Message : 'Failed to generate preview. Please check your form data and try again.',
+                    isConfirmPopup: false
+                });
             }
         } catch (err) {
-            alert('An error occurred while generating the preview.');
+            setNotification({
+                message: 'An error occurred while generating the preview.',
+                isConfirmPopup: false
+            });
         }
-    }, [validateForm, formData, moduleComponents, generatePreviewUrl, languageList, landingPageUrl, setPreviewUrl, setHasPreviewedOrCreated]);
+    }, [validateForm, formData, moduleComponents, generatePreviewUrl, languageList, landingPageUrl, setPreviewUrl, setHasPreviewedOrCreated, setNotification]);
 
     const validateForm = useCallback((currentFormData = formData, currentModuleComponents = moduleComponents) => {
         const errors = {};
@@ -214,7 +222,10 @@ const ActionButtons = ({
             
             if (isEditMode) {
                 // Update mode: Show success message and keep current data
-                alert('Landing page has been edited successfully!');
+                setNotification({
+                    message: 'Landing page has been edited successfully!',
+                    isConfirmPopup: false
+                });
                 // Update preview URL for the updated page
                 if (constructedPreviewUrl) {
                     setPreviewUrl(constructedPreviewUrl);
@@ -222,7 +233,10 @@ const ActionButtons = ({
                 }
             } else {
                 // Create mode: Show success message and reset form to initial state
-                alert('Landing page has been created successfully!');
+                setNotification({
+                    message: 'Landing page has been created successfully!',
+                    isConfirmPopup: false
+                });
                 
                 // Reset form data to initial state
                 setFormData(pageBuilderDefaultState.formData);
@@ -230,9 +244,12 @@ const ActionButtons = ({
                 clearValidationErrors();
             }
         } else {
-            alert(result ? result.Message : (isEditMode ? 'Failed to update landing page. Please try again.' : 'Failed to create landing page. Please try again.'));
+            setNotification({
+                message: result ? result.Message : (isEditMode ? 'Failed to update landing page. Please try again.' : 'Failed to create landing page. Please try again.'),
+                isConfirmPopup: false
+            });
         }
-    }, [validateForm, saveLandingPage, formData, moduleComponents, setHasPreviewedOrCreated, isEditMode, setFormData, setModuleComponents, clearValidationErrors, setPreviewUrl, languageList, landingPageUrl]);
+    }, [validateForm, saveLandingPage, formData, moduleComponents, setHasPreviewedOrCreated, isEditMode, setFormData, setModuleComponents, clearValidationErrors, setPreviewUrl, languageList, landingPageUrl, setNotification]);
 
     // Note: Removed isFormValid logic since buttons are now always clickable
     // and validation happens when buttons are clicked
@@ -302,7 +319,8 @@ function mapDispatchToProps(dispatch) {
         setValidationErrors,
         setHasPreviewedOrCreated,
         setPreviewUrl,
-        initializeFromPageBuilderDetail
+        initializeFromPageBuilderDetail,
+        setNotification
     }, dispatch);
 }
 

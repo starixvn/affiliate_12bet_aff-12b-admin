@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Commands.LandingPage
         public int PageId { get; set; }
 
         public byte StatusId { get; set; }
+
+        public bool IsUpdStatus { get; } = true;
     }
 }
