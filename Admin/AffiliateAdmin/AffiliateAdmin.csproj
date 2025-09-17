@@ -296,6 +296,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\components\sections\ModuleComponents.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\libs\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\libs\urlFormatExampleImage.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\page-builder\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\libs\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\landing-page\libs\menus.js" />

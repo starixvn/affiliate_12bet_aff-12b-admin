@@ -124,6 +124,33 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
                     transform: translateY(-2px) !important;
                     margin-bottom: 2px !important;
                 }
+                .dropdown-item {
+                    color: #495057 !important;
+                    font-size: 13px !important;
+                }
+                .dropdown-item:hover {
+                    background-color: #f8f9fa !important;
+                    color: #495057 !important;
+                }
+                .dropdown-item.active {
+                    background-color: #007bff !important;
+                    color: white !important;
+                }
+                .dropdown-item.active:hover {
+                    background-color: #0056b3 !important;
+                    color: white !important;
+                }
+                .deal-add-new-item {
+                    background-color: #e3f2fd !important;
+                    color: #1976d2 !important;
+                    font-weight: 500 !important;
+                    font-size: 13px !important;
+                    border-top: 1px solid #dee2e6;
+                }
+                .deal-add-new-item:hover {
+                    background-color: #bbdefb !important;
+                    color: #1976d2 !important;
+                }
                 `}
             </style>
             <Row className='align-items-center'>
@@ -140,7 +167,7 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
                             caret 
                             id="dealSelector"
                             className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
-                            style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
+                            style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: '#495057' }}
                         >
                             {selectedDealsText}
                         </DropdownToggle>

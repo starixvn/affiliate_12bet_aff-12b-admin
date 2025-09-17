@@ -69,7 +69,7 @@ const ModuleRow = ({ module, isFirst, isLast, canRemove, validation, moduleCompo
     return (
         <Row className="mb-3 align-items-start module-row">
             {/* Order */}
-            <Col sm={1} className="text-center">
+            <Col xs={1} className="text-center">
                 <div className="module-order">
                     <span className="badge badge-secondary">
                         {module.orderId}
@@ -77,27 +77,28 @@ const ModuleRow = ({ module, isFirst, isLast, canRemove, validation, moduleCompo
                 </div>
             </Col>
 
-            {/* Module Selector */}
-            <Col sm={4}>
-                <ModuleSelector 
-                    moduleId={module.id}
-                    value={module.moduleId}
-                    error={getModuleError()}
-                />
-            </Col>
-
-            {/* Source Selector */}
-            <Col sm={4}>
-                <SourceSelector 
-                    moduleId={module.id}
-                    selectedModuleId={module.moduleId}
-                    value={module.mediaId}
-                    error={getSourceError()}
-                />
+            <Col xs={9}>
+                <Row>
+                    <Col xs={6}>
+                        <ModuleSelector 
+                            moduleId={module.id}
+                            value={module.moduleId}
+                            error={getModuleError()}
+                        />
+                    </Col>
+                    <Col xs={6}>
+                        <SourceSelector 
+                            moduleId={module.id}
+                            selectedModuleId={module.moduleId}
+                            value={module.mediaId}
+                            error={getSourceError()}
+                        />
+                    </Col>
+                </Row>
             </Col>
 
             {/* Actions */}
-            <Col sm={3} className="text-center">
+            <Col xs={2} className="text-center">
                 <div className="module-actions d-flex gap-2 justify-content-center">
                     {/* Add Button */}
                     {canAddModule() && (

@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, FormFeedback, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import AddNewCampaignModal from '../modals/AddNewCampaignModal';
 
@@ -10,12 +10,70 @@ import { pageBuilderLabels } from '../../libs/constants';
 
 const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, fetchDeals, clearValidationErrors }) => {
     const [isAddCampaignModalOpen, setIsAddCampaignModalOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [dropDirection, setDropDirection] = useState('down');
+    const dropdownRef = useRef(null);
 
-    const handleChange = useCallback((event) => {
-        const campaignId = event.target.value || null;
+    const toggle = useCallback(() => {
+        if (!isOpen && dropdownRef.current) {
+            // Calculate available space when opening dropdown
+            const rect = dropdownRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const spaceBelow = viewportHeight - rect.bottom;
+            const spaceAbove = rect.top;
+            const dropdownHeight = 300; // maxHeight of dropdown
+            
+            // If not enough space below but more space above, drop up
+            if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                setDropDirection('up');
+            } else {
+                setDropDirection('down');
+            }
+        }
+        setIsOpen(prevState => !prevState);
+    }, [isOpen]);
 
+    // Effect to handle window resize and recalculate dropdown direction
+    useEffect(() => {
+        const handleResize = () => {
+            if (isOpen && dropdownRef.current) {
+                const rect = dropdownRef.current.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const spaceBelow = viewportHeight - rect.bottom;
+                const spaceAbove = rect.top;
+                const dropdownHeight = 300;
+                
+                if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+                    setDropDirection('up');
+                } else {
+                    setDropDirection('down');
+                }
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleResize);
+        
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleResize);
+        };
+    }, [isOpen]);
+
+    const handleSearchChange = useCallback((e) => {
+        setSearchTerm(e.target.value);
+    }, []);
+
+    // Filter campaigns based on search term
+    const filteredCampaigns = campaignList ? campaignList.filter(campaign => 
+        campaign.CampaignName && campaign.CampaignName.toLowerCase().includes(searchTerm.toLowerCase())
+    ) : [];
+
+    const handleCampaignSelect = useCallback((campaignId) => {
         if (campaignId === 'add-new') {
             setIsAddCampaignModalOpen(true);
+            setIsOpen(false);
             return;
         }
         
@@ -24,6 +82,9 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
         if (error && campaignId) {
             clearValidationErrors();
         }
+        
+        setIsOpen(false);
+        setSearchTerm(''); // Reset search after selection
     }, [updateFormField, error, clearValidationErrors]);
 
     const handleAddCampaignModalToggle = useCallback(() => {
@@ -32,31 +93,176 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
 
     const handleNewCampaignAdded = useCallback((newCampaign) => {
         updateFormField('campaignId', newCampaign.CampaignId);
+        setIsAddCampaignModalOpen(false); // Close modal after successful addition
     }, [updateFormField]);
+
+    // Get display text for selected campaign
+    const getDisplayText = () => {
+        if (!value) return 'Select campaign name';
+        const selectedCampaign = campaignList?.find(campaign => campaign.CampaignId === value);
+        return selectedCampaign ? selectedCampaign.CampaignName : 'Select campaign name';
+    };
 
     return (
         <FormGroup>
+            <style>
+                {`
+                .dropdown-menu-up {
+                    bottom: 100% !important;
+                    top: auto !important;
+                    transform: translateY(-2px) !important;
+                    margin-bottom: 2px !important;
+                }
+                .dropdown-toggle-visible-text {
+                    color: #495057 !important;
+                    text-decoration: none !important;
+                }
+                .dropdown-toggle-visible-text:hover {
+                    background-color: #f8f9fa !important;
+                    color: #495057 !important;
+                    text-decoration: none !important;
+                }
+                .dropdown-toggle-visible-text:focus {
+                    background-color: #e9ecef !important;
+                    color: #495057 !important;
+                    text-decoration: none !important;
+                    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25) !important;
+                }
+                .dropdown-item.active {
+                    background-color: #007bff !important;
+                    color: white !important;
+                }
+                .dropdown-item.active:hover {
+                    background-color: #0056b3 !important;
+                    color: white !important;
+                }
+                .dropdown-item {
+                    color: #495057 !important;
+                    font-size: 13px !important;
+                }
+                .dropdown-item:hover {
+                    background-color: #f8f9fa !important;
+                    color: #495057 !important;
+                }
+                .campaign-add-new-item {
+                    background-color: #e3f2fd !important;
+                    color: #1976d2 !important;
+                    font-weight: 500 !important;
+                    font-size: 13px !important;
+                    border-top: 1px solid #dee2e6;
+                }
+                .campaign-add-new-item:hover {
+                    background-color: #bbdefb !important;
+                    color: #1976d2 !important;
+                }
+                `}
+            </style>
             <Row className='align-items-center'>
                 <Label md={4} lg={3} for="campaignSelector" className={required ? 'required' : ''}>
                     {pageBuilderLabels.campaignName}
                 </Label>
                 <Col md={8} lg={9}>
-                    <Input
-                        type="select"
-                        id="campaignSelector"
-                        value={value || ''}
-                        onChange={handleChange}
-                        invalid={!!error}
-                    >
-                        <option className='d-none' value="" disabled>Select campaign name</option>
-                        <option value="add-new">Add New...</option>
-                        {campaignList && campaignList.map(campaign => (
-                            <option key={campaign.CampaignId} value={campaign.CampaignId}>
-                                {campaign.CampaignName}
-                            </option>
-                        ))}
-                    </Input>
-                    {/* {error && <FormFeedback>{error}</FormFeedback>} */}
+                    <div ref={dropdownRef}>
+                        <Dropdown 
+                            isOpen={isOpen} 
+                            toggle={toggle} 
+                            className="w-100"
+                        >
+                            <DropdownToggle
+                                caret
+                                className={`form-control text-left dropdown-toggle-visible-text ${error ? 'is-invalid border-danger' : ''}`}
+                                style={{ 
+                                    backgroundColor: 'white',
+                                    border: '1px solid #ced4da', 
+                                    color: '#495057',
+                                    textDecoration: 'none'
+                                }}
+                                disabled={!campaignList || campaignList.length === 0}
+                            >
+                                {getDisplayText()}
+                            </DropdownToggle>
+                            <DropdownMenu 
+                                className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
+                                style={{ 
+                                    maxHeight: '300px', 
+                                    overflowY: 'auto',
+                                    overflowX: 'hidden',
+                                    zIndex: 1050,
+                                    position: 'absolute',
+                                    width: '100%',
+                                    minWidth: '250px'
+                                }}
+                                flip={false}
+                                right={dropDirection === 'up'}
+                            >
+                                <DropdownItem header>
+                                    <Input
+                                        type="text"
+                                        placeholder="Search campaigns..."
+                                        value={searchTerm}
+                                        onChange={handleSearchChange}
+                                        onClick={(e) => e.stopPropagation()}
+                                    />
+                                </DropdownItem>
+                                <DropdownItem divider />
+                                
+                                {/* Add New Option */}
+                                <DropdownItem
+                                    tag="button"
+                                    type="button"
+                                    onClick={() => handleCampaignSelect('add-new')}
+                                    className="campaign-add-new-item"
+                                >
+                                    <i className="fa fa-plus me-2"></i>
+                                    Add New Campaign...
+                                </DropdownItem>
+                                
+                                {/* Campaign List */}
+                                {filteredCampaigns.length > 0 ? (
+                                    filteredCampaigns.map(campaign => (
+                                        <DropdownItem
+                                            key={campaign.CampaignId}
+                                            tag="button"
+                                            type="button"
+                                            onClick={() => handleCampaignSelect(campaign.CampaignId)}
+                                            active={campaign.CampaignId === value}
+                                            style={{ 
+                                                cursor: 'pointer', 
+                                                border: 'none', 
+                                                backgroundColor: 'transparent',
+                                                overflow: 'hidden',
+                                                whiteSpace: 'nowrap',
+                                                maxWidth: '100%',
+                                                width: '100%',
+                                                textAlign: 'left'
+                                            }}
+                                        >
+                                            <span 
+                                                className="text-truncate" 
+                                                style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                                title={campaign.CampaignName}
+                                            >
+                                                {campaign.CampaignName}
+                                            </span>
+                                        </DropdownItem>
+                                    ))
+                                ) : (
+                                    campaignList && campaignList.length > 0 && searchTerm && (
+                                        <DropdownItem disabled>
+                                            <em>No campaigns found</em>
+                                        </DropdownItem>
+                                    )
+                                )}
+                                
+                                {(!campaignList || campaignList.length === 0) && !searchTerm && (
+                                    <DropdownItem disabled>
+                                        <em>No campaigns available</em>
+                                    </DropdownItem>
+                                )}
+                            </DropdownMenu>
+                        </Dropdown>
+                    </div>
+                    {error && <div className="invalid-feedback d-block">{error}</div>}
                 </Col>
             </Row>
             

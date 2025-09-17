@@ -14,13 +14,17 @@ const ModuleComponentsSection = ({ moduleComponents, validation }) => {
                 <Col xs={1} className="text-center">
                     <strong>{pageBuilderLabels.orderId}</strong>
                 </Col>
-                <Col xs={4}>
-                    <strong>{pageBuilderLabels.module}</strong>
+                <Col xs={9}>
+                    <Row>
+                        <Col xs={6}>
+                            <strong>{pageBuilderLabels.module}</strong>
+                        </Col>
+                        <Col xs={6}>
+                            <strong>{pageBuilderLabels.source}</strong>
+                        </Col>
+                    </Row>
                 </Col>
-                <Col xs={4}>
-                    <strong>{pageBuilderLabels.source}</strong>
-                </Col>
-                <Col xs={3} className="text-center">
+                <Col xs={2} className="text-center">
                     <strong>Actions</strong>
                 </Col>
             </Row>

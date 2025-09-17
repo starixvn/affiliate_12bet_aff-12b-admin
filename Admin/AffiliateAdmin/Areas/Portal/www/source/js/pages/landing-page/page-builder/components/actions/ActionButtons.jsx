@@ -137,27 +137,6 @@ const ActionButtons = ({
                 }
             });
 
-            // Validate IsRequired modules - ensure at least one instance exists
-            const requiredModules = moduleList.filter(m => m.IsRequired);
-            
-            // Check if "Logo Sponsorship & Register" (moduleId 3) is selected
-            const hasLogoSponsorshipRegister = currentModuleComponents.some(comp => comp.moduleId === 3);
-            
-            requiredModules.forEach(requiredModule => {
-                const hasRequiredModule = currentModuleComponents.some(comp => comp.moduleId === requiredModule.ModuleId);
-                
-                // Special case: If "Logo Sponsorship & Register" (moduleId 3) is selected,
-                // then "Logo $ Sponsorship" (moduleId 2) is not required
-                if (requiredModule.ModuleId === 2 && hasLogoSponsorshipRegister) {
-                    // Skip validation for "Logo $ Sponsorship" when "Logo Sponsorship & Register" is present
-                    return;
-                }
-                
-                if (!hasRequiredModule) {
-                    errors[`required_module_${requiredModule.ModuleId}`] = `${requiredModule.ModuleName || 'Unknown Module'} is required and must be included`;
-                }
-            });
-
             // Validate IsUnique modules - ensure only one instance exists
             const uniqueModules = moduleList.filter(m => m.IsUnique);
             uniqueModules.forEach(uniqueModule => {
@@ -190,8 +169,9 @@ const ActionButtons = ({
             if (isEditMode && pageBuilderDetail) {
                 // Reset to original edit values
                 initializeFromPageBuilderDetail(pageBuilderDetail);
-                // Keep preview availability in edit mode since we have original data
-                setHasPreviewedOrCreated(true);
+                // Reset preview URL and preview state in edit mode
+                setPreviewUrl('');
+                setHasPreviewedOrCreated(false);
                 // Clear validation errors after form is initialized
                 // Use requestAnimationFrame to ensure DOM updates are complete
                 requestAnimationFrame(() => {
@@ -220,13 +200,51 @@ const ActionButtons = ({
         const result = await saveLandingPage(formData, moduleComponents);
         
         if (result && result.IsSuccessful) {
-            alert(isEditMode ? 'Landing page updated successfully!' : 'Landing page created successfully!');
-            setHasPreviewedOrCreated(true); // Enable Copy Link button after successful creation
-            // Don't reset form immediately - let user copy link first if needed
+            // Generate new preview URL after successful save
+            const selectedLanguage = languageList?.find(lang => 
+                lang.LanguageCode == formData.languageCode && 
+                lang.TargetCountryCode == formData.targetCountryCode
+            );
+            const shortedLanguageCode = selectedLanguage?.TargetLanguageCode || selectedLanguage?.ShortedLanguageCode;
+            
+            let constructedPreviewUrl = '';
+            if (landingPageUrl && formData.pageCode && shortedLanguageCode) {
+                if (isEditMode) {
+                    // For update: use existing page structure
+                    constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}?isPreview=true&pageId=${formData.pageId}`;
+                } else {
+                    // For create: use the new page ID from result
+                    constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}?isPreview=true&pageId=${result.Message}`;
+                }
+            }
+            
+            if (isEditMode) {
+                // Update mode: Show success message and keep current data
+                alert('Landing page has been edited successfully!');
+                // Update preview URL for the updated page
+                if (constructedPreviewUrl) {
+                    setPreviewUrl(constructedPreviewUrl);
+                    setHasPreviewedOrCreated(true);
+                }
+            } else {
+                // Create mode: Show success message and reset form to initial state
+                alert('Landing page has been created successfully!');
+                
+                // Set preview URL for the created page to allow immediate viewing
+                if (constructedPreviewUrl) {
+                    setPreviewUrl(constructedPreviewUrl);
+                    setHasPreviewedOrCreated(true);
+                }
+                
+                // Reset form data to initial state
+                setFormData(pageBuilderDefaultState.formData);
+                setModuleComponents(pageBuilderDefaultState.moduleComponentsSetting);
+                clearValidationErrors();
+            }
         } else {
             alert(result ? result.Message : (isEditMode ? 'Failed to update landing page. Please try again.' : 'Failed to create landing page. Please try again.'));
         }
-    }, [validateForm, saveLandingPage, formData, moduleComponents, setHasPreviewedOrCreated]);
+    }, [validateForm, saveLandingPage, formData, moduleComponents, setHasPreviewedOrCreated, isEditMode, setFormData, setModuleComponents, clearValidationErrors, setPreviewUrl, languageList, landingPageUrl]);
 
     // Note: Removed isFormValid logic since buttons are now always clickable
     // and validation happens when buttons are clicked

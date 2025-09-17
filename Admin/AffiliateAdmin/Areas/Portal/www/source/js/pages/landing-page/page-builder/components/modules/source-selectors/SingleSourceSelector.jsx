@@ -105,17 +105,17 @@ const SingleSourceSelector = ({
                     margin-bottom: 2px !important;
                 }
                 .dropdown-toggle-visible-text {
-                    color: #212529 !important;
+                    color: #495057 !important;
                     text-decoration: none !important;
                 }
                 .dropdown-toggle-visible-text:hover {
                     background-color: #f8f9fa !important;
-                    color: #212529 !important;
+                    color: #495057 !important;
                     text-decoration: none !important;
                 }
                 .dropdown-toggle-visible-text:focus {
                     background-color: #e9ecef !important;
-                    color: #212529 !important;
+                    color: #495057 !important;
                     text-decoration: none !important;
                     box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25) !important;
                 }
@@ -129,11 +129,12 @@ const SingleSourceSelector = ({
                     color: white !important;
                 }
                 .dropdown-item {
-                    color: #212529 !important;
+                    color: #495057 !important;
+                    font-size: 13px !important;
                 }
                 .dropdown-item:hover {
                     background-color: #f8f9fa !important;
-                    color: #212529 !important;
+                    color: #495057 !important;
                 }
                 `}
             </style>
@@ -148,7 +149,7 @@ const SingleSourceSelector = ({
                     style={{ 
                         backgroundColor: 'white',
                         border: '1px solid #ced4da', 
-                        color: '#212529',
+                        color: '#495057',
                         textDecoration: 'none'
                     }}
                     disabled={isDisabled}
@@ -255,7 +256,7 @@ const SingleSourceSelector = ({
                         ))
                     ) : (
                         <DropdownItem disabled>
-                            No sources found
+                            No sources available
                         </DropdownItem>
                     )}
                 </DropdownMenu>

@@ -28,13 +28,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         private const string ValidationMessage_TargetCountryRequired = "Target Country is required";
         private const string ValidationMessage_LanguageRequired = "Language is required";
         private const string ValidationMessage_DealRequired = "At least one deal must be selected";
-        private const string ValidationMessage_StatusRequired = "Status is required";
+        private const string ValidationMessage_ModuleComponentRequired = "At least one module component is required";
+        private const string ValidationMessage_StatusInvalid = "Status is invalid";
         private const string ValidationMessage_ModuleRequired = "Module (Order {0}) is required";
         private const string ValidationMessage_SourceRequired = "Source (Order {0}) is required";
-
-        // Module ID constants for special validation logic
-        private const int LogoSponsorshipModuleId = 2;
-        private const int LogoSponsorshipRegisterModuleId = 3;
 
         // Module type constants
         private const int ContactUsModuleType = 2;
@@ -154,7 +151,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
             if (param.StatusId < LandingPageConstants.LandingPageStatusTypes.Draft || param.StatusId > LandingPageConstants.LandingPageStatusTypes.Inactive)
             {
-                errors.Add(ValidationMessage_StatusRequired);
+                errors.Add(ValidationMessage_StatusInvalid);
             }
         }
 
@@ -194,7 +191,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             if (param.ModuleComponentsSetting == null || !param.ModuleComponentsSetting.Any())
             {
-                ValidateModuleRequirements(param, errors);
+                errors.Add(ValidationMessage_ModuleComponentRequired);
                 return;
             }
 
@@ -205,7 +202,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 ValidateIndividualModuleComponent(component, moduleList, errors);
             }
 
-            ValidateModuleRequirements(param, errors);
             ValidateModuleUniqueness(param, errors);
         }
 
@@ -283,33 +279,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             if (component.MediaId == null || component.MediaId <= 0)
             {
                 errors.Add(string.Format(ValidationMessage_SourceRequired, component.OrderId));
-            }
-        }
-
-        private void ValidateModuleRequirements(InsertUpdatePageBuilderParam param, List<string> errors)
-        {
-            var moduleList = _landingPageService.GetModuleList().ToList();
-            var requiredModules = moduleList.Where(m => m.IsRequired).ToList();
-            
-            // Check if "Logo Sponsorship & Register" (moduleId 3) is selected
-            var hasLogoSponsorshipRegister = param.ModuleComponentsSetting.Any(comp => comp.ModuleId == LogoSponsorshipRegisterModuleId);
-            
-            foreach (var requiredModule in requiredModules)
-            {
-                var hasRequiredModule = param.ModuleComponentsSetting.Any(comp => comp.ModuleId == requiredModule.ModuleId);
-                
-                // Special case: If "Logo Sponsorship & Register" (moduleId 3) is selected,
-                // then "Logo $ Sponsorship" (moduleId 2) is not required
-                if (requiredModule.ModuleId == LogoSponsorshipModuleId && hasLogoSponsorshipRegister)
-                {
-                    // Skip validation for "Logo $ Sponsorship" when "Logo Sponsorship & Register" is present
-                    continue;
-                }
-                
-                if (!hasRequiredModule)
-                {
-                    errors.Add($"{requiredModule.ModuleName ?? "Unknown Module"} is required and must be included");
-                }
             }
         }
 

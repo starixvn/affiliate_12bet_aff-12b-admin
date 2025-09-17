@@ -124,6 +124,22 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                     transform: translateY(-2px) !important;
                     margin-bottom: 2px !important;
                 }
+                .dropdown-item {
+                    color: #495057 !important;
+                    font-size: 13px !important;
+                }
+                .dropdown-item:hover {
+                    background-color: #f8f9fa !important;
+                    color: #495057 !important;
+                }
+                .dropdown-item.active {
+                    background-color: #007bff !important;
+                    color: white !important;
+                }
+                .dropdown-item.active:hover {
+                    background-color: #0056b3 !important;
+                    color: white !important;
+                }
                 `}
             </style>
             <Dropdown 
@@ -134,7 +150,7 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                 <DropdownToggle
                     caret
                     className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
-                    style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: 'black' }}
+                    style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: '#495057' }}
                 >
                     {displayText}
                 </DropdownToggle>
