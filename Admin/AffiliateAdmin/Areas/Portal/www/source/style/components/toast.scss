@@ -21,6 +21,7 @@
     }
 }
 
+
 .confirm-toast,
 .notification-toast {
     background: #ffffff;
@@ -53,6 +54,7 @@
             display: inline-block;
             position: relative;
             flex-shrink: 0;
+            font-size: 16px;
         }
 
         .toast-icon-success::before {
@@ -250,6 +252,7 @@
         }
     }
 }
+
 
 .Toastify__toast-container {
     z-index: 9999 !important;

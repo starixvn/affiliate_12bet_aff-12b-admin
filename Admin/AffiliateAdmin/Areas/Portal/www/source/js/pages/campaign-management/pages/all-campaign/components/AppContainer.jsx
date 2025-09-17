@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Dashboard from './Dashboard';
 import FilterForm from './FilterForm';
 import TableGrid from './TableGrid';
+import CampaignFormPopup from './CampaignFormPopup';
 
 import AppLayout from '@/layouts/AppLayout';
 import Loader from '@/components/Loader';
@@ -17,6 +18,7 @@ const AppContainer = () => {
             <Dashboard />
             <FilterForm />
             <TableGrid />
+            <CampaignFormPopup />
         </AppLayout>
     );
 }

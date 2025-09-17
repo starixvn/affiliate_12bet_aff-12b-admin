@@ -1,84 +1,186 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { FormGroup, Label, Col, Input, Button, Modal, ModalHeader, ModalBody, Form, Alert } from 'reactstrap';
-import { CAMPAIGN_STATUS } from '../../constants/status';
+import { useSelector, useDispatch } from 'react-redux';
+import { FormGroup, Label, Col, Input, Button, Form } from 'reactstrap';
+import { ActionCreators } from '../actions';
+import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
+import { showErrorToast } from '@/pages/common/components/Toast';
 
-const CampaignFormPopup = ({
-    isAdd = true,
-    campaignCode = '',
-    isOpen = false,
-    onAddUpdate,
-    onCancel
-}) => {
+// Campaign Form Toast Component
+const CampaignFormToastContent = ({
+    title,
+    formData,
+    errors,
+    statusList,
+    onInputChange,
+    onBlur,
+    onSubmit,
+    onClose,
+    isAdd,
+    selectedItem
+}) => (
+    <div className="campaign-form-toast">
+        <div className="toast-header form-header">
+            <div className="header-content">
+                <span className={isAdd ? "oi oi-plus" : "oi oi-pencil"}></span>{title}
+            </div>
+            <button
+                type="button"
+                className="close-button"
+                onClick={onClose}
+                aria-label="Close"
+            >
+                ×
+            </button>
+        </div>
+        <div className="toast-content form-content">
+            <Form onSubmit={onSubmit} autoComplete="off">
+                {!isAdd && (
+                    <FormGroup row className="mb-2">
+                        <Label sm={3} htmlFor="campaignCode">Campaign Code</Label>
+                        <Col sm={9}>
+                            <Input
+                                type="text"
+                                name="campaignCode"
+                                id="campaignCode"
+                                value={selectedItem?.CampaignCode || ''}
+                                disabled={true}
+                            />
+                        </Col>
+                    </FormGroup>
+                )}
+
+                <FormGroup row className="mb-2">
+                    <Label sm={3} htmlFor="campaignName" className="required">
+                        Campaign Name
+                    </Label>
+                    <Col sm={9}>
+                        <Input
+                            type="text"
+                            name="campaignName"
+                            id="campaignName"
+                            placeholder="e.g. Holiday Season FTD Campaign"
+                            value={formData.campaignName}
+                            onChange={onInputChange}
+                            onBlur={onBlur}
+                            className={errors.campaignName ? 'form-validation-warning' : ''}
+                            required
+                        />
+                    </Col>
+                </FormGroup>
+
+                <FormGroup row className="mb-2">
+                    <Label sm={3} htmlFor="campaignDescription">Campaign Description</Label>
+                    <Col sm={9}>
+                        <Input
+                            type="textarea"
+                            name="campaignDescription"
+                            id="campaignDescription"
+                            placeholder="Describe the campaign purpose, target audience, and key features"
+                            value={formData.campaignDescription}
+                            onChange={onInputChange}
+                            rows="4"
+                        />
+                    </Col>
+                </FormGroup>
+
+                <FormGroup row className="mb-3">
+                    <Label sm={3} htmlFor="statusId">Status</Label>
+                    <Col sm={9}>
+                        <Input
+                            type="select"
+                            name="statusId"
+                            id="statusId"
+                            value={formData.statusId}
+                            onChange={onInputChange}
+                        >
+                            {statusList.map(statusOption => (
+                                <option key={statusOption.key} value={statusOption.key}>
+                                    {statusOption.name}
+                                </option>
+                            ))}
+                        </Input>
+                    </Col>
+                </FormGroup>
+
+                <div className="campaign-form-actions text-right">
+                    <Button
+                        type="button"
+                        color="info"
+                        className="mr-2"
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        type="submit"
+                        color="success"
+                        disabled={!formData.campaignName.trim()}
+                    >
+                        {isAdd ? 'Add' : 'Update'}
+                    </Button>
+                </div>
+            </Form>
+        </div>
+    </div>
+);
+
+const CampaignFormPopup = () => {
+    const dispatch = useDispatch();
+    const [
+        popupState,
+        param,
+        statusList
+    ] = useSelector(state => [
+        state.popupState,
+        state.param,
+        state.statusList
+    ]);
+    const { insertCampaign, updateCampaign, setParam, closeCampaignPopup, openCampaignPopup } = ActionCreators;
+
+    const { isOpen, isAdd, selectedItem } = popupState;
+    const toastIdRef = useRef(null);
+
+
     const [formData, setFormData] = useState({
         campaignCode: '',
         campaignName: '',
         campaignDescription: '',
-        status: 'Draft'
+        statusId: 0
     });
 
     const [state, setState] = useState({
-        message: '',
-        isSuccess: false,
-        isShowMessage: false,
         errors: {
             campaignName: false
         }
     });
 
-    const modalRef = useRef();
-    const messageTimeoutRef = useRef();
-
     useEffect(() => {
-        if (!isAdd && campaignCode) {
-            fetchCampaignData(campaignCode);
-        } else {
+        if (!isAdd && selectedItem) {
+            setFormData({
+                campaignCode: selectedItem.CampaignCode || '',
+                campaignName: selectedItem.CampaignName || '',
+                campaignDescription: selectedItem.Description || '',
+                statusId: selectedItem.StatusId || 0
+            });
+        } else if (isAdd) {
             setFormData({
                 campaignCode: '',
                 campaignName: '',
                 campaignDescription: '',
-                status: 'Draft'
+                statusId: 0
             });
         }
-    }, [isAdd, campaignCode]);
 
-    const fetchCampaignData = useCallback(async (code) => {
-        try {
-            setFormData({
-                campaignCode: code,
-                campaignName: '',
-                campaignDescription: '',
-                status: 'Draft'
-            });
-        } catch (error) {
-            console.error('Error fetching campaign data:', error);
-            showMessage('Error fetching campaign data', false);
-        }
-    }, []);
+        // Reset errors when switching modes
+        setState({
+            errors: {
+                campaignName: false
+            }
+        });
+    }, [isAdd, selectedItem]);
 
-    const showMessage = useCallback((message, isSuccess = false, duration = 3000) => {
-        if (messageTimeoutRef.current) {
-            clearTimeout(messageTimeoutRef.current);
-        }
 
-        modalRef.current && modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
-
-        setState(prev => ({
-            ...prev,
-            message,
-            isSuccess,
-            isShowMessage: true
-        }));
-
-        if (duration) {
-            messageTimeoutRef.current = setTimeout(() => {
-                setState(prev => ({ ...prev, isShowMessage: false }));
-                
-                if (isSuccess) {
-                    handleClosePopup();
-                }
-            }, duration);
-        }
-    }, []);
 
     const handleInputChange = useCallback((e) => {
         const { name, value } = e.target;
@@ -96,31 +198,110 @@ const CampaignFormPopup = ({
         }));
     }, []);
 
-    const handleClosePopup = useCallback(() => {
-        if (messageTimeoutRef.current) {
-            clearTimeout(messageTimeoutRef.current);
+    const handleCampaignNameBlur = useCallback((e) => {
+        const value = e.target.value.trim();
+        if (!value) {
+            setState(prev => ({
+                ...prev,
+                errors: {
+                    ...prev.errors,
+                    campaignName: true
+                }
+            }));
         }
-        
+    }, []);
+
+    // Show/Hide toast based on popup state
+    useEffect(() => {
+        const title = isAdd ? 'Add New Campaign' : 'Edit Campaign';
+
+        if (isOpen) {
+            // Dismiss existing toast if any
+            if (toastIdRef.current) {
+                toast.dismiss(toastIdRef.current);
+            }
+
+            const newToastId = `campaign-form-${uuidv4()}`;
+            toastIdRef.current = newToastId;
+
+            toast(
+                <CampaignFormToastContent
+                    title={title}
+                    formData={formData}
+                    errors={state.errors}
+                    statusList={statusList}
+                    onInputChange={handleInputChange}
+                    onBlur={handleCampaignNameBlur}
+                    onSubmit={handleSubmit}
+                    onClose={handleClosePopup}
+                    isAdd={isAdd}
+                    selectedItem={selectedItem}
+                />,
+                {
+                    toastId: newToastId,
+                    position: 'top-center',
+                    autoClose: false,
+                    closeOnClick: false,
+                    closeButton: false,
+                    draggable: false,
+                    className: 'campaign-form-toast-container',
+                    bodyClassName: 'campaign-form-toast-body',
+                    hideProgressBar: true,
+                }
+            );
+        } else if (!isOpen && toastIdRef.current) {
+            toast.dismiss(toastIdRef.current);
+            toastIdRef.current = null;
+        }
+    }, [isOpen, isAdd, selectedItem]);
+
+    // Update toast content when form data changes
+    useEffect(() => {
+        if (isOpen && toastIdRef.current) {
+            const title = isAdd ? 'Add New Campaign' : 'Edit Campaign';
+
+            toast.update(toastIdRef.current, {
+                render: (
+                    <CampaignFormToastContent
+                        title={title}
+                        formData={formData}
+                        errors={state.errors}
+                        statusList={statusList}
+                        onInputChange={handleInputChange}
+                        onBlur={handleCampaignNameBlur}
+                        onSubmit={handleSubmit}
+                        onClose={handleClosePopup}
+                        isAdd={isAdd}
+                        selectedItem={selectedItem}
+                    />
+                )
+            });
+        }
+    }, [formData, state.errors, isOpen, isAdd, selectedItem, statusList, handleInputChange, handleCampaignNameBlur, handleSubmit, handleClosePopup]);
+
+    const handleClosePopup = useCallback(() => {
+        if (toastIdRef.current) {
+            toast.dismiss(toastIdRef.current);
+            toastIdRef.current = null;
+        }
+
         setFormData({
             campaignCode: '',
             campaignName: '',
             campaignDescription: '',
-            status: 'Draft'
+            statusId: 0
         });
 
         setState({
-            message: '',
-            isSuccess: false,
-            isShowMessage: false,
             errors: {
                 campaignName: false
             }
         });
 
-        onCancel && onCancel();
-    }, [onCancel]);
+        dispatch(closeCampaignPopup());
+    }, [dispatch, closeCampaignPopup]);
 
-    const handleSubmit = useCallback((e) => {
+    const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
 
         const newErrors = {
@@ -130,140 +311,31 @@ const CampaignFormPopup = ({
         setState(prev => ({ ...prev, errors: newErrors }));
 
         if (newErrors.campaignName) {
-            showMessage('Campaign Name is required.', false);
+            showErrorToast('Validation Error', 'Campaign Name is required.');
             return;
         }
 
-        if (onAddUpdate) {
-            const result = onAddUpdate(formData);
-            if (result && typeof result.then === 'function') {
-                result.then((response) => {
-                    if (response && response.IsSuccessful) {
-                        const action = isAdd ? 'added' : 'updated';
-                        showMessage(`Campaign has been ${action} successfully!`, true);
-                    } else {
-                        showMessage(response?.Message || 'Operation failed', false);
-                    }
-                }).catch(() => {
-                    showMessage('An error occurred', false);
-                });
-            } else {
-                const action = isAdd ? 'added' : 'updated';
-                showMessage(`Campaign has been ${action} successfully!`, true);
-            }
+        if (isAdd) {
+            dispatch(insertCampaign(formData, () => {
+                dispatch(setParam({ ...param, RequestId: uuidv4() }));
+                handleClosePopup();
+            }));
+        } else {
+            const updateData = {
+                ...selectedItem,
+                CampaignName: formData.campaignName,
+                Description: formData.campaignDescription,
+                StatusId: formData.statusId
+            };
+
+            dispatch(updateCampaign(updateData, () => {
+                dispatch(setParam({ ...param, RequestId: uuidv4() }));
+                handleClosePopup();
+            }));
         }
-    }, [formData, onAddUpdate, isAdd, showMessage]);
+    }, [formData, isAdd, selectedItem, param, dispatch, insertCampaign, updateCampaign, setParam, handleClosePopup]);
 
-    useEffect(() => {
-        return () => {
-            if (messageTimeoutRef.current) {
-                clearTimeout(messageTimeoutRef.current);
-            }
-        };
-    }, []);
-
-    const { message, isSuccess, isShowMessage, errors } = state;
-    const title = isAdd ? 'Add New Campaign' : 'Edit Campaign';
-
-    return (
-        <Modal isOpen={isOpen} toggle={handleClosePopup} backdrop='static' innerRef={modalRef}>
-            <ModalHeader toggle={handleClosePopup}>
-                <span className="iconpopup"></span>{title}
-            </ModalHeader>
-            <ModalBody>
-                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
-                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                </Alert>
-                
-                <Form onSubmit={handleSubmit} autoComplete="off">
-                    {!isAdd && (
-                        <FormGroup row className="mb-2">
-                            <Label sm={3} htmlFor="campaignCode">Campaign Code</Label>
-                            <Col sm={9}>
-                                <Input 
-                                    type="text"
-                                    name="campaignCode"
-                                    id="campaignCode"
-                                    value={formData.campaignCode}
-                                    disabled={true}
-                                />
-                            </Col>
-                        </FormGroup>
-                    )}
-
-                    <FormGroup row className="mb-2">
-                        <Label sm={3} htmlFor="campaignName" className="required">
-                            Campaign Name
-                        </Label>
-                        <Col sm={9}>
-                            <Input 
-                                type="text"
-                                name="campaignName"
-                                id="campaignName"
-                                placeholder="e.g. Holiday Season FTD Campaign"
-                                value={formData.campaignName}
-                                onChange={handleInputChange}
-                                className={errors.campaignName ? 'form-validation-warning' : ''}
-                                required
-                            />
-                        </Col>
-                    </FormGroup>
-
-                    <FormGroup row className="mb-2">
-                        <Label sm={3} htmlFor="campaignDescription">Campaign Description</Label>
-                        <Col sm={9}>
-                            <Input 
-                                type="textarea"
-                                name="campaignDescription"
-                                id="campaignDescription"
-                                placeholder="Describe the campaign purpose, target audience, and key features"
-                                value={formData.campaignDescription}
-                                onChange={handleInputChange}
-                                rows="4"
-                            />
-                        </Col>
-                    </FormGroup>
-
-                    <FormGroup row className="mb-3">
-                        <Label sm={3} htmlFor="status">Status</Label>
-                        <Col sm={9}>
-                            <Input 
-                                type="select"
-                                name="status"
-                                id="status"
-                                value={formData.status}
-                                onChange={handleInputChange}
-                            >
-                                {CAMPAIGN_STATUS.map(statusOption => (
-                                    <option key={statusOption.id} value={statusOption.status}>
-                                        {statusOption.status}
-                                    </option>
-                                ))}
-                            </Input>
-                        </Col>
-                    </FormGroup>
-
-                    <div className="campaign-form-actions">
-                        <Button 
-                            type="submit"
-                            color="success"
-                            className="mr-2"
-                            disabled={!formData.campaignName.trim()}
-                        >
-                            {isAdd ? 'Add' : 'Update'}
-                        </Button>
-                        <Button 
-                            type="button"
-                            color="info"
-                            onClick={handleClosePopup}
-                        >
-                            Cancel
-                        </Button>
-                    </div>
-                </Form>
-            </ModalBody>
-        </Modal>
-    );
+    return null;
 };
 
 export default CampaignFormPopup;

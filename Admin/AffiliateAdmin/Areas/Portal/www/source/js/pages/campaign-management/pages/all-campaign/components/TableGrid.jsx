@@ -26,7 +26,7 @@ const TableGrid = () => {
 
 
     const dispatch = useDispatch();
-    const { fetchData, setPagingOption, setParam, updateCampaign } = ActionCreators;
+    const { fetchData, setPagingOption, setParam, updateCampaign, openCampaignPopup } = ActionCreators;
 
     useEffect(() => {
         param && dispatch(fetchData(param));
@@ -43,9 +43,7 @@ const TableGrid = () => {
 
 
     const handleEdit = (item) => {
-        console.log('Edit campaign:', item);
-        // TODO: Implement edit functionality
-        // Example: setEditingCampaign(item); setShowEditModal(true);
+        dispatch(openCampaignPopup(false, item));
     }
 
     const handleStatusChange = (item, newStatusId) => {

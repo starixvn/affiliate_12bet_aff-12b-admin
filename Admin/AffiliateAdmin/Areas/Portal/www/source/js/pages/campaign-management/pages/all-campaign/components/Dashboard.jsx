@@ -8,7 +8,13 @@ import { apiUrl } from '../constants/api';
 import { v4 as uuidv4 } from 'uuid';
 
 const Dashboard = () => {
-    const { setSelectedStatus, setStatusList, setParam } = ActionCreators;
+    const {
+        setSelectedStatus,
+        setStatusList,
+        setParam,
+        setSearchCampaign,
+        setSearchDescription
+    } = ActionCreators;
     const [dashboardData, setDashboardData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
@@ -97,6 +103,8 @@ const Dashboard = () => {
             batch(() => {
                 dispatch(setSelectedStatus(value));
                 dispatch(setStatusList(handleChangeMultipleSelected(statusList, value)));
+                dispatch(setSearchCampaign(""));
+                dispatch(setSearchDescription(""));
                 dispatch(setParam({ ...defaultState, StatusIds: value, RequestId: uuidv4() }));
             });
         }

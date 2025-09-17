@@ -77,7 +77,7 @@ const App = () => {
                         {firstMenu && <Redirect exact from="/" to={firstMenu.href} />}
                     </Switch>
                 </Suspense>
-                <ToastContainer />
+                <ToastContainer className="campaign-management-toast-container" />
             </Router>
         </ErrorBoundary>
     );

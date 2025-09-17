@@ -14,7 +14,8 @@ const FilterForm = () => {
         setSearchCampaign,
         setSearchDescription,
         setParam,
-        fetchFilter } = ActionCreators;
+        fetchFilter,
+        openCampaignPopup } = ActionCreators;
 
     const [
         statusList,
@@ -60,10 +61,7 @@ const FilterForm = () => {
 
     const handleAddNew = () => {
         if (!isShowLoader) {
-            console.log('Add new campaign clicked');
-            // TODO: Implement navigation to create campaign page or open modal
-            // Example: history.push('/campaign-management/create');
-            // Or: setShowCreateModal(true);
+            dispatch(openCampaignPopup(true));
         }
     }
 
