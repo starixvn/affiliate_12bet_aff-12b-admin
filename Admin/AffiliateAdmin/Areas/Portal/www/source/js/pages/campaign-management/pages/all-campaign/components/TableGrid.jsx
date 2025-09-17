@@ -5,6 +5,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { globalResource } from '@/modules/globalResource';
 import ReportTitle from '@/components/ReportTitle';
 import { headerText } from '../constants/settings';
+import StatusDropdown from './StatusDropdown';
 
 const TableGrid = () => {
     const [
@@ -37,10 +38,17 @@ const TableGrid = () => {
         console.log('Export Excel');
     }
 
+
     const handleEdit = (item) => {
         console.log('Edit campaign:', item);
         // TODO: Implement edit functionality
         // Example: setEditingCampaign(item); setShowEditModal(true);
+    }
+
+    const handleStatusChange = (item, newStatusId) => {
+        console.log('Status change:', item, newStatusId);
+        // TODO: Implement status change functionality
+        // Example: dispatch(updateCampaignStatus(item.CampaignCode, newStatusId));
     }
 
     const _renderHeader = () => {
@@ -72,7 +80,12 @@ const TableGrid = () => {
                     <Cell className="text-center" title={item.Creator}>{item.Creator}</Cell>
                     <Cell className="text-center" title={item.UpdatedDateText}>{item.UpdatedDateText}</Cell>
                     <Cell className="text-center" title={item.UpdatedBy}>{item.UpdatedBy}</Cell>
-                    <Cell className="text-center" title={item.Status}>{item.Status}</Cell>
+                    <Cell className="text-center" title={item.Status}>
+                        <StatusDropdown
+                            value={item.StatusId || '0'}
+                            onChange={(newStatusId) => handleStatusChange(item, newStatusId)}
+                        />
+                    </Cell>
                     <Cell className="text-center" title="Edit">
                         <span
                             className="oi oi-pencil"

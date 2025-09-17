@@ -18,3 +18,10 @@ export const defaultState = {
     PageIndex: 1,
     PageSize: 20
 }
+
+export const statusOptions = [
+    { value: '0', label: 'Draft', type: 'draft', className: 'status-select--draft' },
+    { value: '1', label: 'Active', type: 'active', className: 'status-select--active' },
+    { value: '2', label: 'Paused', type: 'paused', className: 'status-select--paused' },
+    { value: '3', label: 'Inactive', type: 'inactive', className: 'status-select--inactive' }
+];
