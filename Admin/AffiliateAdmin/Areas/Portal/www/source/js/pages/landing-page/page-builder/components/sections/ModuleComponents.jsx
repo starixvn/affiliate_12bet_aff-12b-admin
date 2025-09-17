@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Row, Col, Card, CardBody, Button, Alert } from 'reactstrap';
+import { Row, Col, Alert } from 'reactstrap';
 import ModuleComponentsSection from '../modules/ModuleComponentsSection';
 
 const ModuleComponents = ({ validation, moduleComponents, ui }) => {
@@ -16,13 +16,6 @@ const ModuleComponents = ({ validation, moduleComponents, ui }) => {
     }
     
     const hasModuleErrors = Object.keys(moduleErrors).length > 0;
-    
-    const hasPreviewIssues = ui.hasPreviewedOrCreated && ui.previewUrl && 
-                             (moduleComponents && moduleComponents.length > 0) &&
-                             validation && validation.errors && 
-                             Object.keys(validation.errors).some(key => 
-                                 key.includes('preview') || key.includes('generation') || key.includes('configuration')
-                             );
     
     const getModuleFieldDisplayName = (fieldKey) => {
         if (fieldKey === 'moduleComponents') {
@@ -54,11 +47,6 @@ const ModuleComponents = ({ validation, moduleComponents, ui }) => {
                     {/* Show module validation errors */}
                     {hasModuleErrors && (
                         <Alert color="danger" className="mb-3">
-                            <h6 className="alert-heading">
-                                <i className="fa fa-exclamation-triangle me-2"></i>
-                                Module Components Validation Errors
-                            </h6>
-                            <p className="mb-2">Please fix the following errors in the module components:</p>
                             <ul className="mb-0">
                                 {Object.entries(moduleErrors).map(([key, error]) => {
                                     const fieldDisplayName = getModuleFieldDisplayName(key);
@@ -77,29 +65,7 @@ const ModuleComponents = ({ validation, moduleComponents, ui }) => {
                             </ul>
                         </Alert>
                     )}
-                    
-                    {/* Show configuration warnings */}
-                    {hasPreviewIssues && (
-                        <Alert color="warning" className="mb-3">
-                            <h6 className="alert-heading">
-                                <i className="fa fa-exclamation-triangle me-2"></i>
-                                Module Configuration Warning
-                            </h6>
-                            <p className="mb-2">
-                                There may be issues with the current module configuration that could affect preview generation:
-                            </p>
-                            <ul className="mb-2">
-                                <li>Some modules may not have proper source configurations</li>
-                                <li>Media sources might not be accessible or properly configured</li>
-                                <li>Module combinations might cause display conflicts</li>
-                            </ul>
-                            <p className="mb-0">
-                                <strong>Recommendation:</strong> Review your module selections and source configurations. 
-                                If preview issues persist, try opening the preview in a new tab or contact support.
-                            </p>
-                        </Alert>
-                    )}
-                    
+
                     <ModuleComponentsSection />
                 </fieldset>
             </Col>

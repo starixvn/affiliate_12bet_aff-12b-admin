@@ -85,8 +85,16 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
 
     const handleNewDealAdded = useCallback((newDeal) => {
         // The deal is already added to Redux dealList by AddNewDealModal
-        // No additional action needed here
-    }, []);
+        // Now also add it to the current form selection
+        const currentDeals = Array.isArray(value) ? value : [];
+        const newDealId = newDeal.GroupId;
+        
+        // Add the new deal to the selection if not already included
+        if (!currentDeals.includes(newDealId)) {
+            const updatedDeals = [...currentDeals, newDealId];
+            updateFormField('dealIds', updatedDeals);
+        }
+    }, [value, updateFormField]);
 
     const handleSelectAll = useCallback(() => {
         const currentDeals = Array.isArray(value) ? value : [];

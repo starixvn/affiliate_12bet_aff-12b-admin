@@ -53,8 +53,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         public ResultInfo InsertLandingPageCampaign(InsertLandingPageCampaignParam param)
         {
             var command = param.MapTo<InsertLandingPageCampaignParam, InsertLandingPageCampaignCommand>();
+            var result = ExecuteReturnResultInfo(command);
+            result.Message = command.CampaignId.ToString();
 
-            return ExecuteReturnResultInfo(command);
+            return result;
         }
 
         public IEnumerable<MediaSourceInfo> GetMediaSources(MediaSourceParam param)

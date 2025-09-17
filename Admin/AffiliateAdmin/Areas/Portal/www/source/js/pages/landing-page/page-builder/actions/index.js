@@ -18,12 +18,34 @@ export const updateFormField = (field, value) => ({
 export const initializeFromPageBuilderDetail = (pageBuilderDetail) => (dispatch, getState) => {
     const state = getState();
     const moduleList = state.moduleList || [];
+    const dealList = state.dealList || [];
+    const campaignList = state.campaignList || [];
+    const sources = state.sources || {};
     
-    // Dispatch the initialization with module configuration
+    // Dispatch the initialization with module configuration, dealList, campaignList, and sources
     dispatch({
         type: types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL,
         pageBuilderDetail,
-        moduleList
+        moduleList,
+        dealList,
+        campaignList,
+        sources
+    });
+};
+
+export const initializeDefaultValues = () => (dispatch, getState) => {
+    const state = getState();
+    const dealList = state.dealList || [];
+    const campaignList = state.campaignList || [];
+    
+    // Set default values for create mode
+    const defaultCampaignId = campaignList.length > 0 ? campaignList[0].CampaignId : null;
+    const defaultDealIds = dealList.map(deal => deal.key); // All available deals
+    
+    dispatch({
+        type: types.INITIALIZE_DEFAULT_VALUES,
+        defaultCampaignId,
+        defaultDealIds
     });
 };
 
@@ -147,13 +169,14 @@ export const setPreviewUrl = (previewUrl) => ({
     previewUrl
 });
 
-export const fetchCampaigns = () => async (dispatch) => {
+export const fetchCampaigns = (selectFirst = false) => async (dispatch) => {
     try {
-        const url = 'Portal/PageBuilder/GetCampaignList';
+        const url = 'Portal/PageBuilder/GetCampaignInfoList';
         const response = await post(url);
         
         if (response && response.status === 200) {
-            dispatch(setCampaigns(response.data || []));
+            const campaigns = response.data || [];
+            dispatch(setCampaignList(campaigns));
         }
     } catch (error) {
         console.error('Error fetching campaigns:', error);

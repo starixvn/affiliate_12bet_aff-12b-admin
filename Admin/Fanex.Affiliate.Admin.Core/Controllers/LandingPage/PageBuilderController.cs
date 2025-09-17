@@ -77,6 +77,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        public ActionResult GetCampaignInfoList()
+        {
+            return GenerateJsonNetResult(_landingPageService.GetCampaignInfoList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
         public ActionResult InsertLandingPageDeal(InsertLandingPageDealParam param)
         {

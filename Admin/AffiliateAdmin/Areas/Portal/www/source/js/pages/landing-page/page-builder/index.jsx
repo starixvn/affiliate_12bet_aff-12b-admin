@@ -6,7 +6,7 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 import { convertListToMutilpleSelected } from '../../../modules/utils';
-import { initializeFromPageBuilderDetail } from './actions';
+import { initializeFromPageBuilderDetail, initializeDefaultValues } from './actions';
 
 const App = () => {
     const { 
@@ -37,12 +37,15 @@ const App = () => {
         landingPageUrl,
         pageBuilderDetail,
         deals: [],
-        sources: []
+        sources: {}
     }, reducer);
 
     // Initialize from pageBuilderDetail if it exists (edit mode)
     if (pageBuilderDetail) {
         store.dispatch(initializeFromPageBuilderDetail(pageBuilderDetail));
+    } else {
+        // Initialize with default values for create mode
+        store.dispatch(initializeDefaultValues());
     }
 
     return (

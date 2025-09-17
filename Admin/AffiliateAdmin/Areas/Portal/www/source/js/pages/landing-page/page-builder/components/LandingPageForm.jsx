@@ -22,8 +22,8 @@ const LandingPageForm = ({
         const currentCountryCode = formData?.targetCountryCode;
         const currentLanguageCode = formData?.languageCode;
         
-        // Skip initial load when values are null/undefined
-        if (!currentCountryCode && !currentLanguageCode) {
+        // Skip if no country/language values are set
+        if (!currentCountryCode || !currentLanguageCode) {
             previousCountryCode.current = currentCountryCode;
             previousLanguageCode.current = currentLanguageCode;
             return;
@@ -34,8 +34,13 @@ const LandingPageForm = ({
                               previousCountryCode.current !== currentCountryCode;
         const languageChanged = previousLanguageCode.current !== null && 
                                previousLanguageCode.current !== currentLanguageCode;
+        
+        // Initial load: if we have modules but no previous values set, load sources
+        const isInitialLoad = previousCountryCode.current === null && 
+                             previousLanguageCode.current === null &&
+                             moduleComponents && moduleComponents.length > 0;
 
-        if (countryChanged || languageChanged) {
+        if (countryChanged || languageChanged || isInitialLoad) {
             // Reload sources for all modules with new country/language parameters
             if (moduleComponents && moduleComponents.length > 0) {
                 reloadAllModuleSources(moduleComponents, currentCountryCode, currentLanguageCode)

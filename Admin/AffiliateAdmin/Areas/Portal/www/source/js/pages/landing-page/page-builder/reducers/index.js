@@ -15,17 +15,45 @@ export const formData = createReducer(pageBuilderDefaultState.formData, {
     [types.UPDATE_FORM_FIELD](prevState, action) {
         return { ...prevState, [action.field]: action.value };
     },
+    [types.INITIALIZE_DEFAULT_VALUES](prevState, action) {
+        return {
+            ...prevState,
+            campaignId: action.defaultCampaignId,
+            dealIds: action.defaultDealIds
+        };
+    },
     [types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL](prevState, action) {
         const detail = action.pageBuilderDetail;
         if (!detail) return prevState;
         
+        // Validate and set CampaignId
+        const campaignList = action.campaignList || [];
+        const availableCampaignIds = campaignList.map(campaign => campaign.CampaignId);
+        let campaignId = detail.CampaignId;
+        
+        // If CampaignId doesn't exist in campaignList, set to first item
+        if (!availableCampaignIds.includes(detail.CampaignId) && campaignList.length > 0) {
+            campaignId = campaignList[0].CampaignId;
+        }
+        
+        // Parse dealIds from pageBuilderDetail
+        let dealIds = [];
+        if (detail.DealIds) {
+            const parsedDealIds = detail.DealIds.split(',').map(id => parseInt(id.trim()));
+            
+            // Filter dealIds to only include those that exist in the dealList
+            const dealList = action.dealList || [];
+            const availableDealIds = dealList.map(deal => deal.key);
+            dealIds = parsedDealIds.filter(dealId => availableDealIds.includes(dealId));
+        }
+        
         return {
             ...prevState,
             pageId: detail.PageId,
-            campaignId: detail.CampaignId,
+            campaignId: campaignId,
             targetCountryCode: detail.TargetCountryCode,
             languageCode: detail.LanguageCode,
-            dealIds: detail.DealIds ? detail.DealIds.split(',').map(id => parseInt(id.trim())) : [],
+            dealIds: dealIds,
             pageName: detail.PageName,
             pageCode: detail.PageCode,
             status: detail.StatusId
@@ -71,8 +99,12 @@ export const moduleComponents = createReducer(pageBuilderDefaultState.moduleComp
     [types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL](prevState, action) {
         const detail = action.pageBuilderDetail;
         const moduleList = action.moduleList || [];
+        const sources = action.sources || {};
         
         if (!detail || !detail.ModuleComponentsSetting) return prevState;
+
+        // Get available module IDs from moduleList
+        const availableModuleIds = moduleList.map(module => module.ModuleId);
 
         // Helper function to determine if a module supports multiple selection
         const isModuleMultiSelect = (moduleId) => {
@@ -90,7 +122,12 @@ export const moduleComponents = createReducer(pageBuilderDefaultState.moduleComp
 
         const groupedComponents = {};
         
-        detail.ModuleComponentsSetting.forEach(item => {
+        // Filter out components with invalid moduleIds
+        const validComponents = detail.ModuleComponentsSetting.filter(item => 
+            availableModuleIds.includes(item.ModuleId)
+        );
+        
+        validComponents.forEach(item => {
             const key = `${item.ModuleId}_${item.OrderId}`;
             
             if (!groupedComponents[key]) {
@@ -117,6 +154,8 @@ export const moduleComponents = createReducer(pageBuilderDefaultState.moduleComp
                 const isMultiSelect = isModuleMultiSelect(group.moduleId);
                 let mediaId;
                 
+                // During initialization, preserve mediaIds as-is since sources may not be loaded yet.
+                // The validateAndResetInvalidSources function will handle validation after sources are loaded.
                 if (group.mediaIds.length === 0) {
                     mediaId = null;
                 } else if (isMultiSelect) {
@@ -158,7 +197,8 @@ export const campaignList = createReducer([], {
         return action.campaigns;
     },
     [types.ADD_CAMPAIGN_TO_LIST](prevState, action) {
-        return [...prevState, action.campaign];
+        // Add new campaign to index 0 (first item)
+        return [action.campaign, ...prevState];
     }
 });
 

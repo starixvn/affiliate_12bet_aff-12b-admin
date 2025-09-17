@@ -67,7 +67,7 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
 
     // Filter campaigns based on search term
     const filteredCampaigns = campaignList ? campaignList.filter(campaign => 
-        campaign.CampaignName && campaign.CampaignName.toLowerCase().includes(searchTerm.toLowerCase())
+        campaign.CampaignName && (campaign.CampaignName.toLowerCase().includes(searchTerm.toLowerCase()) || campaign.CampaignCode.toLowerCase().includes(searchTerm.toLowerCase()))
     ) : [];
 
     const handleCampaignSelect = useCallback((campaignId) => {
@@ -91,16 +91,17 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
         setIsAddCampaignModalOpen(prevState => !prevState);
     }, []);
 
-    const handleNewCampaignAdded = useCallback((newCampaign) => {
-        updateFormField('campaignId', newCampaign.CampaignId);
-        setIsAddCampaignModalOpen(false); // Close modal after successful addition
-    }, [updateFormField]);
+    const handleNewCampaignAdded = useCallback(() => {
+        // Campaign is automatically selected by fetchCampaigns(true) in AddNewCampaignModal
+        // Just close the modal after successful addition
+        setIsAddCampaignModalOpen(false);
+    }, []);
 
     // Get display text for selected campaign
     const getDisplayText = () => {
         if (!value) return 'Select campaign name';
         const selectedCampaign = campaignList?.find(campaign => campaign.CampaignId === value);
-        return selectedCampaign ? selectedCampaign.CampaignName : 'Select campaign name';
+        return selectedCampaign ? selectedCampaign.CampaignCode + ' | ' + selectedCampaign.CampaignName : 'Select campaign name';
     };
 
     return (
@@ -240,9 +241,9 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
                                             <span 
                                                 className="text-truncate" 
                                                 style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
-                                                title={campaign.CampaignName}
+                                                title={campaign.CampaignCode + ' | ' + campaign.CampaignName}
                                             >
-                                                {campaign.CampaignName}
+                                                {campaign.CampaignCode + ' | ' + campaign.CampaignName}
                                             </span>
                                         </DropdownItem>
                                     ))

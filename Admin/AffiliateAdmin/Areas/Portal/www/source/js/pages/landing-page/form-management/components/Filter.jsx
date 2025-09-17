@@ -35,7 +35,7 @@ export const Filter = ({
         const isSelectAllLanguage = languageList.every(c => c.checked);
 
         const newParam = {
-            MediaName: mediaName,
+            MediaName: mediaName.trim(),
             TargetCountryCodes: isSelectAllTargetCountry ? 'all' : targetCountryCodes,
             LanguageCodes: isSelectAllLanguage ? 'all' : languageCodes,
             Status: status,

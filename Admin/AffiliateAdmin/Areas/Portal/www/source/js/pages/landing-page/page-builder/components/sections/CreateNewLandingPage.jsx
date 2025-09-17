@@ -53,11 +53,6 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                     
                     {hasFormErrors && (
                         <Alert color="danger" className="mb-3">
-                            <h6 className="alert-heading">
-                                <i className="fa fa-exclamation-triangle me-2"></i>
-                                Form Validation Errors
-                            </h6>
-                            <p className="mb-2">Please fix the following errors in the form fields:</p>
                             <ul className="mb-0">
                                 {Object.entries(formErrors).map(([key, error]) => (
                                     <li key={key} className="mb-1">
@@ -72,7 +67,6 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                                 <CampaignSelector 
                                     value={formData.campaignId}
                                     error={validation.errors.campaignId}
-                                    required={true}
                                 />
                             </Col>
                         </Row>

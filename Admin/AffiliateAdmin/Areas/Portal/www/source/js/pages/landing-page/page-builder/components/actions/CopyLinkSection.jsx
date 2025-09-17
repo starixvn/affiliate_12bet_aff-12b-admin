@@ -6,7 +6,7 @@ import { Button, FormGroup, Alert } from 'reactstrap';
 const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPageUrl, pageBuilderDetail, isEditMode, ui, validation }) => {
     const [alertState, setAlertState] = useState({ show: false, type: 'success', message: '' });
 
-    const constructPreviewUrl = useCallback((sourceLanguageCode, sourceTargetCountryCode, sourcePageCode, pageId) => {
+    const constructPreviewUrl = useCallback((sourceLanguageCode, sourceTargetCountryCode, sourcePageCode) => {
         if (!landingPageUrl || !sourcePageCode) return '';
 
         const selectedLanguage = languageList?.find(lang => 
@@ -16,7 +16,7 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
 
         const shortedLanguageCode = selectedLanguage?.TargetLanguageCode || selectedLanguage?.ShortedLanguageCode;
         
-        return `${landingPageUrl}/${shortedLanguageCode}/${sourcePageCode}?isPreview=true&pageId=${pageId}`;
+        return `${landingPageUrl}/${shortedLanguageCode}/${sourcePageCode}`;
     }, [landingPageUrl, languageList]);
 
     const getPreviewUrl = useCallback(() => {
@@ -28,8 +28,7 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
             return constructPreviewUrl(
                 pageBuilderDetail.LanguageCode,
                 pageBuilderDetail.TargetCountryCode,
-                pageBuilderDetail.PageCode,
-                pageBuilderDetail.PageId
+                pageBuilderDetail.PageCode
             );
         }
         

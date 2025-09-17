@@ -68,8 +68,8 @@ export const Filter = ({
         const isSelectAllStatuses = statusList ? statusList.every(c => c.checked) : true;
 
         const newParam = {
-            landingPageName,
-            campaignName,
+            landingPageName: landingPageName.trim(),
+            campaignName: campaignName.trim(),
             dealIds: dealIds,//isSelectAllDeals ? 'all' : dealIds,
             targetCountryCodes: targetCountryCodes,//isSelectAllTargetCountries ? 'all' : targetCountryCodes,
             languageCodes: languageCodes,//isSelectAllLanguages ? 'all' : languageCodes,

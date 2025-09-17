@@ -6,7 +6,9 @@
 
         public override string GetSettingKey() => SP_NAME;
 
-        public override bool IsValid() => string.IsNullOrEmpty(CampaignName);
+        public override bool IsValid() => !string.IsNullOrEmpty(CampaignName);
+
+        public int CampaignId { get; set; }
 
         public string CampaignName { get; set; }
 

@@ -164,7 +164,7 @@ const AddNewDealModal = ({ isOpen, toggle, onAddDeal, normalDealList, dealList, 
                 const newDealForList = {
                     key: selectedDealTypeObj.GroupId,
                     name: selectedDealTypeObj.GroupName,
-                    checked: false
+                    checked: true
                 };
                 addDealToList(newDealForList);
 

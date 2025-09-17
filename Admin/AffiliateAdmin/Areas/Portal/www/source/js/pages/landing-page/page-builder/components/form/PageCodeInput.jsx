@@ -53,42 +53,11 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
         };
     }, []);
 
-    const validateCode = useCallback(async (code, excludePageId = null) => {
-        if (code && code.trim().length > 0) {
-            // First check pattern
-            if (!pageCodePattern.test(code)) {
-                setValidationErrors({
-                    pageCode: validationMessages.pageCodeInvalid
-                });
-                return;
-            }
-        }
-    }, [setValidationErrors]);
-
     const handleChange = useCallback((event) => {
         const newValue = event.target.value;
         setLocalValue(newValue);
         updateFormField('pageCode', newValue);
-        
-        // Validate pattern immediately
-        if (newValue && !pageCodePattern.test(newValue)) {
-            setValidationErrors({
-                pageCode: validationMessages.pageCodeInvalid
-            });
-            return;
-        }
-        
-        // Debounced validation for uniqueness
-        if (debounceTimeoutRef.current) {
-            clearTimeout(debounceTimeoutRef.current);
-        }
-        
-        debounceTimeoutRef.current = setTimeout(() => {
-            // In edit mode, exclude current page from uniqueness validation
-            const excludePageId = isEditMode && pageBuilderDetail ? pageBuilderDetail.PageId : null;
-            validateCode(newValue, excludePageId);
-        }, 500);
-    }, [updateFormField, setValidationErrors, validateCode, isEditMode, pageBuilderDetail]);
+    }, [updateFormField]);
 
     const { isValidating } = validation;
 

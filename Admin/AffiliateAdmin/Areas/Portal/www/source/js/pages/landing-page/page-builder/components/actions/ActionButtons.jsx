@@ -208,14 +208,8 @@ const ActionButtons = ({
             const shortedLanguageCode = selectedLanguage?.TargetLanguageCode || selectedLanguage?.ShortedLanguageCode;
             
             let constructedPreviewUrl = '';
-            if (landingPageUrl && formData.pageCode && shortedLanguageCode) {
-                if (isEditMode) {
-                    // For update: use existing page structure
-                    constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}?isPreview=true&pageId=${formData.pageId}`;
-                } else {
-                    // For create: use the new page ID from result
-                    constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}?isPreview=true&pageId=${result.Message}`;
-                }
+            if (isEditMode &&landingPageUrl && formData.pageCode && shortedLanguageCode) {
+                constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}`;
             }
             
             if (isEditMode) {
@@ -229,12 +223,6 @@ const ActionButtons = ({
             } else {
                 // Create mode: Show success message and reset form to initial state
                 alert('Landing page has been created successfully!');
-                
-                // Set preview URL for the created page to allow immediate viewing
-                if (constructedPreviewUrl) {
-                    setPreviewUrl(constructedPreviewUrl);
-                    setHasPreviewedOrCreated(true);
-                }
                 
                 // Reset form data to initial state
                 setFormData(pageBuilderDefaultState.formData);

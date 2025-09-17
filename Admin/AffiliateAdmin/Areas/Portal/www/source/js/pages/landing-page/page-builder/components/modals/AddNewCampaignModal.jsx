@@ -14,10 +14,10 @@ import {
     Col
 } from 'reactstrap';
 
-import { insertLandingPageCampaign, addCampaignToList } from '../../actions';
+import { insertLandingPageCampaign, fetchCampaigns, updateFormField } from '../../actions';
 import { globalResource } from '../../../../../modules/globalResource';
 
-const AddNewCampaignModal = ({ isOpen, toggle, onAddCampaign, insertLandingPageCampaign, addCampaignToList }) => {
+const AddNewCampaignModal = ({ isOpen, toggle, insertLandingPageCampaign, fetchCampaigns, updateFormField }) => {
     const [campaignName, setCampaignName] = useState('');
     const [campaignDescription, setCampaignDescription] = useState('');
     const [alertState, setAlertState] = useState({ message: '', type: '', show: false });
@@ -50,22 +50,15 @@ const AddNewCampaignModal = ({ isOpen, toggle, onAddCampaign, insertLandingPageC
 
     const handleCampaignNameChange = useCallback((e) => {
         setCampaignName(e.target.value);
-        hideAlert();
-    }, [hideAlert]);
+    }, []);
 
     const handleCampaignDescriptionChange = useCallback((e) => {
         setCampaignDescription(e.target.value);
-        hideAlert();
-    }, [hideAlert]);
+    }, []);
 
     const handleAdd = useCallback(async () => {
         if (!campaignName.trim()) {
             showAlert('Please enter a campaign name.', 'danger');
-            return;
-        }
-
-        if (!campaignDescription.trim()) {
-            showAlert('Please enter a campaign description.', 'danger');
             return;
         }
 
@@ -76,17 +69,12 @@ const AddNewCampaignModal = ({ isOpen, toggle, onAddCampaign, insertLandingPageC
             const result = await insertLandingPageCampaign(campaignName.trim(), campaignDescription.trim());
             
             if (result && result.IsSuccessful) {
-                const newCampaignForList = {
-                    CampaignId: result.CampaignId || Date.now(),
-                    CampaignName: campaignName.trim()
-                };
-                addCampaignToList(newCampaignForList);
-                
-                if (onAddCampaign) {
-                    onAddCampaign(newCampaignForList);
-                }
+                updateFormField('campaignId', Number(result.Message));
 
-                showAlert(result.Message || 'Campaign added successfully!', 'success');
+                // Refresh the campaign list from server and select the first campaign (newly created)
+                await fetchCampaigns(true); // true = selectFirst
+
+                showAlert('Campaign added successfully!', 'success');
 
                 setCampaignName('');
                 setCampaignDescription('');
@@ -98,7 +86,7 @@ const AddNewCampaignModal = ({ isOpen, toggle, onAddCampaign, insertLandingPageC
         } finally {
             setIsSubmitting(false);
         }
-    }, [campaignName, campaignDescription, onAddCampaign, insertLandingPageCampaign, addCampaignToList, showAlert, hideAlert]);
+    }, [campaignName, campaignDescription, insertLandingPageCampaign, fetchCampaigns, updateFormField, showAlert, hideAlert]);
 
     const handleCancel = useCallback(() => {
         setCampaignName('');
@@ -177,7 +165,7 @@ const AddNewCampaignModal = ({ isOpen, toggle, onAddCampaign, insertLandingPageC
                             type="button"
                             color="success"
                             className="mr-3"
-                            disabled={!campaignName.trim() || !campaignDescription.trim() || isSubmitting}
+                            disabled={!campaignName.trim() || isSubmitting}
                             onClick={handleAdd}
                         >
                             {isSubmitting ? (
@@ -198,7 +186,7 @@ const AddNewCampaignModal = ({ isOpen, toggle, onAddCampaign, insertLandingPageC
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertLandingPageCampaign, addCampaignToList }, dispatch);
+    return bindActionCreators({ insertLandingPageCampaign, fetchCampaigns, updateFormField }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(React.memo(AddNewCampaignModal));
