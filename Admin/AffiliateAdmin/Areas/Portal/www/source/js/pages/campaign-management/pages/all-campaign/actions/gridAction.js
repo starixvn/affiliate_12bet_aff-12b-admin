@@ -5,6 +5,19 @@ import { setPagingOption } from '@/actions/pagingAction';
 import { apiUrl } from '../constants/api';
 import { showSuccessToast, showErrorToast } from '@/pages/common/components/Toast';
 
+// Create a wrapper for post requests that disables alerts
+const postWithoutAlert = async (url, data) => {
+    const originalAlert = window.alert;
+    window.alert = () => { }; // Temporarily disable alerts
+
+    try {
+        const result = await post(url, data);
+        return result;
+    } finally {
+        window.alert = originalAlert; // Restore original alert
+    }
+};
+
 
 export const setGridData = (item) => {
     return {
@@ -40,19 +53,19 @@ export const fetchData = (param) => async (dispatch) => {
 export const updateCampaign = (param, callback) => async (dispatch) => {
     try {
         dispatch(toggleLoader(true));
-        const response = await post(apiUrl.updateCampaign, param);
+        const response = await postWithoutAlert(apiUrl.updateCampaign, param);
         const isSuccess = response && response.status === 200 && response.data && response.data.Code === 0;
         if (isSuccess) {
-            showSuccessToast("Update Success!", `Campaign "${param.CampaignName}" has been updated successfully.`);
+            showSuccessToast("Update Success!", `Campaign "${param.campaignName}" has been updated successfully.`);
         }
         else {
-            const errorMessage = response?.data?.Message || `Failed to update campaign "${param.CampaignName}". Please try again.`;
+            const errorMessage = response?.data?.Message || `Failed to update campaign "${param.campaignName}". Please try again.`;
             showErrorToast("Update Failed!", errorMessage);
         }
     }
     catch (error) {
         console.error(error);
-        showErrorToast("Update Failed!", `An error occurred while updating campaign "${param.CampaignName}".`);
+        showErrorToast("Update Failed!", `An error occurred while updating campaign "${param.campaignName}".`);
     } finally {
         dispatch(toggleLoader(false));
         callback && callback();
@@ -62,7 +75,7 @@ export const updateCampaign = (param, callback) => async (dispatch) => {
 export const insertCampaign = (param, callback) => async (dispatch) => {
     try {
         dispatch(toggleLoader(true));
-        const response = await post(apiUrl.insertCampaign, param);
+        const response = await postWithoutAlert(apiUrl.insertCampaign, param);
         const isSuccess = response && response.status === 200 && response.data && response.data.Code === 0;
         if (isSuccess) {
             showSuccessToast("Insert Success!", `Campaign "${param.campaignName}" has been created successfully.`);
@@ -75,7 +88,7 @@ export const insertCampaign = (param, callback) => async (dispatch) => {
     }
     catch (error) {
         console.error(error);
-        showErrorToast("Insert Failed!", `An error occurred while create campaign "${param.CampaignName}".`);
+        showErrorToast("Insert Failed!", `An error occurred while create campaign "${param.campaignName}".`);
     } finally {
         dispatch(toggleLoader(false));
         callback && callback();

@@ -291,6 +291,13 @@ $status-color-inactive: #6b7280;
         margin-left: 20px;
         font-size: 14px;
 
+        &.is-invalid {
+            button{
+                border: 2px solid #dc3545;
+                border-radius: 4px;
+            }
+        }
+
         .wide-input {
             font-size: 14px;
             min-width: 280px !important;
@@ -311,6 +318,10 @@ $status-color-inactive: #6b7280;
     .multiple-status-filter {
         .multiple-select-container {
             width: 100px;
+        }
+
+        .multiple-select-label{
+            padding: 1px 20px 0 6px !important;
         }
     }
 
@@ -454,6 +465,7 @@ $status-color-inactive: #6b7280;
     background: #ffffff !important;
     border: 1px solid #e5e7eb !important;
     border-radius: 12px !important;
+    min-width: 100px !important;
     padding: 8px !important;
     box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.15),
@@ -517,7 +529,311 @@ $status-color-inactive: #6b7280;
     background-color: $status-color-inactive !important;
 }
 
-// Campaign Management Toast Container Styles
+// Campaign Form Modal Styles
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.05s ease-out;
+}
+
+.campaign-form-modal {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.1);
+    min-width: 700px;
+    max-width: 900px;
+    min-height: 300px;
+    width: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.05s ease-out;
+    
+    @media (max-width: 768px) {
+        min-width: 90vw;
+        max-width: 90vw;
+        margin: 0 5vw;
+    }
+
+    .modal-header {
+        border: none !important;
+        border-radius: 0 !important;
+        color: #000000;
+        padding: 16px;
+        font-weight: 600;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #b6cef0;
+        min-height: 40px;
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            border: none;
+            flex: 1;
+        }
+
+        .oi {
+            margin-right: 10px;
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+            position: relative;
+            flex-shrink: 0;
+            font-size: 18px;
+            
+            &.oi-plus {
+                line-height: 22px;
+                text-align: center;
+                color: #5cb85c;
+            }
+            
+            &.oi-pencil {
+                line-height: 22px;
+                text-align: center;
+                color: #337ab7;
+            }
+        }
+
+        .close-button {
+            background: #b6cef0;
+            border: none;
+            color: #333333;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            transform: translateY(-2px);
+
+            &:hover {
+                // background-color: rgba(255, 255, 255, 0.4);
+                opacity: 0.8;
+            }
+
+            &:focus {
+                outline: none;
+                // background-color: rgba(255, 255, 255, 0.4);
+            }
+        }
+    }
+
+    .modal-content {
+        background-color: #ffffff;
+        padding: 20px;
+        border: none !important;
+
+        .form {
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+
+            &.row {
+                display: flex;
+                align-items: flex-start;
+                margin-left: 0;
+                margin-right: 0;
+
+                .col-sm-3 {
+                    padding-left: 0;
+                    padding-right: 15px;
+                    flex: 0 0 25%;
+                    max-width: 25%;
+                }
+
+                .col-sm-9 {
+                    padding-left: 0;
+                    padding-right: 0;
+                    flex: 0 0 75%;
+                    max-width: 75%;
+                }
+            }
+
+            label {
+                font-weight: 600;
+                color: #495057;
+                font-size: 14px;
+                text-align: right;
+                
+                &.required::after {
+                    content: "*";
+                    color: #dc3545;
+                }
+            }
+
+            .form-control {
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                padding: 5px 10px;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.5;
+                min-height: 40px;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+                &:focus {
+                    border-color: #80bdff;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                }
+
+                &.form-validation-warning {
+                    border-color: #dc3545;
+
+                    &:focus {
+                        border-color: #dc3545;
+                        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+                    }
+                }
+            }
+
+            textarea.form-control {
+                resize: vertical;
+                min-height: 120px;
+                font-family: inherit;
+            }
+
+            select.form-control {
+                background-image: none !important;
+                padding-right: 16px !important;
+                font-size: 14px;
+                font-weight: 500;
+                color: #495057;
+                appearance: auto;
+                    
+                option {
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 8px 12px;
+                    color: #495057;
+                }
+            }
+
+            input[disabled] {
+                background-color: #e9ecef;
+                opacity: 1;
+            }
+        }
+
+        // Responsive adjustments
+        @media (max-width: 768px) {
+            padding: 15px;
+            
+            .form-group.row {
+                flex-direction: column;
+                align-items: flex-start;
+
+                .col-sm-3,
+                .col-sm-9 {
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                    padding-right: 0;
+                }
+
+                .col-sm-3 {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+
+    .status-change-note {
+        margin: 20px 0;
+        padding: 0;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        border: 2px solid #f39c12;
+        box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+        animation: pulse-glow 2s ease-in-out infinite;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .status-note-content {
+            padding: 16px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-note-line {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #8b5500;
+            line-height: 1.5;
+            font-weight: 500;
+            text-align: center;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+        transform: scale(1.01);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+// Legacy toast container styles (kept for other toasts)
 .campaign-management-toast-container {
     z-index: 9999 !important;
     width: auto !important;
@@ -528,6 +844,41 @@ $status-color-inactive: #6b7280;
         top: 50% !important;
         transform: translate(-50%, -50%) !important;
         left: 50% !important;
+    }
+
+    // Full screen backdrop when campaign form modal is present - FAST animations
+    &:has(.campaign-form-modal) {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(2px) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        z-index: 9999 !important;
+        animation: fadeIn 0.05s ease-out !important;
+        transition: opacity 0s, background-color 0s, backdrop-filter 0s !important;
+
+        &.Toastify__toast-container--top-center {
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+        }
+
+        .Toastify__toast {
+            position: relative !important;
+            transform: none !important;
+            margin: 0 !important;
+            z-index: 10000 !important;
+            animation-duration: 0.05s !important;
+        }
+
+        .Toastify__toast--close {
+            animation-duration: 0.05s !important;
+        }
     }
     
     // Standard notifications style
@@ -569,9 +920,27 @@ $status-color-inactive: #6b7280;
             margin: 0 !important;
         }
     }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
     
-    // Position adjustment for campaign form
-    &:has(.campaign-form-toast-container) {
+    // Position adjustment for campaign form when NOT in modal mode
+    &:has(.campaign-form-toast-container):not(:has(.campaign-form-modal)) {
         &.Toastify__toast-container--top-center {
             top: 20% !important;
             transform: translate(-50%, 0) !important;
@@ -817,4 +1186,67 @@ $status-color-inactive: #6b7280;
             }
         }
     }
+
+    .status-change-note {
+        margin: 20px 0;
+        padding: 0;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        border: 2px solid #f39c12;
+        box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+        animation: pulse-glow 2s ease-in-out infinite;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .status-note-content {
+            padding: 16px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .status-note-line {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #8b5500;
+            line-height: 1.5;
+            font-weight: 500;
+            text-align: center;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% {
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+            transform: scale(1);
+        }
+        50% {
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+            transform: scale(1.01);
+        }
+    }
+
+    @keyframes shimmer {
+        0% {
+            left: -100%;
+        }
+        100% {
+            left: 100%;
+        }
+    }
+
 }

@@ -47,6 +47,8 @@
         [FunctionAuthorize(FunctionName = Function.AllCampaigns)]
         public ActionResult GetCampaignManagementList(GetCampaignListParam param)
         {
+            param.Search = param.Search?.Trim();
+            param.Description = param.Description?.Trim();
             var result = _campaignService.GetCampaignList(param);
 
             return GenerateJsonNetResult(result);

@@ -26,7 +26,7 @@ const TableGrid = () => {
 
 
     const dispatch = useDispatch();
-    const { fetchData, setPagingOption, setParam, updateCampaign, openCampaignPopup } = ActionCreators;
+    const { fetchData, setPagingOption, setParam, updateCampaign, openCampaignPopup, setShouldResetScrollPosition } = ActionCreators;
 
     useEffect(() => {
         param && dispatch(fetchData(param));
@@ -43,7 +43,10 @@ const TableGrid = () => {
 
 
     const handleEdit = (item) => {
-        dispatch(openCampaignPopup(false, item));
+        batch(() => {
+            dispatch(setShouldResetScrollPosition(false));
+            dispatch(openCampaignPopup(false, item));
+        });
     }
 
     const handleStatusChange = (item, newStatusId) => {
@@ -58,10 +61,12 @@ const TableGrid = () => {
     };
 
     const handleConfirmStatusChange = (item, newStatusId) => {
-        console.log('Status change confirmed:', item, newStatusId);
         var updateParam = {
-            ...item,
-            StatusId: newStatusId
+            campaignId: item.CampaignId,
+            campaignCode: item.CampaignCode,
+            campaignName: item.CampaignName,
+            description: item.Description,
+            statusId: newStatusId
         };
 
         dispatch(updateCampaign(updateParam, () => {

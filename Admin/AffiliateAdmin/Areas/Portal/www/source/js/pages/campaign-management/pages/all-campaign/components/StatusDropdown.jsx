@@ -91,7 +91,7 @@ const StatusDropdown = ({
         return {
             top: top,
             left: buttonRect.left,
-            width: buttonRect.width
+            width: Math.max(120, buttonRect.width)
         };
     };
 

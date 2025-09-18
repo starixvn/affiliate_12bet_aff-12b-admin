@@ -122,7 +122,7 @@ export const showConfirmToast = ({
             closeOnClick: false,
             closeButton: false,
             draggable: false,
-            className: 'confirm-toast-container',
+            className: 'confirm-toast-container confirm-toast-modal',
             bodyClassName: 'confirm-toast-body',
             hideProgressBar: true,
         }

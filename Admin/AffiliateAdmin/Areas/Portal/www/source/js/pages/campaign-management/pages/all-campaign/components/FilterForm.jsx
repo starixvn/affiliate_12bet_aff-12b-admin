@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch, batch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '@/components/multiple-select';
 import { handleChangeMultipleSelected } from '@/modules/utils';
@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const FilterForm = () => {
+    const [isFetchingFilter, setIsFetchingFilter] = useState(false);
+
     const {
         setSelectedStatus,
         setStatusList,
@@ -65,8 +67,12 @@ const FilterForm = () => {
         }
     }
 
+
     useEffect(() => {
-        dispatch(fetchFilter());
+        setIsFetchingFilter(true);
+        dispatch(fetchFilter()).then(() => {
+            setIsFetchingFilter(false);
+        });
     }, []);
 
     return (
@@ -98,7 +104,7 @@ const FilterForm = () => {
                     />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2 multiple-status-filter">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-status-filter ${selectedStatus || isFetchingFilter ? '' : ' is-invalid'}`}>
                     <Label htmlFor="status" className="mr-sm-2">Status</Label>
                     <MultipleSelect
                         id="status"
@@ -114,11 +120,11 @@ const FilterForm = () => {
                 </FormGroup>
 
                 <div className="button-group">
-                    <Button outline color="primary" type="button" className="mb-2 mr-2" onClick={handleSearch} disabled={!selectedStatus}>
+                    <Button outline color="primary" type="button" className="mb-2 mr-2" onClick={handleSearch} disabled={!selectedStatus || isFetchingFilter}>
                         <span className="oi oi-magnifying-glass"></span> Search
                     </Button>
 
-                    <Button color="success" type="button" className="mb-2" onClick={handleAddNew}>
+                    <Button color="success" type="button" className="mb-2" onClick={handleAddNew} disabled={isFetchingFilter}>
                         <span className="oi oi-plus"></span> Add Campaign
                     </Button>
                 </div>

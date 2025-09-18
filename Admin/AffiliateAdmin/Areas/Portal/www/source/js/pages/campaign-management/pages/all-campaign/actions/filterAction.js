@@ -42,7 +42,6 @@ export const setParam = (item) => {
 export const fetchFilter = () => async (dispatch) => {
     try {
         const response = await post(apiUrl.getAllCampaignStatus, {});
-        console.log(response);
 
         const data = response && response.status === 200 ? response.data : [];
         dispatch(setSelectedStatus(data.map(item => item.StatusId).join(',')));
