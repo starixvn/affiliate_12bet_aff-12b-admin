@@ -13,6 +13,8 @@
 
     var isProduction = settingService.IsProduction;
     var shouldApplyGoogleTag = HttpContext.Current.Request.Url.Host.MatchWith("www.12betaffiliate.com");
+
+    var targetCountryLanguages = systemsService.GetTargetCountryLanguages();
 }
 
 <!DOCTYPE html>
@@ -119,16 +121,34 @@
                             <div class="language-container">
                                 <div class="language-selection">
                                     <button class="select-language" id="selectedLanguage">
-                                        <span><i class="flag flag-@currentLanguage"></i><span class="name-lang">@(languageNativeName)</span></span>
+                                        <span>
+                                            <i class="flag flag-@currentLanguage"></i>
+                                            <span class="name-lang">@(languageNativeName)</span>
+                                        </span>
                                         <i class="caret"></i>
                                     </button>
                                     <div class="language-list-wrapper" id="languageList">
-                                        <ul class="list-unstyled language-list">
-                                            @foreach (var language in languageList)
+                                        <ul>
+                                            @foreach (var country in targetCountryLanguages)
                                             {
-                                                var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.Code) ? SystemLanguage.SupportedLanguage[language.Code] : language.ShortedCode;
-                                                <li>
-                                                    <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
+
+                                                <li class="country-item">
+                                                    <i class="country-item-col-1 flag flag-@country.Key"></i>
+                                                    <div class="country-item-col-2">
+                                                        <p class="country-name @(country.Key == sessionService.CurrentCountry ? "text-bold" : "")">@country.Value[0].TargetCountryName</p>
+                                                        <div class="language-options">
+                                                            @foreach (var lang in country.Value)
+                                                            {
+                                                                <span class="language-item @(sessionService.CurrentLanguage == lang.Code && country.Key == sessionService.CurrentCountry ? "highlight" : "")" data-target-country-code="@country.Key" data-option="@lang.ShortedCode">
+                                                                    @lang.NativeName
+                                                                </span>
+                                                                if (lang != country.Value.Last())
+                                                                {
+                                                                    <span class="separator">|</span>
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
                                                 </li>
                                             }
                                         </ul>

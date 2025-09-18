@@ -2,7 +2,7 @@
 
 var Layout = (function ($) {
     var DEFAULT_SPEED = 39;
-    var regexLangPartten = /\/(\w{2}|hien|hitg)\//g;
+    var regexLangPartten = /\/\w{2}(?:\w{2})?\//g;
     var regexLang = new RegExp(regexLangPartten);
 
     function createNewUrlByLanguage(language) {
@@ -18,8 +18,9 @@ var Layout = (function ($) {
 
             return href.replace(window.location.pathname, newPathName);
         } else {
-            var host = window.location.host + $("#RootUrl").val().replace(/\/\w{2}\//, '');
-            return href.replace(host, host + "/" + language);
+            var host = window.location.host + $("#RootUrl").val().replace(/\/\w{2}(?:\w{2})?\//, '');
+            var separator = host.endsWith('/') ? '' : '/';
+            return href.replace(host, host + separator + language);
         }
     }
 
@@ -47,6 +48,9 @@ var Layout = (function ($) {
 
             $("#languageList").on("click", ".language-item", function () {
                 var $selectedItem = $(this);
+                var targetCountryCode = $selectedItem.data('target-country-code');
+
+                document.cookie = "12b_country=" + targetCountryCode + "; path=/";
                 _me.changeLanguage($selectedItem.data('option'));
             });
 

@@ -6,13 +6,10 @@
     {
         private const string SpKey = "Aff_Market_Sel";
 
-        public GetLanguageListCriteria(bool isInternal, string targetCountryCode)
+        public GetLanguageListCriteria(bool isInternal)
         {
             IsInternal = isInternal;
-            TargetCountryCode = targetCountryCode;
         }
-
-        public string TargetCountryCode { get; set; }
 
         public override string GetSettingKey() => DbSettingHelper.BuildSpKey(IsInternal, SpKey);
 

@@ -1,13 +1,11 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
+    using System.Linq;
+    using System.Web.Mvc;
     using BusinessService;
-    using Constants;
     using CoreService;
     using Filters;
     using MetalModels.UserPanel;
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
     using Utilities;
     using ViewModels.UserPanel.Statistics;
 
@@ -29,11 +27,7 @@
         {
             var now = DateTimeHelper.Gmt8Now;
             var startMonth = DateTimeHelper.CreateDateTime(now.Year, now.Month, 1);
-            var languages = SystemService.GetLanguageList().Select(l => new SelectListItem
-            {
-                Text = l.EnglishName,
-                Value = l.Code
-            });
+            var languages = SystemHelper.GetTargetLanguageList(SystemService.GetLanguageList(), SessionService.UserSession.PreferredLanguage);
 
             var viewModel = new MarketingPageStatisticsViewModel
             {

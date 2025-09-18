@@ -45,29 +45,25 @@ namespace Fanex.Affiliate.User.Core.Constants
             [_Korea_LanguageCode] = "ko",
         };
 
-
         private static readonly IReadOnlyDictionary<string, string> _supportedFavoriteLanguages = new Dictionary<string, string>
         {
             ["en"] = _English_LanguageCode,
-            ["br"] = _English_LanguageCode,
-            ["my"] = _English_LanguageCode,
             ["bd"] = _Bangladesh_LanguageCode,
-            ["bn"] = _Bangladesh_LanguageCode,
-            ["hien"] = _India_LanguageCode,
-            ["hi"] = _India_LanguageCode,
-            ["hitg"] = _India_LanguageCode,
-            ["in"] = _India_LanguageCode,
+            ["bnen"] = _English_LanguageCode,
+            ["hien"] = _English_LanguageCode,
             ["id"] = _Indonesia_LanguageCode,
+            ["iden"] = _English_LanguageCode,
             ["jp"] = _Japan_LanguageCode,
-            ["kh"] = _English_LanguageCode,
-            ["kr"] = _Korea_LanguageCode,
+            ["jpen"] = _English_LanguageCode,
             ["ko"] = _Korea_LanguageCode,
+            ["kren"] = _English_LanguageCode,
             ["th"] = _Thailand_LanguageCode,
+            ["then"] = _English_LanguageCode,
             ["vn"] = _VietNam_LanguageCode,
-            ["cn"] = _Chinese_LanguageCode,
+            ["vnen"] = _English_LanguageCode,
             ["cs"] = _Chinese_LanguageCode,
-            ["tw"] = _Taiwan_LanguageCode,
-            ["ch"] = _Taiwan_LanguageCode,
+            ["csen"] = _English_LanguageCode,
+            ["phen"] = _English_LanguageCode
         };
 
         private static readonly IReadOnlyDictionary<string, IList<KeyValuePair<string, string>>> _supportedAlternateLanguages = new Dictionary<string, IList<KeyValuePair<string, string>>>
@@ -80,6 +76,8 @@ namespace Fanex.Affiliate.User.Core.Constants
                 new KeyValuePair<string, string>("en", "my-MY"),
                 new KeyValuePair<string, string>("en", "my"),
                 new KeyValuePair<string, string>("en", "en-US"),
+                new KeyValuePair<string, string>("bnen", "en-US"),
+                new KeyValuePair<string, string>("12", "en-US"),
                 new KeyValuePair<string, string>("en", "en-UK"),
                 new KeyValuePair<string, string>("en", "en"),
                 new KeyValuePair<string, string>("en", "")
@@ -171,6 +169,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string DefaultLanguageCode = _English_LanguageCode;
 
+        public const string DefaultCountryCode = "MY";
+
         public const string EnglishLanguageCode = _English_LanguageCode;
 
         public const string BangladeshLanguageCode = _Bangladesh_LanguageCode;
@@ -229,10 +229,11 @@ namespace Fanex.Affiliate.User.Core.Constants
             return canonicalLangName;
         }
 
-        public static string GetCurrentShortedLanguage(string currentLanguage)
-        {
-            return _supportedLanguageForGoogleAnalytics.ContainsKey(currentLanguage) ? _supportedLanguageForGoogleAnalytics[currentLanguage] : currentLanguage;
-        }
+        public static string GetCurrentShortedLanguage(string currentShortedCode) =>
+            !string.IsNullOrWhiteSpace(currentShortedCode) && _supportedFavoriteLanguages.ContainsKey(currentShortedCode)
+                ? currentShortedCode
+                : string.Empty;
+
 
         public static bool ShouldUsingLogoOriginal(string currentLanguage)
         {

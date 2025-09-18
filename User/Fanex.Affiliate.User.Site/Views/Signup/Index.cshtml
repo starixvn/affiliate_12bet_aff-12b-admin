@@ -285,7 +285,7 @@
                                             <option value="">@Lang.SelectOne</option>
                                             @foreach (var item in systemsService.GetSystemTargetCountries())
                                             {
-                                                <option value="@item.TargetCountryCode" data-language="@item.DefaultLanguageCode">@SystemHelper.GetTargetCountryText(item.TargetCountryName)</option>
+                                                <option value="@item.TargetCountryCode" data-language="@item.Code">@SystemHelper.GetTargetCountryText(item.TargetCountryName)</option>
                                             }
                                         </select>
                                         @Html.ValidationMessageFor(x => x.TargetCountryCode, string.Empty, new { @class = "validate-input hide" })

@@ -11,6 +11,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         string CurrentLanguage { get; set; }
 
+        string CurrentCountry { get; set; }
+
         bool IsInternal { get; set; }
 
         bool IsUnauthorized { get; }

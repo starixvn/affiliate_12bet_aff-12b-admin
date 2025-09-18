@@ -152,7 +152,19 @@
 	</Function>
 	
 	<Function Name="TargetCountry">
-		<Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-		<Setting Key="Aff_TargetCountry_Sel_view" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" />
+		<Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+			<Mapping DataField="MarketId" ObjectProperty="Code" />
+			<Mapping DataField="MarketName" ObjectProperty="EnglishName" />
+			<Mapping DataField="MarketNativeName" ObjectProperty="NativeName" />
+		</Setting>
+		<Setting Key="Aff_TargetCountry_Sel_view" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinetv" >
+			<Mapping DataField="MarketId" ObjectProperty="Code" />
+			<Mapping DataField="MarketName" ObjectProperty="EnglishName" />
+			<Mapping DataField="MarketNativeName" ObjectProperty="NativeName" />
+		</Setting>
+	</Function>
+	
+	<Function Name="IPCountry">
+		<Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCUST.IPDB.wsv_afinet" />
 	</Function>
 </Functions>
