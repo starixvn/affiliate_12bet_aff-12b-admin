@@ -5,6 +5,7 @@ import { regSpecialCharacters, globalResource, defaultInsertId } from '../../lib
 import { htmlDecode } from '../../../../modules/htmlHelper';
 import { validateFileExtension, validateFileSize } from '../../libs/utils';
 import InputFile from '../../../common/components/InputFile';
+import { showConfirmToast, showSuccessToast, showErrorToast } from '../../../common/components/Toast';
 
 const regexSpecialCharacters = new RegExp(regSpecialCharacters);
 
@@ -313,11 +314,6 @@ export const BaseMediaUploaderForm = ({
 
         messageTimeoutRef.current = duration && setTimeout(() => {
             setState(prev => ({ ...prev, isShowMessage: false }));
-            
-            if (isSuccess) {
-                onFetchData(param);
-                handleClosePopup();
-            }
         }, duration);
     }, [param, handleClosePopup, onFetchData]);
 
@@ -325,7 +321,15 @@ export const BaseMediaUploaderForm = ({
         if (result) {
             const itemType = showMediaNames ? (isInsert ? "asset" : "asset") : (isInsert ? "image(s)" : "image");
             const message = isInsert ? `Your ${itemType} has been added successfully!` : `Your ${itemType} has been updated successfully!`;
-            showMessage(result.IsSuccessful ? message : result.Message, result.IsSuccessful, result.IsSuccessful && 3000);
+
+            if (result.IsSuccessful) {
+                showSuccessToast(message);
+                onFetchData(param);
+                handleClosePopup();
+            } else {
+                showMessage(result.Message, false);
+            }
+            
         } else {
             const itemType = showMediaNames ? "asset" : "image(s)";
             const message = isInsert ? `Oops! Failed to add your ${itemType}!` : `Oops! Failed to update your ${itemType}!`;
@@ -346,10 +350,13 @@ export const BaseMediaUploaderForm = ({
             
             if (currentName === originalName && !!files.length) {
                 const itemType = showMediaNames ? 'form' : 'file';
-                onSetNotification({
-                    message: `This ${itemType} name exists already. Do you want to overwrite the current ${itemType}?`,
-                    isConfirmPopup: true,
-                    onConfirm: () => updateHandler(assetInfo)
+                showConfirmToast({
+                    title: "File Already Exists",
+                    content: [`This ${itemType} name exists already. Do you want to overwrite the current ${itemType}?`],
+                    onConfirm: () => updateHandler(assetInfo),
+                    onCancel: () => {
+                        // Cancel callback - do nothing
+                    }
                 });
             } else {
                 updateHandler(assetInfo);

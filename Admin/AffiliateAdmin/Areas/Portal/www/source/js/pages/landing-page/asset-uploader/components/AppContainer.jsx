@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ToastContainer } from 'react-toastify';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
@@ -14,6 +15,7 @@ import { messageDelete, messageSwitchStatus } from '../libs/constants';
 import { assetStatus } from '../../libs/constants';
 import { setParam, fetchData, toggleLoader, setSelectedMediaId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition, setAssetDetailUrl, setNotification, toggleAssetStatus } from '../actions';
 import NotificationPopup from '../../../common/components/NotificationPopup';
+import { showSuccessToast, showErrorToast } from '../../common/libs/toastUtils';
 
 export const AppContainer = (props) => {
     const { isModifyInAssetUploader } = props;
@@ -38,10 +40,7 @@ export const AppContainer = (props) => {
         const itemIdList = _getCheckedItemIdList();
 
         if(itemIdList.length === 0) {
-            props.setNotification({
-                message: messageSwitchStatus.PleaseSelect,
-                isConfirmPopup: false
-            });
+            showErrorToast("Selection Required", messageSwitchStatus.PleaseSelect);
         }
         else {
             const firstItem = props.gridData.find(item => itemIdList.includes(item.MediaId.toString()));
@@ -75,15 +74,16 @@ export const AppContainer = (props) => {
                         statusToApply = parseInt(confirmData.selectValue);
                     }
                     
-                    const result = await props.toggleAssetStatus({ mediaIds: itemIdList.join(','), status: statusToApply });
+                    const result = await props.toggleAssetStatus({ mediaIds: itemIdList.join(','), statusId: statusToApply });
                     if (result && result.IsSuccessful) {
                         props.fetchData(props.param);
                     }
                     
-                    props.setNotification({
-                        message: result?.IsSuccessful ? messageSwitchStatus.SwitchStatusSuccessfully : result?.Message || messageSwitchStatus.FailedToSwitchStatus,
-                        isConfirmPopup: false
-                    });
+                    if (result?.IsSuccessful) {
+                        showSuccessToast("Status Updated!", messageSwitchStatus.SwitchStatusSuccessfully);
+                    } else {
+                        showErrorToast("Status Update Failed", result?.Message || messageSwitchStatus.FailedToSwitchStatus);
+                    }
                 }
             });
         }
@@ -121,6 +121,18 @@ export const AppContainer = (props) => {
                     }
                     props.setNotification({ message: '', isConfirmPopup: false, onConfirm: null });
                 }}
+            />
+            <ToastContainer
+                position="top-center"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                className="landing-page-toast-container"
             />
         </AppLayout>
     );

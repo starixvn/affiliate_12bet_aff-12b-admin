@@ -350,28 +350,6 @@ const IframeHoverPreview = ({
                             )}
                         </div>
                         
-                        {/* Preview URL display */}
-                        <div 
-                            style={{
-                                position: 'absolute',
-                                top: '4px',
-                                left: '4px',
-                                right: '4px',
-                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                                color: 'white',
-                                padding: '2px 6px',
-                                fontSize: '10px',
-                                borderRadius: '3px',
-                                fontFamily: 'monospace',
-                                lineHeight: '1.2',
-                                whiteSpace: 'nowrap',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis'
-                            }}
-                        >
-                            {src}
-                        </div>
-                        
                         {/* Dimensions display */}
                         <div 
                             style={{

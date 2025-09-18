@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.AllCampaigns, IsHost = true)]
         public ActionResult InsertLandingPageCampaign(InsertLandingPageCampaignParam param)
         {
             if (ModelState.IsValid)

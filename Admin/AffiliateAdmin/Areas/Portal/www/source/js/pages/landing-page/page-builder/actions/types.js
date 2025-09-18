@@ -47,3 +47,6 @@ export const ADD_CAMPAIGN_TO_LIST = 'ADD_CAMPAIGN_TO_LIST';
 
 // Notification Types
 export const SET_NOTIFICATION = 'SET_NOTIFICATION';
+
+// Page Builder Detail Management Types
+export const SET_PAGE_BUILDER_DETAIL = 'SET_PAGE_BUILDER_DETAIL';

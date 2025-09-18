@@ -29,9 +29,9 @@ export const languageList = createReducer(null, {
         return action.data;
     }
 });
-export const notification = createReducer({ message: '', isConfirmPopup: false }, {
+export const notification = createReducer({ message: '', isConfirmPopup: false, onConfirm: null }, {
     [types.SET_NOTIFICATION](prevState, action) {
-        return action.data;
+        return Object.assign({}, prevState, action.data);
     }
 });
 

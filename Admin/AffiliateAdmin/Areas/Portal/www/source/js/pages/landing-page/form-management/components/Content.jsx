@@ -6,9 +6,9 @@ import { Button } from 'reactstrap';
 
 import { globalResource } from '../../../../modules/globalResource';
 import { headerText, messageDelete, messageSwitchStatus } from '../libs/constants';
-import { maxWidthHeight, assetStatus } from '../../libs/constants';
+import { showConfirmToast, showSuccessToast, showErrorToast } from '../../../common/components/Toast';
+import { assetStatus } from '../../libs/constants';
 import { setSelectedMediaId, setPagingOption, fetchData, setCheckedForms, setShouldResetScrollPosition, setParam, setFormDetailUrl, deleteForms, toggleFormStatus, setNotification } from '../actions';
-import { resizeWidthHeight } from '../../../../modules/utils';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export const Content = (props) => {
@@ -20,28 +20,22 @@ export const Content = (props) => {
         param && props.fetchData(param);
     }, [props.param]);
 
-    const _onCheckItem = (isChecked, mediaId) => {
-        const newCheckedForms = Object.assign({}, props.checkedForms, { [mediaId]: isChecked });
-
-        props.setShouldResetScrollPosition(false);
-        props.setCheckedForms(newCheckedForms);
-    }
-
     const _onDeleteItem = async (mediaId, isMediaIdInUse) => {
         if (isModifyInFormUploader && !isMediaIdInUse) {
-            props.setNotification({
-                message: 'Are you sure you want to delete the selected form(s)?',
-                isConfirmPopup: true,
+            showConfirmToast({
+                title: "Delete Form",
+                content: ["Are you sure you want to delete the selected form(s)?"],
                 onConfirm: async () => {
                     const result = await props.deleteForms(`${mediaId}`);
                     if (result && result.IsSuccessful) {
                         props.fetchData(props.param);
+                        showSuccessToast("Form Deleted!", messageDelete.DeleteItemsSuccessfully);
+                    } else {
+                        showErrorToast("Delete Failed", result?.Message || messageDelete.FailedToDeleteItems);
                     }
-
-                    props.setNotification({
-                        message: result?.IsSuccessful ? messageDelete.DeleteItemsSuccessfully : result?.Message || messageDelete.FailedToDeleteItems,
-                        isConfirmPopup: false
-                    });
+                },
+                onCancel: () => {
+                    // Cancel callback - do nothing
                 }
             });
         }
@@ -49,23 +43,25 @@ export const Content = (props) => {
 
     const _onToggleActiveStatus = async (mediaId, currentStatus) => {
         const newStatus = currentStatus === assetStatus.active ? assetStatus.inactive : assetStatus.active;
+
         if (!isModifyInFormUploader) {
             return;
         }
 
-        props.setNotification({
-            message: `Are you sure you want to change status of the selected form(s)?`,
-            isConfirmPopup: true,
+        showConfirmToast({
+            title: "Change Status",
+            content: ["Are you sure you want to change status of the selected form(s)?"],
             onConfirm: async () => {
                 const result = await props.toggleFormStatus({ mediaIds: `${mediaId}`,statusId: newStatus });
                 if (result && result.IsSuccessful) {
                     props.fetchData(props.param);
+                    showSuccessToast("Status Updated!", messageSwitchStatus.SwitchStatusSuccessfully);
+                } else {
+                    showErrorToast("Status Update Failed", result?.Message || messageSwitchStatus.FailedToSwitchStatus);
                 }
-
-                props.setNotification({
-                    message: result?.IsSuccessful ? messageSwitchStatus.SwitchStatusSuccessfully : result?.Message || messageSwitchStatus.FailedToSwitchStatus,
-                    isConfirmPopup: false
-                });
+            },
+            onCancel: () => {
+                // Cancel callback - do nothing
             }
         });
     }
@@ -89,7 +85,6 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={100} title={headerText.PreviewImageName}>{headerText.PreviewImageName}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Demensions}>{headerText.Demensions}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.PreviewImage}>{headerText.PreviewImage}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.Active}>{headerText.Active}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.Action}>{headerText.Action}</Cell>
@@ -111,7 +106,7 @@ export const Content = (props) => {
         }
         else {
             dataRows.push(<Row key="no-info">
-                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="9">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -126,12 +121,6 @@ export const Content = (props) => {
         const targetCountry = dataItem.TargetCountryName;
         const language = dataItem.MarketName;
         const src = `${props.bannerRootUrl}/${fileName}?id=${dataItem.UpdatedDate}`;
-        const dimension = dataItem.Dimension;
-        const strDimension = dimension.split('x');
-        const realWidth = strDimension[0];
-        const realHeight = strDimension[1];
-        const isValidWithHeight = realWidth < maxWidthHeight && realHeight < maxWidthHeight;
-        const resizeResult = !isValidWithHeight && resizeWidthHeight(realWidth, realHeight);
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -140,17 +129,8 @@ export const Content = (props) => {
                 <Cell className="text-center text-break" title={imageName}>{imageName}</Cell>
                 <Cell className="text-center text-break" title={targetCountry}>{targetCountry}</Cell>
                 <Cell className="text-center text-break" title={language}>{language}</Cell>
-                <Cell className="text-center text-break" title={dimension}>{dimension}</Cell>
                 <Cell className="text-center">
-                    {
-                        isValidWithHeight ? (
-                            <img id={`img${mediaId}`} src={src} alt="Preview Image" height={realHeight} width={realWidth} />
-                        ) : (
-                                <a href="javascript:;" id={`link${mediaId}`} onClick={() => props.setFormDetailUrl({ src, mediaId, width: realWidth, height: realHeight })}>
-                                    <img id={`img${mediaId}`} src={src} alt="Preview Image" height={resizeResult.height} width={resizeResult.width} />
-                                </a>
-                            )
-                    }
+                    <img id={`img${mediaId}`} src={src} alt="Preview Image" maxWidth={100} maxHeight={100} />
                 </Cell>
                 <Cell className="text-center">
                     <input

@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ToastContainer } from 'react-toastify';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
@@ -15,18 +16,28 @@ const AppContainer = (props) => {
         <AppLayout>
             <Loader show={isShowLoader} />
             <LandingPageForm />
-            {notification && (
-                <NotificationPopup
-                    message={notification.message}
-                    isConfirmPopup={notification.isConfirmPopup}
-                    onClose={(result) => {
-                        if (notification.onConfirm && result) {
-                            notification.onConfirm(result);
-                        }
-                        props.setNotification({ message: '', isConfirmPopup: false, onConfirm: null });
-                    }}
-                />
-            )}
+            <NotificationPopup
+                message={props.notification.message}
+                isConfirmPopup={props.notification.isConfirmPopup}
+                onClose={(result) => {
+                    if (props.notification.onConfirm && result) {
+                        props.notification.onConfirm(result);
+                    }
+                    props.setNotification({ message: '', isConfirmPopup: false, onConfirm: null });
+                }}
+            />
+            <ToastContainer
+                position="top-center"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                className="landing-page-toast-container"
+            />
         </AppLayout>
     );
 };

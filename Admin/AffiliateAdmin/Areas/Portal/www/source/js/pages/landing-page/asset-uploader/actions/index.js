@@ -1,6 +1,7 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
+import { v4 as uuidv4 } from 'uuid';
 
 import * as types from './types';
 
@@ -79,8 +80,12 @@ export const setGridData = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
+    const paramWithId = {
+        ...param,
+        RequestId: uuidv4()
+    };
     const url = 'Portal/AssetUploader/GetAssetList';
-    const response = await post(url, param);
+    const response = await post(url, paramWithId);
 
     const data = response && response.status === 200 ? response.data : null;
     const checkedAssets = data ? _convertCheckedAssets(data.MainData || []) : {};
@@ -107,8 +112,12 @@ function _convertCheckedAssets(dataList) {
 }
 
 export const getAssetDetail = (param) => async () => {
+    const paramWithId = {
+        ...param,
+        RequestId: uuidv4()
+    };
     const url = 'Portal/AssetUploader/GetAssetDetail';
-    const response = await post(url, param);
+    const response = await post(url, paramWithId);
 
     return response && response.status === 200 ? response.data : null;
 }
@@ -130,6 +139,9 @@ const handleExcute = async (url, param) => {
     for (let key in param) {
         key !== 'files' && formData.append(key, param[key]);
     }
+    
+    // Add RequestId for tracking
+    formData.append('RequestId', uuidv4());
 
     const files = param['files'];
 
@@ -146,14 +158,21 @@ const handleExcute = async (url, param) => {
 
 export const deleteAssets = (mediaIds) => async () => {
     const url = 'Portal/AssetUploader/DeleteAssets';
-    const response = await post(url, { mediaIds });
+    const response = await post(url, { 
+        mediaIds,
+        RequestId: uuidv4()
+    });
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const toggleAssetStatus = (param) => async () => {
+    const paramWithId = {
+        ...param,
+        RequestId: uuidv4()
+    };
     const url = 'Portal/AssetUploader/ToggleAssetStatus';
-    const response = await post(url, param);
+    const response = await post(url, paramWithId);
 
     return response && response.status === 200 ? response.data : null;
 }

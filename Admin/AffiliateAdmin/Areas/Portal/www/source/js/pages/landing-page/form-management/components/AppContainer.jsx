@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ToastContainer } from 'react-toastify';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
@@ -47,7 +48,19 @@ export const AppContainer = (props) => {
                     }
                     props.setNotification({ message: '', isConfirmPopup: false, onConfirm: null });
                 }}
-        />
+            />
+            <ToastContainer
+                position="top-center"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                className="landing-page-toast-container"
+            />
         </AppLayout>
     );
 }

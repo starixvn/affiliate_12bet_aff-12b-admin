@@ -68,7 +68,7 @@ export const gridData = createReducer(null, {
     }
 })
 
-export const notification = createReducer({ message: '', isConfirmPopup: false }, {
+export const notification = createReducer({ message: '', isConfirmPopup: false, onConfirm: null }, {
     [types.SET_NOTIFICATION](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }

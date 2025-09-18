@@ -54,7 +54,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             var command = param.MapTo<InsertLandingPageCampaignParam, InsertLandingPageCampaignCommand>();
             var result = ExecuteReturnResultInfo(command);
-            result.Message = command.CampaignId.ToString();
+            if (result.IsSuccessful)
+            {
+                result.Message = command.CampaignId.ToString();
+            }
 
             return result;
         }
@@ -94,7 +97,10 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             command.ComponentStructure = JsonConvert.SerializeObject(param.ModuleComponentsSetting);
 
             var result = ExecuteReturnResultInfo(command);
-            result.Message = result.IsSuccessful ? command.PageId.ToString() : result.Message;
+            if (result.IsSuccessful)
+            {
+                result.Message = command.PageId.ToString();
+            }
 
             return result;
         }

@@ -7,9 +7,11 @@ import { Button } from 'reactstrap';
 import { resizeWidthHeight } from '../../../../modules/utils';
 import { globalResource } from '../../../../modules/globalResource';
 import { headerText, messageDelete, messageSwitchStatus } from '../libs/constants';
+import { showSuccessToast, showErrorToast } from '../../common/libs/toastUtils';
+import { showConfirmToast } from '../../../common/components/Toast';
 import { maxWidthHeight, assetStatus } from '../../libs/constants';
 import { htmlDecode } from '../../../../modules/htmlHelper';
-import { setSelectedMediaId, setPagingOption, fetchData, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus, deleteAssets, setNotification } from '../actions';
+import { setSelectedMediaId, setPagingOption, fetchData, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus, deleteAssets } from '../actions';
 
 export const Content = (props) => {
 
@@ -28,19 +30,20 @@ export const Content = (props) => {
 
     const _onDeleteItem = async (mediaId, isMediaIdInUse) => {
         if (!isMediaIdInUse) {
-            props.setNotification({
-                message: 'Are you sure you want to delete the selected image(s)?',
-                isConfirmPopup: true,
+            showConfirmToast({
+                title: "Delete Asset",
+                content: ["Are you sure you want to delete the selected image(s)?"],
                 onConfirm: async () => {
                     const result = await props.deleteAssets(`${mediaId}`);
                     if (result && result.IsSuccessful) {
                         props.fetchData(props.param);
+                        showSuccessToast("Asset Deleted!", messageDelete.DeleteItemsSuccessfully);
+                    } else {
+                        showErrorToast("Delete Failed", result?.Message || messageDelete.FailedToDelete);
                     }
-
-                    props.setNotification({
-                        message: result?.IsSuccessful ? messageDelete.DeleteItemsSuccessfully : result?.Message || messageDelete.FailedToDelete,
-                        isConfirmPopup: false
-                    });
+                },
+                onCancel: () => {
+                    // Cancel callback - do nothing
                 }
             });
         }
@@ -48,19 +51,20 @@ export const Content = (props) => {
 
     const _onToggleActiveStatus = async (mediaId, currentStatus) => {
         const newStatus = currentStatus === assetStatus.active ? assetStatus.inactive : assetStatus.active;
-        props.setNotification({
-            message: `Are you sure you want to change status of the selected image(s)?`,
-            isConfirmPopup: true,
+        showConfirmToast({
+            title: "Change Status",
+            content: ["Are you sure you want to change status of the selected image(s)?"],
             onConfirm: async () => {
                 const result = await props.toggleAssetStatus({ mediaIds: `${mediaId}`, statusId: newStatus });
                 if (result && result.IsSuccessful) {
                     props.fetchData(props.param);
+                    showSuccessToast("Status Updated!", messageSwitchStatus.SwitchStatusSuccessfully);
+                } else {
+                    showErrorToast("Status Update Failed", result?.Message || messageSwitchStatus.FailedToSwitchStatus);
                 }
-
-                props.setNotification({
-                    message: result?.IsSuccessful ? messageSwitchStatus.SwitchStatusSuccessfully : result?.Message || messageSwitchStatus.FailedToSwitchStatus,
-                    isConfirmPopup: false
-                });
+            },
+            onCancel: () => {
+                // Cancel callback - do nothing
             }
         });
     }
@@ -137,7 +141,7 @@ export const Content = (props) => {
         }
         else {
             dataRows.push(<Row key="no-info">
-                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
+                <Cell className="text-center" colSpan="10">{globalResource.NoInfo}</Cell>
             </Row>);
         }
 
@@ -235,7 +239,7 @@ function mapStateToProps({ pagingOption, param, checkedAssets, bannerRootUrl, sh
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus, deleteAssets, setNotification }, dispatch);
+    return bindActionCreators({ setSelectedMediaId, fetchData, setPagingOption, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus, deleteAssets }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

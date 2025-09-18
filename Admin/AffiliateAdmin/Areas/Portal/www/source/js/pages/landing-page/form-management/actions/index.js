@@ -1,6 +1,7 @@
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
+import { v4 as uuidv4 } from 'uuid';
 
 import * as types from './types';
 
@@ -77,8 +78,12 @@ export const setGridData = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
+    const paramWithId = {
+        ...param,
+        RequestId: uuidv4()
+    };
     const url = 'Portal/FormManagement/GetFormManagementList';
-    const response = await post(url, param);
+    const response = await post(url, paramWithId);
 
     const data = response && response.status === 200 ? response.data : null;
     const checkedForms = data ? _convertCheckedForms(data.MainData || []) : {};
@@ -102,7 +107,10 @@ function _convertCheckedForms(dataList) {
 
 export const getFormDetail = (mediaId) => async () => {
     const url = 'Portal/FormManagement/GetFormDetail';
-    const response = await post(url, { mediaId });
+    const response = await post(url, { 
+        mediaId,
+        RequestId: uuidv4()
+    });
 
     return response && response.status === 200 ? response.data : null;
 }
@@ -124,6 +132,9 @@ const handleExcute = async (url, param) => {
     for (let key in param) {
         key !== 'files' && formData.append(key, param[key]);
     }
+    
+    // Add RequestId for tracking
+    formData.append('RequestId', uuidv4());
 
     const files = param['files'];
 
@@ -140,14 +151,21 @@ const handleExcute = async (url, param) => {
 
 export const deleteForms = (mediaIds) => async () => {
     const url = 'Portal/FormManagement/DeleteForms';
-    const response = await post(url, { mediaIds });
+    const response = await post(url, { 
+        mediaIds,
+        RequestId: uuidv4()
+    });
 
     return response && response.status === 200 ? response.data : null;
 }
 
 export const toggleFormStatus = (param) => async () => {
+    const paramWithId = {
+        ...param,
+        RequestId: uuidv4()
+    };
     const url = 'Portal/FormManagement/ToggleFormStatus';
-    const response = await post(url, param);
+    const response = await post(url, paramWithId);
 
     return response && response.status === 200 ? response.data : null;
 }

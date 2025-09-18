@@ -24,7 +24,7 @@ export const regSpecialCharacters = '[\\\\\/\:\*\?\"\<\>\|\#\%\&\+]';
 
 export const fileUpload = {
     AllowedImageExtensions: [".jpg", ".jpeg", ".png", ".gif", ".webp"],
-    MaximumFiles: 10,
+    MaximumFiles: 50,
     MaxFileSize: 3
 }
 
@@ -32,6 +32,12 @@ export const assetStatus = {
     all: -1,
     active: 1,
     inactive: 2
+};
+
+export const landingPageStatus = {
+    draft: 0,
+    active: 1,
+    inactive: 2,
 };
 
 export const moduleTypes = {

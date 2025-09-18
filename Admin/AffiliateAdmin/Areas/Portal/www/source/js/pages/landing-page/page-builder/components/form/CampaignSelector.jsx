@@ -1,14 +1,15 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import AddNewCampaignModal from '../modals/AddNewCampaignModal';
 
 import { updateFormField, fetchDeals, clearValidationErrors } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
+import { claimResource } from '../../../../../modules/claim';
 
-const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, fetchDeals, clearValidationErrors }) => {
+const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, clearValidationErrors, isModifyCampaign }) => {
     const [isAddCampaignModalOpen, setIsAddCampaignModalOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -73,7 +74,7 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
     const handleCampaignSelect = useCallback((campaignId) => {
         if (campaignId === 'add-new') {
             setIsAddCampaignModalOpen(true);
-            setIsOpen(false);
+            setIsOpen(false); // Keep this for modal case
             return;
         }
         
@@ -171,14 +172,14 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
                         >
                             <DropdownToggle
                                 caret
-                                className={`form-control text-left dropdown-toggle-visible-text ${error ? 'is-invalid border-danger' : ''}`}
+                                className={`form-control text-truncate text-left dropdown-toggle-visible-text ${error ? 'is-invalid border-danger' : ''}`}
                                 style={{ 
                                     backgroundColor: 'white',
                                     border: '1px solid #ced4da', 
                                     color: '#495057',
                                     textDecoration: 'none'
                                 }}
-                                disabled={!campaignList || campaignList.length === 0}
+                                title={getDisplayText()}
                             >
                                 {getDisplayText()}
                             </DropdownToggle>
@@ -208,29 +209,33 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
                                 <DropdownItem divider />
                                 
                                 {/* Add New Option */}
-                                <DropdownItem
-                                    tag="button"
-                                    type="button"
-                                    onClick={() => handleCampaignSelect('add-new')}
-                                    className="campaign-add-new-item"
-                                >
-                                    <i className="fa fa-plus me-2"></i>
-                                    Add New Campaign...
-                                </DropdownItem>
+                                {
+                                    isModifyCampaign && (
+                                        <DropdownItem
+                                            tag="button"
+                                            type="button"
+                                            onClick={() => handleCampaignSelect('add-new')}
+                                            className="campaign-add-new-item"
+                                        >
+                                            <i className="fa fa-plus me-2"></i>
+                                            Add New Campaign...
+                                        </DropdownItem>
+                                    )
+                                }
                                 
                                 {/* Campaign List */}
                                 {filteredCampaigns.length > 0 ? (
                                     filteredCampaigns.map(campaign => (
                                         <DropdownItem
                                             key={campaign.CampaignId}
-                                            tag="button"
-                                            type="button"
-                                            onClick={() => handleCampaignSelect(campaign.CampaignId)}
+                                            onClick={() => {
+                                                handleCampaignSelect(campaign.CampaignId);
+                                                toggle(); // Manually call the dropdown toggle function
+                                            }}
                                             active={campaign.CampaignId === value}
                                             style={{ 
                                                 cursor: 'pointer', 
-                                                border: 'none', 
-                                                backgroundColor: 'transparent',
+                                                textOverflow: 'ellipsis',
                                                 overflow: 'hidden',
                                                 whiteSpace: 'nowrap',
                                                 maxWidth: '100%',
@@ -240,7 +245,7 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
                                         >
                                             <span 
                                                 className="text-truncate" 
-                                                style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                                style={{ minWidth: 0 }}
                                                 title={campaign.CampaignCode + ' | ' + campaign.CampaignName}
                                             >
                                                 {campaign.CampaignCode + ' | ' + campaign.CampaignName}
@@ -277,8 +282,10 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
     );
 };
 
-function mapStateToProps({ campaignList }) {
-    return Object.assign({}, { campaignList });
+function mapStateToProps({ campaignList, claimsPrincipal }) {
+    const isModifyCampaign = claimsPrincipal.hasWriteClaim(claimResource.AllCampaigns);
+
+    return Object.assign({}, { campaignList, isModifyCampaign });
 }
 
 function mapDispatchToProps(dispatch) {

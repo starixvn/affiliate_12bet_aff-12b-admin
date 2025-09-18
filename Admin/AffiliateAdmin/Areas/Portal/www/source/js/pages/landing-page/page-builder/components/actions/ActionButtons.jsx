@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Button, Row, Col } from 'reactstrap';
 
 import CopyLinkSection from './CopyLinkSection';
+import { showSuccessToast, showErrorToast, showInfoToast } from '../../../common/libs/toastUtils';
+import { showConfirmToast } from '../../../../common/components/Toast';
 import { 
     saveLandingPage, 
     generatePreviewUrl,
@@ -14,9 +16,13 @@ import {
     setHasPreviewedOrCreated,
     setPreviewUrl,
     initializeFromPageBuilderDetail,
-    setNotification
+    setNotification,
+    setPageBuilderDetail,
+    transitionToEditMode,
+    updatePageBuilderDetail
 } from '../../actions';
 import { pageBuilderLabels, pageBuilderDefaultState, pageCodePattern, validationMessages } from '../../libs/constants';
+import { claimResource } from '../../../../../modules/claim';
 
 const ActionButtons = ({ 
     formData, 
@@ -28,6 +34,8 @@ const ActionButtons = ({
     pageBuilderDetail,
     languageList,
     landingPageUrl,
+    campaignList,
+    dealList,
     saveLandingPage,
     generatePreviewUrl,
     setFormData,
@@ -37,7 +45,10 @@ const ActionButtons = ({
     setHasPreviewedOrCreated,
     setPreviewUrl,
     initializeFromPageBuilderDetail,
-    setNotification
+    setNotification,
+    setPageBuilderDetail,
+    transitionToEditMode,
+    updatePageBuilderDetail
 }) => {
     const handlePreview = useCallback(async () => {
         if (!isModifyInPageBuilder || !validateForm(formData, moduleComponents)) {
@@ -63,17 +74,12 @@ const ActionButtons = ({
                 
                 setPreviewUrl(constructedPreviewUrl || result.PreviewUrl);
                 setHasPreviewedOrCreated(true);
+                showSuccessToast("Preview Generated!", "Landing page preview is ready to view.");
             } else {
-                setNotification({
-                    message: result ? result.Message : 'Failed to generate preview. Please check your form data and try again.',
-                    isConfirmPopup: false
-                });
+                showErrorToast("Preview Failed", result ? result.Message : 'Failed to generate preview. Please check your form data and try again.');
             }
         } catch (err) {
-            setNotification({
-                message: 'An error occurred while generating the preview.',
-                isConfirmPopup: false
-            });
+            showErrorToast("Preview Error", 'An error occurred while generating the preview.');
         }
     }, [validateForm, formData, moduleComponents, generatePreviewUrl, languageList, landingPageUrl, setPreviewUrl, setHasPreviewedOrCreated, setNotification]);
 
@@ -169,33 +175,55 @@ const ActionButtons = ({
     }, [formData, moduleComponents, moduleList, setValidationErrors, clearValidationErrors]);
 
     const handleReset = useCallback(() => {
+        const confirmTitle = isEditMode ? 'Reset Form' : 'Reset Form';
         const confirmMessage = isEditMode 
             ? 'Are you sure you want to reset the form? All changes will be reverted to the original values.'
             : 'Are you sure you want to reset the form? All changes will be lost.';
             
-        if (window.confirm(confirmMessage)) {
-            if (isEditMode && pageBuilderDetail) {
-                // Reset to original edit values
-                initializeFromPageBuilderDetail(pageBuilderDetail);
-                // Reset preview URL and preview state in edit mode
-                setPreviewUrl('');
-                setHasPreviewedOrCreated(false);
-                // Clear validation errors after form is initialized
-                // Use requestAnimationFrame to ensure DOM updates are complete
-                requestAnimationFrame(() => {
+        showConfirmToast({
+            title: confirmTitle,
+            content: [confirmMessage],
+            onConfirm: () => {
+                if (pageBuilderDetail) {
+                    // Reset to original edit values
+                    initializeFromPageBuilderDetail(pageBuilderDetail);
+                    // Reset preview URL and preview state in edit mode
+                    setPreviewUrl('');
+                    setHasPreviewedOrCreated(false);
+                    // Clear validation errors after form is initialized
+                    // Use requestAnimationFrame to ensure DOM updates are complete
+                    requestAnimationFrame(() => {
+                        clearValidationErrors();
+                    });
+                } else {
+                    // Clear validation errors first for create mode
                     clearValidationErrors();
-                });
-            } else {
-                // Clear validation errors first for create mode
-                clearValidationErrors();
-                // Reset to empty form for create mode
-                setFormData(pageBuilderDefaultState.formData);
-                setModuleComponents(pageBuilderDefaultState.moduleComponentsSetting);
-                setHasPreviewedOrCreated(false);
-                setPreviewUrl(''); // Clear any existing preview URL
+                    
+                    // Reset to empty form for create mode with default values
+                    const defaultFormData = { ...pageBuilderDefaultState.formData };
+                    
+                    // Set default campaignId to first item in campaignList
+                    if (campaignList && campaignList.length > 0) {
+                        defaultFormData.campaignId = campaignList[0].CampaignId;
+                    }
+                    
+                    // Set default dealIds to all items in dealList
+                    if (dealList && dealList.length > 0) {
+                        defaultFormData.dealIds = dealList.map(deal => deal.key);
+                    }
+                    
+                    setFormData(defaultFormData);
+                    setModuleComponents(pageBuilderDefaultState.moduleComponentsSetting);
+                    setHasPreviewedOrCreated(false);
+                    setPreviewUrl(''); // Clear any existing preview URL
+                }
+                showSuccessToast("Form Reset", "Form has been reset successfully!");
+            },
+            onCancel: () => {
+                // Cancel callback - do nothing
             }
-        }
-    }, [isEditMode, pageBuilderDetail, setFormData, setModuleComponents, clearValidationErrors, setHasPreviewedOrCreated, setPreviewUrl, initializeFromPageBuilderDetail]);
+        });
+    }, [isEditMode, pageBuilderDetail, campaignList, dealList, setFormData, setModuleComponents, clearValidationErrors, setHasPreviewedOrCreated, setPreviewUrl, initializeFromPageBuilderDetail]);
 
     const handleCreate = useCallback(async () => {
         // Always validate form and show errors when Create is clicked
@@ -216,40 +244,52 @@ const ActionButtons = ({
             const shortedLanguageCode = selectedLanguage?.TargetLanguageCode || selectedLanguage?.ShortedLanguageCode;
             
             let constructedPreviewUrl = '';
-            if (isEditMode &&landingPageUrl && formData.pageCode && shortedLanguageCode) {
+            if (landingPageUrl && formData.pageCode && shortedLanguageCode) {
                 constructedPreviewUrl = `${landingPageUrl}/${shortedLanguageCode}/${formData.pageCode}`;
             }
             
             if (isEditMode) {
-                // Update mode: Show success message and keep current data
-                setNotification({
-                    message: 'Landing page has been edited successfully!',
-                    isConfirmPopup: false
-                });
+                // Update mode: Show success message and update pageBuilderDetail
+                showSuccessToast("Landing Page Updated!", 'Landing page has been edited successfully!');
+                
+                // Update pageBuilderDetail with current form data
+                updatePageBuilderDetail(formData, moduleComponents);
+                
                 // Update preview URL for the updated page
                 if (constructedPreviewUrl) {
                     setPreviewUrl(constructedPreviewUrl);
                     setHasPreviewedOrCreated(true);
                 }
             } else {
-                // Create mode: Show success message and reset form to initial state
-                setNotification({
-                    message: 'Landing page has been created successfully!',
-                    isConfirmPopup: false
-                });
+                // Create mode: Show success message and transition to edit mode
+                showSuccessToast("Landing Page Created!", 'Landing page has been created successfully!');
                 
-                // Reset form data to initial state
-                setFormData(pageBuilderDefaultState.formData);
-                setModuleComponents(pageBuilderDefaultState.moduleComponentsSetting);
+                // Extract pageId from result (assuming result.Message contains the pageId or result has PageId property)
+                const pageId = result.PageId || result.Message || result.Data?.PageId;
+                
+                if (pageId) {
+                    // Transition to edit mode with the newly created page data
+                    transitionToEditMode(pageId, formData, moduleComponents);
+                    
+                    // Update preview URL for the created page
+                    if (constructedPreviewUrl) {
+                        setPreviewUrl(constructedPreviewUrl);
+                        setHasPreviewedOrCreated(true);
+                    }
+                } else {
+                    console.warn('PageId not found in server response:', result);
+                }
+                
+                // Clear validation errors
                 clearValidationErrors();
             }
         } else {
-            setNotification({
-                message: result ? result.Message : (isEditMode ? 'Failed to update landing page. Please try again.' : 'Failed to create landing page. Please try again.'),
-                isConfirmPopup: false
-            });
+            showErrorToast(
+                isEditMode ? "Update Failed" : "Creation Failed", 
+                result ? result.Message : (isEditMode ? 'Failed to update landing page. Please try again.' : 'Failed to create landing page. Please try again.')
+            );
         }
-    }, [validateForm, saveLandingPage, formData, moduleComponents, setHasPreviewedOrCreated, isEditMode, setFormData, setModuleComponents, clearValidationErrors, setPreviewUrl, languageList, landingPageUrl, setNotification]);
+    }, [validateForm, saveLandingPage, formData, moduleComponents, setHasPreviewedOrCreated, isEditMode, setFormData, setModuleComponents, clearValidationErrors, setPreviewUrl, languageList, landingPageUrl, setNotification, updatePageBuilderDetail, transitionToEditMode]);
 
     // Note: Removed isFormValid logic since buttons are now always clickable
     // and validation happens when buttons are clicked
@@ -305,8 +345,10 @@ const ActionButtons = ({
     );
 };
 
-function mapStateToProps({ formData, moduleComponents, moduleList, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl, isModifyInPageBuilder }) {
-    return Object.assign({}, { formData, moduleComponents, moduleList, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl, isModifyInPageBuilder });
+function mapStateToProps({ formData, moduleComponents, moduleList, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl, campaignList, dealList, claimsPrincipal }) {
+    const isModifyInPageBuilder = claimsPrincipal.hasWriteClaim(claimResource.PageManagement);
+
+    return Object.assign({}, { formData, moduleComponents, moduleList, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl, campaignList, dealList, isModifyInPageBuilder });
 }
 
 function mapDispatchToProps(dispatch) {
@@ -320,7 +362,10 @@ function mapDispatchToProps(dispatch) {
         setHasPreviewedOrCreated,
         setPreviewUrl,
         initializeFromPageBuilderDetail,
-        setNotification
+        setNotification,
+        setPageBuilderDetail,
+        transitionToEditMode,
+        updatePageBuilderDetail
     }, dispatch);
 }
 

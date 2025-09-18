@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { v4 as uuidv4 } from 'uuid';
 import MultipleSelect from '../../../../components/multiple-select';
 import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
@@ -41,6 +42,7 @@ export const Filter = ({
             Status: status,
             PageIndex: 1,
             PageSize: pagingOption.PageSize,
+            RequestId: uuidv4()
         };
 
         setParam(newParam);

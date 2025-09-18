@@ -122,7 +122,7 @@ const MultiSelectDropdown = ({
             >
                 <DropdownToggle
                     caret
-                    className={`form-control text-left ${error ? 'is-invalid' : ''}`}
+                    className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
                     style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: '#495057' }}
                     disabled={isDisabled}
                 >

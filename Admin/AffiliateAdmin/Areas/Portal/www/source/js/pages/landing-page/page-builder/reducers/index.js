@@ -4,10 +4,10 @@ import createReducer from '../../../../modules/createReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 import * as types from '../actions/types';
 import { pageBuilderDefaultState } from '../libs/constants';
+import { claimsPrincipal } from '../../../../reducers/claimReducer';
 
 export const landingPageUrl = createReducer(null, {});
 export const bannerRootUrl = createReducer(null, {});
-export const isModifyInPageBuilder = createReducer(false, {});
 
 export const formData = createReducer(pageBuilderDefaultState.formData, {
     [types.SET_FORM_DATA](prevState, action) {
@@ -58,6 +58,12 @@ export const formData = createReducer(pageBuilderDefaultState.formData, {
             pageName: detail.PageName,
             pageCode: detail.PageCode,
             status: detail.StatusId
+        };
+    },
+    [types.SET_PAGE_BUILDER_DETAIL](prevState, action) {
+        return {
+            ...prevState,
+            pageId: action.pageId
         };
     }
 });
@@ -291,18 +297,60 @@ export const ui = createReducer(pageBuilderDefaultState.ui, {
 export const pageBuilderDetail = createReducer(null, {
     [types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL](prevState, action) {
         return action.pageBuilderDetail || null;
+    },
+    [types.SET_PAGE_BUILDER_DETAIL](prevState, action) {
+        const { formData, moduleComponents, pageId } = action;
+        
+        // Helper function to create pageBuilderDetail object from form data
+        const createPageBuilderDetail = (basePageId) => ({
+            PageId: basePageId,
+            CampaignId: formData.campaignId,
+            TargetCountryCode: formData.targetCountryCode,
+            LanguageCode: formData.languageCode,
+            DealIds: Array.isArray(formData.dealIds) ? formData.dealIds.join(',') : formData.dealIds,
+            PageName: formData.pageName,
+            PageCode: formData.pageCode,
+            StatusId: formData.status,
+            ModuleComponentsSetting: moduleComponents.map(component => ({
+                ModuleId: component.moduleId,
+                OrderId: component.orderId,
+                MediaId: component.mediaId,
+                ExtraInfo: component.extraInfo || ''
+            }))
+        });
+        
+        // If pageId is provided, create new detail (transition to edit mode)
+        if (pageId) {
+            return createPageBuilderDetail(pageId);
+        }
+        
+        // If no pageId provided, update existing detail (update mode)
+        // Only update if there's an existing detail with a valid PageId
+        if (!prevState || !prevState.PageId) {
+            return prevState;
+        }
+        
+        return createPageBuilderDetail(prevState.PageId);
     }
 });
 
 export const isEditMode = createReducer(false, {
     [types.INITIALIZE_FROM_PAGE_BUILDER_DETAIL](prevState, action) {
         return action.pageBuilderDetail && action.pageBuilderDetail.PageId > 0;
+    },
+    [types.SET_PAGE_BUILDER_DETAIL](prevState, action) {
+        // If pageId is provided in action, we're transitioning to edit mode
+        if (action.pageId) {
+            return true;
+        }
+        // Otherwise, maintain current edit mode state
+        return prevState;
     }
 });
 
-export const notification = createReducer(null, {
+export const notification = createReducer({ message: '', isConfirmPopup: false, onConfirm: null }, {
     [types.SET_NOTIFICATION](prevState, action) {
-        return action.data;
+        return Object.assign({}, prevState, action.data);
     }
 });
 
@@ -325,5 +373,5 @@ export default combineReducers({
     pageBuilderDetail,
     isEditMode,
     notification,
-    isModifyInPageBuilder
+    claimsPrincipal
 });

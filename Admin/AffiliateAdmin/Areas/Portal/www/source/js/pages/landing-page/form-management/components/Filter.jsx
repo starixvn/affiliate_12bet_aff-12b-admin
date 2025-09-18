@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { v4 as uuidv4 } from 'uuid';
 import MultipleSelect from '../../../../components/multiple-select';
 import { handleChangeMultipleSelected } from '../../../../modules/utils';
 
@@ -11,13 +12,11 @@ import { assetStatus } from '../../libs/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 export const Filter = ({
-    moduleList,
     targetCountryList,
     languageList,
     statusList,
     pagingOption, 
     setParam,
-    setModuleList,
     setTargetCountryList,
     setLanguageList,
 }) => {
@@ -41,6 +40,7 @@ export const Filter = ({
             Status: status,
             PageIndex: 1,
             PageSize: pagingOption.PageSize,
+            RequestId: uuidv4()
         };
 
         setParam(newParam);

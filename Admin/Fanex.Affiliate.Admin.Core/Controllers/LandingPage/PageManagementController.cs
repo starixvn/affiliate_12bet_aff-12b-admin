@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [FunctionAuthorize(FunctionName = Function.LandingPage, IsHost = true)]
+        [FunctionAuthorize(FunctionName = Function.PageManagement, IsHost = true)]
         public ActionResult ToggleLandingPageStatus(UpdateLandingPageStatusParam param)
         {
             if (ModelState.IsValid)

@@ -1,6 +1,7 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { setPagingOption } from '../../../../actions/pagingAction';
+import { v4 as uuidv4 } from 'uuid';
 
 import * as types from './types';
 
@@ -86,13 +87,19 @@ export const setNotification = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     dispatch(toggleLoader(true));
 
+    // Add RequestId for tracking
+    const paramWithId = {
+        ...param,
+        RequestId: uuidv4()
+    };
+
     const url = 'Portal/PageManagement/GetPageManagementList';
-    const response = await post(url, param);
+    const response = await post(url, paramWithId);
 
     const data = response && response.status === 200 ? response.data : null;
     
     dispatch(setGridData(data ? data.MainData : []));
-    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
+    dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: paramWithId.PageIndex, PageSize: paramWithId.PageSize }));
     dispatch(setShouldResetScrollPosition(true));
     dispatch(toggleLoader(false));
 }

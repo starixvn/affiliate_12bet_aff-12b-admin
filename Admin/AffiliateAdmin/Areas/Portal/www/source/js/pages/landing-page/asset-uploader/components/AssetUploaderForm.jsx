@@ -9,7 +9,7 @@ import { globalResource } from '../../libs/constants';
 import BaseMediaUploaderForm from '../../common/components/BaseMediaUploaderForm';
 
 export const AssetUploaderForm = (props) => {
-    const { selectedMediaId } = props;
+    const { selectedMediaId, isModifyInAssetUploader } = props;
 
     const handleGetAssetDetail = useCallback(async (selectedMediaId) => {
         const queryParam = { mediaId: selectedMediaId };
@@ -147,15 +147,16 @@ export const AssetUploaderForm = (props) => {
             onSetSelectedMediaId={props.setSelectedMediaId}
             onToggleLoader={props.toggleLoader}
             onSetNotification={props.setNotification}
+            isModifyInMediaUploader={isModifyInAssetUploader}
             validateCustomFields={validateInputFileName}
             renderCustomFields={renderCustomFields}
         />
     );
 }
 
-function mapStateToProps({ selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions }) {
+function mapStateToProps({ selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions, isModifyInAssetUploader }) {
     return Object.assign({}, {
-        selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions
+        selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions, isModifyInAssetUploader
     });
 }
 

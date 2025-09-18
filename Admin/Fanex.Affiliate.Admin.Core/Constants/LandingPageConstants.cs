@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Constants
         // File Upload Limits
         public static class FileUpload
         {
-            public const int MaximumFiles = 10;
+            public const int MaximumFiles = 50;
             public const int BytesPerKilobyte = 1024;
             public const int MaxFileSizeBytes = 3 * BytesPerKilobyte * BytesPerKilobyte; // 3MB
             public const int MaxFileSizeMegabytes = 3;

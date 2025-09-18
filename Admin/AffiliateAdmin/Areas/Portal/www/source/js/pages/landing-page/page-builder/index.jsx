@@ -8,7 +8,6 @@ import { configureStore } from '../../../modules/store';
 import { convertListToMutilpleSelected } from '../../../modules/utils';
 import { initializeFromPageBuilderDetail, initializeDefaultValues } from './actions';
 import ClaimPrincipal from '../../../modules/claim';
-import { claimResource } from '../../../modules/claim';
 
 const App = () => {
     const { 
@@ -24,7 +23,6 @@ const App = () => {
     } = window.initialState;
 
     const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
-    const isModifyInPageBuilder = claimsPrincipal.hasWriteClaim(claimResource.PageManagement);
 
     // Convert lists to proper format for dropdowns
     const newDealList = convertListToMutilpleSelected(dealList, 'GroupId', 'GroupName');
@@ -43,7 +41,7 @@ const App = () => {
         pageBuilderDetail,
         deals: [],
         sources: {},
-        isModifyInPageBuilder
+        claimsPrincipal
     }, reducer);
 
     // Initialize from pageBuilderDetail if it exists (edit mode)

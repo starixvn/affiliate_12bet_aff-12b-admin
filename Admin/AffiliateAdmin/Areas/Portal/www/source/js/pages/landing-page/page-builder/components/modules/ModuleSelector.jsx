@@ -183,8 +183,6 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                                 tag="button"
                                 type="button"
                                 onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
                                     handleModuleSelect(module.ModuleId);
                                 }}
                                 active={module.ModuleId === value}

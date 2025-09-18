@@ -1,5 +1,6 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
+import { v4 as uuidv4 } from 'uuid';
 import * as types from './types';
 
 export { toggleLoader };
@@ -172,7 +173,7 @@ export const setPreviewUrl = (previewUrl) => ({
 export const fetchCampaigns = (selectFirst = false) => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/GetCampaignInfoList';
-        const response = await post(url);
+        const response = await post(url, { RequestId: uuidv4() });
         
         if (response && response.status === 200) {
             const campaigns = response.data || [];
@@ -186,7 +187,10 @@ export const fetchCampaigns = (selectFirst = false) => async (dispatch) => {
 export const fetchDeals = (campaignId) => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/GetDealList';
-        const response = await post(url, { campaignId });
+        const response = await post(url, { 
+            campaignId,
+            RequestId: uuidv4()
+        });
         
         if (response && response.status === 200) {
             dispatch(setDealList(response.data || []));
@@ -199,7 +203,7 @@ export const fetchDeals = (campaignId) => async (dispatch) => {
 export const fetchNormalDealList = () => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/GetNormalDealList';
-        const response = await post(url, {});
+        const response = await post(url, { RequestId: uuidv4() });
         
         if (response && response.status === 200) {
             dispatch(setNormalDealList(response.data || []));
@@ -218,7 +222,8 @@ export const fetchModuleSources = (moduleId, targetCountryCode = null, languageC
         const response = await post(url, { 
             moduleId,
             targetCountryCode,
-            languageCode
+            languageCode,
+            RequestId: uuidv4()
         });
         
         if (response && response.status === 200) {
@@ -359,7 +364,8 @@ export const saveLandingPage = (formData, moduleComponents, isReview = false) =>
             DealIds: Array.isArray(formData.dealIds) ? formData.dealIds.join(',') : formData.dealIds,
             StatusId: formData.status,
             ModuleComponentsSetting: moduleComponentsSetting,
-            IsPreview: isReview
+            IsPreview: isReview,
+            RequestId: uuidv4()
         };
         
         const response = await post(url, payload);
@@ -383,7 +389,10 @@ export const generatePreviewUrl = (formData, moduleComponents) => async (dispatc
 export const insertLandingPageDeal = (dealId) => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/InsertLandingPageDeal';
-        const response = await post(url, { dealId });
+        const response = await post(url, { 
+            dealId,
+            RequestId: uuidv4()
+        });
         
         if (response && response.status === 200) {
             if (response.data && response.data.IsSuccessful) {
@@ -419,7 +428,11 @@ export const insertLandingPageDeal = (dealId) => async (dispatch) => {
 export const insertLandingPageCampaign = (campaignName, description) => async (dispatch) => {
     try {
         const url = 'Portal/PageBuilder/InsertLandingPageCampaign';
-        const response = await post(url, { campaignName, description });
+        const response = await post(url, { 
+            campaignName, 
+            description,
+            RequestId: uuidv4()
+        });
         
         if (response && response.status === 200) {
             if (response.data && response.data.IsSuccessful) {
@@ -458,3 +471,17 @@ export const setNotification = (data) => {
         data
     }
 };
+
+export const setPageBuilderDetail = (formData, moduleComponents, pageId = null) => ({
+    type: types.SET_PAGE_BUILDER_DETAIL,
+    formData,
+    moduleComponents,
+    pageId
+});
+
+// Convenience functions for backward compatibility and clarity
+export const transitionToEditMode = (pageId, formData, moduleComponents) => 
+    setPageBuilderDetail(formData, moduleComponents, pageId);
+
+export const updatePageBuilderDetail = (formData, moduleComponents) => 
+    setPageBuilderDetail(formData, moduleComponents);
