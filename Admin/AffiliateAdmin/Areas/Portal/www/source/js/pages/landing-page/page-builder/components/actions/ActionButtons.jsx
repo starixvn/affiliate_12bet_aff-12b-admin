@@ -22,7 +22,7 @@ const ActionButtons = ({
     formData, 
     moduleComponents, 
     moduleList,
-    validation, 
+    isModifyInPageBuilder, 
     ui,
     isEditMode,
     pageBuilderDetail,
@@ -40,7 +40,7 @@ const ActionButtons = ({
     setNotification
 }) => {
     const handlePreview = useCallback(async () => {
-        if (!validateForm(formData, moduleComponents)) {
+        if (!isModifyInPageBuilder || !validateForm(formData, moduleComponents)) {
             return;
         }
         
@@ -200,7 +200,7 @@ const ActionButtons = ({
     const handleCreate = useCallback(async () => {
         // Always validate form and show errors when Create is clicked
         // Pass current formData and moduleComponents to ensure we have latest values
-        if (!validateForm(formData, moduleComponents)) {
+        if (!isModifyInPageBuilder || !validateForm(formData, moduleComponents)) {
             // Validation errors are already set by validateForm, just return
             return;
         }
@@ -261,7 +261,7 @@ const ActionButtons = ({
                     <Button 
                         color="info" 
                         onClick={handlePreview}
-                        disabled={ui.isLoading}
+                        disabled={!isModifyInPageBuilder || ui.isLoading}
                         title="Preview landing page"
                     >
                         <i className="fa fa-eye me-1"></i>
@@ -270,7 +270,7 @@ const ActionButtons = ({
                     <Button 
                         color="success" 
                         onClick={handleCreate}
-                        disabled={ui.isLoading}
+                        disabled={!isModifyInPageBuilder || ui.isLoading}
                         title={isEditMode ? "Update landing page" : "Create landing page"}
                     >
                         {ui.isLoading ? (
@@ -289,7 +289,7 @@ const ActionButtons = ({
                     <Button 
                         className="border border-primary text-dark bg-light" 
                         onClick={handleReset}
-                        disabled={ui.isLoading}
+                        disabled={!isModifyInPageBuilder || ui.isLoading}
                         title="Reset form to initial state"
                     >
                         <i className="fa fa-refresh me-1"></i>
@@ -305,8 +305,8 @@ const ActionButtons = ({
     );
 };
 
-function mapStateToProps({ formData, moduleComponents, moduleList, validation, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl }) {
-    return Object.assign({}, { formData, moduleComponents, moduleList, validation, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl });
+function mapStateToProps({ formData, moduleComponents, moduleList, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl, isModifyInPageBuilder }) {
+    return Object.assign({}, { formData, moduleComponents, moduleList, ui, isEditMode, pageBuilderDetail, languageList, landingPageUrl, isModifyInPageBuilder });
 }
 
 function mapDispatchToProps(dispatch) {

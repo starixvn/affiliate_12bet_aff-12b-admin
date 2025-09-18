@@ -8,8 +8,8 @@ const AssetUploader = React.lazy(() => import('../asset-uploader/index'));
 const FormManagement = React.lazy(() => import('../form-management/index'));
 
 export const menus = [
-    { key: menuKey.pageManagement, label: 'Page Management', href: relativePath.pageManagement, component: PageManagement, renderClaim: new Claim(claimResource.LandingPage) },
-    { key: menuKey.pageBuilder, label: 'Page Builder', href: relativePath.pageBuilder, component: PageBuilder, renderClaim: new Claim(claimResource.LandingPage) },
-    { key: menuKey.assetUploader, label: 'Asset Uploader', href: relativePath.assetUploader, component: AssetUploader, renderClaim: new Claim(claimResource.LandingPage) },
-    { key: menuKey.formManagement, label: 'Registration Form Management', href: relativePath.formManagement, component: FormManagement, renderClaim: new Claim(claimResource.LandingPage) },
+    { key: menuKey.pageManagement, label: 'Page Management', href: relativePath.pageManagement, component: PageManagement, renderClaim: new Claim(claimResource.PageManagement) },
+    { key: menuKey.pageBuilder, label: 'Page Builder', href: relativePath.pageBuilder, component: PageBuilder, renderClaim: new Claim(claimResource.PageManagement) },
+    { key: menuKey.assetUploader, label: 'Asset Uploader', href: relativePath.assetUploader, component: AssetUploader, renderClaim: new Claim(claimResource.AssetUploader) },
+    { key: menuKey.formManagement, label: 'Registration Form Management', href: relativePath.formManagement, component: FormManagement, renderClaim: new Claim(claimResource.RegistrationFormUploader) },
 ]

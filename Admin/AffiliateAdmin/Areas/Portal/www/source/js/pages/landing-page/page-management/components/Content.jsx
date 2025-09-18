@@ -12,7 +12,7 @@ import { headerText, globalResource, messageSwitchStatus } from '../libs/constan
 import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam } from '../actions';
 
 export const Content = (props) => {
-    const { allLanguagesInSystem, statusList } = props;
+    const { statusList, isModifyInPageManagement } = props;
 
     useEffect(() => {
         const { param } = props;
@@ -21,6 +21,10 @@ export const Content = (props) => {
     }, [props.param]);
     
     const _onStatusChange = (pageId, newStatusId) => {
+        if (!isModifyInPageManagement) {
+            return;
+        }
+
         const newStatus = statusList.find(item => item.key == newStatusId);
 
         props.setNotification({
@@ -136,7 +140,8 @@ export const Content = (props) => {
                     <Input 
                         type="select" 
                         className={`status-dropdown ${statusClass}`}
-                        value={dataItem.StatusId || ''} 
+                        value={dataItem.StatusId || ''}
+                        disabled={!isModifyInPageManagement}
                         onChange={(e) => _onStatusChange(dataItem.PageId, e.target.value)}
                     >
                         {props.statusList && props.statusList.map(item => (
@@ -183,8 +188,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, allLanguagesInSystem }) {
-    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, allLanguagesInSystem });
+function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, allLanguagesInSystem, isModifyInPageManagement }) {
+    return Object.assign({}, { shouldResetScrollPosition, gridData, pagingOption, param, statusList, landingPageUrl, allLanguagesInSystem, isModifyInPageManagement });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -12,6 +12,8 @@ import { resizeWidthHeight } from '../../../../modules/utils';
 import { htmlDecode } from '../../../../modules/htmlHelper';
 
 export const Content = (props) => {
+    const { isModifyInFormUploader } = props;
+
     useEffect(() => {
         const { param } = props;
 
@@ -26,7 +28,7 @@ export const Content = (props) => {
     }
 
     const _onDeleteItem = async (mediaId, isMediaIdInUse) => {
-        if (!isMediaIdInUse) {
+        if (isModifyInFormUploader && !isMediaIdInUse) {
             props.setNotification({
                 message: 'Are you sure you want to delete the selected form(s)?',
                 isConfirmPopup: true,
@@ -47,6 +49,10 @@ export const Content = (props) => {
 
     const _onToggleActiveStatus = async (mediaId, currentStatus) => {
         const newStatus = currentStatus === assetStatus.active ? assetStatus.inactive : assetStatus.active;
+        if (!isModifyInFormUploader) {
+            return;
+        }
+
         props.setNotification({
             message: `Are you sure you want to change status of the selected form(s)?`,
             isConfirmPopup: true,
@@ -150,6 +156,7 @@ export const Content = (props) => {
                     <input
                             type="checkbox"
                             id={`activeSwitch${mediaId}`}
+                            disabled={!isModifyInFormUploader}
                             checked={dataItem.StatusId === assetStatus.active}
                             onChange={() => _onToggleActiveStatus(mediaId, dataItem.StatusId)}
                         />
@@ -159,7 +166,7 @@ export const Content = (props) => {
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                     {
-                        dataItem.IsMediaIdInUse ? (
+                        !isModifyInFormUploader || dataItem.IsMediaIdInUse ? (
                             <Button color="link" disabled title="Delete" className="ml-1">
                                 <span className="oi oi-trash"></span>
                             </Button>
@@ -194,8 +201,8 @@ export const Content = (props) => {
     );
 }
 
-function mapStateToProps({ pagingOption, checkedForms, shouldResetScrollPosition, gridData, param, bannerRootUrl }) {
-    return Object.assign({}, { pagingOption, checkedForms, shouldResetScrollPosition, gridData, param, bannerRootUrl });
+function mapStateToProps({ pagingOption, checkedForms, shouldResetScrollPosition, gridData, param, bannerRootUrl, isModifyInFormUploader }) {
+    return Object.assign({}, { pagingOption, checkedForms, shouldResetScrollPosition, gridData, param, bannerRootUrl, isModifyInFormUploader });
 }
 
 function mapDispatchToProps(dispatch) {

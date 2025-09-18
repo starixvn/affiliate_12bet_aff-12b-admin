@@ -51,6 +51,10 @@
             background-color: #e8650c;
             border-color: #dc5f0a;
         }
+
+        &:disabled {
+            opacity: 0.6;
+        }
         
         // Enhanced option styling with multiple browser approaches
         option {

@@ -11,7 +11,7 @@ import BaseMediaUploaderForm from '../../common/components/BaseMediaUploaderForm
 const regexSpecialCharacters = new RegExp(regSpecialCharacters);
 
 export const RegistrationForm = (props) => {
-    const { selectedMediaId } = props;
+    const { selectedMediaId, isModifyInFormUploader } = props;
 
     const handleGetFormDetail = useCallback(async (selectedMediaId) => {
         return await props.getFormDetail(selectedMediaId);
@@ -157,15 +157,16 @@ export const RegistrationForm = (props) => {
             onSetSelectedMediaId={props.setSelectedMediaId}
             onToggleLoader={props.toggleLoader}
             onSetNotification={props.setNotification}
+            isModifyInMediaUploader={isModifyInFormUploader}
             validateCustomFields={validateMediaNames}
             renderCustomFields={renderCustomFields}
         />
     );
 }
 
-function mapStateToProps({ selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions }) {
+function mapStateToProps({ selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions, isModifyInFormUploader }) {
     return Object.assign({}, {
-        selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions
+        selectedMediaId, param, moduleList, targetCountryList, allLanguagesInSystem, maximumFiles, maxFileSize, allowedExtensions, isModifyInFormUploader
     });
 }
 

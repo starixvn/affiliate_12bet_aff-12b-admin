@@ -35,6 +35,7 @@ export const BaseMediaUploaderForm = ({
     onSetSelectedMediaId,
     onToggleLoader,
     onSetNotification,
+    isModifyInMediaUploader = false,
     
     // Validation
     validateCustomFields,
@@ -396,6 +397,10 @@ export const BaseMediaUploaderForm = ({
     }, []);
 
     const handleSubmit = useCallback(() => {
+        if (!isModifyInMediaUploader) {
+            return;
+        }
+
         onToggleLoader(true);
 
         const { files, isInsert, moduleId, targetCountryCode, marketId } = state;
@@ -466,6 +471,8 @@ export const BaseMediaUploaderForm = ({
 
     const { mediaNames, previewImages, isShowMessage, isSuccess, message, isInsert, isDisabled, files, errors, isMediaIdInUse, inputFileNames } = state;
     const isShowPopup = selectedMediaId !== null;
+
+    console.log('isModifyInMediaUploader', isModifyInMediaUploader);
 
     return (
         <React.Fragment>
@@ -580,7 +587,8 @@ export const BaseMediaUploaderForm = ({
                                 color="success"
                                 className="mr-3"
                                 disabled={
-                                    isInsert
+                                    !isModifyInMediaUploader ||
+                                    (isInsert
                                         ? (
                                             isDisabled ||
                                             !inputFileNames ||
@@ -590,7 +598,7 @@ export const BaseMediaUploaderForm = ({
                                         : (
                                             isDisabled ||
                                             (!isMediaIdInUse && (!inputFileNames || !inputFileNames[0]))
-                                        )
+                                        ))
                                 }
                                 onClick={handleSubmit}
                             >

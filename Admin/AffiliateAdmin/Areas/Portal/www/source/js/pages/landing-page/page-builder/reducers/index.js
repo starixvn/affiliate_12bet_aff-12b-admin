@@ -7,6 +7,7 @@ import { pageBuilderDefaultState } from '../libs/constants';
 
 export const landingPageUrl = createReducer(null, {});
 export const bannerRootUrl = createReducer(null, {});
+export const isModifyInPageBuilder = createReducer(false, {});
 
 export const formData = createReducer(pageBuilderDefaultState.formData, {
     [types.SET_FORM_DATA](prevState, action) {
@@ -323,5 +324,6 @@ export default combineReducers({
     ui,
     pageBuilderDetail,
     isEditMode,
-    notification
+    notification,
+    isModifyInPageBuilder
 });

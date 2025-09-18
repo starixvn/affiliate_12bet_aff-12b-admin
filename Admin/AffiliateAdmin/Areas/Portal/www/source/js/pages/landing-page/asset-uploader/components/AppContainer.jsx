@@ -16,6 +16,8 @@ import { setParam, fetchData, toggleLoader, setSelectedMediaId, setCheckedAssets
 import NotificationPopup from '../../../common/components/NotificationPopup';
 
 export const AppContainer = (props) => {
+    const { isModifyInAssetUploader } = props;
+
     const _getCheckedItemIdList = () => {
         const { checkedAssets } = props;
         if (!checkedAssets || typeof checkedAssets !== 'object') {
@@ -29,6 +31,10 @@ export const AppContainer = (props) => {
     }
 
     const _handleSwitchStatus = async () => {
+        if (!isModifyInAssetUploader) {
+            return;
+        }
+
         const itemIdList = _getCheckedItemIdList();
 
         if(itemIdList.length === 0) {
@@ -91,7 +97,7 @@ export const AppContainer = (props) => {
                 messages={messageDelete}
                 gridData={props.gridData}
                 fetchData={() => props.fetchData(props.param)}
-                checkedItems={props.checkedAssets}
+                checkedItems={isModifyInAssetUploader ? props.checkedAssets : null}
                 setCheckedItems={props.setCheckedAssets}
                 toggleLoader={props.toggleLoader}
                 setShouldResetScrollPosition={props.setShouldResetScrollPosition}
@@ -120,8 +126,8 @@ export const AppContainer = (props) => {
     );
 }
 
-function mapStateToProps({ isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification, statusList }) {
-    return Object.assign({}, { isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification, statusList });
+function mapStateToProps({ isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification, statusList, isModifyInAssetUploader }) {
+    return Object.assign({}, { isShowLoader, param, gridData, checkedAssets, assetDetailUrl, notification, statusList, isModifyInAssetUploader });
 }
 
 function mapDispatchToProps(dispatch) {

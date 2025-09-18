@@ -6,9 +6,13 @@ import AppContainer from './components/AppContainer';
 import reducer from './reducers';
 import { configureStore } from '../../../modules/store';
 import { convertListToMutilpleSelected } from '../../../modules/utils';
+import ClaimPrincipal from '../../../modules/claim';
+import { claimResource } from '../../../modules/claim';
 
 const App = () => {
     const { targetCountryList, allLanguagesInSystem, dealList, statusList, landingPageUrl, campaignList } = window.initialState;
+    const claimsPrincipal = ClaimPrincipal.currentClaimPrincipal;
+    const isModifyInPageManagement = claimsPrincipal.hasWriteClaim(claimResource.PageManagement);
 
     // Convert lists to proper format for MultipleSelect components
     const newTargetCountryList = convertListToMutilpleSelected(targetCountryList, 'TargetCountryCode', 'TargetCountryName');
@@ -24,7 +28,8 @@ const App = () => {
         statusList: newStatusList,
         landingPageUrl,
         allLanguagesInSystem,
-        campaignList: newCampaignList
+        campaignList: newCampaignList,
+        isModifyInPageManagement
     }, reducer);
 
     return (

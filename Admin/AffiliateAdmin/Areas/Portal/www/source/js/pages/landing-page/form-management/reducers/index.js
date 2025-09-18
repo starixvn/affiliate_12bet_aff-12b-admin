@@ -12,6 +12,7 @@ export const maxFileSize = createReducer(fileUpload.MaxFileSize, {});
 export const maximumFiles = createReducer(fileUpload.MaximumFiles, {});
 export const bannerRootUrl = createReducer(null, {});
 export const allowedExtensions = createReducer(fileUpload.AllowedImageExtensions, {});
+export const isModifyInFormUploader = createReducer(false, {});
 
 export const moduleList = createReducer(null, {
     [types.SET_MODULE_LIST](prevState, action) {
@@ -89,4 +90,5 @@ export default combineReducers({
     formDetailUrl,
     selectedMediaId,
     notification,
+    isModifyInFormUploader
 });

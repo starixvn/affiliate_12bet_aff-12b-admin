@@ -7,6 +7,7 @@ import * as types from '../actions/types';
 
 export const landingPageUrl = createReducer(null, {});
 export const allLanguagesInSystem = createReducer(null, {});
+export const isModifyInPageManagement = createReducer(false, {});
 
 export const targetCountryList = createReducer(null, {
     [types.SET_TARGET_COUNTRY_LIST](prevState, action) {
@@ -76,6 +77,7 @@ export const notification = createReducer({ message: '', isConfirmPopup: false, 
 
 export default combineReducers({
     landingPageUrl,
+    isModifyInPageManagement,
     targetCountryList,
     languageList,
     allLanguagesInSystem,
