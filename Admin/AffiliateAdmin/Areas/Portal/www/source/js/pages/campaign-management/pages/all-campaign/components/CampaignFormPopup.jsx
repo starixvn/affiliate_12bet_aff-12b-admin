@@ -70,14 +70,14 @@ const CampaignFormToastContent = ({
                 </FormGroup>
 
                 <FormGroup row className="mb-2">
-                    <Label sm={3} htmlFor="campaignDescription">Campaign Description</Label>
+                    <Label sm={3} htmlFor="description">Campaign Description</Label>
                     <Col sm={9}>
                         <Input
                             type="textarea"
-                            name="campaignDescription"
-                            id="campaignDescription"
+                            name="description"
+                            id="description"
                             placeholder="Describe the campaign purpose, target audience, and key features"
-                            value={formData.campaignDescription}
+                            value={formData.description}
                             onChange={onInputChange}
                             rows="4"
                         />
@@ -145,7 +145,7 @@ const CampaignFormPopup = () => {
     const [formData, setFormData] = useState({
         campaignCode: '',
         campaignName: '',
-        campaignDescription: '',
+        description: '',
         statusId: 0
     });
 
@@ -160,14 +160,14 @@ const CampaignFormPopup = () => {
             setFormData({
                 campaignCode: selectedItem.CampaignCode || '',
                 campaignName: selectedItem.CampaignName || '',
-                campaignDescription: selectedItem.Description || '',
+                description: selectedItem.Description || '',
                 statusId: selectedItem.StatusId || 0
             });
         } else if (isAdd) {
             setFormData({
                 campaignCode: '',
                 campaignName: '',
-                campaignDescription: '',
+                description: '',
                 statusId: 0
             });
         }
@@ -288,7 +288,7 @@ const CampaignFormPopup = () => {
         setFormData({
             campaignCode: '',
             campaignName: '',
-            campaignDescription: '',
+            description: '',
             statusId: 0
         });
 
@@ -323,9 +323,7 @@ const CampaignFormPopup = () => {
         } else {
             const updateData = {
                 ...selectedItem,
-                CampaignName: formData.campaignName,
-                Description: formData.campaignDescription,
-                StatusId: formData.statusId
+                ...formData
             };
 
             dispatch(updateCampaign(updateData, () => {
