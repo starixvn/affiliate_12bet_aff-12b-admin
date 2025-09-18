@@ -3,3 +3,14 @@
 @import "../../components/datepicker";
 @import "affiliate-report";
 @import "player-ggr-report";
+@import "affiliate-cpa-report";
+@import "player-cpa-report";
+@import 'redeposit-cpa-report';
+
+.filter-container .multiple-select-container {
+    width: 135px;
+}
+
+.multiple-select-options-container {
+    width: 300px !important;
+}

@@ -1,0 +1,258 @@
+export const reportName = 'PLAYER CPA REPORT';
+
+export const statusOptions = [
+    { value: -1, label: 'All Statuses' },
+    { value: 2, label: 'Eligible' },
+    { value: 3, label: 'Approved' },
+    { value: 1, label: 'Ineligible' },
+    { value: 4, label: 'Rejected' },
+    { value: 5, label: 'Quota Exceeded' },
+    { value: 0, label: 'Pending' },
+]
+
+export const viewByOptions = [
+    { value: '1', label: 'Active Qualified Date' },
+    { value: '2', label: 'Holding Qualified Date' },
+    { value: '3', label: 'Approval Date' },
+]
+
+export const DATE_FORMAT = 'MM/DD/YYYY';
+
+export const defaultParams = {
+    userName: '',
+    custName: '',
+    dealName: '',
+    statusId: -1,
+    viewBy: '1',
+    fromDate: '',
+    toDate: '',
+    sortColumn: 'affUserName',
+    isAscending: true
+}
+
+export const defaultGeneralData = {
+    totalPlayers: 0,
+    totalAffiliates: 0,
+    totalDeals: 0,
+    totalCpaStatus: 0,
+    totalStatus: 0,
+}
+
+export const TotalText = "Total (all pages)"
+
+
+export const headerText = {
+    No: '#',
+    Affiliate: 'Affiliate',
+    Player: 'Player',
+    RegistrationDate: 'Registration Date',
+    DealName: 'Deal Name',
+    PaymentFrequency: 'Payment Frequency',
+    FTD: 'FTD',
+    TotalDeposit: 'Total Deposit',
+    Turnover: 'Turnover',
+    ActiveQualifiedDate: 'Active Qualified Date',
+    CPAAmount: 'CPA Amount',
+    BetTicket: 'Bet Ticket',
+    HoldingQualifiedDate: 'Holding Qualified Date',
+    HoldingExpiredDate: 'Holding Expired Date',
+    EstimatedCPAAmount: 'Estimated CPA Amount',
+    ApprovedCPAAmount: 'Approved CPA Amount',
+    CPAStatus: 'CPA Status',
+    ApprovalDate: 'Approval Date'
+};
+
+export const dataKey = {
+    No: 'no',
+    Affiliate: 'affUserName',
+    Player: 'custUserName',
+    RegistrationDate: 'registeredDateStr',
+    DealName: 'dealName',
+    PaymentFrequency: 'scheduleName',
+    FTD: 'ftd',
+    TotalDeposit: 'totalDeposit',
+    Turnover: 'isTO',
+    ActiveQualifiedDate: 'aqdStr',
+    CPAAmount: 'cpaAmount',
+    BetTicket: 'betTicket',
+    HoldingQualifiedDate: 'hqdStr',
+    HoldingExpiredDate: 'hedStr',
+    EstimatedCPAAmount: 'estimatedCPAAmount',
+    ApprovedCPAAmount: 'approvedCPAAmount',
+    CPAStatus: 'cpaStatus',
+    ApprovalDate: 'cpaDateStr',
+    HoldingTickets: 'holdingTickets'
+};
+
+export const row1 = [
+    {
+        title: headerText.No,
+        width: 60,
+        sortable: false,
+        rowSpan: 2,
+        field: dataKey.No
+    },
+    {
+        title: headerText.Affiliate,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.Affiliate,
+        rowSpan: 2,
+        field: dataKey.Affiliate
+    },
+    {
+        title: headerText.Player,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.Player,
+        rowSpan: 2,
+        field: dataKey.Player
+    },
+    {
+        title: headerText.RegistrationDate,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.RegistrationDate,
+        rowSpan: 2,
+        field: dataKey.RegistrationDate
+    },
+    {
+        title: headerText.DealName,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.DealName,
+        rowSpan: 2,
+        field: dataKey.DealName
+    },
+    {
+        title: headerText.PaymentFrequency,
+        width: 120,
+        sortable: true,
+        sortColumn: dataKey.PaymentFrequency,
+        rowSpan: 2,
+        field: dataKey.PaymentFrequency
+    },
+    {
+        title: "Active Period",
+        sortable: false,
+        columnSpan: 5,
+        width: 150 * 5,
+    },
+    {
+        title: "Holding Period",
+        sortable: false,
+        columnSpan: 4,
+        width: 150 * 4,
+    },
+    {
+        title: "Approval Period",
+        sortable: false,
+        columnSpan: 3,
+        width: 150 * 3
+    }
+];
+
+export const row2 = [
+    {
+        title: headerText.FTD,
+        width: 100,
+        sortable: true,
+        sortColumn: dataKey.FTD,
+        field: dataKey.FTD
+    },
+    {
+        title: headerText.TotalDeposit,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.TotalDeposit,
+        field: dataKey.TotalDeposit
+    },
+    {
+        title: headerText.Turnover,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.Turnover,
+        field: dataKey.Turnover
+    },
+    {
+        title: headerText.ActiveQualifiedDate,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.ActiveQualifiedDate,
+        field: dataKey.ActiveQualifiedDate
+    },
+    {
+        title: headerText.CPAAmount,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.CPAAmount,
+        field: dataKey.CPAAmount
+    },
+    {
+        title: headerText.BetTicket,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.HoldingTickets,
+        field: dataKey.BetTicket
+    },
+    {
+        title: headerText.HoldingQualifiedDate,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.HoldingQualifiedDate,
+        field: dataKey.HoldingQualifiedDate
+    },
+    {
+        title: headerText.HoldingExpiredDate,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.HoldingExpiredDate,
+        field: dataKey.HoldingExpiredDate
+    },
+    {
+        title: headerText.EstimatedCPAAmount,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.EstimatedCPAAmount,
+        field: dataKey.EstimatedCPAAmount
+    },
+    {
+        title: headerText.ApprovedCPAAmount,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.ApprovedCPAAmount,
+        field: dataKey.ApprovedCPAAmount
+    },
+    {
+        title: headerText.CPAStatus,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.CPAStatus,
+        field: dataKey.CPAStatus
+    },
+    {
+        title: headerText.ApprovalDate,
+        width: 150,
+        sortable: true,
+        sortColumn: dataKey.ApprovalDate,
+        field: dataKey.ApprovalDate
+    }
+]
+
+export const headerRows = [row1, row2]
+
+export const decimalFields = [
+    dataKey.FTD,
+    dataKey.TotalDeposit,
+    dataKey.CPAAmount,
+    dataKey.EstimatedCPAAmount,
+    dataKey.ApprovedCPAAmount
+]
+
+export const dateFields = [
+    dataKey.RegistrationDate,
+    dataKey.ActiveQualifiedDate,
+    dataKey.HoldingQualifiedDate,
+    dataKey.HoldingExpiredDate,
+    dataKey.ApprovalDate
+]

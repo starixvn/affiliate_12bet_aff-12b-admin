@@ -13,18 +13,18 @@ import { format } from '../../../../../../../modules/numberFormat';
 import { isValidNumber } from '../../../../../../../modules/utils';
 
 
-export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, tomorrow }) => {
+export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit, isSubmitted, today, isModifiable }) => {
 
     const [message, setMessage] = useState('');
     const [isConfirmPopup, setIsConfirmPopup] = useState(false);
     const [scheduleId, setScheduleId] = useState(0);
 
-    const tomorrowDate = new Date(tomorrow);
-    const tomorrowString = `${tomorrowDate.getMonth() + 1}/${tomorrowDate.getDate()}/${tomorrowDate.getFullYear()}`;
+    const todayDate = new Date(today);
+    const todayString = `${todayDate.getMonth() + 1}/${todayDate.getDate()}/${todayDate.getFullYear()}`;
 
     useEffect(() => {
         if (!dealInfo.StartDate && !isEdit) {
-            setDealInfo({ StartDate: tomorrowString });
+            setDealInfo({ StartDate: todayString });
         }
     }, [dealInfo.DealType]);
 
@@ -177,11 +177,12 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
             <FormGroup row className='align-items-center'>
                 <Label sm={4} className="d-flex mr_15neg" htmlFor='IsRedeposit'>
                     <input
+                        disabled={isEdit || !isModifiable}
                         type="checkbox"
                         name="IsRedeposit"
                         id="IsRedeposit"
                         checked={dealInfo.IsRedeposit}
-                        onChange={_handleCheckRedeposit}
+                        onChange={isEdit ? null : _handleCheckRedeposit}
                     />
                     <span className="ml-1">Redeposit</span>
                     <span title="The affiliate receive CPA Amount only when a minimum percentage of their referred players redeposit within a specified number of days." className="ml-1 oi icon-info"></span>
@@ -189,28 +190,29 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
 
                 <Col sm={2} className="d-flex align-items-center">
                     <Input type="text"
-                        disabled={!dealInfo.IsRedeposit}
+                        disabled={!dealInfo.IsRedeposit || isEdit}
                         name="RedepositRate"
                         className={isRedepositRateError ? 'has-error' : ''}
                         id="RedepositRate"
                         value={dealInfo.RedepositRate}
-                        onChange={_handleChangeRedepositRate} />
+                        onChange={isEdit || !dealInfo.IsRedeposit ? null : _handleChangeRedepositRate} />
                 </Col>
                 <Label className="text-content mb-0 ms-2">% of eligible players | Re-checked within</Label>
                 <Col sm={2} className="d-flex align-items-center">
                     <Input type="text"
-                        disabled={!dealInfo.IsRedeposit}
+                        disabled={!dealInfo.IsRedeposit || isEdit}
                         name="RedepositDays"
                         className={_getErrorClass(dealInfo.RedepositDays, dealInfo.IsRedeposit)}
                         id="RedepositDays"
                         value={format(dealInfo.RedepositDays)}
-                        onChange={_handleChangePositiveInteger} />
+                        onChange={isEdit || !dealInfo.IsRedeposit ? null : _handleChangePositiveInteger} />
                 </Col>
                 <Label className="text-content mb-0 ms-2">(days)</Label>
             </FormGroup>
             <FormGroup row className='align-items-center'>
                 <Label sm={4} className="d-flex mr_15neg" htmlFor='IsQuota'>
                     <input
+                        disabled={!isModifiable}
                         type="checkbox"
                         name="IsQuota"
                         id="IsQuota"
@@ -236,7 +238,6 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
                 <Label htmlFor="ScheduleId" sm={4} className="d-flex mr_15neg">
                     Payment Frequency
                     <span title="Choose how often CPA is calculated and payments are made, starting from the ‘Start from’ date." className="ml-1 oi icon-info"></span>
-
                 </Label>
                 <Col sm={3}>
                     <Input type="select"
@@ -261,8 +262,8 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
                 <Col sm={4}>
                     <DatePicker
                         isEnable={!isEdit}
-                        minDate={tomorrowString}
-                        date={dealInfo.StartDate || tomorrowString}
+                        minDate={todayString}
+                        date={dealInfo.StartDate || todayString}
                         iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
                         onChange={_handleChangeDate}
                     />
@@ -279,13 +280,14 @@ export const Affiliate = ({ dealInfo, paymentFrequencyList, setDealInfo, isEdit,
     );
 }
 
-const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, tomorrow }) => {
+const mapStateToProps = ({ dealInfo, paymentFrequencyList, isEdit, isSubmitted, today, isModifiable }) => {
     return {
         dealInfo,
         paymentFrequencyList,
         isEdit,
         isSubmitted,
-        tomorrow
+        today,
+        isModifiable
     };
 };
 

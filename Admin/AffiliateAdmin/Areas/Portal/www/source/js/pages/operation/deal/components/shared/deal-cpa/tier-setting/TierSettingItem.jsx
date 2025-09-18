@@ -12,7 +12,7 @@ import { deepClone } from '../../../../../../../modules/dataHandler';
 import { cpaTierSettingTitle, MONTHLY_SCHEDULE_ID } from '../../../../libs/constants';
 
 export const TierSettingItem = (props) => {
-    const { tierSetting, isFirstItem, index, dealInfo } = props;
+    const { tierSetting, isFirstItem, index, dealInfo, isModifiable } = props;
     const { ProductGroup, TierSetting } = tierSetting;
 
     const [message, setMessage] = useState('');
@@ -142,7 +142,7 @@ export const TierSettingItem = (props) => {
                         ? <Form inline>
                             <FormGroup check className="mx-sm-1">
                                 <Label check>
-                                    <Input type="checkbox" name="CheckedMinFdm" id="CheckedMinFdm" checked={dealInfo.CheckedMinFdm} onChange={_handleCheck} />
+                                    <Input type="checkbox" name="CheckedMinFdm" id="CheckedMinFdm" checked={dealInfo.CheckedMinFdm} onChange={_handleCheck} disabled={!isModifiable} />
                                 </Label>
                             </FormGroup>
                             <Label htmlFor="CheckedMinFdm">{cpaTierSettingTitle.MinFdm}</Label>
@@ -156,7 +156,7 @@ export const TierSettingItem = (props) => {
                             {isFirstItem &&
                                 <FormGroup check className="mx-sm-1">
                                     <Label check>
-                                        <Input type="checkbox" name="CheckedMinTotalDeposit" id="CheckedMinTotalDeposit" checked={dealInfo.CheckedMinTotalDeposit} onChange={_handleCheck} />
+                                        <Input type="checkbox" name="CheckedMinTotalDeposit" id="CheckedMinTotalDeposit" checked={dealInfo.CheckedMinTotalDeposit} onChange={_handleCheck} disabled={!isModifiable} />
                                     </Label>
                                 </FormGroup>
                             }
@@ -171,7 +171,7 @@ export const TierSettingItem = (props) => {
                             {isFirstItem &&
                                 <FormGroup check className="mx-sm-1">
                                     <Label check>
-                                        <Input type="checkbox" disabled={dealInfo.IsInstant} name="CheckedMinTurnover" id="CheckedMinTurnover" checked={dealInfo.CheckedMinTurnover} onChange={_handleCheckMinTurnover} />
+                                        <Input type="checkbox" disabled={dealInfo.IsInstant || !isModifiable} name="CheckedMinTurnover" id="CheckedMinTurnover" checked={dealInfo.CheckedMinTurnover} onChange={_handleCheckMinTurnover} />
                                     </Label>
                                 </FormGroup>
                             }
@@ -249,11 +249,12 @@ export const TierSettingItem = (props) => {
     );
 };
 
-const mapStateToProps = ({ dealInfo, isSubmitted, isEdit }) => {
+const mapStateToProps = ({ dealInfo, isSubmitted, isEdit, isModifiable }) => {
     return {
         dealInfo,
         isSubmitted,
-        isEdit
+        isEdit,
+        isModifiable
     }
 }
 

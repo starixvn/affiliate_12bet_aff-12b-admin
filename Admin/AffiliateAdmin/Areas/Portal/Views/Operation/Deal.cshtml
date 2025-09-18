@@ -15,7 +15,7 @@
             targetCountries: @Html.Raw(Json.Encode(Model.TargetCountries)),
             products: @Html.Raw(Json.Encode(Model.Products)),
             defaultCurrency: '@(AppSetting.Instance.DefaultCurrency)',
-            tomorrow: '@DateTimeHelper.Gmt8Now.AddDays(1).ToString("MM/dd/yyyy")',
+            today: '@DateTimeHelper.Gmt8Now.ToString("MM/dd/yyyy")',
         };
     </script>
 

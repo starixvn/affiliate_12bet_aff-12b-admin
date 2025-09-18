@@ -28,5 +28,7 @@
 
         public const int MaxLengthInputId = 9;
         public const int MaxLengthInputString = 30;
+
+        public const int Hundred = 100;
     }
 }

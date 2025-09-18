@@ -10,23 +10,26 @@ export default function Field({
     placeholder,
     maxLength,
     selectOptions,
+    className,
+    onPressEnter = null
 }) {
-  return (
-    <>
-        <Label htmlFor={label} className="mr-sm-2">{label}</Label>
-        <Input 
-            type={type} 
-            name={name} 
-            id={label} 
-            maxLength={maxLength}
-            onChange={onChange}
-            value={value}
-            placeholder={placeholder}
-        >
-            {selectOptions && selectOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-            ))}
-        </Input>
-    </>
-  )
+    return (
+        <FormGroup className={className}>
+            <Label htmlFor={label} className="mr-sm-2">{label}</Label>
+            <Input
+                type={type}
+                name={name}
+                id={label}
+                maxLength={maxLength}
+                onChange={onChange}
+                value={value}
+                placeholder={placeholder}
+                onKeyPress={onPressEnter}
+            >
+                {selectOptions && selectOptions.map((option) => (
+                    <option key={option.value} value={option.value}>{option.label}</option>
+                ))}
+            </Input>
+        </FormGroup>
+    )
 }

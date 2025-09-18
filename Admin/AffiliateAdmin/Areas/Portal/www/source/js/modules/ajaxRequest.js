@@ -51,3 +51,13 @@ export const post = (relativeUrl, params, options) => {
             options && options.onError && options.onError(err);
         });
 }
+
+export const get = (relativeUrl, options) => {
+    const url = resolveClientUrl(relativeUrl);
+    return axios.get(url, {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            '__RequestVerificationToken': getXsrfToken()
+        }
+    })
+}

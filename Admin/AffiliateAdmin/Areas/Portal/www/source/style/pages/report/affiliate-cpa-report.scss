@@ -1,0 +1,151 @@
+$left0: 0px;
+$left1: 50.1px;
+$left2: 140.3px;
+$outline: 0.5px solid #cccccc;
+
+.report-aff-cpa-content-container {
+
+    .btn-link {
+        cursor: pointer;
+    }
+
+    .th-wrapper {
+        position: relative;
+        text-decoration: none;
+        color: #2c2c2c;
+        width: 100%;
+        height: 100%;
+        font-weight: 700;
+        font-size: 13px;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &:focus {
+            text-decoration: none;
+        }
+
+        .icon-container {
+            position: absolute;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            top: calc(50% - 5px);
+            right: -6px;
+
+            .caret {
+                display: block;
+                border-width: 4px;
+                width: 0;
+                height: 0;
+                margin-left: 2px;
+                vertical-align: middle;
+                border-top: 4px dashed;
+                border-top: 4px solid\9;
+                border-right: 4px solid transparent;
+                border-left: 4px solid transparent;
+
+                &.current {
+                    border-top-color: #FD0302;
+                }
+            }
+
+            > .asc {
+                transform: rotate(180deg);
+                margin-bottom: 3px;
+            }
+        }
+
+        &.col-comm {
+            .info-container {
+                position: absolute;
+                display: inline-block;
+                top: calc(50% - 8px);
+                right: 11px;
+
+                > .glyphicon-info-sign {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .freeze-table {
+        border-collapse: separate;
+        border-spacing: 0;
+
+        thead {
+            .freeze-row {
+                th {
+                    border: 1px solid #cccccc;
+                    position: sticky;
+                    top: 0px;
+                }
+
+                .freeze-column-header {
+                    z-index: 9;
+
+                    &-0 {
+                        left: $left0;
+                    }
+
+                    &-1 {
+                        left: $left1;
+                    }
+
+                    &-2 {
+                        left: $left2;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr td {
+                border-top: none;
+            }
+        }
+
+        tfoot {
+            .freeze-row {
+                .freeze-column-footer {
+                    z-index: 9;
+                    bottom: 0px;
+                    position: sticky;
+                    background-color: #ffc4a8;
+                    padding: 5px;
+
+                    &-0 {
+                        left: $left0;
+                    }
+
+                    &-1 {
+                        left: $left1;
+                    }
+
+                    &-2 {
+                        left: $left2;
+                    }
+                }
+            }
+        }
+
+        .freeze-column-body {
+            position: sticky;
+            z-index: 8;
+
+            &-0 {
+                left: $left0;
+            }
+
+            &-1 {
+                left: $left1;
+            }
+
+            &-2 {
+                left: $left2;
+            }
+        }
+    }
+}

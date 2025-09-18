@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const _rootUrl = document.getElementById('RootUrl') ? document.getElementById('RootUrl').value : '/';
 
 export const resolveClientUrl = (relativeUrl) => {
@@ -197,4 +199,19 @@ function getFromDate(fromDate, selectedToDateString, fromDateString, maxRangeDat
     sixMonthAgo.setMonth(sixMonthAgo.getMonth() - maxRangeDate);
 
     return sixMonthAgo < fromDate ? fromDateString : `${formatUnit(sixMonthAgo.getMonth() + 1)}/${formatUnit(sixMonthAgo.getDate())}/${sixMonthAgo.getFullYear()}`;
+}
+
+export const getFirstDayOfMonth = () => {
+    const now = new Date();
+    return `${now.getMonth() + 1}/01/${now.getFullYear()}`;
+}
+
+export const getToDay = () => {
+    const now = new Date();
+    return `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+}
+
+export const getLastDayOfThisMonth = () => {
+    const today = moment()
+    return today.endOf('month').format('MM/DD/YYYY');
 }
