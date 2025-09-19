@@ -142,11 +142,19 @@ const CampaignFormPopup = () => {
     const [
         popupState,
         param,
-        statusList
+        statusList,
+        selectedStatus,
+        searchCampaign,
+        searchDescription,
+        pagingOption
     ] = useSelector(state => [
         state.popupState,
         state.param,
-        state.statusList
+        state.statusList,
+        state.selectedStatus,
+        state.searchCampaign,
+        state.searchDescription,
+        state.pagingOption
     ]);
     const { insertCampaign, updateCampaign, setParam, closeCampaignPopup, openCampaignPopup } = ActionCreators;
 
@@ -276,14 +284,25 @@ const CampaignFormPopup = () => {
             return;
         }
 
+        const newParam = param
+            ? { ...param, RequestId: uuidv4() }
+            : {
+                StatusIds: selectedStatus,
+                Search: searchCampaign,
+                Description: searchDescription,
+                PageIndex: 1,
+                PageSize: pagingOption.PageSize,
+                RequestId: uuidv4()
+            };
+
         if (isAdd) {
             dispatch(insertCampaign(formData, () => {
-                dispatch(setParam({ ...param, RequestId: uuidv4() }));
+                dispatch(setParam(newParam));
                 handleClosePopup();
             }));
         } else {
             dispatch(updateCampaign(formData, () => {
-                dispatch(setParam({ ...param, RequestId: uuidv4() }));
+                dispatch(setParam(newParam));
                 handleClosePopup();
             }));
         }
