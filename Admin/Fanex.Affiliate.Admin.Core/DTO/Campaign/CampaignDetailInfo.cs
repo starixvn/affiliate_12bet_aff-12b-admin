@@ -12,7 +12,7 @@
 
         public DateTime CreatedDate { get; set; }
 
-        public string CreatedDateText => CreatedDate.ToString("dd-MMM-yyyy");
+        public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy");
 
         public string UpdatedBy { get; set; }
 
@@ -20,7 +20,7 @@
 
         public DateTime UpdatedDate { get; set; }
 
-        public string UpdatedDateText => UpdatedDate.ToString("dd-MMM-yyyy");
+        public string UpdatedDateText => UpdatedDate.ToString("MM/dd/yyyy");
 
         public int StatusId { get; set; }
 

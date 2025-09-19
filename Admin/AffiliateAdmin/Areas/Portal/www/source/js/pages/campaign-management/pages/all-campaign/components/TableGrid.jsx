@@ -77,16 +77,16 @@ const TableGrid = () => {
     const _renderHeader = () => {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={10} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.CampaignCode}>{headerText.CampaignCode}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.CampaignName}>{headerText.CampaignName}</Cell>
-                <Cell header={true} colWidth={60} title={headerText.CampaignDescription}>{headerText.CampaignDescription}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.LastModifiedDate}>{headerText.LastModifiedDate}</Cell>
-                <Cell header={true} colWidth={40} title={headerText.LastModifiedBy}>{headerText.LastModifiedBy}</Cell>
-                <Cell header={true} colWidth={30} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Edit}>{headerText.Edit}</Cell>
+                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={150} title={headerText.CampaignCode}>{headerText.CampaignCode}</Cell>
+                <Cell header={true} colWidth={180} title={headerText.CampaignName}>{headerText.CampaignName}</Cell>
+                <Cell header={true} colWidth={180} title={headerText.CampaignDescription}>{headerText.CampaignDescription}</Cell>
+                <Cell header={true} colWidth={120} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
+                <Cell header={true} colWidth={120} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
+                <Cell header={true} colWidth={120} title={headerText.LastModifiedDate}>{headerText.LastModifiedDate}</Cell>
+                <Cell header={true} colWidth={120} title={headerText.LastModifiedBy}>{headerText.LastModifiedBy}</Cell>
+                <Cell header={true} colWidth={90} title={headerText.Status}>{headerText.Status}</Cell>
+                <Cell header={true} colWidth={60} title={headerText.Edit}>{headerText.Edit}</Cell>
             </Row>
         );
     }
@@ -160,7 +160,7 @@ const TableGrid = () => {
             <ReportTitle content={_buildReportTitle()} />
             <Table
                 key={param.RequestId}
-                minWidth={1000}
+                minWidth={1200}
                 autoWidth={true}
                 bodyHeight={300}
                 header={_renderHeader()}
