@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ToastContainer } from 'react-toastify';
@@ -10,7 +10,15 @@ import NotificationPopup from '../../../common/components/NotificationPopup';
 import { setNotification } from '../actions';
 
 const AppContainer = (props) => {
-    const { isShowLoader, notification } = props;
+    const { isShowLoader } = props;
+
+    useEffect(() => {
+        console.log("Mounted!");
+    
+        return () => {
+          confirm("Component will unmount!");
+        };
+      }, []);
 
     return (
         <AppLayout>

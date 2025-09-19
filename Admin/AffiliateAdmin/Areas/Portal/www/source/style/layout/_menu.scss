@@ -1,11 +1,13 @@
 ﻿.main-menu-container {
     font-size: 11px;
     height: 40px;
+    position: relative;
 
     .menu-list {
         flex-wrap: nowrap;
         white-space: nowrap;
         overflow-x: auto;
+        overflow-y: hidden;
 
         .nav-link {
             height: 39px;

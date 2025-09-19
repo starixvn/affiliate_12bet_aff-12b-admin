@@ -8,6 +8,7 @@ import AddNewCampaignModal from '../modals/AddNewCampaignModal';
 import { updateFormField, fetchDeals, clearValidationErrors } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 import { claimResource } from '../../../../../modules/claim';
+import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, clearValidationErrors, isModifyCampaign }) => {
     const [isAddCampaignModalOpen, setIsAddCampaignModalOpen] = useState(false);
@@ -102,7 +103,9 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
     const getDisplayText = () => {
         if (!value) return 'Select campaign name';
         const selectedCampaign = campaignList?.find(campaign => campaign.CampaignId === value);
-        return selectedCampaign ? selectedCampaign.CampaignCode + ' | ' + selectedCampaign.CampaignName : 'Select campaign name';
+        var selectedCampaignTitle = selectedCampaign ? selectedCampaign.CampaignCode + ' | ' + selectedCampaign.CampaignName : 'Select campaign name';
+        
+        return htmlDecode(selectedCampaignTitle);
     };
 
     return (
@@ -160,10 +163,10 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
                 `}
             </style>
             <Row className='align-items-center'>
-                <Label md={4} lg={3} for="campaignSelector" className={required ? 'required' : ''}>
+                <Label xl={3} for="campaignSelector" className={required ? 'required' : ''}>
                     {pageBuilderLabels.campaignName}
                 </Label>
-                <Col md={8} lg={9}>
+                <Col xl={9}>
                     <div ref={dropdownRef}>
                         <Dropdown 
                             isOpen={isOpen} 
@@ -225,33 +228,37 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
                                 
                                 {/* Campaign List */}
                                 {filteredCampaigns.length > 0 ? (
-                                    filteredCampaigns.map(campaign => (
-                                        <DropdownItem
-                                            key={campaign.CampaignId}
-                                            onClick={() => {
-                                                handleCampaignSelect(campaign.CampaignId);
-                                                toggle(); // Manually call the dropdown toggle function
-                                            }}
-                                            active={campaign.CampaignId === value}
-                                            style={{ 
-                                                cursor: 'pointer', 
-                                                textOverflow: 'ellipsis',
-                                                overflow: 'hidden',
-                                                whiteSpace: 'nowrap',
-                                                maxWidth: '100%',
-                                                width: '100%',
-                                                textAlign: 'left'
-                                            }}
-                                        >
-                                            <span 
-                                                className="text-truncate" 
-                                                style={{ minWidth: 0 }}
-                                                title={campaign.CampaignCode + ' | ' + campaign.CampaignName}
+                                    filteredCampaigns.map(campaign => {
+                                        const campaignTitle = htmlDecode(campaign.CampaignCode + ' | ' + campaign.CampaignName);
+
+                                        return (
+                                            <DropdownItem
+                                                key={campaign.CampaignId}
+                                                onClick={() => {
+                                                    handleCampaignSelect(campaign.CampaignId);
+                                                    toggle(); // Manually call the dropdown toggle function
+                                                }}
+                                                active={campaign.CampaignId === value}
+                                                style={{ 
+                                                    cursor: 'pointer', 
+                                                    textOverflow: 'ellipsis',
+                                                    overflow: 'hidden',
+                                                    whiteSpace: 'nowrap',
+                                                    maxWidth: '100%',
+                                                    width: '100%',
+                                                    textAlign: 'left'
+                                                }}
                                             >
-                                                {campaign.CampaignCode + ' | ' + campaign.CampaignName}
-                                            </span>
-                                        </DropdownItem>
-                                    ))
+                                                <span 
+                                                    className="text-truncate" 
+                                                    style={{ minWidth: 0 }}
+                                                    title={campaignTitle}
+                                                >
+                                                    {campaignTitle}
+                                                </span>
+                                            </DropdownItem>
+                                        )
+                                    })
                                 ) : (
                                     campaignList && campaignList.length > 0 && searchTerm && (
                                         <DropdownItem disabled>

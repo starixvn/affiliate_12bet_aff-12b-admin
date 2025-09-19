@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Row, Col } from 'reactstrap';
 
 import CopyLinkSection from './CopyLinkSection';
-import { showSuccessToast, showErrorToast, showInfoToast } from '../../../common/libs/toastUtils';
-import { showConfirmToast } from '../../../../common/components/Toast';
+import { showSuccessToast, showErrorToast,showConfirmToast } from '../../../../common/components/Toast';
 import { 
     saveLandingPage, 
     generatePreviewUrl,

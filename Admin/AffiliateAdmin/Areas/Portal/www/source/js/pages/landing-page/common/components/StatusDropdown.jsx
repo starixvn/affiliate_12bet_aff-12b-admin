@@ -127,6 +127,7 @@ const StatusDropdown = ({
                                 key={option.value}
                                 type="button"
                                 className={`status-menu__item status-menu__item--${option.type} ${isSelected ? 'status-menu__item--disabled' : ''}`}
+                                style={{maxWidth: 'calc(100%-16px)'}}
                                 onClick={() => handleOptionClick(option.value)}
                                 disabled={isSelected}
                             >

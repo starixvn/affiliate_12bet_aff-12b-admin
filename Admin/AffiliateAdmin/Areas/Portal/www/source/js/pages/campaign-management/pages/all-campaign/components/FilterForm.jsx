@@ -114,7 +114,6 @@ const FilterForm = () => {
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="No Selection"
                         selectedAllLabel="All"
                         onChange={handleChangeStatus} />
                 </FormGroup>

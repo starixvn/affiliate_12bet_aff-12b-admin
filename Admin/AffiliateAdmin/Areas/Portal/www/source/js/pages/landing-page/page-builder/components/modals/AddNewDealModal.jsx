@@ -276,7 +276,7 @@ const AddNewDealModal = ({ isOpen, toggle, onAddDeal, normalDealList, dealList, 
                                                 <DropdownItem header>
                                                     <Input
                                                         type="text"
-                                                        placeholder="Search deal types..."
+                                                        placeholder="Search deals..."
                                                         value={searchTerm}
                                                         onChange={handleSearchChange}
                                                         onClick={(e) => e.stopPropagation()}
@@ -286,7 +286,7 @@ const AddNewDealModal = ({ isOpen, toggle, onAddDeal, normalDealList, dealList, 
                                                 {isLoading ? (
                                                     <DropdownItem disabled>
                                                         <i className="fa fa-spinner fa-spin me-2"></i>
-                                                        Loading deal types...
+                                                        Loading deals...
                                                     </DropdownItem>
                                                 ) : filteredDealTypes.length > 0 ? (
                                                     filteredDealTypes.map(dealType => (
@@ -305,7 +305,7 @@ const AddNewDealModal = ({ isOpen, toggle, onAddDeal, normalDealList, dealList, 
                                                     ))
                                                 ) : (
                                                     <DropdownItem disabled>
-                                                        {searchTerm ? 'No deal types found' : 'No deal types available'}
+                                                        {searchTerm ? 'No deals found' : 'No deals available'}
                                                     </DropdownItem>
                                                 )}
                                             </DropdownMenu>

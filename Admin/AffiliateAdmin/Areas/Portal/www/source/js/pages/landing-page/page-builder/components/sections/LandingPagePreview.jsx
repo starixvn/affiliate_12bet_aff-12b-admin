@@ -127,7 +127,7 @@ const LandingPagePreview = ({ validation, ui }) => {
                                         minHeight: '400px' // Minimum height fallback
                                     }}>
                                         <iframe
-                                            src={ui.previewUrl}
+                                            src={ui.previewUrl.includes('isPreview') ? ui.previewUrl : ui.previewUrl + '?refresh=true'}
                                             style={{
                                                 position: 'absolute',
                                                 top: 0,

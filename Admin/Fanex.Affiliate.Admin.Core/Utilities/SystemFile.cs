@@ -34,6 +34,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
                 var oldFullPath = Path.Combine(serverPath, oldFilePath);
                 var newFullPath = Path.Combine(serverPath, newFilePath);
 
+                var directory = Path.GetDirectoryName(newFullPath);
+                EnsureDirectoryExists(directory);
+
                 if (File.Exists(oldFullPath))
                 {
                     File.Move(oldFullPath, newFullPath);

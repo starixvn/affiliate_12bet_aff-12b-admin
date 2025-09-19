@@ -64,10 +64,10 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
     return (
         <FormGroup>
             <Row className='align-items-center'>
-                <Label md={4} lg={3} for="pageCodeInput" className={required ? 'required' : ''}>
+                <Label xl={3} for="pageCodeInput" className={required ? 'required' : ''}>
                     {pageBuilderLabels.pageCode}
                 </Label>
-                <Col md={8} lg={9}>
+                <Col xl={9}>
                     <Input
                         type="text"
                         id="pageCodeInput"

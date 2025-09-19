@@ -25,10 +25,10 @@ const TargetCountrySelector = ({ value, error, targetCountryList, updateFormFiel
     return (
         <FormGroup>
             <Row className='align-items-center'>
-                <Label md={4} lg={3} for="targetCountrySelector">
+                <Label xl={3} for="targetCountrySelector">
                     {pageBuilderLabels.targetCountry}
                 </Label>
-                <Col md={8} lg={9}>
+                <Col xl={9}>
                     <Input
                         type="select"
                         id="targetCountrySelector"

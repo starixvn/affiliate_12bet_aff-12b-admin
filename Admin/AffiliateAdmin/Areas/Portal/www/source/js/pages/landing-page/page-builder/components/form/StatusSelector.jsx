@@ -47,10 +47,10 @@ const StatusSelector = ({ value, error, updateFormField, statusList, isEditMode,
     return (
         <FormGroup>
             <Row className='align-items-center'>
-                <Label md={4} lg={3} for="statusSelector">
+                <Label xl={3} for="statusSelector">
                     {pageBuilderLabels.status}
                 </Label>
-                <Col md={8} lg={9}>
+                <Col xl={9}>
                     <Input
                         type="select"
                         id="statusSelector"

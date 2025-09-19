@@ -47,10 +47,10 @@ const LanguageSelector = ({ value, error, languageList, targetCountryCode, updat
     return (
         <FormGroup>
             <Row className='align-items-center'>
-                <Label md={4} lg={3} for="languageSelector">
+                <Label xl={3} for="languageSelector">
                     {pageBuilderLabels.language}
                 </Label>
-                <Col md={8} lg={9}>
+                <Col xl={9}>
                     <Input
                         type="select"
                         id="languageSelector"

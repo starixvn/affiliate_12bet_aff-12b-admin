@@ -162,10 +162,10 @@ const DealSelector = ({ value = [], error, campaignId, dealList, updateFormField
                 `}
             </style>
             <Row className='align-items-center'>
-                <Label md={4} lg={3} for="dealSelector" className={required ? 'required' : ''}>
+                <Label xl={3} for="dealSelector" className={required ? 'required' : ''}>
                     {pageBuilderLabels.deal}
                 </Label>
-                <Col md={8} lg={9} ref={dropdownRef}>
+                <Col xl={9} ref={dropdownRef}>
                     <Dropdown 
                         isOpen={isOpen} 
                         toggle={toggle} 

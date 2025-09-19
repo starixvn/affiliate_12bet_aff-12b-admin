@@ -82,7 +82,7 @@ const NotificationToast = ({ title, content, type, toastId }) => {
                         <p key={index} className="toast-line">{line}</p>
                     ))
                 ) : (
-                    <p className="toast-line">{content}</p>
+                    <p className="toast-line"><div dangerouslySetInnerHTML={{ __html: content }}></div></p>
                 )}
             </div>
         </div>

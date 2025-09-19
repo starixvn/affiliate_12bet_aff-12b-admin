@@ -88,7 +88,7 @@ export const Filter = ({
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="No Selection"
+                        noneSelectedLabel="Please select"
                         selectedAllLabel="All"
                         onChange={handleChangeModule} />
                 </FormGroup>
@@ -102,7 +102,7 @@ export const Filter = ({
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="No Selection"
+                        noneSelectedLabel="Please select"
                         selectedAllLabel="All"
                         onChange={handleChangeTargetCountry} />
                 </FormGroup>
@@ -117,7 +117,7 @@ export const Filter = ({
                         statusField="checked"
                         maxDisplayItemCount={1}
                         hasInputOption={true}
-                        noneSelectedLabel="No Selection"
+                        noneSelectedLabel="Please select"
                         selectedAllLabel="All"
                         onChange={handleChangeLanguage} />
                 </FormGroup>

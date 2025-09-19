@@ -284,6 +284,7 @@ const IframeHoverPreview = ({
                                 }}
                                 onLoad={handleIframeLoad}
                                 onError={handleIframeError}
+                                scrolling="no"
                             />
                             
                             {/* Loading state */}
@@ -309,63 +310,6 @@ const IframeHoverPreview = ({
                                     </div>
                                 </div>
                             )}
-                            
-                            {/* Error/blocked state */}
-                            {iframeBlocked && (
-                                <div 
-                                    className="d-flex align-items-center justify-content-center"
-                                    style={{ 
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        width: '100%',
-                                        height: '100%',
-                                        backgroundColor: '#fff3cd',
-                                        color: '#856404',
-                                        padding: '16px',
-                                        textAlign: 'center'
-                                    }}
-                                >
-                                    <div>
-                                        <i className="fa fa-exclamation-triangle" style={{ fontSize: '24px', marginBottom: '8px' }}></i>
-                                        <div style={{ fontSize: '12px', marginBottom: '8px' }}>
-                                            Preview blocked by CSP
-                                        </div>
-                                        <button
-                                            onClick={handleOpenInNewTab}
-                                            style={{
-                                                fontSize: '11px',
-                                                padding: '4px 8px',
-                                                backgroundColor: '#007bff',
-                                                color: 'white',
-                                                border: 'none',
-                                                borderRadius: '3px',
-                                                cursor: 'pointer'
-                                            }}
-                                        >
-                                            Open in New Tab
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                        
-                        {/* Dimensions display */}
-                        <div 
-                            style={{
-                                position: 'absolute',
-                                bottom: '4px',
-                                right: '4px',
-                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                                color: 'white',
-                                padding: '2px 6px',
-                                fontSize: '10px',
-                                borderRadius: '3px',
-                                fontFamily: 'monospace',
-                                lineHeight: '1.2'
-                            }}
-                        >
-                            {iframeDimensions.width} × {iframeDimensions.height}
                         </div>
                     </div>
                 </>,

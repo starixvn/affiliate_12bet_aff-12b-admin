@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NO_SELECTED_LABEL = "Select options";
+const NO_SELECTION_LABEL = "No Selection";
 const MAX_SELECTED_ITEM_FOR_DISPLAY = 3;
 
 function getSelectedItemsString(props) {
@@ -48,7 +48,7 @@ MultipleSelectLabel.propTypes = {
 MultipleSelectLabel.defaultProps = {
     isSelectedAll: false,
     selectedAllLabel: '',
-    noneSelectedLabel: NO_SELECTED_LABEL,
+    noneSelectedLabel: NO_SELECTION_LABEL,
     maxDisplayItemCount: MAX_SELECTED_ITEM_FOR_DISPLAY
 }
 

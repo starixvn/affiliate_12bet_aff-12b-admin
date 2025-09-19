@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         private const string RestrictedMultiInputFileNamesPattern = "[\\\\/:*?\"<>#%&+]";
         private const string DefaultDimensions = "0x0";
         private const string AssetNotFoundMessage = "Asset not found.";
-        private const string FileAlreadyExistsMessage = "File already exists";
+        private const string FileAlreadyExistsMessage = "A file with this name {0} already exists on the server. Please use a different name.";
         private const string DatabaseInsertionFailsMessage = "Database insertion fails";
         private const string MaxLengthFileNameMessage = "The maximum length of file name is 50.";
         private const string MaxLengthMediaNameMessage = "The maximum length of media name is 50.";
@@ -120,7 +120,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             var inputMediaName = param.InputMediaNames;
             var path = $"{folder}/{inputFileName}";
 
-            var result = CheckFileInFolderForUpdate(path, oldFilePath);
+            var result = CheckFileInFolderForUpdate(path, oldFilePath, inputFileName);
             if (!result.IsSuccessful)
             {
                 return result;
@@ -586,8 +586,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 {
                     return new ResultInfo
                     {
-                        Code = ErrCode.ErrTheFileNameAlreadyExists,
-                        Message = FileAlreadyExistsMessage
+                        Code = ErrCode.ErrTheFileNameAlreadyExists
                     };
                 }
             }
@@ -659,8 +658,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             foreach (var serverPath in _appSetting.BannerFolders)
             {
                 var filePath = Path.Combine(serverPath, fileName);
-                var directory = Path.GetDirectoryName(filePath);
-                _systemFile.EnsureDirectoryExists(directory);
 
                 _systemFile.SaveFile(file, filePath);
             }
@@ -760,7 +757,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return new ResultInfo();
         }
 
-        private ResultInfo CheckFileInFolderForUpdate(string filePath, string oldFilePath = null)
+        private ResultInfo CheckFileInFolderForUpdate(string filePath, string oldFilePath = null, string fileName = null)
         {
             foreach (var serverPath in _appSetting.BannerFolders)
             {
@@ -776,7 +773,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                     return new ResultInfo
                     {
                         Code = ErrCode.ErrTheFileNameAlreadyExists,
-                        Message = FileAlreadyExistsMessage
+                        Message = string.Format(FileAlreadyExistsMessage, fileName)
                     };
                 }
             }
@@ -795,10 +792,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             foreach (var serverPath in _appSetting.BannerFolders)
             {
-                var newFullPath = Path.Combine(serverPath, newFilePath);
-                var directory = Path.GetDirectoryName(newFullPath);
-                _systemFile.EnsureDirectoryExists(directory);
-                
                 _systemFile.MoveFile(serverPath, newFilePath, oldFilePath);
             }
         }

@@ -114,7 +114,7 @@ const CopyLinkSection = ({ formData, moduleComponents, languageList, landingPage
         <div className="mt-3">
             <FormGroup>
                 <div>
-                    <div className='p-2 bg-light border w-100' style={{ fontSize: '11px', wordBreak: 'break-all', minHeight: '51px' }}>
+                    <div className='p-2 bg-light border w-100' style={{ fontSize: '11px', wordBreak: 'break-word', minHeight: '51px' }}>
                         {
                             alertState.show ? (
                                 <span className={`text-${alertState.type}`}>{alertState.message}</span>
