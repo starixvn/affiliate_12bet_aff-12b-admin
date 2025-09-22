@@ -271,9 +271,6 @@
     <Content Include="Areas\Portal\www\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\common\components\StatusDropdown.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\common\configs\contentConfigs.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\landing-page\common\configs\filterConfigs.js" />
     <Content Include="favicon.ico" />
     <Content Include="12monitor.aspx" />
     <Content Include="App_Data\SpConfig\SpName.xml">

@@ -185,7 +185,7 @@ export const Content = (props) => {
         <div className="data-content landing-page-management">
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1425}
+                    minWidth={1475}
                     autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}
