@@ -202,3 +202,67 @@ export const totalCellStyle = {
         }
     }
 }
+
+// Status-specific cell styles with colored text only
+export const statusCellStyle = {
+    active: {
+        font: {
+            bold: true,
+            color: {
+                rgb: "10B981" // Green text for Active (Tailwind green-500)
+            }
+        },
+        alignment: {
+            horizontal: "center",
+            vertical: "center"
+        }
+    },
+    draft: {
+        font: {
+            bold: true,
+            color: {
+                rgb: "F59E0B" // Orange text for Draft (Tailwind amber-500)
+            }
+        },
+        alignment: {
+            horizontal: "center",
+            vertical: "center"
+        }
+    },
+    paused: {
+        font: {
+            bold: true,
+            color: {
+                rgb: "3B82F6" // Blue text for Paused (Tailwind blue-500)
+            }
+        },
+        alignment: {
+            horizontal: "center",
+            vertical: "center"
+        }
+    },
+    inactive: {
+        font: {
+            bold: true,
+            color: {
+                rgb: "6B7280" // Gray text for Inactive (Tailwind gray-500)
+            }
+        },
+        alignment: {
+            horizontal: "center",
+            vertical: "center"
+        }
+    },
+    default: {
+        font: {
+            bold: true,
+            color: {
+                rgb: "374151" // Dark gray text for unknown status
+            }
+        },
+        alignment: {
+            horizontal: "center",
+            vertical: "center"
+        }
+    }
+}

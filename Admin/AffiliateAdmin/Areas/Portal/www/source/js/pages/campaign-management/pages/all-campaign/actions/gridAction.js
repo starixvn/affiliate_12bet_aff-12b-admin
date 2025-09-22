@@ -4,6 +4,7 @@ import { toggleLoader } from '@/actions/loaderAction';
 import { setPagingOption } from '@/actions/pagingAction';
 import { apiUrl } from '../constants/api';
 import { showSuccessToast, showErrorToast } from '@/pages/common/components/Toast';
+import exportExcel from '../libs/exportExcel';
 
 // Create a wrapper for post requests that disables alerts
 const postWithoutAlert = async (url, data) => {
@@ -36,7 +37,7 @@ export const setShouldResetScrollPosition = (data) => {
 export const fetchData = (param) => async (dispatch) => {
     try {
         dispatch(toggleLoader(true));
-        const response = await post(apiUrl.getCampaignManagementList, param);
+        const response = await post(apiUrl.getCampaignList, param);
 
         const data = response && response.status === 200 ? response.data : null;
 
@@ -44,6 +45,21 @@ export const fetchData = (param) => async (dispatch) => {
         dispatch(setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize }));
         dispatch(setShouldResetScrollPosition(true));
     } catch (error) {
+        console.error(error);
+    } finally {
+        dispatch(toggleLoader(false));
+    }
+}
+
+export const fetchDataForExportExcel = (param, title) => async (dispatch) => {
+    try {
+        dispatch(toggleLoader(true));
+        const response = await post(apiUrl.getCampaignList, { ...param, IsExportExcel: true });
+        const data = response && response.status === 200 ? response.data : null;
+        data ? data.MainData : [];
+        exportExcel(data, title);
+    }
+    catch (error) {
         console.error(error);
     } finally {
         dispatch(toggleLoader(false));

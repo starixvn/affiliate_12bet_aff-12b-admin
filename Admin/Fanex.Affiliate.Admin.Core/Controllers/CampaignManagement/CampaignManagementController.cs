@@ -45,7 +45,7 @@
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [FunctionAuthorize(FunctionName = Function.AllCampaigns)]
-        public ActionResult GetCampaignManagementList(GetCampaignListParam param)
+        public ActionResult GetCampaignList(GetCampaignListParam param)
         {
             param.Search = param.Search?.Trim();
             param.Description = param.Description?.Trim();

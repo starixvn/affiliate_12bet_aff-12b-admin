@@ -26,7 +26,15 @@ const TableGrid = () => {
 
 
     const dispatch = useDispatch();
-    const { fetchData, setPagingOption, setParam, updateCampaign, openCampaignPopup, setShouldResetScrollPosition } = ActionCreators;
+    const {
+        fetchData,
+        setPagingOption,
+        setParam,
+        updateCampaign,
+        openCampaignPopup,
+        setShouldResetScrollPosition,
+        fetchDataForExportExcel
+    } = ActionCreators;
 
     useEffect(() => {
         param && dispatch(fetchData(param));
@@ -38,7 +46,8 @@ const TableGrid = () => {
     }
 
     const handleExportExcel = () => {
-        console.log('Export Excel');
+        const reportTitle = _getReportTitle();
+        dispatch(fetchDataForExportExcel(param, reportTitle));
     }
 
 
@@ -124,7 +133,7 @@ const TableGrid = () => {
         </Row>
     }
 
-    const _buildReportTitle = () => {
+    const _getReportTitle = () => {
         const listStatusIds = param.StatusIds.split(',');
         const statusText = listStatusIds.length == statusList.length ?
             'All Statuses' :
@@ -138,6 +147,11 @@ const TableGrid = () => {
             searchText = `Description: ${param.Description}`;
         }
         const reportTitle = `CAMPAIGN MANAGEMENT - ${searchText} - ${statusText}`;
+        return reportTitle;
+    }
+
+    const _buildReportTitle = () => {
+        const reportTitle = _getReportTitle();
         return (
             <div className="d-flex align-items-center">
                 {reportTitle}
