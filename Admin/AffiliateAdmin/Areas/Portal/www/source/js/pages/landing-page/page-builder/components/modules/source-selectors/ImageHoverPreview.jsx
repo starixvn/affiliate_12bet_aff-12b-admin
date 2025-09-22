@@ -298,7 +298,7 @@ const ImageHoverPreview = ({
                         <div 
                             style={{
                                 position: 'absolute',
-                                top: '4px',
+                                bottom: '4px',
                                 right: '4px',
                                 backgroundColor: 'rgba(0, 0, 0, 0.8)',
                                 color: 'white',
@@ -311,27 +311,6 @@ const ImageHoverPreview = ({
                         >
                             {imageRef.current?.naturalWidth || 0} × {imageRef.current?.naturalHeight || 0}
                         </div>
-                        
-                        {/* Image name caption */}
-                        {alt && (
-                            <div 
-                                style={{
-                                    position: 'absolute',
-                                    bottom: '4px',
-                                    left: '4px',
-                                    right: '4px',
-                                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                                    color: 'white',
-                                    padding: '4px 8px',
-                                    fontSize: '12px',
-                                    borderRadius: '4px',
-                                    textAlign: 'center',
-                                    wordBreak: 'break-word'
-                                }}
-                            >
-                                {alt}
-                            </div>
-                        )}
                     </div>
                 </>,
                 document.body // Render at document body level, outside dropdown

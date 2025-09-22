@@ -12,14 +12,6 @@ import { setNotification } from '../actions';
 const AppContainer = (props) => {
     const { isShowLoader } = props;
 
-    useEffect(() => {
-        console.log("Mounted!");
-    
-        return () => {
-          confirm("Component will unmount!");
-        };
-      }, []);
-
     return (
         <AppLayout>
             <Loader show={isShowLoader} />

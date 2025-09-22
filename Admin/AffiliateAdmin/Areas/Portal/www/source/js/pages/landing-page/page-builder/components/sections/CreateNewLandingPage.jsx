@@ -63,13 +63,13 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                         </Alert>
                     )}
                         <Row>
-                            <Col xs={6}>
+                            <Col xs={6} className='align-self-center'>
                                 <CampaignSelector 
                                     value={formData.campaignId}
                                     error={validation.errors.campaignId}
                                 />
                             </Col>
-                            <Col xs={6}>
+                            <Col xs={6} className='align-self-center'>
                                 <DealSelector 
                                     value={formData.dealIds}
                                     error={validation.errors.dealIds}
@@ -79,13 +79,13 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={6}>
+                            <Col xs={6} className='align-self-center'>
                                 <TargetCountrySelector 
                                     value={formData.targetCountryCode}
                                     error={validation.errors.targetCountryCode}
                                 />
                             </Col>
-                            <Col xs={6}>
+                            <Col xs={6} className='align-self-center'>
                                 <PageNameInput 
                                     value={formData.pageName}
                                     error={validation.errors.pageName}
@@ -94,13 +94,13 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={6}>
+                            <Col xs={6} className='align-self-center'>
                                 <LanguageSelector 
                                     value={formData.languageCode}
                                     error={validation.errors.languageCode}
                                 />
                             </Col>
-                            <Col xs={6}>
+                            <Col xs={6} className='align-self-center'>
                                 <PageCodeInput 
                                     value={formData.pageCode}
                                     error={validation.errors.pageCode}
@@ -109,7 +109,7 @@ const CreateNewLandingPage = ({ formData, validation, isEditMode, pageBuilderDet
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={6}>
+                            <Col xs={6} className='align-self-center'>
                                 <StatusSelector 
                                     value={formData.status}
                                     error={validation.errors.status}

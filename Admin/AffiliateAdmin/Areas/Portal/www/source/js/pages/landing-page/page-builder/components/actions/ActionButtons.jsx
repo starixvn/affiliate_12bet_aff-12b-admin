@@ -86,33 +86,35 @@ const ActionButtons = ({
         const errors = {};
 
         if (!currentFormData.campaignId) {
-            errors.campaignId = 'Campaign Name is required';
+            errors.campaignId = validationMessages.campaignRequired;
         }
 
-        if ((!currentFormData.pageName || currentFormData.pageName.trim() === '') && (!currentFormData.pagename || currentFormData.pagename.trim() === '')) {
-            errors.pageName = 'Page Name is required';
+        if (!currentFormData.pageName || currentFormData.pageName.trim() === '') {
+            errors.pageName = validationMessages.pageNameRequired;
+        } else if (currentFormData.pageName.trim().length > 50) {
+            errors.pageName = validationMessages.pageNameInvalid;
         }
 
-        if ((!currentFormData.pageCode || currentFormData.pageCode.trim() === '') && (!currentFormData.pagecode || currentFormData.pagecode.trim() === '')) {
-            errors.pageCode = 'Page Code is required';
-        } else if (currentFormData.pageCode && !pageCodePattern.test(currentFormData.pageCode)) {
+        if (!currentFormData.pageCode || currentFormData.pageCode.trim() === '') {
+            errors.pageCode = validationMessages.pageCodeRequired;
+        } else if (currentFormData.pageCode && !pageCodePattern.test(currentFormData.pageCode) || currentFormData.pageCode.trim().length > 50) {
             errors.pageCode = validationMessages.pageCodeInvalid;
         }
 
         if (!currentFormData.dealIds || 
             (Array.isArray(currentFormData.dealIds) && currentFormData.dealIds.length === 0) ||
             (typeof currentFormData.dealIds === 'string' && currentFormData.dealIds.trim() === '')) {
-            errors.dealIds = 'At least one deal must be selected';
+            errors.dealIds = validationMessages.atLeastOneDeal;
         }
 
         // Module components validation
         if (!currentModuleComponents || currentModuleComponents.length === 0) {
-            errors.moduleComponents = 'At least one module component is required';
+            errors.moduleComponents = validationMessages.atLeastOneModule;
         } else {
             // Validate each module component
             currentModuleComponents.forEach(module => {                
                 if (!module.moduleId) {
-                    errors[`module_${module.id}`] = 'Module is required';
+                    errors[`module_${module.id}`] = validationMessages.moduleRequired;
                     return;
                 }
 
@@ -130,21 +132,21 @@ const ActionButtons = ({
                     if (isYoutubeModule) {
                         // YouTube modules need a URL in mediaId
                         if (!module.extraInfo || module.extraInfo.trim() === '') {
-                            errors[`media_${module.id}`] = 'YouTube URL is required';
+                            errors[`media_${module.id}`] = validationMessages.youtubeRequired;
                         }
                     } else if (isContactUsModule || isLoginBtnModule) {
                         // Contact Us and Login Button modules need both mediaId (source) and extraInfo
                         if (!module.mediaId && !(Array.isArray(module.mediaId) && module.mediaId.length > 0)) {
-                            errors[`media_${module.id}`] = 'Source is required';
+                            errors[`media_${module.id}`] = validationMessages.sourceRequired;
                         }
                         // extraInfo is now required based on user changes
                         if (!module.extraInfo || module.extraInfo.trim() === '') {
-                            errors[`extra_${module.id}`] = `${isContactUsModule ? 'Contact link' : 'Login endpoint'} is required`;
+                            errors[`extra_${module.id}`] = `${isContactUsModule ? validationMessages.contactUsRequired : validationMessages.loginBtnRequired}`;
                         }
                     } else {
                         // Regular modules need mediaId
                         if (!module.mediaId && !(Array.isArray(module.mediaId) && module.mediaId.length > 0)) {
-                            errors[`media_${module.id}`] = 'Source is required';
+                            errors[`media_${module.id}`] = validationMessages.sourceRequired;
                         }
                     }
                 }
@@ -264,7 +266,7 @@ const ActionButtons = ({
                 showSuccessToast("Landing Page Created!", 'Landing page has been created successfully!');
                 
                 // Extract pageId from result (assuming result.Message contains the pageId or result has PageId property)
-                const pageId = result.PageId || result.Message || result.Data?.PageId;
+                const pageId = result.Message || result.Data?.PageId;
                 
                 if (pageId) {
                     // Transition to edit mode with the newly created page data

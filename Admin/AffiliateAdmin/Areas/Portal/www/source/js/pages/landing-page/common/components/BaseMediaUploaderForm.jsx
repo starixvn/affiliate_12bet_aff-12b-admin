@@ -479,8 +479,6 @@ export const BaseMediaUploaderForm = ({
     const { mediaNames, previewImages, isShowMessage, isSuccess, message, isInsert, isDisabled, files, errors, isMediaIdInUse, inputFileNames } = state;
     const isShowPopup = selectedMediaId !== null;
 
-    console.log('isModifyInMediaUploader', isModifyInMediaUploader);
-
     return (
         <React.Fragment>
             <Modal isOpen={isShowPopup} toggle={handleClosePopup} backdrop='static' innerRef={modalRef}>
@@ -502,7 +500,7 @@ export const BaseMediaUploaderForm = ({
                                 {/* Module Selection */}
                                 <FormGroup row className="mb-2">
                                     <Label sm={3} htmlFor="moduleId" className={!isModuleDisabled ? "required" : ""}>Module</Label>
-                                    <Col sm={5} className='align-self-center'>
+                                    <Col sm={6} className='align-self-center'>
                                         <Input 
                                             type="select" 
                                             name="moduleId" 
@@ -510,7 +508,7 @@ export const BaseMediaUploaderForm = ({
                                             disabled={isModuleDisabled || isMediaIdInUse} 
                                             value={state.moduleId} 
                                             onChange={handleChange}
-                                            className={errors.moduleId ? 'form-validation-warning' : ''}>
+                                            className={errors.moduleId ? 'border-danger' : ''}>
                                             <option value="">Please Select</option>
                                             {
                                                 moduleList && moduleList.map(item => {
@@ -524,7 +522,7 @@ export const BaseMediaUploaderForm = ({
                                 {/* Target Country Selection */}
                                 <FormGroup row className="mb-2">
                                     <Label sm={3} htmlFor="targetCountryCode" className="required pr-0">Target Country</Label>
-                                    <Col sm={5} className='align-self-center'>
+                                    <Col sm={6} className='align-self-center'>
                                         <Input 
                                             type="select" 
                                             name="targetCountryCode" 
@@ -532,7 +530,7 @@ export const BaseMediaUploaderForm = ({
                                             disabled={isMediaIdInUse} 
                                             value={state.targetCountryCode} 
                                             onChange={handleChange}
-                                            className={errors.targetCountryCode ? 'form-validation-warning' : ''}>
+                                            className={errors.targetCountryCode ? 'border-danger' : ''}>
                                             <option value="">Please Select</option>
                                             {
                                                 targetCountryList && targetCountryList.map(item => {
@@ -546,16 +544,16 @@ export const BaseMediaUploaderForm = ({
                                 {/* Language Selection */}
                                 <FormGroup row className="mb-2">
                                     <Label sm={3} htmlFor="marketId" className="required">Language</Label>
-                                    <Col sm={5} className='align-self-center'>
+                                    <Col sm={6} className='align-self-center'>
                                         <Input 
                                             type="select" 
                                             name="marketId" 
                                             id="marketId" 
-                                            disabled={isMediaIdInUse} 
+                                            disabled={isMediaIdInUse || !state.targetCountryCode} 
                                             value={state.marketId} 
                                             onChange={handleChange}
-                                            className={errors.marketId ? 'form-validation-warning' : ''}>
-                                            <option value="">Please Select</option>
+                                            className={errors.marketId ? 'border-danger' : ''}>
+                                            <option value="">{!state.targetCountryCode ? 'Please select target country first' : 'Please Select'}</option>
                                             {
                                                 languageList && languageList.map(item => {
                                                     return (<option key={`language-${item.LanguageCode}`} value={item.LanguageCode}>{item.LanguageName}</option>)

@@ -2,8 +2,6 @@
 using Fanex.Affiliate.Admin.Core.Criterias.MediaGallery;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
-using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
-using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Data.Repository;
@@ -14,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
     public class LandingPageListService : BaseDynamicService, ILandingPageListService
     {
         private const string RestrictedCharacterPattern = "[;/\\?:@=&\"<>#%\\{\\}\\|\\\\\\^~\\[\\]`\\s+]";
-        private const string RestrictedCharacterErrorMessage = "Special characters are not allowed:\n the blank/empty space and ; / ? : @ = & \" < > # % { } | \\ ^ ~ [ ] `";
+        private const string RestrictedCharacterErrorMessage = "Page code must not exceed 50 characters, without spaces or special characters.";
 
         public LandingPageListService(
             IDynamicRepository dynamicRepository) : base(dynamicRepository) { }

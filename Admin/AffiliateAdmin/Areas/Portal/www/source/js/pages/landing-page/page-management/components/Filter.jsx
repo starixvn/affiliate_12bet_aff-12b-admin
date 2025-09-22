@@ -85,7 +85,7 @@ export const Filter = ({
     return (
         <div className="filter-container my-2 pb-0">
             <Form inline tag="div">
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter`}>
                     <Label htmlFor="campaignName" className="mr-sm-2">Campaign Name</Label>
                     <Input 
                         type="text" 
@@ -96,7 +96,7 @@ export const Filter = ({
                         placeholder="Search campaign name"
                     />
                 </FormGroup>
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter`}>
                     <Label htmlFor="landingPageName" className="mr-sm-2">Page Name</Label>
                     <Input 
                         type="text" 
@@ -108,7 +108,7 @@ export const Filter = ({
                     />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter ${filters.targetCountryCodes ? '' : 'multiple-select-wrapper is-invalid'}`}>
                     <Label htmlFor="targetCountry" className="mr-sm-2">Target Country</Label>
                     <MultipleSelect
                         id="targetCountry"
@@ -123,7 +123,7 @@ export const Filter = ({
                         onChange={handleChangeTargetCountry} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter ${filters.languageCodes ? '' : 'multiple-select-wrapper is-invalid'}`}>
                     <Label htmlFor="language" className="mr-sm-2">Language</Label>
                     <MultipleSelect
                         id="language"
@@ -138,7 +138,7 @@ export const Filter = ({
                         onChange={handleChangeLanguage} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter ${filters.dealIds ? '' : 'multiple-select-wrapper is-invalid'}`}>
                     <Label htmlFor="deal" className="mr-sm-2">Deal</Label>
                     <MultipleSelect
                         id="deal"
@@ -153,7 +153,7 @@ export const Filter = ({
                         onChange={handleChangeDeal} />
                 </FormGroup>
                 
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter ${filters.statusIds ? '' : 'multiple-select-wrapper is-invalid'}`}>
                     <Label htmlFor="status" className="mr-sm-2">Status</Label>
                     <MultipleSelect
                         id="status"
@@ -168,7 +168,7 @@ export const Filter = ({
                         onChange={handleChangeStatus} />
                 </FormGroup>
 
-                <Button outline color="primary" type="button" className="mb-2" onClick={handleSearch}>
+                <Button outline color="primary" type="button" disabled={!filters.statusIds || !filters.dealIds || !filters.targetCountryCodes || !filters.languageCodes} className="mb-2" onClick={handleSearch}>
                     <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                 </Button>
             </Form>

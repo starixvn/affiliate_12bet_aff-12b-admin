@@ -22,15 +22,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 {
     public class AssetUploaderService : BaseDynamicService, IAssetUploaderService
     {
-        private const int MaxLength = 50;
+        private const int MaxLength = 200;
         private const string RestrictedMultiInputFileNamesPattern = "[\\\\/:*?\"<>#%&+]";
         private const string DefaultDimensions = "0x0";
         private const string AssetNotFoundMessage = "Asset not found.";
         private const string FileAlreadyExistsMessage = "A file with this name {0} already exists on the server. Please use a different name.";
         private const string DatabaseInsertionFailsMessage = "Database insertion fails";
-        private const string MaxLengthFileNameMessage = "The maximum length of file name is 50.";
-        private const string MaxLengthMediaNameMessage = "The maximum length of media name is 50.";
-        private const string MaxLengthFormNameMessage = "The maximum length of form name is 50. Please choose another name for Form Name {0} or select another Form.<br />";
+        private const string MaxLengthFileNameMessage = "The maximum length of file name is 200.";
+        private const string MaxLengthMediaNameMessage = "The maximum length of media name is 200.";
+        private const string MaxLengthFormNameMessage = "The maximum length of form name is 200. Please choose another name for Form Name {0} or select another Form.<br />";
         private const string DuplicateFileNameMessage = "{0} Name is unique, please enter other {0} name!";
         private const string ExistingAssetsMessage = "This file name(s) belong to existing asset(s). Please change the file name.";
         private const string InvalidLanguageForTargetCountryMessage = "The selected language is not valid for the chosen country. Please select a supported language.";

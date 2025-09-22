@@ -1,8 +1,9 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { FormGroup, Label, Row, Col } from 'reactstrap';
 
+import SearchableDropdown from '../common/SearchableDropdown';
 import AddNewCampaignModal from '../modals/AddNewCampaignModal';
 
 import { updateFormField, fetchDeals, clearValidationErrors } from '../../actions';
@@ -12,82 +13,18 @@ import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, clearValidationErrors, isModifyCampaign }) => {
     const [isAddCampaignModalOpen, setIsAddCampaignModalOpen] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [dropDirection, setDropDirection] = useState('down');
-    const dropdownRef = useRef(null);
-
-    const toggle = useCallback(() => {
-        if (!isOpen && dropdownRef.current) {
-            // Calculate available space when opening dropdown
-            const rect = dropdownRef.current.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const spaceBelow = viewportHeight - rect.bottom;
-            const spaceAbove = rect.top;
-            const dropdownHeight = 300; // maxHeight of dropdown
-            
-            // If not enough space below but more space above, drop up
-            if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
-                setDropDirection('up');
-            } else {
-                setDropDirection('down');
-            }
-        }
-        setIsOpen(prevState => !prevState);
-    }, [isOpen]);
-
-    // Effect to handle window resize and recalculate dropdown direction
-    useEffect(() => {
-        const handleResize = () => {
-            if (isOpen && dropdownRef.current) {
-                const rect = dropdownRef.current.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const spaceBelow = viewportHeight - rect.bottom;
-                const spaceAbove = rect.top;
-                const dropdownHeight = 300;
-                
-                if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
-                    setDropDirection('up');
-                } else {
-                    setDropDirection('down');
-                }
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('scroll', handleResize);
-        
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('scroll', handleResize);
-        };
-    }, [isOpen]);
-
-    const handleSearchChange = useCallback((e) => {
-        setSearchTerm(e.target.value);
-    }, []);
-
-    // Filter campaigns based on search term
-    const filteredCampaigns = campaignList ? campaignList.filter(campaign => 
-        campaign.CampaignName && (campaign.CampaignName.toLowerCase().includes(searchTerm.toLowerCase()) || campaign.CampaignCode.toLowerCase().includes(searchTerm.toLowerCase()))
-    ) : [];
 
     const handleCampaignSelect = useCallback((campaignId) => {
-        if (campaignId === 'add-new') {
-            setIsAddCampaignModalOpen(true);
-            setIsOpen(false); // Keep this for modal case
-            return;
-        }
-        
         updateFormField('campaignId', campaignId);
         
         if (error && campaignId) {
             clearValidationErrors();
         }
-        
-        setIsOpen(false);
-        setSearchTerm(''); // Reset search after selection
     }, [updateFormField, error, clearValidationErrors]);
+
+    const handleAddCampaign = useCallback(() => {
+        setIsAddCampaignModalOpen(true);
+    }, []);
 
     const handleAddCampaignModalToggle = useCallback(() => {
         setIsAddCampaignModalOpen(prevState => !prevState);
@@ -99,183 +36,99 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
         setIsAddCampaignModalOpen(false);
     }, []);
 
-    // Get display text for selected campaign
-    const getDisplayText = () => {
-        if (!value) return 'Select campaign name';
-        const selectedCampaign = campaignList?.find(campaign => campaign.CampaignId === value);
-        var selectedCampaignTitle = selectedCampaign ? selectedCampaign.CampaignCode + ' | ' + selectedCampaign.CampaignName : 'Select campaign name';
+    // Custom display value renderer
+    const renderDisplayValue = (selectedValue) => {
+        if (!selectedValue) return 'Select campaign name';
+        const selectedCampaign = campaignList?.find(campaign => campaign.CampaignId === selectedValue);
+        const selectedCampaignTitle = selectedCampaign 
+            ? `${selectedCampaign.CampaignCode} | ${selectedCampaign.CampaignName}` 
+            : 'Select campaign name';
         
         return htmlDecode(selectedCampaignTitle);
     };
 
+    // Custom filter function
+    const filterCampaigns = (items, searchTerm) => {
+        return items ? items.filter(campaign => 
+            campaign.CampaignName && 
+            (campaign.CampaignName.toLowerCase().includes(searchTerm.toLowerCase()) || 
+             campaign.CampaignCode.toLowerCase().includes(searchTerm.toLowerCase()))
+        ) : [];
+    };
+
+    // Custom item renderer for campaigns
+    const renderCampaignItem = (campaign, isSelected, onSelect, itemKey) => {
+        const campaignTitle = htmlDecode(`${campaign.CampaignCode} | ${campaign.CampaignName}`);
+
+        return (
+            <div
+                key={itemKey}
+                onClick={() => onSelect(!isSelected)} // Fixed: should toggle, so pass !isSelected
+                className={`dropdown-item ${isSelected ? 'active' : ''}`}
+                style={{ 
+                    cursor: 'pointer', 
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    maxWidth: '100%',
+                    width: '100%',
+                    textAlign: 'left',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    padding: '0.375rem 1.5rem'
+                }}
+            >
+                <span 
+                    className="text-truncate" 
+                    style={{ minWidth: 0 }}
+                    title={campaignTitle}
+                >
+                    {campaignTitle}
+                </span>
+            </div>
+        );
+    };
+
     return (
         <FormGroup>
-            <style>
-                {`
-                .dropdown-menu-up {
-                    bottom: 100% !important;
-                    top: auto !important;
-                    transform: translateY(-2px) !important;
-                    margin-bottom: 2px !important;
-                }
-                .dropdown-toggle-visible-text {
-                    color: #495057 !important;
-                    text-decoration: none !important;
-                }
-                .dropdown-toggle-visible-text:hover {
-                    background-color: #f8f9fa !important;
-                    color: #495057 !important;
-                    text-decoration: none !important;
-                }
-                .dropdown-toggle-visible-text:focus {
-                    background-color: #e9ecef !important;
-                    color: #495057 !important;
-                    text-decoration: none !important;
-                    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25) !important;
-                }
-                .dropdown-item.active {
-                    background-color: #007bff !important;
-                    color: white !important;
-                }
-                .dropdown-item.active:hover {
-                    background-color: #0056b3 !important;
-                    color: white !important;
-                }
-                .dropdown-item {
-                    color: #495057 !important;
-                    font-size: 13px !important;
-                }
-                .dropdown-item:hover {
-                    background-color: #f8f9fa !important;
-                    color: #495057 !important;
-                }
-                .campaign-add-new-item {
-                    background-color: #e3f2fd !important;
-                    color: #1976d2 !important;
-                    font-weight: 500 !important;
-                    font-size: 13px !important;
-                    border-top: 1px solid #dee2e6;
-                }
-                .campaign-add-new-item:hover {
-                    background-color: #bbdefb !important;
-                    color: #1976d2 !important;
-                }
-                `}
-            </style>
             <Row className='align-items-center'>
                 <Label xl={3} for="campaignSelector" className={required ? 'required' : ''}>
                     {pageBuilderLabels.campaignName}
                 </Label>
                 <Col xl={9}>
-                    <div ref={dropdownRef}>
-                        <Dropdown 
-                            isOpen={isOpen} 
-                            toggle={toggle} 
-                            className="w-100"
-                        >
-                            <DropdownToggle
-                                caret
-                                className={`form-control text-truncate text-left dropdown-toggle-visible-text ${error ? 'is-invalid border-danger' : ''}`}
-                                style={{ 
-                                    backgroundColor: 'white',
-                                    border: '1px solid #ced4da', 
-                                    color: '#495057',
-                                    textDecoration: 'none'
-                                }}
-                                title={getDisplayText()}
-                            >
-                                {getDisplayText()}
-                            </DropdownToggle>
-                            <DropdownMenu 
-                                className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
-                                style={{ 
-                                    maxHeight: '300px', 
-                                    overflowY: 'auto',
-                                    overflowX: 'hidden',
-                                    zIndex: 1050,
-                                    position: 'absolute',
-                                    width: '100%',
-                                    minWidth: '250px'
-                                }}
-                                flip={false}
-                                right={dropDirection === 'up'}
-                            >
-                                <DropdownItem header>
-                                    <Input
-                                        type="text"
-                                        placeholder="Search campaigns..."
-                                        value={searchTerm}
-                                        onChange={handleSearchChange}
-                                        onClick={(e) => e.stopPropagation()}
-                                    />
-                                </DropdownItem>
-                                <DropdownItem divider />
-                                
-                                {/* Add New Option */}
-                                {
-                                    isModifyCampaign && (
-                                        <DropdownItem
-                                            tag="button"
-                                            type="button"
-                                            onClick={() => handleCampaignSelect('add-new')}
-                                            className="campaign-add-new-item"
-                                        >
-                                            <i className="fa fa-plus me-2"></i>
-                                            Add New Campaign...
-                                        </DropdownItem>
-                                    )
-                                }
-                                
-                                {/* Campaign List */}
-                                {filteredCampaigns.length > 0 ? (
-                                    filteredCampaigns.map(campaign => {
-                                        const campaignTitle = htmlDecode(campaign.CampaignCode + ' | ' + campaign.CampaignName);
-
-                                        return (
-                                            <DropdownItem
-                                                key={campaign.CampaignId}
-                                                onClick={() => {
-                                                    handleCampaignSelect(campaign.CampaignId);
-                                                    toggle(); // Manually call the dropdown toggle function
-                                                }}
-                                                active={campaign.CampaignId === value}
-                                                style={{ 
-                                                    cursor: 'pointer', 
-                                                    textOverflow: 'ellipsis',
-                                                    overflow: 'hidden',
-                                                    whiteSpace: 'nowrap',
-                                                    maxWidth: '100%',
-                                                    width: '100%',
-                                                    textAlign: 'left'
-                                                }}
-                                            >
-                                                <span 
-                                                    className="text-truncate" 
-                                                    style={{ minWidth: 0 }}
-                                                    title={campaignTitle}
-                                                >
-                                                    {campaignTitle}
-                                                </span>
-                                            </DropdownItem>
-                                        )
-                                    })
-                                ) : (
-                                    campaignList && campaignList.length > 0 && searchTerm && (
-                                        <DropdownItem disabled>
-                                            <em>No campaigns found</em>
-                                        </DropdownItem>
-                                    )
-                                )}
-                                
-                                {(!campaignList || campaignList.length === 0) && !searchTerm && (
-                                    <DropdownItem disabled>
-                                        <em>No campaigns available</em>
-                                    </DropdownItem>
-                                )}
-                            </DropdownMenu>
-                        </Dropdown>
-                    </div>
-                    {error && <div className="invalid-feedback d-block">{error}</div>}
+                    <SearchableDropdown
+                        value={value}
+                        error={error}
+                        placeholder="Select campaign name"
+                        searchPlaceholder="Search campaigns..."
+                        
+                        items={campaignList || []}
+                        getItemKey={(campaign) => campaign.CampaignId}
+                        getItemLabel={(campaign) => `${campaign.CampaignCode} | ${campaign.CampaignName}`}
+                        renderDisplayValue={renderDisplayValue}
+                        renderItem={renderCampaignItem}
+                        
+                        multiSelect={false}
+                        onSelectionChange={handleCampaignSelect}
+                        
+                        showAddNew={isModifyCampaign}
+                        onAddNew={handleAddCampaign}
+                        addNewLabel="Add New Campaign..."
+                        addNewIcon="fa fa-plus"
+                        
+                        filterItems={filterCampaigns}
+                        
+                        maxHeight={300}
+                        className="w-100"
+                        closeOnSelect={true}
+                    >
+                        {/* Empty states */}
+                        {(!campaignList || campaignList.length === 0) && (
+                            <div className="dropdown-item-text text-muted">
+                                <em>No campaigns available</em>
+                            </div>
+                        )}
+                    </SearchableDropdown>
                 </Col>
             </Row>
             

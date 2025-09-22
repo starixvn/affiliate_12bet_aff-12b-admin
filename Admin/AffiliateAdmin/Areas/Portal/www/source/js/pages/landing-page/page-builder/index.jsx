@@ -18,7 +18,7 @@ const App = () => {
         moduleList, 
         bannerRootUrl,
         landingPageUrl,
-        campaignList ,
+        campaignList,
         pageBuilderDetail
     } = window.initialState;
 

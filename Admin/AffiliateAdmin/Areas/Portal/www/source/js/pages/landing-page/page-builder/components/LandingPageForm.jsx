@@ -63,7 +63,7 @@ const LandingPageForm = ({
     }, [formData?.targetCountryCode, formData?.languageCode, moduleComponents, sources, reloadAllModuleSources, validateAndResetInvalidSources]);
 
     return (
-        <Container fluid className="landing-page-format">
+        <Container fluid className="landing-page-builder">
             <Row>
                 <Col lg={9}>
                     <CreateNewLandingPage />

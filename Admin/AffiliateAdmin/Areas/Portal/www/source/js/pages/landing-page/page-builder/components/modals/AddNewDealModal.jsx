@@ -276,7 +276,7 @@ const AddNewDealModal = ({ isOpen, toggle, onAddDeal, normalDealList, dealList, 
                                                 <DropdownItem header>
                                                     <Input
                                                         type="text"
-                                                        placeholder="Search deals..."
+                                                        placeholder="Search deal name..."
                                                         value={searchTerm}
                                                         onChange={handleSearchChange}
                                                         onClick={(e) => e.stopPropagation()}

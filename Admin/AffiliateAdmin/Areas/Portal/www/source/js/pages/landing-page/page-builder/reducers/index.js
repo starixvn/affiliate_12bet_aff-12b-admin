@@ -63,7 +63,7 @@ export const formData = createReducer(pageBuilderDefaultState.formData, {
     [types.SET_PAGE_BUILDER_DETAIL](prevState, action) {
         return {
             ...prevState,
-            pageId: action.pageId
+            pageId: action.formData.pageId
         };
     }
 });

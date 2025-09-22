@@ -15,7 +15,7 @@ import { messageDelete, messageSwitchStatus } from '../libs/constants';
 import { assetStatus } from '../../libs/constants';
 import { setParam, fetchData, toggleLoader, setSelectedMediaId, setCheckedAssets, deleteAssets, setShouldResetScrollPosition, setAssetDetailUrl, setNotification, toggleAssetStatus } from '../actions';
 import NotificationPopup from '../../../common/components/NotificationPopup';
-import { showSuccessToast, showErrorToast } from '../../common/libs/toastUtils';
+import { showSuccessToast, showErrorToast } from '../../../common/components/Toast';
 
 export const AppContainer = (props) => {
     const { isModifyInAssetUploader } = props;

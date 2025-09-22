@@ -11,8 +11,7 @@ import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
 import { headerText, globalResource, messageSwitchStatus } from '../libs/constants';
 import { landingPageStatus } from '../../libs/constants';
 import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam } from '../actions';
-import { showStatusChangeToast } from '../../common/libs/toastUtils';
-import { showConfirmToast } from '../../../common/components/Toast';
+import { showConfirmToast, showSuccessToast, showErrorToast } from '../../../common/components/Toast';
 
 export const Content = (props) => {
     const { statusList, isModifyInPageManagement } = props;
@@ -60,12 +59,11 @@ export const Content = (props) => {
                 }
 
                 // Show toast notification for feedback
-                showStatusChangeToast(
-                    result?.IsSuccessful, 
-                    result?.IsSuccessful 
-                        ? messageSwitchStatus.SwitchStatusSuccessfully 
-                        : result?.Message || messageSwitchStatus.FailedToSwitchStatus
-                );
+                if (result?.IsSuccessful) {
+                    return showSuccessToast('Status Updated', messageSwitchStatus.SwitchStatusSuccessfully);
+                } else {
+                    return showErrorToast('Status Update Failed', result?.Message || messageSwitchStatus.FailedToSwitchStatus);
+                }
             },
             onCancel: () => {
                 // Cancel callback - no action needed
@@ -96,7 +94,7 @@ export const Content = (props) => {
                 <Cell header={true} colWidth={50} title={headerText.PageCode}>{headerText.PageCode}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.TargetCountry}>{headerText.TargetCountry}</Cell>
                 <Cell header={true} colWidth={40} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={20} title={headerText.Deal}>{headerText.Deal}</Cell>
+                <Cell header={true} colWidth={15} title={headerText.Deal}>{headerText.Deal}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.CreatedDate}>{headerText.CreatedDate}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
                 <Cell header={true} colWidth={30} title={headerText.LastModifiedDate}>{headerText.LastModifiedDate}</Cell>
@@ -185,9 +183,9 @@ export const Content = (props) => {
 
     return props.gridData && (
         <div className="data-content landing-page-management">
-            <div className="landing-page-content table-responsive table-striped my-2">
+            <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1350}
+                    minWidth={1425}
                     autoWidth={true}
                     bodyHeight={300}
                     header={_renderHeader()}

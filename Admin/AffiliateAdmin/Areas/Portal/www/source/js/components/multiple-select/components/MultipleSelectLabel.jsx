@@ -11,7 +11,7 @@ function getSelectedItemsString(props) {
     let displayText = noneSelectedLabel;
     const selectedItemCount = selectedValues.length;
 
-    if (selectedItemCount >= maxDisplayItemCount) {
+    if (selectedItemCount > maxDisplayItemCount) {
         displayText = `${selectedItemCount} selected`;
     }
     else if (selectedItemCount >= 1) {

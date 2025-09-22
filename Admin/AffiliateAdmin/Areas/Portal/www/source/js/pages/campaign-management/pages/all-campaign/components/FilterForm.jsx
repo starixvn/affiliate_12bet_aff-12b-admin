@@ -112,7 +112,7 @@ const FilterForm = () => {
                         keyField="key"
                         valueField="name"
                         statusField="checked"
-                        maxDisplayItemCount={2}
+                        maxDisplayItemCount={1}
                         hasInputOption={true}
                         noneSelectedLabel="Please Select"
                         selectedAllLabel="All"

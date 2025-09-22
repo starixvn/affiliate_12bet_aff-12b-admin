@@ -81,7 +81,7 @@ export const Filter = ({
                         placeholder="Search form name"
                     />
                 </FormGroup>
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter ${filters.targetCountryCodes ? '' : 'multiple-select-wrapper is-invalid'}`}>
                     <Label htmlFor="targetCountry" className="mr-sm-2">{headerText.TargetCountry}</Label>
                     <MultipleSelect
                         id="targetCountry"
@@ -96,7 +96,7 @@ export const Filter = ({
                         onChange={handleChangeTargetCountry} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2 multiple-currency-filter">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter ${filters.languageCodes ? '' : 'multiple-select-wrapper is-invalid'}`}>
                     <Label htmlFor="language" className="mr-sm-2">{headerText.Language}</Label>
                     <MultipleSelect
                         id="language"
@@ -111,7 +111,7 @@ export const Filter = ({
                         onChange={handleChangeLanguage} />
                 </FormGroup>
 
-                <FormGroup className="mr-sm-3 pb-2">
+                <FormGroup className={`mr-sm-3 pb-2 multiple-currency-filter ${filters.status ? '' : 'multiple-select-wrapper is-invalid'}`}>
                     <Label htmlFor="status" className="mr-sm-2">Status</Label>
                     <Input type="select" name="status" id="status" value={filters.status} onChange={handleChange}>
                         <option value={assetStatus.all}>All</option>
@@ -125,7 +125,7 @@ export const Filter = ({
                     </Input>
                 </FormGroup>
 
-                <Button outline color="primary" type="button" className="mb-2" onClick={handleSearch}>
+                <Button outline color="primary" type="button" disabled={!filters.status || !filters.targetCountryCodes || !filters.languageCodes} className="mb-2" onClick={handleSearch}>
                     <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                 </Button>
             </Form>

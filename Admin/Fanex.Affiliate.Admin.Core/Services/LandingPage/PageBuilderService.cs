@@ -20,10 +20,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         private static readonly Regex PageCodePattern = new Regex(@"^[a-zA-Z0-9\-_]+$", RegexOptions.Compiled);
         
         private const string ValidationMessage_PageNameRequired = "Page Name is required";
-        private const string ValidationMessage_PageNameMaxLength = "Page Name must not exceed 200 characters";
+        private const string ValidationMessage_PageNameMaxLength = "Page name must not exceed 50 characters.";
         private const string ValidationMessage_PageCodeRequired = "Page Code is required";
-        private const string ValidationMessage_PageCodeMaxLength = "Page Code must not exceed 200 characters";
-        private const string ValidationMessage_PageCodeInvalid = "Page Code can only contain letters, numbers, hyphens and underscores";
+        private const string ValidationMessage_PageCodeInvalid = "Page code must not exceed 50 characters, without spaces or special characters.";
         private const string ValidationMessage_CampaignRequired = "Campaign is required";
         private const string ValidationMessage_TargetCountryRequired = "Target Country is required";
         private const string ValidationMessage_LanguageRequired = "Language is required";
@@ -171,7 +170,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             }
             else
             {
-                if (param.PageName.Length > Validation.MaxLengthLandingPageName)
+                if (param.PageName.Length > Validation.MaxLengthInLandingPage)
                 {
                     errors.Add(ValidationMessage_PageNameMaxLength);
                 }
@@ -183,14 +182,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             }
             else
             {
-                if (!PageCodePattern.IsMatch(param.PageCode))
+                if (!PageCodePattern.IsMatch(param.PageCode) || param.PageCode.Length > Validation.MaxLengthInLandingPage)
                 {
                     errors.Add(ValidationMessage_PageCodeInvalid);
-                }
-
-                if (param.PageName.Length > Validation.MaxLengthLandingPageCode)
-                {
-                    errors.Add(ValidationMessage_PageCodeMaxLength);
                 }
             }
         }

@@ -63,12 +63,17 @@ export const validationMessages = {
     campaignRequired: 'Campaign Name is required',
     pageNameRequired: 'Page Name is required',
     pageNameExists: 'Page Name already exists. Please enter a different name.',
+    pageNameInvalid: 'Page name must not exceed 50 characters.',
     pageCodeRequired: 'Page Code is required',
     pageCodeExists: 'Page Code already exists. Please enter a different code.',
-    pageCodeInvalid: 'Page Code can only contain letters, numbers, hyphens and underscores',
+    pageCodeInvalid: 'Page code must not exceed 50 characters, without spaces or special characters.',
     moduleRequired: 'Module is required',
     sourceRequired: 'Source is required',
-    atLeastOneModule: 'At least one module component is required'
+    atLeastOneModule: 'At least one module component is required',
+    youtubeRequired: 'YouTube URL is required',
+    contactUsRequired: 'Contact link is required',
+    loginBtnRequired: 'Login endpoint is required',
+    atLeastOneDeal: 'At least one deal must be selected'
 };
 
 export const pageCodePattern = /^[a-zA-Z0-9-_]+$/;
