@@ -357,8 +357,8 @@ export const saveLandingPage = (formData, moduleComponents, isReview = false) =>
         const payload = {
             PageId: formData.pageId || 0,
             CampaignId: formData.campaignId,
-            PageName: formData.pageName,
-            PageCode: formData.pageCode,
+            PageName: formData.pageName.trim(),
+            PageCode: formData.pageCode.trim(),
             TargetCountryCode: formData.targetCountryCode,
             LanguageCode: formData.languageCode,
             DealIds: Array.isArray(formData.dealIds) ? formData.dealIds.join(',') : formData.dealIds,
@@ -429,8 +429,8 @@ export const insertLandingPageCampaign = (campaignName, description) => async (d
     try {
         const url = 'Portal/PageBuilder/InsertLandingPageCampaign';
         const response = await post(url, { 
-            campaignName, 
-            description,
+            campaignName: campaignName.trim(), 
+            description: description.trim(),
             RequestId: uuidv4()
         });
         
@@ -484,4 +484,4 @@ export const transitionToEditMode = (pageId, formData, moduleComponents) =>
     setPageBuilderDetail(formData, moduleComponents, pageId);
 
 export const updatePageBuilderDetail = (formData, moduleComponents) => 
-    setPageBuilderDetail(formData, moduleComponents);
+    setPageBuilderDetail(formData, moduleComponents, formData.pageId);

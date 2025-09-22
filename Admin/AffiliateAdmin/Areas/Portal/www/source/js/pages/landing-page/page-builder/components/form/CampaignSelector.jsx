@@ -9,7 +9,6 @@ import AddNewCampaignModal from '../modals/AddNewCampaignModal';
 import { updateFormField, fetchDeals, clearValidationErrors } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 import { claimResource } from '../../../../../modules/claim';
-import { htmlDecode } from '../../../../../modules/htmlHelper';
 
 const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, clearValidationErrors, isModifyCampaign }) => {
     const [isAddCampaignModalOpen, setIsAddCampaignModalOpen] = useState(false);
@@ -40,11 +39,10 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
     const renderDisplayValue = (selectedValue) => {
         if (!selectedValue) return 'Select campaign name';
         const selectedCampaign = campaignList?.find(campaign => campaign.CampaignId === selectedValue);
-        const selectedCampaignTitle = selectedCampaign 
-            ? `${selectedCampaign.CampaignCode} | ${selectedCampaign.CampaignName}` 
-            : 'Select campaign name';
         
-        return htmlDecode(selectedCampaignTitle);
+        return selectedCampaign 
+        ? `${selectedCampaign.CampaignCode} | ${selectedCampaign.CampaignName}` 
+        : 'Select campaign name';
     };
 
     // Custom filter function
@@ -58,7 +56,7 @@ const CampaignSelector = ({ value, error, required = false, campaignList, update
 
     // Custom item renderer for campaigns
     const renderCampaignItem = (campaign, isSelected, onSelect, itemKey) => {
-        const campaignTitle = htmlDecode(`${campaign.CampaignCode} | ${campaign.CampaignName}`);
+        const campaignTitle = `${campaign.CampaignCode} | ${campaign.CampaignName}`;
 
         return (
             <div

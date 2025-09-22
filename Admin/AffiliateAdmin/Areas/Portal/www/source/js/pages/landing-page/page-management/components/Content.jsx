@@ -6,7 +6,6 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import IframeHoverPreview from './IframeHoverPreview';
 import StatusDropdown from '../../common/components/StatusDropdown';
 
-import { htmlDecode } from '../../../../modules/htmlHelper';
 import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
 import { headerText, globalResource, messageSwitchStatus } from '../libs/constants';
 import { landingPageStatus } from '../../libs/constants';
@@ -124,11 +123,11 @@ export const Content = (props) => {
     }
 
     function _buildDataRow(dataItem, index) {
-        const campaignCode = htmlDecode(dataItem.CampaignCode);
-        const campaignName = htmlDecode(dataItem.CampaignName);
-        const landingPageName = htmlDecode(dataItem.PageName);
-        const landingPageCode = htmlDecode(dataItem.PageCode);
-        const targetCountry = htmlDecode(dataItem.TargetCountryName);
+        const campaignCode = dataItem.CampaignCode;
+        const campaignName = dataItem.CampaignName;
+        const landingPageName = dataItem.PageName;
+        const landingPageCode = dataItem.PageCode;
+        const targetCountry = dataItem.TargetCountryName;
         const language = dataItem.Language || '';
         const deal = dataItem.NoOfDeals || '';
         const dealList = dataItem.Deals?.replace(/, /g, '\n') || '';

@@ -103,8 +103,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             if (ModelState.IsValid)
             {
                 AssignUserInfoParam(param);
-                param.CampaignName = Server.HtmlEncode(param.CampaignName);
-                param.Description = Server.HtmlEncode(param.Description);
+                param.CampaignName = param.CampaignName.Trim();
+                param.Description = param.Description.Trim();
 
                 return GenerateJsonNetResult(_pageBuilderService.InsertLandingPageCampaign(param));
             }
@@ -145,8 +145,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             {
                 PageId = param.PageId,
                 CampaignId = param.CampaignId,
-                PageName = Server.HtmlEncode(param.PageName),
-                PageCode = Server.HtmlEncode(param.PageCode),
+                PageName = param.PageName.Trim(),
+                PageCode = param.PageCode.Trim(),
                 DealIds = Server.HtmlEncode(param.DealIds),
                 StatusId = param.StatusId,
                 TargetCountryCode = Server.HtmlEncode(param.TargetCountryCode),
