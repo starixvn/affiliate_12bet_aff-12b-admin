@@ -1,5 +1,4 @@
 import Excel from '@/modules/excel';
-import { htmlDecode } from '@/modules/htmlHelper';
 import {
     titleCellStyle,
     headerCellStyle,
@@ -174,7 +173,7 @@ export default function exportExcel(data, title) {
 
         return {
             t: Excel.getCellType(value),
-            v: htmlDecode(value),
+            v: value,
             s: cellStyle
         };
     };

@@ -155,9 +155,9 @@ const TableGrid = () => {
         return (
             <div className="d-flex align-items-center">
                 {reportTitle}
-                <button type="button" className="ml-auto btn btn-link btn-excel" onClick={handleExportExcel} title="Export Excel">
+                {gridData && gridData.length > 0 && <button type="button" className="ml-auto btn btn-link btn-excel" onClick={handleExportExcel} title="Export Excel">
                     <span className="oi icon-excel"></span>
-                </button>
+                </button>}
             </div>
         );
     }
