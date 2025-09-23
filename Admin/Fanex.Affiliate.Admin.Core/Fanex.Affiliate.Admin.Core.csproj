@@ -381,6 +381,7 @@
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
     <Compile Include="Controllers\Affiliate\MarketingAccountController.cs" />
+    <Compile Include="Controllers\AssetModificationController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CampaignManagement\CampaignManagementController.cs" />
@@ -610,6 +611,8 @@
     <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\Api\TokenRequestParam.cs" />
+    <Compile Include="MetaModels\AssetModification\DeleteAssetParam.cs" />
+    <Compile Include="MetaModels\AssetModification\AddAssetsParam.cs" />
     <Compile Include="MetaModels\CampaignManagement\GetCampaignListParam.cs" />
     <Compile Include="MetaModels\CampaignManagement\InsertCampaignParam.cs" />
     <Compile Include="MetaModels\CampaignManagement\UpdateCampaignParam.cs" />
@@ -736,6 +739,8 @@
     </Compile>
     <Compile Include="Services\Affiliate\IMarketingAccountService.cs" />
     <Compile Include="Services\Affiliate\MarketingAccountService.cs" />
+    <Compile Include="Services\AssetModification\AssetModificationService.cs" />
+    <Compile Include="Services\AssetModification\IAssetModificationService.cs" />
     <Compile Include="Services\Auth\IAuthService.cs" />
     <Compile Include="Services\Auth\AuthService.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
@@ -747,6 +752,8 @@
     <Compile Include="Services\Domain\SpecificDomainControlService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\LandingPage\AssetUploaderService.cs" />
     <Compile Include="Services\LandingPage\IAssetUploaderService.cs" />
     <Compile Include="Services\LandingPage\ILandingPageService.cs" />

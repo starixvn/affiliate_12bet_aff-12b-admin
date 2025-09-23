@@ -61,3 +61,15 @@ export const get = (relativeUrl, options) => {
         }
     })
 }
+
+export const postWithoutAlert = async (url, data) => {
+    const originalAlert = window.alert;
+    window.alert = () => { }; // Temporarily disable alerts
+
+    try {
+        const result = await post(url, data);
+        return result;
+    } finally {
+        window.alert = originalAlert; // Restore original alert
+    }
+};

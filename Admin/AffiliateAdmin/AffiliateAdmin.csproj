@@ -430,6 +430,7 @@
     <Content Include="Areas\Portal\Views\LandingPage\AssetUploader.cshtml" />
     <Content Include="Areas\Portal\Views\LandingPage\PageBuilder.cshtml" />
     <Content Include="Areas\Portal\Views\CampaignManagement\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\AssetModification\Index.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">

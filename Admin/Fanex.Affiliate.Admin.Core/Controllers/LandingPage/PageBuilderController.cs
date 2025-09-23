@@ -104,7 +104,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
             {
                 AssignUserInfoParam(param);
                 param.CampaignName = param.CampaignName.Trim();
-                param.Description = param.Description.Trim();
+                param.Description = param.Description?.Trim();
 
                 return GenerateJsonNetResult(_pageBuilderService.InsertLandingPageCampaign(param));
             }

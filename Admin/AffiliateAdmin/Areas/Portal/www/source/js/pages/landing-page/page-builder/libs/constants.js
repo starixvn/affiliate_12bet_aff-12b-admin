@@ -1,4 +1,5 @@
 ﻿import { globalResource } from '../../../../modules/globalResource';
+import { defaultModuleIds } from '../../libs/constants';
 
 export { globalResource };
 
@@ -40,7 +41,7 @@ export const pageBuilderDefaultState = {
         {
             id: 1,
             orderId: 1,
-            moduleId: null,
+            moduleId: defaultModuleIds.Background,
             mediaId: null
         }
     ],

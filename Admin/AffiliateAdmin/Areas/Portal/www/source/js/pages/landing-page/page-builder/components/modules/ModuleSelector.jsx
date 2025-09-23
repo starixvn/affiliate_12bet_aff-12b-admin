@@ -11,9 +11,14 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedModuleId, setSelectedModuleId] = useState(null);
     const [dropDirection, setDropDirection] = useState('down');
+    const [showTooltip, setShowTooltip] = useState(false);
     const dropdownRef = useRef(null);
 
     const toggle = useCallback(() => {
+        if (value === defaultModuleIds.Background) {
+            return;
+        }
+
         if (!isOpen && dropdownRef.current) {
             // Calculate available space when opening dropdown
             const rect = dropdownRef.current.getBoundingClientRect();
@@ -113,6 +118,7 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
 
     const selectedModule = moduleList.find(m => m.ModuleId === value);
     const displayText = selectedModule ? selectedModule.ModuleName : 'Please select...';
+    const isBackgroundModule = value === defaultModuleIds.Background;
 
     return (
         <div className="module-selector" ref={dropdownRef}>
@@ -143,17 +149,29 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                 `}
             </style>
             <Dropdown 
-                isOpen={isOpen} 
+                isOpen={isOpen}
                 toggle={toggle} 
                 className="w-100"
             >
                 <DropdownToggle
+                    disabled={isBackgroundModule}
                     caret
                     className={`form-control text-left ${error ? 'is-invalid border-danger' : ''}`}
                     style={{ backgroundColor: 'white', border: '1px solid #ced4da', color: '#495057' }}
                 >
                     {displayText}
                 </DropdownToggle>
+                {
+                    isBackgroundModule && (
+                    <div 
+                        className="rounded-circle note-info"
+                        style={{ cursor: 'pointer', top: '2px', right: '2px', position: 'absolute' }}
+                        title="This module must be selected first and is required for the landing page to display."
+                    >
+                        <span class="oi oi-info"></span>
+                    </div>
+                    )
+                }
                 <DropdownMenu 
                     className={`w-100 ${dropDirection === 'up' ? 'dropdown-menu-up' : ''}`}
                     style={{ 

@@ -1,24 +1,10 @@
 import * as types from './types';
-import { post } from '@/modules/ajaxRequest';
+import { post, postWithoutAlert } from '@/modules/ajaxRequest';
 import { toggleLoader } from '@/actions/loaderAction';
 import { setPagingOption } from '@/actions/pagingAction';
 import { apiUrl } from '../constants/api';
 import { showSuccessToast, showErrorToast } from '@/pages/common/components/Toast';
 import exportExcel from '../libs/exportExcel';
-
-// Create a wrapper for post requests that disables alerts
-const postWithoutAlert = async (url, data) => {
-    const originalAlert = window.alert;
-    window.alert = () => { }; // Temporarily disable alerts
-
-    try {
-        const result = await post(url, data);
-        return result;
-    } finally {
-        window.alert = originalAlert; // Restore original alert
-    }
-};
-
 
 export const setGridData = (item) => {
     return {

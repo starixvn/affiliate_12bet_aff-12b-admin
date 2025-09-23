@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Services.LandingPage;
 using Fanex.Affiliate.Admin.Core.ViewModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
-using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
 {

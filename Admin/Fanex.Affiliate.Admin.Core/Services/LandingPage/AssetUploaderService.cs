@@ -31,35 +31,36 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         private const string MaxLengthFileNameMessage = "The maximum length of file name is 200.";
         private const string MaxLengthMediaNameMessage = "The maximum length of media name is 200.";
         private const string MaxLengthFormNameMessage = "The maximum length of form name is 200. Please choose another name for Form Name {0} or select another Form.<br />";
-        private const string DuplicateFileNameMessage = "{0} Name is unique, please enter other {0} name!";
-        private const string ExistingAssetsMessage = "This file name(s) belong to existing asset(s). Please change the file name.";
         private const string InvalidLanguageForTargetCountryMessage = "The selected language is not valid for the chosen country. Please select a supported language.";
 
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
+        private readonly IFileService _fileService;
         private readonly ILandingPageService _landingPageService;
 
         public AssetUploaderService(
             IDynamicRepository dynamicRepository,
             IAppSetting appSetting,
             ISystemFile systemFile,
+            IFileService fileService,
             ILandingPageService landingPageService) : base(dynamicRepository)
         {
             _appSetting = appSetting;
             _systemFile = systemFile;
+            _fileService = fileService;
             _landingPageService = landingPageService;
         }
 
         public ResultInfo UploadAssets(HttpPostedFileBase[] files, UploadAssetsParam param)
         {
-            var result = ValidateUploadRequest(files, param);
+            var result = _fileService.ValidateUploadRequest(files, param.InputFileNames, param.InputMediaNames);
             if (!result.IsSuccessful)
             {
                 return result;
             }
 
-            var inputFileNames = PrepareInputFileNames(files, param);
-            var inputMediaNames = PrepareInputMediaNames(inputFileNames, param);
+            var inputFileNames = _fileService.PrepareInputFileNames(files, param.InputFileNames);
+            var inputMediaNames = PrepareInputMediaNames(inputFileNames, param.InputMediaNames);
 
             result = ValidateInputNames(inputFileNames, files, inputMediaNames);
             if (!result.IsSuccessful)
@@ -74,7 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             }
 
             var folder = GetAssetFolder(param.ModuleId, param.TargetCountryCode, param.MarketId);
-            result = CheckMultipleFilesInFolder(inputFileNames, folder);
+            result = _fileService.CheckMultipleFilesInFolder(inputFileNames, folder);
             if (!result.IsSuccessful)
             {
                 return result;
@@ -143,7 +144,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
         private ResultInfo ProcessFileUpdate(HttpPostedFileBase file, UpdateAssetParam param, string path, string oldFilePath)
         {
-            var result = ValidateFile(file.FileName, file.ContentLength, file.InputStream);
+            var result = _fileService.ValidateFile(file.FileName, file.ContentLength, file.InputStream);
             if (!result.IsSuccessful)
             {
                 return result;
@@ -156,8 +157,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
             if (result.IsSuccessful)
             {
-                DeleteFile(oldFilePath);
-                UploadFile(file, path);
+                _fileService.DeleteFile(oldFilePath);
+                _fileService.UploadFile(file, path);
             }
 
             return result;
@@ -257,44 +258,16 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
             return new ResultInfo();
         }
 
-        private ResultInfo ValidateUploadRequest(HttpPostedFileBase[] files, UploadAssetsParam param)
+        private static string[] PrepareInputMediaNames(string[] inputFileNames, string inputMediaNames)
         {
-            var result = ValidateAllFiles(files);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            if (RegexHelper.IsMatch(param.InputFileNames, RestrictedMultiInputFileNamesPattern) || 
-                RegexHelper.IsMatch(param.InputMediaNames, RestrictedMultiInputFileNamesPattern))
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = Lang.FileNameCanNotContain
-                };
-            }
-
-            return new ResultInfo();
-        }
-
-        private static string[] PrepareInputFileNames(HttpPostedFileBase[] files, UploadAssetsParam param)
-        {
-            return string.IsNullOrEmpty(param.InputFileNames) 
-                ? files.Select(f => f.FileName).ToArray() 
-                : param.InputFileNames.Split('|');
-        }
-
-        private static string[] PrepareInputMediaNames(string[] inputFileNames, UploadAssetsParam param)
-        {
-            return string.IsNullOrEmpty(param.InputMediaNames) 
+            return string.IsNullOrEmpty(inputMediaNames) 
                 ? inputFileNames 
-                : param.InputMediaNames.Split('|');
+                : inputMediaNames.Split('|');
         }
 
         private ResultInfo ValidateInputNames(string[] inputFileNames, HttpPostedFileBase[] files, string[] inputMediaNames)
         {
-            var result = ValidateAllInputFileNames(inputFileNames, files);
+            var result = _fileService.ValidateAllInputFileNames(inputFileNames, files);
             if (!result.IsSuccessful)
             {
                 return result;
@@ -325,7 +298,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 param.FilePaths.Add(path);
                 param.Dimensions.Add(dimensions);
 
-                UploadFile(file, path);
+                _fileService.UploadFile(file, path);
             }
         }
 
@@ -338,195 +311,21 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
                 var result = InsertAssets(param);
                 if (!result.IsSuccessful)
                 {
-                    CleanupUploadedFiles(param.FilePaths);
+                    _fileService.CleanupUploadedFiles(param.FilePaths);
                 }
                 return result;
             }
             catch (Exception ex)
             {
                 LogHelper.WriteError(ex);
-                CleanupUploadedFiles(param.FilePaths);
+                _fileService.CleanupUploadedFiles(param.FilePaths);
                 return ResultInfo.GenerateErr(DatabaseInsertionFailsMessage);
             }
         }
 
-        private void CleanupUploadedFiles(List<string> filePaths)
-        {
-            foreach (var path in filePaths)
-            {
-                DeleteFile(path);
-            }
-        }
-
-        private ResultInfo ValidateAllFiles(HttpPostedFileBase[] files)
-        {
-            var result = new ResultInfo();
-            var message = new StringBuilder();
-            
-            foreach (var file in files)
-            {
-                var fileName = file.FileName;
-                var validationResult = ValidateFile(fileName, file.ContentLength, file.InputStream);
-
-                if (!validationResult.IsSuccessful)
-                {
-                    result.Code = validationResult.Code;
-                    message.Append($"File {fileName} is incorrect.<br />" + validationResult.Message);
-                }
-            }
-
-            result.Message = message.ToString();
-            return result;
-        }
-
-        private ResultInfo ValidateFile(string fileName, int contentLength, Stream inputStream)
-        {
-            // Check file size
-            if (contentLength > LandingPageConstants.FileUpload.MaxFileSizeBytes)
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = LandingPageConstants.ErrorMessages.FileSizeExceeded
-                };
-            }
-
-            // Check file extension
-            var extension = _systemFile.GetExtension(fileName).ToLower(System.Globalization.CultureInfo.InvariantCulture);
-            if (!LandingPageConstants.FileExtensions.AllImageExtensions.Contains(extension))
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = LandingPageConstants.ErrorMessages.InvalidFileType
-                };
-            }
-
-            // Validate image dimensions if it's an image file
-            try
-            {
-                var validationResult = ImageDimensionHelper.ValidateImageDimensionsDetailed(
-                    inputStream, 
-                    LandingPageConstants.FileUpload.MaxImageWidth, 
-                    LandingPageConstants.FileUpload.MaxImageHeight);
-
-                if (!validationResult.IsValid)
-                {
-                    return new ResultInfo
-                    {
-                        Code = ErrCode.GeneralErrorCode,
-                        Message = string.IsNullOrEmpty(validationResult.ErrorMessage) 
-                            ? validationResult.GetValidationMessage()
-                            : LandingPageConstants.ErrorMessages.InvalidImageData
-                    };
-                }
-            }
-            catch
-            {
-                return new ResultInfo
-                {
-                    Code = ErrCode.GeneralErrorCode,
-                    Message = LandingPageConstants.ErrorMessages.InvalidImageData
-                };
-            }
-
-            return new ResultInfo();
-        }
-
-        private ResultInfo CheckDuplicateFileNames(string[] inputFileNames, string nameType = "File")
-        {
-            var length = inputFileNames.Length;
-            for (var i = 0; i <= length - 1; i++)
-            {
-                var fileName = inputFileNames[i].Trim();
-
-                for (var j = i + 1; j < length; j++)
-                {
-                    if (string.Equals(fileName, inputFileNames[j].Trim(), StringComparison.OrdinalIgnoreCase))
-                    {
-                        return new ResultInfo
-                        {
-                            Code = ErrCode.GeneralErrorCode,
-                            Message = string.Format(DuplicateFileNameMessage, nameType)
-                        };
-                    }
-                }
-            }
-
-            return new ResultInfo();
-        }
-
-        private ResultInfo ValidateAllInputFileNames(string[] inputFileNames, HttpPostedFileBase[] files)
-        {
-            var result = CheckDuplicateFileNames(inputFileNames);
-            if (!result.IsSuccessful)
-            {
-                return result;
-            }
-
-            var message = new StringBuilder();
-            for (int i = 0; i < inputFileNames.Length; i++)
-            {
-                var validationResult = ValidateSingleInputFileName(inputFileNames, files, i, message);
-                if (!validationResult.IsSuccessful)
-                {
-                    result.Code = validationResult.Code;
-                }
-            }
-
-            result.Message = message.ToString();
-            return result;
-        }
-
-        private ResultInfo ValidateSingleInputFileName(string[] inputFileNames, HttpPostedFileBase[] files, int index, StringBuilder message)
-        {
-            var inputFileName = inputFileNames[index];
-
-            if (string.IsNullOrEmpty(inputFileName))
-            {
-                return ValidateEmptyInputFileName(inputFileNames, files, index, message);
-            }
-
-            return ValidateProvidedInputFileName(inputFileName, index, message);
-        }
-
-        private ResultInfo ValidateEmptyInputFileName(string[] inputFileNames, HttpPostedFileBase[] files, int index, StringBuilder message)
-        {
-            var file = files[index];
-            inputFileNames[index] = file.FileName;
-
-            if (file.FileName.Length > MaxLength)
-            {
-                message.Append($"The maximum length of file name is 50. Please choose another name for File Name {index + 1} or select another File.<br />");
-                return new ResultInfo { Code = ErrCode.GeneralErrorCode };
-            }
-
-            return new ResultInfo();
-        }
-
-        private ResultInfo ValidateProvidedInputFileName(string inputFileName, int index, StringBuilder message)
-        {
-            var result = new ResultInfo();
-
-            var extension = _systemFile.GetExtension(inputFileName).ToLower(System.Globalization.CultureInfo.InvariantCulture);
-            if (!LandingPageConstants.FileExtensions.AllImageExtensions.Contains(extension))
-            {
-                result.Code = ErrCode.GeneralErrorCode;
-                message.Append($"File Name {index + 1} is incorrect.<br />" + LandingPageConstants.ErrorMessages.InvalidFileType);
-            }
-
-            if (inputFileName.Length > MaxLength)
-            {
-                result.Code = ErrCode.GeneralErrorCode;
-                message.Append($"The maximum length of file name is 50. Please choose another name File Name {index + 1}.<br />");
-            }
-
-            return result;
-        }
-
         private ResultInfo ValidateAllInputMediaNames(string[] inputMediaNames)
         {
-            var result = CheckDuplicateFileNames(inputMediaNames, "Form");
+            var result = _fileService.CheckDuplicateFileNames(inputMediaNames, "Form");
             if (!result.IsSuccessful)
             {
                 return result;
@@ -546,52 +345,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
             result.Message = message.ToString();
             return result;
-        }
-
-        private ResultInfo CheckMultipleFilesInFolder(string[] inputFileNames, string folder)
-        {
-            var result = new ResultInfo();
-            var message = new StringBuilder();
-
-            foreach (var inputFileName in inputFileNames)
-            {
-                var filePath = $"{folder}/{inputFileName}";
-                var checkResult = CheckFileInFolder(filePath);
-
-                if (!checkResult.IsSuccessful)
-                {
-                    if (checkResult.Code == ErrCode.ErrCanNotAccessFolder)
-                    {
-                        return checkResult;
-                    }
-
-                    result.Code = ErrCode.GeneralErrorCode;
-                    message.Append($"{inputFileName}, ");
-                }
-            }
-
-            result.Message = result.IsSuccessful ? string.Empty
-                : message.Append(ExistingAssetsMessage).ToString();
-
-            return result;
-        }
-
-        private ResultInfo CheckFileInFolder(string filePath)
-        {
-            // Check if file already exists in any of the configured server paths
-            foreach (var serverPath in _appSetting.BannerFolders)
-            {
-                var fullPath = Path.Combine(serverPath, filePath);
-                if (_systemFile.FileExists(fullPath))
-                {
-                    return new ResultInfo
-                    {
-                        Code = ErrCode.ErrTheFileNameAlreadyExists
-                    };
-                }
-            }
-
-            return new ResultInfo();
         }
 
         private string GetAssetFolder(int moduleId, string targetCountryCode, string marketId)
@@ -651,24 +404,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
 
             result.Append("</root>");
             param.Files = result.ToString();
-        }
-
-        private void UploadFile(HttpPostedFileBase file, string fileName)
-        {
-            foreach (var serverPath in _appSetting.BannerFolders)
-            {
-                var filePath = Path.Combine(serverPath, fileName);
-
-                _systemFile.SaveFile(file, filePath);
-            }
-        }
-
-        private void DeleteFile(string filePath)
-        {
-            foreach (var serverPath in _appSetting.BannerFolders)
-            {
-                _systemFile.DeleteFile(serverPath, filePath);
-            }
         }
 
         private ResultInfo InsertAssets(UploadAssetsParam param)
@@ -821,7 +556,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.LandingPage
         {
             foreach (var filePath in fileList)
             {
-                DeleteFile(filePath);
+                _fileService.DeleteFile(filePath);
             }
         }
 
