@@ -54,7 +54,7 @@ const App = () => {
                 <SubMenuList
                     img={imgSrc}
                     menus={renderMenuList.map((menu) => { return { label: menu.label, href: menu.href } })}
-                    menuTitle="Landing Page Content Management"
+                    menuTitle="Landing Page Management"
                 />
                 <Suspense fallback={<div>Loading...</div>}>
                     <Switch>

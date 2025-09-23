@@ -34,7 +34,7 @@ export const pageBuilderDefaultState = {
         dealIds: [],
         pageName: '',
         pageCode: '',
-        status: 1
+        status: 0
     },
     moduleComponentsSetting: [
         {

@@ -130,7 +130,7 @@ export const Content = (props) => {
                 <Cell className="text-center text-break" title={targetCountry}>{targetCountry}</Cell>
                 <Cell className="text-center text-break" title={language}>{language}</Cell>
                 <Cell className="text-center">
-                    <img id={`img${mediaId}`} src={src} alt="Preview Image" maxWidth={100} maxHeight={100} />
+                    <img className="img-fluid" id={`img${mediaId}`} src={src} alt="Preview Image" maxWidth={100} maxHeight={100} />
                 </Cell>
                 <Cell className="text-center">
                     <input

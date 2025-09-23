@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
 	<Function Name="Language">
-		<Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+		<Setting Key="Aff_TargetCountry_Sel" SpName="Aff_TargetCountry_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
 			<Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
 			<Mapping DataField="MarketName" ObjectProperty="LanguageName" />
 			<Mapping DataField="ShortedCode" ObjectProperty="ShortedLanguageCode" />
 		</Setting>
-		<Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel_xtest" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
+		<Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >
 			<Mapping DataField="MarketId" ObjectProperty="LanguageCode" />
 			<Mapping DataField="MarketName" ObjectProperty="LanguageName" />
 			<Mapping DataField="ShortedCode" ObjectProperty="ShortedLanguageCode" />
@@ -69,10 +69,10 @@
 			<Mapping DataField="Currency" ObjectProperty="PlayerCurrency" />
 		</Setting>
 		<Setting Key="Task_Aff_GetSetting" SpName="Task_Aff_GetSetting" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_AffiliateCPA" SpName="Aff_Admin_Report_AffiliateCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_PlayerCPA" SpName="Aff_Admin_Report_PlayerCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_PlayerCPA_TO_Detail" SpName="Aff_Admin_Report_PlayerCPA_TO_Detail" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
-    <Setting Key="Aff_Admin_Report_RedepositCPA" SpName="Aff_Admin_Report_RedepositCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_Admin_Report_AffiliateCPA" SpName="Aff_Admin_Report_AffiliateCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_Admin_Report_PlayerCPA" SpName="Aff_Admin_Report_PlayerCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_Admin_Report_PlayerCPA_TO_Detail" SpName="Aff_Admin_Report_PlayerCPA_TO_Detail" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
+		<Setting Key="Aff_Admin_Report_RedepositCPA" SpName="Aff_Admin_Report_RedepositCPA" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" />
 	</Function>
 	<Function Name="Info">
 		<Setting Key="Aff_Admin_Affiliate_Sel" SpName="Aff_Admin_Affiliate_Sel" DbName="DBAFF12B.Affiliate_12B.wsv_afinet" >

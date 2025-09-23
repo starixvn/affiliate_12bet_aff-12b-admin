@@ -177,10 +177,10 @@ export const Content = (props) => {
                 <Cell className="text-center">
                     {
                         isValidWithHeight ? (
-                            <img id={`img${mediaId}`} src={src} alt="Asset" height={realHeight} width={realWidth} />
+                            <img className="img-fluid" id={`img${mediaId}`} src={src} alt="Asset" height={realHeight} width={realWidth} />
                         ) : (
                                 <a href="javascript:;" id={`link${mediaId}`} onClick={() => props.setAssetDetailUrl({ src, mediaId, width: realWidth, height: realHeight })}>
-                                    <img id={`img${mediaId}`} src={src} alt="Asset" height={resizeResult.height} width={resizeResult.width} />
+                                    <img className="img-fluid" id={`img${mediaId}`} src={src} alt="Asset" height={resizeResult.height} width={resizeResult.width} />
                                 </a>
                             )
                     }
