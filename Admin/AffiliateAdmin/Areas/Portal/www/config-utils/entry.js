@@ -28,6 +28,17 @@ module.exports = {
     [`${styleDist}/pages/media-gallery/landing-page`]: clientRoot + "/style/pages/media-gallery/landing-page.scss",
     [`${styleDist}/pages/media-gallery/banner-list`]: clientRoot + "/style/pages/media-gallery/banner-list.scss",
 
+    //Landing Page
+    [`${jsDist}/pages/landing-page`]: clientRoot + "/js/pages/landing-page/index.jsx",
+    [`${styleDist}/pages/landing-page`]: clientRoot + "/style/pages/landing-page.scss",
+
+    //Campaign Management
+    [`${jsDist}/pages/campaign-management`]: clientRoot + "/js/pages/campaign-management/index.jsx",
+    [`${styleDist}/pages/campaign-management`]: clientRoot + "/style/pages/campaign-management.scss",
+
+    //Asset Modification
+    [`${jsDist}/pages/asset-modification`]: clientRoot + "/js/pages/asset-modification/index.jsx",
+    [`${styleDist}/pages/asset-modification`]: clientRoot + "/style/pages/asset-modification.scss",
 
     //Domain
     [`${jsDist}/pages/domain`]: clientRoot + "/js/pages/domain/index.jsx",

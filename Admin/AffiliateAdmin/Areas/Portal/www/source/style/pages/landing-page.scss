@@ -1,0 +1,339 @@
+﻿@import "../components/modal";
+@import "../components/select";
+@import "../components/multiple-select";
+
+// Landing Page Common Variables
+$landing-page-status-draft: #f59e0b;
+$landing-page-status-active: #10b981;
+$landing-page-status-inactive: #6b7280;
+$landing-page-border-radius: 8px;
+$landing-page-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+.landing-page-management {
+    // Modern Status Dropdown (StatusDropdown component)
+    .status-select {
+        color: white !important;
+        border: none !important;
+        border-radius: 16px !important;
+        padding: 8px 35px 8px 20px !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        min-width: 100px !important;
+        height: 30px !important;
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        outline: none !important;
+        transition: opacity 0.2s ease !important;
+
+        &:hover {
+            opacity: 0.9 !important;
+        }
+
+        &:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.3) !important;
+            outline-offset: 2px !important;
+        }
+
+        .status-select__text {
+            flex: 1 !important;
+            text-align: center !important;
+            pointer-events: none !important;
+        }
+
+        .status-select__icon {
+            position: absolute !important;
+            right: 12px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            pointer-events: none !important;
+            font-size: 12px !important;
+        }
+
+        // Status colors using common variables
+        &--draft {
+            background-color: $landing-page-status-draft !important;
+        }
+
+        &--active {
+            background-color: $landing-page-status-active !important;
+        }
+
+        &--inactive {
+            background-color: $landing-page-status-inactive !important;
+        }
+    }
+
+    .status-dropdown {
+        position: relative !important;
+        display: inline-block !important;
+        width: 100% !important;
+
+        // Legacy select dropdown for backward compatibility
+        select {
+            font-size: 12px;
+            padding: 2px 5px;
+            color: white;
+            font-weight: 500;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            
+            &:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                outline: none;
+            }
+            
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+            
+            // Status-specific colors
+            &.status-draft {
+                background-color: $landing-page-status-draft !important;
+                border-color: $landing-page-status-draft !important;
+                
+                &:hover:not(:disabled) {
+                    background-color: darken($landing-page-status-draft, 10%);
+                    border-color: darken($landing-page-status-draft, 10%);
+                }
+            }
+            
+            &.status-active {
+                background-color: $landing-page-status-active !important;
+                border-color: $landing-page-status-active !important;
+                
+                &:hover:not(:disabled) {
+                    background-color: darken($landing-page-status-active, 10%);
+                    border-color: darken($landing-page-status-active, 10%);
+                }
+            }
+            
+            &.status-inactive {
+                background-color: $landing-page-status-inactive !important;
+                border-color: $landing-page-status-inactive !important;
+                
+                &:hover:not(:disabled) {
+                    background-color: darken($landing-page-status-inactive, 10%);
+                    border-color: darken($landing-page-status-inactive, 10%);
+                }
+            }
+            
+            // Option styling
+            option {
+                color: white !important;
+                font-weight: 500 !important;
+                padding: 8px 12px !important;
+                margin: 2px !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                border-radius: 16px !important;
+                transition: opacity 0.2s ease !important;
+                
+                // Cross-browser appearance reset
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                
+                &:hover {
+                    opacity: 0.7 !important;
+                }
+                
+                // Status-specific option colors
+                &.status-draft,
+                &[data-status="draft"] {
+                    background-color: $landing-page-status-draft !important;
+                    background: $landing-page-status-draft !important;
+                }
+                
+                &.status-active,
+                &[data-status="active"] {
+                    background-color: $landing-page-status-active !important;
+                    background: $landing-page-status-active !important;
+                }
+                
+                &.status-inactive,
+                &[data-status="inactive"] {
+                    background-color: $landing-page-status-inactive !important;
+                    background: $landing-page-status-inactive !important;
+                }
+            }
+        }
+    }
+
+    // Modern dropdown menu for StatusDropdown component
+    .status-menu {
+        position: fixed !important;
+        z-index: 99999 !important;
+        background: #ffffff !important;
+        border: 1px solid #e5e7eb !important;
+        border-radius: 12px !important;
+        padding: 8px !important;
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.15),
+            0 4px 8px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        min-width: 116px !important;
+    }
+
+    .status-menu__item {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        height: 30px !important;
+        border-radius: 16px !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        margin: 4px auto !important;
+        padding: 8px 16px !important;
+        cursor: pointer !important;
+        transition: opacity 0.2s ease !important;
+        min-width: 100px !important;
+        box-sizing: border-box !important;
+        border: none !important;
+        outline: none !important;
+        background: none !important;
+
+        &:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.3) !important;
+            outline-offset: 2px !important;
+        }
+
+        &:hover:not(:disabled) {
+            opacity: 0.8 !important;
+        }
+
+        &:disabled,
+        &--disabled {
+            opacity: 0.5 !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+
+        &--active {
+            background-color: $landing-page-status-active !important;
+        }
+
+        &--draft {
+            background-color: $landing-page-status-draft !important;
+        }
+
+        &--inactive {
+            background-color: $landing-page-status-inactive !important;
+        }
+    }
+}
+
+.input-file-group {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.switch-status-popup {
+    display: flex;
+}
+
+.landing-page-preview {
+    height: calc(100% - 10px);
+    
+    // Mobile preview wrapper - contains both URL section and iframe
+    .mobile-preview-wrapper {
+        // Responsive scaling to match iframe container
+        @media (max-width: 1400px) {
+            max-width: 350px !important;
+        }
+        
+        @media (max-width: 1200px) {
+            max-width: 320px !important;
+        }
+        
+        @media (max-width: 992px) {
+            max-width: 300px !important;
+        }
+        
+        @media (max-width: 768px) {
+            max-width: 280px !important;
+        }
+        
+        @media (max-width: 576px) {
+            max-width: 250px !important;
+        }
+        
+        @media (max-width: 480px) {
+            max-width: 220px !important;
+        }
+    }
+    
+    // Mobile viewport container for responsive iframe
+    .mobile-viewport {
+        // Fallback for browsers that don't support aspect-ratio
+        &::before {
+            content: '';
+            display: block;
+            padding-bottom: 216.79%; // 852/393 * 100% = aspect ratio percentage
+        }
+        
+        // For browsers that support aspect-ratio
+        @supports (aspect-ratio: 393/852) {
+            &::before {
+                display: none;
+            }
+        }
+        
+        // Responsive scaling
+        @media (max-width: 1400px) {
+            max-width: 350px;
+        }
+        
+        @media (max-width: 1200px) {
+            max-width: 320px;
+        }
+        
+        @media (max-width: 992px) {
+            max-width: 300px;
+        }
+        
+        @media (max-width: 768px) {
+            max-width: 280px;
+        }
+        
+        @media (max-width: 576px) {
+            max-width: 250px;
+        }
+        
+        @media (max-width: 480px) {
+            max-width: 220px;
+        }
+        
+        // Ensure iframe is positioned absolutely for aspect ratio to work
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.module-components {
+    min-height: 260px;
+
+    .note-info {
+        background: #fff;
+        border: 1px solid #ccc;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+    }
+}

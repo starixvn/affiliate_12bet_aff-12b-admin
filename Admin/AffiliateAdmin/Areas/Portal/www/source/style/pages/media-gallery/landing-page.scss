@@ -1,6 +1,9 @@
 ﻿@import "../../components/modal";
 @import "../../components/multiple-select";
 @import "../common/block-target-country-form-group";
+$landing-page-status-draft: #f59e0b;
+$landing-page-status-active: #10b981;
+$landing-page-status-inactive: #6b7280;
 
 .landing-page-form-container{
     .is-invalid {
@@ -12,4 +15,19 @@
     .text-danger {
         font-size: 80%;
     }
+}
+
+.status-draft {
+    font-weight: bold;
+    color: $landing-page-status-draft !important;
+}
+
+.status-active {
+    font-weight: bold;
+    color: $landing-page-status-active !important;
+}
+
+.status-inactive {
+    font-weight: bold;
+    color: $landing-page-status-inactive !important;
 }

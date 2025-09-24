@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
         IEnumerable<Language> GetLanguageList();
 
+        IEnumerable<Language> GetAllLanguagesInSystem();
+
         IEnumerable<Product> GetProductList();
 
         IEnumerable<Currency> GetBaseCurrencies();

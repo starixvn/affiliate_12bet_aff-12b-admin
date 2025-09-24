@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.MetaModels.LandingPage;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.Operation;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -13,25 +14,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.MediaGallery
     [FunctionAuthorize(FunctionName = Function.Media)]
     public class LandingPageListController : ReadOnlySessionBaseController
     {
-        private readonly ILandingPageService _landingPageService;
+        private readonly ILandingPageListService _landingPageService;
         private readonly ISystemService _systemService;
-        private readonly ICommonDealService _commGroupCommonService;
+        private readonly ICommonDealService _commonDealService;
 
         public LandingPageListController(
             ISessionService sessionService,
-            ILandingPageService landingPageService,
+            ILandingPageListService landingPageService,
             ISystemService systemService,
-            ICommonDealService commGroupCommonService) : base(sessionService)
+            ICommonDealService commonDealService) : base(sessionService)
         {
             _landingPageService = landingPageService;
             _systemService = systemService;
-            _commGroupCommonService = commGroupCommonService;
+            _commonDealService = commonDealService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.DealList = _commGroupCommonService.GetNormalDealList(new GetNormalDealParam());
+            ViewBag.DealList = _commonDealService.GetNormalDealList(new GetNormalDealParam());
             return View("~/Areas/Portal/Views/MediaGallery/LandingPageList.cshtml");
         }
 

@@ -26,7 +26,18 @@ module.exports = env => {
     const sharedConfig = () => ({
         mode: env,
         stats: { modules: false },
-        resolve: { extensions: [".js", ".jsx"] },
+        performance: {
+            hints: isDevBuild ? false : 'warning',
+            maxAssetSize: 300000, // 300KB limit for main bundles
+            maxEntrypointSize: 300000
+        },
+        resolve: { 
+            extensions: [".js", ".jsx"],
+            alias: {
+                '@': path.resolve(__dirname, 'source/js'),
+                "crypto": "crypto-browserify"
+            }
+        },
         output: {
             path: projectPath.rootPath,
             filename: "[name].js",
@@ -53,7 +64,10 @@ module.exports = env => {
             ]
         },
         node: {
-            fs: 'empty'
+            fs: 'empty',
+            crypto: true,
+            stream: true,
+            buffer: true
         },
         externals: [
             { './jszip': 'jszip' },
@@ -83,7 +97,8 @@ module.exports = env => {
                     loader: 'sass-loader',
                     options: {
                         sourceMap: true,
-                        sourceMapContents: false
+                        sourceMapContents: false,
+                        implementation: require('sass') // Use Dart Sass explicitly
                     }
                 }
                 ]

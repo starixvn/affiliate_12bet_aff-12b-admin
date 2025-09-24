@@ -12,7 +12,7 @@ const defaultProps = {
     statusField: "checked",
     noneSelectedLabel: "Select Options",
     optionAllLabel: "All",
-    maxDisplayItemCount: 3,
+    maxDisplayItemCount: 1,
     onChange: jest.fn(),
     hasAllOption: true,
     hasInputOption: true

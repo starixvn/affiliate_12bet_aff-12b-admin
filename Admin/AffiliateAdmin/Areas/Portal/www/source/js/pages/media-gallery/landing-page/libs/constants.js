@@ -7,6 +7,12 @@ export const filterDealMode = {
     'Include': 0
 }
 
+export const landingPageStatus = {
+    0: 'Draft',
+    1: 'Active',
+    2: 'Inactive',
+};
+
 export const headerText = {
     Index: '#',
     BlockTargetCountry: 'Block Target Country',
@@ -16,6 +22,7 @@ export const headerText = {
     ContainInLinks: 'Contained in links',
     Deal: 'Deal',
     MobileOnly: 'Mobile Only',
+    Status: 'Status',
 }
 
 export const defaultState = {

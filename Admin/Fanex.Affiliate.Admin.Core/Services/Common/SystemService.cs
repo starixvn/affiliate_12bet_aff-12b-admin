@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Criterias;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Extensions;
@@ -13,7 +14,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SystemService : BaseDynamicService, ISystemService
     {
-        private const string ChineseSimplifiedForMalaysia = "mycs";
         private readonly ICacheService _cacheService;
 
         public SystemService(
@@ -29,13 +29,27 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
             if (languageList == null)
             {
-                const string SpKey = "Aff_Market_Sel";
-
-                languageList = FetchTData<Language>(SpKey).Where(l => !l.ShortedLanguageCode.MatchWith(ChineseSimplifiedForMalaysia));
+                languageList = GetAllLanguagesInSystem()
+                    .GroupBy(l => l.LanguageCode)
+                    .Select(g => g.First())
+                    .ToList();
                 _cacheService.Set(CacheKey.LanguageList, languageList);
             }
 
             return languageList;
+        }
+
+        public IEnumerable<Language> GetAllLanguagesInSystem()
+        {
+            var allLanguagesInSystem = _cacheService.Get<IEnumerable<Language>>(CacheKey.AllLanguagesInSystem);
+
+            if (allLanguagesInSystem == null)
+            {
+                allLanguagesInSystem = FetchTData<Language>(new TargetCountryCriteria(false));
+                _cacheService.Set(CacheKey.AllLanguagesInSystem, allLanguagesInSystem);
+            }
+
+            return allLanguagesInSystem;
         }
 
         public IEnumerable<Product> GetProductList()
@@ -104,9 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 
             if (targetCountries == null)
             {
-                const string SpKey = "Aff_TargetCountry_Sel";
-
-                targetCountries = FetchTData<TargetCountry>(SpKey);
+                targetCountries = FetchTData<TargetCountry>(new TargetCountryCriteria());
                 _cacheService.Set(CacheKey.TargetCountryList, targetCountries);
             }
 

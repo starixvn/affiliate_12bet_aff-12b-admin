@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NO_SELECTED_LABEL = "Select options";
+const NO_SELECTION_LABEL = "No Selection";
 const MAX_SELECTED_ITEM_FOR_DISPLAY = 3;
 
 function getSelectedItemsString(props) {
@@ -11,7 +11,7 @@ function getSelectedItemsString(props) {
     let displayText = noneSelectedLabel;
     const selectedItemCount = selectedValues.length;
 
-    if (selectedItemCount >= maxDisplayItemCount) {
+    if (selectedItemCount > maxDisplayItemCount) {
         displayText = `${selectedItemCount} selected`;
     }
     else if (selectedItemCount >= 1) {
@@ -29,7 +29,7 @@ const MultipleSelectLabel = (props) => {
     const selectedItemString = getSelectedItemsString(props);
 
     return (
-        <button type="button" className="multiple-select-default multiple-select-label"
+        <button id={`${props.id}`} type="button" className="multiple-select-default multiple-select-label"
             onClick={props.onToggle}>
             <span className="text-display" title={selectedItemString}>{selectedItemString}</span>
             <b className="caret"></b>
@@ -48,7 +48,7 @@ MultipleSelectLabel.propTypes = {
 MultipleSelectLabel.defaultProps = {
     isSelectedAll: false,
     selectedAllLabel: '',
-    noneSelectedLabel: NO_SELECTED_LABEL,
+    noneSelectedLabel: NO_SELECTION_LABEL,
     maxDisplayItemCount: MAX_SELECTED_ITEM_FOR_DISPLAY
 }
 

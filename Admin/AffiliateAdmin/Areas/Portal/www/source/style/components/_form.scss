@@ -39,6 +39,7 @@ select.form-control:not([size]):not([multiple]) {
             color: #dc3545;
             margin-left: 5px;
             font-size: 1rem;
+            line-height: 0;
         }
     }
 }

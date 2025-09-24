@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Domain;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Domain;
+using Fanex.Affiliate.Admin.Core.Services.Operation;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.Admin.Core.ViewModels.Domain;
 using Moq;
@@ -299,13 +300,15 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.Domain
 
         private DomainControlController CreateDomainControlController(
         ISessionService sessionService = null,
-        IDomainControlService domainControlService = null
+        IDomainControlService domainControlService = null,
+        ICommonDealService commonDealService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeDomainControlService = domainControlService ?? Mock.Of<IDomainControlService>();
+            var fakeICommonDealService = commonDealService ?? Mock.Of<ICommonDealService>();
 
-            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService);
+            var controller = new DomainControlController(fakeSessionService, fakeDomainControlService, fakeICommonDealService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

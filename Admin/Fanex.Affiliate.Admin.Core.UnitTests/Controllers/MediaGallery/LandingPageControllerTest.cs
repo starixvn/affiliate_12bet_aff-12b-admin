@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Services.Operation;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Moq;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
         public void GetLandingPageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(t => t.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
@@ -57,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var pageId = 22;
             int passedParam = 0;
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(t => t.GetLandingPageById(pageId)).Returns(new LandingPage { PageId = 22 }).Callback<int>(p => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
@@ -76,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var param = new InsertUpdateLandingPageParam { PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), true)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam, bool>((p, i) => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
@@ -111,7 +112,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var param = new InsertUpdateLandingPageParam { PageId = 123, PageName = "123", PageCode = "abc" };
             InsertUpdateLandingPageParam passedParam = null;
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), false)).Returns(new ResultInfo()).Callback<InsertUpdateLandingPageParam, bool>((p, i) => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
@@ -147,7 +148,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var param = new DeleteLandingPageParam { PageIds = "123" };
             DeleteLandingPageParam passedParam = null;
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(s => s.DeleteLandingPage(param)).Returns(new ResultInfo()).Callback<DeleteLandingPageParam>(p => passedParam = p);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
@@ -182,7 +183,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
             // Arrange
             var pageId = 123;
             var expectedList = new List<TargetCountry> { new TargetCountry() };
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(s => s.GetExcludedTargetCountryList(pageId)).Returns(expectedList);
             var controller = CreateLandingPageListController(landingPageService: landingPageService.Object);
 
@@ -242,7 +243,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
                 PageCode = "test-code",
                 BlockTargetCountry = "en,th"
             };
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(s => s.HandleSaveLandingPage(It.IsAny<InsertUpdateLandingPageParam>(), It.IsAny<bool>())).Returns(new ResultInfo());
             var systemService = new Mock<ISystemService>();
             systemService.Setup(s => s.GetTargetCountryList()).Returns(new List<TargetCountry>
@@ -291,14 +292,16 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers.MediaGallery
 
         private LandingPageListController CreateLandingPageListController(
         ISessionService sessionService = null,
-        ILandingPageService landingPageService = null,
-        ISystemService systemService = null
+        ILandingPageListService landingPageService = null,
+        ISystemService systemService = null,
+        ICommonDealService commonDealService = null
         )
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
-            var fakeLandingPageService = landingPageService ?? Mock.Of<ILandingPageService>();
+            var fakeLandingPageService = landingPageService ?? Mock.Of<ILandingPageListService>();
             var fakeSystemService = systemService ?? Mock.Of<ISystemService>();
-            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeSystemService);
+            var fakeICommonDealService = commonDealService ?? Mock.Of<ICommonDealService>();
+            var controller = new LandingPageListController(fakeSessionService, fakeLandingPageService, fakeSystemService, fakeICommonDealService);
 
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

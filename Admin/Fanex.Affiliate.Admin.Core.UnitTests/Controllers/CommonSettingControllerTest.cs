@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         public void GetPageList_WhenCall_ReturnCorrectData()
         {
             // Arrange
-            var landingPageService = new Mock<ILandingPageService>();
+            var landingPageService = new Mock<ILandingPageListService>();
             landingPageService.Setup(s => s.GetLandingPageList()).Returns(new List<LandingPage> { new LandingPage() });
             var controller = CreateCommonSettingController(landingPageService: landingPageService.Object);
 
@@ -47,11 +47,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Controllers
         }
 
         private CommonSettingController CreateCommonSettingController(
-            ILandingPageService landingPageService = null,
+            ILandingPageListService landingPageService = null,
             ITrackingStatisticsService trackingStatisticsService = null
             )
         {
-            var fakelandingPageService = landingPageService ?? Mock.Of<ILandingPageService>();
+            var fakelandingPageService = landingPageService ?? Mock.Of<ILandingPageListService>();
             var faketrackingStatisticsService = trackingStatisticsService ?? Mock.Of<ITrackingStatisticsService>();
 
             return new CommonSettingController(fakelandingPageService, faketrackingStatisticsService);

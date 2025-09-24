@@ -24,6 +24,11 @@ module.exports = env => {
         context: path.resolve(__dirname, "."),
         mode: env,
         stats: { modules: false },
+        performance: {
+            hints: isDevBuild ? false : 'warning',
+            maxAssetSize: 400000, // Increase limit to 400KB for vendor bundles
+            maxEntrypointSize: 400000
+        },
         module: {
             rules: [{
                 test: /\.(png|woff|woff2|eot|ttf)(\?|$)/,
@@ -62,7 +67,17 @@ module.exports = env => {
         module: {
             rules: [{
                 test: /\.s?[ac]ss$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                use: [
+                    MiniCssExtractPlugin.loader, 
+                    "css-loader", 
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: isDevBuild,
+                            implementation: require('sass') // Use Dart Sass explicitly
+                        }
+                    }
+                ]
             }]
         },
         plugins: [

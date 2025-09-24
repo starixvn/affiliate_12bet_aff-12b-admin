@@ -215,3 +215,34 @@ export const getLastDayOfThisMonth = () => {
     const today = moment()
     return today.endOf('month').format('MM/DD/YYYY');
 }
+
+
+
+let _xsrfToken = null;
+
+export const getAntiForgeryToken = () => {
+    if (!_xsrfToken) {
+        _xsrfToken = document.querySelector("input[name=__RequestVerificationToken]").value;
+    }
+
+    return _xsrfToken;
+}
+
+export const resizeWidthHeight = (realWidth, realHeight, size = 500) => {
+    let width = Number(realWidth);
+    let height = Number(realHeight);
+
+    if (width < size && height < size) {
+        return { width, height }
+    }
+
+    if (width > height) {
+        height = (size * height) / width;
+        width = size;
+    } else {
+        width = (size * width) / height;
+        height = size;
+    }
+
+    return { width, height }
+}

@@ -8,11 +8,11 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery
         public int PageId { get; set; }
 
         [Required(ErrorMessage = "Landing Page Name is required.")]
-        [MaxLength(Validation.MaxLengthLandingPage, ErrorMessage = "Landing Page Name must not exceed 50 characters")]
+        [MaxLength(Validation.MaxLengthInLandingPage, ErrorMessage = "Page name must not exceed 50 characters.")]
         public string PageName { get; set; }
 
         [Required(ErrorMessage = "Landing Page Code is required.")]
-        [MaxLength(Validation.MaxLengthLandingPage, ErrorMessage = "Landing Page Code must not exceed 50 characters")]
+        [MaxLength(Validation.MaxLengthInLandingPage, ErrorMessage = "Page code must not exceed 50 characters, without spaces or special characters.")]
         public string PageCode { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]

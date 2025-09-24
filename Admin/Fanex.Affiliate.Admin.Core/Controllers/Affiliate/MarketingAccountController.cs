@@ -54,7 +54,7 @@
             var viewModel = new MarketingAccountViewModel
             {
                 LanguageList = _systemService.GetLanguageList(),
-                DealList = _commonDealService.GetNormalDealList(new GetNormalDealParam()).Where(c => c.GroupName.Contains("NoCommission-")),
+                DealList = _commonDealService.GetMarketingDealList(new GetNormalDealParam()),
                 TargetCountryList = _systemService.GetTargetCountryList(),
                 SubMenuList = subMenu
             };

@@ -35,10 +35,37 @@ export const Content = (props) => {
         props.setParam(newParam);
     };
 
+    const _onCheckAll = (isCheckAll) => {
+        const { checkedBanners } = props;
+        const newCheckedBanners = Object.keys(checkedBanners).reduce((accumulator, currentValue) => {
+            accumulator[currentValue] = isCheckAll;
+
+            return accumulator;
+        }, {});
+
+        props.setShouldResetScrollPosition(false);
+        props.setCheckedBanners(newCheckedBanners);
+    }
+
     function _renderHeader() {
+        let allChecked = false;
+        if (props.checkedBanners && Object.keys(props.checkedBanners).length > 0) {
+            allChecked = Object.keys(props.checkedBanners).every(function (key) {
+                return props.checkedBanners[key];
+            });
+        }
+        
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={20}></Cell>
+                <Cell header={true} colWidth={20}>
+                    <input
+                        className="my-2"
+                        id={`checkbox-all`}
+                        type="checkbox"
+                        checked={allChecked}
+                        onChange={(e) => _onCheckAll(e.target.checked)}
+                    />
+                </Cell>
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={50} title={headerText.UserType}>{headerText.UserType}</Cell>
                 <Cell header={true} colWidth={415} title={headerText.Images}>{headerText.Images}</Cell>

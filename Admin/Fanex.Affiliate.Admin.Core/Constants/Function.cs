@@ -14,6 +14,20 @@
 
         public const string Media = "[Media]";
 
+        public const string LandingPage = "[Media]";
+        
+        public const string PageManagement = "[PageBuilder]";
+
+        public const string AssetUploader = "[AssetUploader]";
+
+        public const string RegistrationFormUploader = "[RegistrationFormUploader]";
+
+        public const string AllCampaigns = "[AllCampaigns]";
+
+        public const string ComponentManagement = "[ComponentManagement]";
+
+        public const string LinkGenerator = "[LinkGenerator]";
+
         public const string AffExRate = "[AffEx.Rate]";
 
         public const string HotNews = "[HotNews]";

@@ -98,7 +98,6 @@ const Filter = ({ setParams, params, toggleSubmit, today, deals }) => {
                         valueField="name"
                         statusField="checked"
                         maxDisplayItemCount={1}
-                        noneSelectedLabel="None Select"
                         selectedAllLabel="All Deals"
                         hasInputOption={true}
                         onChange={handleChangeDeals} />

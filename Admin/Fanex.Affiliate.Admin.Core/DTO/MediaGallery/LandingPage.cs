@@ -16,6 +16,10 @@
 
         public string BlockTargetCountry { get; set; }
 
+        public bool CanEdit { get; set; }
+
         public bool IsDefault { get; set; }
+
+        public byte StatusId { get; set; }
     }
 }

@@ -9,11 +9,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class CommonSettingController : BaseController
     {
-        private readonly ILandingPageService _landingPageService;
+        private readonly ILandingPageListService _landingPageService;
         private readonly ITrackingStatisticsService _trackingStatisticsService;
 
         public CommonSettingController(
-            ILandingPageService landingPageService,
+            ILandingPageListService landingPageService,
             ITrackingStatisticsService trackingStatisticsService
             )
         {

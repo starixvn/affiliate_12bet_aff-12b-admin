@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Web;
 
 namespace Fanex.Affiliate.Admin.Core.Utilities
 {
@@ -32,6 +33,9 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
             {
                 var oldFullPath = Path.Combine(serverPath, oldFilePath);
                 var newFullPath = Path.Combine(serverPath, newFilePath);
+
+                var directory = Path.GetDirectoryName(newFullPath);
+                EnsureDirectoryExists(directory);
 
                 if (File.Exists(oldFullPath))
                 {
@@ -105,6 +109,50 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         public string GetExtension(string fileName)
         {
             return Path.GetExtension(fileName);
+        }
+
+        // New methods for Landing Page Builder
+        public void SaveFile(HttpPostedFileBase file, string path)
+        {
+            if (file == null)
+            {
+                throw new ArgumentNullException(nameof(file));
+            }
+
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentException("Path cannot be null or empty", nameof(path));
+            }
+
+            // Ensure directory exists
+            var directory = Path.GetDirectoryName(path);
+            EnsureDirectoryExists(directory);
+
+            // Save the file
+            file.SaveAs(path);
+        }
+
+        public bool FileExists(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return false;
+            }
+
+            return File.Exists(path);
+        }
+
+        public void EnsureDirectoryExists(string directoryPath)
+        {
+            if (string.IsNullOrWhiteSpace(directoryPath))
+            {
+                return;
+            }
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
         }
     }
 }

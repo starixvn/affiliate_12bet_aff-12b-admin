@@ -44,6 +44,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string BannerRootUrl => GetValue("BannerUrl");
 
+        public string LandingPageUrl => GetValue("LandingPageUrl");
+
         public string EmailBackgroundUrl => GetValue("EmailBackgroundUrl");
 
         public string[] BannerFolders => GetValue("BannerFolders").Split(';');

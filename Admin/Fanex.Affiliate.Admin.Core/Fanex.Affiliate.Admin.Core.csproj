@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -121,6 +121,9 @@
     </Reference>
     <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.2.8.24\lib\net472\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp, Version=3.119.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SkiaSharp.3.119.0\lib\net462\SkiaSharp.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Configurations">
       <HintPath>..\AffiliateAdmin\_Dependencies\Sunplus.Agent.Configurations.dll</HintPath>
@@ -257,6 +260,7 @@
     <Compile Include="Apis\ILicenseeApi.cs" />
     <Compile Include="Apis\ITokenApi.cs" />
     <Compile Include="Attributes\AllowByPassFunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\AllowLandingPageFrameAttribute.cs" />
     <Compile Include="Attributes\CensoredPermissionCheckAttribute.cs" />
     <Compile Include="Attributes\RequiredDependOnFieldAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
@@ -286,6 +290,8 @@
     <Compile Include="Commands\Auth\ReCheckinCommand.cs" />
     <Compile Include="Commands\BaseAffNonQueryCommand.cs" />
     <Compile Include="Commands\BaseNonQueryCommand.cs" />
+    <Compile Include="Commands\CampaignManagement\InsertCampaignCommand.cs" />
+    <Compile Include="Commands\CampaignManagement\UpdateCampaignCommand.cs" />
     <Compile Include="Commands\ChangeAdminPasswordCommand.cs" />
     <Compile Include="Commands\Customer\UpdateAffTypeCommand.cs" />
     <Compile Include="Commands\Customer\UpdateLanguageCommand.cs" />
@@ -301,6 +307,17 @@
     <Compile Include="Commands\Domain\UpdateDomainCommand.cs" />
     <Compile Include="Commands\Domain\UpdateDomainControlCommand.cs" />
     <Compile Include="Commands\Domain\UpdateSpecificDomainControlCommand.cs" />
+    <Compile Include="Commands\LandingPage\BasePageBuilderCommand.cs" />
+    <Compile Include="Commands\LandingPage\InsertLandingPageCampaignCommand.cs" />
+    <Compile Include="Commands\LandingPage\InsertLandingPageDealCommand.cs" />
+    <Compile Include="Commands\LandingPage\BaseAssetNonQueryCommand.cs" />
+    <Compile Include="Commands\LandingPage\DeleteAssetsCommand.cs" />
+    <Compile Include="Commands\LandingPage\UpdateLandingPageStatusCommand.cs" />
+    <Compile Include="Commands\LandingPage\UpdateAssetsStatusCommand.cs" />
+    <Compile Include="Commands\LandingPage\UpdateAssetCommand.cs" />
+    <Compile Include="Commands\LandingPage\InsertPageBuilderCommand.cs" />
+    <Compile Include="Commands\LandingPage\UpdatePageBuilderCommand.cs" />
+    <Compile Include="Commands\LandingPage\UploadAssetsCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseBannerCommand.cs" />
     <Compile Include="Commands\MediaGallery\BaseLandingPageCommand.cs" />
     <Compile Include="Commands\MediaGallery\DeleteBannerCommand.cs" />
@@ -348,6 +365,7 @@
     <Compile Include="Constants\Field.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Constants\HeaderKey.cs" />
+    <Compile Include="Constants\LandingPageConstants.cs" />
     <Compile Include="Constants\Money.cs" />
     <Compile Include="Constants\NoteSpPrefix.cs" />
     <Compile Include="Constants\PaymentMethod.cs" />
@@ -363,10 +381,18 @@
     <Compile Include="Controllers\Affiliate\AffiliateController.cs" />
     <Compile Include="Controllers\Affiliate\EmailHistoryController.cs" />
     <Compile Include="Controllers\Affiliate\MarketingAccountController.cs" />
+    <Compile Include="Controllers\AssetModificationController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CampaignManagement\CampaignManagementController.cs" />
     <Compile Include="Controllers\Domain\MemberDomainController.cs" />
     <Compile Include="Controllers\Domain\SpecificDomainControlController.cs" />
+    <Compile Include="Controllers\LandingPage\FormManagementController.cs" />
+    <Compile Include="Controllers\LandingPage\BaseAssetUploaderController.cs" />
+    <Compile Include="Controllers\LandingPage\PageManagementController.cs" />
+    <Compile Include="Controllers\LandingPage\PageBuilderController.cs" />
+    <Compile Include="Controllers\LandingPage\LandingPageController.cs" />
+    <Compile Include="Controllers\LandingPage\AssetUploaderController.cs" />
     <Compile Include="Controllers\Operation\DealAssignmentController.cs" />
     <Compile Include="Controllers\Operation\OperationController.cs" />
     <Compile Include="Controllers\ReadOnlySessionBaseController.cs" />
@@ -415,6 +441,9 @@
     <Compile Include="Criterias\AffPagingByDateCriteria.cs" />
     <Compile Include="Commands\Auth\CheckUserPermissionCommand.cs" />
     <Compile Include="Criterias\Auth\UserPermissionCriteria.cs" />
+    <Compile Include="Criterias\CampaignManagement\GetAllCampaignStatusCriteria.cs" />
+    <Compile Include="Criterias\CampaignManagement\GetCampaignDashboardCriteria.cs" />
+    <Compile Include="Criterias\CampaignManagement\GetCampaignListCriteria.cs" />
     <Compile Include="Criterias\Customer\AffiliateInfoOnLeftPanelCriteria.cs" />
     <Compile Include="Criterias\Customer\AffiliateOnlineCriteria.cs" />
     <Compile Include="Criterias\Customer\CustomerStatisticsCriteria.cs" />
@@ -428,6 +457,13 @@
     <Compile Include="Criterias\Administrator\AdministratorCriteria.cs" />
     <Compile Include="Criterias\Administrator\AdministratorDetailCriteria.cs" />
     <Compile Include="Criterias\Domain\GetTargetCountryListByDomainCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetPageBuilderDetailCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetAssetDetailCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetAssetUploaderCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetCampaignInfoCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetMediaSourceCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetModuleCriteria.cs" />
+    <Compile Include="Criterias\LandingPage\GetPageManagementCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BannerCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BannerDetailCriteria.cs" />
     <Compile Include="Criterias\MediaGallery\BaseBannerCriteria.cs" />
@@ -459,6 +495,7 @@
     <Compile Include="Criterias\Report\ReportCutOffDateCriteria.cs" />
     <Compile Include="Criterias\Report\TransferReportCriteria.cs" />
     <Compile Include="Criterias\Report\TurnoverCpaDetailCriteria.cs" />
+    <Compile Include="Criterias\TargetCountryCriteria.cs" />
     <Compile Include="Criterias\UserPanel\CustomerMemberCriteria.cs" />
     <Compile Include="Criterias\UserPanel\LandingPageStatistics\BaseLandingPageStatisticsCritera.cs" />
     <Compile Include="Criterias\UserPanel\LandingPageStatistics\LandingPageStatisticsCriteria.cs" />
@@ -493,6 +530,8 @@
     <Compile Include="DTO\Api\MemberSiteCustomerInfo.cs" />
     <Compile Include="DTO\Api\PaymentRequestInfo.cs" />
     <Compile Include="DTO\Api\TokenInfo.cs" />
+    <Compile Include="DTO\CampaignManagement\CampaignDashboard.cs" />
+    <Compile Include="DTO\CampaignManagement\CampaignStatus.cs" />
     <Compile Include="DTO\Common\TargetCountry.cs" />
     <Compile Include="DTO\Currency.cs" />
     <Compile Include="DTO\Customer\TransferLimitSettingInfo.cs" />
@@ -501,6 +540,13 @@
     <Compile Include="DTO\Domain\DomainInfo.cs" />
     <Compile Include="DTO\Domain\SpecificDomainControlInfo.cs" />
     <Compile Include="DTO\Domain\TargetCountryByDomain.cs" />
+    <Compile Include="DTO\Campaign\CampaignDetailInfo.cs" />
+    <Compile Include="DTO\LandingPage\ModuleComponentItem.cs" />
+    <Compile Include="DTO\LandingPage\ModuleInfo.cs" />
+    <Compile Include="DTO\LandingPage\MediaSourceInfo.cs" />
+    <Compile Include="DTO\LandingPage\PageBuilderDetail.cs" />
+    <Compile Include="DTO\LandingPage\StatusInfo.cs" />
+    <Compile Include="DTO\LandingPage\PageManagement.cs" />
     <Compile Include="DTO\Market.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryDetailInfo.cs" />
     <Compile Include="DTO\EmailHistory\EmailHistoryInfo.cs" />
@@ -518,6 +564,7 @@
     <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\Category.cs" />
+    <Compile Include="DTO\LandingPage\AssetDetail.cs" />
     <Compile Include="DTO\MediaGallery\MediaGalleryFilterItem.cs" />
     <Compile Include="DTO\Member\LatestBillingDate.cs" />
     <Compile Include="DTO\Member\MemberInfo.cs" />
@@ -564,6 +611,11 @@
     <Compile Include="MetaModels\Administrator\UpdatePolicyParam.cs" />
     <Compile Include="MetaModels\Administrator\UpdateUserParam.cs" />
     <Compile Include="MetaModels\Api\TokenRequestParam.cs" />
+    <Compile Include="MetaModels\AssetModification\DeleteAssetParam.cs" />
+    <Compile Include="MetaModels\AssetModification\AddAssetsParam.cs" />
+    <Compile Include="MetaModels\CampaignManagement\GetCampaignListParam.cs" />
+    <Compile Include="MetaModels\CampaignManagement\InsertCampaignParam.cs" />
+    <Compile Include="MetaModels\CampaignManagement\UpdateCampaignParam.cs" />
     <Compile Include="MetaModels\ChangeAdminPassword\ChangeAdminPasswordParam.cs" />
     <Compile Include="MetaModels\CheckPermissionParam.cs" />
     <Compile Include="MetaModels\Customer\TransferLimitSettingParam.cs" />
@@ -579,6 +631,19 @@
     <Compile Include="MetaModels\Domain\UpdateSpecificDomainControlParam.cs" />
     <Compile Include="MetaModels\EmailHistory\DeleteEmailHistoryParam.cs" />
     <Compile Include="MetaModels\EmailHistory\EmailHistoryParam.cs" />
+    <Compile Include="MetaModels\LandingPage\AssetDetailParam.cs" />
+    <Compile Include="MetaModels\LandingPage\AssetUploaderParam.cs" />
+    <Compile Include="MetaModels\LandingPage\BaseAssetParam.cs" />
+    <Compile Include="MetaModels\LandingPage\InsertLandingPageCampaignParam.cs" />
+    <Compile Include="MetaModels\LandingPage\InsertLandingPageDealParam.cs" />
+    <Compile Include="MetaModels\LandingPage\InsertUpdatePageBuilderParam.cs" />
+    <Compile Include="MetaModels\LandingPage\UpdateLandingPageStatusParam.cs" />
+    <Compile Include="MetaModels\LandingPage\MediaSourceParam.cs" />
+    <Compile Include="MetaModels\LandingPage\PageManagementParam.cs" />
+    <Compile Include="MetaModels\LandingPage\DeleteAssetsParam.cs" />
+    <Compile Include="MetaModels\LandingPage\UpdateAssetParam.cs" />
+    <Compile Include="MetaModels\LandingPage\UpdateAssetsStatusParam.cs" />
+    <Compile Include="MetaModels\LandingPage\UploadAssetsParam.cs" />
     <Compile Include="MetaModels\Login\LoginParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParam.cs" />
     <Compile Include="MetaModels\MediaGallery\BannerParamFromHome.cs" />
@@ -593,7 +658,7 @@
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Report\AffiliateReport.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
-    <Compile Include="DTO\SelectItem.cs" />
+    <Compile Include="DTO\Campaign\CampaignInfo.cs" />
     <Compile Include="DTO\SubMenu.cs" />
     <Compile Include="DTO\UserPanel\ContactApp.cs" />
     <Compile Include="DTO\UserPanel\CustomerMember.cs" />
@@ -638,6 +703,7 @@
     <Compile Include="MetaModels\Operation\DeleteDealParam.cs" />
     <Compile Include="MetaModels\Operation\GetNormalDealParam.cs" />
     <Compile Include="MetaModels\PaginationRequest.cs" />
+    <Compile Include="MetaModels\PagingParam.cs" />
     <Compile Include="MetaModels\ParamFromHome.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
@@ -673,15 +739,29 @@
     </Compile>
     <Compile Include="Services\Affiliate\IMarketingAccountService.cs" />
     <Compile Include="Services\Affiliate\MarketingAccountService.cs" />
+    <Compile Include="Services\AssetModification\AssetModificationService.cs" />
+    <Compile Include="Services\AssetModification\IAssetModificationService.cs" />
     <Compile Include="Services\Auth\IAuthService.cs" />
     <Compile Include="Services\Auth\AuthService.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
+    <Compile Include="Services\CampaignManagement\CampaignService.cs" />
+    <Compile Include="Services\CampaignManagement\ICampaignService.cs" />
     <Compile Include="Services\Domain\CommonDomainService.cs" />
     <Compile Include="Services\Domain\ICommonDomainService.cs" />
     <Compile Include="Services\Domain\ISpecificDomainControlService.cs" />
     <Compile Include="Services\Domain\SpecificDomainControlService.cs" />
     <Compile Include="Services\EmailHistory\EmailHistoryService.cs" />
     <Compile Include="Services\EmailHistory\IEmailHistoryService.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\LandingPage\AssetUploaderService.cs" />
+    <Compile Include="Services\LandingPage\IAssetUploaderService.cs" />
+    <Compile Include="Services\LandingPage\ILandingPageService.cs" />
+    <Compile Include="Services\LandingPage\IPageBuilderService.cs" />
+    <Compile Include="Services\LandingPage\IPageManagementService.cs" />
+    <Compile Include="Services\LandingPage\LandingPageService.cs" />
+    <Compile Include="Services\LandingPage\PageBuilderService.cs" />
+    <Compile Include="Services\LandingPage\PageManagementService.cs" />
     <Compile Include="Services\Operation\CommonDealService.cs" />
     <Compile Include="Services\Operation\DealAssignmentService.cs" />
     <Compile Include="Services\Operation\IDealAssignmentService.cs" />
@@ -768,8 +848,8 @@
     <Compile Include="Services\MediaGallery\IBannerListService.cs" />
     <Compile Include="Services\MediaGallery\IBannerValidationService.cs" />
     <Compile Include="Services\MediaGallery\ICommonMediaGalleryService.cs" />
-    <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
-    <Compile Include="Services\MediaGallery\LandingPageService.cs" />
+    <Compile Include="Services\MediaGallery\ILandingPageListService.cs" />
+    <Compile Include="Services\MediaGallery\LandingPageListService.cs" />
     <Compile Include="Services\Member\IMemberService.cs" />
     <Compile Include="Services\Member\MemberService.cs" />
     <Compile Include="Services\Message\IMessageService.cs" />
@@ -810,6 +890,7 @@
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\MediaGallery\BannerHelper.cs" />
     <Compile Include="Utilities\DateTimeHelper.cs" />
+    <Compile Include="Utilities\MediaGallery\ImageDimensionHelper.cs" />
     <Compile Include="Utilities\Operation\DealInfoHelper.cs" />
     <Compile Include="Utilities\Operation\DealInfoValidator.cs" />
     <Compile Include="Utilities\Operation\RevenueShareValidator.cs" />
@@ -819,6 +900,9 @@
     <Compile Include="Utilities\TargetCountryHelper.cs" />
     <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\Affiliate\MarketingAccountViewModel.cs" />
+    <Compile Include="ViewModels\LandingPage\AssetUploaderViewModel.cs" />
+    <Compile Include="ViewModels\LandingPage\PageManagementViewModel.cs" />
+    <Compile Include="ViewModels\LandingPage\PageBuilderViewModel.cs" />
     <Compile Include="ViewModels\Operation\AssignDealViewModel.cs" />
     <Compile Include="ViewModels\Operation\OperationViewModel.cs" />
     <Compile Include="ViewModels\Report\AffiliateReportViewModel.cs" />
@@ -897,9 +981,13 @@
     <Error Condition="!Exists('..\..\packages\Refit.5.0.23\build\net461\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Refit.5.0.23\build\net461\refit.targets'))" />
     <Error Condition="!Exists('..\..\packages\MessagePackAnalyzer.3.1.1\build\MessagePackAnalyzer.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MessagePackAnalyzer.3.1.1\build\MessagePackAnalyzer.targets'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+    <Error Condition="!Exists('..\..\packages\SkiaSharp.NativeAssets.macOS.3.119.0\build\net462\SkiaSharp.NativeAssets.macOS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SkiaSharp.NativeAssets.macOS.3.119.0\build\net462\SkiaSharp.NativeAssets.macOS.targets'))" />
+    <Error Condition="!Exists('..\..\packages\SkiaSharp.NativeAssets.Win32.3.119.0\build\net462\SkiaSharp.NativeAssets.Win32.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SkiaSharp.NativeAssets.Win32.3.119.0\build\net462\SkiaSharp.NativeAssets.Win32.targets'))" />
   </Target>
   <Import Project="..\..\packages\MessagePackAnalyzer.3.1.1\build\MessagePackAnalyzer.targets" Condition="Exists('..\..\packages\MessagePackAnalyzer.3.1.1\build\MessagePackAnalyzer.targets')" />
   <Import Project="..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <Import Project="..\..\packages\SkiaSharp.NativeAssets.macOS.3.119.0\build\net462\SkiaSharp.NativeAssets.macOS.targets" Condition="Exists('..\..\packages\SkiaSharp.NativeAssets.macOS.3.119.0\build\net462\SkiaSharp.NativeAssets.macOS.targets')" />
+  <Import Project="..\..\packages\SkiaSharp.NativeAssets.Win32.3.119.0\build\net462\SkiaSharp.NativeAssets.Win32.targets" Condition="Exists('..\..\packages\SkiaSharp.NativeAssets.Win32.3.119.0\build\net462\SkiaSharp.NativeAssets.Win32.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

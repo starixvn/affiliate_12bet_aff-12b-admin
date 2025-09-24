@@ -38,6 +38,8 @@
 
         string BannerRootUrl { get; }
 
+        string LandingPageUrl { get; }
+
         string EmailBackgroundUrl { get; }
 
         string[] BannerFolders { get; }
