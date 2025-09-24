@@ -57,7 +57,6 @@ const TextInputSelector = ({
                         )}
                     </div>
                 </div>
-                {error && <FormFeedback>{error}</FormFeedback>}
             </FormGroup>
         </div>
     );

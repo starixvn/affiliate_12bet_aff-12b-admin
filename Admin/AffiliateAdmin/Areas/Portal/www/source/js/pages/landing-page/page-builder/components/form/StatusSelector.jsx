@@ -5,7 +5,7 @@ import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 import { updateFormField } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
-import { showConfirmToast } from '../../../../common/components/Toast';
+import { showConfirmToast } from '@/pages/common/components/Toast';
 
 const StatusSelector = ({ value, error, updateFormField, statusList, isEditMode, pageBuilderDetail }) => {
     const handleChange = useCallback((event) => {
@@ -64,12 +64,6 @@ const StatusSelector = ({ value, error, updateFormField, statusList, isEditMode,
                             </option>
                         ))}
                     </Input>
-                    {/* {error && <FormFeedback>{error}</FormFeedback>} */}
-                    {/* {value && (
-                        <small className="text-muted">
-                            {getStatusDescription(value)}
-                        </small>
-                    )} */}
                 </Col>
             </Row>
         </FormGroup>

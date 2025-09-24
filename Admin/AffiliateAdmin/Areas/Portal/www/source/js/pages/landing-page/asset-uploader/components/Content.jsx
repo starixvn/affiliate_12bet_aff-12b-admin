@@ -4,12 +4,12 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { resizeWidthHeight } from '../../../../modules/utils';
-import { globalResource } from '../../../../modules/globalResource';
+import { resizeWidthHeight } from '@/modules/utils';
+import { globalResource } from '@/modules/globalResource';
 import { headerText, messageDelete, messageSwitchStatus } from '../libs/constants';
-import { showConfirmToast, showSuccessToast, showErrorToast } from '../../../common/components/Toast';
+import { showConfirmToast, showSuccessToast, showErrorToast } from '@/pages/common/components/Toast';
 import { maxWidthHeight, assetStatus } from '../../libs/constants';
-import { htmlDecode } from '../../../../modules/htmlHelper';
+import { htmlDecode } from '@/modules/htmlHelper';
 import { setSelectedMediaId, setPagingOption, fetchData, setCheckedAssets, setShouldResetScrollPosition, setParam, setAssetDetailUrl, toggleAssetStatus, deleteAssets } from '../actions';
 
 export const Content = (props) => {
@@ -52,7 +52,7 @@ export const Content = (props) => {
         const newStatus = currentStatus === assetStatus.active ? assetStatus.inactive : assetStatus.active;
         showConfirmToast({
             title: "Change Status",
-            content: ["Are you sure you want to change status of the selected image(s)?"],
+            content: [messageSwitchStatus.AreYouSureSwitchStatus],
             onConfirm: async () => {
                 const result = await props.toggleAssetStatus({ mediaIds: `${mediaId}`, statusId: newStatus });
                 if (result && result.IsSuccessful) {

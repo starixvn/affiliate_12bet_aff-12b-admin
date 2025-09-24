@@ -41,7 +41,6 @@ const SearchableDropdown = ({
     
     // Advanced props
     closeOnSelect = true,
-    preventCloseOnClickInside = false,
     children
 }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -394,9 +393,6 @@ const SearchableDropdown = ({
                     {children}
                 </DropdownMenu>
             </Dropdown>
-            
-            {/* Error display */}
-            {error && <div className="invalid-feedback d-block">{error}</div>}
         </div>
     );
 };

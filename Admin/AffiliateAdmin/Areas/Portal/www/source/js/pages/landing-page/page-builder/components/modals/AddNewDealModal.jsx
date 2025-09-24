@@ -19,7 +19,7 @@ import {
 } from 'reactstrap';
 
 import { fetchNormalDealList, insertLandingPageDeal, addDealToList } from '../../actions';
-import { globalResource } from '../../../../../modules/globalResource';
+import { globalResource } from '@/modules/globalResource';
 
 const AddNewDealModal = ({ isOpen, toggle, onAddDeal, normalDealList, dealList, fetchNormalDealList, insertLandingPageDeal, addDealToList }) => {
     const [selectedDealType, setSelectedDealType] = useState('');

@@ -14,20 +14,6 @@ export const setParam = (data) => {
     }
 }
 
-export const setLandingPageDetailUrl = (data) => {
-    return {
-        type: types.SET_LANDING_PAGE_DETAIL_URL,
-        data
-    }
-}
-
-export const setSelectedLandingPageId = (data) => {
-    return {
-        type: types.SET_SELECTED_LANDING_PAGE_ID,
-        data
-    }
-}
-
 export const setShouldResetScrollPosition = (data) => {
     return {
         type: types.SHOULD_RESET_SCROLL_POSITION,

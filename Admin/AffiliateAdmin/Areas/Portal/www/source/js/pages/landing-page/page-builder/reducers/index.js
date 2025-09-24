@@ -1,10 +1,10 @@
 ﻿import { combineReducers } from 'redux';
 
-import createReducer from '../../../../modules/createReducer';
-import { isShowLoader } from '../../../../reducers/loaderReducer';
+import createReducer from '@/modules/createReducer';
+import { isShowLoader } from '@/reducers/loaderReducer';
 import * as types from '../actions/types';
 import { pageBuilderDefaultState } from '../libs/constants';
-import { claimsPrincipal } from '../../../../reducers/claimReducer';
+import { claimsPrincipal } from '@/reducers/claimReducer';
 
 export const landingPageUrl = createReducer(null, {});
 export const bannerRootUrl = createReducer(null, {});

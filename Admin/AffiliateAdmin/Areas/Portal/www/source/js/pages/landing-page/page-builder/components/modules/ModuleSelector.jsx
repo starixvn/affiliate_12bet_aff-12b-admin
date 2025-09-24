@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Input, FormFeedback, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import { updateModuleComponent } from '../../actions';
 import { defaultModuleIds } from '../../../libs/constants';
@@ -11,7 +11,6 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedModuleId, setSelectedModuleId] = useState(null);
     const [dropDirection, setDropDirection] = useState('down');
-    const [showTooltip, setShowTooltip] = useState(false);
     const dropdownRef = useRef(null);
 
     const toggle = useCallback(() => {
@@ -215,7 +214,6 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                     )}
                 </DropdownMenu>
             </Dropdown>
-            {/* {error && <div className="invalid-feedback d-block">{error}</div>} */}
         </div>
     );
 };

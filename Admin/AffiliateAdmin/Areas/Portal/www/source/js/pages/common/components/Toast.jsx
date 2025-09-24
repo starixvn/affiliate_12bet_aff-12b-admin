@@ -20,10 +20,10 @@ const ConfirmToast = ({ title, content, onConfirm, onCancel, cancelText, submitT
         <div className="toast-content">
             {Array.isArray(content) ? (
                 content.map((line, index) => (
-                    <p key={index} className="toast-line">{line}</p>
+                    <p key={index} className="toast-line"><div dangerouslySetInnerHTML={{ __html: line }}></div></p>
                 ))
             ) : (
-                <p className="toast-line">{content}</p>
+                <p className="toast-line"><div dangerouslySetInnerHTML={{ __html: content }}></div></p>
             )}
             <div className="toast-actions">
                 <button
@@ -79,7 +79,7 @@ const NotificationToast = ({ title, content, type, toastId }) => {
             <div className="toast-content">
                 {Array.isArray(content) ? (
                     content.map((line, index) => (
-                        <p key={index} className="toast-line">{line}</p>
+                        <p key={index} className="toast-line"><div dangerouslySetInnerHTML={{ __html: line }}></div></p>
                     ))
                 ) : (
                     <p className="toast-line"><div dangerouslySetInnerHTML={{ __html: content }}></div></p>

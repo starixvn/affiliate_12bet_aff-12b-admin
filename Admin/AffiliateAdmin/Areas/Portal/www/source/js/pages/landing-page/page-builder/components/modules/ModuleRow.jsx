@@ -136,21 +136,6 @@ const ModuleRow = ({ module, isFirst, isLast, canRemove, validation, moduleCompo
                                 {pageBuilderLabels.remove}
                             </span>
                         </Button>
-                    
-                    {/* Show constraints info */}
-                    {/* {selectedModuleInfo && (
-                        <div className="module-constraints">
-                            {selectedModuleInfo.IsRequired && (
-                                <small className="text-info d-block">Required</small>
-                            )}
-                            {selectedModuleInfo.IsUnique && (
-                                <small className="text-warning d-block">Unique</small>
-                            )}
-                            {selectedModuleInfo.IsMultipleUpload && (
-                                <small className="text-success d-block">Multi-source</small>
-                            )}
-                        </div>
-                    )} */}
                 </div>
             </Col>
         </Row>
