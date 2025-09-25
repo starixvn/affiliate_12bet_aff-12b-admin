@@ -21,12 +21,14 @@
         private readonly IDynamicRepository Repository;
         private readonly ISessionService SessionService;
         private readonly IMemoryCacheService CacheServive;
+        private readonly IIpLocationService IpLocationService;
 
         public SystemServiceTest()
         {
             Repository = Substitute.For<IDynamicRepository>();
             SessionService = NSubstituteMockingHelper.FakeSessionService();
             CacheServive = Substitute.For<IMemoryCacheService>();
+            IpLocationService = Substitute.For<IIpLocationService>();
         }
 
         [Fact]
@@ -139,6 +141,6 @@
             };
 
         private SystemService CreateService()
-            => new SystemService(Repository, SessionService, CacheServive);
+            => new SystemService(Repository, SessionService, CacheServive, IpLocationService);
     }
 }

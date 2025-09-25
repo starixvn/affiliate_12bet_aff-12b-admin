@@ -2568,4 +2568,7 @@
   <data name="RevenueSharePayoutExample" xml:space="preserve">
     <value>佣金盈利计算示例</value>
   </data>
+  <data name="NetRevenue" xml:space="preserve">
+    <value>净收入</value>
+  </data>
 </root>

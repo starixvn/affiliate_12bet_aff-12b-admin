@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using Fanex.Affiliate.User.Core.Apis;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
@@ -17,6 +18,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         private readonly IAppSetting AppSetting;
         private readonly ISystemService LanguageService;
         private readonly IMailProcessor MailProcessor;
+        private readonly ILicenseeApi LicenseeApi;
 
         public TestingEmailControllerTest()
         {
@@ -24,6 +26,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             AppSetting = Substitute.For<IAppSetting>();
             MailProcessor = Substitute.For<IMailProcessor>();
             LanguageService = NSubstituteMockingHelper.FakeLanguageService();
+            LicenseeApi = Substitute.For<ILicenseeApi>();
         }
 
         [Fact]
@@ -181,6 +184,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         private TestController CreateTestingEmailController(ISessionService sessionService = null)
-            => new TestController(sessionService ?? SessionService, LanguageService, AppSetting, MailProcessor);
+            => new TestController(sessionService ?? SessionService, LanguageService, AppSetting, MailProcessor, LicenseeApi);
     }
 }
