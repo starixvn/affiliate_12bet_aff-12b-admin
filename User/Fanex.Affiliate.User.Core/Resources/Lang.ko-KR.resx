@@ -2522,4 +2522,7 @@
   <data name="VietnamCountry" xml:space="preserve">
     <value>베트남</value>
   </data>
+  <data name="NetRevenue" xml:space="preserve">
+    <value>순수익</value>
+  </data>
 </root>
