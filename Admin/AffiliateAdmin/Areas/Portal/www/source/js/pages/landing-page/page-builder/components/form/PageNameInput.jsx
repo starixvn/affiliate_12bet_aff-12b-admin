@@ -49,7 +49,7 @@ const PageNameInput = ({ value, error, required = false, updateFormField }) => {
                         onChange={handleChange}
                         invalid={!!error}
                         placeholder="e.g.: New Year Promotion Page"
-                        maxLength={200}
+                        maxLength={50}
                     />
                 </Col>
             </Row>

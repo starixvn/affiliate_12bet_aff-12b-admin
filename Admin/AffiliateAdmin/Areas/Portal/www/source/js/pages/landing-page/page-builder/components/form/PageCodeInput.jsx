@@ -76,7 +76,7 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
                         onChange={handleChange}
                         invalid={!!error}
                         placeholder="e.g.: LP-2025-NY"
-                        maxLength={100}
+                        maxLength={50}
                     />
                     {isValidating && (
                         <small className="text-muted">

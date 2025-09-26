@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { showConfirmToast } from '@/pages/common/components/Toast';
 
 import { updateModuleComponent } from '../../actions';
 import { defaultModuleIds } from '../../../libs/constants';
@@ -11,7 +12,28 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedModuleId, setSelectedModuleId] = useState(null);
     const [dropDirection, setDropDirection] = useState('down');
+    const [showTooltip, setShowTooltip] = useState(false);
     const dropdownRef = useRef(null);
+
+    const toggleTooltip = () => {
+        if (showTooltip) {
+            setShowTooltip(false);
+        } else {
+            showConfirmToast({
+                title: "Background Module",
+                content: "This module must be selected first and is required for the landing page to display.",
+                onConfirm: () => {
+                    setShowTooltip(false);
+                },
+                onCancel: () => {
+                    setShowTooltip(false);
+                },
+                cancelText: "Cancel",
+                submitText: "OK",
+                isNotification: true
+            });
+        };
+    };
 
     const toggle = useCallback(() => {
         if (value === defaultModuleIds.Background) {
@@ -162,13 +184,13 @@ const ModuleSelector = ({ moduleId, value, error, moduleList, moduleComponents, 
                 </DropdownToggle>
                 {
                     isBackgroundModule && (
-                    <div 
-                        className="rounded-circle note-info"
-                        style={{ cursor: 'pointer', top: '2px', right: '2px', position: 'absolute' }}
-                        title="This module must be selected first and is required for the landing page to display."
-                    >
-                        <span class="oi oi-info"></span>
-                    </div>
+                        <div 
+                            className="rounded-circle note-info"
+                            style={{ cursor: 'pointer', top: '2px', right: '2px', position: 'absolute' }}
+                            onClick={toggleTooltip}
+                        >
+                            <span class="oi oi-info"></span>
+                        </div>
                     )
                 }
                 <DropdownMenu 

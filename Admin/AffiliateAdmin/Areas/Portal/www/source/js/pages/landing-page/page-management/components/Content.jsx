@@ -48,8 +48,8 @@ export const Content = (props) => {
         showConfirmToast({
             title: "Confirm Status Change",
             content: [
-                'Only Active pages are available for link generation.',
-                'Inactive pages are not available for link generation. Existing links with an Inactive page will redirect users to the main join page.',
+                'Only Active pages are available for link generation, while Draft and Inactive pages are not.',
+                'Existing links with an Inactive page will redirect users to the main join page.',
                 'Are you sure you want to change status of this landing page?'
             ],
             onConfirm: async () => {
