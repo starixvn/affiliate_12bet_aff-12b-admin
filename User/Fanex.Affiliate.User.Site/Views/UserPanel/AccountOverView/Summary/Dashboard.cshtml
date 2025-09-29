@@ -58,6 +58,19 @@
             <span class="info-panel-content">@Model.NetGGR.ToStringMoneyWithSymbol("$")</span>
         </div>
     </div>
+    <div class="group group-three">
+        <div class="img-icon">
+            <img class="img-responsive" src="~/www/build/styles/Images/account-overview/total-deposit.svg" alt="Total Deposit icon" />
+        </div>
+        <div class="info-panel">
+            <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.TotalClick</span>
+            <span class="info-panel-content">@Model.TotalClick.FormatNumber()</span>
+        </div>
+        <div class="info-panel">
+            <span class="info-panel-title @sessionService.CurrentLanguage">@Lang.UniqueClick</span>
+            <span class="info-panel-content">@Model.UniqueClick.FormatNumber()</span>
+        </div>
+    </div>
 </div>
 
 @if (!Model.IsMaxSubLevel)
