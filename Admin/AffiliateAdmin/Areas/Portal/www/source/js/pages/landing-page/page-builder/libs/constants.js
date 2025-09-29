@@ -78,8 +78,3 @@ export const validationMessages = {
 };
 
 export const pageCodePattern = /^[a-zA-Z0-9-_]+$/;
-
-export const messageSwitchStatus = {
-    SwitchStatusSuccessfully: 'Status changed successfully.',
-    FailedToSwitchStatus: 'Failed to change status.'
-};

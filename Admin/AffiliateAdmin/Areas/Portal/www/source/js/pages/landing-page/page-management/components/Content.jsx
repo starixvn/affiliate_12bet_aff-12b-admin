@@ -7,8 +7,8 @@ import IframeHoverPreview from './IframeHoverPreview';
 import StatusDropdown from '../../common/components/StatusDropdown';
 
 import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
-import { headerText, globalResource, messageSwitchStatus } from '../libs/constants';
-import { landingPageStatus } from '../../libs/constants';
+import { headerText, globalResource } from '../libs/constants';
+import { landingPageStatus, messageSwitchLandingPageStatus } from '../../libs/constants';
 import { setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam } from '../actions';
 import { showConfirmToast, showSuccessToast, showErrorToast } from '../../../common/components/Toast';
 
@@ -47,11 +47,7 @@ export const Content = (props) => {
         // Use the same confirm toast as all-campaign (blue styling)
         showConfirmToast({
             title: "Confirm Status Change",
-            content: [
-                'Only Active pages are available for link generation, while Draft and Inactive pages are not.',
-                'Existing links with an Inactive page will redirect users to the main join page.',
-                'Are you sure you want to change status of this landing page?'
-            ],
+            content: messageSwitchLandingPageStatus.AreYouSureSwitchStatus,
             onConfirm: async () => {
                 const result = await props.toggleLandingPageStatus({ pageId, statusId: newStatus.key });
                 if (result && result.IsSuccessful) {
@@ -60,9 +56,9 @@ export const Content = (props) => {
 
                 // Show toast notification for feedback
                 if (result?.IsSuccessful) {
-                    return showSuccessToast('Status Updated', messageSwitchStatus.SwitchStatusSuccessfully);
+                    return showSuccessToast('Status Updated', messageSwitchLandingPageStatus.SwitchStatusSuccessfully);
                 } else {
-                    return showErrorToast('Status Update Failed', result?.Message || messageSwitchStatus.FailedToSwitchStatus);
+                    return showErrorToast('Status Update Failed', result?.Message || messageSwitchLandingPageStatus.FailedToSwitchStatus);
                 }
             },
             onCancel: () => {

@@ -64,3 +64,11 @@ export const defaultModuleIds = {
     LicenseAwards: 13,
     LoginBtn: 14
 };
+
+export const messageSwitchLandingPageStatus = {
+    SwitchStatusSuccessfully: 'Status changed successfully',
+    AreYouSureSwitchStatus: `Only Active landing pages are available for link generation, while Draft and Inactive pages are not.<br />
+    Existing links with an Inactive page will redirect users to the main join page.<br />
+    Are you sure you want to change status of this landing page?`,
+    FailedToSwitchStatus: 'Failed to change status'
+}

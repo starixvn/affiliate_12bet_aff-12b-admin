@@ -6,6 +6,7 @@ import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { updateFormField } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
 import { showConfirmToast } from '@/pages/common/components/Toast';
+import { messageSwitchLandingPageStatus } from '../../../libs/constants';
 
 const StatusSelector = ({ value, error, updateFormField, statusList, isEditMode, pageBuilderDetail }) => {
     const handleChange = useCallback((event) => {
@@ -15,11 +16,7 @@ const StatusSelector = ({ value, error, updateFormField, statusList, isEditMode,
         if (isEditMode && pageBuilderDetail && pageBuilderDetail.PageId) {
             showConfirmToast({
                 title: "Confirm Status Change",
-                content: [
-                    'Only Active pages are available for link generation.',
-                    'Inactive pages are not available for link generation. Existing links with an Inactive page will redirect users to the main join page.',
-                    'Are you sure you want to change status of this landing page?'
-                ],
+                content: messageSwitchLandingPageStatus.AreYouSureSwitchStatus,
                 onConfirm: () => {
                     updateFormField('status', newStatusId);
                 },

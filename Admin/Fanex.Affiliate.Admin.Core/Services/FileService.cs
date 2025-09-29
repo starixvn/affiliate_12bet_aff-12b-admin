@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private const int MaxLength = 200;
         private const string RestrictedMultiInputFileNamesPattern = "[\\\\/:*?\"<>#%&+]";
         private const string DuplicateFileNameMessage = "{0} Name is unique, please enter other {0} name!";
-        private const string ExistingAssetsMessage = "This file name(s) belong to existing asset(s). Please change the file name.";
+        private const string ExistingAssetsMessage = "File name(s) already exists: {0}. Please rename or remove the file(s). before uploading.";
 
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             }
 
             result.Message = result.IsSuccessful ? string.Empty
-                : message.Append(ExistingAssetsMessage).ToString();
+                : string.Format(ExistingAssetsMessage, message);
 
             return result;
         }

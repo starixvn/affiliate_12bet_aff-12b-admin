@@ -319,7 +319,7 @@ export const BaseMediaUploaderForm = ({
 
     const handleAfterSave = useCallback((isInsert, result) => {
         if (result) {
-            const itemType = showMediaNames ? (isInsert ? "asset" : "asset") : (isInsert ? "image(s)" : "image");
+            const itemType = showMediaNames ? (isInsert ? "form(s)" : "form") : (isInsert ? "image(s)" : "image");
             const message = isInsert ? `Your ${itemType} has been added successfully!` : `Your ${itemType} has been updated successfully!`;
 
             if (result.IsSuccessful) {
@@ -331,7 +331,7 @@ export const BaseMediaUploaderForm = ({
             }
             
         } else {
-            const itemType = showMediaNames ? "asset" : "image(s)";
+            const itemType = showMediaNames ? "form(s)" : "image(s)";
             const message = isInsert ? `Oops! Failed to add your ${itemType}!` : `Oops! Failed to update your ${itemType}!`;
             showMessage(message, false);
         }
@@ -494,7 +494,15 @@ export const BaseMediaUploaderForm = ({
                                     <p>[Valid Types: {allowedExtensions && allowedExtensions.join(', ')}]</p>
                                     <p className="d-block">[File Size Limit: {maxFileSize}MB]</p>
                                     <p className="d-block">[Maximum files: {maximumFiles}]</p>
-                                    <span><strong>Note:</strong> Module, Target Country, and Language cannot be changed if the image is already used in an existing landing page.</span>
+                                    <span><strong>Note: </strong>
+                                    {
+                                        showMediaNames ? (
+                                            <span>Target Country, and Language cannot be changed if the form is already used in an existing landing page.</span>
+                                        ) : (
+                                            <span>Module, Target Country, and Language cannot be changed if the image is already used in an existing landing page.</span>
+                                        )
+                                    }
+                                    </span>
                                 </div>
                                 
                                 {/* Module Selection */}

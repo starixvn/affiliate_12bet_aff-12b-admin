@@ -50,7 +50,7 @@ export const Content = (props) => {
 
         showConfirmToast({
             title: "Change Status",
-            content: ["Are you sure you want to change status of the selected form(s)?"],
+            content: messageSwitchStatus.AreYouSureSwitchStatus,
             onConfirm: async () => {
                 const result = await props.toggleFormStatus({ mediaIds: `${mediaId}`,statusId: newStatus });
                 if (result && result.IsSuccessful) {
