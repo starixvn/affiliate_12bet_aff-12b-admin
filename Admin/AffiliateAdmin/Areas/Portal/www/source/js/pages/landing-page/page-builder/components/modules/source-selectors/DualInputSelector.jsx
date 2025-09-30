@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, FormFeedback, Label, FormGroup } from 'reactstrap';
+import { Input, Label, FormGroup } from 'reactstrap';
 import SingleSourceSelector from './SingleSourceSelector';
 
 const DualInputSelector = ({ 
@@ -49,8 +49,6 @@ const DualInputSelector = ({
                     disabled={isDisabled}
                 />
             </FormGroup>
-            
-            {error && <FormFeedback>{error}</FormFeedback>}
         </div>
     );
 };

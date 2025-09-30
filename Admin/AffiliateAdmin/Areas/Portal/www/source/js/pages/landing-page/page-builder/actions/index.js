@@ -1,5 +1,5 @@
-﻿import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
+﻿import { post } from '@/modules/ajaxRequest';
+import { toggleLoader } from '@/actions/loaderAction';
 import { v4 as uuidv4 } from 'uuid';
 import * as types from './types';
 

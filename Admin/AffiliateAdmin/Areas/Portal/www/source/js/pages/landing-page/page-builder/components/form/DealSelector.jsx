@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Row, Col } from 'reactstrap';
 
-import SearchableDropdown from '../common/SearchableDropdown';
+import SearchableDropdown from '@/components/SearchableDropdown';
 import AddNewDealModal from '../modals/AddNewDealModal';
 
 import { updateFormField } from '../../actions';

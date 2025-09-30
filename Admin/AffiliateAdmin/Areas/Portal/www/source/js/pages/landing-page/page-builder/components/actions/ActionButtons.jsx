@@ -179,7 +179,7 @@ const ActionButtons = ({
         const confirmTitle = isEditMode ? 'Reset Form' : 'Reset Form';
         const confirmMessage = isEditMode 
             ? 'Are you sure you want to reset the form? All changes will be reverted to the original values.'
-            : 'Are you sure you want to reset the form? All changes will be lost.';
+            : 'Are you sure you want to reset the form? All unsaved changes will be lost.';
             
         showConfirmToast({
             title: confirmTitle,
@@ -251,7 +251,7 @@ const ActionButtons = ({
             
             if (isEditMode) {
                 // Update mode: Show success message and update pageBuilderDetail
-                showSuccessToast("Landing Page Updated!", 'Landing page has been edited successfully!');
+                showSuccessToast("Landing Page Updated!", 'Landing page has been updated successfully!');
                 
                 // Update pageBuilderDetail with current form data
                 updatePageBuilderDetail(formData, moduleComponents);

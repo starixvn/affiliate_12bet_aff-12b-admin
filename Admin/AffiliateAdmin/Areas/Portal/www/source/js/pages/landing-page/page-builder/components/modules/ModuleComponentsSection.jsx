@@ -5,7 +5,7 @@ import { Row, Col, Alert } from 'reactstrap';
 import ModuleRow from './ModuleRow';
 import { pageBuilderLabels, validationMessages } from '../../libs/constants';
 
-const ModuleComponentsSection = ({ moduleComponents, validation }) => {
+const ModuleComponentsSection = ({ moduleComponents }) => {
     return (
         <div className="module-components-section">
 

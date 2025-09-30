@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         private const int MaxLength = 200;
         private const string RestrictedMultiInputFileNamesPattern = "[\\\\/:*?\"<>#%&+]";
         private const string DuplicateFileNameMessage = "{0} Name is unique, please enter other {0} name!";
-        private const string ExistingAssetsMessage = "This file name(s) belong to existing asset(s). Please change the file name.";
+        private const string ExistedFileNamesMessage = "File name(s) already exists: {0}. Please rename or remove the file(s). before uploading.";
 
         private readonly IAppSetting _appSetting;
         private readonly ISystemFile _systemFile;
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public ResultInfo CheckMultipleFilesInFolder(string[] inputFileNames, string folder)
         {
             var result = new ResultInfo();
-            var message = new StringBuilder();
+            var existedFileNames = new List<string>();
 
             foreach (var inputFileName in inputFileNames)
             {
@@ -74,12 +74,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
                     }
 
                     result.Code = ErrCode.GeneralErrorCode;
-                    message.Append($"{inputFileName}, ");
+                    existedFileNames.Add(inputFileName);
                 }
             }
 
             result.Message = result.IsSuccessful ? string.Empty
-                : message.Append(ExistingAssetsMessage).ToString();
+                : string.Format(ExistedFileNamesMessage, string.Join(", ", existedFileNames));
 
             return result;
         }

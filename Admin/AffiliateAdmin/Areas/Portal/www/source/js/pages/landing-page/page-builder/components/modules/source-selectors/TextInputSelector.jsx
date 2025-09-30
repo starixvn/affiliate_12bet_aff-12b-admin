@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Input, FormFeedback, FormGroup } from 'reactstrap';
+import { Input, Modal, ModalHeader, ModalBody, Form, FormGroup, Button } from 'reactstrap';
 import { urlFormatExampleImage } from '../../../libs/urlFormatExampleImage';
+import { showConfirmToast } from '@/pages/common/components/Toast';
 
 const TextInputSelector = ({ 
     moduleId, 
@@ -12,6 +13,32 @@ const TextInputSelector = ({
     className = ""
 }) => {
     const [showTooltip, setShowTooltip] = useState(false);
+
+    const toggle = () => {
+        if (showTooltip) {
+            setShowTooltip(false);
+        } else {
+            showConfirmToast({
+                title: "How to insert YouTube link?",
+                content: ["You need to use the YouTube embed link to ensure it works properly.",
+                    `<img 
+                        src=${urlFormatExampleImage}
+                        alt="YouTube embed link"
+                        style="max-Width: 600px"
+                    />`
+                ],
+                onConfirm: () => {
+                    setShowTooltip(false);
+                },
+                onCancel: () => {
+                    setShowTooltip(false);
+                },
+                cancelText: "Cancel",
+                submitText: "OK",
+                isNotification: true
+            });
+        }
+    };
     
     return (
         <div className="source-selector">
@@ -30,34 +57,12 @@ const TextInputSelector = ({
                     />
                     <div 
                         className="position-relative rounded-circle note-info"
-                        onMouseEnter={() => setShowTooltip(true)}
-                        onMouseLeave={() => setShowTooltip(false)}
+                        onClick={toggle}
                         style={{ cursor: 'pointer', marginLeft: '8px', flexShrink: 0 }}
                     >
                         <span class="oi oi-info"></span>
-                        {showTooltip && (
-                            <div 
-                                className="position-absolute bg-white border rounded shadow-lg p-2"
-                                style={{
-                                    top: '-200px',
-                                    right: '25px',
-                                    zIndex: 1050,
-                                    minWidth: '500px'
-                                }}
-                            >
-                                <div className="text-center">
-                                    <img 
-                                        src={urlFormatExampleImage}
-                                        alt="URL Format Example"
-                                        className="img-fluid rounded"
-                                        style={{ maxHeight: '300px', width: 'auto' }}
-                                    />
-                                </div>
-                            </div>
-                        )}
                     </div>
                 </div>
-                {error && <FormFeedback>{error}</FormFeedback>}
             </FormGroup>
         </div>
     );

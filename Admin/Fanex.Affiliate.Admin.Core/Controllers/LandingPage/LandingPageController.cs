@@ -13,17 +13,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.LandingPage
     {
         private readonly IAppSetting _appSetting;
         private readonly ILandingPageService _landingPageService;
-        private readonly IPageManagementService _pageManagementService;
 
         public LandingPageController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILandingPageService landingPageService,
-            IPageManagementService pageManagementService) : base(sessionService)
+            ILandingPageService landingPageService) : base(sessionService)
         {
             _appSetting = appSetting;
             _landingPageService = landingPageService;
-            _pageManagementService = pageManagementService;
         }
 
         [HttpGet]

@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Input, FormFeedback, Label, FormGroup } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 
 import { updateModuleComponent, fetchModuleSources } from '../../actions';
 import SingleSourceSelector from './source-selectors/SingleSourceSelector';
@@ -168,7 +168,6 @@ const SourceSelector = ({
                     onChange={handleSingleSelect}
                     bannerRootUrl={bannerRootUrl}
                 />
-                {/* {error && <FormFeedback>{error}</FormFeedback>} */}
             </FormGroup>
         </div>
     );

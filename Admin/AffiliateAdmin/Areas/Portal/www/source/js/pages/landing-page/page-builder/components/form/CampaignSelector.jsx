@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FormGroup, Label, Row, Col } from 'reactstrap';
 
-import SearchableDropdown from '../common/SearchableDropdown';
+import SearchableDropdown from '@/components/SearchableDropdown';
 import AddNewCampaignModal from '../modals/AddNewCampaignModal';
 
 import { updateFormField, fetchDeals, clearValidationErrors } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
-import { claimResource } from '../../../../../modules/claim';
+import { claimResource } from '@/modules/claim';
 
 const CampaignSelector = ({ value, error, required = false, campaignList, updateFormField, clearValidationErrors, isModifyCampaign }) => {
     const [isAddCampaignModalOpen, setIsAddCampaignModalOpen] = useState(false);

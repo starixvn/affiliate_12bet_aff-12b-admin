@@ -61,25 +61,20 @@ export const pageBuilderDefaultState = {
 };
 
 export const validationMessages = {
-    campaignRequired: 'Campaign Name is required',
-    pageNameRequired: 'Page Name is required',
+    campaignRequired: 'Campaign Name is required.',
+    pageNameRequired: 'Page Name is required.',
     pageNameExists: 'Page Name already exists. Please enter a different name.',
     pageNameInvalid: 'Page name must not exceed 50 characters.',
-    pageCodeRequired: 'Page Code is required',
+    pageCodeRequired: 'Page Code is required.',
     pageCodeExists: 'Page Code already exists. Please enter a different code.',
     pageCodeInvalid: 'Page code must not exceed 50 characters, without spaces or special characters.',
-    moduleRequired: 'Module is required',
+    moduleRequired: 'Module is required.',
     sourceRequired: 'Source is required',
-    atLeastOneModule: 'At least one module component is required',
-    youtubeRequired: 'YouTube URL is required',
-    contactUsRequired: 'Contact link is required',
-    loginBtnRequired: 'Login endpoint is required',
-    atLeastOneDeal: 'At least one deal must be selected'
+    atLeastOneModule: 'At least one module component is required.',
+    youtubeRequired: 'YouTube URL is required.',
+    contactUsRequired: 'Contact link is required.',
+    loginBtnRequired: 'Login endpoint is required.',
+    atLeastOneDeal: 'Please select at least a deal.'
 };
 
 export const pageCodePattern = /^[a-zA-Z0-9-_]+$/;
-
-export const messageSwitchStatus = {
-    SwitchStatusSuccessfully: 'Status changed successfully',
-    FailedToSwitchStatus: 'Failed to change status'
-};

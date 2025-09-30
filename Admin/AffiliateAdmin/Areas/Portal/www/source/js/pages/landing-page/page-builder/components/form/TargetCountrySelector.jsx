@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormGroup, Label, Input, FormFeedback, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 import { updateFormField } from '../../actions';
 import { pageBuilderLabels } from '../../libs/constants';
@@ -42,7 +42,6 @@ const TargetCountrySelector = ({ value, error, targetCountryList, updateFormFiel
                             </option>
                         ))}
                     </Input>
-                    {/* {error && <FormFeedback>{error}</FormFeedback>}  */}
                 </Col>
             </Row>
         </FormGroup>

@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 
-const ConfirmToast = ({ title, content, onConfirm, onCancel, cancelText, submitText, toastId }) => (
+const ConfirmToast = ({ title, content, onConfirm, onCancel, cancelText, submitText, isNotification = false }) => (
     <div className="confirm-toast">
         <div className="toast-header confirm-header">
             <div className="header-content">
@@ -20,19 +20,23 @@ const ConfirmToast = ({ title, content, onConfirm, onCancel, cancelText, submitT
         <div className="toast-content">
             {Array.isArray(content) ? (
                 content.map((line, index) => (
-                    <p key={index} className="toast-line">{line}</p>
+                    <p key={index} className="toast-line"><div dangerouslySetInnerHTML={{ __html: line }}></div></p>
                 ))
             ) : (
-                <p className="toast-line">{content}</p>
+                <p className="toast-line"><div dangerouslySetInnerHTML={{ __html: content }}></div></p>
             )}
             <div className="toast-actions">
-                <button
-                    type="button"
-                    className="btn btn-info mr-2"
-                    onClick={onCancel}
-                >
-                    {cancelText}
-                </button>
+                {
+                    !isNotification && (
+                        <button
+                            type="button"
+                            className="btn btn-info mr-2"
+                            onClick={onCancel}
+                        >
+                            {cancelText}
+                        </button>
+                    )
+                }
                 <button
                     type="button"
                     className="btn btn-success"
@@ -79,7 +83,7 @@ const NotificationToast = ({ title, content, type, toastId }) => {
             <div className="toast-content">
                 {Array.isArray(content) ? (
                     content.map((line, index) => (
-                        <p key={index} className="toast-line">{line}</p>
+                        <p key={index} className="toast-line"><div dangerouslySetInnerHTML={{ __html: line }}></div></p>
                     ))
                 ) : (
                     <p className="toast-line"><div dangerouslySetInnerHTML={{ __html: content }}></div></p>
@@ -95,7 +99,8 @@ export const showConfirmToast = ({
     onConfirm,
     onCancel,
     cancelText = "Cancel",
-    submitText = "Yes"
+    submitText = "Yes",
+    isNotification = false
 }) => {
     const toastId = `confirm-${uuidv4()}`;
 
@@ -105,6 +110,7 @@ export const showConfirmToast = ({
             content={content}
             cancelText={cancelText}
             submitText={submitText}
+            isNotification={isNotification}
             toastId={toastId}
             onConfirm={() => {
                 onConfirm && onConfirm();

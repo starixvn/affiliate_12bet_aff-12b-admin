@@ -45,18 +45,6 @@ export const param = createReducer(null, {
     }
 })
 
-export const landingPageDetailUrl = createReducer(null, {
-    [types.SET_LANDING_PAGE_DETAIL_URL](prevState, action) {
-        return Object.assign({}, { ...action.data });
-    }
-})
-
-export const selectedLandingPageId = createReducer(null, {
-    [types.SET_SELECTED_LANDING_PAGE_ID](prevState, action) {
-        return action.data;
-    }
-})
-
 export const shouldResetScrollPosition = createReducer(true, {
     [types.SHOULD_RESET_SCROLL_POSITION](prevState, action) {
         return action.data;

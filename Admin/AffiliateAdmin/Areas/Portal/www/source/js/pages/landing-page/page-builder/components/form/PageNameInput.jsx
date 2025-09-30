@@ -49,20 +49,8 @@ const PageNameInput = ({ value, error, required = false, updateFormField }) => {
                         onChange={handleChange}
                         invalid={!!error}
                         placeholder="e.g.: New Year Promotion Page"
-                        maxLength={200}
+                        maxLength={50}
                     />
-                    {/* {error && <FormFeedback>{error}</FormFeedback>} */}
-                    {/* {isValidating && (
-                        <small className="text-muted">
-                            <i className="fa fa-spinner fa-spin me-1"></i>
-                            Checking availability...
-                        </small>
-                    )}
-                    {!error && localValue && !isValidating && (
-                        <FormFeedback valid>
-                            Page name is available
-                        </FormFeedback>
-                    )} */}
                 </Col>
             </Row>
         </FormGroup>

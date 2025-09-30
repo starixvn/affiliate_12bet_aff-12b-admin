@@ -1,10 +1,9 @@
 import React from 'react';
 
-import SearchableDropdown from '../../common/SearchableDropdown';
+import SearchableDropdown from '@/components/SearchableDropdown';
 import ImageHoverPreview from './ImageHoverPreview';
 
 const SingleSourceSelector = ({ 
-    moduleId, 
     value, 
     error, 
     sources, 

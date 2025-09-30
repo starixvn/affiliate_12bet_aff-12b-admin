@@ -76,23 +76,14 @@ const PageCodeInput = ({ value, error, required = false, validation, isEditMode,
                         onChange={handleChange}
                         invalid={!!error}
                         placeholder="e.g.: LP-2025-NY"
-                        maxLength={100}
+                        maxLength={50}
                     />
-                    {/* {error && <FormFeedback>{error}</FormFeedback>} */}
                     {isValidating && (
                         <small className="text-muted">
                             <i className="fa fa-spinner fa-spin me-1"></i>
                             Checking availability...
                         </small>
                     )}
-                    {/* {!error && localValue && !isValidating && (
-                        <FormFeedback valid>
-                            Page code is available
-                        </FormFeedback>
-                    )} */}
-                    {/* <small className="text-muted">
-                        Page code will be used in URLs. Only letters, numbers, hyphens and underscores are allowed.
-                    </small> */}
                 </Col>
             </Row>
         </FormGroup>

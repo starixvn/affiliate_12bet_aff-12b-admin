@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 
 import { insertLandingPageCampaign, fetchCampaigns, updateFormField } from '../../actions';
-import { globalResource } from '../../../../../modules/globalResource';
+import { globalResource } from '@/modules/globalResource';
 
 const AddNewCampaignModal = ({ isOpen, toggle, insertLandingPageCampaign, fetchCampaigns, updateFormField }) => {
     const [campaignName, setCampaignName] = useState('');

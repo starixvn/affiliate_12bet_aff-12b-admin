@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
@@ -7,13 +7,14 @@ import IframeHoverPreview from './IframeHoverPreview';
 import StatusDropdown from '../../common/components/StatusDropdown';
 
 import { resolveClientUrl, formatDateTime } from '../../../../modules/utils';
-import { headerText, globalResource, messageSwitchStatus } from '../libs/constants';
-import { landingPageStatus } from '../../libs/constants';
-import { setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam } from '../actions';
+import { headerText, globalResource } from '../libs/constants';
+import { landingPageStatus, messageSwitchLandingPageStatus } from '../../libs/constants';
+import { setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam } from '../actions';
 import { showConfirmToast, showSuccessToast, showErrorToast } from '../../../common/components/Toast';
 
 export const Content = (props) => {
     const { statusList, isModifyInPageManagement } = props;
+    const [refreshLandingPageUrl, setRefreshLandingPageUrl] = useState();
 
     useEffect(() => {
         const { param } = props;
@@ -36,7 +37,7 @@ export const Content = (props) => {
         });
     };
     
-    const _onStatusChange = (pageId, newStatusId) => {
+    const _onStatusChange = (pageId, newStatusId, landingPageUrl) => {
         if (!isModifyInPageManagement) {
             return;
         }
@@ -46,11 +47,7 @@ export const Content = (props) => {
         // Use the same confirm toast as all-campaign (blue styling)
         showConfirmToast({
             title: "Confirm Status Change",
-            content: [
-                'Only Active pages are available for link generation.',
-                'Inactive pages are not available for link generation. Existing links with an Inactive page will redirect users to the main join page.',
-                'Are you sure you want to change status of this landing page?'
-            ],
+            content: messageSwitchLandingPageStatus.AreYouSureSwitchStatus,
             onConfirm: async () => {
                 const result = await props.toggleLandingPageStatus({ pageId, statusId: newStatus.key });
                 if (result && result.IsSuccessful) {
@@ -59,9 +56,9 @@ export const Content = (props) => {
 
                 // Show toast notification for feedback
                 if (result?.IsSuccessful) {
-                    return showSuccessToast('Status Updated', messageSwitchStatus.SwitchStatusSuccessfully);
+                    return showSuccessToast('Status Updated', messageSwitchLandingPageStatus.SwitchStatusSuccessfully);
                 } else {
-                    return showErrorToast('Status Update Failed', result?.Message || messageSwitchStatus.FailedToSwitchStatus);
+                    return showErrorToast('Status Update Failed', result?.Message || messageSwitchLandingPageStatus.FailedToSwitchStatus);
                 }
             },
             onCancel: () => {
@@ -131,12 +128,13 @@ export const Content = (props) => {
         const language = dataItem.Language || '';
         const deal = dataItem.NoOfDeals || '';
         const dealList = dataItem.Deals?.replace(/, /g, '\n') || '';
-        const createdDate = formatDateTime(dataItem.CreatedDate, 'yyyy-MM-dd');
-        const lastModified = formatDateTime(dataItem.LastModifiedDate, 'yyyy-MM-dd') || '--';
+        const createdDate = formatDateTime(dataItem.CreatedDate, 'MM/dd/yyyy');
+        const lastModified = formatDateTime(dataItem.LastModifiedDate, 'MM/dd/yyyy') || '--';
         const statusItem = props.statusList && props.statusList.find(item => item.key === dataItem.StatusId);
         const isCanPreview = dataItem.StatusId !== landingPageStatus.inactive;
         const createdBy = dataItem.CreatedBy || '';
         const lastModifiedBy = dataItem.LastModifiedBy || '--';
+        const landingPageUrl = `${props.landingPageUrl}/${dataItem.TargetLanguageCode}/${landingPageCode}`;
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -145,8 +143,8 @@ export const Content = (props) => {
                 <Cell className="text-left" title={campaignName}>{campaignName}</Cell>
                 <Cell className="text-left" title={landingPageName}>
                     {
-                        isCanPreview ? (<IframeHoverPreview src={`${props.landingPageUrl}/${dataItem.TargetLanguageCode}/${landingPageCode}`} isCanPreview={isCanPreview}>
-                            <a href={`${props.landingPageUrl}/${dataItem.TargetLanguageCode}/${landingPageCode}`} target="_blank">
+                        isCanPreview ? (<IframeHoverPreview src={landingPageUrl} isCanPreview={isCanPreview}>
+                            <a href={landingPageUrl} target="_blank">
                                 {landingPageName}
                             </a>
                         </IframeHoverPreview>) : (landingPageName)
@@ -163,7 +161,7 @@ export const Content = (props) => {
                 <Cell className="text-center" title={statusItem.name}>
                     <StatusDropdown
                         value={dataItem.StatusId?.toString() || ''}
-                        onChange={(newStatusId) => _onStatusChange(dataItem.PageId, newStatusId)}
+                        onChange={(newStatusId) => _onStatusChange(dataItem.PageId, newStatusId, landingPageUrl)}
                         disabled={!isModifyInPageManagement}
                         statusOptions={getStatusOptions()}
                     />
@@ -196,6 +194,16 @@ export const Content = (props) => {
                     shouldResetScrollPosition={props.shouldResetScrollPosition}
                 />
             </div>
+            {
+                refreshLandingPageUrl
+                && <iframe
+                        title="Refresh Landing Page"
+                        src={refreshLandingPageUrl}
+                        style={{
+                            display: 'none'
+                        }}
+                    />
+            }
         </div>
     );
 }
@@ -205,7 +213,7 @@ function mapStateToProps({ shouldResetScrollPosition, gridData, pagingOption, pa
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedLandingPageId, setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam }, dispatch);
+    return bindActionCreators({ setShouldResetScrollPosition, fetchData, setPagingOption, setNotification, toggleLandingPageStatus, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Content));

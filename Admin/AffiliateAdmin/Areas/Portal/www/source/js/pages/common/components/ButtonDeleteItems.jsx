@@ -55,17 +55,21 @@ export default class ButtonDeleteItems extends PureComponent {
 
     _deleteExcute = async (itemIdList) => {
         this.props.toggleLoader(true);
+        
+        if (itemIdList.length === 0) {
+            this._handleOpenNotificationPopup('All selected items are currently in use and cannot be deleted.');
+        } else {
+            const result = await this.props.deleteItems(itemIdList.join(','));
 
-        const result = itemIdList.length === 0 ? { IsSuccessful: true } : await this.props.deleteItems(itemIdList.join(','));
-
-        if (result) {
-            if (result.IsSuccessful) {
-                this.props.isOpenNotification && this._handleOpenNotificationPopup(this.props.messages.DeleteItemsSuccessfully);
-
-                this.props.fetchData();
-            }
-            else {
-                this._handleOpenNotificationPopup(result.Message);
+            if (result) {
+                if (result.IsSuccessful) {
+                    this.props.isOpenNotification && this._handleOpenNotificationPopup(this.props.messages.DeleteItemsSuccessfully);
+    
+                    this.props.fetchData();
+                }
+                else {
+                    this._handleOpenNotificationPopup(result.Message);
+                }
             }
         }
 

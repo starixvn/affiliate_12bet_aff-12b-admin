@@ -20,7 +20,7 @@ export const messageDelete = {
 
 export const messageSwitchStatus = {
     PleaseSelect: 'Please select form(s) to switch status',
-    AreYouSureSwitchStatus: 'Only active form(s) will be available for selection when creating a new landing page.<br />Are you sure you want to change status of the selected form(s)?',
+    AreYouSureSwitchStatus: 'Only active form are avaialble for selection when creating a new landing page.<br />Are you sure you want to change status of this form?',
     SwitchStatusSuccessfully: 'Switch status of form(s) successfully',
     FailedToSwitchStatus: 'Failed to change status of the selected form(s)'
 }
