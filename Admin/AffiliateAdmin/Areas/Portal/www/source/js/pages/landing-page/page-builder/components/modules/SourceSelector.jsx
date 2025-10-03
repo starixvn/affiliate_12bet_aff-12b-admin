@@ -117,6 +117,7 @@ const SourceSelector = ({
                 value={value}
                 extraValue={currentModule?.extraInfo}
                 error={error}
+                isLoginBtnModule={isLoginBtnModule}
                 sources={sources}
                 isDisabled={isDisabled}
                 onSourceChange={handleSingleSelect}

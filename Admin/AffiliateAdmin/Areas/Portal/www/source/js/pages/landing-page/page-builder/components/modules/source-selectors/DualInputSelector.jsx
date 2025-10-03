@@ -14,6 +14,7 @@ const DualInputSelector = ({
     extraPlaceholder = "extra info",
     extraLabel = "Extra Info",
     extraRequired = true,
+    isLoginBtnModule,
     bannerRootUrl
 }) => {
     return (
@@ -33,22 +34,25 @@ const DualInputSelector = ({
             </FormGroup>
             
             {/* Extra Info Input */}
-            <FormGroup>
-                <Label for={`extra-info-${moduleId}`}>
-                    {extraLabel}
-                    {extraRequired && <span className="text-danger ms-1">*</span>}
-                </Label>
-                <Input
-                    id={`extra-info-${moduleId}`}
-                    key={`moduleId-extra-info-${moduleId}`}
-                    type="text"
-                    placeholder={extraPlaceholder}
-                    value={extraValue || ''}
-                    onChange={onExtraChange}
-                    invalid={!!error}
-                    disabled={isDisabled}
-                />
-            </FormGroup>
+            {
+                !isLoginBtnModule && (
+                <FormGroup>
+                    <Label for={`extra-info-${moduleId}`}>
+                        {extraLabel}
+                        {extraRequired && <span className="text-danger ms-1">*</span>}
+                    </Label>
+                    <Input
+                        id={`extra-info-${moduleId}`}
+                        key={`moduleId-extra-info-${moduleId}`}
+                        type="text"
+                        placeholder={extraPlaceholder}
+                        value={extraValue || ''}
+                        onChange={onExtraChange}
+                        invalid={!!error}
+                        disabled={isDisabled}
+                    />
+                </FormGroup>
+            )}
         </div>
     );
 };
