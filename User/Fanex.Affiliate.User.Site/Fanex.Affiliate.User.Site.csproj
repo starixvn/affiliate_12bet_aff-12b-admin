@@ -447,6 +447,7 @@
       <DependentUpon>font.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\Images\404-illus.png" />
+    <Content Include="www\build\styles\Images\account-overview\icon-click.svg" />
     <Content Include="www\build\styles\Images\account-overview\icon-subaff.png" />
     <Content Include="www\build\styles\Images\account-overview\qr-disabled.png" />
     <Content Include="www\build\styles\Images\commission\revenue-share-hierarchy\revenue_share_hierarchy.bn-BD.png" />

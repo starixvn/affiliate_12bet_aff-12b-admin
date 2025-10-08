@@ -25,5 +25,9 @@
         public bool IsMaxSubLevel { get; set; }
 
         public decimal NetGGR { get; set; }
+
+        public int TotalClick { get; set; }
+
+        public int UniqueClick { get; set; }
     }
 }
