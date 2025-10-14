@@ -100,15 +100,17 @@ export class Content extends PureComponent {
                 {
                     this._buildRow(rowTitle.NewSignups,
                         `${format(data.SignupsByMonth)}/${format(data.FdmByMonth)}`,
-                        `${format(data.SignupsTotal)}/${format(data.FdmTotal)}`)
+                        `${format(data.SignupsTotal)}/${format(data.FdmTotal)}`,
+                        rowTitle.Tooltip.replace('{0}', '5')
+                    )
                 }
-                {this._buildRow(rowTitle.TotalActive, format(data.ActivePlayersByMonth), resource.NA)}
-                {this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMembersByMonth), resource.NA)}
+                {this._buildRow(rowTitle.TotalActive, format(data.ActivePlayersByMonth), resource.NA, rowTitle.Tooltip.replace('{0}', '75'))}
+                {this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMembersByMonth), resource.NA, rowTitle.Tooltip.replace('{0}', '75'))}
                 {this._buildRow(rowTitle.TotalSubAff, format(data.NoOfSubAffByMonth), format(data.NoOfSubAffTotal))}
-                {this._buildRow(rowTitle.TotalDeposits, `${DepositByMonth}/${TotalFDMAmountByMonth}`, `${DepositTotal}/${TotalFDMAmount}`)}
-                {this._buildRow(rowTitle.TotalFDMTotalDeposit, `${TotalFDMTotalDepositByMonth}`, resource.NA)}
-                {this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
-                {this._buildRow(rowTitle.Ggr, GgrByMonth, GgrTotal)}
+                {this._buildRow(rowTitle.TotalDeposits, `${DepositByMonth}/${TotalFDMAmountByMonth}`, `${DepositTotal}/${TotalFDMAmount}`, rowTitle.Tooltip.replace('{0}', '5'))}
+                {this._buildRow(rowTitle.TotalFDMTotalDeposit, `${TotalFDMTotalDepositByMonth}`, resource.NA, rowTitle.Tooltip.replace('{0}', '5'))}
+                {this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal, rowTitle.Tooltip.replace('{0}', '75'))}
+                {this._buildRow(rowTitle.Ggr, GgrByMonth, GgrTotal, rowTitle.Tooltip.replace('{0}', '75'))}
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
                         (<a href="javascript:;" onClick={() => this.props.redirectToReferrers({ fromDate: startMonthString, toDate: endMonthString, deviceType: deviceTypes[pcLaptop], isClickLink: true })}>
@@ -127,10 +129,13 @@ export class Content extends PureComponent {
         );
     }
 
-    _buildRow(title, dataByMonth, dataUpToNow) {
+    _buildRow(title, dataByMonth, dataUpToNow, tooltip = '') {
         return (
             <tr key={title}>
-                <td className="font-weight-bold">{title}</td>
+                <td className="font-weight-bold">
+                    {title}
+                    {tooltip && <span className="oi icon-info ml-1" title={tooltip}></span>}
+                </td>
                 <td className="text-right">{dataByMonth}</td>
                 <td className="text-right">{dataUpToNow}</td>
             </tr>

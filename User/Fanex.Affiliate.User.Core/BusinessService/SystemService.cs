@@ -68,7 +68,7 @@
             return GetSystemTargetCountries()
                        .FirstOrDefault(c => c.TargetCountryCode == countryCode)
                        ?.Code
-                   ?? SystemLanguage.DefaultCountryCode;
+                   ?? SystemLanguage.DefaultLanguageCode;
         }
 
         public string GetFavoriteShortedLanguage()
@@ -139,11 +139,11 @@
             return string.Empty;
         }
 
-        private static string GetCountryByCookie()
+        private string GetCountryByCookie()
         {
             var request = HttpContext.Current.Request;
             var country = request.Cookies[COUNTRY_COOKIE_KEY]?.Value;
-            if (!string.IsNullOrWhiteSpace(country))
+            if (IsValidCountry(country))
             {
                 return country;
             }

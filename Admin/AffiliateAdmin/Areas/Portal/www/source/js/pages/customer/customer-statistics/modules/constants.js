@@ -10,7 +10,8 @@
     Turnover: "Turnover",
     Ggr: "GGR",
     TrackingRatePC: "Tracking Rate for PC/Laptop (Unique/Total)",
-    TrackingRateMobile: "Tracking Rate for Mobile (Unique/Total)"
+    TrackingRateMobile: "Tracking Rate for Mobile (Unique/Total)",
+    Tooltip: 'Update regularly every {0} minutes.'
 }
 
 export const resource = {

@@ -912,7 +912,7 @@ input[type=checkbox], input[type=radio] {
     position: absolute;
   }
   .language-container .language-list-wrapper {
-    max-height: 600px;
+    max-height: 500px;
   }
 }
 .language-container #selectedLanguage {
