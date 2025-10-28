@@ -2,11 +2,8 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <!-- Suppress NU1701: .NET Framework compatibility warnings from Fanex legacy packages -->
-    <NoWarn>$(NoWarn);NU1701</NoWarn>
   </PropertyGroup>
   <ItemGroup Label="Core Packages">
-    <PackageVersion Include="DNAide" Version="2.1.4477.18436" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.10" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.10" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
@@ -80,8 +77,9 @@
     <PackageVersion Include="Refit" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup Label="Health Checks">
-    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.2" />
-    <PackageVersion Include="AspNetCore.HealthChecks.Redis" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
   </ItemGroup>
   <ItemGroup Label="Utilities">
     <PackageVersion Include="SharpZipLib" Version="1.4.2" />

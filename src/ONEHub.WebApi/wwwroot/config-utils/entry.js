@@ -11,7 +11,7 @@ module.exports = {
     [`${jsDist}/pages/affiliate/marketing-account`]: clientRoot + "/js/pages/marketing-account/index.jsx",
     [`${jsDist}/pages/affiliate/email-history`]: clientRoot + "/js/pages/email-history/index.jsx",
     [`${jsDist}/pages/payment/payment-request`]: clientRoot + "/js/pages/payment-request/index.jsx",
-    [`${jsDist}/pages/customer/customer`]: clientRoot + "/js/pages/customer/index.jsx",
+/*    [`${jsDist}/pages/customer/customer`]: clientRoot + "/js/pages/customer/index.jsx",*/
     [`${jsDist}/pages/message/message`]: clientRoot + "/js/pages/message/index.jsx",
     [`${jsDist}/pages/member/member-list`]: clientRoot + "/js/pages/member/member-list/index.jsx",
     [`${jsDist}/pages/login`]: clientRoot + "/js/pages/login/index.jsx",

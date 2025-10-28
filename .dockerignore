@@ -5,6 +5,7 @@ src/*/bin/
 src/*/obj/
 tests/*/bin/
 tests/*/obj/
+dist/
 
 # IDE
 .vs/
@@ -22,6 +23,11 @@ tests/*/obj/
 .gitignore
 .gitattributes
 
+# Nx
+.nx/
+node_modules/
+.pnpm-store/
+pnpm-lock.yaml
 
 # Testing
 coverage/
